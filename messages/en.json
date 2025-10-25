@@ -1,0 +1,99 @@
+{
+  "Layout": {
+    "Header": {
+      "nav": {
+        "home": "Home",
+        "features": "Features",
+        "pricing": "Pricing",
+        "about": "About"
+      }
+    },
+    "Footer": {
+      "copyright": "© 2025 HelloWorld. All rights reserved.",
+      "links": {
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "contact": "Contact"
+      }
+    }
+  },
+  "HomePage": {
+    "hero": {
+      "title": "High-performance landing pages made simple.",
+      "subtitle": "Launch your next brand with beautiful motion and flawless SEO.",
+      "cta": "Get Started",
+      "cta2": "Contact Us"
+    },
+    "about": {
+      "title": "About Us",
+      "paragraph1": "We are a team of engineers, designers, and creators dedicated to delivering exceptional digital experiences. With years of experience in infrastructure and cloud services, we help companies scale and innovate.",
+      "paragraph2": "From concept to deployment, our focus is on performance, design, and reliability.",
+      "imageAlt": "Team collaborating on a digital project"
+    },
+    "stats": {
+      "title": "Factory statistics",
+      "dailyProduction": "Daily production",
+      "exportCountries": "Export countries",
+      "certifications": "Certifications",
+      "desserts": "Desserts"
+    }
+  },
+  "ContactPage": {
+    "ContactHero": {
+      "h1": "Get in touch",
+      "h2": "Questions, feedback, or ideas? We’d love to hear from you.",
+      "cta": "Send a message"
+    },
+    "ContactForm": {
+      "header": {
+        "title": "Let's work together",
+        "description": "We’ll analyze your project and provide a tailored climate control solution that fits your goals, space, and budget."
+      },
+      "firstName": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "optional": "Optional",
+      "message": "Message",
+      "placeholders": {
+        "firstName": "Your name",
+        "email": "youremail@example.com",
+        "message": "Tell us about your project...",
+        "phone": "+598 01 2345"
+      },
+      "errors": {
+        "firstName": "Please enter your name",
+        "email": "Please enter a valid email",
+        "phone": "Please enter a valid phone number",
+        "message": "The message must be at least 10 characters long"
+      },
+      "success": {
+        "title": "Message sent!",
+        "description": "We’ll get back to you shortly."
+      },
+      "sending": "Sending...",
+      "sendMessage": "Send message"
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "AriaLabels": {
+    "logo": "Go to homepage",
+    "mobileMenu": "Toggle mobile menu",
+    "mobileMenuHeader": "Mobile menu header",
+    "mobileNavigation": "Mobile navigation",
+    "languageSwitcher": "Change language",
+    "socialLinks": "Social media links",
+    "themeToggle": "Switch theme",
+    "closeMenu": "Close menu",
+    "followUs": "Follow us",
+    "language": "Language"
+  },
+  "Languages": {
+    "en": "English",
+    "es": "Spanish",
+    "pt": "Portuguese"
+  }
+}

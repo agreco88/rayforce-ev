@@ -1,0 +1,20 @@
+{
+  "home": {
+    "title": "Inicio — HelloWorld Landing Template",
+    "description": "Una plantilla modular y optimizada para sitios modernos.",
+    "ogDescription": "Plantilla de aterrizaje limpia, rápida y personalizable para proyectos modernos.",
+    "keywords": "landing, nextjs, plantilla, helloworld"
+  },
+  "aboutUs": {
+    "title": "Sobre nosotros — HelloWorld Landing Template",
+    "description": "Conoce nuestra misión, visión y experiencia.",
+    "ogDescription": "Descubre HelloWorld Studio — nuestra filosofía, equipo y ética de trabajo.",
+    "keywords": "sobre, compañía, equipo, misión"
+  },
+  "contactUs": {
+    "title": "Contáctanos — HelloWorld Landing Template",
+    "description": "Conectemos y creemos algo extraordinario.",
+    "ogDescription": "Ponte en contacto con HelloWorld Studio para hablar de tu proyecto.",
+    "keywords": "contacto, correo, soporte"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "Layout": {
+    "Header": {
+      "nav": {
+        "home": "Inicio",
+        "features": "Características",
+        "pricing": "Precios",
+        "about": "Nosotros"
+      }
+    },
+    "Footer": {
+      "copyright": "© 2025 HelloWorld. Todos los derechos reservados.",
+      "links": {
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio",
+        "contact": "Contacto"
+      }
+    }
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Landing pages de alto rendimiento, hechos simples.",
+      "subtitle": "Lanza tu próxima marca con hermosas animaciones y SEO impecable.",
+      "cta": "Comenzar",
+      "cta2": "Contáctanos"
+    },
+    "stats": {
+      "title": "Estadísticas de la fábrica",
+      "dailyProduction": "Producción diaria",
+      "exportCountries": "Países de exportación",
+      "certifications": "Certificaciones",
+      "desserts": "Postres"
+    },
+    "about": {
+      "title": "Sobre nosotros",
+      "paragraph1": "Somos un equipo de ingenieros, diseñadores y creadores dedicados a ofrecer experiencias digitales excepcionales. Con años de experiencia en infraestructura y servicios en la nube, ayudamos a las empresas a escalar e innovar.",
+      "paragraph2": "Desde el concepto hasta el despliegue, nuestro enfoque está en el rendimiento, el diseño y la fiabilidad.",
+      "imageAlt": "Equipo de trabajo colaborando en un proyecto digital"
+    }
+  },
+  "ContactPage": {
+    "ContactHero": {
+      "h1": "Get in touch",
+      "h2": "Questions, feedback, or ideas? We’d love to hear from you.",
+      "cta": "Send a message"
+    },
+    "ContactForm": {
+      "header": {
+        "title": "Trabajemos juntos",
+        "description": "Analizaremos tu proyecto y te brindaremos una solución de climatización a medida, adaptada a tus objetivos, espacio y presupuesto."
+      },
+      "firstName": "Nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "optional": "Opcional",
+      "message": "Mensaje",
+      "placeholders": {
+        "firstName": "Tu nombre",
+        "email": "tucorreo@ejemplo.com",
+        "message": "Cuéntanos sobre tu proyecto...",
+        "phone": "+598 01 2345"
+      },
+      "errors": {
+        "firstName": "Por favor ingresa tu nombre",
+        "email": "Ingresa un correo válido",
+        "phone": "Ingresa un número de teléfono válido",
+        "message": "El mensaje debe tener al menos 10 caracteres"
+      },
+      "success": {
+        "title": "¡Mensaje enviado!",
+        "description": "Te responderemos a la brevedad."
+      },
+      "sending": "Enviando...",
+      "sendMessage": "Enviar mensaje"
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Cambiar idioma",
+    "english": "Inglés",
+    "spanish": "Español"
+  },
+  "AriaLabels": {
+    "logo": "Ir a la página principal",
+    "mobileMenu": "Abrir o cerrar el menú móvil",
+    "mobileMenuHeader": "Encabezado del menú móvil",
+    "mobileNavigation": "Navegación móvil",
+    "languageSwitcher": "Cambiar idioma",
+    "socialLinks": "Enlaces a redes sociales",
+    "themeToggle": "Cambiar tema",
+    "closeMenu": "Cerrar menú",
+    "followUs": "Seguinos",
+    "language": "Idioma"
+  },
+  "Languages": {
+    "en": "Inglés",
+    "es": "Español",
+    "pt": "Portugués"
+  }
+}
