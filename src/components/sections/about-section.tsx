@@ -33,7 +33,7 @@ export default function AboutSection() {
         variants={fadeIn(0.45)}
         initial="hidden"
         whileInView="show"
-        className="flex justify-center border h-full items-center rounded-lg bg-neutral-50 shadow"
+        className="flex justify-center border h-full items-center rounded-lg bg-neutral-900 shadow"
       >
         TODO IMG
       </motion.div>

@@ -12,14 +12,14 @@ export default function Logo() {
     <Link
       href="/"
       aria-label={t("logo")}
-      className="flex items-center gap-2 font-semibold text-primary"
+      className="flex items-center gap-2 font-semibold text-[#00FCF3]"
     >
       {/* Left mark */}
       <motion.div
         variants={fadeIn(0.1)}
         initial="hidden"
         animate="show"
-        className="flex w-10 h-9 items-center justify-center rounded-md bg-primary text-background shadow-sm"
+        className="flex w-10 h-9 items-center justify-center rounded-sm bg-gradient-to-bl from-neutral-700 via-neutral-800 to-neutral-900"
       >
         Hw
       </motion.div>

@@ -5,6 +5,8 @@ import { fadeIn } from "@/lib/animation-variants";
 import { stats } from "@/lib/stats-data";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import LogoLoop from "../logo-loop";
+import { techLogos } from "@/lib/stack-logos";
 
 export default function StatsSection() {
   const t = useTranslations("HomePage.stats");
@@ -16,15 +18,15 @@ export default function StatsSection() {
       whileInView="show"
       viewport={{ once: true }}
       aria-labelledby="stats-heading"
-      className="bg-muted py-8 sm:py-24 shadow-inner/7 bg-gradient-to-tr from-neutral-200 to-neutral-50 border border-gray-200 rounded-xl via-neutral-100"
+      className="bg-muted py-10 sm:py-22 bg-gradient-to-bl from-neutral-800 via-neutral-900 to-neutral-950 border border-neutral-800 rounded-xl "
     >
       <h2 id="stats-heading" className="sr-only">
         {t("title")}
       </h2>
 
-      <div className="mx-auto max-w-6xl px-2 sm:px-8">
+      <div className="mx-auto px-2 sm:px-8">
         <ul
-          className="grid grid-cols-2 lg:divide-x divide-neutral-300 sm:gap-x-12 gap-y-10 sm:grid-cols-4 text-center"
+          className="grid grid-cols-2 lg:divide-x divide-zinc-600 sm:gap-x-12 gap-y-10 sm:grid-cols-4 text-center"
           role="list"
           aria-describedby="stats-heading"
         >
@@ -38,29 +40,15 @@ export default function StatsSection() {
               aria-label={`${t(stat.key)}: ${stat.value}${stat.suffix ?? ""}`}
               className="flex flex-col"
             >
-              <div
-                className="text-4xl sm:text-5xl font-semibold text-neutral-700 flex justify-center items-center sm:items-start pointer-events-none"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                <AnimateNumber
-                  format={{ notation: "compact" }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 14,
-                    mass: 0.4,
-                  }}
-                >
-                  {stat.value}
-                </AnimateNumber>
+              <div className="text-4xl sm:text-5xl font-semibold text-neutral-50 flex justify-center items-center sm:items-start pointer-events-none">
+                {stat.value}
                 {stat.suffix && (
-                  <span className="ml-1 text-2xl sm:text-3xl text-muted-foreground">
+                  <span className="ml-0.5 text-2xl sm:text-3xl text-muted-foreground">
                     {stat.suffix}
                   </span>
                 )}
               </div>
-              <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+              <p className="text-xs mt-0.5 sm:text-sm font-medium text-muted-foreground">
                 {t(stat.key)}
               </p>
             </motion.li>

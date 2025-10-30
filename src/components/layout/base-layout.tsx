@@ -35,7 +35,7 @@ export default function BaseLayout({
     <div
       className={clsx(
         "flex flex-col h-full w-full",
-        !fluid && "mx-auto max-w-7xl",
+        !fluid && "mx-auto container",
         paddingClasses,
         className
       )}
