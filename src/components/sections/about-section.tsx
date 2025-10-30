@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/animation-variants";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import SectionWrapper from "../layout/section-wrapper";
 

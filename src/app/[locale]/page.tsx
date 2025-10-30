@@ -1,5 +1,3 @@
-import SectionWrapper from "@/components/layout/section-wrapper";
-import HomeHero from "@/components/pages/contact/home/home-hero";
 import AboutSection from "@/components/sections/about-section";
 import ContactSection from "@/components/sections/contact-cta-section";
 import DefaultHero from "@/components/sections/hero";

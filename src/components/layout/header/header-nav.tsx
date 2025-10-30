@@ -1,7 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { NAV_LINKS } from "@/lib/internal-nav-links";
 import { waterfallList } from "@/lib/animation-variants";
@@ -9,9 +7,6 @@ import { LocaleSwitcherSelect } from "../locale-switcher/locale-switcher-select"
 import HeaderNavLink from "./header-nav-link";
 
 export default function HeaderNav() {
-  const t = useTranslations("Layout.Header");
-  const pathname = usePathname();
-
   return (
     <motion.nav
       variants={waterfallList}

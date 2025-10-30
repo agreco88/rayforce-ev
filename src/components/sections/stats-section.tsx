@@ -1,12 +1,9 @@
 "use client";
 
-import { AnimateNumber } from "motion-plus/react";
 import { fadeIn } from "@/lib/animation-variants";
 import { stats } from "@/lib/stats-data";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import LogoLoop from "../logo-loop";
-import { techLogos } from "@/lib/stack-logos";
 
 export default function StatsSection() {
   const t = useTranslations("HomePage.stats");

@@ -192,9 +192,9 @@ export const Plasma: React.FC<PlasmaProps> = ({
         const timeValue = (t - t0) * 0.001;
         if (direction === "pingpong") {
           const cycle = Math.sin(timeValue * 0.5) * directionMultiplier;
-          (program.uniforms.uDirection as any).value = cycle;
+          (program.uniforms.uDirection.value as number) = cycle;
         }
-        (program.uniforms.iTime as any).value = timeValue;
+        (program.uniforms.iTime.value as number) = timeValue;
         renderer.render({ scene: mesh });
         raf = requestAnimationFrame(loop);
       };
@@ -203,16 +203,25 @@ export const Plasma: React.FC<PlasmaProps> = ({
       cleanupFn = () => {
         cancelAnimationFrame(raf);
         ro.disconnect();
+
         if (mouseInteractive && containerRef.current) {
           containerRef.current.removeEventListener(
             "mousemove",
             handleMouseMove
           );
         }
+
         if (renderer) {
           const gl = renderer.gl;
           const canvas = gl.canvas as HTMLCanvasElement;
+
+          // 💀 Forcefully release WebGL context to prevent GPU leaks/crashes
+          const ext = gl.getExtension("WEBGL_lose_context");
+          ext?.loseContext();
+
+          // 🧹 Remove the canvas from DOM
           if (canvas.parentElement) canvas.parentElement.removeChild(canvas);
+
           renderer = null;
         }
       };
