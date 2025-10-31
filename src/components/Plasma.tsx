@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { Renderer, Program, Mesh, Triangle } from "ogl";
+import { Renderer, Program, Mesh, Triangle, Transform, Camera } from "ogl";
 
 interface PlasmaProps {
   color?: string;
@@ -21,7 +21,10 @@ const hexToRgb = (hex: string): [number, number, number] => {
   ];
 };
 
-const vertex = `#version 300 es
+/* -------------------------- SHADERS (GLSL 300 / 100) -------------------------- */
+
+// WebGL2 (GLSL ES 300)
+const vertex300 = `#version 300 es
 precision highp float;
 in vec2 position;
 in vec2 uv;
@@ -32,10 +35,8 @@ void main() {
 }
 `;
 
-const fragment = `#version 300 es
-precision mediump float;   // Safari-friendly
-precision mediump int;
-
+const fragment300 = `#version 300 es
+precision highp float;
 uniform vec2 iResolution;
 uniform float iTime;
 uniform vec3 uCustomColor;
@@ -58,10 +59,8 @@ void mainImage(out vec4 o, vec2 C) {
   float i, d, z, T = iTime * uSpeed * uDirection;
   vec3 O, p, S;
 
-  // Lighter on small screens
-  float iterations = iResolution.x > 800. ? 60. : 25.;
-
-  for (vec2 r = iResolution.xy, Q; ++i < iterations; O += o.w/d*o.xyz) {
+  // 60 iters desktop; we lean on DPR=1 for mobile perf
+  for (vec2 r = iResolution.xy, Q; ++i < 60.; O += o.w/d*o.xyz) {
     p = z*normalize(vec3(C-.5*r,r.y));
     p.z -= 4.;
     S = p;
@@ -87,7 +86,7 @@ void main() {
   vec4 o = vec4(0.0);
   mainImage(o, gl_FragCoord.xy);
   vec3 rgb = sanitize(o.rgb);
-  rgb = clamp(rgb, 0.0, 1.0); // prevent overflow flicker
+  rgb = clamp(rgb, 0.0, 1.0);
 
   float intensity = (rgb.r + rgb.g + rgb.b) / 3.0;
   vec3 customColor = intensity * uCustomColor;
@@ -95,7 +94,73 @@ void main() {
 
   float alpha = length(rgb) * uOpacity;
   fragColor = vec4(finalColor, alpha);
-}`;
+}
+`;
+
+// WebGL1 (GLSL ES 100) — Safari-stable
+const vertex100 = `
+precision highp float;
+attribute vec2 position;
+attribute vec2 uv;
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+const fragment100 = `
+precision highp float;
+uniform vec2 iResolution;
+uniform float iTime;
+uniform vec3 uCustomColor;
+uniform float uUseCustomColor;
+uniform float uSpeed;
+uniform float uDirection;
+uniform float uScale;
+uniform float uOpacity;
+uniform vec2 uMouse;
+uniform float uMouseInteractive;
+varying vec2 vUv;
+
+void mainImage(out vec4 o, vec2 C) {
+  vec2 center = iResolution.xy * 0.5;
+  C = (C - center) / uScale + center;
+
+  vec2 mouseOffset = (uMouse - center) * 0.0002;
+  C += mouseOffset * length(C - center) * step(0.5, uMouseInteractive);
+
+  float i, d, z, T = iTime * uSpeed * uDirection;
+  vec3 O, p, S;
+
+  for (vec2 r = iResolution.xy, Q; ++i < 60.; O += o.w/d*o.xyz) {
+    p = z*normalize(vec3(C-.5*r,r.y));
+    p.z -= 4.;
+    S = p;
+    d = p.y-T;
+    p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05);
+    Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T));
+    z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4;
+    o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
+  }
+  o.xyz = tanh(O/1e4);
+}
+
+void main() {
+  vec4 o = vec4(0.0);
+  mainImage(o, gl_FragCoord.xy);
+  vec3 rgb = clamp(o.rgb, 0.0, 1.0);
+
+  float intensity = (rgb.r + rgb.g + rgb.b) / 3.0;
+  vec3 customColor = intensity * uCustomColor;
+  vec3 finalColor = mix(rgb, customColor, step(0.5, uUseCustomColor));
+
+  float alpha = length(rgb) * uOpacity;
+  gl_FragColor = vec4(finalColor, alpha);
+}
+`;
+
+/* --------------------------------- Component -------------------------------- */
 
 export const Plasma: React.FC<PlasmaProps> = ({
   color = "#ffffff",
@@ -114,40 +179,61 @@ export const Plasma: React.FC<PlasmaProps> = ({
     let renderer: Renderer | null = null;
     let raf = 0;
     let cleanupFn: (() => void) | null = null;
+    let initialized = false;
 
     const init = () => {
-      if (!containerRef.current) return;
+      if (initialized || !containerRef.current) return;
 
       const rect = containerRef.current.getBoundingClientRect();
       if (rect.width < 5 || rect.height < 5) {
         requestAnimationFrame(init);
         return;
       }
+      initialized = true;
 
       const useCustomColor = color ? 1.0 : 0.0;
       const customColorRgb = color ? hexToRgb(color) : [1, 1, 1];
       const directionMultiplier = direction === "reverse" ? -1.0 : 1.0;
-      const isMobile = window.innerWidth < 768;
 
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const isSafari = /^((?!chrome|android).)*safari/i.test(
+        navigator.userAgent
+      );
+
+      // Prefer WebGL2; fall back to 1 on Safari/older
+      const wantWebGL2 =
+        !isSafari && !!document.createElement("canvas").getContext("webgl2");
       renderer = new Renderer({
-        webgl: 2,
-        alpha: false, // ✅ Safari flicker fix (opaque canvas)
+        webgl: wantWebGL2 ? 2 : 1,
+        alpha: false, // opaque fixes Safari flicker
         antialias: false,
         dpr: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2),
       });
 
       const gl = renderer.gl;
       const canvas = gl.canvas as HTMLCanvasElement;
+
+      // Prevent Safari color-space conversion artifacts (guarded)
+      // @ts-expect-error: constant not typed on WebGL2
+      if (
+        typeof (gl as any).UNPACK_COLORSPACE_CONVERSION_WEBGL !== "undefined"
+      ) {
+        // @ts-expect-error
+        gl.pixelStorei(
+          (gl as any).UNPACK_COLORSPACE_CONVERSION_WEBGL,
+          (gl as any).NONE
+        );
+      }
+
       canvas.style.display = "block";
       canvas.style.width = "100%";
       canvas.style.height = "100%";
-      // If you need a background here, set it via parent CSS; canvas is opaque now.
       containerRef.current.appendChild(canvas);
 
       const geometry = new Triangle(gl);
       const program = new Program(gl, {
-        vertex,
-        fragment,
+        vertex: wantWebGL2 ? vertex300 : vertex100,
+        fragment: wantWebGL2 ? fragment300 : fragment100,
         uniforms: {
           iTime: { value: 0 },
           iResolution: { value: new Float32Array([1, 1]) },
@@ -164,6 +250,13 @@ export const Plasma: React.FC<PlasmaProps> = ({
 
       const mesh = new Mesh(gl, { geometry, program });
 
+      // Proper scene graph + camera (stable across GL1/GL2)
+      const scene = new Transform();
+      mesh.setParent(scene);
+
+      const camera = new Camera(gl);
+      camera.position.z = 1;
+
       const setSize = () => {
         if (!renderer || !containerRef.current) return;
         const r = containerRef.current.getBoundingClientRect();
@@ -173,9 +266,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
         res[1] = gl.drawingBufferHeight;
       };
 
-      const ro = new ResizeObserver(() => {
-        if (renderer) setSize();
-      });
+      const ro = new ResizeObserver(() => setSize());
       ro.observe(containerRef.current);
       setSize();
 
@@ -197,7 +288,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
       const loop = (t: number) => {
         if (!renderer) return;
 
-        // Clamp to avoid giant Safari time jumps after tab switches/throttle
+        // Clamp time to avoid Safari resume jumps
         const timeValueRaw = (t - t0) * 0.001;
         const timeValue = Math.max(0, Math.min(timeValueRaw, 1e6));
 
@@ -207,7 +298,16 @@ export const Plasma: React.FC<PlasmaProps> = ({
         }
         (program.uniforms.iTime as { value: number }).value = timeValue;
 
-        renderer.render({ scene: mesh });
+        (renderer as any).render({
+          scene,
+          camera,
+          target: null,
+          update: true,
+          sort: false,
+          frustumCull: false,
+          clear: true,
+        });
+
         raf = requestAnimationFrame(loop);
       };
       raf = requestAnimationFrame(loop);
@@ -215,21 +315,16 @@ export const Plasma: React.FC<PlasmaProps> = ({
       cleanupFn = () => {
         cancelAnimationFrame(raf);
         ro.disconnect();
-
         if (mouseInteractive && containerRef.current) {
           containerRef.current.removeEventListener(
             "mousemove",
             handleMouseMove
           );
         }
-
         if (renderer) {
           const gl = renderer.gl;
           const canvas = gl.canvas as HTMLCanvasElement;
-
-          // Release GPU context to avoid leaks / crashes
           gl.getExtension("WEBGL_lose_context")?.loseContext();
-
           if (canvas.parentElement) canvas.parentElement.removeChild(canvas);
           renderer = null;
         }
@@ -249,11 +344,8 @@ export const Plasma: React.FC<PlasmaProps> = ({
   return (
     <div
       ref={containerRef}
-      className="w-full h-full relative overflow-hidden will-change-transform"
-      style={{
-        transform: "translateZ(0)", // ✅ compositing hint
-        backfaceVisibility: "hidden",
-      }}
+      className="w-full h-full relative overflow-hidden bg-black will-change-transform"
+      style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
     />
   );
 };
