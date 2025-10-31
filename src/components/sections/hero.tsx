@@ -55,7 +55,9 @@ export default function DefaultHero() {
         className="mt-10 flex items-center justify-start gap-3"
       >
         <Button size="lg" asChild className="flex-1 sm:flex-none">
-          <Link href="#about">{t("cta")}</Link>
+          <Link href="#about" scroll={true}>
+            {t("cta")}
+          </Link>
         </Button>
 
         <Button variant="outline" size="lg" className="flex-1 sm:flex-none">

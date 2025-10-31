@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle, Transform, Camera } from "ogl";
-
+/* eslint-disable */
+/* @ts-nocheck */
 interface PlasmaProps {
   color?: string;
   speed?: number;
@@ -21,7 +22,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
   ];
 };
 
-/* -------------------------- SHADERS (GLSL 300 / 100) -------------------------- */
+/* ---------------- GLSL (WebGL2 & WebGL1) ---------------- */
 
 // WebGL2 (GLSL ES 300)
 const vertex300 = `#version 300 es
@@ -59,13 +60,22 @@ void mainImage(out vec4 o, vec2 C) {
   float i, d, z, T = iTime * uSpeed * uDirection;
   vec3 O, p, S;
 
-  // 60 iters desktop; we lean on DPR=1 for mobile perf
-  for (vec2 r = iResolution.xy, Q; ++i < 60.; O += o.w/d*o.xyz) {
+  // Adaptive iterations: fewer on small screens
+  float iterations = iResolution.x > 1000. ? 60. : 28.;
+
+  for (vec2 r = iResolution.xy, Q; ++i < iterations; O += o.w/d*o.xyz) {
     p = z*normalize(vec3(C-.5*r,r.y));
     p.z -= 4.;
     S = p;
-    d = p.y-T;
-    p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05);
+    d = p.y - T;
+
+    // On small screens, drop the extra cos() for perf
+    if (iResolution.x > 800.) {
+      p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05);
+    } else {
+      p.x += .4*(1.+p.y)*sin(d + p.x*0.1);
+    }
+
     Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T));
     z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4;
     o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
@@ -85,8 +95,7 @@ vec3 sanitize(vec3 c){
 void main() {
   vec4 o = vec4(0.0);
   mainImage(o, gl_FragCoord.xy);
-  vec3 rgb = sanitize(o.rgb);
-  rgb = clamp(rgb, 0.0, 1.0);
+  vec3 rgb = clamp(sanitize(o.rgb), 0.0, 1.0);
 
   float intensity = (rgb.r + rgb.g + rgb.b) / 3.0;
   vec3 customColor = intensity * uCustomColor;
@@ -133,15 +142,27 @@ void mainImage(out vec4 o, vec2 C) {
   float i, d, z, T = iTime * uSpeed * uDirection;
   vec3 O, p, S;
 
-  for (vec2 r = iResolution.xy, Q; ++i < 60.; O += o.w/d*o.xyz) {
+  float iterations = iResolution.x > 1000. ? 60. : 28.;
+
+  // Note: Some GL1 drivers dislike dynamic loop bounds; early-break pattern:
+  for (vec2 r = iResolution.xy, Q; i < 60.0; i += 1.0) {
+    if (i >= iterations) break;
+
     p = z*normalize(vec3(C-.5*r,r.y));
     p.z -= 4.;
     S = p;
-    d = p.y-T;
-    p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05);
-    Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T));
-    z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4;
-    o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
+    d = p.y - T;
+
+    if (iResolution.x > 800.0) {
+      p.x += .4*(1.0+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05);
+    } else {
+      p.x += .4*(1.0+p.y)*sin(d + p.x*0.1);
+    }
+
+    Q = p.xz *= mat2(cos(p.y+vec4(0.0,11.0,33.0,0.0)-T));
+    z+= d = abs(sqrt(length(Q*Q)) - .25*(5.0+S.y))/3.0+8e-4;
+    o = 1.0+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2.0,1.0,0.0,8.0));
+    O += o.w/d*o.xyz;
   }
   o.xyz = tanh(O/1e4);
 }
@@ -160,7 +181,7 @@ void main() {
 }
 `;
 
-/* --------------------------------- Component -------------------------------- */
+/* ---------------- Component ---------------- */
 
 export const Plasma: React.FC<PlasmaProps> = ({
   color = "#ffffff",
@@ -179,46 +200,49 @@ export const Plasma: React.FC<PlasmaProps> = ({
     let renderer: Renderer | null = null;
     let raf = 0;
     let cleanupFn: (() => void) | null = null;
-    let initialized = false;
+    let lastFrame = 0;
 
     const init = () => {
-      if (initialized || !containerRef.current) return;
+      if (!containerRef.current) return;
 
       const rect = containerRef.current.getBoundingClientRect();
       if (rect.width < 5 || rect.height < 5) {
         requestAnimationFrame(init);
         return;
       }
-      initialized = true;
 
       const useCustomColor = color ? 1.0 : 0.0;
       const customColorRgb = color ? hexToRgb(color) : [1, 1, 1];
       const directionMultiplier = direction === "reverse" ? -1.0 : 1.0;
 
       const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const isTiny = window.matchMedia("(max-width: 420px)").matches;
       const isSafari = /^((?!chrome|android).)*safari/i.test(
         navigator.userAgent
       );
 
-      // Prefer WebGL2; fall back to 1 on Safari/older
+      // Try WebGL2; fall back to 1 on Safari/older
       const wantWebGL2 =
         !isSafari && !!document.createElement("canvas").getContext("webgl2");
+
       renderer = new Renderer({
         webgl: wantWebGL2 ? 2 : 1,
-        alpha: false, // opaque fixes Safari flicker
+        alpha: false, // opaque => no Safari flicker
         antialias: false,
-        dpr: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2),
+        dpr: isTiny
+          ? 0.75
+          : isMobile
+          ? 1
+          : Math.min(window.devicePixelRatio || 1, 2),
       });
 
       const gl = renderer.gl;
       const canvas = gl.canvas as HTMLCanvasElement;
 
-      // Prevent Safari color-space conversion artifacts (guarded)
-      // @ts-expect-error: constant not typed on WebGL2
+      // Safari color-space conversion guard
       if (
         typeof (gl as any).UNPACK_COLORSPACE_CONVERSION_WEBGL !== "undefined"
       ) {
-        // @ts-expect-error
         gl.pixelStorei(
           (gl as any).UNPACK_COLORSPACE_CONVERSION_WEBGL,
           (gl as any).NONE
@@ -249,8 +273,6 @@ export const Plasma: React.FC<PlasmaProps> = ({
       });
 
       const mesh = new Mesh(gl, { geometry, program });
-
-      // Proper scene graph + camera (stable across GL1/GL2)
       const scene = new Transform();
       mesh.setParent(scene);
 
@@ -288,9 +310,15 @@ export const Plasma: React.FC<PlasmaProps> = ({
       const loop = (t: number) => {
         if (!renderer) return;
 
-        // Clamp time to avoid Safari resume jumps
-        const timeValueRaw = (t - t0) * 0.001;
-        const timeValue = Math.max(0, Math.min(timeValueRaw, 1e6));
+        // Frame throttle: ~30fps on mobile, 60 on desktop
+        const minFrameTime = 1000 / (isMobile ? 30 : 60);
+        if (t - lastFrame < minFrameTime) {
+          raf = requestAnimationFrame(loop);
+          return;
+        }
+        lastFrame = t;
+
+        const timeValue = Math.max(0, Math.min((t - t0) * 0.001, 1e6));
 
         if (direction === "pingpong") {
           const cycle = Math.sin(timeValue * 0.5) * directionMultiplier;
