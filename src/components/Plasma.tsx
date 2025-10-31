@@ -33,7 +33,9 @@ void main() {
 `;
 
 const fragment = `#version 300 es
-precision highp float;
+precision mediump float;   // Safari-friendly
+precision mediump int;
+
 uniform vec2 iResolution;
 uniform float iTime;
 uniform vec3 uCustomColor;
@@ -56,15 +58,17 @@ void mainImage(out vec4 o, vec2 C) {
   float i, d, z, T = iTime * uSpeed * uDirection;
   vec3 O, p, S;
 
-float iterations = iResolution.x > 800. ? 60. : 25.;
-for (vec2 r = iResolution.xy, Q; ++i < iterations; O += o.w/d*o.xyz) {
-    p = z*normalize(vec3(C-.5*r,r.y)); 
-    p.z -= 4.; 
+  // Lighter on small screens
+  float iterations = iResolution.x > 800. ? 60. : 25.;
+
+  for (vec2 r = iResolution.xy, Q; ++i < iterations; O += o.w/d*o.xyz) {
+    p = z*normalize(vec3(C-.5*r,r.y));
+    p.z -= 4.;
     S = p;
     d = p.y-T;
-    p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05); 
-    Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T)); 
-    z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4; 
+    p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05);
+    Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T));
+    z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4;
     o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
   }
   o.xyz = tanh(O/1e4);
@@ -83,6 +87,7 @@ void main() {
   vec4 o = vec4(0.0);
   mainImage(o, gl_FragCoord.xy);
   vec3 rgb = sanitize(o.rgb);
+  rgb = clamp(rgb, 0.0, 1.0); // prevent overflow flicker
 
   float intensity = (rgb.r + rgb.g + rgb.b) / 3.0;
   vec3 customColor = intensity * uCustomColor;
@@ -115,7 +120,6 @@ export const Plasma: React.FC<PlasmaProps> = ({
 
       const rect = containerRef.current.getBoundingClientRect();
       if (rect.width < 5 || rect.height < 5) {
-        // 🔁 Wait until container has real size (important for client-side transitions)
         requestAnimationFrame(init);
         return;
       }
@@ -124,9 +128,10 @@ export const Plasma: React.FC<PlasmaProps> = ({
       const customColorRgb = color ? hexToRgb(color) : [1, 1, 1];
       const directionMultiplier = direction === "reverse" ? -1.0 : 1.0;
       const isMobile = window.innerWidth < 768;
+
       renderer = new Renderer({
         webgl: 2,
-        alpha: true,
+        alpha: false, // ✅ Safari flicker fix (opaque canvas)
         antialias: false,
         dpr: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2),
       });
@@ -136,6 +141,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
       canvas.style.display = "block";
       canvas.style.width = "100%";
       canvas.style.height = "100%";
+      // If you need a background here, set it via parent CSS; canvas is opaque now.
       containerRef.current.appendChild(canvas);
 
       const geometry = new Triangle(gl);
@@ -190,12 +196,17 @@ export const Plasma: React.FC<PlasmaProps> = ({
       const t0 = performance.now();
       const loop = (t: number) => {
         if (!renderer) return;
-        const timeValue = (t - t0) * 0.001;
+
+        // Clamp to avoid giant Safari time jumps after tab switches/throttle
+        const timeValueRaw = (t - t0) * 0.001;
+        const timeValue = Math.max(0, Math.min(timeValueRaw, 1e6));
+
         if (direction === "pingpong") {
           const cycle = Math.sin(timeValue * 0.5) * directionMultiplier;
-          (program.uniforms.uDirection.value as number) = cycle;
+          (program.uniforms.uDirection as { value: number }).value = cycle;
         }
-        (program.uniforms.iTime.value as number) = timeValue;
+        (program.uniforms.iTime as { value: number }).value = timeValue;
+
         renderer.render({ scene: mesh });
         raf = requestAnimationFrame(loop);
       };
@@ -216,19 +227,15 @@ export const Plasma: React.FC<PlasmaProps> = ({
           const gl = renderer.gl;
           const canvas = gl.canvas as HTMLCanvasElement;
 
-          // 💀 Forcefully release WebGL context to prevent GPU leaks/crashes
-          const ext = gl.getExtension("WEBGL_lose_context");
-          ext?.loseContext();
+          // Release GPU context to avoid leaks / crashes
+          gl.getExtension("WEBGL_lose_context")?.loseContext();
 
-          // 🧹 Remove the canvas from DOM
           if (canvas.parentElement) canvas.parentElement.removeChild(canvas);
-
           renderer = null;
         }
       };
     };
 
-    // slight delay to allow Next.js layout to settle after route changes
     const delay = setTimeout(() => init(), 60);
 
     return () => {
@@ -242,7 +249,11 @@ export const Plasma: React.FC<PlasmaProps> = ({
   return (
     <div
       ref={containerRef}
-      className="w-full h-full relative overflow-hidden"
+      className="w-full h-full relative overflow-hidden will-change-transform"
+      style={{
+        transform: "translateZ(0)", // ✅ compositing hint
+        backfaceVisibility: "hidden",
+      }}
     />
   );
 };
