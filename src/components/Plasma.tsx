@@ -1,8 +1,9 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import { Renderer, Program, Mesh, Triangle, Transform, Camera } from "ogl";
 /* eslint-disable */
 /* @ts-nocheck */
+"use client";
+import React, { useEffect, useRef } from "react";
+import { Renderer, Program, Mesh, Triangle, Camera, Transform } from "ogl";
+
 interface PlasmaProps {
   color?: string;
   speed?: number;
