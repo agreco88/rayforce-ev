@@ -17,7 +17,7 @@ export function LocaleSwitcherTrigger() {
     <DropdownMenuTrigger asChild>
       <Button
         variant="ghost"
-        className="group cursor-pointer flex items-center justify-around gap-4 "
+        className="group cursor-pointer flex items-center justify-around gap-3 text-gray-100! hover:bg-neutral-700!"
         aria-label={tAria("languageSwitcher")}
       >
         <ReactCountryFlag
@@ -26,7 +26,7 @@ export function LocaleSwitcherTrigger() {
           aria-hidden="true"
           style={{ width: "1.25em", height: "1.25em", borderRadius: "4px" }}
         />
-        <span className="hidden sm:inline text-sm font-medium">
+        <span className="hidden sm:inline text-sm font-medium ">
           {tLang(locale)}
         </span>
         <ChevronDown className="h-4 w-4 opacity-70 transition-transform duration-200 group-data-[state=open]:rotate-180" />

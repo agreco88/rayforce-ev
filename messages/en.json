@@ -15,70 +15,55 @@
         "terms": "Terms of Service",
         "contact": "Contact"
       }
+    },
+    "Aside": {
+      "language": "Language"
     }
   },
+
   "HomePage": {
     "hero": {
-      "title": "High-performance landing pages made simple.",
-      "subtitle": "Launch your next brand with beautiful motion and flawless SEO.",
-      "cta": "Get Started",
-      "cta2": "Contact Us"
-    },
-    "about": {
-      "title": "About Us",
-      "paragraph1": "We are a team of engineers, designers, and creators dedicated to delivering exceptional digital experiences. With years of experience in infrastructure and cloud services, we help companies scale and innovate.",
-      "paragraph2": "From concept to deployment, our focus is on performance, design, and reliability.",
-      "imageAlt": "Team collaborating on a digital project"
-    },
-    "stats": {
-      "title": "Factory statistics",
-      "dailyProduction": "Daily production",
-      "exportCountries": "Export countries",
-      "certifications": "Certifications",
-      "desserts": "Desserts"
+      "title": "Your space, transformed.",
+      "subtitle": "Premium awnings, blinds, and enclosures designed to elevate your comfort and turn every corner into a unique living experience.",
+      "cta": "Request a consultation",
+      "cta2": "View products"
     }
   },
-  "ContactPage": {
-    "ContactHero": {
-      "h1": "Get in touch",
-      "h2": "Questions, feedback, or ideas? We’d love to hear from you.",
-      "cta": "Send a message"
-    },
-    "ContactForm": {
-      "header": {
-        "title": "Let's work together",
-        "description": "We’ll analyze your project and provide a tailored climate control solution that fits your goals, space, and budget."
+
+  "ProductsSection": {
+    "eyebrow": "Products",
+    "title": "Solutions that adapt to your space",
+
+    "products": {
+      "cortinas": {
+        "label": "Curtains",
+        "description": "Textile solutions that softly filter light and bring warmth and balance to interior spaces.",
+        "cta": "View curtains"
       },
-      "firstName": "Name",
-      "email": "Email",
-      "phone": "Phone",
-      "optional": "Optional",
-      "message": "Message",
-      "placeholders": {
-        "firstName": "Your name",
-        "email": "youremail@example.com",
-        "message": "Tell us about your project...",
-        "phone": "+598 01 2345"
+      "persianas": {
+        "label": "Blinds",
+        "description": "Precise control of light and privacy through functional and visually integrated systems.",
+        "cta": "View blinds"
       },
-      "errors": {
-        "firstName": "Please enter your name",
-        "email": "Please enter a valid email",
-        "phone": "Please enter a valid phone number",
-        "message": "The message must be at least 10 characters long"
+      "toldos": {
+        "label": "Awnings",
+        "description": "Outdoor sun protection designed to combine comfort, durability, and architectural harmony.",
+        "cta": "View awnings"
       },
-      "success": {
-        "title": "Message sent!",
-        "description": "We’ll get back to you shortly."
-      },
-      "sending": "Sending...",
-      "sendMessage": "Send message"
+      "cerramientos": {
+        "label": "PVC Enclosures",
+        "description": "Enclosure systems that extend living spaces while maintaining insulation, transparency, and design.",
+        "cta": "View enclosures"
+      }
     }
   },
+
   "LocaleSwitcher": {
     "label": "Change language",
     "english": "English",
     "spanish": "Español"
   },
+
   "AriaLabels": {
     "logo": "Go to homepage",
     "mobileMenu": "Toggle mobile menu",
@@ -91,9 +76,53 @@
     "followUs": "Follow us",
     "language": "Language"
   },
+
   "Languages": {
     "en": "English",
-    "es": "Spanish",
-    "pt": "Portuguese"
+    "es": "Spanish"
+  },
+  "Footer": {
+    "cta": {
+      "eyebrow": "Contact",
+      "title": "Let’s design your space together",
+      "description": "Personalized advice for curtains, blinds, awnings and enclosures. Quality materials, thoughtful design and professional execution.",
+      "button": "Contact us on WhatsApp"
+    },
+
+    "brand": {
+      "name": "Windoors",
+      "description": "Solar protection and enclosure solutions designed to integrate seamlessly with your architecture."
+    },
+
+    "nav": {
+      "products": {
+        "title": "Products",
+        "items": {
+          "cortinas": "Curtains",
+          "persianas": "Blinds",
+          "toldos": "Awnings",
+          "cerramientos": "Enclosures"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "items": {
+          "about": "About us",
+          "process": "Process",
+          "quality": "Quality"
+        }
+      }
+    },
+
+    "contact": {
+      "title": "Contact",
+      "phone": "+598 99 123 456",
+      "email": "info@windoors.com",
+      "location": "Montevideo, Uruguay"
+    },
+
+    "meta": {
+      "rights": "All rights reserved."
+    }
   }
 }

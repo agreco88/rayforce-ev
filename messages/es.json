@@ -15,14 +15,18 @@
         "terms": "Términos de Servicio",
         "contact": "Contacto"
       }
+    },
+    "Aside": {
+      "language": "Idioma"
     }
   },
+
   "HomePage": {
     "hero": {
-      "title": "Landing pages de alto rendimiento, hechos simples.",
-      "subtitle": "Lanza tu próxima marca con hermosas animaciones y SEO impecable.",
-      "cta": "Comenzar",
-      "cta2": "Contáctanos"
+      "title": "Tu espacio, transformado.",
+      "subtitle": "Toldos, cortinas, persianas y cerramientos diseñados para elevar tu confort y transformar cada rincón en un espacio único.",
+      "cta": "Solicitar asesoramiento",
+      "cta2": "Ver productos"
     },
     "stats": {
       "title": "Estadísticas de la fábrica",
@@ -38,47 +42,41 @@
       "imageAlt": "Equipo de trabajo colaborando en un proyecto digital"
     }
   },
-  "ContactPage": {
-    "ContactHero": {
-      "h1": "Get in touch",
-      "h2": "Questions, feedback, or ideas? We’d love to hear from you.",
-      "cta": "Send a message"
-    },
-    "ContactForm": {
-      "header": {
-        "title": "Trabajemos juntos",
-        "description": "Analizaremos tu proyecto y te brindaremos una solución de climatización a medida, adaptada a tus objetivos, espacio y presupuesto."
+
+  "ProductsSection": {
+    "eyebrow": "Productos",
+    "title": "Soluciones que acompañan tu espacio",
+
+    "products": {
+      "cortinas": {
+        "label": "Cortinas",
+        "description": "Soluciones textiles que filtran la luz de forma sutil y aportan calidez y equilibrio a los interiores.",
+        "cta": "Ver cortinas"
       },
-      "firstName": "Nombre",
-      "email": "Correo electrónico",
-      "phone": "Teléfono",
-      "optional": "Opcional",
-      "message": "Mensaje",
-      "placeholders": {
-        "firstName": "Tu nombre",
-        "email": "tucorreo@ejemplo.com",
-        "message": "Cuéntanos sobre tu proyecto...",
-        "phone": "+598 01 2345"
+      "persianas": {
+        "label": "Persianas",
+        "description": "Control preciso de luz y privacidad mediante sistemas funcionales e integrados al diseño.",
+        "cta": "Ver persianas"
       },
-      "errors": {
-        "firstName": "Por favor ingresa tu nombre",
-        "email": "Ingresa un correo válido",
-        "phone": "Ingresa un número de teléfono válido",
-        "message": "El mensaje debe tener al menos 10 caracteres"
+      "toldos": {
+        "label": "Toldos",
+        "description": "Protección solar para exteriores que combina confort, resistencia y armonía arquitectónica.",
+        "cta": "Ver toldos"
       },
-      "success": {
-        "title": "¡Mensaje enviado!",
-        "description": "Te responderemos a la brevedad."
-      },
-      "sending": "Enviando...",
-      "sendMessage": "Enviar mensaje"
+      "cerramientos": {
+        "label": "Cerramientos en PVC",
+        "description": "Sistemas de cerramiento que amplían ambientes manteniendo aislamiento, transparencia y diseño.",
+        "cta": "Ver cerramientos"
+      }
     }
   },
+
   "LocaleSwitcher": {
     "label": "Cambiar idioma",
     "english": "Inglés",
     "spanish": "Español"
   },
+
   "AriaLabels": {
     "logo": "Ir a la página principal",
     "mobileMenu": "Abrir o cerrar el menú móvil",
@@ -91,9 +89,53 @@
     "followUs": "Seguinos",
     "language": "Idioma"
   },
+
   "Languages": {
     "en": "Inglés",
-    "es": "Español",
-    "pt": "Portugués"
+    "es": "Español"
+  },
+  "Footer": {
+    "cta": {
+      "eyebrow": "Contacto",
+      "title": "Diseñemos tu espacio juntos",
+      "description": "Asesoramiento personalizado en cortinas, persianas, toldos y cerramientos. Materiales de calidad, diseño cuidado y ejecución profesional.",
+      "button": "Contactanos por WhatsApp"
+    },
+
+    "brand": {
+      "name": "Windoors",
+      "description": "Soluciones de protección solar y cerramientos diseñadas para integrarse con tu arquitectura."
+    },
+
+    "nav": {
+      "products": {
+        "title": "Productos",
+        "items": {
+          "cortinas": "Cortinas",
+          "persianas": "Persianas",
+          "toldos": "Toldos",
+          "cerramientos": "Cerramientos"
+        }
+      },
+      "company": {
+        "title": "Empresa",
+        "items": {
+          "about": "Sobre nosotros",
+          "process": "Proceso",
+          "quality": "Calidad"
+        }
+      }
+    },
+
+    "contact": {
+      "title": "Contacto",
+      "phone": "+598 99 123 456",
+      "email": "info@windoors.com",
+      "location": "Montevideo, Uruguay"
+    },
+
+    "meta": {
+      "rights": "Todos los derechos reservados."
+    }
   }
 }

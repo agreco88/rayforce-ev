@@ -1,9 +1,6 @@
-import AboutSection from "@/components/sections/about-section";
-import ContactSection from "@/components/sections/contact-cta-section";
+import ContactFooter from "@/components/sections/contact-footer/Footer";
 import DefaultHero from "@/components/sections/hero";
-import LogoLoopSection from "@/components/sections/our-tech-stack";
-import PerformanceSection from "@/components/sections/performance-section";
-import StatsSection from "@/components/sections/stats-section";
+import ProductsSection from "@/components/sections/products-section/ProductsSection";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import type { Metadata } from "next";
 
@@ -25,11 +22,8 @@ export default function HomePage() {
   return (
     <>
       <DefaultHero />
-      <AboutSection />
-      <StatsSection />
-      <LogoLoopSection />
-      <PerformanceSection />
-      <ContactSection />
+      <ProductsSection />
+      <ContactFooter />
     </>
   );
 }

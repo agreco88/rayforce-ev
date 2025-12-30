@@ -33,7 +33,7 @@ export const fadeIn = (delay = 0): Variants => ({
 
 export const fadeInUp = (delay = 0): Variants => ({
   hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { delay, duration: 0.4 } },
+  show: { opacity: 1, y: 0, transition: { delay, duration: 0.5 } },
 });
 
 export const scaleIn = (delay = 0): Variants => ({

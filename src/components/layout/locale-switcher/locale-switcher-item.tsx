@@ -4,6 +4,7 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslations } from "next-intl";
 import { localeConfig } from "@/lib/locale-config";
+import clsx from "clsx";
 
 type LocaleSwitcherItemProps = {
   loc: string;
@@ -22,17 +23,33 @@ export function LocaleSwitcherItem({
 
   return (
     <DropdownMenuItem
-      disabled={isActive}
       onClick={() => onSelect(loc)}
-      className="group flex items-center gap-4 flex-1 cursor-pointer data-[disabled=true]:opacity-40"
+      disabled={isActive}
+      className={clsx(
+        "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+        "focus:outline-none",
+        // 👇 override Radix highlight state
+        "data-[highlighted]:bg-white/5 data-[highlighted]:text-white",
+        // normal states
+        isActive
+          ? "cursor-default bg-white/10 text-white"
+          : "cursor-pointer text-neutral-300 hover:bg-white/5 hover:text-white",
+        // 👇 override disabled opacity behavior
+        "data-[disabled=true]:opacity-100"
+      )}
     >
       <ReactCountryFlag
-        style={{ width: "1.25em", height: "1.25em", borderRadius: "4px" }}
         countryCode={country}
-        aria-hidden="true"
         svg
+        aria-hidden
+        style={{
+          width: "1.1em",
+          height: "1.1em",
+          borderRadius: "4px",
+        }}
       />
-      <span className="flex-1">{tLang(loc)}</span>
+
+      <span className="flex-1 font-medium tracking-wide">{tLang(loc)}</span>
     </DropdownMenuItem>
   );
 }

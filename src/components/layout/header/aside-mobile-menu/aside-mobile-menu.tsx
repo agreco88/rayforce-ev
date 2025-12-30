@@ -24,9 +24,6 @@ export default function AsideMobileMenu() {
 
   return (
     <div className="flex items-center">
-      {/* Trigger button (hamburger) */}
-      <HamburgerButton open={open} onClick={() => setOpen((p) => !p)} />
-
       <AnimatePresence>
         {open && (
           <motion.aside
@@ -35,22 +32,36 @@ export default function AsideMobileMenu() {
             animate="show"
             exit="hidden"
             className="
-              fixed inset-0 z-50 flex flex-col min-h-dvh 
-              text-foreground overflow-hidden
-              bg-background/95 backdrop-blur-md 
+              fixed inset-0 z-50
+              flex flex-col
+              min-h-dvh
+              bg-background/95 backdrop-blur-md
               supports-[backdrop-filter]:bg-background
             "
             role="dialog"
             aria-modal="true"
-            aria-label={tA11y("mobileMenu")}
           >
+            {/* Top / Header */}
             <AsideHeader onClose={() => setOpen(false)} />
-            <AsideNavLinks onSelect={() => setOpen(false)} />
-            <LocaleSwitcherMobile onSelect={() => setOpen(false)} />
+
+            {/* MAIN CONTENT (this owns the remaining height) */}
+            <div className="flex flex-1 flex-col">
+              <AsideNavLinks onSelect={() => setOpen(false)} />
+
+              {/* Push language + footer down */}
+              <div className="mt-auto">
+                <LocaleSwitcherMobile onSelect={() => setOpen(false)} />
+              </div>
+            </div>
+
+            {/* Bottom / Social footer */}
             <AsideSocialLinks />
           </motion.aside>
         )}
       </AnimatePresence>
+
+      {/* Static header trigger (when closed) */}
+      {!open && <HamburgerButton open={false} onClick={() => setOpen(true)} />}
     </div>
   );
 }

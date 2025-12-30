@@ -24,15 +24,10 @@ export default function HeaderNavLink({ href, label }: HeaderNavLinkProps) {
 
   return (
     <motion.li key={href} variants={waterfallItem}>
-      <Button
-        asChild
-        variant="ghost"
-        className={clsx(
-          "px-4 text-sm font-medium transition-colors hover:text-secondary",
-          pathname === href && "border-b-primary text-primary"
-        )}
-      >
-        <Link href={href}>{t(`nav.${label}`)}</Link>
+      <Button asChild variant="link">
+        <Link href={href} className="text-secondary">
+          {t(`nav.${label}`)}
+        </Link>
       </Button>
     </motion.li>
   );

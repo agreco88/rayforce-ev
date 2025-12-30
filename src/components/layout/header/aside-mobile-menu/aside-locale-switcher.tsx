@@ -2,10 +2,7 @@
 
 import { localeConfig, supportedLocales } from "@/lib/locale-config";
 import { useLocale, useTranslations } from "next-intl";
-import { fadeIn } from "@/lib/animation-variants";
-import { Button } from "@/components/ui/button";
 import { useRouter, usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import clsx from "clsx";
 import ReactCountryFlag from "react-country-flag";
 
@@ -18,58 +15,60 @@ export default function LocaleSwitcherMobile({
 }: LocaleSwitcherMobileProps) {
   const tLang = useTranslations("Languages");
   const tA11y = useTranslations("AriaLabels");
+  const tAside = useTranslations("Layout.Aside");
+
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
 
-  // Remove locale prefix from pathname so switching languages works correctly
   const pathWithoutLocale =
     pathname.replace(new RegExp(`^/${locale}`), "") || "/";
 
   const handleChange = (newLocale: string) => {
     if (newLocale === locale) return;
-    const newPath = `/${newLocale}${pathWithoutLocale}`;
-    router.replace(newPath);
-    //parent component onSelect prop passed down
+    router.replace(`/${newLocale}${pathWithoutLocale}`);
     onSelect();
   };
 
   return (
-    <motion.div
-      className="grid grid-cols-2 justify-start gap-3 py-6"
+    <section
+      className="px-6 py-6 border-t border-white/10"
       aria-label={tA11y("languageSwitcher")}
-      variants={fadeIn(0.35)}
-      initial="hidden"
-      animate="show"
-      exit="hidden"
     >
-      {supportedLocales.map((loc) => {
-        const { country } = localeConfig[loc];
-        const isActive = loc === locale;
+      <p className="mb-3 text-xs uppercase tracking-[0.18em] text-neutral-400">
+        {tAside("language")}
+      </p>
 
-        return (
-          <Button
-            key={loc}
-            onClick={() => handleChange(loc)}
-            variant={isActive ? "secondary" : "outline"}
-            className={clsx(
-              "flex items-center justify-center gap-2 py-6 text-sm font-medium uppercase tracking-wide transition-all"
-            )}
-          >
-            <ReactCountryFlag
-              countryCode={country}
-              svg
-              style={{
-                width: "1.25em",
-                height: "1.25em",
-                borderRadius: "6px",
-              }}
-              aria-label={tLang(loc)}
-            />
-            <span>{tLang(loc)}</span>
-          </Button>
-        );
-      })}
-    </motion.div>
+      <div className="flex rounded-lg border border-white/15 overflow-hidden">
+        {supportedLocales.map((loc) => {
+          const { country } = localeConfig[loc];
+          const isActive = loc === locale;
+
+          return (
+            <button
+              key={loc}
+              type="button"
+              onClick={() => handleChange(loc)}
+              aria-label={`${tA11y("language")} ${tLang(loc)}`}
+              aria-current={isActive ? "true" : undefined}
+              className={clsx(
+                "flex flex-1 items-center justify-center gap-2 py-3 text-sm transition-colors",
+                isActive
+                  ? "bg-white/10 text-white"
+                  : "text-neutral-400 hover:bg-white/5 hover:text-neutral-200"
+              )}
+            >
+              <ReactCountryFlag
+                countryCode={country}
+                svg
+                style={{ width: "1.1em", height: "1.1em", borderRadius: "4px" }}
+                aria-hidden
+              />
+              <span className="font-medium">{tLang(loc)}</span>
+            </button>
+          );
+        })}
+      </div>
+    </section>
   );
 }

@@ -26,7 +26,17 @@ export function LocaleSwitcherSelect() {
       <LocaleSwitcherTrigger />
       <DropdownMenuContent
         align="end"
-        className="w-[var(--radix-dropdown-menu-trigger-width)]"
+        sideOffset={8}
+        className="
+          w-[var(--radix-dropdown-menu-trigger-width)]
+          rounded-xl
+          border border-white/10
+          bg-neutral-950/95
+          backdrop-blur-md
+          p-2
+          shadow-xl
+          flex flex-col gap-2
+        "
       >
         {supportedLocales.map((loc) => (
           <LocaleSwitcherItem
