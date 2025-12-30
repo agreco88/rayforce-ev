@@ -4,9 +4,16 @@ import type { Metadata } from "next";
 
 /* ------------------ Brand Config ------------------ */
 
+const baseUrl =
+  process.env.VERCEL_ENV === "production"
+    ? "https://www.windoors.uy"
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+
 const SITE = {
   name: "Windoors",
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.windoors.uy",
+  baseUrl,
   localeMap: {
     es: "es_ES",
     en: "en_US",
@@ -24,8 +31,8 @@ type OgImage = {
 
 const DEFAULT_OG_IMAGE = {
   url: `${SITE.baseUrl}/images/windoors-og-image.webp`,
-  width: 500,
-  height: 500,
+  width: 1200,
+  height: 630,
 };
 
 /* ------------------ Types ------------------ */
@@ -85,9 +92,16 @@ export async function generateLocaleMetadata({
       siteName: SITE.name,
       locale: SITE.localeMap[locale as keyof typeof SITE.localeMap],
       type: "website",
-      images: [finalImage],
+      images: [
+        {
+          url: finalImage.url,
+          width: finalImage.width,
+          height: finalImage.height,
+          alt: finalImage.alt,
+          type: "image/webp",
+        },
+      ],
     },
-
     twitter: {
       card: "summary_large_image",
       title,
