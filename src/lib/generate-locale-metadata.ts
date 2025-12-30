@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 const SITE = {
   name: "Windoors",
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.windoors.uy/",
+  baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.windoors.uy",
   localeMap: {
     es: "es_ES",
     en: "en_US",
@@ -24,8 +24,8 @@ type OgImage = {
 
 const DEFAULT_OG_IMAGE = {
   url: `${SITE.baseUrl}/images/windoors-og-image.webp`,
-  width: 1200,
-  height: 630,
+  width: 500,
+  height: 500,
 };
 
 /* ------------------ Types ------------------ */
