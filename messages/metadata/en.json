@@ -1,20 +1,9 @@
 {
   "home": {
-    "title": "Home — HelloWorld Landing Template",
-    "description": "A modular and optimized landing template for modern websites.",
-    "ogDescription": "Clean, fast, and customizable landing template for modern projects.",
-    "keywords": "landing, nextjs, template, helloworld"
-  },
-  "aboutUs": {
-    "title": "About Us — HelloWorld Landing Template",
-    "description": "Learn about our mission, vision, and experience.",
-    "ogDescription": "Discover HelloWorld Studio — our philosophy, team, and work ethic.",
-    "keywords": "about, company, team, mission"
-  },
-  "contactUs": {
-    "title": "Contact Us — HelloWorld Landing Template",
-    "description": "Let’s connect and build something extraordinary.",
-    "ogDescription": "Get in touch with HelloWorld Studio to discuss your project.",
-    "keywords": "contact, email, support"
+    "title": "Windoors - Curtains, blinds, awnings and enclosures designed to enhance comfort and architecture.",
+    "description": "Curtains, blinds, awnings and enclosures designed to enhance comfort and architecture.",
+    "ogDescription": "Design-focused curtains, blinds, awnings and enclosures for modern spaces.",
+    "keywords": "curtains, blinds, awnings, enclosures, solar protection, architecture, windoors",
+    "imageAlt": "Windoors — Solar protection and enclosure solutions"
   }
 }

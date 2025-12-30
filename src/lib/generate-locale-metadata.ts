@@ -2,11 +2,18 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 
-/* ------------------ Constants ------------------ */
+/* ------------------ Brand Config ------------------ */
 
-// ✅ Root URL (no /es or /en at the end)
-const BASE_URL = "https://next-landing-template-drab.vercel.app";
-const SITE_NAME = "HelloWorld Landing Template";
+const SITE = {
+  name: "Windoors",
+  baseUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.windoors.uy/",
+  localeMap: {
+    es: "es_ES",
+    en: "en_US",
+  },
+};
+
+/* ------------------ OG Image ------------------ */
 
 type OgImage = {
   url: string;
@@ -15,21 +22,26 @@ type OgImage = {
   alt: string;
 };
 
-const DEFAULT_OG_IMAGE: OgImage = {
-  url: `${BASE_URL}/images/og/macaque-isotype.png`,
+const DEFAULT_OG_IMAGE = {
+  url: `${SITE.baseUrl}/images/windoors-og-image.webp`,
   width: 1200,
   height: 630,
-  alt: SITE_NAME,
 };
 
 /* ------------------ Types ------------------ */
 
 type GenerateLocaleMetadataOptions = {
   locale: string;
-  route: string; // e.g. "home", "aboutUs", "contactUs"
-  path?: string; // URL path ("/", "/about-us", etc.)
-  image?: Partial<OgImage>; // optional OG override
+  route: string;
+  path?: string;
+  image?: Partial<OgImage>;
 };
+
+/* ------------------ Helpers ------------------ */
+
+function splitKeywords(value: string): string[] {
+  return value.split(",").map((k) => k.trim());
+}
 
 /* ------------------ Main Generator ------------------ */
 
@@ -39,56 +51,62 @@ export async function generateLocaleMetadata({
   path = "/",
   image,
 }: GenerateLocaleMetadataOptions): Promise<Metadata> {
-  // ✅ Pull translations from /messages/metadata/[locale].json
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const t = await getTranslations({
+    locale,
+    namespace: "metadata",
+  });
 
-  // Localized fields
   const title = t(`${route}.title`);
   const description = t(`${route}.description`);
   const ogDescription = t(`${route}.ogDescription`);
-  const rawKeywords = t(`${route}.keywords`);
-  const keywords = rawKeywords.split(",").map((k) => k.trim());
+  const keywords = splitKeywords(t(`${route}.keywords`));
+  const imageAlt = t(`${route}.imageAlt`);
 
-  // Merge custom OG image if provided
-  const finalImage: OgImage = { ...DEFAULT_OG_IMAGE, ...image };
+  const finalImage: OgImage = {
+    ...DEFAULT_OG_IMAGE,
+    alt: imageAlt,
+    ...image,
+  };
 
-  // ✅ Ensure proper locale prefix and no trailing slashes
-  const fullUrl = `${BASE_URL}/${locale}${path}`.replace(/\/+$/, "");
+  const normalizedPath = path === "/" ? "" : path;
+  const fullUrl = `${SITE.baseUrl}/${locale}${normalizedPath}`;
 
   return {
-    metadataBase: new URL(BASE_URL),
+    metadataBase: new URL(SITE.baseUrl),
+
     title,
     description,
     keywords,
+
     openGraph: {
       title,
       description: ogDescription,
       url: fullUrl,
-      siteName: SITE_NAME,
-      locale: locale === "es" ? "es_ES" : "en_US",
+      siteName: SITE.name,
+      locale: SITE.localeMap[locale as keyof typeof SITE.localeMap],
       type: "website",
       images: [finalImage],
     },
+
     twitter: {
       card: "summary_large_image",
       title,
       description: ogDescription,
       images: [finalImage.url],
     },
+
     alternates: {
       canonical: fullUrl,
       languages: Object.fromEntries(
-        routing.locales.map((l) => [
-          l,
-          `${BASE_URL}/${l}${path}`.replace(/\/+$/, ""),
-        ])
+        routing.locales.map((l) => [l, `${SITE.baseUrl}/${l}${normalizedPath}`])
       ),
     },
+
     robots: {
-      // ✅ Index only in production
       index: process.env.VERCEL_ENV === "production",
       follow: process.env.VERCEL_ENV === "production",
     },
+
     icons: {
       icon: "/favicon.ico",
     },

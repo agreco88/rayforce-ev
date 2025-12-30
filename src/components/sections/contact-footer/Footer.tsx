@@ -17,7 +17,7 @@ export default function Footer() {
         <FooterCTA />
 
         {/* Main footer content */}
-        <div className="mt-24 border-t space-y-14 sm:space-y-0 border-white/10 pt-12 xl:grid xl:grid-cols-4 xl:gap-8">
+        <div className="mt-24 border-t space-y-14 sm:space-y-0 sm:gap-8 border-white/10 pt-12 md:grid md:grid-cols-4 ">
           <FooterBrand />
           <FooterNavColumn group="products" items={footerNavigation.products} />
           <FooterNavColumn group="company" items={footerNavigation.company} />

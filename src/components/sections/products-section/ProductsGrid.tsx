@@ -8,7 +8,10 @@ export function ProductsGrid() {
   const t = useTranslations("ProductsSection");
 
   return (
-    <div id="products" className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div
+      id="products"
+      className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-2"
+    >
       {PRODUCTS.map((product) => (
         <ProductCard
           key={product.key}

@@ -144,7 +144,7 @@ export default function ProductCard({
                 "absolute inset-0 h-full w-full object-cover",
                 "transition-[opacity,filter] duration-500 ease-out",
                 isReady ? "opacity-100" : "opacity-0",
-                isHovered ? "grayscale-0" : "grayscale-25 sm:grayscale"
+                isHovered ? "grayscale-0" : "grayscale-25 lg:grayscale"
               )}
             >
               <source src={videoSrc} type="video/mp4" />
@@ -164,7 +164,7 @@ export default function ProductCard({
           />
 
           {/* Linear depth overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/25" />
+          <div className="absolute opacity-25 sm:opacity-100 inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/25" />
 
           {/* Border ring */}
           <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
