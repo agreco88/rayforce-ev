@@ -8,7 +8,7 @@ export function FooterCTA() {
   const t = useTranslations("Footer.cta");
 
   return (
-    <div className="mx-auto max-w-2xl py-8 text-center">
+    <div className="mx-auto max-w-2xl py-8 my-24 2xl:my-40 text-center">
       <p className="text-xs tracking-[0.18em] uppercase text-neutral-400">
         {t("eyebrow")}
       </p>
@@ -28,7 +28,7 @@ export function FooterCTA() {
             inline-flex items-center justify-center
             rounded-full
             bg-gradient-to-b from-neutral-200 to-neutral-300
-            px-6 py-3
+            px-4 sm:px-6 py-3
             font-medium text-neutral-900
             shadow-sm gap-2
             transition-all
@@ -36,7 +36,7 @@ export function FooterCTA() {
             focus-visible:outline-2
             focus-visible:outline-offset-2
             focus-visible:outline-white/40
-            text-base
+            text-sm sm:text-base
           "
         >
           <FaWhatsapp className="size-6 text-neutral-700" /> {t("button")}

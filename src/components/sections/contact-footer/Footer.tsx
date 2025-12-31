@@ -11,9 +11,9 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="bg-neutral-950 text-neutral-200 border-t border-white/10"
+      className="bg-gradient-to-t from-neutral-900 via-neutral-950 to-neutral-950 text-neutral-200 border-t border-white/10"
     >
-      <div className="mx-auto max-w-7xl px-6 sm:pb-12 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FooterCTA />
 
         {/* Main footer content */}

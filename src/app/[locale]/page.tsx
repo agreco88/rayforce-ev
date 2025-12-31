@@ -1,4 +1,5 @@
 import ContactFooter from "@/components/sections/contact-footer/Footer";
+import { EditorialValueSection } from "@/components/sections/EditorialValueSection";
 import DefaultHero from "@/components/sections/hero";
 import ProductsSection from "@/components/sections/products-section/ProductsSection";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
@@ -23,6 +24,7 @@ export default function HomePage() {
     <>
       <DefaultHero />
       <ProductsSection />
+      <EditorialValueSection />
       <ContactFooter />
     </>
   );

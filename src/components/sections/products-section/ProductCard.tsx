@@ -178,7 +178,7 @@ export default function ProductCard({
             {label}
           </p>
 
-          <p className="mt-4 max-w-[34ch] text-sm leading-relaxed text-neutral-200/90">
+          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-neutral-200/90">
             {description}
           </p>
         </div>

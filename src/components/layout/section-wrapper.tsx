@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/animation-variants";
-import React from "react";
+import { cn } from "@/lib/utils";
 
 type SectionWrapperProps = React.PropsWithChildren<{
   id?: string;
@@ -21,7 +22,7 @@ export default function SectionWrapper({
       whileInView="show"
       viewport={{ once: true, amount: 0.3 }}
       id={id}
-      className="relative w-full scroll-mt-12"
+      className={cn("relative w-full scroll-mt-12", className)}
     >
       {children}
     </motion.section>

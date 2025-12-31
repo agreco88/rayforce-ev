@@ -32,17 +32,17 @@
 
   "ProductsSection": {
     "eyebrow": "Products",
-    "title": "Solutions that adapt to your space",
+    "title": "Solutions that complement your space",
 
     "products": {
       "cortinas": {
         "label": "Curtains",
-        "description": "Textile solutions that softly filter light and bring warmth and balance to interior spaces.",
+        "description": "Textile solutions that gently filter light and bring warmth and balance to interior spaces.",
         "cta": "View curtains"
       },
       "persianas": {
         "label": "Blinds",
-        "description": "Precise control of light and privacy through functional and visually integrated systems.",
+        "description": "Precise control of light and privacy through functional systems integrated into the design.",
         "cta": "View blinds"
       },
       "toldos": {
@@ -56,6 +56,14 @@
         "cta": "View enclosures"
       }
     }
+  },
+
+  "EditorialValueSection": {
+    "eyebrow": "Built with intention",
+    "title": "Quality is not an add-on.\nIt’s designed into every decision.",
+    "p1": "We focus on durable materials, precise manufacturing, and solutions that perform consistently over time — not products optimized for quick turnover.",
+    "p2": "Every system is selected, assembled, and delivered with the same criteria: reliability, longevity, and real-world use.",
+    "p3": "This approach allows us to work closely with professionals and businesses that value trust, clarity, and long-term results."
   },
 
   "LocaleSwitcher": {

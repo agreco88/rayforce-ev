@@ -71,6 +71,14 @@
     }
   },
 
+  "EditorialValueSection": {
+    "eyebrow": "Construido con intención",
+    "title": "La calidad no es un agregado.\nEstá diseñada en cada decisión.",
+    "p1": "Nos enfocamos en materiales durables, fabricación precisa y soluciones que funcionan de manera consistente en el tiempo — no en productos optimizados para la rotación rápida.",
+    "p2": "Cada sistema es seleccionado, ensamblado y entregado bajo los mismos criterios: confiabilidad, longevidad y uso en el mundo real.",
+    "p3": "Este enfoque nos permite trabajar de cerca con profesionales y empresas que valoran la confianza, la claridad y los resultados a largo plazo."
+  },
+
   "LocaleSwitcher": {
     "label": "Cambiar idioma",
     "english": "Inglés",
