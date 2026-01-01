@@ -1,36 +1,15 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import SectionWrapper from "../layout/section-wrapper";
 
 export function EditorialValueSection() {
   const t = useTranslations("EditorialValueSection");
-  const imageRef = useRef<HTMLDivElement | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: imageRef,
-    offset: ["start end", "end start"],
-  });
-
-  const grayscale = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.75, 1],
-    [100, 0, 0, 100]
-  );
-
-  const blur = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [3, 0, 0, 3]);
-
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.75, 1],
-    [0.6, 1, 1, 0.6]
-  );
 
   return (
-    <SectionWrapper className="py-16 sm:py-64! bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950">
+    <SectionWrapper className="py-16 sm:py-32 lg:py-64! bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 px-6">
       <motion.div
         variants={waterfallList}
         initial="hidden"
@@ -39,8 +18,6 @@ export function EditorialValueSection() {
         className="
           mx-auto
           max-w-6xl
-          px-6
-          sm:px-0
           grid
           grid-cols-1
           lg:grid-cols-12
@@ -73,19 +50,7 @@ export function EditorialValueSection() {
 
         {/* Quiet visual anchor */}
         <motion.div
-          ref={imageRef}
           variants={waterfallItem}
-          initial={{
-            filter: "grayscale(100%) blur(3px)",
-            opacity: 0.6,
-          }}
-          style={{
-            filter: useTransform(
-              [grayscale, blur],
-              ([g, b]) => `grayscale(${g}%) blur(${b}px)`
-            ),
-            opacity,
-          }}
           className="
             lg:col-span-5
             relative
