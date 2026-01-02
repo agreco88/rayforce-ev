@@ -7,7 +7,7 @@ export function FooterMeta() {
   const t = useTranslations("Footer.meta");
 
   return (
-    <div className="mt-12 border-t border-white/10 pt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mt-12 border-t border-white/10 py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm text-neutral-500 text-center">
         © {new Date().getFullYear()} Windoors. {t("rights")}
       </p>

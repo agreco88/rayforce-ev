@@ -71,6 +71,29 @@
     }
   },
 
+  "MostSoldSection": {
+    "eyebrow": "Productos destacados",
+    "title": "Los más elegidos por nuestros clientes",
+    "description": "Productos que destacan por su funcionalidad, diseño y confiabilidad en el uso diario.",
+
+    "cta": "Ver producto",
+
+    "products": {
+      "venetianCurtains": {
+        "name": "Cortinas Venecianas",
+        "excerpt": "Control preciso de luz y privacidad mediante lamas horizontales regulables."
+      },
+      "blackoutCurtains": {
+        "name": "Cortinas Blackout",
+        "excerpt": "Oscuridad total y confort visual cuando lo necesitás, ideal para dormitorios y espacios de descanso."
+      },
+      "exteriorAwnings": {
+        "name": "Toldos para Exterior",
+        "excerpt": "Protección y sombra con integración arquitectónica."
+      }
+    }
+  },
+
   "EditorialValueSection": {
     "eyebrow": "Construido con intención",
     "title": "La calidad no es un agregado.\nEstá diseñada en cada decisión.",

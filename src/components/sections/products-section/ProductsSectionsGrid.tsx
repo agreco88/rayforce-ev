@@ -3,14 +3,17 @@
 import { useTranslations } from "next-intl";
 import ProductCard from "./ProductCard";
 import { PRODUCTS } from "@/lib/products-data";
+import { waterfallList } from "@/lib/animation-variants";
+import { motion } from "framer-motion";
 
-export function ProductsGrid() {
+export default function ProductsSectionGrid() {
   const t = useTranslations("ProductsSection");
 
   return (
-    <div
+    <motion.div
       id="products"
       className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-2"
+      variants={waterfallList}
     >
       {PRODUCTS.map((product) => (
         <ProductCard
@@ -24,6 +27,6 @@ export function ProductsGrid() {
           cta={t(`products.${product.key}.cta`)}
         />
       ))}
-    </div>
+    </motion.div>
   );
 }

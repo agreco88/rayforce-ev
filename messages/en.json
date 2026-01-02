@@ -58,6 +58,29 @@
     }
   },
 
+  "MostSoldSection": {
+    "eyebrow": "Featured products",
+    "title": "Most chosen by our clients",
+    "description": "Products known for their functionality, design, and long-term reliability.",
+
+    "cta": "View product",
+
+    "products": {
+      "venetianCurtains": {
+        "name": "Venetian Blinds",
+        "excerpt": "Precise light and privacy control through adjustable horizontal slats."
+      },
+      "blackoutCurtains": {
+        "name": "Blackout Curtains",
+        "excerpt": "Total darkness and visual comfort when needed, ideal for bedrooms and relaxation spaces."
+      },
+      "exteriorAwnings": {
+        "name": "Exterior Awnings",
+        "excerpt": "Shade and protection with architectural integration."
+      }
+    }
+  },
+
   "EditorialValueSection": {
     "eyebrow": "Built with intention",
     "title": "Quality is not an add-on.\nIt’s designed into every decision.",
