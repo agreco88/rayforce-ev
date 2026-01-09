@@ -26,10 +26,10 @@ export default function HeaderLogo() {
       className="flex items-center gap-2 cursor-pointer"
     >
       <Image
-        src="/images/windoors-isotype.webp"
-        alt="Windoors"
-        height={30}
-        width={30}
+        src="/images/rayforce-logo.webp"
+        alt="Rayforce"
+        height={150}
+        width={150}
         priority
       />
     </motion.button>
@@ -59,8 +59,8 @@ export function FooterLogo() {
       className="flex items-center gap-2 cursor-pointer"
     >
       <Image
-        src="/images/windoors-isotype.webp"
-        alt="Windoors"
+        src="/images/rayforce-isotype.webp"
+        alt="Rayforce"
         height={30}
         width={30}
         priority

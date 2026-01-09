@@ -9,7 +9,7 @@ export function EditorialValueSection() {
   const t = useTranslations("EditorialValueSection");
 
   return (
-    <SectionWrapper className="py-16 border-t border-white/10 sm:py-32 lg:py-64! bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 px-6">
+    <SectionWrapper className="border-t border-white/10 py-40 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 px-6">
       <motion.div
         variants={waterfallList}
         initial="hidden"
@@ -31,20 +31,20 @@ export function EditorialValueSection() {
             variants={waterfallItem}
             className="text-sm font-medium uppercase tracking-wide text-muted-foreground"
           >
-            {t("eyebrow")}
+            ACCESORIO OFICAL
           </motion.p>
 
           <motion.h2
             variants={waterfallItem}
-            className="mt-4 text-3xl font-semibold tracking-tight text-gray-50 sm:text-4xl whitespace-pre-line"
+            className="mt-4 text-3xl font-light tracking-tight text-neutral-200 sm:text-4xl whitespace-pre-line"
           >
-            {t("title")}
+            Consegui tu soporte para tu cargador Rayforce por{" "}
+            <strong className="font-thin text-green-400">$999 UYU</strong>
           </motion.h2>
 
           <div className="mt-10 space-y-6 max-w-xl text-lg leading-relaxed text-gray-300">
             <motion.p variants={waterfallItem}>{t("p1")}</motion.p>
             <motion.p variants={waterfallItem}>{t("p2")}</motion.p>
-            <motion.p variants={waterfallItem}>{t("p3")}</motion.p>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export function EditorialValueSection() {
           <div
             className="
               absolute inset-0
-              bg-[url('/images/editorial-image.webp')]
+              bg-[url('/images/post-bg.webp')]
               bg-cover
               bg-center
             "

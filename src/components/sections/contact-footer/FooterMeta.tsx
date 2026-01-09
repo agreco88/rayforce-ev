@@ -9,7 +9,7 @@ export function FooterMeta() {
   return (
     <div className="mt-12 border-t border-white/10 py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm text-neutral-500 text-center">
-        © {new Date().getFullYear()} Windoors. {t("rights")}
+        © {new Date().getFullYear()} Rayforce. {t("rights")}
       </p>
 
       <div className="flex gap-5 justify-center">

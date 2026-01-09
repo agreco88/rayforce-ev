@@ -4,12 +4,12 @@
       "nav": {
         "home": "Home",
         "features": "Features",
-        "pricing": "Pricing",
+        "pricing": "Models",
         "about": "About"
       }
     },
     "Footer": {
-      "copyright": "© 2025 HelloWorld. All rights reserved.",
+      "copyright": "© 2025 Rayforce EV. All rights reserved.",
       "links": {
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
@@ -23,70 +23,70 @@
 
   "HomePage": {
     "hero": {
-      "title": "Your space, transformed.",
-      "subtitle": "Premium awnings, blinds, and enclosures designed to elevate your comfort and turn every corner into a unique living experience.",
-      "cta": "Request a consultation",
-      "cta2": "View products"
+      "title": "Smart charging for the next generation of mobility.",
+      "subtitle": "Advanced EV wallbox chargers designed for homes, businesses, and electric fleets. Reliable technology, intelligent control, and seamless integration.",
+      "cta": "View chargers",
+      "cta2": "Talk to an expert"
     }
   },
 
   "ProductsSection": {
-    "eyebrow": "Products",
-    "title": "Solutions that complement your space",
+    "eyebrow": "Chargers",
+    "title": "Charging solutions for every use case",
 
     "products": {
-      "cortinas": {
-        "label": "Curtains",
-        "description": "Textile solutions that gently filter light and bring warmth and balance to interior spaces.",
-        "cta": "View curtains"
+      "essential": {
+        "label": "Essential",
+        "description": "Reliable home charging with a simple and robust design. Ideal for residential installations.",
+        "cta": "View Essential"
       },
-      "persianas": {
-        "label": "Blinds",
-        "description": "Precise control of light and privacy through functional systems integrated into the design.",
-        "cta": "View blinds"
+      "secure": {
+        "label": "Secure",
+        "description": "Controlled access charging with RFID authentication, designed for shared and semi-public environments.",
+        "cta": "View Secure"
       },
-      "toldos": {
-        "label": "Awnings",
-        "description": "Outdoor sun protection designed to combine comfort, durability, and architectural harmony.",
-        "cta": "View awnings"
+      "smart": {
+        "label": "Smart",
+        "description": "Fully connected EV charging with remote monitoring, scheduling, and real-time control via the Rayforce app.",
+        "cta": "View Smart"
       },
-      "cerramientos": {
-        "label": "PVC Enclosures",
-        "description": "Enclosure systems that extend living spaces while maintaining insulation, transparency, and design.",
-        "cta": "View enclosures"
+      "dlb": {
+        "label": "Dynamic Load Balance",
+        "description": "Intelligent power distribution that optimizes energy usage and prevents electrical overloads.",
+        "cta": "Learn about DLB"
       }
     }
   },
 
   "MostSoldSection": {
-    "eyebrow": "Featured products",
-    "title": "Most chosen by our clients",
-    "description": "Products known for their functionality, design, and long-term reliability.",
+    "eyebrow": "Most installed",
+    "title": "Trusted by EV drivers and businesses",
+    "description": "Our most widely adopted chargers, selected for reliability, performance, and long-term durability.",
 
-    "cta": "View product",
+    "cta": "View charger",
 
     "products": {
-      "venetianCurtains": {
-        "name": "Venetian Blinds",
-        "excerpt": "Precise light and privacy control through adjustable horizontal slats."
+      "bs20App": {
+        "name": "BS20 Smart Wallbox",
+        "excerpt": "22 kW smart charger with app connectivity, scheduling, and remote monitoring."
       },
-      "blackoutCurtains": {
-        "name": "Blackout Curtains",
-        "excerpt": "Total darkness and visual comfort when needed, ideal for bedrooms and relaxation spaces."
+      "bs20Rfid": {
+        "name": "BS20 Secure Wallbox",
+        "excerpt": "RFID-enabled charger for controlled access in shared environments."
       },
-      "exteriorAwnings": {
-        "name": "Exterior Awnings",
-        "excerpt": "Shade and protection with architectural integration."
+      "bs11Home": {
+        "name": "BS11 Home Charger",
+        "excerpt": "Compact and efficient charging solution for residential use."
       }
     }
   },
 
   "EditorialValueSection": {
-    "eyebrow": "Built with intention",
-    "title": "Quality is not an add-on.\nIt’s designed into every decision.",
-    "p1": "We focus on durable materials, precise manufacturing, and solutions that perform consistently over time — not products optimized for quick turnover.",
-    "p2": "Every system is selected, assembled, and delivered with the same criteria: reliability, longevity, and real-world use.",
-    "p3": "This approach allows us to work closely with professionals and businesses that value trust, clarity, and long-term results."
+    "eyebrow": "Designed for real-world use",
+    "title": "Charging infrastructure built to last.",
+    "p1": "Rayforce chargers are engineered with durability, safety, and long-term performance as core principles — not as optional features.",
+    "p2": "Each unit is designed to operate reliably under continuous use, adapting to real electrical environments and user needs.",
+    "p3": "This approach allows us to support homeowners, installers, and businesses with solutions they can trust today and scale tomorrow."
   },
 
   "LocaleSwitcher": {
@@ -112,35 +112,36 @@
     "en": "English",
     "es": "Spanish"
   },
+
   "Footer": {
     "cta": {
-      "eyebrow": "Contact",
-      "title": "Let’s design your space together",
-      "description": "Personalized advice for curtains, blinds, awnings and enclosures. Quality materials, thoughtful design and professional execution.",
+      "eyebrow": "Get in touch",
+      "title": "Let’s power your electric mobility",
+      "description": "Expert guidance on EV charger selection, installation, and scalability for homes and businesses.",
       "button": "Contact us on WhatsApp"
     },
 
     "brand": {
-      "name": "Windoors",
-      "description": "Solar protection and enclosure solutions designed to integrate seamlessly with your architecture."
+      "name": "Rayforce EV",
+      "description": "Smart electric vehicle charging solutions designed for safety, efficiency, and long-term performance."
     },
 
     "nav": {
       "products": {
-        "title": "Products",
+        "title": "Chargers",
         "items": {
-          "cortinas": "Curtains",
-          "persianas": "Blinds",
-          "toldos": "Awnings",
-          "cerramientos": "Enclosures"
+          "essential": "Essential",
+          "secure": "Secure",
+          "smart": "Smart",
+          "dlb": "Dynamic Load Balance"
         }
       },
       "company": {
         "title": "Company",
         "items": {
-          "about": "About us",
-          "process": "Process",
-          "quality": "Quality"
+          "about": "About Rayforce",
+          "process": "Installation process",
+          "quality": "Quality & safety"
         }
       }
     },
@@ -148,7 +149,7 @@
     "contact": {
       "title": "Contact",
       "phone": "+598 99 123 456",
-      "email": "info@windoors.com",
+      "email": "info@rayforce.com",
       "location": "Montevideo, Uruguay"
     },
 

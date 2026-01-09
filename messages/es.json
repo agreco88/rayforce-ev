@@ -4,15 +4,15 @@
       "nav": {
         "home": "Inicio",
         "features": "Características",
-        "pricing": "Precios",
-        "about": "Nosotros"
+        "pricing": "Modelos",
+        "about": "Empresa"
       }
     },
     "Footer": {
-      "copyright": "© 2025 HelloWorld. Todos los derechos reservados.",
+      "copyright": "© 2025 Rayforce EV. Todos los derechos reservados.",
       "links": {
-        "privacy": "Política de Privacidad",
-        "terms": "Términos de Servicio",
+        "privacy": "Política de privacidad",
+        "terms": "Términos del servicio",
         "contact": "Contacto"
       }
     },
@@ -23,83 +23,70 @@
 
   "HomePage": {
     "hero": {
-      "title": "Tu espacio, transformado.",
-      "subtitle": "Toldos, cortinas, persianas y cerramientos diseñados para elevar tu confort y transformar cada rincón en un espacio único.",
-      "cta": "Solicitar asesoramiento",
-      "cta2": "Ver productos"
-    },
-    "stats": {
-      "title": "Estadísticas de la fábrica",
-      "dailyProduction": "Producción diaria",
-      "exportCountries": "Países de exportación",
-      "certifications": "Certificaciones",
-      "desserts": "Postres"
-    },
-    "about": {
-      "title": "Sobre nosotros",
-      "paragraph1": "Somos un equipo de ingenieros, diseñadores y creadores dedicados a ofrecer experiencias digitales excepcionales. Con años de experiencia en infraestructura y servicios en la nube, ayudamos a las empresas a escalar e innovar.",
-      "paragraph2": "Desde el concepto hasta el despliegue, nuestro enfoque está en el rendimiento, el diseño y la fiabilidad.",
-      "imageAlt": "Equipo de trabajo colaborando en un proyecto digital"
+      "title": "Carga inteligente para la nueva movilidad eléctrica.",
+      "subtitle": "Cargadores EV Wallbox avanzados, diseñados para hogares, empresas y flotas eléctricas. Tecnología confiable, control inteligente e integración total.",
+      "cta": "Ver cargadores",
+      "cta2": "Hablar con un asesor"
     }
   },
 
   "ProductsSection": {
-    "eyebrow": "Productos",
-    "title": "Soluciones que acompañan tu espacio",
+    "eyebrow": "Cargadores",
+    "title": "Soluciones de carga para cada necesidad",
 
     "products": {
-      "cortinas": {
-        "label": "Cortinas",
-        "description": "Soluciones textiles que filtran la luz de forma sutil y aportan calidez y equilibrio a los interiores.",
-        "cta": "Ver cortinas"
+      "essential": {
+        "label": "Essential",
+        "description": "Carga confiable para el hogar, con un diseño simple y robusto. Ideal para instalaciones residenciales.",
+        "cta": "Ver Essential"
       },
-      "persianas": {
-        "label": "Persianas",
-        "description": "Control preciso de luz y privacidad mediante sistemas funcionales e integrados al diseño.",
-        "cta": "Ver persianas"
+      "secure": {
+        "label": "Secure",
+        "description": "Carga con control de acceso mediante RFID, pensada para entornos compartidos o semi-públicos.",
+        "cta": "Ver Secure"
       },
-      "toldos": {
-        "label": "Toldos",
-        "description": "Protección solar para exteriores que combina confort, resistencia y armonía arquitectónica.",
-        "cta": "Ver toldos"
+      "smart": {
+        "label": "Smart",
+        "description": "Carga EV totalmente conectada, con monitoreo remoto, programación y control en tiempo real desde la app Rayforce.",
+        "cta": "Ver Smart"
       },
-      "cerramientos": {
-        "label": "Cerramientos en PVC",
-        "description": "Sistemas de cerramiento que amplían ambientes manteniendo aislamiento, transparencia y diseño.",
-        "cta": "Ver cerramientos"
+      "dlb": {
+        "label": "Balanceo dinámico de carga",
+        "description": "Distribución inteligente de potencia que optimiza el consumo energético y evita sobrecargas eléctricas.",
+        "cta": "Conocer DLB"
       }
     }
   },
 
   "MostSoldSection": {
-    "eyebrow": "Productos destacados",
-    "title": "Los más elegidos por nuestros clientes",
-    "description": "Productos que destacan por su funcionalidad, diseño y confiabilidad en el uso diario.",
+    "eyebrow": "Más instalados",
+    "title": "Elegidos por conductores y empresas",
+    "description": "Nuestros cargadores más adoptados, reconocidos por su confiabilidad, rendimiento y durabilidad a largo plazo.",
 
-    "cta": "Ver producto",
+    "cta": "Ver cargador",
 
     "products": {
-      "venetianCurtains": {
-        "name": "Cortinas Venecianas",
-        "excerpt": "Control preciso de luz y privacidad mediante lamas horizontales regulables."
+      "bs20App": {
+        "name": "BS20 Smart Wallbox",
+        "excerpt": "Cargador inteligente de 22 kW con conectividad por app, programación y monitoreo remoto."
       },
-      "blackoutCurtains": {
-        "name": "Cortinas Blackout",
-        "excerpt": "Oscuridad total y confort visual cuando lo necesitás, ideal para dormitorios y espacios de descanso."
+      "bs20Rfid": {
+        "name": "BS20 Secure Wallbox",
+        "excerpt": "Cargador con RFID para control de acceso en entornos compartidos."
       },
-      "exteriorAwnings": {
-        "name": "Toldos para Exterior",
-        "excerpt": "Protección y sombra con integración arquitectónica."
+      "bs11Home": {
+        "name": "BS11 Cargador Hogar",
+        "excerpt": "Solución de carga compacta y eficiente para uso residencial."
       }
     }
   },
 
   "EditorialValueSection": {
-    "eyebrow": "Construido con intención",
-    "title": "La calidad no es un agregado.\nEstá diseñada en cada decisión.",
-    "p1": "Nos enfocamos en materiales durables, fabricación precisa y soluciones que funcionan de manera consistente en el tiempo — no en productos optimizados para la rotación rápida.",
-    "p2": "Cada sistema es seleccionado, ensamblado y entregado bajo los mismos criterios: confiabilidad, longevidad y uso en el mundo real.",
-    "p3": "Este enfoque nos permite trabajar de cerca con profesionales y empresas que valoran la confianza, la claridad y los resultados a largo plazo."
+    "eyebrow": "Diseñado para el uso real",
+    "title": "Infraestructura de carga pensada para durar.",
+    "p1": "Los cargadores Rayforce están desarrollados con la durabilidad, la seguridad y el rendimiento a largo plazo como principios fundamentales.",
+    "p2": "Cada unidad está diseñada para operar de forma confiable en condiciones reales, adaptándose a distintos entornos eléctricos y perfiles de uso.",
+    "p3": "Este enfoque nos permite acompañar a hogares, instaladores y empresas con soluciones en las que pueden confiar hoy y escalar mañana."
   },
 
   "LocaleSwitcher": {
@@ -110,7 +97,7 @@
 
   "AriaLabels": {
     "logo": "Ir a la página principal",
-    "mobileMenu": "Abrir o cerrar el menú móvil",
+    "mobileMenu": "Abrir menú móvil",
     "mobileMenuHeader": "Encabezado del menú móvil",
     "mobileNavigation": "Navegación móvil",
     "languageSwitcher": "Cambiar idioma",
@@ -125,35 +112,36 @@
     "en": "Inglés",
     "es": "Español"
   },
+
   "Footer": {
     "cta": {
       "eyebrow": "Contacto",
-      "title": "Diseñemos tu espacio juntos",
-      "description": "Asesoramiento personalizado en cortinas, persianas, toldos y cerramientos. Materiales de calidad, diseño cuidado y ejecución profesional.",
+      "title": "La forma inteligente de cargar tu vehículo eléctrico",
+      "description": "Asesoramiento experto para la selección, instalación y escalabilidad de cargadores EV en hogares y empresas.",
       "button": "Contactanos por WhatsApp"
     },
 
     "brand": {
-      "name": "Windoors",
-      "description": "Soluciones de protección solar y cerramientos diseñadas para integrarse con tu arquitectura."
+      "name": "Rayforce EV",
+      "description": "Soluciones inteligentes de carga para vehículos eléctricos, diseñadas para ofrecer seguridad, eficiencia y rendimiento a largo plazo."
     },
 
     "nav": {
       "products": {
-        "title": "Productos",
+        "title": "Cargadores",
         "items": {
-          "cortinas": "Cortinas",
-          "persianas": "Persianas",
-          "toldos": "Toldos",
-          "cerramientos": "Cerramientos"
+          "essential": "Essential",
+          "secure": "Secure",
+          "smart": "Smart",
+          "dlb": "Balanceo dinámico"
         }
       },
       "company": {
         "title": "Empresa",
         "items": {
-          "about": "Sobre nosotros",
-          "process": "Proceso",
-          "quality": "Calidad"
+          "about": "Sobre Rayforce",
+          "process": "Proceso de instalación",
+          "quality": "Calidad y seguridad"
         }
       }
     },
@@ -161,7 +149,7 @@
     "contact": {
       "title": "Contacto",
       "phone": "+598 99 123 456",
-      "email": "info@windoors.com",
+      "email": "info@rayforce.com",
       "location": "Montevideo, Uruguay"
     },
 

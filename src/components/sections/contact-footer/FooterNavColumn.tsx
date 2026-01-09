@@ -22,7 +22,7 @@ export function FooterNavColumn({ group, items }: Props) {
         {t(`${group}.title`)}
       </h3>
 
-      <ul className="mt-6 space-y-4">
+      {/* <ul className="mt-6 space-y-4">
         {items.map((item) => (
           <li key={item.key}>
             <Link
@@ -33,7 +33,7 @@ export function FooterNavColumn({ group, items }: Props) {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

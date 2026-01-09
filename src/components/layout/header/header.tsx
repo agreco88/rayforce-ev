@@ -33,14 +33,16 @@ export default function Header() {
         className="
           pointer-events-none
           absolute inset-0
-          bg-gradient-to-b from-black/80 via-black/50 to-transparent
+          bg-linear-to-b from-black/30 to-transparent
         "
       />
 
       {/* Content */}
       <div className="relative flex h-16 items-center justify-between px-0 sm:px-6 lg:px-8">
         <div className="flex flex-1 items-center gap-4">
-          <HeaderLogo />
+          <div className="invert opacity-85 saturate-0">
+            <HeaderLogo />
+          </div>
           <HeaderNav />
         </div>
         <AsideMobileMenu />

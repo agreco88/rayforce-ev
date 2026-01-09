@@ -25,21 +25,29 @@ export function FooterCTA() {
         <Link
           href="#contacto"
           className="
+          border border-green-800 hover:shadow-inner
             inline-flex items-center justify-center
             rounded-full
-            bg-gradient-to-b from-neutral-200 to-neutral-300
-            px-4 sm:px-6 py-3
-            font-medium text-neutral-900
-            shadow-sm gap-2
-            transition-all
-            hover:from-neutral-100 hover:to-neutral-200
+            text-white
+            px-4 sm:px-8 py-3
+            gap-2
+            text-sm sm:text-base
+
+            bg-gradient-to-b
+            from-green-950 to-green-600
+            bg-[length:100%_200%]
+            bg-[position:0%_0%]
+
+            transition-[background-position] duration-1000
+            hover:bg-[position:0%_100%]
+
+            shadow-sm
             focus-visible:outline-2
             focus-visible:outline-offset-2
             focus-visible:outline-white/40
-            text-sm sm:text-base
           "
         >
-          <FaWhatsapp className="size-6 text-neutral-700" /> {t("button")}
+          <FaWhatsapp className="size-6 text-white" /> {t("button")}
         </Link>
       </div>
     </div>

@@ -30,7 +30,7 @@ type OgImage = {
 };
 
 const DEFAULT_OG_IMAGE = {
-  url: `${SITE.baseUrl}/images/windoors-og-image.webp`,
+  url: `${SITE.baseUrl}/images/rayforce-logo.webp`,
   width: 1200,
   height: 630,
 };

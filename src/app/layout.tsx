@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Outfit } from "next/font/google";
+import { Lexend_Deca } from "next/font/google";
 import "./globals.css";
 
 // Load the font
-const outfit = Outfit({
+const lexend = Lexend_Deca({
   subsets: ["latin"],
   variable: "--font-sans", // 👈 match ShadCN/Tailwind expected token
   weight: ["300", "400", "500", "600", "700"],
@@ -22,7 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning className={outfit.variable}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${lexend.variable} dark`}
+    >
+      {" "}
       <body className="transition-all min-w-dvw min-h-dvh overflow-x-hidden">
         {children}
       </body>

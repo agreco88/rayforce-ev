@@ -8,9 +8,8 @@ export function FooterBrand() {
 
   return (
     <div>
-      <div className="flex items-center gap-2">
+      <div className="invert opacity-85 saturate-0">
         <HeaderLogo />
-        <p className="text-2xl tracking-tight">{t("name")}</p>
       </div>
 
       <p className="mt-4 max-w-sm text-xs leading-relaxed text-neutral-400">
