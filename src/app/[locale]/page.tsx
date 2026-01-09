@@ -1,10 +1,6 @@
-import GradientBlinds from "@/components/GradientBlinds";
-import { RayforceBentoFeatures } from "@/components/RayforceBentoFeatures";
 import ContactFooter from "@/components/sections/contact-footer/Footer";
 import { EditorialValueSection } from "@/components/sections/EditorialValueSection";
 import { Hero } from "@/components/sections/hero";
-import MostSoldSection from "@/components/sections/most-sold-section/MostSoldSection";
-import ProductsSection from "@/components/sections/products-section/ProductsSection";
 import { RayforceProductSection } from "@/components/sections/RayforceProductSection";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import type { Metadata } from "next";
