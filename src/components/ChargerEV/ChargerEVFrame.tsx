@@ -16,13 +16,13 @@ export function ChargerEVFrame() {
       <div
         className="
           relative
-          min-h-[700px]
-          w-[360px] sm:w-[400px]
+          min-h-[650px]
+          w-[360px] 
           aspect-[3/2]
           flex flex-col items-center justify-between
           overflow-hidden
           rounded-[2.25rem]
-          bg-[linear-gradient(145deg,#f2f2f2_0%,#d4d4d4_40%,#fafafa_60%,#bcbcbc_100%)]
+          border-4 border-neutral-300
           p-1.5
           shadow-[inset_0_1px_3px_rgba(255,255,255,0.6),0_6px_24px_rgba(0,0,0,0.45)]
         "

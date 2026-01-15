@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckIcon, XIcon } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { CHARGERS, COMPARISON_SECTIONS } from "@/lib/products-data";
 
 export function ComparisonTable() {
@@ -8,8 +9,13 @@ export function ComparisonTable() {
     <div className="mx-auto max-w-7xl px-6 pb-32 pt-20 hidden lg:block">
       {COMPARISON_SECTIONS.map((section, sectionIndex) => (
         <div key={section.name} className="mt-24 first:mt-0">
-          {/* Section header + column headers */}
-          <div className="grid grid-cols-3 gap-x-8 mb-8">
+          {/* ---------------- SECTION HEADER + COLUMN HEADERS ---------------- */}
+          <div
+            className="grid gap-x-8 mb-8"
+            style={{
+              gridTemplateColumns: `1fr repeat(${CHARGERS.length}, 1fr)`,
+            }}
+          >
             <h3 className="text-lg font-semibold text-white">{section.name}</h3>
 
             {sectionIndex === 0 &&
@@ -25,21 +31,24 @@ export function ComparisonTable() {
               ))}
           </div>
 
-          <table className="w-full border-separate border-spacing-y-2">
+          {/* ---------------- FEATURE TABLE ---------------- */}
+          <table className="w-full table-fixed border-separate border-spacing-y-2">
             <tbody>
               {section.features.map((feature) => (
                 <tr key={feature.name}>
-                  <th className="w-1/3 py-3 pr-6 text-left text-sm font-normal text-gray-400">
+                  {/* Feature name */}
+                  <th className="py-3 pr-6 text-left text-sm font-normal text-gray-400">
                     {feature.name}
                   </th>
 
+                  {/* Tier values */}
                   {CHARGERS.map((charger) => {
                     const value = feature.tiers[charger.key];
 
                     return (
                       <td
                         key={charger.key}
-                        className="w-1/3 py-3 text-center outline outline-neutral-800/80"
+                        className="py-3 text-center outline outline-neutral-800/80"
                       >
                         {typeof value === "string" ? (
                           <span className="text-sm text-white">{value}</span>
@@ -58,19 +67,19 @@ export function ComparisonTable() {
         </div>
       ))}
 
-      {/* ---------------- PRICE ROW ---------------- */}
-      <table className="w-full border-separate border-spacing-y-2">
+      {/* ---------------- PRICE + CTA TABLE ---------------- */}
+      <table className="w-full table-fixed border-separate border-spacing-y-2 mt-12">
         <tbody>
-          {/* Price values */}
+          {/* Price row */}
           <tr>
-            <th className="w-1/3 py-3 pr-6 text-left text-sm font-normal text-gray-400">
+            <th className="py-3 pr-6 text-left text-sm font-normal text-gray-400">
               Precio
             </th>
 
             {CHARGERS.map((charger) => (
               <td
                 key={charger.key}
-                className="w-1/3 py-3 text-center outline outline-neutral-800/80 "
+                className="py-3 text-center outline outline-neutral-800/80"
               >
                 <span className="text-sm font-medium text-white">
                   {charger.price}
@@ -81,7 +90,7 @@ export function ComparisonTable() {
 
           {/* WhatsApp CTA row */}
           <tr>
-            <th className="w-1/3 py-3 pr-6" />
+            <th className="py-3 pr-6" />
 
             {CHARGERS.map((charger) => (
               <td key={charger.key}>
@@ -99,8 +108,9 @@ export function ComparisonTable() {
   );
 }
 
-import { MessageCircle } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa6";
+/* ------------------------------------------------------------------
+ * WhatsApp CTA cell
+ * ---------------------------------------------------------------- */
 
 function WhatsAppCellCTA({ model }: { model: string }) {
   const message = encodeURIComponent(
@@ -113,28 +123,25 @@ function WhatsAppCellCTA({ model }: { model: string }) {
       target="_blank"
       rel="noopener noreferrer"
       className="
-            border border-green-900 hover:shadow-inner
-            inline-flex items-center justify-center
-            rounded-full
-            text-white
-            px-4 sm:px-8 py-3
-            gap-2
-            text-sm sm:text-base
+        inline-flex items-center justify-center gap-2
+        rounded-full
+        px-4 sm:px-8 py-3
+        text-sm sm:text-base
+        text-white
 
-            mx-auto
-            bg-gradient-to-b
-            from-green-950 to-green-600
-            bg-[length:100%_200%]
-            bg-[position:0%_0%]
+        border border-green-900
+        bg-gradient-to-b from-green-950 to-green-600
+        bg-[length:100%_200%]
+        bg-[position:0%_0%]
 
-            transition-[background-position] duration-1000
-            hover:bg-[position:0%_100%]
+        transition-[background-position] duration-1000
+        hover:bg-[position:0%_100%]
 
-            shadow-sm
-            focus-visible:outline-2
-            focus-visible:outline-offset-2
-            focus-visible:outline-white/40
-          "
+        shadow-sm
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+        focus-visible:outline-white/40
+      "
     >
       <FaWhatsapp className="size-6 text-white" />
       Quiero este modelo

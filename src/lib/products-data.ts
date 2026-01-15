@@ -1,61 +1,26 @@
-export type ProductKey = "cortinas" | "persianas" | "toldos" | "cerramientos";
-
-export type ProductDefinition = {
-  key: ProductKey;
-  href: string;
-  posterSrc: string;
-  videoSrc?: string;
-  mirror?: boolean;
-};
-
-export const PRODUCTS: ProductDefinition[] = [
-  {
-    key: "cortinas",
-    href: "/windoors/cortinas",
-    posterSrc: "/images/curtains-card-poster.webp",
-    videoSrc: "/videos/curtains-card-video.mp4",
-    mirror: true,
-  },
-  {
-    key: "persianas",
-    href: "/windoors/persianas",
-    posterSrc: "/images/blinds-card-poster.webp",
-    videoSrc: "/videos/blinds-card-video.mp4",
-  },
-  {
-    key: "toldos",
-    href: "/windoors/toldos",
-    posterSrc: "/images/toldos-card-poster.webp",
-    videoSrc: "/videos/toldos-card-video.mp4",
-  },
-  {
-    key: "cerramientos",
-    href: "/windoors/cerramientos",
-    posterSrc: "/images/pvc-card-poster.webp",
-    videoSrc: "/videos/pvc-card-video.mp4",
-  },
-];
-
 /* ------------------------------------------------------------------
- * Rayforce – Products data (LAB)
+ * Rayforce – Chargers catalogue
  * ---------------------------------------------------------------- */
 
-export type ChargerKey = "residential" | "commercial";
+export type ChargerKey = "residential" | "commercial" | "industrial";
 
 export type ChargerDefinition = {
+  /** Internal identifier */
   key: ChargerKey;
 
-  /** High-level positioning (Residencial / Comercial) */
+  /** Tier / positioning label shown in UI */
   roleLabel: string;
 
-  /** Product model name */
+  /** Manufacturer model name */
   modelLabel: string;
 
-  /** Optional visual emphasis */
+  /** Highlight this tier in UI */
   featured?: boolean;
 
-  /** Short description shown in product showcase */
+  /** Short marketing description */
   description: string;
+
+  /** Display price */
   price: string;
 };
 
@@ -66,26 +31,29 @@ export const CHARGERS: ChargerDefinition[] = [
     modelLabel: "BS20-BA",
     featured: true,
     price: "USD 1.290",
-
     description:
-      "Cargador inteligente para vehículos eléctricos, ideal para hogares y pequeños comercios.",
+      "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios.",
   },
-
   {
     key: "commercial",
     roleLabel: "Comercial",
-    modelLabel: "BS20-BC",
-
-    featured: false,
-    price: "USD 1.690",
-
+    modelLabel: "BS20-BB",
+    price: "USD 1.590",
     description:
-      "Configuración avanzada pensada para instalaciones compartidas o semi-públicas.",
+      "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido.",
+  },
+  {
+    key: "industrial",
+    roleLabel: "Industrial",
+    modelLabel: "BS20-BC",
+    price: "USD 1.990",
+    description:
+      "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo.",
   },
 ];
 
 /* ------------------------------------------------------------------
- * Comparison data
+ * Comparison tables
  * ---------------------------------------------------------------- */
 
 export type ComparisonValue = string | boolean;
@@ -107,22 +75,25 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
       {
         name: "Potencia máxima",
         tiers: {
-          residential: "7,4 kW / 22 kW",
-          commercial: "7,4 kW / 22 kW",
+          residential: "7,4 kW",
+          commercial: "11 kW",
+          industrial: "22 kW",
         },
       },
       {
         name: "Tipo de fase",
         tiers: {
-          residential: "Monofásico / Trifásico",
+          residential: "Monofásico",
           commercial: "Trifásico",
+          industrial: "Trifásico",
         },
       },
       {
         name: "Corriente nominal",
         tiers: {
           residential: "32 A",
-          commercial: "32 A",
+          commercial: "16 A",
+          industrial: "32 A",
         },
       },
       {
@@ -130,6 +101,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
+          industrial: true,
         },
       },
     ],
@@ -142,6 +114,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
+          industrial: true,
         },
       },
       {
@@ -149,6 +122,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: false,
           commercial: true,
+          industrial: true,
         },
       },
       {
@@ -156,6 +130,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
+          industrial: true,
         },
       },
       {
@@ -163,6 +138,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
+          industrial: true,
         },
       },
     ],
@@ -175,6 +151,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: false,
+          industrial: false,
         },
       },
       {
@@ -182,6 +159,15 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: false,
           commercial: true,
+          industrial: true,
+        },
+      },
+      {
+        name: "Uso industrial / flotas",
+        tiers: {
+          residential: false,
+          commercial: false,
+          industrial: true,
         },
       },
       {
@@ -189,6 +175,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
+          industrial: true,
         },
       },
     ],
@@ -201,6 +188,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
+          industrial: true,
         },
       },
       {
@@ -208,6 +196,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: "IP65",
           commercial: "IP65",
+          industrial: "IP65",
         },
       },
       {
@@ -215,6 +204,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: "-25 °C a +55 °C",
           commercial: "-25 °C a +55 °C",
+          industrial: "-25 °C a +55 °C",
         },
       },
     ],

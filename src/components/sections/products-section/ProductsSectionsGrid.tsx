@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import ProductCard from "./ProductCard";
-import { PRODUCTS } from "@/lib/products-data";
+// import { PRODUCTS } from "@/lib/products-data";
 import { waterfallList } from "@/lib/animation-variants";
 import { motion } from "framer-motion";
 
@@ -15,7 +15,7 @@ export default function ProductsSectionGrid() {
       className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-2"
       variants={waterfallList}
     >
-      {PRODUCTS.map((product) => (
+      {/* {PRODUCTS.map((product) => (
         <ProductCard
           key={product.key}
           href={product.href}
@@ -26,7 +26,7 @@ export default function ProductsSectionGrid() {
           description={t(`products.${product.key}.description`)}
           cta={t(`products.${product.key}.cta`)}
         />
-      ))}
+      ))} */}
     </motion.div>
   );
 }

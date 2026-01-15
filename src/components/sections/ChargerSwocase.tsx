@@ -1,8 +1,8 @@
 "use client";
 
+import { BackgroundIllustration } from "../animated/BackgroundIllustration";
 import { ChargerEV } from "../ChargerEV/ChargerEv";
 import { CHARGERS } from "@/lib/products-data";
-import { BackgroundIllustration } from "./hero";
 
 function classNames(...classes: (string | false | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -10,7 +10,7 @@ function classNames(...classes: (string | false | undefined)[]) {
 
 export function ChargerShowcase() {
   return (
-    <div className="mx-auto grid grid-cols-1 relative gap-24 md:grid-cols-2">
+    <div className="mx-auto grid grid-cols-1 relative md:grid-cols-3">
       <div
         aria-hidden
         className="

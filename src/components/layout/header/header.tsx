@@ -8,7 +8,8 @@ import HeaderNav from "./header-nav";
 export default function Header() {
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-50 h-16 pt-4 px-6"
+      className="fixed inset-x-0 top-0  z-50 min-h-16 pt-4 px-6           bg-linear-to-b from-black via-black/70 to-transparent
+"
       initial="rest"
       animate="rest"
       whileHover="hover"
@@ -33,7 +34,6 @@ export default function Header() {
         className="
           pointer-events-none
           absolute inset-0
-          bg-linear-to-b from-black/30 to-transparent
         "
       />
 

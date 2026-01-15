@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { NAV_LINKS } from "@/lib/internal-nav-links";
-import { PRODUCTS } from "@/lib/products-data";
+import { CHARGERS } from "@/lib/products-data";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 
 type AsideNavLinksProps = {
@@ -58,7 +58,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
             {tProducts("eyebrow")}
           </motion.p>
 
-          <ul className="mt-4 grid grid-cols-1 gap-6">
+          {/* <ul className="mt-4 grid grid-cols-1 gap-6">
             {PRODUCTS.map((product) => (
               <motion.li key={product.key} variants={waterfallItem}>
                 <Link
@@ -75,7 +75,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
                 </Link>
               </motion.li>
             ))}
-          </ul>
+          </ul> */}
         </li>
       </motion.ul>
     </nav>

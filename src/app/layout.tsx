@@ -22,11 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es"
-      suppressHydrationWarning
-      className={`${lexend.variable} dark`}
-    >
+    <html suppressHydrationWarning className={`${lexend.variable}`}>
       {" "}
       <body className="transition-all min-w-dvw min-h-dvh overflow-x-hidden">
         {children}
