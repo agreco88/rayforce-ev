@@ -2,9 +2,9 @@
 
 import { HeroEnergyBackground } from "@/components/AnimatedGridBackground";
 import { HeroIntro } from "./HeroIntro";
-import { HeroBanner } from "./HeroBanner";
 import { HeroFeatureCardsSection } from "./HeroFeatureCardsSection";
 import Container from "@/components/layout/container";
+import { HeroBanner } from "./HeroBanner";
 
 export function Hero() {
   return (
@@ -22,7 +22,7 @@ export function Hero() {
 
       <HeroEnergyBackground />
 
-      <Container className="max-w-[88rem] relative">
+      <Container className="max-w-[100rem] relative">
         {/* HERO GRID */}
         <div className="space-y-16">
           {/* Banner row */}

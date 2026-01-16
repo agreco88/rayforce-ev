@@ -9,7 +9,7 @@ export function HeroBanner({ variant = "default" }: HeroBannerProps) {
   const showIntro = variant === "default";
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-neutral-800">
+    <div className="relative overflow-hidden rounded-3xl border  border-neutral-800">
       {/* Background image */}
       <picture>
         {/* Mobile image */}
@@ -42,11 +42,11 @@ export function HeroBanner({ variant = "default" }: HeroBannerProps) {
           <div
             className="
               pointer-events-none absolute inset-y-0 right-0 w-full
-              bg-linear-to-l from-black via-black/40 to-transparent
+              bg-linear-to-l from-black via-black/40 to-transparent 
             "
           />
 
-          <div className="relative z-10 grid min-h-[420px] lg:min-h-[520px] grid-cols-12 items-center px-6 sm:px-10 lg:px-16">
+          <div className="relative z-10 grid min-h-[420px] my-14 lg:min-h-[520px] grid-cols-12 items-center px-6 sm:px-10 lg:px-16">
             <div className="hidden lg:block lg:col-span-5" />
             <div className="lg:col-span-7 pt-20">
               <HeroIntro />

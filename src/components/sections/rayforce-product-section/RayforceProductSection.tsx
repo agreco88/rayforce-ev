@@ -14,7 +14,7 @@ export function RayforceProductSection() {
   return (
     <section
       id="productos"
-      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white py-24 sm:py-32 flex flex-col gap-32"
+      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white py-24 sm:pt-24 sm:pb-0 flex flex-col gap-32"
     >
       {/* Conditional rendering */}
       {isMobile ? (

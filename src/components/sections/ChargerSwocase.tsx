@@ -16,9 +16,9 @@ export function ChargerShowcase() {
         className="
           pointer-events-none absolute inset-0 -z-0 rounded-2xl
           bg-radial
-        from-lime-600/15
+        from-lime-700
           from-0%
-          animate-[pulse_4s_ease-in-out_infinite]
+          animate-[pulse_2s_ease-in-out_infinite]
           to-transparent
           to-65%
         "
