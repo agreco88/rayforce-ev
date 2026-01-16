@@ -2,7 +2,7 @@ import { ChargingSafetySection } from "@/components/sections/charging-safety-sec
 import ContactFooter from "@/components/sections/contact-footer/Footer";
 import { EditorialValueSection } from "@/components/sections/EditorialValueSection";
 import { Hero } from "@/components/sections/hero/Hero";
-import { RayforceProductSection } from "@/components/sections/RayforceProductSection";
+import { RayforceProductSection } from "@/components/sections/rayforce-product-section/RayforceProductSection";
 import { RegulatorySection } from "@/components/sections/regulatory-section/RegulatoryBenefitsSection";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import type { Metadata } from "next";
@@ -27,10 +27,8 @@ export default function HomePage() {
       <Hero />
       <ChargingSafetySection />
       <RayforceProductSection />
-
       <EditorialValueSection />
       <RegulatorySection />
-
       <ContactFooter />
     </>
   );

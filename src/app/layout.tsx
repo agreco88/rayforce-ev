@@ -23,7 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning className={`${lexend.variable}`}>
-      {" "}
       <body className="transition-all min-w-dvw min-h-dvh overflow-x-hidden">
         {children}
       </body>
