@@ -3,17 +3,20 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { HiOutlinePlayCircle } from "react-icons/hi2";
+import { useTranslations } from "next-intl";
 
 export function DemoVideoModal() {
+  const t = useTranslations("Common.DemoVideo");
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="hover:text-white  py-6! min-w-50 cursor-pointer"
+          className="hover:text-white py-6! min-w-50 cursor-pointer"
         >
           <HiOutlinePlayCircle />
-          <span className="ml-1.5">Ver demostración</span>
+          <span className="ml-1.5">{t("cta")}</span>
         </Button>
       </DialogTrigger>
 
@@ -21,7 +24,7 @@ export function DemoVideoModal() {
         <div className="aspect-video w-full">
           <iframe
             src="https://www.youtube.com/embed/Hf8oBAU07Ko?autoplay=1"
-            title="Rayforce EV – Demostración"
+            title={t("title")}
             allow="autoplay; fullscreen; encrypted-media"
             allowFullScreen
             className="h-full w-full"

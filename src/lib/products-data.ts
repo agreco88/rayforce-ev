@@ -30,7 +30,7 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Residencial",
     modelLabel: "BS20-BA",
     featured: true,
-    price: "USD 1.290",
+    price: "USD 749",
     description:
       "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios.",
   },
@@ -38,7 +38,7 @@ export const CHARGERS: ChargerDefinition[] = [
     key: "commercial",
     roleLabel: "Comercial",
     modelLabel: "BS20-BB",
-    price: "USD 1.590",
+    price: "USD 1.199",
     description:
       "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido.",
   },
@@ -46,7 +46,7 @@ export const CHARGERS: ChargerDefinition[] = [
     key: "industrial",
     roleLabel: "Industrial",
     modelLabel: "BS20-BC",
-    price: "USD 1.990",
+    price: "USD 1.690",
     description:
       "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo.",
   },
@@ -75,29 +75,45 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
       {
         name: "Potencia máxima",
         tiers: {
-          residential: "7,4 kW",
-          commercial: "11 kW",
-          industrial: "22 kW",
+          residential: "7_4_kw",
+          commercial: "11_kw",
+          industrial: "22_kw",
         },
       },
       {
         name: "Tipo de fase",
         tiers: {
-          residential: "Monofásico",
-          commercial: "Trifásico",
-          industrial: "Trifásico",
+          residential: "single_phase",
+          commercial: "three_phase",
+          industrial: "three_phase",
         },
       },
       {
         name: "Corriente nominal",
         tiers: {
-          residential: "32 A",
-          commercial: "16 A",
-          industrial: "32 A",
+          residential: "32a_per_phase",
+          commercial: "16a_per_phase",
+          industrial: "32a_per_phase",
+        },
+      },
+      {
+        name: "Tensión típica",
+        tiers: {
+          residential: "220_230_v",
+          commercial: "380_400_v_3p",
+          industrial: "380_400_v_3p",
         },
       },
       {
         name: "Pantalla integrada",
+        tiers: {
+          residential: true,
+          commercial: true,
+          industrial: true,
+        },
+      },
+      {
+        name: "Materiales para fijación en pared",
         tiers: {
           residential: true,
           commercial: true,
@@ -118,60 +134,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         },
       },
       {
-        name: "Acceso por RFID",
-        tiers: {
-          residential: false,
-          commercial: true,
-          industrial: true,
-        },
-      },
-      {
         name: "Wi-Fi / Bluetooth",
-        tiers: {
-          residential: true,
-          commercial: true,
-          industrial: true,
-        },
-      },
-      {
-        name: "Actualizaciones de firmware",
-        tiers: {
-          residential: true,
-          commercial: true,
-          industrial: true,
-        },
-      },
-    ],
-  },
-  {
-    name: "Instalación y uso",
-    features: [
-      {
-        name: "Uso residencial",
-        tiers: {
-          residential: true,
-          commercial: false,
-          industrial: false,
-        },
-      },
-      {
-        name: "Uso comercial o compartido",
-        tiers: {
-          residential: false,
-          commercial: true,
-          industrial: true,
-        },
-      },
-      {
-        name: "Uso industrial / flotas",
-        tiers: {
-          residential: false,
-          commercial: false,
-          industrial: true,
-        },
-      },
-      {
-        name: "Montaje en pared",
         tiers: {
           residential: true,
           commercial: true,
@@ -194,17 +157,17 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
       {
         name: "Grado de protección",
         tiers: {
-          residential: "IP65",
-          commercial: "IP65",
-          industrial: "IP65",
+          residential: "ip65",
+          commercial: "ip65",
+          industrial: "ip65",
         },
       },
       {
         name: "Temperatura de operación",
         tiers: {
-          residential: "-25 °C a +55 °C",
-          commercial: "-25 °C a +55 °C",
-          industrial: "-25 °C a +55 °C",
+          residential: "temp_range",
+          commercial: "temp_range",
+          industrial: "temp_range",
         },
       },
     ],

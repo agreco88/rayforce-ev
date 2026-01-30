@@ -5,11 +5,11 @@ import { useTranslations } from "next-intl";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import SectionWrapper from "../layout/section-wrapper";
 
-export function EditorialValueSection() {
-  const t = useTranslations("EditorialValueSection");
+export function ChargerStandSection() {
+  const t = useTranslations("HomePage.ChargerStandSection");
 
   return (
-    <SectionWrapper className="border-t border-white/10 py-40 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 px-6">
+    <SectionWrapper className="border-t border-white/10 py-40 bg-gradient-to-b  from-neutral-950 via-neutral-900 to-neutral-950 px-6">
       <motion.div
         variants={waterfallList}
         initial="hidden"
@@ -26,25 +26,37 @@ export function EditorialValueSection() {
         "
       >
         {/* Text column */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 h-full justify-center flex flex-col gap-4">
           <motion.p
             variants={waterfallItem}
             className="text-sm font-medium uppercase tracking-wide text-muted-foreground"
           >
-            ACCESORIO OFICAL
+            {t("eyebrow")}
           </motion.p>
 
           <motion.h2
             variants={waterfallItem}
-            className="mt-4 text-3xl font-light tracking-tight text-neutral-200 sm:text-4xl whitespace-pre-line"
+            className="text-3xl font-medium tracking-tight text-neutral-200 sm:text-4xl  whitespace-pre-line text-balance"
           >
-            Consegui tu soporte para tu cargador Rayforce por{" "}
-            <strong className="font-thin text-green-400">$999 UYU</strong>
+            {t.rich("title", {
+              price: () => (
+                <strong className="font-medium text-green-400 ">
+                  {t("price")}
+                </strong>
+              ),
+            })}
           </motion.h2>
 
-          <div className="mt-10 space-y-6 max-w-xl text-lg leading-relaxed text-gray-300">
-            <motion.p variants={waterfallItem}>{t("p1")}</motion.p>
-            <motion.p variants={waterfallItem}>{t("p2")}</motion.p>
+          <div className="mt-6 space-y-4 max-w-xl text-lg leading-relaxed text-neutral-400">
+            <motion.p variants={waterfallItem}>
+              {t("p1")} {t("p2")}
+            </motion.p>
+            <motion.p
+              variants={waterfallItem}
+              className="text-sm text-neutral-300 font-semibold mt-10"
+            >
+              {t("note")}
+            </motion.p>
           </div>
         </div>
 

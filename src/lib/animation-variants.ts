@@ -15,6 +15,30 @@ export const waterfallList: Variants = {
   },
 };
 
+export const cardContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+export const cardItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 8,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+      ease: "easeOut",
+    },
+  },
+};
+
 export const waterfallItem: Variants = {
   hidden: { opacity: 0, y: 8 },
   show: {

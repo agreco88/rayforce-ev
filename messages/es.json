@@ -5,94 +5,37 @@
         "home": "Inicio",
         "features": "Características",
         "pricing": "Modelos",
-        "about": "Empresa"
+        "company": "Empresa"
       }
     },
+
+    "Aside": {
+      "language": "Idioma"
+    },
+
     "Footer": {
-      "copyright": "© 2025 Rayforce EV. Todos los derechos reservados.",
+      "meta": {
+        "copyright": "© 2025 Rayforce EV. Todos los derechos reservados."
+      },
       "links": {
         "privacy": "Política de privacidad",
         "terms": "Términos del servicio",
         "contact": "Contacto"
       }
-    },
-    "Aside": {
-      "language": "Idioma"
     }
   },
-
-  "HomePage": {
-    "hero": {
-      "title": "Carga inteligente para la nueva movilidad eléctrica.",
-      "subtitle": "Cargadores EV Wallbox avanzados, diseñados para hogares, empresas y flotas eléctricas. Tecnología confiable, control inteligente e integración total.",
-      "cta": "Ver cargadores",
-      "cta2": "Hablar con un asesor"
+  "Common": {
+    "DemoVideo": {
+      "cta": "Ver demostración",
+      "title": "Rayforce EV – Demostración"
     }
   },
-
-  "ProductsSection": {
-    "eyebrow": "Cargadores",
-    "title": "Soluciones de carga para cada necesidad",
-
-    "products": {
-      "essential": {
-        "label": "Essential",
-        "description": "Carga confiable para el hogar, con un diseño simple y robusto. Ideal para instalaciones residenciales.",
-        "cta": "Ver Essential"
-      },
-      "secure": {
-        "label": "Secure",
-        "description": "Carga con control de acceso mediante RFID, pensada para entornos compartidos o semi-públicos.",
-        "cta": "Ver Secure"
-      },
-      "smart": {
-        "label": "Smart",
-        "description": "Carga EV totalmente conectada, con monitoreo remoto, programación y control en tiempo real desde la app Rayforce.",
-        "cta": "Ver Smart"
-      },
-      "dlb": {
-        "label": "Balanceo dinámico de carga",
-        "description": "Distribución inteligente de potencia que optimiza el consumo energético y evita sobrecargas eléctricas.",
-        "cta": "Conocer DLB"
-      }
-    }
-  },
-
-  "MostSoldSection": {
-    "eyebrow": "Más instalados",
-    "title": "Elegidos por conductores y empresas",
-    "description": "Nuestros cargadores más adoptados, reconocidos por su confiabilidad, rendimiento y durabilidad a largo plazo.",
-
-    "cta": "Ver cargador",
-
-    "products": {
-      "bs20App": {
-        "name": "BS20 Smart Wallbox",
-        "excerpt": "Cargador inteligente de 22 kW con conectividad por app, programación y monitoreo remoto."
-      },
-      "bs20Rfid": {
-        "name": "BS20 Secure Wallbox",
-        "excerpt": "Cargador con RFID para control de acceso en entornos compartidos."
-      },
-      "bs11Home": {
-        "name": "BS11 Cargador Hogar",
-        "excerpt": "Solución de carga compacta y eficiente para uso residencial."
-      }
-    }
-  },
-
-  "EditorialValueSection": {
-    "eyebrow": "Diseñado para el uso real",
-    "title": "Infraestructura de carga pensada para durar.",
-    "p1": "Los cargadores Rayforce están desarrollados con la durabilidad, la seguridad y el rendimiento a largo plazo como principios fundamentales.",
-    "p2": "Cada unidad está diseñada para operar de forma confiable en condiciones reales, adaptándose a distintos entornos eléctricos y perfiles de uso.",
-    "p3": "Este enfoque nos permite acompañar a hogares, instaladores y empresas con soluciones en las que pueden confiar hoy y escalar mañana."
-  },
-
   "LocaleSwitcher": {
     "label": "Cambiar idioma",
-    "english": "Inglés",
-    "spanish": "Español"
+    "languages": {
+      "en": "Inglés",
+      "es": "Español"
+    }
   },
 
   "AriaLabels": {
@@ -113,48 +56,183 @@
     "es": "Español"
   },
 
-  "Footer": {
-    "cta": {
-      "eyebrow": "Contacto",
-      "title": "La forma inteligente de cargar tu vehículo eléctrico",
-      "description": "Asesoramiento experto para la selección, instalación y escalabilidad de cargadores EV en hogares y empresas.",
-      "button": "Contactanos por WhatsApp"
+  "HomePage": {
+    "HeroIntro": {
+      "title": "Cargá tu vehículo con la energía del futuro.",
+      "description": "Rayforce trae a Uruguay la nueva línea de cargadores <strong>EV Wallbox</strong> desarrollados por <strong>Besen</strong>, diseñados para hogares, empresas y flotas eléctricas.",
+      "ctaPrimary": "Ver modelos",
+      "ctaSecondary": "Ver demostración"
     },
-
-    "brand": {
-      "name": "Rayforce EV",
-      "description": "Soluciones inteligentes de carga para vehículos eléctricos, diseñadas para ofrecer seguridad, eficiencia y rendimiento a largo plazo."
-    },
-
-    "nav": {
-      "products": {
-        "title": "Cargadores",
-        "items": {
-          "essential": "Essential",
-          "secure": "Secure",
-          "smart": "Smart",
-          "dlb": "Balanceo dinámico"
-        }
-      },
-      "company": {
-        "title": "Empresa",
-        "items": {
-          "about": "Sobre Rayforce",
-          "process": "Proceso de instalación",
-          "quality": "Calidad y seguridad"
+    "HeroFeatureCards": {
+      "items": {
+        "smartSavings": {
+          "title": "Ahorro inteligente",
+          "description": "Menor costo de carga frente a combustibles tradicionales y red pública de UTE."
+        },
+        "mobileControl": {
+          "title": "Control desde tu celular",
+          "description": "Monitoreá consumo, horarios y potencia desde la app."
+        },
+        "sustainability": {
+          "title": "Energía sustentable",
+          "description": "Reducí emisiones y apostá por movilidad eléctrica."
+        },
+        "safeInstallation": {
+          "title": "Instalación y carga segura",
+          "description": "Cuidá tu batería y la instalación eléctrica con un equipo que cumple 100% con la normativa vigente e instalado por un técnico certificado por UTE."
         }
       }
     },
+    "ChargingSafetySection": {
+      "header": {
+        "title": "Cargá tu vehículo de forma segura y evitá posibles riesgos",
+        "description": "Un vehículo eléctrico puede representar una de las mayores demandas de energía dentro de un hogar, empresa o instalación compartida. \n\nPor eso, la carga debe realizarse con un equipo diseñado para este fin y con una instalación adecuada."
+      },
 
-    "contact": {
-      "title": "Contacto",
-      "phone": "+598 99 123 456",
-      "email": "info@rayforce.com",
-      "location": "Montevideo, Uruguay"
+      "risks": {
+        "title": "Situaciones cuando no se usa un equipo dedicado",
+        "items": {
+          "overload": {
+            "title": "Exigencia excesiva de la instalación",
+            "description": "Las instalaciones eléctricas no siempre están pensadas para cargas prolongadas de alta potencia, ya sea en viviendas, oficinas o estacionamientos."
+          },
+          "protections": {
+            "title": "Protecciones eléctricas no preparadas",
+            "description": "Diferenciales y térmicas convencionales pueden no ser adecuados para este tipo de consumo continuo."
+          },
+          "outlets": {
+            "title": "Uso de enchufes o puntos no dedicados",
+            "description": "Tomacorrientes comunes no fueron diseñados para alimentar un vehículo eléctrico durante varias horas seguidas."
+          },
+          "inefficiency": {
+            "title": "Ineficiencia energética",
+            "description": "En instalaciones no preparadas pueden generarse pérdidas de energía por calentamiento de conductores, conexiones o adaptaciones, reduciendo la eficiencia de la carga y exigiendo más al sistema eléctrico."
+          },
+          "batteryWear": {
+            "title": "Carga constante al 100 %",
+            "description": "Cargar siempre al máximo puede acelerar el desgaste de la batería del vehículo."
+          }
+        }
+      },
+
+      "solutions": {
+        "title": "Cómo lo resuelve Rayforce",
+        "items": {
+          "dedicatedEquipment": {
+            "title": "Equipo diseñado específicamente para carga de vehículos eléctricos",
+            "description": "No es un enchufe adaptado, es un sistema dedicado para este uso."
+          },
+          "powerRegulation": {
+            "title": "Regulación de potencia",
+            "description": "La carga se ajusta según la capacidad de la instalación, evitando sobrecargas tanto en hogares como en empresas."
+          },
+          "smartScheduling": {
+            "title": "Programación inteligente",
+            "description": "Permite cargar en horarios de menor demanda y optimizar el uso de energía."
+          },
+          "mobileControl": {
+            "title": "Control desde el celular",
+            "description": "Monitoreo y gestión de la carga en tiempo real desde la app."
+          },
+          "batteryCare": {
+            "title": "Cuidado de la batería",
+            "description": "Configuración de límites de carga para prolongar la vida útil del vehículo."
+          },
+          "professionalInstallation": {
+            "title": "Instalación profesional",
+            "description": "La instalación es realizada por técnicos autorizados, con protecciones y configuración acordes al uso del equipo y al entorno donde se instala."
+          }
+        }
+      },
+
+      "efficiency": {
+        "title": "Más eficiencia, mejor aprovechamiento de la energía",
+        "description": "Una instalación correcta y un equipo dedicado permiten una transferencia de energía más eficiente, con menos pérdidas por calentamiento o conexiones inadecuadas. Esto se traduce en una carga más estable, segura y en un mejor aprovechamiento de la energía consumida."
+      },
+
+      "closing": "La carga de un vehículo eléctrico no es un electrodoméstico más.\n\nEs una instalación eléctrica especializada, tanto en hogares como en empresas, y debe tratarse como tal."
     },
+    "RayforceProductSection": {
+      "header": {
+        "title": "Elegí el cargador ideal para tu instalación",
+        "description": "Compará configuraciones y prestaciones para encontrar la mejor opción según tu uso."
+      },
+      "ChargerShowcase": {
+        "residential": {
+          "roleLabel": "Residencial",
+          "description": "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios."
+        },
+        "commercial": {
+          "roleLabel": "Comercial",
+          "description": "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido."
+        },
+        "industrial": {
+          "roleLabel": "Industrial",
+          "description": "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo."
+        }
+      },
+      "ComparisonTable": {
+        "priceLabel": "Price:",
+        "cta": {
+          "button": "I want this model",
+          "message": "Hi! I’d like more information about the {model}."
+        },
 
-    "meta": {
-      "rights": "Todos los derechos reservados."
+        "values": {
+          "7_4_kw": "7.4 kW",
+          "11_kw": "11 kW",
+          "22_kw": "22 kW",
+
+          "single_phase": "Single-phase",
+          "three_phase": "Three-phase",
+
+          "32a_per_phase": "32 A per phase",
+          "16a_per_phase": "16 A per phase",
+
+          "220_230_v": "220–230 V",
+          "380_400_v_3p": "380–400 V (three-phase)",
+
+          "ip65": "IP65",
+          "temp_range": "-25 °C to +55 °C"
+        },
+
+        "sections": {
+          "mainSpecs": {
+            "title": "Main specifications",
+            "features": {
+              "maxPower": "Maximum power",
+              "phaseType": "Phase type",
+              "nominalCurrent": "Rated current",
+              "voltage": "Typical voltage",
+              "display": "Integrated display",
+              "wallMount": "Wall mounting materials"
+            }
+          },
+          "connectivity": {
+            "title": "Connectivity and control",
+            "features": {
+              "appControl": "Mobile app control",
+              "wireless": "Wi-Fi / Bluetooth"
+            }
+          },
+          "protection": {
+            "title": "Protection and environment",
+            "features": {
+              "electricalProtection": "Integrated electrical protection",
+              "ipRating": "Ingress protection rating",
+              "temperature": "Operating temperature"
+            }
+          }
+        }
+      }
+    },
+    "ChargerStandSection": {
+      "eyebrow": "Accesorio oficial",
+      "title": "Instalá tu cargador de forma segura con el soporte original Rayforce por <price></price>",
+      "price": "199 USD",
+      "p1": "Instalá tu cargador de forma segura en el soporte original Rayforce.",
+      "p2": "Pensado con las medidas perfectas para que tengas tu cargador siempre disponible de manera ágil y cómoda.",
+      "note": "*Todos los cargadores incluyen en su caja los materiales para ser fijados en la pared."
     }
   }
 }
