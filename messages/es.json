@@ -172,55 +172,57 @@
         }
       },
       "ComparisonTable": {
-        "priceLabel": "Price:",
+        "priceLabel": "Precio:",
         "cta": {
-          "button": "I want this model",
-          "message": "Hi! I’d like more information about the {model}."
+          "button": "Quiero este modelo",
+          "message": "Hola! Quiero información sobre el modelo {model}."
         },
 
         "values": {
-          "7_4_kw": "7.4 kW",
+          "7_4_kw": "7,4 kW",
           "11_kw": "11 kW",
           "22_kw": "22 kW",
 
-          "single_phase": "Single-phase",
-          "three_phase": "Three-phase",
+          "single_phase": "Monofásico",
+          "three_phase": "Trifásico",
 
-          "32a_per_phase": "32 A per phase",
-          "16a_per_phase": "16 A per phase",
+          "32a_per_phase": "32 A por fase",
+          "16a_per_phase": "16 A por fase",
 
           "220_230_v": "220–230 V",
-          "380_400_v_3p": "380–400 V (three-phase)",
+          "380_400_v_3p": "380–400 V (trifásica)",
 
           "ip65": "IP65",
-          "temp_range": "-25 °C to +55 °C"
+          "temp_range": "-25 °C a +55 °C"
         },
 
         "sections": {
           "mainSpecs": {
-            "title": "Main specifications",
+            "title": "Especificaciones principales",
             "features": {
-              "maxPower": "Maximum power",
-              "phaseType": "Phase type",
-              "nominalCurrent": "Rated current",
-              "voltage": "Typical voltage",
-              "display": "Integrated display",
-              "wallMount": "Wall mounting materials"
+              "maxPower": "Potencia máxima",
+              "phaseType": "Tipo de fase",
+              "nominalCurrent": "Corriente nominal",
+              "voltage": "Tensión típica",
+              "display": "Pantalla integrada",
+              "wallMount": "Materiales para fijación en pared"
             }
           },
+
           "connectivity": {
-            "title": "Connectivity and control",
+            "title": "Conectividad y control",
             "features": {
-              "appControl": "Mobile app control",
+              "appControl": "Control mediante app móvil",
               "wireless": "Wi-Fi / Bluetooth"
             }
           },
+
           "protection": {
-            "title": "Protection and environment",
+            "title": "Protección y entorno",
             "features": {
-              "electricalProtection": "Integrated electrical protection",
-              "ipRating": "Ingress protection rating",
-              "temperature": "Operating temperature"
+              "electricalProtection": "Protección eléctrica integrada",
+              "ipRating": "Grado de protección",
+              "temperature": "Temperatura de operación"
             }
           }
         }

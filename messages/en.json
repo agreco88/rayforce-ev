@@ -208,6 +208,7 @@
               "wallMount": "Wall mounting materials"
             }
           },
+
           "connectivity": {
             "title": "Connectivity and control",
             "features": {
@@ -215,6 +216,7 @@
               "wireless": "Wi-Fi / Bluetooth"
             }
           },
+
           "protection": {
             "title": "Protection and environment",
             "features": {

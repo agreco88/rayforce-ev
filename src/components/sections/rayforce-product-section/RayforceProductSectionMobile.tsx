@@ -191,6 +191,23 @@ export function RayforceProductSectionMobile() {
             ))}
             <CarouselItem aria-hidden className="basis-[8%] pl-4" />
           </CarouselContent>
+          {/* Indicator */}
+          <div className="my-6 flex justify-center">
+            <div className="relative h-1 w-24 rounded-full bg-neutral-800 overflow-hidden">
+              <motion.div
+                className="absolute inset-y-0 left-0 rounded-full bg-green-500"
+                style={{ width: `${100 / CHARGERS.length}%` }}
+                animate={{
+                  x: `${selectedIndex * 100}%`,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                }}
+              />
+            </div>
+          </div>
         </Carousel>
       </div>
 
