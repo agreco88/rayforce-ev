@@ -235,6 +235,91 @@
       "p1": "Install your charger safely using the original Rayforce stand.",
       "p2": "Designed with precise dimensions to keep your charger always accessible, practical, and comfortable to use.",
       "note": "* All chargers include wall-mounting hardware inside the box."
+    },
+    "FaqSection": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "title": "Is it compatible with my electric vehicle?",
+          "answer": "Yes. Our chargers work with the vast majority of electric and plug-in hybrid vehicles sold and imported in Uruguay."
+        },
+        {
+          "title": "Which brands are supported?",
+          "answer": "Compatible with the main electric vehicle brands available in Uruguay, including Asian, European, and American manufacturers. BYD, Hyundai, Kia, Chevrolet, Renault, Nissan, BMW, Audi, Mercedes-Benz, Peugeot, Citroën, MG, Geely, OMODA, Haval, Chery, JAC, Dongfeng/Nammi, DFSK, Seres, Forthing, Jaecoo, Mini, Volvo, Jaguar, among others."
+        },
+        {
+          "title": "Does it also work with plug-in hybrids?",
+          "answer": "Yes. It works with plug-in hybrid vehicles. If the car can be charged by connecting it to the power grid, it is compatible."
+        },
+        {
+          "title": "Is public charging always recommended?",
+          "answer": "Public charging is useful for trips or occasional needs, but it is not always the most cost-effective option. Since January 1st, 2026, public charging tariffs increased by approximately 50%, encouraging home charging."
+        },
+        {
+          "title": "Can it be installed at home?",
+          "answer": "Yes. We assess your electrical installation and configure the charger to operate safely."
+        },
+        {
+          "title": "Can it be used in buildings or companies?",
+          "answer": "Yes. Ideal for homes, apartment buildings, parking facilities, and company fleets. We offer different power options from 7.4 to 22 kW."
+        },
+        {
+          "title": "Do I need major electrical upgrades at home?",
+          "answer": "Not always. In many cases, only a dedicated line and proper electrical protections are required."
+        },
+        {
+          "title": "How long does it take to charge the car?",
+          "answer": "It depends on the vehicle, but it is generally much faster and safer than using a regular household outlet."
+        },
+        {
+          "title": "Can I control it from my phone?",
+          "answer": "Yes. You can start, pause, schedule charging times, and monitor energy consumption from the app."
+        },
+        {
+          "title": "Can I charge during cheaper hours?",
+          "answer": "Yes. You can schedule charging to take advantage of lower electricity rates according to your UTE plan."
+        },
+        {
+          "title": "Is it safe to leave the car charging overnight?",
+          "answer": "Yes. The system is designed for long charging sessions with proper electrical protections."
+        },
+        {
+          "title": "Does it help prevent fires or short circuits?",
+          "answer": "Yes. Using standard outlets can cause overheating. Our chargers include protections and power regulation to reduce risks."
+        },
+        {
+          "title": "Will my home's power go out while charging?",
+          "answer": "No. Charging power can be regulated to ensure normal household energy usage."
+        },
+        {
+          "title": "Can I protect my car’s battery?",
+          "answer": "Yes. You can set charging limits, such as 80%, to extend battery lifespan."
+        },
+        {
+          "title": "Can it be used outdoors?",
+          "answer": "Yes. It is designed for outdoor use."
+        },
+        {
+          "title": "What happens during a power outage?",
+          "answer": "Once power is restored, the charger resumes normal operation."
+        },
+        {
+          "title": "Can I install it myself?",
+          "answer": "It is not recommended. Rayforce installs and certifies the equipment using UTE-authorized technicians, ensuring safety and compliance."
+        },
+        {
+          "title": "Does it include warranty and local support?",
+          "answer": "Yes. All equipment includes warranty and local technical support."
+        },
+        {
+          "title": "Does it comply with Uruguayan regulations?",
+          "answer": "We work with equipment aligned with current regulations and UTE and URSEA requirements."
+        },
+        {
+          "title": "How do I know which charger I need?",
+          "answer": "We advise you based on your vehicle, electrical installation, and usage habits to recommend the best option."
+        }
+      ]
     }
   }
 }

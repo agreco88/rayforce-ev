@@ -1,6 +1,7 @@
 import { ChargerStandSection } from "@/components/sections/ChargerStandSection";
 import { ChargingSafetySection } from "@/components/sections/charging-safety-section/ChargingSafetySection";
 import ContactFooter from "@/components/sections/contact-footer/Footer";
+import { FaqSection } from "@/components/sections/faq-section/FaqSection";
 import { Hero } from "@/components/sections/hero/Hero";
 import { RayforceProductSection } from "@/components/sections/rayforce-product-section/RayforceProductSection";
 import { RegulatorySection } from "@/components/sections/regulatory-section/RegulatoryBenefitsSection";
@@ -29,6 +30,7 @@ export default function HomePage() {
       <RayforceProductSection />
       <ChargerStandSection />
       <RegulatorySection />
+      <FaqSection />
       <ContactFooter />
     </>
   );
