@@ -22,7 +22,7 @@ import { CheckIcon, XIcon } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 import { CHARGERS, COMPARISON_SECTIONS } from "@/lib/products-data";
-import { ChargerEVMobile } from "@/components/ChargerEV/ChargerEvMobile";
+import { ChargerEVMobile } from "@/components/animated/charger-ev/ChargerEvMobile";
 
 /* ------------------------------------------------------------------
  * Helpers
@@ -156,13 +156,13 @@ export function RayforceProductSectionMobile() {
   return (
     <section className="lg:hidden relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white">
       {/* Header */}
-      <div className="mx-auto max-w-xl px-6 text-center">
-        <h2 className="text-3xl font-medium tracking-tight bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
+      <div className="mx-auto max-w-3xl px-6 text-center">
+        <h2 className="text-5xl font-medium tracking-tight bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
           {tHeader("title")}
         </h2>
 
         <div className="mt-6">
-          <ChargerEVMobile />
+          <ChargerEVMobile powerKw={charger.powerKw} />
         </div>
 
         <p className="mt-4 text-sm text-neutral-400">

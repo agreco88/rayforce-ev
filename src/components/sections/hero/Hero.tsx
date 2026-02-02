@@ -6,9 +6,12 @@ import { HeroFeatureCardsSection } from "./HeroFeatureCardsSection";
 import Container from "@/components/layout/container";
 import { HeroBanner } from "./HeroBanner";
 
-export function Hero() {
+export function Hero({ id }: { id?: string }) {
   return (
-    <section className="relative isolate overflow-hidden border-b border-neutral-900 pt-48 pb-32">
+    <section
+      id={id}
+      className="relative isolate overflow-hidden border-b border-neutral-900 pt-28 sm:pt-48 pb-32"
+    >
       {/* Ambient vignette */}
       <div
         className="
@@ -29,8 +32,8 @@ export function Hero() {
           <div>
             {/* Mobile */}
             <div className="md:hidden space-y-12">
-              <HeroIntro />
               <HeroBanner variant="imageOnly" />
+              <HeroIntro />
             </div>
 
             {/* Desktop */}

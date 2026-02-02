@@ -8,10 +8,7 @@ export function FooterBrand() {
 
   return (
     <div>
-      <div className="invert opacity-85 saturate-0">
-        <HeaderLogo />
-      </div>
-
+      <HeaderLogo />
       <p className="mt-4 max-w-sm text-xs leading-relaxed text-neutral-400">
         {t("description")}
       </p>

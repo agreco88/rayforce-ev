@@ -5,23 +5,13 @@
 export type ChargerKey = "residential" | "commercial" | "industrial";
 
 export type ChargerDefinition = {
-  /** Internal identifier */
   key: ChargerKey;
-
-  /** Tier / positioning label shown in UI */
   roleLabel: string;
-
-  /** Manufacturer model name */
   modelLabel: string;
-
-  /** Highlight this tier in UI */
   featured?: boolean;
-
-  /** Short marketing description */
-  description: string;
-
-  /** Display price */
   price: string;
+  description: string;
+  powerKw: number;
 };
 
 export const CHARGERS: ChargerDefinition[] = [
@@ -30,7 +20,8 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Residencial",
     modelLabel: "BS20-BA",
     featured: true,
-    price: "USD 749",
+    price: "USD 799",
+    powerKw: 7.4,
     description:
       "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios.",
   },
@@ -38,7 +29,9 @@ export const CHARGERS: ChargerDefinition[] = [
     key: "commercial",
     roleLabel: "Comercial",
     modelLabel: "BS20-BB",
+    featured: false,
     price: "USD 1.199",
+    powerKw: 11,
     description:
       "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido.",
   },
@@ -46,7 +39,10 @@ export const CHARGERS: ChargerDefinition[] = [
     key: "industrial",
     roleLabel: "Industrial",
     modelLabel: "BS20-BC",
+    featured: false,
+
     price: "USD 1.690",
+    powerKw: 22.3,
     description:
       "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo.",
   },

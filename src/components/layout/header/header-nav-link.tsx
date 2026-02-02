@@ -1,36 +1,49 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
 import { waterfallItem } from "@/lib/animation-variants";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 /* ---------- Types ---------- */
 
-interface HeaderNavLinkProps {
-  href: string;
+export interface HeaderNavLinkProps {
+  id: string;
   label: string;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
 /* ---------- Component ---------- */
 
-export default function HeaderNavLink({ href, label }: HeaderNavLinkProps) {
-  const pathname = usePathname();
+export default function HeaderNavLink({
+  id,
+  label,
+  isActive,
+  onClick,
+}: HeaderNavLinkProps) {
   const t = useTranslations("Layout.Header");
 
   return (
-    <motion.li key={href} variants={waterfallItem}>
-      <Button asChild variant="link">
-        <Link
-          href={href}
-          className="text-neutral-50! hover:text-green-400! transition-all duration-400"
-        >
-          {t(`nav.${label}`)}
-        </Link>
+    <motion.li variants={waterfallItem}>
+      <Button
+        variant="link"
+        onClick={() => {
+          scrollToSection(id);
+          onClick?.();
+        }}
+        aria-current={isActive ? "true" : undefined}
+        className={clsx(
+          "text-neutral-50!",
+          "cursor-pointer",
+          "hover:text-green-400!",
+          "transition-all duration-300",
+          isActive && "text-green-400!",
+        )}
+      >
+        {t(`nav.${label}`)}
       </Button>
     </motion.li>
   );

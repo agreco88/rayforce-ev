@@ -27,7 +27,7 @@ export function HeroFeatureCardsSection() {
         variants={waterfallList}
         initial="hidden"
         animate="show"
-        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
       >
         {FEATURES.map(({ key, icon: Icon }) => (
           <motion.div

@@ -3,13 +3,16 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
-import SectionWrapper from "../layout/section-wrapper";
+import SectionWrapper from "./layout/section-wrapper";
 
-export function ChargerStandSection() {
+export function ChargerStandSection({ id }: { id?: string }) {
   const t = useTranslations("HomePage.ChargerStandSection");
 
   return (
-    <SectionWrapper className="border-t border-white/10 py-40 bg-gradient-to-b  from-neutral-950 via-neutral-900 to-neutral-950 px-6">
+    <SectionWrapper
+      id={id}
+      className="border-t border-neutral-800 py-20 sm:py-40 bg-gradient-to-b  from-neutral-950 via-neutral-900 to-green-950 px-6"
+    >
       <motion.div
         variants={waterfallList}
         initial="hidden"

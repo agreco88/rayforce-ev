@@ -22,7 +22,7 @@ export default function SectionWrapper({
       whileInView="show"
       viewport={{ once: true, amount: 0.1 }}
       id={id}
-      className={cn("relative w-full scroll-mt-18", className)}
+      className={cn("relative w-full ", className)}
     >
       {children}
     </motion.section>

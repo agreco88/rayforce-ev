@@ -4,7 +4,7 @@ import { routing } from "@/i18n/routing";
 /**
  * Global constants
  */
-const BASE_URL = "https://ingenierobenech.com.uy";
+const BASE_URL = "https://www.rayforce.uy";
 const DEFAULT_LOCALE = routing.defaultLocale || "es";
 
 /**
@@ -36,11 +36,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
               alt === DEFAULT_LOCALE
                 ? `${BASE_URL}/${path}`.replace(/\/+$/, "")
                 : `${BASE_URL}/${alt}/${path}`.replace(/\/+$/, ""),
-            ])
+            ]),
           ),
         },
       };
-    })
+    }),
   );
 
   return urls;

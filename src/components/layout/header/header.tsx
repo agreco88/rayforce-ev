@@ -40,9 +40,7 @@ export default function Header() {
       {/* Content */}
       <div className="relative flex h-16 items-center justify-between px-0 sm:px-6 lg:px-8">
         <div className="flex flex-1 items-center gap-4">
-          <div className="invert opacity-85 saturate-0">
-            <HeaderLogo />
-          </div>
+          <HeaderLogo />
           <HeaderNav />
         </div>
         <AsideMobileMenu />

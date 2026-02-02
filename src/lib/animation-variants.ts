@@ -40,11 +40,19 @@ export const cardItem: Variants = {
 };
 
 export const waterfallItem: Variants = {
-  hidden: { opacity: 0, y: 8 },
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(8px)",
+  },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.35, ease: "easeOut" },
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
   },
 };
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Logo from "@/components/logo";
 import HamburgerButton from "../hamburguer-button";
 import HeaderLogo from "../header-logo";
 

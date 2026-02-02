@@ -4,24 +4,25 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { useTranslations } from "next-intl";
 
 import { RayforceProductSectionMobile } from "./RayforceProductSectionMobile";
-import { ChargerShowcase } from "../ChargerSwocase";
-import { ComparisonTable } from "../ComparisonTable";
+import { ChargerShowcase } from "../../ChargerShowcase";
+import { ComparisonTable } from "../../ComparisonTable";
 
-export function RayforceProductSection() {
+export function RayforceProductSection({ id }: { id?: string }) {
   const isMobile = useIsMobile();
   const t = useTranslations("HomePage.RayforceProductSection");
 
   // Avoid rendering anything until we know
-  if (isMobile === null) return null;
 
   return (
     <section
-      id="productos"
-      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white py-24 sm:pt-24 sm:pb-0 flex flex-col gap-32"
+      id={id}
+      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white pt-8 pb-24 sm:pt-28 sm:pb-0 flex flex-col gap-32"
     >
       {/* Conditional rendering */}
       {isMobile ? (
-        <RayforceProductSectionMobile />
+        <div className="block md:hidden">
+          <RayforceProductSectionMobile />
+        </div>
       ) : (
         <>
           {/* Header */}

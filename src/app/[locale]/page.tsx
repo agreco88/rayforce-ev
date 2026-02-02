@@ -1,4 +1,4 @@
-import { ChargerStandSection } from "@/components/sections/ChargerStandSection";
+import { ChargerStandSection } from "@/components/ChargerStandSection";
 import { ChargingSafetySection } from "@/components/sections/charging-safety-section/ChargingSafetySection";
 import ContactFooter from "@/components/sections/contact-footer/Footer";
 import { FaqSection } from "@/components/sections/faq-section/FaqSection";
@@ -25,13 +25,13 @@ export async function generateMetadata({
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <ChargingSafetySection />
-      <RayforceProductSection />
-      <ChargerStandSection />
-      <RegulatorySection />
-      <FaqSection />
-      <ContactFooter />
+      <Hero id="hero" />
+      <ChargingSafetySection id="safety" />
+      <RayforceProductSection id="products" />
+      <ChargerStandSection id="stand" />
+      <RegulatorySection id="regulatory" />
+      <FaqSection id="faq" />
+      <ContactFooter id="contact" />
     </>
   );
 }

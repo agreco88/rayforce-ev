@@ -9,16 +9,13 @@ export function HeroBanner({ variant = "default" }: HeroBannerProps) {
   const showIntro = variant === "default";
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border  border-neutral-800">
+    <div className="relative overflow-hidden rounded-3xl border border-neutral-800">
       {/* Background image */}
       <picture>
-        {/* Mobile image */}
         <source
           media="(max-width: 767px)"
           srcSet="/images/hero-bg-mobile.webp"
         />
-
-        {/* Desktop image */}
         <img
           src="/images/hero-bg-wide.webp"
           alt="Cargador EV Wallbox instalado"
@@ -27,28 +24,23 @@ export function HeroBanner({ variant = "default" }: HeroBannerProps) {
       </picture>
 
       {/* Image treatments */}
-      <div
-        className="
-          pointer-events-none absolute inset-0
-          bg-gradient-to-l
-          from-black/40
-          via-black/40
-          to-transparent
-        "
-      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r xl:bg-gradient-to-l from-black/40 via-black/40 to-transparent" />
 
       {showIntro && (
         <>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-full bg-linear-to-l from-black via-black/40 to-transparent" />
+
           <div
             className="
-              pointer-events-none absolute inset-y-0 right-0 w-full
-              bg-linear-to-l from-black via-black/40 to-transparent 
+              relative z-10
+              flex items-center
+              px-6 sm:px-10 lg:px-16
+              py-20 sm:py-28 lg:py-32
+              lg:grid lg:grid-cols-12
             "
-          />
-
-          <div className="relative z-10 grid min-h-[420px] my-14 lg:min-h-[520px] grid-cols-12 items-center px-6 sm:px-10 lg:px-16">
+          >
             <div className="hidden lg:block lg:col-span-5" />
-            <div className="lg:col-span-7 pt-20">
+            <div className="lg:col-span-7">
               <HeroIntro />
             </div>
           </div>

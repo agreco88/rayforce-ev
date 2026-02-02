@@ -53,7 +53,7 @@ function CarouselIndicator({
  * Mobile Section
  * ---------------------------------------------------------------- */
 
-export function ChargingSafetyMobile() {
+export function ChargingSafetyMobile({ id }: { id?: string }) {
   const t = useTranslations("HomePage.ChargingSafetySection");
 
   const risks = [
@@ -109,7 +109,10 @@ export function ChargingSafetyMobile() {
   }, [solutionApi]);
 
   return (
-    <section className="relative bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 py-24 border-t">
+    <section
+      id={id}
+      className="relative bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 py-24 border-t"
+    >
       <Container className="px-4 flex flex-col items-center text-left gap-3">
         {/* Header */}
         <h2 className="text-4xl text-balance font-medium tracking-tight ">

@@ -1,39 +1,35 @@
 "use client";
 
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { NAV_LINKS } from "@/lib/internal-nav-links";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
-type Item = {
-  key: string;
-  href: string;
-};
-
-type Props = {
-  group: "products" | "company";
-  items: Item[];
-};
-
-export function FooterNavColumn({ group, items }: Props) {
-  const t = useTranslations("Footer.nav");
+export function FooterNavColumn() {
+  const t = useTranslations("Layout.Header");
 
   return (
     <div>
       <h3 className="text-xs tracking-[0.18em] uppercase text-white sm:text-neutral-300">
-        {t(`${group}.title`)}
+        {t("nav.nav")}
       </h3>
 
-      {/* <ul className="mt-6 space-y-4">
-        {items.map((item) => (
-          <li key={item.key}>
-            <Link
-              href={item.href}
-              className="text-sm text-neutral-400 hover:text-neutral-200 transition-colors"
+      <ul className="mt-6 space-y-4 text-sm text-neutral-500">
+        {NAV_LINKS.map((link) => (
+          <li key={link.id}>
+            <button
+              onClick={() => scrollToSection(link.id)}
+              className="
+                transition-colors
+                cursor-pointer
+                hover:text-green-500
+                hover:underline underline-offset-4+ tracking-widest
+              "
             >
-              {t(`${group}.items.${item.key}`)}
-            </Link>
+              {t(`nav.${link.label}`)}
+            </button>
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 }

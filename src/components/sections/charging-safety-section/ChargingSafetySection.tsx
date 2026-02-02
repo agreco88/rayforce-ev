@@ -4,11 +4,16 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { ChargingSafetyMobile } from "./ChargingSafetyMobile";
 import { ChargingSafetyDesktop } from "./ChargingSafetyDesktop";
 
-export function ChargingSafetySection() {
+export function ChargingSafetySection({ id }: { id?: string }) {
   const isMobile = useIsMobile();
 
-  // Avoid rendering until we know
-  if (isMobile === null) return null;
-
-  return isMobile ? <ChargingSafetyMobile /> : <ChargingSafetyDesktop />;
+  return (
+    <section id={id} className="border-b border-neutral-950">
+      {isMobile === null ? null : isMobile ? (
+        <ChargingSafetyMobile />
+      ) : (
+        <ChargingSafetyDesktop />
+      )}
+    </section>
+  );
 }

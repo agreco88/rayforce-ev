@@ -143,11 +143,11 @@ function WhatsAppCellCTA({ model }: { model: string }) {
 
   return (
     <a
-      href={`https://wa.me/598XXXXXXXX?text=${message}`}
+      href={`https://wa.me/+59899168085?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       className="
-        inline-flex items-center justify-center gap-2
+      inline-flex items-center justify-center gap-2
         rounded w-full mr-1
         px-4 sm:px-8 py-3
         text-sm sm:text-base

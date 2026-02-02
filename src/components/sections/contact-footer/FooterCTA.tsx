@@ -22,33 +22,30 @@ export function FooterCTA() {
       </p>
 
       <div className="mt-8 flex justify-center">
-        <Link
-          href="#contacto"
+        <a
+          href={`https://wa.me/+59899168085`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="
-          border border-green-800 hover:shadow-inner
-            inline-flex items-center justify-center
-            rounded-full
-            text-white
-            px-4 sm:px-8 py-3
-            gap-2
-            text-sm sm:text-base
-
-            bg-gradient-to-b
-            from-green-950 to-green-600
-            bg-[length:100%_200%]
-            bg-[position:0%_0%]
-
-            transition-[background-position] duration-1000
-            hover:bg-[position:0%_100%]
-
-            shadow-sm
-            focus-visible:outline-2
-            focus-visible:outline-offset-2
-            focus-visible:outline-white/40
-          "
+        inline-flex items-center justify-center gap-2
+        rounded-lg  px-8
+        py-3
+        text-sm sm:text-base
+        text-white
+        border border-green-900
+        bg-gradient-to-b from-green-950 to-green-600
+        bg-[length:100%_200%]
+        bg-[position:0%_0%]
+        transition-[background-position] duration-1000
+        hover:bg-[position:0%_100%]
+        shadow-sm
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+        focus-visible:outline-white/40
+      "
         >
           <FaWhatsapp className="size-6 text-white" /> {t("button")}
-        </Link>
+        </a>
       </div>
     </div>
   );

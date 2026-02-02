@@ -3,15 +3,19 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect } from "react";
 
-export function ChargerEVScreen() {
-  const power = useMotionValue<number>(22);
-  const temp = useMotionValue<number>(23.5);
-  const timer = useMotionValue<number>(0);
-  const battery = useMotionValue<number>(40);
+type ChargerEVScreenProps = {
+  powerKw: number;
+};
+
+export function ChargerEVScreen({ powerKw }: ChargerEVScreenProps) {
+  const power = useMotionValue(powerKw);
+  const temp = useMotionValue(23.5);
+  const timer = useMotionValue(0);
+  const battery = useMotionValue(40);
 
   useEffect(() => {
     const controls = [
-      animate(power, [22, 21.6, 22.3, 22.0], {
+      animate(power, [powerKw, powerKw, powerKw, powerKw], {
         duration: 6,
         repeat: Infinity,
         ease: "easeInOut",
@@ -28,8 +32,9 @@ export function ChargerEVScreen() {
       }),
       animate(timer, 9999, { duration: 9999, ease: "linear" }),
     ];
+
     return () => controls.forEach((c) => c.stop());
-  }, [power, temp, battery, timer]);
+  }, [powerKw, power, temp, battery, timer]);
 
   const powerText = useTransform(power, (v) => v.toFixed(1));
   const tempText = useTransform(temp, (v) => v.toFixed(1));

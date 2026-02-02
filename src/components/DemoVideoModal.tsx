@@ -13,7 +13,14 @@ export function DemoVideoModal() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="hover:text-white py-6! min-w-50 cursor-pointer"
+          className="      flex items-center justify-center
+      px-8 py-6
+      text-neutral-500
+      hover:text-neutral-100
+      hover:border-neutral-800
+      transition-all duration-400
+      w-full sm:w-auto
+    "
         >
           <HiOutlinePlayCircle />
           <span className="ml-1.5">{t("cta")}</span>

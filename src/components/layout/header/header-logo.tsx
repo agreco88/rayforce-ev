@@ -23,10 +23,11 @@ export default function HeaderLogo() {
       }}
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className="flex items-center gap-2 cursor-pointer"
+      className="flex items-center gap-2 cursor-pointer "
     >
       <Image
         src="/images/rayforce-logo.webp"
+        className="invert opacity-85 saturate-0"
         alt="Rayforce"
         height={150}
         width={150}

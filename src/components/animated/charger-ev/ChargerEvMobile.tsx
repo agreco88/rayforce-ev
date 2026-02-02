@@ -2,9 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ChargerEVScreen } from "./ChargerEVScreen";
-import HeaderLogo from "../layout/header/header-logo";
+import HeaderLogo from "../../layout/header/header-logo";
 
-export function ChargerEVMobile() {
+type ChargerEVMobileProps = {
+  powerKw: number;
+};
+
+export function ChargerEVMobile({ powerKw }: ChargerEVMobileProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -35,7 +39,6 @@ export function ChargerEVMobile() {
             px-4 pt-4 pb-5
           "
         >
-          {/* Small label */}
           <span className="text-xs tracking-wide uppercase text-neutral-300 pt-3">
             EV Charger
           </span>
@@ -43,15 +46,13 @@ export function ChargerEVMobile() {
           {/* Screen */}
           <div className="mt-3 w-full flex justify-center">
             <div className="scale-[0.85] origin-top">
-              <ChargerEVScreen />
-            </div>{" "}
+              <ChargerEVScreen powerKw={powerKw} />
+            </div>
           </div>
 
           {/* Logo */}
           <div className="flex mb-3 items-center justify-center">
-            <div className="invert opacity-80 saturate-0 scale-90">
-              <HeaderLogo />
-            </div>
+            <HeaderLogo />
           </div>
 
           {/* Status indicator */}
@@ -62,7 +63,7 @@ export function ChargerEVMobile() {
               my-3
               h-44 w-0.5
               rounded-full
-              bg-green-400/80 shadow-lime-500
+              bg-green-400/80
               shadow-[0_0_12px_rgba(34,255,102,0.6)]
             "
           />

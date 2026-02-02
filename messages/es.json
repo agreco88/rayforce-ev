@@ -2,10 +2,13 @@
   "Layout": {
     "Header": {
       "nav": {
+        "nav": "Navegación",
         "home": "Inicio",
-        "features": "Características",
-        "pricing": "Modelos",
-        "company": "Empresa"
+        "safety": "Seguridad",
+        "products": "Productos",
+        "regulation": "Normativa",
+        "faq": "Preguntas frecuentes",
+        "contact": "Contacto"
       }
     },
 
@@ -61,7 +64,8 @@
       "title": "Cargá tu vehículo con la energía del futuro.",
       "description": "Rayforce trae a Uruguay la nueva línea de cargadores <strong>EV Wallbox</strong> desarrollados por <strong>Besen</strong>, diseñados para hogares, empresas y flotas eléctricas.",
       "ctaPrimary": "Ver modelos",
-      "ctaSecondary": "Ver demostración"
+      "ctaSecondary": "Ver demostración",
+      "ctaTertiary": "Instalación"
     },
     "HeroFeatureCards": {
       "items": {
@@ -79,7 +83,7 @@
         },
         "safeInstallation": {
           "title": "Instalación y carga segura",
-          "description": "Cuidá tu batería y la instalación eléctrica con un equipo que cumple 100% con la normativa vigente e instalado por un técnico certificado por UTE."
+          "description": "Carga segura con equipos certificados e instalación avalada por UTE."
         }
       }
     },
@@ -238,88 +242,148 @@
     },
     "FaqSection": {
       "title": "Preguntas frecuentes",
-      "items": [
-        {
-          "title": "¿Sirve para mi vehículo eléctrico?",
-          "answer": "Sí. Nuestros cargadores funcionan con la gran mayoría de autos eléctricos e híbridos enchufables que se venden e importan en Uruguay."
-        },
-        {
-          "title": "¿Para qué marcas funciona?",
-          "answer": "Son compatibles con las principales marcas de vehículos eléctricos presentes en Uruguay, incluyendo fabricantes asiáticos, europeos y americanos. BYD, Hyundai, Kia, Chevrolet, Renault, Nissan, BMW, Audi, Mercedes-Benz, Peugeot, Citroën, MG, Geely, OMODA, Haval, Chery, JAC, Dongfeng/Nammi, DFSK, Seres, Forthing, Jaecoo, Mini, Volvo, Jaguar, entre otras."
-        },
-        {
-          "title": "¿También funciona con híbridos enchufables?",
-          "answer": "Sí. Funciona con vehículos híbridos enchufables. Si el auto puede cargarse conectado a la red eléctrica, es compatible con nuestros cargadores."
-        },
-        {
-          "title": "¿Conviene cargar siempre en la red pública?",
-          "answer": "La red pública es útil para viajes o situaciones puntuales, pero no siempre es la opción más económica. Desde el 1 de enero de 2026, las tarifas públicas de UTE aumentaron aproximadamente un 50 %, y la tendencia es incentivar la carga domiciliaria."
-        },
-        {
-          "title": "¿Puedo instalarlo en mi casa?",
-          "answer": "Sí. Evaluamos tu instalación eléctrica y configuramos el cargador para que funcione de forma segura."
-        },
-        {
-          "title": "¿Se puede usar en edificios o empresas?",
-          "answer": "Sí. Es ideal para hogares, edificios, estacionamientos y empresas con flotas. Disponemos de potencias desde 7,4 hasta 22 kW."
-        },
-        {
-          "title": "¿Necesito hacer grandes cambios eléctricos en mi casa?",
-          "answer": "No siempre. En muchos casos solo se requiere una línea dedicada y protecciones adecuadas."
-        },
-        {
-          "title": "¿Cuánto tarda en cargar el auto?",
-          "answer": "Depende del vehículo, pero suele ser mucho más rápido y seguro que usar un enchufe común."
-        },
-        {
-          "title": "¿Puedo manejarlo desde el celular?",
-          "answer": "Sí. Podés iniciar, pausar, programar horarios y ver el consumo desde la app."
-        },
-        {
-          "title": "¿Puedo cargar en horarios más económicos?",
-          "answer": "Sí. Podés programar la carga para aprovechar horarios de menor costo según tu plan con UTE."
-        },
-        {
-          "title": "¿Es seguro dejar el auto cargando toda la noche?",
-          "answer": "Sí. Está diseñado para cargas prolongadas con protecciones eléctricas adecuadas."
-        },
-        {
-          "title": "¿Ayuda a prevenir incendios o cortocircuitos?",
-          "answer": "Sí. Usar enchufes comunes puede generar sobrecalentamientos. Nuestros cargadores se instalan con protecciones y regulación de potencia, reduciendo riesgos."
-        },
-        {
-          "title": "¿Se va a cortar la luz en mi casa cuando cargue el auto?",
-          "answer": "No. La potencia puede regularse para dejar energía disponible para el funcionamiento normal del hogar."
-        },
-        {
-          "title": "¿Puedo cuidar la batería del auto?",
-          "answer": "Sí. Podés configurar límites de carga, como por ejemplo al 80 %, para prolongar la vida útil de la batería."
-        },
-        {
-          "title": "¿Se puede usar en exteriores?",
-          "answer": "Sí. Está preparado para funcionar en exteriores."
-        },
-        {
-          "title": "¿Qué pasa si se corta la luz?",
-          "answer": "Cuando vuelve el suministro eléctrico, el equipo retoma su funcionamiento normal."
-        },
-        {
-          "title": "¿Puedo instalarlo yo mismo?",
-          "answer": "No se recomienda. Rayforce realiza la instalación y certificación con técnicos autorizados por UTE, garantizando seguridad y cumplimiento normativo."
-        },
-        {
-          "title": "¿Tiene garantía y respaldo local?",
-          "answer": "Sí. Los equipos cuentan con garantía y soporte técnico local."
-        },
-        {
-          "title": "¿Cumple normativa en Uruguay?",
-          "answer": "Trabajamos con equipos alineados con la normativa vigente y los requisitos de UTE y URSEA."
-        },
-        {
-          "title": "¿Cómo sé cuál cargador necesito?",
-          "answer": "Te asesoramos según tu vehículo, tu instalación eléctrica y tus hábitos de uso para recomendarte la mejor opción."
-        }
-      ]
+
+      "categories": {
+        "compatibility": "Compatibilidad",
+        "installation": "Instalación",
+        "usage": "Uso y funcionamiento",
+        "safety": "Seguridad",
+        "costs": "Costos y ahorro",
+        "support": "Soporte y respaldo"
+      },
+
+      "groups": {
+        "compatibility": [
+          {
+            "title": "¿Sirve para mi vehículo eléctrico?",
+            "answer": "Sí. Nuestros cargadores funcionan con la gran mayoría de autos eléctricos e híbridos enchufables que se venden e importan en Uruguay."
+          },
+          {
+            "title": "¿Para qué marcas funciona?",
+            "answer": "Son compatibles con las principales marcas de vehículos eléctricos presentes en Uruguay, incluyendo fabricantes asiáticos, europeos y americanos. BYD, Hyundai, Kia, Chevrolet, Renault, Nissan, BMW, Audi, Mercedes-Benz, Peugeot, Citroën, MG, Geely, OMODA, Haval, Chery, JAC, Dongfeng/Nammi, DFSK, Seres, Forthing, Jaecoo, Mini, Volvo, Jaguar, entre otras."
+          },
+          {
+            "title": "¿También funciona con híbridos enchufables?",
+            "answer": "Sí. Funciona con vehículos híbridos enchufables. Si el auto puede cargarse conectado a la red eléctrica, es compatible con nuestros cargadores."
+          },
+          {
+            "title": "¿Cómo sé cuál cargador necesito?",
+            "answer": "Te asesoramos según tu vehículo, tu instalación eléctrica y tus hábitos de uso para recomendarte la mejor opción."
+          }
+        ],
+
+        "installation": [
+          {
+            "title": "¿Puedo instalarlo en mi casa?",
+            "answer": "Sí. Evaluamos tu instalación eléctrica y configuramos el cargador para que funcione de forma segura."
+          },
+          {
+            "title": "¿Se puede usar en edificios o empresas?",
+            "answer": "Sí. Es ideal para hogares, edificios, estacionamientos y empresas con flotas. Disponemos de potencias desde 7,4 hasta 22 kW."
+          },
+          {
+            "title": "¿Necesito hacer grandes cambios eléctricos en mi casa?",
+            "answer": "No siempre. En muchos casos solo se requiere una línea dedicada y protecciones adecuadas."
+          },
+          {
+            "title": "¿Puedo instalarlo yo mismo?",
+            "answer": "No se recomienda. Rayforce realiza la instalación y certificación con técnicos autorizados por UTE, garantizando seguridad y cumplimiento normativo."
+          }
+        ],
+
+        "usage": [
+          {
+            "title": "¿Cuánto tarda en cargar el auto?",
+            "answer": "Depende del vehículo, pero suele ser mucho más rápido y seguro que usar un enchufe común."
+          },
+          {
+            "title": "¿Puedo manejarlo desde el celular?",
+            "answer": "Sí. Podés iniciar, pausar, programar horarios y ver el consumo desde la app."
+          },
+          {
+            "title": "¿Puedo cargar en horarios más económicos?",
+            "answer": "Sí. Podés programar la carga para aprovechar horarios de menor costo según tu plan con UTE."
+          },
+          {
+            "title": "¿Se puede usar en exteriores?",
+            "answer": "Sí. Está preparado para funcionar en exteriores."
+          },
+          {
+            "title": "¿Qué pasa si se corta la luz?",
+            "answer": "Cuando vuelve el suministro eléctrico, el equipo retoma su funcionamiento normal."
+          }
+        ],
+
+        "safety": [
+          {
+            "title": "¿Es seguro dejar el auto cargando toda la noche?",
+            "answer": "Sí. Está diseñado para cargas prolongadas con protecciones eléctricas adecuadas."
+          },
+          {
+            "title": "¿Ayuda a prevenir incendios o cortocircuitos?",
+            "answer": "Sí. Usar enchufes comunes puede generar sobrecalentamientos. Nuestros cargadores se instalan con protecciones y regulación de potencia, reduciendo riesgos."
+          },
+          {
+            "title": "¿Se va a cortar la luz en mi casa cuando cargue el auto?",
+            "answer": "No. La potencia puede regularse para dejar energía disponible para el funcionamiento normal del hogar."
+          },
+          {
+            "title": "¿Puedo cuidar la batería del auto?",
+            "answer": "Sí. Podés configurar límites de carga, como por ejemplo al 80 %, para prolongar la vida útil de la batería."
+          }
+        ],
+
+        "costs": [
+          {
+            "title": "¿Conviene cargar siempre en la red pública?",
+            "answer": "La red pública es útil para viajes o situaciones puntuales, pero no siempre es la opción más económica. Desde el 1 de enero de 2026, las tarifas públicas de UTE aumentaron aproximadamente un 50 %, y la tendencia es incentivar la carga domiciliaria."
+          }
+        ],
+
+        "support": [
+          {
+            "title": "¿Tiene garantía y respaldo local?",
+            "answer": "Sí. Los equipos cuentan con garantía y soporte técnico local."
+          },
+          {
+            "title": "¿Cumple normativa en Uruguay?",
+            "answer": "Trabajamos con equipos alineados con la normativa vigente y los requisitos de UTE y URSEA."
+          }
+        ]
+      }
+    },
+    "RegulatorySection": {
+      "title": "Cumplimiento normativo y beneficios energéticos",
+      "paragraph1": "Nuestros cargadores están habilitados y alineados con la normativa uruguaya vigente, cumpliendo con los requisitos establecidos por UTE y URSEA.",
+      "paragraph2": "Esto garantiza una instalación segura, confiable y plenamente compatible con la red eléctrica nacional. Además, permite acceder a beneficios y programas de UTE, como el Plan Redondo, según condiciones vigentes."
+    }
+  },
+  "Footer": {
+    "sections": {
+      "home": "Inicio",
+      "products": "Productos"
+    },
+
+    "cta": {
+      "eyebrow": "Contacto",
+      "title": "Instalá tu cargador eléctrico",
+      "description": "Te asesoramos para elegir el cargador ideal según tu vehículo, tu instalación eléctrica y tus hábitos de uso.",
+      "button": "Hablar por WhatsApp"
+    },
+
+    "brand": {
+      "description": "Diseñamos e instalamos soluciones de carga inteligente para vehículos eléctricos, con foco en seguridad, eficiencia y cumplimiento normativo en Uruguay."
+    },
+
+    "contact": {
+      "title": "Contacto",
+      "phone": "+598 9XX XXX XXX",
+      "email": "contacto@rayforce.com.uy",
+      "location": "Montevideo, Uruguay"
+    },
+
+    "meta": {
+      "rights": "Todos los derechos reservados."
     }
   }
 }

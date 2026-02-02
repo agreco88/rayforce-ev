@@ -1,12 +1,14 @@
 // src/lib/internal-nav-links.ts
 export interface NavLink {
-  href: string;
+  id: string;
   label: string;
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { href: "/", label: "home" },
-  { href: "/features", label: "features" },
-  { href: "/pricing", label: "pricing" },
-  { href: "/about", label: "about" },
+  { id: "hero", label: "home" },
+  { id: "safety", label: "safety" },
+  { id: "products", label: "products" },
+  { id: "regulatory", label: "regulation" },
+  { id: "faq", label: "faq" },
+  { id: "contact", label: "contact" },
 ] as const;

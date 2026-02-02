@@ -2,9 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ChargerEVScreen } from "./ChargerEVScreen";
-import HeaderLogo from "../layout/header/header-logo";
+import HeaderLogo from "../../layout/header/header-logo";
 
-export function ChargerEVFrame() {
+type ChargerEVFrameProps = {
+  powerKw: number;
+};
+
+export function ChargerEVFrame({ powerKw }: ChargerEVFrameProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -44,14 +48,12 @@ export function ChargerEVFrame() {
 
           {/* LCD Screen */}
           <div className="mt-4 flex justify-center">
-            <ChargerEVScreen />
+            <ChargerEVScreen powerKw={powerKw} />
           </div>
 
           {/* Logo */}
           <div className="my-6 flex items-center justify-center">
-            <div className="invert opacity-85 saturate-0">
-              <HeaderLogo />
-            </div>
+            <HeaderLogo />
           </div>
 
           {/* LED Strip */}

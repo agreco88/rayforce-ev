@@ -6,13 +6,13 @@ import type { Metadata } from "next";
 
 const baseUrl =
   process.env.VERCEL_ENV === "production"
-    ? "https://www.windoors.uy"
+    ? "https://www.rayforce.uy"
     : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
 
 const SITE = {
-  name: "Windoors",
+  name: "Rayforce",
   baseUrl,
   localeMap: {
     es: "es_ES",
@@ -29,7 +29,7 @@ type OgImage = {
   alt: string;
 };
 
-const DEFAULT_OG_IMAGE = {
+const DEFAULT_OG_IMAGE: Omit<OgImage, "alt"> = {
   url: `${SITE.baseUrl}/images/rayforce-logo.webp`,
   width: 1200,
   height: 630,
@@ -102,6 +102,7 @@ export async function generateLocaleMetadata({
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
       title,
@@ -112,7 +113,10 @@ export async function generateLocaleMetadata({
     alternates: {
       canonical: fullUrl,
       languages: Object.fromEntries(
-        routing.locales.map((l) => [l, `${SITE.baseUrl}/${l}${normalizedPath}`])
+        routing.locales.map((l) => [
+          l,
+          `${SITE.baseUrl}/${l}${normalizedPath}`,
+        ]),
       ),
     },
 

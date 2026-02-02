@@ -2,37 +2,33 @@
 
 import Container from "@/components/layout/container";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 
-export function RegulatorySection() {
+export function RegulatorySection({ id }: { id?: string }) {
+  const t = useTranslations("HomePage.RegulatorySection");
+
   return (
-    <section className="relative border-t border-neutral-800 bg-neutral-950 py-24">
-      <Container className="max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          {/* Text */}
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
-              Cumplimiento normativo y beneficios energéticos
-            </h2>
-
-            <p className="mt-6 text-neutral-400 leading-relaxed">
-              Nuestros cargadores están{" "}
-              <strong className="text-neutral-200">
-                habilitados y alineados con la normativa uruguaya vigente
-              </strong>
-              , cumpliendo con los requisitos establecidos por{" "}
-              <strong className="text-neutral-200">UTE y URSEA</strong>.
-            </p>
-
-            <p className="mt-4 text-neutral-400 leading-relaxed">
-              Esto garantiza una instalación segura, confiable y plenamente
-              compatible con la red eléctrica nacional. Además, permite acceder
-              a beneficios y programas de UTE, como el Plan Redondo, según
-              condiciones vigentes.
-            </p>
-          </div>
-
+    <section
+      id={id}
+      className="relative bg-gradient-to-b from-green-950 via-neutral-950 pb-20 sm:pb-40"
+    >
+      {" "}
+      <div className="h-[1px] bg-green-900 animate-pulse [animation-duration:8s]"></div>
+      <Container className="max-w-7xl px-6  pt-20 sm:pt-40">
+        <motion.div
+          variants={waterfallList}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid gap-12 lg:grid-cols-2 lg:items-center"
+        >
           {/* Logos */}
-          <div className="flex justify-center lg:justify-end">
+          <motion.div
+            variants={waterfallItem}
+            className="flex justify-center order-2 lg:order-1"
+          >
             <div className="grid grid-cols-2 gap-6 items-center">
               <div className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-6">
                 <Image
@@ -40,7 +36,7 @@ export function RegulatorySection() {
                   alt="URSEA"
                   width={160}
                   height={80}
-                  className="mx-auto opacity-90"
+                  className="mx-auto opacity-90 rounded"
                 />
               </div>
 
@@ -50,12 +46,35 @@ export function RegulatorySection() {
                   alt="UTE"
                   width={160}
                   height={80}
-                  className="mx-auto opacity-90"
+                  className="mx-auto opacity-90 rounded"
                 />
               </div>
             </div>
+          </motion.div>
+          {/* Text */}
+          <div>
+            <motion.h2
+              variants={waterfallItem}
+              className="text-3xl sm:text-4xl font-medium tracking-tight text-white"
+            >
+              {t("title")}
+            </motion.h2>
+
+            <motion.p
+              variants={waterfallItem}
+              className="mt-6 text-neutral-200 text-pretty leading-relaxed"
+            >
+              {t("paragraph1")}
+            </motion.p>
+
+            <motion.p
+              variants={waterfallItem}
+              className="mt-4 text-neutral-400 leading-relaxed"
+            >
+              {t("paragraph2")}
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
