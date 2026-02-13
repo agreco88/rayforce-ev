@@ -25,7 +25,7 @@ export function HeroIntro() {
           text-5xl sm:text-5xl lg:text-6xl
           font-semibold tracking-tighter
           bg-linear-to-t pb-2
-          from-neutral-300 to-white
+          from-neutral-50 to-white
           bg-clip-text text-transparent
           text-center sm:text-start
         "
@@ -38,8 +38,8 @@ export function HeroIntro() {
         variants={waterfallList}
         className="
           mt-6 text-lg
-          bg-linear-to-b py-2
-          from-stone-300 to-stone-400
+          bg-linear-to-r py-2
+          from-stone-200 to-stone-300
           bg-clip-text text-transparent
           text-center sm:text-start
         "
@@ -88,14 +88,14 @@ export function HeroIntro() {
             href="#contact"
             scroll
             className="
-      flex items-center justify-center
-      px-8 py-6
-      text-neutral-500
-      hover:text-neutral-100
-      hover:border-neutral-800
-      transition-all duration-400
-      w-full sm:w-auto
-    "
+              flex items-center justify-center
+              px-8 py-6
+              text-neutral-50
+              hover:text-neutral-100
+              hover:border-neutral-800
+              transition-all duration-400
+              w-full sm:w-auto
+            "
           >
             {t("ctaTertiary")}
           </Link>

@@ -1,6 +1,12 @@
 "use client";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { HiOutlinePlayCircle } from "react-icons/hi2";
 import { useTranslations } from "next-intl";
@@ -10,17 +16,22 @@ export function DemoVideoModal() {
 
   return (
     <Dialog>
+      <DialogHeader>
+        <DialogTitle className="sr-only">Video de demostracion</DialogTitle>
+      </DialogHeader>
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="      flex items-center justify-center
-      px-8 py-6
-      text-neutral-500
-      hover:text-neutral-100
-      hover:border-neutral-800
-      transition-all duration-400
-      w-full sm:w-auto
-    "
+          className="
+            flex items-center justify-center
+            px-8 py-6
+            text-neutral-50
+            hover:text-neutral-100
+            hover:border-neutral-800
+            transition-all duration-400
+            w-full sm:w-auto
+            cursor-pointer
+          "
         >
           <HiOutlinePlayCircle />
           <span className="ml-1.5">{t("cta")}</span>

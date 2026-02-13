@@ -53,7 +53,41 @@ export function ComparisonTable() {
                   </div>
                 ))}
             </div>
+            {sectionIndex === 0 && (
+              <table className="w-full table-fixed border-separate border-spacing-y-2 mt-12 mb-16">
+                <tbody>
+                  <tr>
+                    <th className="py-3 pr-6 text-left text-xl font-bold uppercase tracking-wide text-gray-200">
+                      {t("priceLabel")}
+                    </th>
 
+                    {CHARGERS.map((charger) => (
+                      <td
+                        key={charger.key}
+                        className="py-3 text-center outline outline-neutral-800/80"
+                      >
+                        <span className="text-2xl font-semibold bg-gradient-to-b from-gray-300 via-gray-200 to-gray-100 bg-clip-text text-transparent">
+                          {charger.price}
+                        </span>
+                      </td>
+                    ))}
+                  </tr>
+
+                  <tr>
+                    <th className=" pr-6" />
+                    {CHARGERS.map((charger) => (
+                      <td key={charger.key}>
+                        <div className="flex justify-center  gap-8!">
+                          <WhatsAppCellCTA
+                            model={`${charger.roleLabel} – ${charger.modelLabel}`}
+                          />
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            )}
             <table className="w-full table-fixed border-separate border-spacing-y-2">
               <tbody>
                 {section.features.map((feature, featureIndex) => {
@@ -93,41 +127,6 @@ export function ComparisonTable() {
           </div>
         );
       })}
-
-      <table className="w-full table-fixed border-separate border-spacing-y-2 mt-12">
-        <tbody>
-          <tr>
-            <th className="py-3 pr-6 text-left text-xl font-bold uppercase tracking-wide text-gray-200">
-              {t("priceLabel")}
-            </th>
-
-            {CHARGERS.map((charger) => (
-              <td
-                key={charger.key}
-                className="py-3 text-center outline outline-neutral-800/80"
-              >
-                <span className="text-2xl font-bold bg-gradient-to-b from-green-300 via-green-400 to-green-600 bg-clip-text text-transparent">
-                  {charger.price}
-                </span>
-              </td>
-            ))}
-          </tr>
-
-          <tr>
-            <th className="py-3 pr-6" />
-
-            {CHARGERS.map((charger) => (
-              <td key={charger.key}>
-                <div className="flex justify-center mt-4">
-                  <WhatsAppCellCTA
-                    model={`${charger.roleLabel} – ${charger.modelLabel}`}
-                  />
-                </div>
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
     </div>
   );
 }
@@ -147,9 +146,9 @@ function WhatsAppCellCTA({ model }: { model: string }) {
       target="_blank"
       rel="noopener noreferrer"
       className="
-      inline-flex items-center justify-center gap-2
-        rounded w-full mr-1
-        px-4 sm:px-8 py-3
+        inline-flex items-center justify-center gap-2
+        rounded w-full
+        py-3 mx-1
         text-sm sm:text-base
         text-white
         border border-green-900

@@ -20,7 +20,7 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Residencial",
     modelLabel: "BS20-BA",
     featured: true,
-    price: "USD 799",
+    price: "USD 659.99 + IVA",
     powerKw: 7.4,
     description:
       "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios.",
@@ -30,7 +30,7 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Comercial",
     modelLabel: "BS20-BB",
     featured: false,
-    price: "USD 1.199",
+    price: "USD 979.99 + IVA ",
     powerKw: 11,
     description:
       "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido.",
@@ -41,7 +41,7 @@ export const CHARGERS: ChargerDefinition[] = [
     modelLabel: "BS20-BC",
     featured: false,
 
-    price: "USD 1.690",
+    price: "USD 1299.99 + IVA",
     powerKw: 22.3,
     description:
       "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo.",

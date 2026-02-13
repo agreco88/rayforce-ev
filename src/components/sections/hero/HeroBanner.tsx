@@ -29,7 +29,6 @@ export function HeroBanner({ variant = "default" }: HeroBannerProps) {
       {showIntro && (
         <>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-full bg-linear-to-l from-black via-black/40 to-transparent" />
-
           <div
             className="
               relative z-10
