@@ -12,7 +12,7 @@ const ICON_CLASS = "h-5 w-5";
 
 export const socialLinks: SocialLink[] = [
   {
-    href: "https://wa.me/+59899168085",
+    href: "https://wa.me/+598092041709",
     label: "WhatsApp",
     ariaLabel: "Contact Rayforce via WhatsApp",
     icon: <FaWhatsapp className={ICON_CLASS} aria-hidden="true" />,

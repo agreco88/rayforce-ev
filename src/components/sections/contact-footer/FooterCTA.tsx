@@ -23,7 +23,7 @@ export function FooterCTA() {
 
       <div className="mt-8 flex justify-center">
         <a
-          href={`https://wa.me/+59899168085`}
+          href={`https://wa.me/+598092041709`}
           target="_blank"
           rel="noopener noreferrer"
           className="

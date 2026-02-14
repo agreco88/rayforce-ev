@@ -108,7 +108,7 @@ function WhatsAppCTA({ model }: { model: string }) {
 
   return (
     <a
-      href={`https://wa.me/598XXXXXXXX?text=${message}`}
+      href={`https://wa.me/598092041709?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       className="
