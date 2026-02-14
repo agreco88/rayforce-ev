@@ -18,30 +18,16 @@ const SITE = {
     es: "es_ES",
     en: "en_US",
   },
+  country: "UY",
+  city: "Montevideo",
 };
 
 /* ------------------ OG Image ------------------ */
 
-type OgImage = {
-  url: string;
-  width: number;
-  height: number;
-  alt: string;
-};
-
-const DEFAULT_OG_IMAGE: Omit<OgImage, "alt"> = {
-  url: `${SITE.baseUrl}/images/rayforce-logo.webp`,
+const DEFAULT_OG_IMAGE = {
+  url: `${SITE.baseUrl}/images/og-rayforce.jpg`, // create this
   width: 1200,
   height: 630,
-};
-
-/* ------------------ Types ------------------ */
-
-type GenerateLocaleMetadataOptions = {
-  locale: string;
-  route: string;
-  path?: string;
-  image?: Partial<OgImage>;
 };
 
 /* ------------------ Helpers ------------------ */
@@ -56,8 +42,11 @@ export async function generateLocaleMetadata({
   locale,
   route,
   path = "/",
-  image,
-}: GenerateLocaleMetadataOptions): Promise<Metadata> {
+}: {
+  locale: string;
+  route: string;
+  path?: string;
+}): Promise<Metadata> {
   const t = await getTranslations({
     locale,
     namespace: "metadata",
@@ -67,13 +56,6 @@ export async function generateLocaleMetadata({
   const description = t(`${route}.description`);
   const ogDescription = t(`${route}.ogDescription`);
   const keywords = splitKeywords(t(`${route}.keywords`));
-  const imageAlt = t(`${route}.imageAlt`);
-
-  const finalImage: OgImage = {
-    ...DEFAULT_OG_IMAGE,
-    alt: imageAlt,
-    ...image,
-  };
 
   const normalizedPath = path === "/" ? "" : path;
   const fullUrl = `${SITE.baseUrl}/${locale}${normalizedPath}`;
@@ -81,9 +63,15 @@ export async function generateLocaleMetadata({
   return {
     metadataBase: new URL(SITE.baseUrl),
 
-    title,
+    title: {
+      default: title,
+      template: `%s | ${SITE.name}`,
+    },
+
     description,
     keywords,
+
+    category: "technology",
 
     openGraph: {
       title,
@@ -94,11 +82,8 @@ export async function generateLocaleMetadata({
       type: "website",
       images: [
         {
-          url: finalImage.url,
-          width: finalImage.width,
-          height: finalImage.height,
-          alt: finalImage.alt,
-          type: "image/webp",
+          ...DEFAULT_OG_IMAGE,
+          alt: "Rayforce EV – Cargadores eléctricos en Uruguay",
         },
       ],
     },
@@ -107,7 +92,7 @@ export async function generateLocaleMetadata({
       card: "summary_large_image",
       title,
       description: ogDescription,
-      images: [finalImage.url],
+      images: [DEFAULT_OG_IMAGE.url],
     },
 
     alternates: {
@@ -123,10 +108,26 @@ export async function generateLocaleMetadata({
     robots: {
       index: process.env.VERCEL_ENV === "production",
       follow: process.env.VERCEL_ENV === "production",
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+
+    other: {
+      "geo.region": "UY",
+      "geo.placename": SITE.city,
+      "geo.position": "-34.9011;-56.1645",
+      ICBM: "-34.9011, -56.1645",
+      "theme-color": "#0a0a0a",
     },
 
     icons: {
       icon: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
     },
   };
 }
