@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
 
@@ -28,8 +28,22 @@ import { ChargerEVMobile } from "@/components/animated/charger-ev/ChargerEvMobil
  * Helpers
  * ---------------------------------------------------------------- */
 
-function parsePrice(price: string) {
-  return Number(price.replace(/[^\d]/g, ""));
+function parsePriceParts(price: string) {
+  // e.g. "USD 1299.99 + IVA"
+  const amountMatch = price.match(/[\d]+(?:[.,][\d]+)?/);
+  const amount = amountMatch ? Number(amountMatch[0].replace(",", ".")) : 0;
+
+  // keep whatever comes after the number as the "note"
+  // e.g. " + IVA"
+  const note = amountMatch
+    ? price.slice(price.indexOf(amountMatch[0]) + amountMatch[0].length).trim()
+    : "";
+
+  // detect currency code if present (USD, UYU, etc.)
+  const currencyMatch = price.match(/\b[A-Z]{3}\b/);
+  const currency = currencyMatch?.[0] ?? "USD";
+
+  return { amount, currency, note };
 }
 
 /**
@@ -280,7 +294,25 @@ export function RayforceProductSectionMobile() {
 
         {/* Price + CTA */}
         <div className="mt-6 flex flex-col items-center gap-4">
-          <TotalPrice amount={parsePrice(charger.price)} />
+          <span className="text-sm uppercase tracking-widest text-neutral-400">
+            Precio
+          </span>
+
+          <div className="w-full flex flex-col gap-3 items-center justify-center max-w-sm rounded-2xl border border-neutral-800 bg-neutral-950/70 px-6 pt-6 pb-8 text-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={charger.key} // triggers animation on model change
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="text-3xl font-semibold text-white"
+              >
+                {charger.price}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+
           <WhatsAppCTA model={`${charger.roleLabel} – ${charger.modelLabel}`} />
         </div>
       </motion.div>
