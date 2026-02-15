@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://ingenierobenech.com.uy";
+const BASE_URL = "https://www.rayforce.uy";
 
 export default function robots(): MetadataRoute.Robots {
   const isProd = process.env.VERCEL_ENV === "production";
