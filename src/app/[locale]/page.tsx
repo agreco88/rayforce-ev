@@ -5,6 +5,7 @@ import { FaqSection } from "@/components/sections/faq-section/FaqSection";
 import { Hero } from "@/components/sections/hero/Hero";
 import { RayforceProductSection } from "@/components/sections/rayforce-product-section/RayforceProductSection";
 import { RegulatorySection } from "@/components/sections/regulatory-section/RegulatoryBenefitsSection";
+import { WhatsappFloatingBadge } from "@/components/WhatsappFloatingBadge";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import type { Metadata } from "next";
 
@@ -32,6 +33,10 @@ export default function HomePage() {
       <RegulatorySection id="regulatory" />
       <FaqSection id="faq" />
       <ContactFooter id="contact" />
+      <WhatsappFloatingBadge
+        phone="598092041709"
+        message="Hola! Quiero cotizar un cargador Rayforce EV."
+      />
     </>
   );
 }

@@ -1,15 +1,21 @@
-/* ------------------------------------------------------------------
- * Rayforce – Chargers catalogue
- * ---------------------------------------------------------------- */
+/* ------------------------------------------------------------------ */
+/* Rayforce – Chargers catalogue                                      */
+/* ------------------------------------------------------------------ */
 
 export type ChargerKey = "residential" | "commercial" | "industrial";
+
+export type PriceDefinition = {
+  currency: "USD";
+  amount: number; // 659.99
+  vatLabel?: string; // "+ IVA"
+};
 
 export type ChargerDefinition = {
   key: ChargerKey;
   roleLabel: string;
   modelLabel: string;
   featured?: boolean;
-  price: string;
+  price: PriceDefinition;
   description: string;
   powerKw: number;
 };
@@ -20,7 +26,11 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Residencial",
     modelLabel: "BS20-BA",
     featured: true,
-    price: "USD 659.99 + IVA",
+    price: {
+      currency: "USD",
+      amount: 659.99,
+      vatLabel: "+ IVA",
+    },
     powerKw: 7.4,
     description:
       "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios.",
@@ -30,7 +40,11 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Comercial",
     modelLabel: "BS20-BB",
     featured: false,
-    price: "USD 979.99 + IVA ",
+    price: {
+      currency: "USD",
+      amount: 979.99,
+      vatLabel: "+ IVA",
+    },
     powerKw: 11,
     description:
       "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido.",
@@ -40,17 +54,20 @@ export const CHARGERS: ChargerDefinition[] = [
     roleLabel: "Industrial",
     modelLabel: "BS20-BC",
     featured: false,
-
-    price: "USD 1299.99 + IVA",
+    price: {
+      currency: "USD",
+      amount: 1299.99,
+      vatLabel: "+ IVA",
+    },
     powerKw: 22.3,
     description:
       "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo.",
   },
 ];
 
-/* ------------------------------------------------------------------
- * Comparison tables
- * ---------------------------------------------------------------- */
+/* ------------------------------------------------------------------ */
+/* Comparison tables                                                   */
+/* ------------------------------------------------------------------ */
 
 export type ComparisonValue = string | boolean;
 

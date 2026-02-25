@@ -113,7 +113,7 @@ export function ChargingSafetyMobile({ id }: { id?: string }) {
       id={id}
       className="relative bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 py-24 border-t"
     >
-      <Container className="px-4 flex flex-col items-center text-left gap-3">
+      <Container className="px-4 flex flex-col items-center text-left gap-3 border-b border-neutral-800 pb-16">
         {/* Header */}
         <h2 className="text-4xl text-balance font-medium tracking-tight ">
           {t("header.title")}
@@ -123,7 +123,7 @@ export function ChargingSafetyMobile({ id }: { id?: string }) {
           {t("header.description")}
         </p>
         {/* ---------------- RISKS ---------------- */}
-        <div className="mt-12 w-full">
+        {/* <div className="mt-12 w-full">
           <h3 className="text-2xl  font-medium mr-6 text-pretty tracking-tight  text-white mb-6">
             {t("risks.title")}
           </h3>
@@ -160,19 +160,19 @@ export function ChargingSafetyMobile({ id }: { id?: string }) {
             index={riskIndex}
             color="red"
           />
-        </div>
+        </div> */}
 
         {/* ---------------- SOLUTIONS ---------------- */}
-        <div className="mt-12 w-full">
-          <h3 className="text-2xl  font-medium mr-6 text-pretty tracking-tight text-white mb-6">
+        <div className="mt-16 w-full">
+          <h3 className="text-2xl  font-medium mr-6 text-pretty text-center tracking-tight text-white mb-8">
             {t("solutions.title")}
           </h3>
           <Carousel opts={{ align: "center" }} setApi={setSolutionApi}>
             <CarouselContent className="-ml-4 px-4">
               {solutions.map(({ key, icon: Icon }) => (
                 <CarouselItem key={key} className="basis-[90%] first:pl-0">
-                  <div className="rounded-2xl border border-neutral-800 bg-neutral-900 min-h-80 justify-center flex flex-col px-6 gap-1">
-                    <Icon className="size-15 self-start text-green-500" />
+                  <div className="rounded-2xl border text-center border-neutral-800 bg-neutral-900 min-h-60 justify-center flex flex-col px-6 gap-1">
+                    <Icon className="size-15 self-center text-green-500" />
                     <h4 className="mt-4 text-lg text-balance font-medium uppercase tracking-tight text-green-500">
                       {t(`solutions.items.${key}.title`)}
                     </h4>
@@ -203,7 +203,7 @@ export function ChargingSafetyMobile({ id }: { id?: string }) {
         </div>
 
         {/* Closing */}
-        <p className="mt-20 text-2xl text-center text-neutral-200 whitespace-pre-line">
+        <p className="mt-14 text-sm text-center text-neutral-200 whitespace-pre-line">
           {t("closing")}
         </p>
       </Container>

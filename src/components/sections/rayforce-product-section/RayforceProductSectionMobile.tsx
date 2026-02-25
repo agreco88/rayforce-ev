@@ -23,6 +23,7 @@ import { FaWhatsapp } from "react-icons/fa6";
 
 import { CHARGERS, COMPARISON_SECTIONS } from "@/lib/products-data";
 import { ChargerEVMobile } from "@/components/animated/charger-ev/ChargerEvMobile";
+import { PriceCell } from "@/components/ComparisonTable";
 
 /* ------------------------------------------------------------------
  * Helpers
@@ -171,7 +172,7 @@ export function RayforceProductSectionMobile() {
     <section className="lg:hidden relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white">
       {/* Header */}
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-5xl font-medium tracking-tight bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-medium tracking-tight bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
           {tHeader("title")}
         </h2>
 
@@ -185,7 +186,7 @@ export function RayforceProductSectionMobile() {
       </div>
 
       {/* Model selector */}
-      <div className="mt-10">
+      <div className="mt-6">
         <Carousel opts={{ align: "center" }} setApi={setApi}>
           <CarouselContent className="-ml-4 px-4 pr-8">
             {CHARGERS.map((c) => (
@@ -298,18 +299,22 @@ export function RayforceProductSectionMobile() {
             Precio
           </span>
 
-          <div className="w-full flex flex-col gap-3 items-center justify-center max-w-sm rounded-2xl border border-neutral-800 bg-neutral-950/70 px-6 pt-6 pb-8 text-center overflow-hidden">
+          <div className="w-full flex flex-col gap-3 items-center justify-center max-w-sm rounded-2xl border border-neutral-800 bg-neutral-950/70  text-center overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.span
-                key={charger.key} // triggers animation on model change
+              <motion.div
+                key={charger.key}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="text-3xl font-semibold text-white"
+                className="flex flex-col items-center"
               >
-                {charger.price}
-              </motion.span>
+                <PriceCell
+                  amount={charger.price.amount}
+                  currency={charger.price.currency}
+                  vatLabel={charger.price.vatLabel}
+                />
+              </motion.div>
             </AnimatePresence>
           </div>
 

@@ -10,6 +10,7 @@ import {
   cardContainer,
   cardItem,
 } from "@/lib/animation-variants";
+import { ChargerCarousel } from "@/components/ChargerCarousel";
 
 export function HeroFeatureCardsSection() {
   const t = useTranslations("HomePage.HeroFeatureCards");
@@ -69,6 +70,7 @@ export function HeroFeatureCardsSection() {
           </motion.div>
         ))}
       </motion.div>
+      <ChargerCarousel />
     </Container>
   );
 }

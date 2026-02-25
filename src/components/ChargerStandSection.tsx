@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import SectionWrapper from "./layout/section-wrapper";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export function ChargerStandSection({ id }: { id?: string }) {
   const t = useTranslations("HomePage.ChargerStandSection");
@@ -39,21 +40,51 @@ export function ChargerStandSection({ id }: { id?: string }) {
 
           <motion.h2
             variants={waterfallItem}
-            className="text-3xl font-medium tracking-tight text-neutral-200 sm:text-4xl  whitespace-pre-line text-balance"
+            className="text-3xl font-medium tracking-tight text-neutral-200 sm:text-4xl whitespace-pre-line text-balance"
           >
-            {t.rich("title", {
-              price: () => (
-                <strong className="font-medium text-green-400 ">
-                  {t("price")}
-                </strong>
-              ),
-            })}
+            {t.rich("title")}{" "}
+            <span className="inline-flex items-start gap-2">
+              {/* Price */}
+              <span className="inline-flex items-start text-green-400 font-medium">
+                <span>159</span>
+                <span className="ml-0.5 text-sm sm:text-lg relative font-semibold text-green-400/95">
+                  ,99
+                </span>
+              </span>
+
+              {/* Currency */}
+              <span className=" text-green-400/90">USD</span>
+            </span>
           </motion.h2>
 
           <div className="mt-6 space-y-4 max-w-xl text-lg leading-relaxed text-neutral-400">
             <motion.p variants={waterfallItem}>
               {t("p1")} {t("p2")}
             </motion.p>
+
+            <motion.p variants={waterfallItem}>
+              {t.rich("contact", {
+                whatsapp: (chunks) => (
+                  <a
+                    href="https://wa.me/598092041709"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-base gap-1 text-green-400 hover:underline"
+                  >
+                    {chunks} <FaWhatsapp className="size-4" />
+                  </a>
+                ),
+                email: (chunks) => (
+                  <a
+                    href="mailto:comercial@rayforce.com.uy"
+                    className="text-green-400 hover:underline"
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </motion.p>
+
             <motion.p
               variants={waterfallItem}
               className="text-sm text-neutral-300 font-semibold mt-10"

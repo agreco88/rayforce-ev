@@ -1,10 +1,13 @@
 "use client";
 
-import { CheckIcon, XIcon } from "lucide-react";
+import { ArrowDown, CheckIcon, XIcon } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useTranslations } from "next-intl";
 
 import { CHARGERS, COMPARISON_SECTIONS } from "@/lib/products-data";
+import { Button } from "./ui/button";
+import { scrollToSection } from "@/lib/scroll-to-section";
+import clsx from "clsx";
 
 const SECTION_KEYS = ["mainSpecs", "connectivity", "protection"] as const;
 
@@ -20,6 +23,39 @@ const FEATURE_KEYS = {
   connectivity: ["appControl", "wireless"],
   protection: ["electricalProtection", "ipRating", "temperature"],
 } as const;
+
+type PriceCellProps = {
+  amount: number;
+  currency: string;
+  vatLabel?: string;
+};
+
+export function PriceCell({ amount, currency, vatLabel }: PriceCellProps) {
+  const formatted = new Intl.NumberFormat("es-UY", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+
+  const [integer, decimals] = formatted.split(",");
+
+  return (
+    <div className="flex flex-col items-center justify-center pt-4 pb-3">
+      <div className="inline-flex items-start font-semibold text-3xl text-white">
+        <span>{integer}</span>
+        <span className="ml-1 mt-0.5 text-sm relative  opacity-70">
+          ,{decimals}
+        </span>
+        <span className="ml-2 inline-flex items-start font-semibold text-3xl">
+          {currency}
+        </span>
+      </div>
+
+      {vatLabel && (
+        <span className="text-xs text-neutral-500 mt-1">{vatLabel}</span>
+      )}
+    </div>
+  );
+}
 
 export function ComparisonTable() {
   const t = useTranslations("HomePage.RayforceProductSection.ComparisonTable");
@@ -64,11 +100,13 @@ export function ComparisonTable() {
                     {CHARGERS.map((charger) => (
                       <td
                         key={charger.key}
-                        className="py-3 text-center outline outline-neutral-800/80"
+                        className="py-3  outline outline-neutral-800/80"
                       >
-                        <span className="text-2xl font-semibold bg-gradient-to-b from-gray-300 via-gray-200 to-gray-100 bg-clip-text text-transparent">
-                          {charger.price}
-                        </span>
+                        <PriceCell
+                          amount={charger.price.amount}
+                          currency={charger.price.currency}
+                          vatLabel={charger.price.vatLabel}
+                        />
                       </td>
                     ))}
                   </tr>
@@ -127,6 +165,32 @@ export function ComparisonTable() {
           </div>
         );
       })}
+      <div className="flex flex-col w-full gap-8 sm:mt-8 xl:mt-16 items-center justify-center">
+        <div className="flex flex-col gap-2 text-center">
+          <strong>OPCIONAL</strong>{" "}
+          <p> Columna de instalación para cargador por:</p>
+        </div>
+
+        <div className="border px-10 py-1 rounded-lg shadow shadow-neutral-700">
+          <PriceCell amount={159.99} currency="USD" vatLabel="+ IVA" />
+        </div>
+        <Button
+          variant="link"
+          onClick={() => {
+            scrollToSection("stand");
+          }}
+          className={clsx(
+            "text-neutral-50!",
+            "cursor-pointer",
+            "hover:text-green-400!",
+            "transition-all duration-300",
+            "flex flex-col items-center gap-4 mt-4 group ",
+          )}
+        >
+          VER MAS{" "}
+          <ArrowDown className="transition-all  size-5 duration-300 group-hover:text-green-400 opacity-50 group-hover:opacity-100 animate-bounce" />
+        </Button>
+      </div>
     </div>
   );
 }

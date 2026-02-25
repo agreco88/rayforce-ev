@@ -120,7 +120,7 @@
       },
 
       "solutions": {
-        "title": "How Rayforce solves it",
+        "title": "Advantages of having a high-quality electric charger",
         "items": {
           "dedicatedEquipment": {
             "title": "Equipment specifically designed for EV charging",
@@ -234,11 +234,12 @@
     },
     "ChargerStandSection": {
       "eyebrow": "Official accessory",
-      "title": "Install your charger safely with the original Rayforce stand for <price></price>",
-      "price": "USD 199",
+      "title": "Install your charger safely with our specialized and UTE-authorized technicians for",
+      "price": "199 USD",
       "p1": "Install your charger safely using the original Rayforce stand.",
-      "p2": "Designed with precise dimensions to keep your charger always accessible, practical, and comfortable to use.",
-      "note": "* All chargers include wall-mounting hardware inside the box."
+      "p2": "Designed with perfect dimensions so your charger is always accessible in a practical and convenient way.",
+      "contact": "Message us on {whatsapp} or send us an email at {email} to receive a personalized quote.",
+      "note": "*All chargers include wall-mounting materials inside the box."
     },
 
     "FaqSection": {

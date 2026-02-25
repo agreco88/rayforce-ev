@@ -33,39 +33,7 @@ export function ChargingSafetyDesktop() {
         </div>
 
         {/* Content */}
-        <div className="mt-16 grid gap-12 lg:grid-cols-2 max-w-6xl">
-          {/* Risks */}
-          <div className="rounded-3xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8">
-            <h3 className="flex items-center gap-3 text-lg font-medium text-neutral-50">
-              {t("risks.title")}
-            </h3>
-
-            <div className="h-[0.07rem] opacity-40 rounded-full bg-gradient-to-r from-red-500 via-red-500 to-red-950 mt-4" />
-
-            <ul className="mt-8 space-y-6">
-              <RiskItem
-                icon={PlugZap}
-                title={t("risks.items.overload.title")}
-                description={t("risks.items.overload.description")}
-              />
-              <RiskItem
-                icon={AlertTriangle}
-                title={t("risks.items.protections.title")}
-                description={t("risks.items.protections.description")}
-              />
-              <RiskItem
-                icon={PlugZap}
-                title={t("risks.items.outlets.title")}
-                description={t("risks.items.outlets.description")}
-              />
-              <RiskItem
-                icon={BatteryCharging}
-                title={t("risks.items.batteryWear.title")}
-                description={t("risks.items.batteryWear.description")}
-              />
-            </ul>
-          </div>
-
+        <div className="mt-16 grid  max-w-2xl">
           {/* Solutions */}
           <div className="rounded-3xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8">
             <h3 className="flex items-center gap-3 text-lg font-medium text-neutral-50">
