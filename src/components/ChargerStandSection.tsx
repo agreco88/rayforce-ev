@@ -42,19 +42,17 @@ export function ChargerStandSection({ id }: { id?: string }) {
             variants={waterfallItem}
             className="text-3xl font-medium tracking-tight text-neutral-200 sm:text-4xl whitespace-pre-line text-balance"
           >
-            {t.rich("title")}{" "}
-            <span className="inline-flex items-start gap-2">
-              {/* Price */}
+            {t.rich("title")}
+            {/* Price */}
+            {/* <span className="inline-flex items-start gap-2">
               <span className="inline-flex items-start text-green-400 font-medium">
                 <span>159</span>
                 <span className="ml-0.5 text-sm sm:text-lg relative font-semibold text-green-400/95">
                   ,99
                 </span>
               </span>
-
-              {/* Currency */}
               <span className=" text-green-400/90">USD</span>
-            </span>
+            </span> */}
           </motion.h2>
 
           <div className="mt-6 space-y-4 max-w-xl text-lg leading-relaxed text-neutral-400">
