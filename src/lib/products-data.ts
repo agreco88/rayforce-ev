@@ -5,9 +5,9 @@
 export type ChargerKey = "residential" | "commercial" | "industrial";
 
 export type PriceDefinition = {
-  currency: "USD";
+  currency: "U$$";
   amount: number; // 659.99
-  vatLabel?: string; // "+ IVA"
+  vatLabel?: string; // "IVA Inc"
 };
 
 export type ChargerDefinition = {
@@ -27,9 +27,9 @@ export const CHARGERS: ChargerDefinition[] = [
     modelLabel: "BS20-BA",
     featured: true,
     price: {
-      currency: "USD",
-      amount: 659.99,
-      vatLabel: "+ IVA",
+      currency: "U$$",
+      amount: 698,
+      vatLabel: "IVA Inc",
     },
     powerKw: 7.4,
     description:
@@ -41,9 +41,9 @@ export const CHARGERS: ChargerDefinition[] = [
     modelLabel: "BS20-BB",
     featured: false,
     price: {
-      currency: "USD",
-      amount: 979.99,
-      vatLabel: "+ IVA",
+      currency: "U$$",
+      amount: 828,
+      vatLabel: "IVA Inc",
     },
     powerKw: 11,
     description:
@@ -55,9 +55,9 @@ export const CHARGERS: ChargerDefinition[] = [
     modelLabel: "BS20-BC",
     featured: false,
     price: {
-      currency: "USD",
-      amount: 1299.99,
-      vatLabel: "+ IVA",
+      currency: "U$$",
+      amount: 898,
+      vatLabel: "IVA Inc",
     },
     powerKw: 22.3,
     description:

@@ -26,14 +26,14 @@ export function RayforceProductSection({ id }: { id?: string }) {
       ) : (
         <>
           {/* Header */}
-          <div className="mx-auto max-w-7xl px-6 text-center mt-10 sm:mt-20 xl:mt-40">
+          {/* <div className="mx-auto max-w-7xl px-6 text-center mt-10 sm:mt-20 xl:mt-40">
             <h2 className="text-4xl font-medium tracking-tight sm:text-5xl bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
               {t("header.title")}
-            </h2>
+          </h2>
             <p className="mx-auto mt-4 max-w-md text-gray-400">
               {t("header.description")}
             </p>
-          </div>
+          </div> */}
 
           <ChargerShowcase />
 

@@ -43,7 +43,7 @@ export function Hero({ id }: { id?: string }) {
           </div>
 
           {/* Feature cards row (still inside hero) */}
-          <HeroFeatureCardsSection />
+          {/* <HeroFeatureCardsSection /> */}
         </div>
       </Container>
     </section>

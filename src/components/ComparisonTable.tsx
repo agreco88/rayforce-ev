@@ -40,18 +40,15 @@ export function PriceCell({ amount, currency, vatLabel }: PriceCellProps) {
 
   return (
     <div className="flex flex-col items-center justify-center pt-4 pb-3">
-      <div className="inline-flex items-start font-semibold text-3xl text-white">
-        <span>{integer}</span>
-        <span className="ml-1 mt-0.5 text-sm relative  opacity-70">
-          ,{decimals}
-        </span>
-        <span className="ml-2 inline-flex items-start font-semibold text-3xl">
+      <div className="inline-flex items-start font-thin text-3xl text-white">
+        <span className="ml-2 inline-flex  items-start font-thin widest text-3xl">
           {currency}
         </span>
+        <span className="tracking-wide pl-2">{integer}</span>
       </div>
 
       {vatLabel && (
-        <span className="text-xs text-neutral-500 mt-1">{vatLabel}</span>
+        <span className="text-base text-neutral-400 mt-1">{vatLabel}</span>
       )}
     </div>
   );
@@ -172,9 +169,14 @@ export function ComparisonTable() {
         </div>
 
         <div className="border px-10 py-1 rounded-lg shadow shadow-neutral-700">
-          <PriceCell amount={159.99} currency="USD" vatLabel="+ IVA" />
+          <div className="flex flex-col items-center justify-center pt-4 pb-3">
+            <span className="ml-2 inline-flex  items-start font-thin widest text-3xl">
+              U$$ 165
+            </span>
+            <span className="tracking-wide pl-2 text-neutral-500">IVA Inc</span>
+          </div>
         </div>
-        <Button
+        {/* <Button
           variant="link"
           onClick={() => {
             scrollToSection("stand");
@@ -189,7 +191,7 @@ export function ComparisonTable() {
         >
           VER MAS{" "}
           <ArrowDown className="transition-all  size-5 duration-300 group-hover:text-green-400 opacity-50 group-hover:opacity-100 animate-bounce" />
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
