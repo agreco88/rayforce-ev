@@ -3,9 +3,11 @@ import { ChargingSafetySection } from "@/components/sections/charging-safety-sec
 import ContactFooter from "@/components/sections/contact-footer/Footer";
 import { FaqSection } from "@/components/sections/faq-section/FaqSection";
 import { Hero } from "@/components/sections/hero/Hero";
+import { Comparison } from "@/components/sections/rayforce-product-section/Comparison";
 import { RayforceProductSection } from "@/components/sections/rayforce-product-section/RayforceProductSection";
 import { RegulatorySection } from "@/components/sections/regulatory-section/RegulatoryBenefitsSection";
 import { WhatsappFloatingBadge } from "@/components/WhatsappFloatingBadge";
+import { chargerProduct } from "@/lib/data/product-data";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import type { Metadata } from "next";
 

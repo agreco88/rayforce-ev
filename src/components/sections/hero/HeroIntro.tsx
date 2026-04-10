@@ -16,18 +16,18 @@ export function HeroIntro() {
       variants={waterfallList}
       initial="hidden"
       animate="show"
-      className="relative z-10 max-w-3xl"
+      className="relative z-10 max-w-3xl flex flex-col justify-center h-full"
     >
       {/* TITLE */}
       <motion.h1
         variants={waterfallList}
         className="
-          text-5xl sm:text-5xl lg:text-6xl
+          text-3xl sm:text-5xl lg:text-6xl
           font-semibold tracking-tighter
           bg-linear-to-t pb-2
           from-neutral-50 to-white
           bg-clip-text text-transparent
-          text-center sm:text-start
+          text-start
         "
       >
         {t("title")}
@@ -40,8 +40,8 @@ export function HeroIntro() {
           mt-6 text-lg
           bg-linear-to-r py-2
           from-stone-200 to-stone-300
-          bg-clip-text text-transparent
-          text-center sm:text-start
+          bg-clip-text text-transparent max-w-xl
+         
         "
       >
         {t.rich("description", {
@@ -53,21 +53,18 @@ export function HeroIntro() {
       <motion.div
         variants={waterfallList}
         className="
-          mt-8
-          flex
-          flex-col
-          gap-4
-          sm:flex-row
-          sm:flex-wrap
-          sm:items-center
-          sm:gap-4
-        "
+        mt-8
+        flex flex-wrap gap-4
+        lg:flex-nowrap
+  "
       >
-        <Button asChild variant="outline">
+        {/* Primary */}
+        <Button asChild variant="outline" className="w-full sm:w-auto">
           <Link
             href="#products"
             scroll
             className="
+                          bg-neutral-900!
               flex items-center justify-center
               px-8 py-6
               text-green-400
@@ -75,26 +72,30 @@ export function HeroIntro() {
               hover:text-green-300
               hover:border-green-400
               transition-all duration-400
-              w-full sm:w-auto
             "
           >
             {t("ctaPrimary")}
           </Link>
         </Button>
 
-        <DemoVideoModal />
-        <Button asChild variant="outline">
+        {/* Demo */}
+        <div className="w-full sm:w-auto">
+          <DemoVideoModal />
+        </div>
+
+        {/* Secondary */}
+        <Button asChild variant="outline" className="w-full sm:w-auto">
           <Link
             href="#contact"
             scroll
             className="
               flex items-center justify-center
+              bg-neutral-950!
               px-8 py-6
               text-neutral-50
               hover:text-neutral-100
               hover:border-neutral-800
               transition-all duration-400
-              w-full sm:w-auto
             "
           >
             {t("ctaTertiary")}

@@ -10,7 +10,7 @@ export function ChargerShowcase() {
   const t = useTranslations("HomePage.RayforceProductSection.ChargerShowcase");
 
   return (
-    <div className="mx-auto grid grid-cols-1 relative md:grid-cols-3">
+    <div className="mx-auto grid grid-cols-1 relative md:grid-cols-3 min-w-[1400px]">
       <div
         aria-hidden
         className="

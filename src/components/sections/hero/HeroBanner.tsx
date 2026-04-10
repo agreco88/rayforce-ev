@@ -10,43 +10,7 @@ export function HeroBanner({ variant = "default" }: HeroBannerProps) {
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-neutral-800">
-      {/* Background image */}
-      <picture>
-        <source
-          media="(max-width: 767px)"
-          srcSet="/images/hero-bg-mobile.webp"
-        />
-        <img
-          src="/images/hero-bg-wide.webp"
-          alt="Cargador EV Wallbox instalado"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      </picture>
-
-      {/* Image treatments */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r xl:bg-gradient-to-l from-black/40 via-black/40 to-transparent" />
-
-      {showIntro && (
-        <>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-full bg-linear-to-l from-black via-black/40 to-transparent" />
-          <div
-            className="
-              relative z-10
-              flex items-center
-              px-6 sm:px-10 lg:px-16
-              py-20 sm:py-28 lg:py-32
-              lg:grid lg:grid-cols-12
-            "
-          >
-            <div className="hidden lg:block lg:col-span-5" />
-            <div className="lg:col-span-7">
-              <HeroIntro />
-            </div>
-          </div>
-        </>
-      )}
-
-      {!showIntro && <div className="relative z-10 h-[240px] sm:h-[300px]" />}
+      {showIntro && <HeroIntro />}
     </div>
   );
 }

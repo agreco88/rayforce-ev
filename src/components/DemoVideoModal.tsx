@@ -16,14 +16,15 @@ export function DemoVideoModal() {
 
   return (
     <Dialog>
-      <DialogHeader>
-        <DialogTitle className="sr-only">Video de demostracion</DialogTitle>
+      <DialogHeader className="sr-only">
+        <DialogTitle>Video de demostracion</DialogTitle>
       </DialogHeader>
       <DialogTrigger asChild>
         <Button
           variant="outline"
           className="
-            flex items-center justify-center
+            bg-neutral-950!
+            flex flex-1 items-center justify-center
             px-8 py-6
             text-neutral-50
             hover:text-neutral-100
@@ -34,7 +35,7 @@ export function DemoVideoModal() {
           "
         >
           <HiOutlinePlayCircle />
-          <span className="ml-1.5">{t("cta")}</span>
+          <span className="sm:ml-1.5">{t("cta")}</span>
         </Button>
       </DialogTrigger>
 

@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { RayforceProductSectionMobile } from "./RayforceProductSectionMobile";
 import { ChargerShowcase } from "../../ChargerShowcase";
 import { ComparisonTable } from "../../ComparisonTable";
+import { Comparison } from "./Comparison";
+import { chargerProduct } from "@/lib/data/product-data";
 
 export function RayforceProductSection({ id }: { id?: string }) {
   const isMobile = useIsMobile();
@@ -16,7 +18,7 @@ export function RayforceProductSection({ id }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white pb-24 sm:pb-0 flex flex-col gap-32"
+      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white pt-38 pb-24 flex flex-col"
     >
       {/* Conditional rendering */}
       {isMobile ? (
@@ -24,7 +26,7 @@ export function RayforceProductSection({ id }: { id?: string }) {
           <RayforceProductSectionMobile />
         </div>
       ) : (
-        <>
+        <div className="w-full flex flex-col gap-32">
           {/* Header */}
           {/* <div className="mx-auto max-w-7xl px-6 text-center mt-10 sm:mt-20 xl:mt-40">
             <h2 className="text-4xl font-medium tracking-tight sm:text-5xl bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
@@ -34,13 +36,12 @@ export function RayforceProductSection({ id }: { id?: string }) {
               {t("header.description")}
             </p>
           </div> */}
-
-          <ChargerShowcase />
-
+          <ChargerShowcase /> <Comparison product={chargerProduct} />
+          {/* 
           <div className="border-t border-neutral-800 bg-neutral-950">
             <ComparisonTable />
-          </div>
-        </>
+          </div> */}
+        </div>
       )}
     </section>
   );

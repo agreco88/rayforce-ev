@@ -24,6 +24,8 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { CHARGERS, COMPARISON_SECTIONS } from "@/lib/products-data";
 import { ChargerEVMobile } from "@/components/animated/charger-ev/ChargerEvMobile";
 import { PriceCell } from "@/components/ComparisonTable";
+import { Comparison } from "./Comparison";
+import { chargerProduct } from "@/lib/data/product-data";
 
 /* ------------------------------------------------------------------
  * Helpers
@@ -170,157 +172,159 @@ export function RayforceProductSectionMobile() {
 
   return (
     <section className="lg:hidden relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white">
-      {/* Header */}
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-3xl font-medium tracking-tight bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
-          {tHeader("title")}
-        </h2>
-
-        <div className="mt-6">
-          <ChargerEVMobile powerKw={charger.powerKw} />
-        </div>
-
-        <p className="mt-4 text-sm text-neutral-400">
-          {tHeader("description")}
-        </p>
-      </div>
-
-      {/* Model selector */}
-      <div className="mt-6">
-        <Carousel opts={{ align: "center" }} setApi={setApi}>
-          <CarouselContent className="-ml-4 px-4 pr-8">
-            {CHARGERS.map((c) => (
-              <CarouselItem key={c.key} className="basis-[100%] pl-4">
-                <button
-                  type="button"
-                  className={`w-full rounded-2xl border p-5 text-center transition-colors ${
-                    charger.key === c.key
-                      ? "border-green-500 bg-neutral-900 text-white"
-                      : "border-neutral-800 bg-neutral-950 text-neutral-400"
-                  }`}
-                >
-                  <div className="text-xl font-medium">{c.roleLabel}</div>
-                  <div className="mt-1 text-xs opacity-70">{c.modelLabel}</div>
-                </button>
-              </CarouselItem>
-            ))}
-            <CarouselItem aria-hidden className="basis-[8%] pl-4" />
-          </CarouselContent>
-          {/* Indicator */}
-          <div className="my-6 flex justify-center">
-            <div className="relative h-1 w-24 rounded-full bg-neutral-800 overflow-hidden">
-              <motion.div
-                className="absolute inset-y-0 left-0 rounded-full bg-green-500"
-                style={{ width: `${100 / CHARGERS.length}%` }}
-                animate={{
-                  x: `${selectedIndex * 100}%`,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                }}
-              />
-            </div>
-          </div>
-        </Carousel>
-      </div>
-
-      {/* Selected content */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="px-4 mt-8"
-      >
-        <p className="text-sm text-center leading-relaxed text-neutral-300">
-          {charger.description}
-        </p>
-
-        {/* Accordion */}
-        <Accordion
-          type="single"
-          collapsible
-          className="mt-8 rounded-2xl border border-neutral-800 bg-neutral-950/60"
-        >
-          {COMPARISON_SECTIONS.map((section, sectionIndex) => {
-            const sectionKey = SECTION_KEYS[sectionIndex];
-
-            return (
-              <AccordionItem
-                key={sectionKey}
-                value={sectionKey}
-                className="px-4"
-              >
-                <AccordionTrigger className="text-sm font-medium text-white">
-                  {tTable(`sections.${sectionKey}.title`)}
-                </AccordionTrigger>
-
-                <AccordionContent className="pb-4">
-                  <ul className="space-y-3">
-                    {section.features.map((feature, featureIndex) => {
-                      const featureKey = FEATURE_KEYS[sectionKey][featureIndex];
-
-                      const value = feature.tiers[charger.key];
-
-                      return (
-                        <li
-                          key={featureKey}
-                          className="flex items-center justify-between gap-4 text-sm"
-                        >
-                          <span className="text-neutral-400">
-                            {tTable(
-                              `sections.${sectionKey}.features.${featureKey}`,
-                            )}
-                          </span>
-
-                          {typeof value === "string" ? (
-                            <span className="text-white">
-                              {tTable(`values.${value}`)}
-                            </span>
-                          ) : value ? (
-                            <CheckIcon className="h-4 w-4 text-green-400" />
-                          ) : (
-                            <XIcon className="h-4 w-4 text-neutral-600" />
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
-
-        {/* Price + CTA */}
-        <div className="mt-6 flex flex-col items-center gap-4">
-          <span className="text-sm uppercase tracking-widest text-neutral-400">
-            Precio
-          </span>
-
-          <div className="w-full flex flex-col gap-3 items-center justify-center max-w-sm rounded-2xl border border-neutral-800 bg-neutral-950/70  text-center overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={charger.key}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="flex flex-col items-center"
-              >
-                <PriceCell
-                  amount={charger.price.amount}
-                  currency={charger.price.currency}
-                  vatLabel={charger.price.vatLabel}
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <WhatsAppCTA model={`${charger.roleLabel} – ${charger.modelLabel}`} />
-        </div>
-      </motion.div>
+      <Comparison product={chargerProduct} />
     </section>
   );
 }
+
+//  {/* Header */}
+//       <div className="mx-auto max-w-3xl px-6 text-center">
+//         <h2 className="text-3xl font-medium tracking-tight bg-linear-to-b pb-2 from-neutral-100 to-neutral-300 bg-clip-text text-transparent">
+//           {tHeader("title")}
+//         </h2>
+
+//         <div className="mt-6">
+//           <ChargerEVMobile powerKw={charger.powerKw} />
+//         </div>
+
+//         <p className="mt-4 text-sm text-neutral-400">
+//           {tHeader("description")}
+//         </p>
+//       </div>
+
+//       {/* Model selector */}
+//       <div className="mt-6">
+//         <Carousel opts={{ align: "center" }} setApi={setApi}>
+//           <CarouselContent className="-ml-4 px-4 pr-8">
+//             {CHARGERS.map((c) => (
+//               <CarouselItem key={c.key} className="basis-[100%] pl-4">
+//                 <button
+//                   type="button"
+//                   className={`w-full rounded-2xl border p-5 text-center transition-colors ${
+//                     charger.key === c.key
+//                       ? "border-green-500 bg-neutral-900 text-white"
+//                       : "border-neutral-800 bg-neutral-950 text-neutral-400"
+//                   }`}
+//                 >
+//                   <div className="text-xl font-medium">{c.roleLabel}</div>
+//                   <div className="mt-1 text-xs opacity-70">{c.modelLabel}</div>
+//                 </button>
+//               </CarouselItem>
+//             ))}
+//             <CarouselItem aria-hidden className="basis-[8%] pl-4" />
+//           </CarouselContent>
+//           {/* Indicator */}
+//           <div className="my-6 flex justify-center">
+//             <div className="relative h-1 w-24 rounded-full bg-neutral-800 overflow-hidden">
+//               <motion.div
+//                 className="absolute inset-y-0 left-0 rounded-full bg-green-500"
+//                 style={{ width: `${100 / CHARGERS.length}%` }}
+//                 animate={{
+//                   x: `${selectedIndex * 100}%`,
+//                 }}
+//                 transition={{
+//                   type: "spring",
+//                   stiffness: 300,
+//                   damping: 30,
+//                 }}
+//               />
+//             </div>
+//           </div>
+//         </Carousel>
+//       </div>
+
+//       {/* Selected content */}
+//       <motion.div
+//         initial={{ opacity: 0, y: 8 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         transition={{ duration: 0.25, ease: "easeOut" }}
+//         className="px-4 mt-8"
+//       >
+//         <p className="text-sm text-center leading-relaxed text-neutral-300">
+//           {charger.description}
+//         </p>
+
+//         {/* Accordion */}
+//         <Accordion
+//           type="single"
+//           collapsible
+//           className="mt-8 rounded-2xl border border-neutral-800 bg-neutral-950/60"
+//         >
+//           {COMPARISON_SECTIONS.map((section, sectionIndex) => {
+//             const sectionKey = SECTION_KEYS[sectionIndex];
+
+//             return (
+//               <AccordionItem
+//                 key={sectionKey}
+//                 value={sectionKey}
+//                 className="px-4"
+//               >
+//                 <AccordionTrigger className="text-sm font-medium text-white">
+//                   {tTable(`sections.${sectionKey}.title`)}
+//                 </AccordionTrigger>
+
+//                 <AccordionContent className="pb-4">
+//                   <ul className="space-y-3">
+//                     {section.features.map((feature, featureIndex) => {
+//                       const featureKey = FEATURE_KEYS[sectionKey][featureIndex];
+
+//                       const value = feature.tiers[charger.key];
+
+//                       return (
+//                         <li
+//                           key={featureKey}
+//                           className="flex items-center justify-between gap-4 text-sm"
+//                         >
+//                           <span className="text-neutral-400">
+//                             {tTable(
+//                               `sections.${sectionKey}.features.${featureKey}`,
+//                             )}
+//                           </span>
+
+//                           {typeof value === "string" ? (
+//                             <span className="text-white">
+//                               {tTable(`values.${value}`)}
+//                             </span>
+//                           ) : value ? (
+//                             <CheckIcon className="h-4 w-4 text-green-400" />
+//                           ) : (
+//                             <XIcon className="h-4 w-4 text-neutral-600" />
+//                           )}
+//                         </li>
+//                       );
+//                     })}
+//                   </ul>
+//                 </AccordionContent>
+//               </AccordionItem>
+//             );
+//           })}
+//         </Accordion>
+
+//         {/* Price + CTA */}
+//         <div className="mt-6 flex flex-col items-center gap-4">
+//           <span className="text-sm uppercase tracking-widest text-neutral-400">
+//             Precio
+//           </span>
+
+//           <div className="w-full flex flex-col gap-3 items-center justify-center max-w-sm rounded-2xl border border-neutral-800 bg-neutral-950/70  text-center overflow-hidden">
+//             <AnimatePresence mode="wait">
+//               <motion.div
+//                 key={charger.key}
+//                 initial={{ opacity: 0, y: 20 }}
+//                 animate={{ opacity: 1, y: 0 }}
+//                 exit={{ opacity: 0, y: -20 }}
+//                 transition={{ duration: 0.25, ease: "easeOut" }}
+//                 className="flex flex-col items-center"
+//               >
+//                 <PriceCell
+//                   amount={charger.price.amount}
+//                   currency={charger.price.currency}
+//                   vatLabel={charger.price.vatLabel}
+//                 />
+//               </motion.div>
+//             </AnimatePresence>
+//           </div>
+
+//           <WhatsAppCTA model={`${charger.roleLabel} – ${charger.modelLabel}`} />
+//         </div>
+//       </motion.div>
