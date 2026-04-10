@@ -3,12 +3,12 @@
 "use client";
 
 import { renderFeatureValue } from "@/lib/formatFeatureValue";
-import { Product } from "@/lib/types/product";
+import { ChargerFeatureKey, Product } from "@/lib/types/product";
 import { motion } from "framer-motion";
 
 type Props = {
   product: Product;
-  highlightFeatures: string[];
+  highlightFeatures: ChargerFeatureKey[];
 };
 
 export function ComparisonCards({ product, highlightFeatures }: Props) {
