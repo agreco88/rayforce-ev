@@ -1,6 +1,5 @@
 "use client";
 
-import { HeroBanner } from "./HeroBanner";
 import { HeroIntro } from "./HeroIntro";
 
 export function Hero({ id }: { id?: string }) {
@@ -41,38 +40,3 @@ export function Hero({ id }: { id?: string }) {
     </section>
   );
 }
-
-// Ambient vignette
-// <div
-//   className="
-//     absolute inset-0 -z-10
-//     bg-radial-[at_50%_30%]
-//     from-neutral-400/12
-//     via-neutral-500/6
-//     to-neutral-950
-//   "
-// />
-
-// <HeroEnergyBackground />
-
-// <Container className="max-w-[100rem] relative">
-//   {/* HERO GRID */}
-//   <div className="space-y-16">
-//     {/* Banner row */}
-//     <div>
-//       {/* Mobile */}
-//       <div className="md:hidden space-y-12">
-//         <HeroBanner variant="imageOnly" />
-//         <HeroIntro />
-//       </div>
-
-//       {/* Desktop */}
-//       <div className="hidden md:block">
-//         <HeroBanner />
-//       </div>
-//     </div>
-
-//     {/* Feature cards row (still inside hero) */}
-//     {/* <HeroFeatureCardsSection /> */}
-//   </div>
-// </Container>

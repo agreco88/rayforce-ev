@@ -176,7 +176,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         },
       },
       {
-        name: "Temperatura de operación",
+        name: "COLUMNA",
         tiers: {
           residential: "temp_range",
           commercial: "temp_range",

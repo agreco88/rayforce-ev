@@ -9,53 +9,63 @@ type Props = {
 };
 
 export function MobileComparisonTable({ product }: Props) {
-  const whatsappNumber = "598XXXXXXXX"; // ← your number (no +, no spaces)
+  const whatsappNumber = "59892041709";
 
   const message = encodeURIComponent(
-    `Hola! Me interesa el ${product.name}. ¿Podrían ayudarme a elegir la mejor opción?`,
+    `Hola! Podrían ayudarme a elegir la mejor opción?`,
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <div className="lg:hidden mt-10 relative pb-24">
+    <div className="lg:hidden   pb-24">
       {/* Sticky header */}
       <div
         className="
-          sticky top-[1px] z-40
           bg-neutral-950/90 backdrop-blur
           border border-neutral-800
         "
       >
+        <img
+          src="/images/1.png" // ← your collage image
+          alt="Cargadores EV instalados"
+          className="
+            w-full h-[25rem]
+            object-cover
+            object-center
+          "
+        />
         <div className="grid grid-cols-3 text-xs">
           {product.variants.map((variant, index) => (
             <div
               key={variant.id}
               className={`
-                py-4 text-center flex flex-col gap-2
+                py-8 shadow text-center flex flex-col gap-2 
                 ${variant.highlight ? "bg-neutral-900" : ""}
               `}
             >
-              <span className="text-white font-semibold">{variant.name}</span>
-              <span className="text-white font-thin text-lg">
+              <span className="text-white font-light uppercase tracking-wide">
+                {variant.name}
+              </span>
+              <span className="tracking-tighter text-xl text-green-400 font-bold">
                 USD {variant.price}
+              </span>
+              <span className="font-thin text-[11px] text-neutral-400">
+                IVA Inc.
               </span>
             </div>
           ))}
         </div>
       </div>
-
       {/* Content */}
       <div className="border-neutral-800 rounded-b-xl overflow-hidden">
         {product.features.map((feature, i) => (
           <div
             key={feature.key}
-            className={
-              i === 0 ? "pt-6 pb-3" : "border-t border-neutral-700 pt-6 pb-3"
-            }
+            className={i === 0 ? "pt-6 pb-3" : " pt-6 pb-3"}
           >
             {/* Label */}
-            <div className="text-center uppercase tracking-widest text-xs pb-1.5 text-neutral-400">
+            <div className="text-center uppercase tracking-widest text-xs pb-3 text-neutral-400">
               {feature.label}
             </div>
 
@@ -64,7 +74,7 @@ export function MobileComparisonTable({ product }: Props) {
               {product.variants.map((variant) => (
                 <div
                   key={`${variant.id}-${feature.key}`}
-                  className="p-4 flex items-center justify-center text-center"
+                  className="p-4 flex items-center justify-center border border-neutral-800  text-center"
                 >
                   {renderFeatureValue(variant.values[feature.key])}
                 </div>
@@ -73,8 +83,8 @@ export function MobileComparisonTable({ product }: Props) {
           </div>
         ))}
       </div>
-
       {/* 🚀 Sticky WhatsApp CTA */}
+
       <div
         className="
         
@@ -100,8 +110,30 @@ export function MobileComparisonTable({ product }: Props) {
           "
         >
           <FaWhatsapp className="text-xl" />
-          Consultar por WhatsApp
+          Hablar con un vendedor
         </a>
+      </div>
+
+      <div
+        className={`
+                mt-8 py-8 shadow text-center flex flex-col gap-1 bg-neutral-950
+              `}
+      >
+        {" "}
+        <span className="">
+          Columna de instlacion para cargador electrico
+        </span>{" "}
+        <div className="text-center text-neutral-400">
+          Altura 150cm - Base 26 x 14.5 cm
+        </div>
+        <span className="tracking-tighter text-3xl pt-4 text-green-400 font-bold">
+          USD 158
+        </span>
+        <span className="font-thin text-[12px] text-neutral-400">IVA Inc.</span>
+        <img
+          src="/images/11.png" // ← your collage image
+          alt="Cargadores EV instalados"
+        />{" "}
       </div>
     </div>
   );

@@ -55,7 +55,7 @@ export function ChargerStandSection({ id }: { id?: string }) {
             </span> */}
           </motion.h2>
 
-          <div className="mt-6 space-y-4 max-w-xl text-lg leading-relaxed text-neutral-400">
+          <div className="space-y-4 max-w-xl text-lg leading-relaxed text-neutral-400">
             <motion.p variants={waterfallItem}>
               {t("p1")} {t("p2")}
             </motion.p>
@@ -81,13 +81,6 @@ export function ChargerStandSection({ id }: { id?: string }) {
                   </a>
                 ),
               })}
-            </motion.p>
-
-            <motion.p
-              variants={waterfallItem}
-              className="text-sm text-neutral-300 font-semibold mt-10"
-            >
-              {t("note")}
             </motion.p>
           </div>
         </div>

@@ -64,7 +64,7 @@ export function HeroIntro() {
             href="#products"
             scroll
             className="
-                          bg-neutral-900!
+              bg-neutral-900!
               flex items-center justify-center
               px-8 py-6
               text-green-400

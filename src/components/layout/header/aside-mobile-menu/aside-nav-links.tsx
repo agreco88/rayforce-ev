@@ -41,7 +41,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
                   block
                   w-full
                   text-left
-                  text-2xl font-medium tracking-wide uppercase
+                  text-2xl font-medium tracking-tight 
                   pl-1 pb-4
                   transition-all duration-300
                   ${

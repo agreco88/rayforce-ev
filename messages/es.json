@@ -63,7 +63,7 @@
     "HeroIntro": {
       "title": "Cargá tu vehículo eléctrico hasta 5 veces más rápido",
       "description": "Soluciones inteligentes y certificadas para hogares y empresas en Uruguay, con menor costo por carga.",
-      "ctaPrimary": "Ver cargadores",
+      "ctaPrimary": "Ver modelos de cargadores",
       "ctaSecondary": "Ver demostración",
       "ctaTertiary": "Instalación"
     },
@@ -234,11 +234,11 @@
     },
     "ChargerStandSection": {
       "eyebrow": "Accesorio oficial",
-      "title": "Instalá tu cargador de forma segura con nuestros técnicos especializados y autorizados por UTE",
+      "title": "Instalámos tu cargador de forma segura",
       "price": "199 USD",
-      "p1": "Instalá tu cargador de forma segura en el soporte original Rayforce.",
-      "p2": "Pensado con las medidas perfectas para que tengas tu cargador siempre disponible de manera ágil y cómoda.",
-      "contact": "Escribinos por <whatsapp>WhatsApp</whatsapp> o envíanos un mail a <email>comercial@rayforce.com.uy</email> para recibir tu presupuesto a medida.",
+      "p1": "",
+      "p2": "",
+      "contact": "Escribinos por <whatsapp>WhatsApp</whatsapp> o envíanos un mail a <email>comercial@rayforce.com.uy</email> para recibir tu presupuesto a medida segun la normativa vigente de UTE y URSEA.",
       "note": "*Todos los cargadores incluyen en su caja los materiales para ser fijados en la pared."
     },
     "FaqSection": {
@@ -369,7 +369,7 @@
       "eyebrow": "Contacto",
       "title": "Instalá tu cargador eléctrico",
       "description": "Te asesoramos para elegir el cargador ideal según tu vehículo, tu instalación eléctrica y tus hábitos de uso.",
-      "button": "Hablar por WhatsApp"
+      "button": "Consultar por WhatsApp"
     },
 
     "brand": {
