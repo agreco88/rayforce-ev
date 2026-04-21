@@ -12,13 +12,13 @@ export function MobileComparisonTable({ product }: Props) {
   const whatsappNumber = "59892041709";
 
   const message = encodeURIComponent(
-    `Hola! Podrían ayudarme a elegir la mejor opción?`,
+    `Hola! Necesito informacion extra sobre un cargador Rayforce`,
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <div className="lg:hidden   pb-24">
+    <div className="lg:hidden">
       {/* Sticky header */}
       <div
         className="
@@ -85,44 +85,8 @@ export function MobileComparisonTable({ product }: Props) {
       </div>
       {/* 🚀 Sticky WhatsApp CTA */}
 
-      <div
-        className="
-        
-          px-4 pb-[calc(env(safe-area-inset-bottom)+12px)]
-          pt-6
-        "
-      >
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
-            flex items-center justify-center gap-3
-            w-full h-16
-            rounded-xl
-
-            bg-gradient-to-t from-green-800 via-green-700 to-green-600
-
-            text-gray-200 font-semibold text-base 
-            transition-all duration-300
-
-            shadow-lg shadow-black/40
-          "
-        >
-          <FaWhatsapp className="text-xl" />
-          Hablar con un vendedor
-        </a>
-      </div>
-
-      <div
-        className={`
-                mt-8 py-8 shadow text-center flex flex-col gap-1 bg-neutral-950
-              `}
-      >
-        {" "}
-        <span className="">
-          Columna de instlacion para cargador electrico
-        </span>{" "}
+      <div className="my-8 py-8 shadow text-center flex flex-col gap-1 bg-neutral-950">
+        <span className="">Columna de instlacion para cargador electrico</span>
         <div className="text-center text-neutral-400">
           Altura 150cm - Base 26 x 14.5 cm
         </div>
@@ -133,7 +97,33 @@ export function MobileComparisonTable({ product }: Props) {
         <img
           src="/images/11.png" // ← your collage image
           alt="Cargadores EV instalados"
-        />{" "}
+        />
+      </div>
+      <div
+        className="
+          px-4
+        "
+      >
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+                  flex items-center justify-center gap-3
+                  w-fit self-center mx-auto mt-8 px-8 h-12
+                  rounded-full
+      
+                  bg-gradient-to-t from-green-800 via-green-700 to-green-600
+      
+                  text-gray-200 font-semibold text-base 
+                  transition-all duration-300
+      
+                  shadow-lg shadow-black/40
+                "
+        >
+          <FaWhatsapp className="text-xl" />
+          Hablar con un vendedor
+        </a>
       </div>
     </div>
   );

@@ -29,9 +29,7 @@ export default function HomePage() {
   return (
     <>
       <Hero id="hero" />
-      {/* <ChargingSafetySection id="safety" /> */}
       <RayforceProductSection id="products" />
-      <ChargerStandSection id="stand" />
       <RegulatorySection id="regulatory" />
       <FaqSection id="faq" />
       <ContactFooter id="contact" />

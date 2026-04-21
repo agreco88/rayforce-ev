@@ -84,32 +84,6 @@ export function ChargerStandSection({ id }: { id?: string }) {
             </motion.p>
           </div>
         </div>
-
-        {/* Quiet visual anchor */}
-        <motion.div
-          variants={waterfallItem}
-          className="
-            lg:col-span-5
-            relative
-            h-[420px]
-            rounded-2xl
-            overflow-hidden
-            bg-neutral-900
-            ring-1 ring-neutral-600
-            shadow-neutral-700
-          "
-        >
-          <div
-            className="
-              absolute inset-0
-              bg-[url('/images/post-bg.webp')]
-              bg-cover
-              bg-center
-            "
-          />
-
-          <div className="absolute inset-0 bg-black/30" />
-        </motion.div>
       </motion.div>
     </SectionWrapper>
   );

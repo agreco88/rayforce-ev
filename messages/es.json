@@ -238,7 +238,7 @@
       "price": "199 USD",
       "p1": "",
       "p2": "",
-      "contact": "Escribinos por <whatsapp>WhatsApp</whatsapp> o envíanos un mail a <email>comercial@rayforce.com.uy</email> para recibir tu presupuesto a medida segun la normativa vigente de UTE y URSEA.",
+      "contact": "Escribinos por <whatsapp>WhatsApp</whatsapp> o envíanos un mail a <email>comercial@rayforce.com.uy</email> para recibir tu presupuesto a medida.",
       "note": "*Todos los cargadores incluyen en su caja los materiales para ser fijados en la pared."
     },
     "FaqSection": {
@@ -369,7 +369,7 @@
       "eyebrow": "Contacto",
       "title": "Instalá tu cargador eléctrico",
       "description": "Te asesoramos para elegir el cargador ideal según tu vehículo, tu instalación eléctrica y tus hábitos de uso.",
-      "button": "Consultar por WhatsApp"
+      "button": "Solicita tu presupuesto sin cargo"
     },
 
     "brand": {

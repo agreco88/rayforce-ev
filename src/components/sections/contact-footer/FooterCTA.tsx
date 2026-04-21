@@ -27,22 +27,15 @@ export function FooterCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className="
-        inline-flex items-center justify-center gap-2
-        rounded-lg  px-8
-        py-3
-        text-sm sm:text-base
-        text-white
-        border border-green-900
-        bg-gradient-to-b from-green-950 to-green-600
-        bg-[length:100%_200%]
-        bg-[position:0%_0%]
-        transition-[background-position] duration-1000
-        hover:bg-[position:0%_100%]
-        shadow-sm
-        focus-visible:outline-2
-        focus-visible:outline-offset-2
-        focus-visible:outline-white/40
-      "
+                  flex items-center justify-center gap-3
+                  w-fit h-12
+                  rounded-full
+                  px-8
+                  bg-gradient-to-t from-green-800 via-green-700 to-green-600
+                  text-gray-200 font-semibold text-base 
+                  transition-all duration-300
+                  shadow-lg shadow-black/40
+                "
         >
           <FaWhatsapp className="size-6 text-white" /> {t("button")}
         </a>

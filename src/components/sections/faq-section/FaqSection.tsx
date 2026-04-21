@@ -13,6 +13,7 @@ import {
 
 import { waterfallList } from "@/lib/animation-variants";
 import { AnimatedFaqWrapper } from "./AnimatedFaqWrapper";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export function FaqSection({ id }: { id?: string }) {
   const t = useTranslations("HomePage.FaqSection");
@@ -25,6 +26,14 @@ export function FaqSection({ id }: { id?: string }) {
 
   const categoryKeys = Object.keys(groups);
   const [active, setActive] = useState(categoryKeys[0]);
+
+  const whatsappNumber = "59892041709";
+
+  const message = encodeURIComponent(
+    `Hola! Tengo una consulta sobre los cargadores Rayforce`,
+  );
+
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
     <AnimatedFaqWrapper>
@@ -104,7 +113,27 @@ export function FaqSection({ id }: { id?: string }) {
             </AnimatePresence>
           </motion.div>
         </div>
-      </section>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+                  flex items-center justify-center gap-3
+                  w-fit self-center mx-auto mt-8 px-8 h-12
+                  rounded-full
+      
+                  bg-gradient-to-t from-green-800 via-green-700 to-green-600
+      
+                  text-gray-200 font-semibold text-base 
+                  transition-all duration-300
+      
+                  shadow-lg shadow-black/40
+                "
+        >
+          <FaWhatsapp className="text-xl" />
+          Dudas? Contacta a un vendedor
+        </a>
+      </section>{" "}
     </AnimatedFaqWrapper>
   );
 }

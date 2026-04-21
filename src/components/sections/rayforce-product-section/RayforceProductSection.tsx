@@ -12,7 +12,7 @@ export function RayforceProductSection({ id }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white pt-0 sm:pt-38 pb-24 flex flex-col"
+      className="relative bg-linear-to-b from-neutral-950 to-neutral-900 text-white pt-0 sm:pt-38 sm:pb-24 flex flex-col"
     >
       {/* Conditional rendering */}
       {isMobile ? (
