@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 
 type Props = {
   href: string;
-  posterSrc: string;
   label: string;
   description: string;
   className?: string;
@@ -15,7 +14,6 @@ type Props = {
 
 export default function ChargerCard({
   href,
-  posterSrc,
   label,
   description,
   className,
@@ -31,7 +29,7 @@ export default function ChargerCard({
       )}
     >
       {/* Image */}
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0">
         <Image
           src={posterSrc}
           alt={label}
@@ -45,7 +43,7 @@ export default function ChargerCard({
             grayscale-75 group-hover:grayscale-0
           "
         />
-      </div>
+      </div> */}
 
       {/* Dark overlay (readability) */}
       <div

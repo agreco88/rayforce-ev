@@ -10,6 +10,7 @@ import { Link } from "@/i18n/navigation";
 
 import { BENEFITS } from "../../BenefitsSection/benefits.data";
 import { HomeBenefitCard } from "./HomeBenefitCard";
+import { Fragment } from "react";
 
 export function HomeBenefitsDesktop() {
   const t = useTranslations("HomePage.HomeBenefitsSection");
@@ -75,11 +76,13 @@ export function HomeBenefitsDesktop() {
         "
       >
         {BENEFITS.map((benefit, index) => (
-          <HomeBenefitCard
-            {...benefit}
-            title={t(`items.${benefit.key}.title`)}
-            description={t(`items.${benefit.key}.description`)}
-          />
+          <Fragment key={index}>
+            <HomeBenefitCard
+              {...benefit}
+              title={t(`items.${benefit.key}.title`)}
+              description={t(`items.${benefit.key}.description`)}
+            />
+          </Fragment>
         ))}
       </div>
 

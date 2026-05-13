@@ -12,7 +12,7 @@ import {
 import { Link } from "@/i18n/navigation";
 
 type Item = {
-  label: string;
+  label: React.ReactNode;
   href?: string;
 };
 

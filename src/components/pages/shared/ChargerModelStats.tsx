@@ -1,20 +1,12 @@
 "use client";
 
-import {
-  Zap,
-  Plug,
-  Cable,
-  ShieldCheck,
-  Award,
-  DropletIcon,
-} from "lucide-react";
+import { Zap, Plug, ShieldCheck, Award, DropletIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SocketTypeTwo from "../../../../public/images/type-2-socket.svg";
 
 /* ------------------ Types ------------------ */
-
 type StatItem = {
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   isCustom?: boolean;
   value: string;
   label?: string;
@@ -47,7 +39,6 @@ function getStats(model: string): StatItem[] {
       return [
         { icon: Plug, value: "Monofásico", sub: "230V · 32A" },
         {
-          icon: SocketTypeTwo as any,
           isCustom: true,
           value: "Tipo 2",
           label: "Conector estándar",
@@ -62,7 +53,6 @@ function getStats(model: string): StatItem[] {
       return [
         { icon: Plug, value: "Trifásico", sub: "400V · 16A" },
         {
-          icon: SocketTypeTwo as any,
           isCustom: true,
           value: "Tipo 2",
           label: "Conector estándar",
@@ -77,7 +67,6 @@ function getStats(model: string): StatItem[] {
       return [
         { icon: Plug, value: "Trifásico", sub: "400V · 32A" },
         {
-          icon: SocketTypeTwo as any,
           isCustom: true,
           value: "Tipo 2",
           label: "Conector estándar",
@@ -156,12 +145,12 @@ export function ChargerModelStats({ model, theme }: Props) {
                         backgroundColor: "currentColor",
                       }}
                     />
-                  ) : (
+                  ) : Icon ? (
                     <Icon
                       className={cn("size-8", theme.accentText)}
                       strokeWidth={2}
                     />
-                  )}
+                  ) : null}
                 </div>
 
                 {/* Text */}

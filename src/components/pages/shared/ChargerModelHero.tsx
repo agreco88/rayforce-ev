@@ -27,9 +27,9 @@ type Theme = {
 type ChargerConfig = {
   charger: {
     powerKw: number;
-    variant: string;
-    mode: string;
-    phases?: number;
+    variant: "residential" | "pro";
+    mode: "single" | "multi";
+    phases?: 1 | 2 | 3;
   };
   theme: Theme;
 };

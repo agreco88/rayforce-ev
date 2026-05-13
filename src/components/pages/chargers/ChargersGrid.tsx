@@ -11,7 +11,6 @@ function getAllVariants() {
       id: variant.key,
       label: variant.publicName,
       description: variant.subheadline ?? variant.description,
-      posterSrc: variant.posterImage ?? variant.images?.[0],
       href: `/cargadores/${variant.slug}`,
     })),
   );
@@ -42,7 +41,6 @@ export default function ChargersGrid() {
           <motion.li key={model.id} variants={waterfallItem}>
             <ChargerModelCard
               href={model.href}
-              posterSrc={model.posterSrc}
               label={model.label}
               description={model.description}
             />

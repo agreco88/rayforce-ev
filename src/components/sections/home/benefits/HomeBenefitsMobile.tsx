@@ -10,6 +10,7 @@ import { Link } from "@/i18n/navigation";
 
 import { BENEFITS } from "../../BenefitsSection/benefits.data";
 import { HomeBenefitCard } from "./HomeBenefitCard";
+import { Fragment } from "react";
 
 export function HomeBenefitsMobile() {
   const t = useTranslations("HomePage.HomeBenefitsSection");
@@ -76,12 +77,14 @@ export function HomeBenefitsMobile() {
           flex-col gap-4
         "
       >
-        {BENEFITS.map((benefit) => (
-          <HomeBenefitCard
-            {...benefit}
-            title={t(`items.${benefit.key}.title`)}
-            description={t(`items.${benefit.key}.description`)}
-          />
+        {BENEFITS.map((benefit, index) => (
+          <Fragment key={index}>
+            <HomeBenefitCard
+              {...benefit}
+              title={t(`items.${benefit.key}.title`)}
+              description={t(`items.${benefit.key}.description`)}
+            />
+          </Fragment>
         ))}
       </div>
 

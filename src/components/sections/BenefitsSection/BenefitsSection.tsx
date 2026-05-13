@@ -31,8 +31,13 @@ export function BenefitsSection() {
 
       {/* Grid */}
       <div className="grid  md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {BENEFITS.map((b, i) => (
-          <HomeBenefitCard key={i} {...b} />
+        {BENEFITS.map((benefit) => (
+          <HomeBenefitCard
+            key={benefit.key}
+            icon={benefit.icon}
+            title={t(`features.${benefit.key}.title`)}
+            description={t(`features.${benefit.key}.description`)}
+          />
         ))}
       </div>
       {/* CTA */}
