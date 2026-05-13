@@ -27,10 +27,10 @@ export default function HeaderLogo() {
     >
       <Image
         src="/images/rayforce-logo.webp"
-        className="invert opacity-85 saturate-0"
+        className="invert opacity-85  saturate-0"
         alt="Rayforce"
-        height={150}
-        width={150}
+        height={125}
+        width={125}
         priority
       />
     </motion.button>

@@ -2,13 +2,25 @@
   "Layout": {
     "Header": {
       "nav": {
-        "nav": "Navegation",
         "home": "Home",
-        "safety": "Safety",
-        "products": "Products",
-        "regulation": "Regulation",
+        "chargers": "Chargers",
+        "benefits": "Benefits",
+        "stand": "Stand",
         "faq": "FAQ",
-        "contact": "Contact"
+        "compatibility": "Compatibility"
+      },
+      "products": {
+        "residential": {
+          "title": "Residential"
+        },
+
+        "mid": {
+          "title": "Residential+"
+        },
+
+        "industrial": {
+          "title": "Industrial"
+        }
       }
     },
 
@@ -60,188 +72,164 @@
   },
 
   "HomePage": {
-    "HeroIntro": {
-      "title": "Charge your vehicle with the energy of the future.",
-      "description": "Rayforce brings to Uruguay a new line of EV Wallbox chargers developed by Besen, designed for homes, businesses, and electric fleets.",
-      "ctaPrimary": "View models",
+    "Hero": {
+      "title": "Wallbox chargers for electric and hybrid vehicles in Uruguay",
+      "description": "Get your EV charger today with a 2-year warranty and equipment certified by UTE and URSEA.",
+      "ctaPrimary": "View chargers",
       "ctaSecondary": "Watch demo",
-      "ctaTertiary": "Instalation"
-    },
-    "HeroFeatureCards": {
-      "items": {
-        "smartSavings": {
-          "title": "Smart savings",
-          "description": "Lower charging costs compared to traditional fuels and the public UTE charging network."
+      "ctaTertiary": "Check compatibility",
+
+      "features": {
+        "security": {
+          "title": "Safer",
+          "description": "Advanced protection systems for your vehicle and your home"
         },
-        "mobileControl": {
-          "title": "Control from your phone",
-          "description": "Monitor energy usage, schedules, and charging power directly from the app."
+
+        "savings": {
+          "title": "More savings",
+          "description": "Charge your EV for far less than a fuel-powered vehicle"
         },
-        "sustainability": {
-          "title": "Sustainable energy",
-          "description": "Reduce emissions and commit to electric mobility."
-        },
-        "safeInstallation": {
-          "title": "Safe installation and charging",
-          "description": "Compliant with current regulations and installed by a UTE-certified technician."
+
+        "control": {
+          "title": "More convenient",
+          "description": "Control and schedule charging directly from your phone"
         }
       }
     },
-    "ChargingSafetySection": {
-      "header": {
-        "title": "Charge your vehicle safely and avoid potential risks",
-        "description": "An electric vehicle can represent one of the highest energy demands within a home, business, or shared facility. For this reason, charging must be carried out using equipment specifically designed for this purpose and with a proper electrical installation."
-      },
-
-      "risks": {
-        "title": "Situations when dedicated equipment is not used",
-        "items": {
-          "overload": {
-            "title": "Excessive strain on the electrical installation",
-            "description": "Electrical installations are not always designed for prolonged high-power charging, whether in homes, offices, or parking facilities."
-          },
-          "protections": {
-            "title": "Electrical protections not designed for continuous use",
-            "description": "Standard circuit breakers and residual-current devices may not be suitable for this type of continuous consumption."
-          },
-          "outlets": {
-            "title": "Use of non-dedicated outlets",
-            "description": "Standard power outlets are not designed to supply an electric vehicle for several consecutive hours."
-          },
-          "inefficiency": {
-            "title": "Energy inefficiency",
-            "description": "In unprepared installations, energy losses may occur due to heating of conductors, connections, or adaptations, reducing charging efficiency and placing additional stress on the electrical system."
-          },
-          "batteryWear": {
-            "title": "Constant 100% charging",
-            "description": "Always charging to full capacity can accelerate battery wear."
-          }
-        }
-      },
-
-      "solutions": {
-        "title": "Advantages of having a high-quality electric charger",
-        "items": {
-          "dedicatedEquipment": {
-            "title": "Equipment specifically designed for EV charging",
-            "description": "This is not an adapted outlet, but a system dedicated exclusively to this purpose."
-          },
-          "powerRegulation": {
-            "title": "Power regulation",
-            "description": "Charging power adjusts to the capacity of the installation, preventing overloads in both residential and commercial environments."
-          },
-          "smartScheduling": {
-            "title": "Smart scheduling",
-            "description": "Enables charging during off-peak hours and optimizes energy usage."
-          },
-          "mobileControl": {
-            "title": "Mobile control",
-            "description": "Real-time monitoring and management of charging through the app."
-          },
-          "batteryCare": {
-            "title": "Battery care",
-            "description": "Charging limits can be configured to extend the vehicle’s battery lifespan."
-          },
-          "professionalInstallation": {
-            "title": "Professional installation",
-            "description": "Installation is carried out by authorized technicians, with protections and configuration adapted to the equipment’s use and the environment where it is installed."
-          }
-        }
-      },
-
-      "efficiency": {
-        "title": "Greater efficiency, better use of energy",
-        "description": "A proper installation and dedicated equipment allow for more efficient energy transfer, with fewer losses caused by overheating or improper connections. This results in more stable, safer charging and better use of the energy consumed."
-      },
-
-      "closing": "Charging an electric vehicle is not the same as plugging in a household appliance.\n\n It is a specialized electrical installation, both in homes and businesses, and must be treated as such."
-    },
-    "RayforceProductSection": {
-      "header": {
-        "title": "Choose the ideal charger for your installation",
-        "description": "Compare configurations and features to find the best option for your needs."
-      },
-      "ChargerShowcase": {
-        "residential": {
-          "roleLabel": "Residential",
-          "description": "Single-phase 7.4 kW charger ideal for homes and small businesses."
-        },
-        "commercial": {
-          "roleLabel": "Commercial",
-          "description": "Three-phase 11 kW charger designed for offices, buildings, and shared use."
-        },
-        "industrial": {
-          "roleLabel": "Industrial",
-          "description": "Three-phase 22 kW charger designed for fleets, industrial environments, and intensive use."
-        }
-      },
+    "HomeChargersSection": {
       "ComparisonTable": {
-        "priceLabel": "Price:",
-        "cta": {
-          "button": "I want this model",
-          "message": "Hi! I’d like more information about the {model}."
+        "taxLabel": "VAT Incl.",
+
+        "features": {
+          "power": "Maximum power",
+          "phase": "Phase type",
+          "current": "Nominal current",
+          "voltage": "Typical voltage",
+
+          "app": "Mobile app control",
+          "protection": "Electrical protection",
+          "ip": "Protection rating",
+          "temperature": "Operating temperature"
+        }
+      },
+      "eyebrow": "Besen BS20 Wallbox Chargers",
+      "title": "Smart EV charging solutions",
+      "description": "Discover our 7kW, 11kW and 22kW Wallbox charger lineup. Designed for homes, businesses and industrial installations in Uruguay.",
+
+      "cta": {
+        "moreInfo": "Learn more"
+      },
+
+      "chargers": {
+        "residential": {
+          "title": "Residential",
+
+          "highlights": [
+            "Efficient overnight charging",
+            "Ideal for 1 vehicle",
+            "Maximum energy savings"
+          ]
         },
 
-        "values": {
-          "7_4_kw": "7.4 kW",
-          "11_kw": "11 kW",
-          "22_kw": "22 kW",
+        "mid": {
+          "title": "Residential+",
 
-          "single_phase": "Single-phase",
-          "three_phase": "Three-phase",
-
-          "32a_per_phase": "32 A per phase",
-          "16a_per_phase": "16 A per phase",
-
-          "220_230_v": "220–230 V",
-          "380_400_v_3p": "380–400 V (three-phase)",
-
-          "ip65": "IP65",
-          "temp_range": "-25 °C to +55 °C"
+          "highlights": [
+            "Flexible day and night charging",
+            "Ideal for 2 or more vehicles",
+            "Balanced power and efficiency"
+          ]
         },
 
-        "sections": {
-          "mainSpecs": {
-            "title": "Main specifications",
-            "features": {
-              "maxPower": "Maximum power",
-              "phaseType": "Phase type",
-              "nominalCurrent": "Rated current",
-              "voltage": "Typical voltage",
-              "display": "Integrated display",
-              "wallMount": "Wall mounting materials"
-            }
-          },
+        "pro": {
+          "title": "Industrial",
 
-          "connectivity": {
-            "title": "Connectivity and control",
-            "features": {
-              "appControl": "Mobile app control",
-              "wireless": "Wi-Fi / Bluetooth"
-            }
-          },
-
-          "protection": {
-            "title": "Protection and environment",
-            "features": {
-              "electricalProtection": "Integrated electrical protection",
-              "ipRating": "Ingress protection rating",
-              "temperature": "Operating temperature"
-            }
-          }
+          "highlights": [
+            "Continuous heavy-duty usage",
+            "Designed for fleets and transport",
+            "Maximum available power"
+          ]
         }
       }
     },
-    "ChargerStandSection": {
-      "eyebrow": "Official accessory",
-      "title": "Install your charger safely with our specialized and UTE-authorized technicians for",
-      "price": "199 USD",
-      "p1": "Install your charger safely using the original Rayforce stand.",
-      "p2": "Designed with perfect dimensions so your charger is always accessible in a practical and convenient way.",
-      "contact": "Message us on {whatsapp} or send us an email at {email} to receive a personalized quote.",
-      "note": "*All chargers include wall-mounting materials inside the box."
-    },
+    "HomeBenefitsSection": {
+      "eyebrow": "Benefits",
 
+      "title": "More savings, more convenience, more safety.",
+
+      "description": "Electric mobility is already a reality in Uruguay. Reduce costs, take advantage of smart energy rates, and join a cleaner energy future.",
+
+      "cta": {
+        "primary": "View chargers",
+        "secondary": "Check compatibility"
+      },
+
+      "items": {
+        "security": {
+          "title": "Safer charging",
+          "description": "EV chargers include dedicated electrical protections, reducing risks compared to conventional household outlets."
+        },
+
+        "savings": {
+          "title": "More savings",
+          "description": "Lower your cost per kilometer, take advantage of cheaper electricity rates, and reduce maintenance costs compared to combustion vehicles."
+        },
+
+        "control": {
+          "title": "More convenience",
+          "description": "Control charging from your phone, schedule charging times, and monitor energy consumption in real time through the app."
+        }
+      }
+    },
+    "HomeStandSection": {
+      "title": "Install your Rayforce charger anywhere",
+
+      "description": "Add a robust and elegant installation stand for your charger. Perfect for outdoor spaces or locations where wall installation is not available.",
+
+      "specs": "Height: 150 cm · Base: 26 × 14.5 cm",
+
+      "pricing": {
+        "price": "USD 158",
+        "taxLabel": "VAT incl."
+      },
+
+      "cta": {
+        "label": "Contact us and get yours"
+      }
+    },
+    "CompatibilitySection": {
+      "header": {
+        "eyebrow": "Compatibility",
+        "title": "Will it work with your vehicle?",
+        "description": "Search for your brand or model and confirm compatibility with your EV"
+      },
+
+      "search": {
+        "placeholder": "Search brand or model..."
+      },
+
+      "cta": {
+        "contactSales": "Contact sales",
+        "whatsapp": "Chat on WhatsApp"
+      },
+
+      "whatsapp": {
+        "message": "Hi! I'm interested in a charger for my {model}",
+        "fallbackMessage": "Hi! I need more information about a Rayforce charger"
+      },
+
+      "emptyState": {
+        "title": "Didn't find your model?",
+        "description": "Send us a WhatsApp message and we'll help confirm compatibility.",
+        "note": "*Replies within minutes"
+      },
+
+      "banner": {
+        "title": "Didn't find your model?",
+        "description": "Send us a WhatsApp message and we'll help confirm compatibility.",
+        "note": "*Replies within minutes"
+      }
+    },
     "FaqSection": {
       "title": "Frequently asked questions",
 
@@ -353,11 +341,6 @@
           }
         ]
       }
-    },
-    "RegulatorySection": {
-      "title": "Regulatory compliance and energy benefits",
-      "paragraph1": "Our chargers are approved and aligned with current Uruguayan regulations, complying with the requirements established by UTE and URSEA.",
-      "paragraph2": "This ensures a safe, reliable installation fully compatible with the national power grid. It also allows access to UTE benefits and programs, such as the Redondo Plan, subject to current conditions."
     }
   },
   "Footer": {

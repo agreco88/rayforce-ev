@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lexend_Deca } from "next/font/google";
-import "./globals.css";
 
 // Load the font
 const lexend = Lexend_Deca({
@@ -22,7 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning className={`${lexend.variable}`}>
+    <html
+      suppressHydrationWarning
+      className={`${lexend.variable} scroll-smooth`}
+    >
       <body className="transition-all min-w-dvw min-h-dvh overflow-x-hidden">
         {children}
       </body>

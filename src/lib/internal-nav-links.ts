@@ -4,10 +4,36 @@ export interface NavLink {
   label: string;
 }
 
-export const NAV_LINKS: NavLink[] = [
-  { id: "hero", label: "home" },
-  { id: "products", label: "products" },
-  { id: "regulatory", label: "regulation" },
-  { id: "faq", label: "faq" },
-  { id: "contact", label: "contact" },
-] as const;
+export const NAV_LINKS = [
+  {
+    id: "inicio",
+    label: "hero",
+  },
+  {
+    id: "cargadores",
+    label: "chargers",
+  },
+  {
+    id: "beneficios",
+    label: "benefits",
+  },
+  {
+    id: "columna",
+    label: "stand",
+  },
+  {
+    id: "faq",
+    label: "faq",
+  },
+  {
+    id: "compatibilidad",
+    label: "compatibility",
+  },
+];
+
+// <HomeHeroSection id="inicio" />
+// <HomeChargersSection id="cargadores" />
+// <HomeBenefitsSection id="beneficios" />
+// <HomeStandSection id="columna" />
+// <HomeFaqSection id="faq" />
+// <CompatibilitySection id="compatibilidad" />

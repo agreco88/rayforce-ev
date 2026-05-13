@@ -1,51 +1,76 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-
+import { ChargerVariant } from "@/lib/chargers/chargers.type";
 import { BackgroundIllustration } from "./animated/BackgroundIllustration";
 import { ChargerEV } from "./animated/charger-ev/ChargerEv";
-import { CHARGERS } from "@/lib/products-data";
 
-export function ChargerShowcase() {
-  const t = useTranslations("HomePage.RayforceProductSection.ChargerShowcase");
+type Props = {
+  variants: ChargerVariant[];
+};
 
+export function getSegmentLabel(variant: ChargerVariant): string {
+  if (variant.specs.maxPowerKw <= 7) return "Residencial";
+  if (variant.specs.maxPowerKw <= 11) return "Comercial";
+  return "Industrial";
+}
+
+export function ChargerShowcase({ variants }: Props) {
   return (
-    <div className="mx-auto grid grid-cols-1 relative md:grid-cols-3 min-w-[1400px]">
-      <div
-        aria-hidden
-        className="
-          pointer-events-none absolute inset-0 -z-0 rounded-2xl
-          bg-radial
-          from-green-900
-          from-0%
-          animate-[pulse_2s_ease-in-out_infinite]
-          to-transparent
-          to-65%
-        "
-      />
-      <BackgroundIllustration className="absolute inset-0 -z-0 opacity-40" />
+    <div className="relative w-full overflow-hidden">
+      {/* Background stays generic */}
+      <BackgroundIllustration />
 
-      {CHARGERS.map((charger) => (
-        <div key={charger.key} className="relative rounded-2xl px-8">
-          {/* Titles */}
-          <div className="flex flex-col mb-3">
-            <h3 className="mx-auto text-3xl font-bold">
-              {t(`${charger.key}.roleLabel`)}
-            </h3>
-            <h4 className="mx-auto mb-4 text-xl text-gray-400">
-              {charger.modelLabel}
-            </h4>
-          </div>
-
-          {/* Charger visual */}
-          <ChargerEV powerKw={charger.powerKw} />
-
-          {/* Description */}
-          <p className="mx-auto my-8 max-w-sm text-center text-gray-400">
-            {t(`${charger.key}.description`)}
-          </p>
-        </div>
-      ))}
+      <ul className="grid grid-cols-3">
+        {variants.map((variant) => {
+          return (
+            <li
+              key={variant.key}
+              className="flex flex-wrap justify-center items-center flex-col relative gap-6 text-center"
+            >
+              {/* Meta */}
+              <div className="flex flex-col gap-1.5">
+                <h3 className="text-5xl tracking-tight uppercase">
+                  {getSegmentLabel(variant)}
+                </h3>
+                <h4 className="text-neutral-500">{variant.modelCode}</h4>
+              </div>
+              <div className="flex w-full justify-around">
+                <div className=" flex flex-col  justify-center gap-0  flex-1 rounded-2xl p-4">
+                  <span className="uppercase tracking-widest text-neutral-300">
+                    Fase
+                  </span>
+                  <div className="flex items-center self-center text-xl">
+                    {variant.specs.phaseType}
+                  </div>
+                </div>
+                <div className=" flex flex-col  justify-center gap-0  flex-1 rounded-2xl p-4">
+                  <span className="uppercase tracking-widest text-neutral-300">
+                    Potencia
+                  </span>
+                  <div className="flex items-end self-center">
+                    <span className="text-6xl font-semibold">
+                      {variant.specs.maxPowerKw}
+                    </span>
+                    <span className="ml-0.5 text-2xl text-neutral-300">kW</span>
+                  </div>
+                </div>
+                <div className=" flex flex-col  justify-center gap-0  flex-1 rounded-2xl p-4">
+                  <span className="uppercase tracking-widest text-neutral-300">
+                    Fase
+                  </span>
+                  <div className="flex items-center self-center text-xl">
+                    {variant.specs.connectorType}
+                  </div>
+                </div>
+              </div>
+              <p className="text-balance text-lg text-neutral-300 max-w-sm mb-4">
+                {variant.description}
+              </p>{" "}
+              <ChargerEV powerKw={variant.specs.maxPowerKw} />
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

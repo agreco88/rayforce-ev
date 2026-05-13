@@ -8,8 +8,7 @@ import HeaderNav from "./header-nav";
 export default function Header() {
   return (
     <motion.header
-      className="fixed inset-x-0 top-0  z-50 min-h-16 pt-4 px-6           bg-linear-to-b from-black via-black/70 to-transparent
-"
+      className="fixed inset-x-0  z-[99] py-2  mx-auto px-4 sm:px-0  bg-linear-to-b from-black via-black/50 to-transparent"
       initial="rest"
       animate="rest"
       whileHover="hover"
@@ -36,10 +35,9 @@ export default function Header() {
           absolute inset-0
         "
       />
-
       {/* Content */}
-      <div className="relative flex h-16 items-center justify-between px-0 sm:px-6 lg:px-8">
-        <div className="flex flex-1 items-center gap-4">
+      <div className="relative max-w-7xl flex items-center  mx-auto">
+        <div className="flex flex-1 my-2 mx-1.5 sm:mx-2 items-center gap-4">
           <HeaderLogo />
           <HeaderNav />
         </div>

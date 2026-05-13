@@ -19,7 +19,7 @@ export default function AsideHeader({ onClose }: AsideHeaderProps) {
         pt-4 px-6
       "
     >
-      <div className="flex h-16 items-center justify-between px-0 sm:px-6 lg:px-8">
+      <div className="flex h-16  items-center justify-between px-0 sm:px-6 lg:px-8">
         <HeaderLogo aria-label={tA11y("logo")} />
         <HamburgerButton open onClick={onClose} />
       </div>

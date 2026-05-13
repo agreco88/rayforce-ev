@@ -97,15 +97,77 @@ html {
   --ring: var(--accent);
 }
 
+/* subtle scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* =========================
    BASE LAYER
    ========================= */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Headings */
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl
+      font-semibold tracking-tight leading-tight text-white;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl md:text-5xl font-thin tracking-tighter lg:text-6xl text-white mb-6;
+  }
+
+  h3 {
+    @apply text-sm uppercase tracking-widest text-green-500;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl
+      font-medium tracking-tight text-white;
+  }
+
+  h5 {
+    @apply text-lg font-medium text-white;
+  }
+
+  h6 {
+    @apply text-base font-medium text-neutral-300;
+  }
+
+  /* Paragraph */
+  p {
+    @apply text-sm sm:text-base md:text-lg text-neutral-400;
+  }
+
+  /* Lists */
+
+  /* Strong / emphasis */
+  strong {
+    @apply text-white font-semibold;
+  }
+
+  em {
+    @apply italic;
+  }
+
+  /* Divider */
+  hr {
+    @apply border-neutral-800 my-8;
   }
 }

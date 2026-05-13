@@ -34,7 +34,6 @@ export function LocaleSwitcherSelect() {
           bg-neutral-950/95
           backdrop-blur-md
           p-2
-          shadow-xl
           flex flex-col gap-2
         "
       >

@@ -2,19 +2,24 @@
 
 import { useEffect, useState } from "react";
 
-export function useIsMobile(breakpoint = 1024) {
+const MOBILE_BREAKPOINT = 1024;
+
+export function useIsMobile() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
+    const checkViewport = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    };
 
-    const update = () => setIsMobile(mediaQuery.matches);
+    checkViewport();
 
-    update(); // initial
-    mediaQuery.addEventListener("change", update);
+    window.addEventListener("resize", checkViewport);
 
-    return () => mediaQuery.removeEventListener("change", update);
-  }, [breakpoint]);
+    return () => {
+      window.removeEventListener("resize", checkViewport);
+    };
+  }, []);
 
   return isMobile;
 }

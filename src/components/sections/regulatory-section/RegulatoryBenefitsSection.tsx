@@ -82,7 +82,7 @@ export function RegulatorySection({ id }: { id?: string }) {
                 ),
               })}
             </motion.p>
-            <div className="pt-8">
+            {/* <div className="pt-8">
               <a
                 href={whatsappLink}
                 target="_blank"
@@ -101,7 +101,7 @@ export function RegulatorySection({ id }: { id?: string }) {
                 <FaWhatsapp className="text-xl" />
                 Consulta sobre beneficios
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT → GRID */}

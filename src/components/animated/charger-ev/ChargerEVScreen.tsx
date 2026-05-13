@@ -1,13 +1,115 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  MotionValue,
+} from "framer-motion";
 import { useEffect } from "react";
 
-type ChargerEVScreenProps = {
+type Variant = "residential" | "pro";
+type Mode = "single" | "multi";
+
+type Props = {
   powerKw: number;
+  variant?: Variant;
+  mode?: Mode;
+  phases?: 1 | 2 | 3;
 };
 
-export function ChargerEVScreen({ powerKw }: ChargerEVScreenProps) {
+/* ---------- theme ---------- */
+
+const THEMES = {
+  residential: {
+    container: "border-blue-800 bg-blue-900",
+    accent: "text-teal-200/90",
+    divider: "border-teal-800",
+    battery: "bg-green-400",
+  },
+  pro: {
+    container:
+      "border-blue-800 bg-gradient-to-b from-blue-950 via-blue-950 to-blue-900 text-blue-100",
+    accent: "text-blue-200/90",
+    divider: "border-blue-800",
+    battery: "bg-green-500",
+  },
+} as const;
+
+/* ---------- helpers ---------- */
+
+function MotionText({ value }: { value: MotionValue<string> }) {
+  return (
+    <motion.span className="tracking-tighter">
+      {value as unknown as string}
+    </motion.span>
+  );
+}
+
+/* ---------- battery ---------- */
+
+function Battery({
+  height,
+  color,
+}: {
+  height: MotionValue<string>;
+  color: string;
+}) {
+  return (
+    <div className="relative h-full w-9 border border-white/40 rounded-sm overflow-hidden">
+      <motion.div
+        style={{ height }}
+        className={`absolute bottom-0 w-full ${color} shadow-[0_0_8px_rgba(34,255,102,0.6)]`}
+      />
+      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-1 bg-white/60 rounded-sm" />
+    </div>
+  );
+}
+
+/* ---------- phases ---------- */
+
+const PHASE_COLORS = [
+  { bg: "bg-blue-500", text: "text-blue-400" },
+  { bg: "bg-green-500", text: "text-green-400" },
+  { bg: "bg-amber-400", text: "text-amber-400" },
+];
+
+function PhaseRows({ phases }: { phases: number }) {
+  return (
+    <>
+      {[0, 1, 2].map((i) => {
+        const active = i < phases;
+        const color = PHASE_COLORS[i];
+
+        return (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: active ? 1 : 0.25 }}
+            transition={{ delay: i * 0.25 }}
+            className="flex items-center gap-2"
+          >
+            <span className={`w-5 h-2.5 ${color.bg}`} />
+            <span className={color.text}>L{i + 1}: 220V</span>
+            <span className={color.text}>{active ? "16.0 A" : "0.0 A"}</span>
+          </motion.div>
+        );
+      })}
+    </>
+  );
+}
+
+/* ---------- main ---------- */
+
+export function ChargerEVScreen({
+  powerKw,
+  variant = "pro",
+  mode = "multi",
+  phases = 3,
+}: Props) {
+  const theme = THEMES[variant];
+
   const power = useMotionValue(powerKw);
   const temp = useMotionValue(23.5);
   const timer = useMotionValue(0);
@@ -15,93 +117,127 @@ export function ChargerEVScreen({ powerKw }: ChargerEVScreenProps) {
 
   useEffect(() => {
     const controls = [
-      animate(power, [powerKw, powerKw, powerKw, powerKw], {
-        duration: 6,
-        repeat: Infinity,
+      animate(power, [powerKw * 0.25, powerKw], {
+        duration: 2,
         ease: "easeInOut",
       }),
-      animate(temp, [23.5, 24.2, 23.0, 23.7], {
-        duration: 8,
+      animate(temp, [24.1, 24.2, 24.3, 24.5], {
+        duration: 32,
         repeat: Infinity,
-        ease: "easeInOut",
       }),
-      animate(battery, [40, 60, 80, 100], {
+      animate(battery, [40, 60, 80, 95], {
         duration: 20,
         repeat: Infinity,
-        ease: "easeInOut",
       }),
       animate(timer, 9999, { duration: 9999, ease: "linear" }),
     ];
 
     return () => controls.forEach((c) => c.stop());
-  }, [powerKw, power, temp, battery, timer]);
+  }, [powerKw]);
 
   const powerText = useTransform(power, (v) => v.toFixed(1));
   const tempText = useTransform(temp, (v) => v.toFixed(1));
-  const timerText = useTransform(timer, (v) => {
-    const total = Math.floor(v);
-    const mins = Math.floor(total / 60)
-      .toString()
-      .padStart(2, "0");
-    const secs = (total % 60).toString().padStart(2, "0");
-    return `00:${mins}:${secs}`;
-  });
   const batteryHeight = useTransform(battery, (v) => `${v}%`);
 
+  const timerText = useTransform(timer, (v) => {
+    const total = Math.floor(v);
+    const mins = String(Math.floor(total / 60)).padStart(2, "0");
+    const secs = String(total % 60).padStart(2, "0");
+    return `00:${mins}:${secs}`;
+  });
+
+  const ampsText = useTransform(power, (v) => (v * 4.2).toFixed(1));
   return (
-    <div className="overflow-hidden pt-3 rounded-md border border-blue-500 bg-linear-to-b from-sky-300 via-blue-700 to-blue-950 text-[12px] text-blue-100 shadow-inner">
-      {/* Header */}
+    <div className={`rounded border shadow-inner ${theme.container} w-54`}>
+      {mode === "single" ? (
+        <>
+          {/* 🔹 SINGLE PHASE */}
 
-      {/* Grid Body */}
-      <div className="grid grid-cols-3 grid-rows-[auto_auto_auto] gap-x-2 gap-y-1 px-3 py-2 text-[11px] text-blue-200">
-        {/* --- Row 1 --- */}
-        <div className="col-span-2 row-span-1 flex flex-col justify-center">
-          <motion.span className="px-0 py-1 flex items-center text-[45px] leading-none text-white">
-            <span className="inline-block w-[3ch] text-right tabular-nums">
-              <motion.span>{powerText}</motion.span>
+          {/* Header */}
+          <div className="flex px-3 py-2 justify-between text-[11px] ">
+            <span className="text-white/90">EV Charger</span>
+            <span>
+              <MotionText value={tempText} />
+              °C
             </span>
-            <span className="ml-5 w-full text-[18px] text-blue-300">kW</span>
-          </motion.span>
-        </div>
-
-        {/* Battery graphic (takes right 1/3, spans 2 rows) */}
-        <div className="row-span-2 flex justify-end">
-          <div className="relative flex h-full w-9 items-end justify-end overflow-hidden rounded-sm border-2 border-blue-300">
-            <motion.div
-              style={{ height: batteryHeight }}
-              className="absolute bottom-0 left-0 w-full bg-green-500/90"
-            />
-            <div className="absolute -top-1.5 left-1/2 h-1 w-3 -translate-x-1/2 bg-blue-300" />
-          </div>
-        </div>
-
-        {/* --- Row 2: Phase data (L1/L2/L3) --- */}
-        <div className="col-span-2 flex flex-col justify-center gap-0.5 text-[11px]">
-          <div className="flex items-center gap-2 text-sky-400">
-            <div className="h-2.5 w-2.5 bg-sky-400" />
-            <span>L1: 220 V</span>
-            <span className="ml-auto">0.00 A</span>
-          </div>
-          <div className="flex items-center gap-2 text-green-500">
-            <div className="h-2.5 w-2.5 bg-green-400" />
-            <span>L2: 220 V</span>
-            <span className="ml-auto">0.00 A</span>
           </div>
 
-          <div className="flex items-center gap-2 text-yellow-500">
-            <div className="h-2.5 w-2.5 bg-yellow-400" />
-            <span>L3: 220 V</span>
-            <span className="ml-auto">0.00 A</span>
-          </div>
-        </div>
+          {/* Body */}
+          <div
+            className={`grid grid-cols-3 w-full py-4 bg-gradient-to-b from-sky-400 via-sky-500 to-sky-800 border-y border-white border-2! border-x-0! gap-2 px-3 ${theme.accent}`}
+          >
+            {/* Amps */}
+            <div className="col-span-2 flex items-center">
+              <span className="text-5xl font-bold text-white">30.8A</span>
+            </div>
 
-        {/* --- Row 3: Footer metrics --- */}
-        <div className="col-span-3 mt-1 flex justify-between border-t border-blue-800 pt-2 text-[11px] text-blue-100">
-          <motion.span>{timerText}</motion.span>
-          <span>0.00 kWh</span>
-          <motion.span>{tempText.get()}°C</motion.span>
-        </div>
-      </div>
+            {/* Battery */}
+            <div className="row-span-2 flex justify-end">
+              <Battery height={batteryHeight} color={theme.battery} />
+            </div>
+
+            {/* Info */}
+            <div className="col-span-2 text-[11px] flex justify-between pt-1">
+              <span>220V</span>
+              <span>{powerKw} kWh</span>
+              <MotionText value={timerText} />
+            </div>
+
+            {/* Footer */}
+          </div>
+          <div
+            className={`col-span-3  px-3 py-2 flex justify-between border-t pt-2 text-[10px] ${theme.divider}`}
+          >
+            <span className="opacity-80">Rated</span>
+            <span>32A</span>
+          </div>
+        </>
+      ) : (
+        <>
+          {/* 🔹 MULTI PHASE */}
+
+          {/* Header */}
+          <div className="flex px-3 py-2 justify-between text-[11px]">
+            <span className="text-white/90">EV Charger</span>
+            <span className="opacity-70">Rated 32A</span>
+          </div>
+
+          {/* Body */}
+          <div className={`grid grid-cols-3 gap-2 px-3  ${theme.accent}`}>
+            {/* Power */}
+            <div className="col-span-2 flex items-center">
+              <span className="text-5xl font-thin text-white tabular-nums flex items-end gap-2">
+                <MotionText value={powerText} />
+                <span className="text-2xl tracking-tighter">kW</span>
+              </span>
+            </div>
+
+            {/* Battery */}
+            <div className="row-span-2 flex justify-end">
+              <Battery height={batteryHeight} color={theme.battery} />
+            </div>
+
+            {/* Phases */}
+            <div className="col-span-2 text-[11px] space-y-1">
+              <PhaseRows phases={phases} />
+            </div>
+
+            {/* Footer */}
+            <div
+              className={`col-span-3 flex justify-between border-t pt-2 text-[10px] ${theme.divider}`}
+            >
+              <MotionText value={timerText} />
+              <span className="opacity-80">
+                <MotionText value={powerText} /> kWh
+              </span>
+              <span>
+                <MotionText value={tempText} />
+                °C
+              </span>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

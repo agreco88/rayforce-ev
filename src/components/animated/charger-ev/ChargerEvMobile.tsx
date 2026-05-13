@@ -4,17 +4,25 @@ import { motion } from "framer-motion";
 import { ChargerEVScreen } from "./ChargerEVScreen";
 import HeaderLogo from "../../layout/header/header-logo";
 
-type ChargerEVMobileProps = {
+type Props = {
   powerKw: number;
+  variant: "residential" | "pro";
+  mode: "single" | "multi";
+  phases: 1 | 2 | 3;
 };
 
-export function ChargerEVMobile({ powerKw }: ChargerEVMobileProps) {
+export function ChargerEVMobile({ powerKw, variant, mode, phases }: Props) {
+  const isResidential = variant === "residential";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative mx-auto flex w-full max-w-[260px] items-center justify-center"
+      className={`
+        relative mx-auto flex w-full max-w-[260px] items-center justify-center
+        ${isResidential ? "scale-95 opacity-90" : "scale-100"}
+      `}
     >
       {/* Device body */}
       <div
@@ -46,7 +54,12 @@ export function ChargerEVMobile({ powerKw }: ChargerEVMobileProps) {
           {/* Screen */}
           <div className="mt-3 w-full flex justify-center">
             <div className="scale-[0.85] origin-top">
-              <ChargerEVScreen powerKw={powerKw} />
+              <ChargerEVScreen
+                powerKw={powerKw}
+                variant={variant}
+                mode={mode}
+                phases={phases}
+              />
             </div>
           </div>
 
@@ -58,14 +71,19 @@ export function ChargerEVMobile({ powerKw }: ChargerEVMobileProps) {
           {/* Status indicator */}
           <motion.div
             animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="
+            transition={{
+              duration: isResidential ? 2.2 : 1.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className={`
               my-3
               h-44 w-0.5
               rounded-full
               bg-green-400/80
+              ${isResidential ? "opacity-70" : ""}
               shadow-[0_0_12px_rgba(34,255,102,0.6)]
-            "
+            `}
           />
         </div>
       </div>

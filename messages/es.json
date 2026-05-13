@@ -2,13 +2,25 @@
   "Layout": {
     "Header": {
       "nav": {
-        "nav": "Navegación",
         "home": "Inicio",
-        "safety": "Seguridad",
-        "products": "Productos",
-        "regulation": "Normativa",
-        "faq": "Preguntas frecuentes",
-        "contact": "Contacto"
+        "chargers": "Cargadores",
+        "benefits": "Beneficios",
+        "stand": "Columna",
+        "faq": "FAQ",
+        "compatibility": "Compatibilidad"
+      },
+      "products": {
+        "residential": {
+          "title": "Residencial"
+        },
+
+        "mid": {
+          "title": "Residencial+"
+        },
+
+        "industrial": {
+          "title": "Industrial"
+        }
       }
     },
 
@@ -60,189 +72,163 @@
   },
 
   "HomePage": {
-    "HeroIntro": {
-      "title": "Cargá tu vehículo eléctrico hasta 5 veces más rápido",
-      "description": "Soluciones inteligentes y certificadas para hogares y empresas en Uruguay, con menor costo por carga.",
-      "ctaPrimary": "Ver modelos de cargadores",
+    "Hero": {
+      "title": "Cargadores Wallbox para autos eléctricos y hibridos en Uruguay",
+      "description": "Conseguí hoy tu cargador eléctrico con garantía de 2 años y equipos certificados por UTE y URSEA.",
+      "ctaPrimary": "Ver cargadores",
       "ctaSecondary": "Ver demostración",
-      "ctaTertiary": "Instalación"
-    },
-    "HeroFeatureCards": {
-      "items": {
-        "smartSavings": {
-          "title": "Ahorro inteligente",
-          "description": "Menor costo de carga frente a combustibles tradicionales y red pública de UTE."
+      "ctaTertiary": "Ver compatibilidad",
+
+      "features": {
+        "security": {
+          "title": "Más seguro",
+          "description": "Protecciones avanzadas para tu vehículo y tu hogar"
         },
-        "mobileControl": {
-          "title": "Control desde tu celular",
-          "description": "Monitoreá consumo, horarios y potencia desde la app."
+
+        "savings": {
+          "title": "Más ahorro",
+          "description": "Cargá tu EV por mucho menos que un auto a combustible"
         },
-        "sustainability": {
-          "title": "Energía sustentable",
-          "description": "Reducí emisiones y apostá por movilidad eléctrica."
-        },
-        "safeInstallation": {
-          "title": "Instalación y carga segura",
-          "description": "Carga segura con equipos certificados e instalación avalada por UTE."
+
+        "control": {
+          "title": "Más práctico",
+          "description": "Controlá y programá la carga desde tu celular"
         }
       }
     },
-    "ChargingSafetySection": {
-      "header": {
-        "title": "Cargá tu vehículo de forma segura y evitá posibles riesgos",
-        "description": "Un vehículo eléctrico puede representar una de las mayores demandas de energía dentro de un hogar, empresa o instalación compartida. \n\nPor eso, la carga debe realizarse con un equipo diseñado para este fin y con una instalación adecuada."
-      },
-
-      "risks": {
-        "title": "Situaciones cuando no se usa un equipo dedicado",
-        "items": {
-          "overload": {
-            "title": "Exigencia excesiva de la instalación",
-            "description": "Las instalaciones eléctricas no siempre están pensadas para cargas prolongadas de alta potencia, ya sea en viviendas, oficinas o estacionamientos."
-          },
-          "protections": {
-            "title": "Protecciones eléctricas no preparadas",
-            "description": "Diferenciales y térmicas convencionales pueden no ser adecuados para este tipo de consumo continuo."
-          },
-          "outlets": {
-            "title": "Uso de enchufes o puntos no dedicados",
-            "description": "Tomacorrientes comunes no fueron diseñados para alimentar un vehículo eléctrico durante varias horas seguidas."
-          },
-          "inefficiency": {
-            "title": "Ineficiencia energética",
-            "description": "En instalaciones no preparadas pueden generarse pérdidas de energía por calentamiento de conductores, conexiones o adaptaciones, reduciendo la eficiencia de la carga y exigiendo más al sistema eléctrico."
-          },
-          "batteryWear": {
-            "title": "Carga constante al 100 %",
-            "description": "Cargar siempre al máximo puede acelerar el desgaste de la batería del vehículo."
-          }
-        }
-      },
-
-      "solutions": {
-        "title": "Ventajas de tener un cargador eléctrico de alta calidad",
-        "items": {
-          "dedicatedEquipment": {
-            "title": "Equipo diseñado específicamente para carga de vehículos eléctricos",
-            "description": "No es un enchufe adaptado, es un sistema dedicado para este uso."
-          },
-          "powerRegulation": {
-            "title": "Regulación de potencia",
-            "description": "La carga se ajusta según la capacidad de la instalación, evitando sobrecargas tanto en hogares como en empresas."
-          },
-          "smartScheduling": {
-            "title": "Programación inteligente",
-            "description": "Permite cargar en horarios de menor demanda y optimizar el uso de energía."
-          },
-          "mobileControl": {
-            "title": "Control desde el celular",
-            "description": "Monitoreo y gestión de la carga en tiempo real desde la app."
-          },
-          "batteryCare": {
-            "title": "Cuidado de la batería",
-            "description": "Configuración de límites de carga para prolongar la vida útil del vehículo."
-          },
-          "professionalInstallation": {
-            "title": "Instalación profesional",
-            "description": "La instalación es realizada por técnicos autorizados, con protecciones y configuración acordes al uso del equipo y al entorno donde se instala."
-          }
-        }
-      },
-
-      "efficiency": {
-        "title": "Más eficiencia, mejor aprovechamiento de la energía",
-        "description": "Una instalación correcta y un equipo dedicado permiten una transferencia de energía más eficiente, con menos pérdidas por calentamiento o conexiones inadecuadas. Esto se traduce en una carga más estable, segura y en un mejor aprovechamiento de la energía consumida."
-      },
-
-      "closing": "La carga de un vehículo eléctrico no es un electrodoméstico más.\n\nEs una instalación eléctrica especializada, tanto en hogares como en empresas, y debe tratarse como tal."
-    },
-    "RayforceProductSection": {
-      "header": {
-        "title": "Elegí el cargador ideal para tu instalación",
-        "description": "Compará configuraciones y prestaciones para encontrar la mejor opción según tu uso."
-      },
-      "ChargerShowcase": {
-        "residential": {
-          "roleLabel": "Residencial",
-          "description": "Cargador monofásico de 7,4 kW ideal para hogares y pequeños comercios."
-        },
-        "commercial": {
-          "roleLabel": "Comercial",
-          "description": "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido."
-        },
-        "industrial": {
-          "roleLabel": "Industrial",
-          "description": "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo."
-        }
-      },
+    "HomeChargersSection": {
       "ComparisonTable": {
-        "priceLabel": "Precio:",
-        "cta": {
-          "button": "Quiero este modelo",
-          "message": "Hola! Quiero información sobre el modelo {model}."
+        "taxLabel": "IVA Inc.",
+
+        "features": {
+          "power": "Potencia máxima",
+          "phase": "Tipo de fase",
+          "current": "Corriente nominal",
+          "voltage": "Tensión típica",
+
+          "app": "Control mediante app móvil",
+          "protection": "Protección eléctrica",
+          "ip": "Grado de protección",
+          "temperature": "Temperatura de operación"
+        }
+      },
+      "eyebrow": "Cargadores Wallbox Besen BS20",
+      "title": "Soluciones inteligentes de carga",
+      "description": "Descubrí nuestra línea de cargadores eléctricos tipo Wallbox de 7kW, 11kW y 22kW. Diseñados para hogares, comercios e industrias en Uruguay.",
+      "cta": {
+        "moreInfo": "Más información"
+      },
+      "chargers": {
+        "residential": {
+          "title": "Residencial",
+
+          "highlights": [
+            "Carga nocturna eficiente",
+            "Ideal para 1 vehículo",
+            "Máximo ahorro energético"
+          ]
         },
+        "mid": {
+          "title": "Residencial+",
 
-        "values": {
-          "7_4_kw": "7,4 kW",
-          "11_kw": "11 kW",
-          "22_kw": "22 kW",
-
-          "single_phase": "Monofásico",
-          "three_phase": "Trifásico",
-
-          "32a_per_phase": "32 A por fase",
-          "16a_per_phase": "16 A por fase",
-
-          "220_230_v": "220–230 V",
-          "380_400_v_3p": "380–400 V (trifásica)",
-
-          "ip65": "IP65",
-          "temp_range": "-25 °C a +55 °C"
+          "highlights": [
+            "Carga flexible día y noche",
+            "Ideal para 2 o más vehículos",
+            "Equilibrio entre potencia y consumo"
+          ]
         },
+        "pro": {
+          "title": "Industrial",
 
-        "sections": {
-          "mainSpecs": {
-            "title": "Especificaciones principales",
-            "features": {
-              "maxPower": "Potencia máxima",
-              "phaseType": "Tipo de fase",
-              "nominalCurrent": "Corriente nominal",
-              "voltage": "Tensión típica",
-              "display": "Pantalla integrada",
-              "wallMount": "Materiales para fijación en pared"
-            }
-          },
-
-          "connectivity": {
-            "title": "Conectividad y control",
-            "features": {
-              "appControl": "Control mediante app móvil",
-              "wireless": "Wi-Fi / Bluetooth"
-            }
-          },
-
-          "protection": {
-            "title": "Protección y entorno",
-            "features": {
-              "electricalProtection": "Protección eléctrica integrada",
-              "ipRating": "Grado de protección",
-              "temperature": "Temperatura de operación"
-            }
-          }
+          "highlights": [
+            "Uso intensivo continuo",
+            "Pensado para flotas y transporte",
+            "Máxima potencia disponible"
+          ]
         }
       }
     },
-    "ChargerStandSection": {
-      "eyebrow": "Accesorio oficial",
-      "title": "Instalámos tu cargador de forma segura",
-      "price": "199 USD",
-      "p1": "",
-      "p2": "",
-      "contact": "Escribinos por <whatsapp>WhatsApp</whatsapp> o envíanos un mail a <email>comercial@rayforce.com.uy</email> para recibir tu presupuesto a medida.",
-      "note": "*Todos los cargadores incluyen en su caja los materiales para ser fijados en la pared."
+    "HomeBenefitsSection": {
+      "eyebrow": "Beneficios",
+
+      "title": "Más ahorro, más práctico, más seguro.",
+
+      "description": "La movilidad eléctrica ya es una realidad en Uruguay. Reducí costos, aprovechá tarifas inteligentes y sumate a una matriz energética limpia.",
+
+      "cta": {
+        "primary": "Ver cargadores",
+        "secondary": "Ver compatibilidad"
+      },
+
+      "items": {
+        "security": {
+          "title": "Más seguro",
+          "description": "Los cargadores EV cuentan con protecciones eléctricas, reduciendo riesgos frente a enchufes domésticos convencionales."
+        },
+
+        "savings": {
+          "title": "Más ahorro",
+          "description": "Reducí el costo por kilómetro, aprovechá tarifas eléctricas más económicas y disminuí gastos de mantenimiento frente a vehículos a combustible."
+        },
+
+        "control": {
+          "title": "Más práctico",
+          "description": "Controlá la carga desde tu celular, programá horarios y monitoreá el consumo en tiempo real desde la app."
+        }
+      }
+    },
+    "HomeStandSection": {
+      "title": "Instalá tu cargador Rayforce donde quieras",
+
+      "description": "Sumá una columna de instalación robusta y elegante para tu cargador. Ideal para espacios exteriores o donde no tenés una pared disponible.",
+
+      "specs": "Altura: 150 cm · Base: 26 × 14.5 cm",
+
+      "pricing": {
+        "price": "USD 158",
+        "taxLabel": "IVA inc."
+      },
+
+      "cta": {
+        "label": "Contactanos y conseguí la tuya"
+      }
+    },
+    "CompatibilitySection": {
+      "header": {
+        "eyebrow": "Compatibilidad",
+        "title": "¿Funciona con tu vehículo?",
+        "description": "Buscá tu modelo o marca y confirmá si tu vehículo es compatible"
+      },
+
+      "search": {
+        "placeholder": "Buscar marca o modelo..."
+      },
+
+      "cta": {
+        "contactSales": "Contactar ventas",
+        "whatsapp": "Hablar por WhatsApp"
+      },
+
+      "whatsapp": {
+        "message": "Hola, estoy interesado en un cargador para mi {model}",
+        "fallbackMessage": "Hola! Necesito información extra sobre un cargador Rayforce"
+      },
+
+      "emptyState": {
+        "title": "¿No encontraste tu modelo?",
+        "description": "Escribinos por WhatsApp y te ayudamos a confirmar la compatibilidad.",
+        "note": "*Respuesta en minutos"
+      },
+
+      "banner": {
+        "title": "¿No encontraste tu modelo?",
+        "description": "Escribinos por WhatsApp y te ayudamos a confirmar la compatibilidad.",
+        "note": "*Respuesta en minutos"
+      }
     },
     "FaqSection": {
       "title": "Preguntas frecuentes",
+      "eyebrow": "LO MAS PREGUNTADO",
 
       "categories": {
         "compatibility": "Compatibilidad",
@@ -352,11 +338,6 @@
           }
         ]
       }
-    },
-    "RegulatorySection": {
-      "title": "Cumplimiento normativo y beneficios energéticos",
-      "paragraph1": "Nuestros cargadores están habilitados y alineados con la normativa uruguaya vigente, cumpliendo con los requisitos establecidos por UTE y URSEA.",
-      "paragraph2": "Esto garantiza una instalación segura, confiable y plenamente compatible con la red eléctrica nacional. Además, permite acceder a beneficios y programas de UTE, como el Plan Redondo, según condiciones vigentes."
     }
   },
   "Footer": {
@@ -367,9 +348,9 @@
 
     "cta": {
       "eyebrow": "Contacto",
-      "title": "Instalá tu cargador eléctrico",
+      "title": "No encontraste lo que buscabas?",
       "description": "Te asesoramos para elegir el cargador ideal según tu vehículo, tu instalación eléctrica y tus hábitos de uso.",
-      "button": "Solicita tu presupuesto sin cargo"
+      "button": "Contactanos"
     },
 
     "brand": {

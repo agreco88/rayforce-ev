@@ -1,15 +1,12 @@
-import { ChargerStandSection } from "@/components/ChargerStandSection";
-import { ChargingSafetySection } from "@/components/sections/charging-safety-section/ChargingSafetySection";
-import ContactFooter from "@/components/sections/contact-footer/Footer";
-import { FaqSection } from "@/components/sections/faq-section/FaqSection";
-import { Hero } from "@/components/sections/hero/Hero";
-import { Comparison } from "@/components/sections/rayforce-product-section/Comparison";
-import { RayforceProductSection } from "@/components/sections/rayforce-product-section/RayforceProductSection";
-import { RegulatorySection } from "@/components/sections/regulatory-section/RegulatoryBenefitsSection";
-import { WhatsappFloatingBadge } from "@/components/WhatsappFloatingBadge";
-import { chargerProduct } from "@/lib/data/product-data";
-import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import type { Metadata } from "next";
+import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
+import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
+import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
+import { HomeChargersSection } from "@/components/sections/home/chargers/HomeChargersComparison";
+import { HomeBenefitsSection } from "@/components/sections/home/benefits/HomeBenefitsSection";
+import { HomeStandSection } from "@/components/sections/home/stand/HomeStandSection";
+import { HomeFaqSection } from "@/components/sections/home/faq/HomeFaqSection";
+import { Footer } from "@/components/sections/contact-footer/Footer";
 
 export async function generateMetadata({
   params,
@@ -27,16 +24,14 @@ export async function generateMetadata({
 
 export default function HomePage() {
   return (
-    <>
-      <Hero id="hero" />
-      <RayforceProductSection id="products" />
-      <RegulatorySection id="regulatory" />
-      <FaqSection id="faq" />
-      <ContactFooter id="contact" />
-      <WhatsappFloatingBadge
-        phone="598092041709"
-        message="Hola! Quiero cotizar un cargador Rayforce EV."
-      />
-    </>
+    <main className="bg-neutral-950">
+      <HomeHeroSection id="inicio" />
+      <HomeChargersSection id="cargadores" />
+      <HomeBenefitsSection id="beneficios" />
+      <HomeStandSection id="columna" />
+      <HomeFaqSection id="faq" />
+      <CompatibilitySection id="compatibilidad" />
+      <Footer />
+    </main>
   );
 }
