@@ -73,10 +73,8 @@
       "title": "Cargadores Wallbox para autos eléctricos y hibridos en Uruguay",
       "description": "Conseguí hoy tu cargador eléctrico con garantía de 1 año con instalación por técnico certificado y equipos certificados por UTE y URSEA.",
       "ctaPrimary": "Ver cargadores",
-      "ctaSecondary": "Ver demostración",
-      "ctaTertiary": "Ver compatibilidad",
-      "ctaWhatsapp": "Solicitar presupuesto sin cargo",
-      "ctaWhatsappMessage": "Hola! Me gustaría solicitar un presupuesto sin cargo para la instalación de un cargador eléctrico.",
+      "ctaSecondary": "Ver compatibilidad",
+      "ctaTertiary": "Solicitar presupuesto de instalación",
 
       "features": {
         "security": {
@@ -372,9 +370,12 @@
       "pro": "Cargador Comercial"
     },
     "cta": {
-      "whatsapp": "Solicitar asesoramiento",
+      "whatsapp": "Quiero comprar este cargador",
       "manual": "Manual de usuario",
-      "whatsappMessage": "Hola! Quería consultar por el modelo {model}"
+      "whatsappMessage": "Hola! Quiero comprar mi cargador {model}"
+    },
+    "price": {
+      "taxLabel": "IVA Inc."
     },
     "variants": {
       "bs20-bc-7kw": {

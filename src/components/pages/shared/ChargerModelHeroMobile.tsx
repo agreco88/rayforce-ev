@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { ArrowDownToLine } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { waterfallItem } from "@/lib/animation-variants";
+import { useTrack } from "@/lib/analytics";
 
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
@@ -49,6 +50,7 @@ type Props = {
     description: string;
     shortName: string;
     slug: string;
+    price?: { currency: string; amount: number; taxLabel?: string };
   };
   config: ChargerConfig;
 };
@@ -59,6 +61,7 @@ type Props = {
 
 export function ChargerModelHeroMobile({ variant, config }: Props) {
   const t = useTranslations("ChargerModelPage");
+  const track = useTrack();
   const whatsappNumber = "59892041709";
   const { theme, charger } = config;
 
@@ -193,6 +196,18 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             </div>
           </div>
 
+          {/* Price */}
+          {variant.price && (
+            <div className="flex flex-col items-center gap-0.5 mt-2 mb-4">
+              <span className={`text-5xl font-bold ${theme.accentText}`}>
+                ${variant.price.amount}
+              </span>
+              <span className="text-sm text-neutral-400">
+                {variant.price.currency} · {t("price.taxLabel")}
+              </span>
+            </div>
+          )}
+
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 sm:mb-22">
             <motion.a
@@ -205,6 +220,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track.whatsappClick({ source: "charger_buy_cta", charger: variant.slug })}
               className={`
                 flex items-center justify-center gap-2
                 px-6 py-3.5 rounded-xl w-full sm:w-auto
@@ -225,6 +241,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
               href="/assets/docs/bs20-ficha-tecnica.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track.datasheetRequested(variant.slug)}
               className="
                 flex items-center justify-center gap-2
                 text-sm text-neutral-400 hover:text-white

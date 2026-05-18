@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
+import { useTrack } from "@/lib/analytics";
 
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -153,6 +154,7 @@ export function CompatibilitySection({ theme, id }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const track = useTrack();
 
   useEffect(() => setMounted(true), []);
 
@@ -246,6 +248,28 @@ export function CompatibilitySection({ theme, id }: Props) {
   }, [search]);
 
   const isSearching = search.trim().length > 0;
+
+  // Debounced search tracking — fires 800 ms after the user stops typing
+  useEffect(() => {
+    const query = search.trim();
+    if (query.length < 2) return;
+    const id = setTimeout(() => {
+      if (filteredData.length === 0) {
+        track.compatibilityNoResults(query);
+      } else {
+        track.compatibilitySearch(query, filteredData.length);
+      }
+    }, 800);
+    return () => clearTimeout(id);
+  }, [search, filteredData.length]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function handleWhatsAppModel(brand: string, model: string) {
+    track.whatsappClick({ source: "compatibility_model", vehicle_brand: brand, vehicle_model: model });
+  }
+
+  function handleWhatsAppFallback(source: "compatibility_no_results" | "compatibility_banner") {
+    track.whatsappClick({ source });
+  }
 
   const displayedData =
     isSearching || expanded
@@ -414,6 +438,7 @@ export function CompatibilitySection({ theme, id }: Props) {
               href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => handleWhatsAppFallback("compatibility_no_results")}
               className={cn(
                 "inline-flex items-center justify-center gap-2",
                 "h-12 rounded-xl px-6",
@@ -468,6 +493,7 @@ export function CompatibilitySection({ theme, id }: Props) {
                             href={`https://wa.me/${whatsappNumber}?text=${message}`}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => handleWhatsAppModel(brand.name, model)}
                             className="
                               group
                               flex items-center justify-between
@@ -572,6 +598,7 @@ export function CompatibilitySection({ theme, id }: Props) {
                                   href={`https://wa.me/${whatsappNumber}?text=${message}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  onClick={() => handleWhatsAppModel(brand.name, model)}
                                   className="
                                     flex w-15 justify-center
                                     rounded-lg
@@ -612,7 +639,7 @@ export function CompatibilitySection({ theme, id }: Props) {
                     exit={{ opacity: 0, y: 4 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    onClick={() => setExpanded(true)}
+                    onClick={() => { setExpanded(true); track.compatibilityListExpanded(); }}
                     className="
                       flex flex-col items-center gap-2
                       rounded-2xl border border-white/5 bg-white/[0.02]
@@ -750,6 +777,7 @@ export function CompatibilitySection({ theme, id }: Props) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleWhatsAppFallback("compatibility_banner")}
                 className={cn(
                   "inline-flex items-center justify-center gap-2",
                   "h-12 rounded-xl px-6",

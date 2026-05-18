@@ -73,10 +73,8 @@
       "title": "Wallbox chargers for electric and hybrid vehicles in Uruguay",
       "description": "Get your EV charger today with a 1-year warranty when installed by a certified technician, and equipment certified by UTE and URSEA.",
       "ctaPrimary": "View chargers",
-      "ctaSecondary": "Watch demo",
-      "ctaTertiary": "Check compatibility",
-      "ctaWhatsapp": "Request a free installation quote",
-      "ctaWhatsappMessage": "Hi! I'd like to request a free installation quote for an EV charger.",
+      "ctaSecondary": "Check compatibility",
+      "ctaTertiary": "Request installation quote",
 
       "features": {
         "security": {
@@ -374,9 +372,12 @@
       "pro": "Commercial Charger"
     },
     "cta": {
-      "whatsapp": "Request consultation",
+      "whatsapp": "I want to buy this charger",
       "manual": "User manual",
-      "whatsappMessage": "Hi! I wanted to ask about the {model} model"
+      "whatsappMessage": "Hello! I want to buy the {model} charger"
+    },
+    "price": {
+      "taxLabel": "VAT Inc."
     },
     "variants": {
       "bs20-bc-7kw": {

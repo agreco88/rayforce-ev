@@ -9,6 +9,7 @@ import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
 import { waterfallItem } from "@/lib/animation-variants";
+import { useTrack } from "@/lib/analytics";
 
 const SLUG_ACCENT: Record<string, string> = {
   "bs20-bc-7kw": "text-sky-400",
@@ -48,6 +49,7 @@ type Props = {
     description: string;
     shortName: string;
     slug: string;
+    price?: { currency: string; amount: number; taxLabel?: string };
   };
   config: ChargerConfig;
 };
@@ -58,6 +60,7 @@ type Props = {
 
 export function ChargerModelHero({ variant, config }: Props) {
   const t = useTranslations("ChargerModelPage");
+  const track = useTrack();
   const whatsappNumber = "59892041709";
   const { theme, charger } = config;
 
@@ -153,6 +156,17 @@ export function ChargerModelHero({ variant, config }: Props) {
                 </span>
               </h1>
 
+              {variant.price && (
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className={`text-5xl font-bold ${theme.accentText}`}>
+                    ${variant.price.amount}
+                  </span>
+                  <span className="text-sm text-neutral-400">
+                    {variant.price.currency} · {t("price.taxLabel")}
+                  </span>
+                </div>
+              )}
+
               <span className="text-neutral-400 text-base leading-relaxed max-w-lg">
                 {t(`variants.${variant.slug}.description`)}
               </span>
@@ -172,6 +186,7 @@ export function ChargerModelHero({ variant, config }: Props) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track.whatsappClick({ source: "charger_buy_cta", charger: variant.slug })}
                 className={`
                   flex items-center justify-center gap-2
                   px-6 py-3.5 rounded-xl
@@ -190,6 +205,7 @@ export function ChargerModelHero({ variant, config }: Props) {
                 href="/assets/docs/bs20-ficha-tecnica.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track.datasheetRequested(variant.slug)}
                 className="
                   flex items-center gap-2
                   text-sm text-neutral-400

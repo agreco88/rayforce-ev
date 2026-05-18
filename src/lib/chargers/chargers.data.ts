@@ -49,6 +49,8 @@ export const CHARGER_FAMILIES: ChargerFamily[] = [
 
         badges: ["Monofásico", "Tipo 2", "App", "IP65"],
 
+        price: { currency: "USD", amount: 698, taxLabel: "IVA Inc." },
+
         heroImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
         images: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
 
@@ -93,6 +95,8 @@ export const CHARGER_FAMILIES: ChargerFamily[] = [
         intendedUse: ["commercial"],
 
         badges: ["Trifásico", "Tipo 2", "App"],
+
+        price: { currency: "USD", amount: 898, taxLabel: "IVA Inc." },
 
         heroImage: "/assets/images/chargers/bs20-bc-22kw-card.avif",
         images: ["/assets/images/chargers/bs20-bc-22kw-card.avif"],

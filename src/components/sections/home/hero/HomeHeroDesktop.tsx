@@ -2,17 +2,16 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { FaWhatsapp } from "react-icons/fa6";
 
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { HomeHeroFeatureStrip } from "./HomeHeroFeatureStrip";
-
-const WHATSAPP_NUMBER = "598092041709";
+import { useTrack } from "@/lib/analytics";
 
 export function HomeHeroDesktop({ id }: { id?: string }) {
   const t = useTranslations("HomePage.Hero");
+  const track = useTrack();
 
   return (
     <section
@@ -275,7 +274,9 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 asChild
                 className="px-8 py-6 bg-green-500 hover:bg-green-400 text-black"
               >
-                <Link href="/cargadores">{t("ctaPrimary")}</Link>
+                <Link href="/cargadores" onClick={() => track.heroCta({ cta: "primary", location: "desktop" })}>
+                  {t("ctaPrimary")}
+                </Link>
               </Button>
             </motion.div>
             <motion.div variants={waterfallItem}>
@@ -283,14 +284,20 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 asChild
                 className="px-8 py-6 bg-neutral-950/50 text-white"
               >
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("ctaWhatsappMessage"))}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaWhatsapp className="size-4" />
-                  {t("ctaWhatsapp")}
-                </a>
+                <Link href="/#compatibilidad" onClick={() => track.heroCta({ cta: "secondary", location: "desktop" })}>
+                  {t("ctaSecondary")}
+                </Link>
+              </Button>
+            </motion.div>
+            <motion.div variants={waterfallItem}>
+              <Button
+                asChild
+                variant="ghost"
+                className="px-8 py-6 text-neutral-400 hover:text-white"
+              >
+                <Link href="/#contacto" onClick={() => track.heroCta({ cta: "quote", location: "desktop" })}>
+                  {t("ctaTertiary")}
+                </Link>
               </Button>
             </motion.div>
           </motion.div>

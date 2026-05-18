@@ -16,6 +16,12 @@ type Props = {
   size?: "default" | "sm" | "lg" | "icon";
 
   className?: string;
+
+  /**
+   * Optional tracking callback. Compose useTrack() helpers here.
+   * Example: track={() => t.whatsappClick({ source: "footer" })}
+   */
+  track?: () => void;
 };
 
 export function AppButton({
@@ -26,6 +32,7 @@ export function AppButton({
   variant = "outline",
   size = "default",
   className,
+  track,
 }: Props) {
   const content = (
     <span className="inline-flex items-center gap-1 px-1.5">
@@ -50,7 +57,7 @@ export function AppButton({
   if (href && external) {
     return (
       <Button asChild variant={variant} size={size} className={baseStyles}>
-        <a href={href} target="_blank" rel="noopener noreferrer">
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => track?.()}>
           {content}
         </a>
       </Button>
@@ -61,14 +68,14 @@ export function AppButton({
   if (href) {
     return (
       <Button asChild variant={variant} size={size} className={baseStyles}>
-        <Link href={href}>{content}</Link>
+        <Link href={href} onClick={() => track?.()}>{content}</Link>
       </Button>
     );
   }
 
   // 👉 Regular button
   return (
-    <Button variant={variant} size={size} className={baseStyles}>
+    <Button variant={variant} size={size} className={baseStyles} onClick={() => track?.()}>
       {content}
     </Button>
   );

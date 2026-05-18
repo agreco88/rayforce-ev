@@ -5,51 +5,13 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { AppButton } from "@/components/ui/wrappers/AppButton";
-import { FaWhatsapp } from "react-icons/fa6";
-
-const WHATSAPP_NUMBER = "598092041709";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-
-function Feature({ title, subtitle }: { title: string; subtitle: string }) {
-  return (
-    <div
-      className="
-        flex flex-col
-        rounded-2xl
-        border border-white/10
-        bg-black/80
-
-        px-3 py-3
-      "
-    >
-      <span
-        className="
-          text-[11px]
-          font-semibold
-          tracking-wide
-          text-green-400
-        "
-      >
-        {title}
-      </span>
-
-      <span
-        className="
-          mt-1
-          text-[11px]
-          text-neutral-400
-        "
-      >
-        {subtitle}
-      </span>
-    </div>
-  );
-}
+import { useTrack } from "@/lib/analytics";
 
 export function HomeHeroMobile({ id }: { id?: string }) {
   const t = useTranslations("HomePage.Hero");
+  const track = useTrack();
 
   return (
     <section
@@ -202,39 +164,31 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           >
             <Button
               asChild
-              className="
-                h-14
-                rounded-2xl
-                bg-green-500
-                hover:bg-green-400
-                text-black
-                font-medium
-              "
+              className="h-14 rounded-2xl bg-green-500 hover:bg-green-400 text-black font-medium"
             >
-              <Link href="/cargadores">{t("ctaPrimary")}</Link>
+              <Link href="/cargadores" onClick={() => track.heroCta({ cta: "primary", location: "mobile" })}>
+                {t("ctaPrimary")}
+              </Link>
             </Button>
-
-            <AppButton
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("ctaWhatsappMessage"))}`}
-              external
-              className="group h-14 rounded-2xl"
-              icon={<FaWhatsapp className="size-4 ml-1" />}
-            >
-              {t("ctaWhatsapp")}
-            </AppButton>
 
             <Button
               asChild
               variant="outline"
-              className="
-                h-14
-                rounded-2xl
-                border-white/10
-                bg-neutral-900
-                hover:bg-neutral-800
-              "
+              className="h-14 rounded-2xl border-white/10 bg-neutral-900 hover:bg-neutral-800"
             >
-              <Link href="/#compatibilidad">{t("ctaTertiary")}</Link>
+              <Link href="/#compatibilidad" onClick={() => track.heroCta({ cta: "secondary", location: "mobile" })}>
+                {t("ctaSecondary")}
+              </Link>
+            </Button>
+
+            <Button
+              asChild
+              variant="ghost"
+              className="h-14 rounded-2xl text-neutral-400 hover:text-white"
+            >
+              <Link href="/#contacto" onClick={() => track.heroCta({ cta: "quote", location: "mobile" })}>
+                {t("ctaTertiary")}
+              </Link>
             </Button>
           </motion.div>
         </motion.div>

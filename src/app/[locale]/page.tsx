@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
+import { FooterCTA } from "@/components/sections/contact-footer/FooterCTA";
 
 const HomeChargersSection = dynamic(() =>
   import("@/components/sections/home/chargers/HomeChargersComparison").then(
@@ -61,11 +62,12 @@ export default function HomePage() {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
-        <HomeChargersSection id="cargadores" />
-        <HomeBenefitsSection id="beneficios" />
+        <HomeChargersSection id="cargadores" />{" "}
         <HomeStandSection id="columna" />
-        <HomeFaqSection id="faq" />
+        <FooterCTA />
         <CompatibilitySection id="compatibilidad" />
+        <HomeBenefitsSection id="beneficios" />
+        <HomeFaqSection id="faq" />
         <Footer />
       </Suspense>
     </main>

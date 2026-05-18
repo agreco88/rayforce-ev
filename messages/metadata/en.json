@@ -1,27 +1,30 @@
 {
   "home": {
-    "title": "Rayforce EV – Smart electric vehicle chargers for homes and businesses.",
-    "description": "Smart EV wallbox chargers designed for residential, commercial, and fleet use. Reliable, efficient, and connected charging solutions.",
-    "ogDescription": "Smart EV charging solutions for homes, businesses, and electric fleets.",
-    "keywords": "EV chargers, electric vehicle charging, Montevideo, Uruguay, wallbox, smart charger, Rayforce, EV charging Uruguay",
-    "imageAlt": "Rayforce EV — Smart electric vehicle charging solutions"
+    "title": "Wallbox Chargers for Electric & Hybrid Vehicles in Uruguay | Rayforce EV",
+    "description": "Professional installation and sales of Wallbox EV chargers for electric and plug-in hybrid vehicles in Uruguay. UTE and URSEA-compliant equipment with local technical support.",
+    "ogDescription": "Smart Wallbox charging solutions for homes, businesses and EV fleets in Uruguay. Certified installation, local support and app control.",
+    "keywords": "EV charger Uruguay, Wallbox Uruguay, electric vehicle charger Uruguay, plug-in hybrid charger, BYD charger Uruguay, home EV charger, Wallbox installation Montevideo, Rayforce EV",
+    "imageAlt": "Rayforce EV Wallbox charger for electric and hybrid vehicles in Uruguay"
   },
+
   "cargadores": {
-    "title": "EV Wallbox Chargers in Uruguay | Rayforce",
-    "description": "Explore our BS20 Wallbox charger lineup: Residential 7kW and Commercial 22kW. App-enabled, locally certified and supported.",
-    "ogDescription": "Wallbox EV chargers for homes and businesses in Uruguay. 7kW and 22kW models with local support.",
-    "keywords": "EV chargers Uruguay, wallbox Uruguay, 7kW EV charger, 22kW EV charger, BS20"
+    "title": "Wallbox EV Chargers in Uruguay for Electric & Hybrid Vehicles | Rayforce",
+    "description": "Explore our BS20 Wallbox charger lineup with 7kW and 22kW models for homes, buildings and businesses. Compatible with BYD, Hyundai, Kia, BMW, Renault, Tesla and more.",
+    "ogDescription": "7kW and 22kW Wallbox EV chargers with installation and local technical support in Uruguay. Compatible with most electric and plug-in hybrid vehicles.",
+    "keywords": "Wallbox Uruguay, EV charger 7kW, EV charger 22kW, Tesla charger Uruguay, BYD charger Uruguay, residential EV charger, commercial EV charger, BS20"
   },
+
   "cargadores-7kw": {
-    "title": "Residential 7kW EV Charger BS20 | Rayforce Uruguay",
-    "description": "7kW single-phase Wallbox charger for home use. App control, wall-mount installation, IP65 rating and local warranty. Ideal for overnight charging.",
-    "ogDescription": "Residential 7kW EV charger in Uruguay. Single-phase Wallbox with app control, IP65 and local technical support.",
-    "keywords": "residential 7kW EV charger Uruguay, wallbox 7kW, single-phase EV charger, home EV charger, BS20 7kW"
+    "title": "7kW Residential Wallbox EV Charger | Rayforce Uruguay",
+    "description": "Single-phase 7kW EV charger designed for homes and overnight charging. Compatible with electric and plug-in hybrid vehicles. Certified installation, app control and local warranty included.",
+    "ogDescription": "Residential 7kW Wallbox charger for electric vehicles in Uruguay. Ideal for daily home charging with mobile app control.",
+    "keywords": "7kW EV charger Uruguay, residential Wallbox Uruguay, single-phase EV charger, home charger for electric car, overnight EV charging, plug-in hybrid home charger"
   },
+
   "cargadores-22kw": {
-    "title": "22kW EV Charger BS20 | Rayforce Uruguay",
-    "description": "22kW three-phase Wallbox charger. Ideal for homes with more than one EV or when you need maximum charging speed. App control and UTE certified.",
-    "ogDescription": "22kW EV charger in Uruguay. Maximum-power three-phase Wallbox — ideal when you have more than one electric vehicle.",
-    "keywords": "22kW EV charger Uruguay, wallbox 22kW, two EV charger, high power EV charger, BS20 22kW"
+    "title": "22kW Three-Phase Wallbox EV Charger | Rayforce Uruguay",
+    "description": "High-power 22kW EV charger for businesses, fleets and homes with more than one electric vehicle. Faster charging, app control and professional local installation.",
+    "ogDescription": "22kW Wallbox charger for electric vehicles in Uruguay. Ideal for companies, parking facilities and multi-EV households.",
+    "keywords": "22kW EV charger Uruguay, three-phase Wallbox Uruguay, commercial EV charger, fleet EV charger, fast EV charger, business EV charging station"
   }
 }

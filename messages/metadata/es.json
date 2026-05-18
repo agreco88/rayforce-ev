@@ -1,27 +1,30 @@
 {
   "home": {
-    "title": "Rayforce EV – Cargadores inteligentes para vehículos eléctricos en hogares y empresas.",
-    "description": "Cargadores EV Wallbox inteligentes diseñados para uso residencial, comercial y flotas eléctricas. Soluciones de carga confiables, eficientes y conectadas.",
-    "ogDescription": "Soluciones inteligentes de carga para vehículos eléctricos en hogares, empresas y flotas.",
-    "keywords": "cargadores EV, carga de vehículos eléctricos, Montevideo, wallbox, cargador inteligente, Rayforce, carga EV Uruguay",
-    "imageAlt": "Rayforce EV — Soluciones inteligentes de carga para vehículos eléctricos"
+    "title": "Cargadores Wallbox para autos eléctricos e híbridos en Uruguay | Rayforce EV",
+    "description": "Instalación y venta de cargadores Wallbox para vehículos eléctricos e híbridos enchufables en Uruguay. Equipos certificados por UTE y URSEA, instalación profesional y soporte técnico local.",
+    "ogDescription": "Cargadores eléctricos Wallbox para hogares, empresas y flotas en Uruguay. Instalación certificada, soporte local y control desde app.",
+    "keywords": "cargador auto eléctrico Uruguay, wallbox Uruguay, cargador EV Uruguay, cargador híbrido enchufable, cargador BYD Uruguay, instalación wallbox Montevideo, cargador vehículo eléctrico casa, Rayforce EV",
+    "imageAlt": "Cargador Wallbox Rayforce EV para autos eléctricos e híbridos en Uruguay"
   },
+
   "cargadores": {
-    "title": "Cargadores EV Wallbox en Uruguay | Rayforce",
-    "description": "Explorá nuestra línea de cargadores Wallbox BS20: Residencial 7kW y Comercial 22kW. Con app, garantía local y certificación UTE.",
-    "ogDescription": "Cargadores EV tipo Wallbox para hogares y empresas en Uruguay. Modelos de 7kW y 22kW con soporte local.",
-    "keywords": "cargadores eléctricos Uruguay, wallbox Uruguay, cargador EV 7kW, cargador EV 22kW, BS20"
+    "title": "Cargadores Wallbox en Uruguay para autos eléctricos y PHEV | Rayforce",
+    "description": "Descubrí nuestra línea de cargadores Wallbox BS20 de 7kW y 22kW para hogares, edificios y empresas. Compatibles con BYD, Hyundai, Kia, BMW, Renault, Tesla y más.",
+    "ogDescription": "Cargadores Wallbox de 7kW y 22kW con instalación y soporte técnico en Uruguay. Compatibles con la mayoría de vehículos eléctricos e híbridos enchufables.",
+    "keywords": "wallbox Uruguay, cargador EV 7kW, cargador EV 22kW, cargador BYD Uruguay, cargador Tesla Uruguay, cargador auto eléctrico Montevideo, cargador eléctrico residencial, BS20"
   },
+
   "cargadores-7kw": {
-    "title": "Cargador Residencial 7kW BS20 | Rayforce Uruguay",
-    "description": "Cargador Wallbox monofásico de 7kW para uso residencial. Control desde app, instalación mural, IP65 y garantía local. Ideal para carga nocturna.",
-    "ogDescription": "Cargador EV Residencial 7kW en Uruguay. Wallbox monofásico con app, IP65 y soporte técnico local. Ideal para carga diaria en el hogar.",
-    "keywords": "cargador residencial 7kW Uruguay, wallbox 7kW, cargador monofásico EV, cargador casa auto eléctrico, BS20 7kW"
+    "title": "Cargador Wallbox Residencial 7kW para auto eléctrico | Rayforce Uruguay",
+    "description": "Cargador EV monofásico de 7kW ideal para hogares y carga nocturna. Compatible con autos eléctricos e híbridos enchufables. Instalación certificada, app móvil y garantía local.",
+    "ogDescription": "Wallbox residencial de 7kW para vehículos eléctricos en Uruguay. Ideal para carga diaria en el hogar con control desde app.",
+    "keywords": "cargador residencial auto eléctrico Uruguay, wallbox 7kW Uruguay, cargador monofásico EV, cargador casa BYD, cargador híbrido enchufable hogar, carga nocturna vehículo eléctrico"
   },
+
   "cargadores-22kw": {
-    "title": "Cargador Comercial 22kW BS20 | Rayforce Uruguay",
-    "description": "Cargador Wallbox trifásico de 22kW. Ideal para hogares con más de un auto o cuando necesitás máxima velocidad de carga. Con app y certificación UTE.",
-    "ogDescription": "Cargador EV 22kW en Uruguay. Wallbox trifásico de máxima potencia, ideal cuando tenés más de un vehículo eléctrico.",
-    "keywords": "cargador 22kW Uruguay, wallbox 22kW, cargador dos autos eléctricos, cargador alta potencia EV, BS20 22kW"
+    "title": "Cargador Wallbox 22kW trifásico para empresas y hogares | Rayforce",
+    "description": "Cargador EV trifásico de 22kW para hogares con más de un vehículo, empresas y flotas eléctricas. Máxima velocidad de carga, control desde app y soporte técnico local.",
+    "ogDescription": "Wallbox 22kW para autos eléctricos en Uruguay. Ideal para empresas, estacionamientos y hogares con múltiples vehículos eléctricos.",
+    "keywords": "cargador 22kW Uruguay, wallbox trifásico Uruguay, cargador empresa vehículos eléctricos, cargador flota eléctrica, cargador rápido auto eléctrico, wallbox comercial"
   }
 }

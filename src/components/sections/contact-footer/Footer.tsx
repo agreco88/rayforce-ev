@@ -1,6 +1,5 @@
 "use client";
 
-import { FooterCTA } from "./FooterCTA";
 import { FooterBrand } from "./FooterBrand";
 import { FooterNavColumn } from "./FooterNavColumn";
 import { FooterContactColumn } from "./FooterContactColumn";
@@ -10,8 +9,6 @@ export function Footer() {
   return (
     <footer id="footer" className="bg-neutral-950  text-neutral-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <FooterCTA />
-
         {/* Main columns */}
         <div
           className="

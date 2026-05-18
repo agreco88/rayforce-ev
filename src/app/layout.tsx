@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Lexend_Deca } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Load the font
 const lexend = Lexend_Deca({
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className="transition-all min-w-dvw min-h-dvh overflow-x-hidden">
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
