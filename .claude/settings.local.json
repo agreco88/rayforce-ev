@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const en = require\\('./messages/metadata/en.json'\\); console.log\\(JSON.stringify\\(Object.keys\\(en\\), null, 2\\)\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:messages/es.json'\\).toString\\(\\); const d=JSON.parse\\(content\\); console.log\\(JSON.stringify\\(d.ChargerModelPage, null, 2\\)\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:messages/en.json'\\).toString\\(\\); const d=JSON.parse\\(content\\); console.log\\(JSON.stringify\\(d.ChargerModelPage, null, 2\\)\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:next.config.ts'\\).toString\\(\\); console.log\\(content\\)\")",
+      "Bash(npm run *)",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:src/components/pages/shared/ChargerModelHeroStats.tsx'\\).toString\\(\\); console.log\\(content\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:src/components/pages/shared/ChargerModelHeroMobile.tsx'\\).toString\\(\\); console.log\\(content\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/es/cargadores/bs20-bc-7kw)",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:src/app/[locale]/layout.tsx'\\).toString\\(\\); console.log\\(content.substring\\(0, 1500\\)\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:src/app/[locale]/cargadores/[model]/page.tsx'\\).toString\\(\\); const lines=content.split\\('\\\\n'\\).filter\\(l=>l.includes\\('Param'\\)||l.includes\\('static'\\)||l.includes\\('dynamic'\\)\\); console.log\\(lines\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); try { const c=execSync\\('git show HEAD:vercel.json'\\).toString\\(\\); console.log\\(c\\); } catch\\(e\\) { console.log\\('No vercel.json'\\); }\")",
+      "Bash(cat .env.local)",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:src/components/pages/shared/AppHighlightsMobile.tsx'\\).toString\\(\\); console.log\\(content.substring\\(0, 800\\)\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const content=execSync\\('git show HEAD:src/components/pages/shared/AppShowcaseSection.tsx'\\).toString\\(\\); console.log\\(content.substring\\(0, 800\\)\\)\")",
+      "Bash(awk -F'\"' '{print $2}')",
+      "Bash(node -e ' *)",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const c=execSync\\('git show HEAD:src/components/layout/base-layout.tsx'\\).toString\\(\\); console.log\\(c\\)\")",
+      "Bash(ls src/components/layout/base-layout*)",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const c=execSync\\('git show HEAD:src/components/layout/header/header.tsx'\\).toString\\(\\); console.log\\(c\\)\")",
+      "Bash(node -e \"const {execSync}=require\\('child_process'\\); const c=execSync\\('git show HEAD:src/components/layout/header/header-logo.tsx'\\).toString\\(\\); console.log\\(c\\)\")",
+      "Bash(git show *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('next:', p.dependencies?.next || p.devDependencies?.next\\); console.log\\('node:', process.version\\)\")",
+      "Bash(node -e \"const p=require\\('./node_modules/next/package.json'\\); console.log\\('installed next:', p.version\\)\")",
+      "Bash(node -e \"const m=require\\('./.next/routes-manifest.json'\\); console.log\\('dataRoutes:', JSON.stringify\\(m.dataRoutes\\)\\); console.log\\('type:', typeof m.dataRoutes\\)\")",
+      "Bash(npx next *)",
+      "Bash(curl -s -w \"\\\\n%{http_code}\" http://localhost:3003/es/cargadores/bs20-bc-7kw)",
+      "Bash(node -e \"const m=require\\('./.next/routes-manifest.json'\\); console.log\\(Object.keys\\(m\\)\\)\")"
+    ]
+  }
+}

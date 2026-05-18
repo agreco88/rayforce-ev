@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
@@ -151,7 +151,10 @@ export function CompatibilitySection({ theme, id }: Props) {
 
   const [search, setSearch] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => setMounted(true), []);
 
   const whatsappNumber = "59892041709";
 
@@ -511,6 +514,20 @@ export function CompatibilitySection({ theme, id }: Props) {
 
               {/* Mobile */}
               <div className="md:hidden">
+                {!mounted ? (
+                  <div className="flex flex-col gap-3">
+                    {displayedData.map((brand) => (
+                      <div
+                        key={brand.name}
+                        className="rounded-2xl border border-neutral-900 bg-neutral-950 px-4 py-4"
+                      >
+                        <span className="mx-2 my-1 text-xl font-medium uppercase tracking-tighter text-white">
+                          {brand.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
                 <Accordion type="multiple" className="flex flex-col gap-3">
                   {displayedData.map((brand) => (
                     <AccordionItem
@@ -573,6 +590,7 @@ export function CompatibilitySection({ theme, id }: Props) {
                     </AccordionItem>
                   ))}
                 </Accordion>
+                )}
               </div>
             </motion.div>
 

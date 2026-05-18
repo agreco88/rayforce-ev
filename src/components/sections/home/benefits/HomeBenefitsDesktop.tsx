@@ -75,12 +75,12 @@ export function HomeBenefitsDesktop() {
           lg:grid-cols-3
         "
       >
-        {BENEFITS.map((benefit, index) => (
-          <Fragment key={index}>
+        {BENEFITS.map(({ key, ...rest }) => (
+          <Fragment key={key}>
             <HomeBenefitCard
-              {...benefit}
-              title={t(`items.${benefit.key}.title`)}
-              description={t(`items.${benefit.key}.description`)}
+              {...rest}
+              title={t(`items.${key}.title`)}
+              description={t(`items.${key}.description`)}
             />
           </Fragment>
         ))}

@@ -81,8 +81,6 @@ export function ChargerModelHero({ variant, config }: Props) {
           }}
         />
 
-        {/* Noise */}
-        <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay bg-[url('/noise.png')]" />
       </div>
 
       {/* Grid */}

@@ -24,6 +24,7 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       className={`${lexend.variable} scroll-smooth dark`}
+      data-scroll-behavior="smooth"
     >
       <body className="transition-all min-w-dvw min-h-dvh overflow-x-hidden">
         {children}
