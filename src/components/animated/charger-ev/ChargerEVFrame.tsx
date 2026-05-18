@@ -24,8 +24,7 @@ export function ChargerEVFrame({ powerKw, variant, mode, phases }: Props) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`
-        pointer-events-none relative flex items-center justify-center
-        ${isResidential ? "scale-90 opacity-90" : "scale-100"}
+        pointer-events-none relative flex items-center justify-center scale-100
       `}
     >
       {/* Outer Metallic Frame */}
@@ -34,7 +33,6 @@ export function ChargerEVFrame({ powerKw, variant, mode, phases }: Props) {
           relative
           min-h-[670px]
           w-[380px]
-          aspect-[3/2]
           flex flex-col items-center justify-between
           overflow-hidden
           rounded-[4rem]
@@ -46,9 +44,9 @@ export function ChargerEVFrame({ powerKw, variant, mode, phases }: Props) {
         {/* Inner Black Panel */}
         <div
           className="
-            relative flex h-full w-full flex-col items-center
-            overflow-hidden
-          rounded-[4rem]
+            relative flex flex-1 w-full flex-col items-center
+            overflow-visible
+            rounded-[4rem]
             bg-[radial-gradient(circle_at_50%_30%,#1a1a1a_0%,#000_100%)]
             shadow-[inset_0_0_20px_rgba(255,255,255,0.04)]
           "
