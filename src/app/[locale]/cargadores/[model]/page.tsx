@@ -11,6 +11,8 @@ import { ChargingHomeBanner } from "@/components/shared/banners/ChargingHomeBann
 
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 
@@ -80,6 +82,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, model } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
   const variant = getAllChargerVariants().find((v) => v.slug === model);
   if (!variant) return {};
   const key = variant.shortName.toLowerCase();
