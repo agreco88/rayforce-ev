@@ -90,7 +90,6 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             background: `radial-gradient(circle at 50% 20%, ${theme.glow}, transparent 70%)`,
           }}
         />
-
       </div>
 
       {/* -------------------------------------------------------------- */}
@@ -111,7 +110,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
       >
         {/* Breadcrumb */}
         <AppBreadcrumb
-          className="mt-16 mb-8 flex justify-center"
+          className="mt-16 mb-8 flex justify-center z-[999]"
           items={[
             { label: t("breadcrumb.home"), href: "/" },
             { label: t("breadcrumb.chargers"), href: "/cargadores" },
@@ -160,7 +159,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
               </span>
             </h1>
 
-            <p className="text-neutral-400 pt-2 leading-relaxed text-lg text-center max-w-[35ch]">
+            <p className="text-neutral-400 pt-2 leading-snug text-base  text-center max-w-[35ch]">
               {t(`variants.${variant.slug}.description`)}
             </p>
           </div>
@@ -174,7 +173,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             relative
             flex justify-center items-center
             flex-1
-            py-10
+            pt-10
           "
           >
             {/* Bottom Glow */}
@@ -197,19 +196,24 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
           </div>
 
           {/* Price */}
+
           {variant.price && (
-            <div className="flex flex-col items-center gap-0.5 mt-2 mb-4">
-              <span className={`text-5xl font-bold ${theme.accentText}`}>
-                ${variant.price.amount}
-              </span>
-              <span className="text-sm text-neutral-400">
-                {variant.price.currency} · {t("price.taxLabel")}
+            <div className="my-3 flex flex-col items-center gap-4">
+              <div className="flex items-end gap-2">
+                <span className={`text-7xl font-thin text-white`}>
+                  {variant.price.amount}
+                </span>
+                <span className={`text-5xl mb-1 font-thin text-white`}>
+                  {variant.price.currency}
+                </span>
+              </div>
+              <span className={`text-xl font-thin ${theme.accentText}`}>
+                ({t("price.taxLabel")})
               </span>
             </div>
           )}
-
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 sm:mb-22">
+          <div className="flex flex-col sm:flex-row items-center gap-8 pt-8">
             <motion.a
               variants={waterfallItem}
               initial="hidden"
@@ -220,16 +224,21 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => track.whatsappClick({ source: "charger_buy_cta", charger: variant.slug })}
+              onClick={() =>
+                track.whatsappClick({
+                  source: "charger_buy_cta",
+                  charger: variant.slug,
+                })
+              }
               className={`
                 flex items-center justify-center gap-2
                 px-6 py-3.5 rounded-xl w-full sm:w-auto
-                ${theme.accentBg} text-black font-semibold text-sm
+                ${theme.accentBg} text-black uppercase text-xs tracking-wide font-medium
                 ${theme.accentHover}
                 transition-all hover:-translate-y-0.5
               `}
             >
-              <FaWhatsapp className="size-4" />
+              <FaWhatsapp className="size-5" />
               {t("cta.whatsapp")}
             </motion.a>
 
@@ -252,7 +261,6 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
               {t("cta.manual")}
             </motion.a>
           </div>
-
         </div>
       </motion.div>
     </section>

@@ -98,7 +98,9 @@
         "taxLabel": "IVA Inc.",
 
         "cta": {
-          "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?"
+          "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
+          "buy": "Quiero mi cargador por {price}",
+          "buyMessage": "Hola! Quiero comprar mi cargador {model}"
         },
 
         "features": {

@@ -98,7 +98,9 @@
         "taxLabel": "VAT Incl.",
 
         "cta": {
-          "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?"
+          "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?",
+          "buy": "I want this charger for {price}",
+          "buyMessage": "Hello! I want to buy the {model} charger"
         },
 
         "features": {
@@ -400,7 +402,7 @@
     "pro": {
       "stat1Title": "More than one vehicle",
       "stat1Description": "Enough power to charge more than one EV at home.",
-      "stat2Title": "3× more power",
+      "stat2Title": "3× more power output",
       "stat2Description": "Charge up to 3× faster than the 7kW model.",
       "stat3Title": "1-Year Warranty",
       "stat3Description": "Covered when installed by a UTE-certified technician."

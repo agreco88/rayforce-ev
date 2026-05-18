@@ -62,9 +62,9 @@ export default function HomePage() {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
-        <HomeChargersSection id="cargadores" />{" "}
-        <HomeStandSection id="columna" />
+        <HomeChargersSection id="cargadores" />
         <FooterCTA />
+        <HomeStandSection id="columna" />
         <CompatibilitySection id="compatibilidad" />
         <HomeBenefitsSection id="beneficios" />
         <HomeFaqSection id="faq" />

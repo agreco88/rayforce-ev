@@ -4,6 +4,7 @@ import { AppButton } from "@/components/ui/wrappers/AppButton";
 import { useTranslations } from "next-intl";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useTrack } from "@/lib/analytics";
+import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 
 const WHATSAPP_NUMBER = "598092041709";
 
@@ -16,7 +17,10 @@ export function FooterCTA() {
   )}`;
 
   return (
-    <div id="contacto" className="mx-auto max-w-4xl pt-18 text-center">
+    <div
+      id="contacto"
+      className="mx-auto max-w-4xl py-18 md:pb-28 px-4 sm:px-0 text-center relative"
+    >
       <h3>{t("eyebrow")}</h3>
       <h2 className="my-4!">{t("title")}</h2>
       <p className="mx-auto mt-6 max-w-xl text-base text-neutral-400">

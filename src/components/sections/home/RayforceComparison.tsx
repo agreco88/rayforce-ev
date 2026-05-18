@@ -3,14 +3,17 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { GiElectricalSocket } from "react-icons/gi";
+import { FaWhatsapp } from "react-icons/fa";
 import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";
 import { cn } from "@/lib/utils";
+import { useTrack } from "@/lib/analytics";
 
 /* ------------------ Types ------------------ */
 
 type Theme = {
   accentText: string;
   accentBg: string;
+  accentHover: string;
   accentBorder: string;
   glow: string;
 };
@@ -41,6 +44,8 @@ type Row =
 type Props = {
   theme: Theme;
   powerKw: number;
+  price?: { currency: string; amount: number };
+  variantPublicName?: string;
 };
 
 /* ------------------ Config ------------------ */
@@ -136,8 +141,15 @@ function Cell({
 
 /* ------------------ Component ------------------ */
 
-export default function RayforceComparison({ theme, powerKw }: Props) {
+const WHATSAPP_NUMBER = "59892041709";
+
+export default function RayforceComparison({ theme, powerKw, price, variantPublicName }: Props) {
   const rows = getRows(powerKw);
+  const track = useTrack();
+
+  const whatsappHref = variantPublicName
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Quiero comprar mi cargador ${variantPublicName}`)}`
+    : `https://wa.me/${WHATSAPP_NUMBER}`;
 
   return (
     <section className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
@@ -209,6 +221,32 @@ export default function RayforceComparison({ theme, powerKw }: Props) {
             })}
           </motion.div>
         ))}
+
+        {/* Buy CTA row */}
+        {price && (
+          <div className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-6 border-b border-neutral-200 dark:border-neutral-800">
+            <span />
+            <span />
+            <div className="flex justify-center">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track.whatsappClick({ source: "comparison_buy_cta", charger: variantPublicName })}
+                className={cn(
+                  "flex items-center gap-2 px-4 py-2.5 rounded-xl",
+                  "text-black font-semibold text-xs sm:text-sm",
+                  "transition-all duration-200",
+                  theme.accentBg,
+                  theme.accentHover,
+                )}
+              >
+                <FaWhatsapp className="size-4 shrink-0" />
+                <span>Comprar por ${price.amount}</span>
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* Images */}
         <div className="mt-8 sm:mt-20 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">

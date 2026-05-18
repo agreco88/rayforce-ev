@@ -83,7 +83,6 @@ export function ChargerModelHero({ variant, config }: Props) {
             background: `radial-gradient(circle at 80% 50%, ${theme.glow}, transparent 70%)`,
           }}
         />
-
       </div>
 
       {/* Grid */}
@@ -157,17 +156,20 @@ export function ChargerModelHero({ variant, config }: Props) {
               </h1>
 
               {variant.price && (
-                <div className="mt-3 flex items-baseline gap-2">
-                  <span className={`text-5xl font-bold ${theme.accentText}`}>
-                    ${variant.price.amount}
+                <div className="my-3 flex items-baseline gap-2">
+                  <span className={`text-4xl font-thin ${theme.accentText}`}>
+                    {variant.price.amount}
                   </span>
-                  <span className="text-sm text-neutral-400">
-                    {variant.price.currency} · {t("price.taxLabel")}
+                  <span className={`text-4xl font-thin ${theme.accentText}`}>
+                    {variant.price.currency}
+                  </span>
+                  <span className="text-base text-neutral-400">
+                    ({t("price.taxLabel")})
                   </span>
                 </div>
               )}
 
-              <span className="text-neutral-400 text-base leading-relaxed max-w-lg">
+              <span className="text-neutral-400 text-base leading-relaxed max-w-lg ">
                 {t(`variants.${variant.slug}.description`)}
               </span>
             </div>
@@ -186,7 +188,12 @@ export function ChargerModelHero({ variant, config }: Props) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => track.whatsappClick({ source: "charger_buy_cta", charger: variant.slug })}
+                onClick={() =>
+                  track.whatsappClick({
+                    source: "charger_buy_cta",
+                    charger: variant.slug,
+                  })
+                }
                 className={`
                   flex items-center justify-center gap-2
                   px-6 py-3.5 rounded-xl

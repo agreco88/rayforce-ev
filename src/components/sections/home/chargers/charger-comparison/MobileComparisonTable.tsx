@@ -1,14 +1,31 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { FaWhatsapp } from "react-icons/fa";
 
 import type { Product } from "@/lib/types/product";
 
 import { renderFeatureValue } from "@/lib/formatFeatureValue";
+import { useTrack } from "@/lib/analytics";
 
-const VARIANT_THEME: Record<string, { price: string; check: string }> = {
-  residencial: { price: "text-sky-400", check: "text-sky-400" },
-  comercial: { price: "text-green-400", check: "text-green-400" },
+const WHATSAPP_NUMBER = "59892041709";
+
+const VARIANT_THEME: Record<
+  string,
+  { price: string; check: string; accentBg: string; accentHover: string }
+> = {
+  residencial: {
+    price: "text-sky-400",
+    check: "text-sky-400",
+    accentBg: "bg-sky-400",
+    accentHover: "hover:bg-sky-300",
+  },
+  comercial: {
+    price: "text-green-400",
+    check: "text-green-400",
+    accentBg: "bg-green-500",
+    accentHover: "hover:bg-green-400",
+  },
 };
 
 type Props = {
@@ -17,12 +34,7 @@ type Props = {
 
 export function MobileComparisonTable({ product }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection.ComparisonTable");
-
-  const whatsappNumber = "59892041709";
-
-  const message = encodeURIComponent(t("cta.message"));
-
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
+  const track = useTrack();
 
   return (
     <div className="lg:hidden">
@@ -124,6 +136,42 @@ export function MobileComparisonTable({ product }: Props) {
             </div>
           </div>
         ))}
+
+        {/* Buy CTA row */}
+        <div className="grid grid-cols-2 mt-6 border-t border-neutral-800">
+          {product.variants.map((variant) => {
+            const variantTheme = VARIANT_THEME[variant.id];
+            if (!variantTheme || typeof variant.price !== "number") return null;
+            const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+              t("cta.buyMessage", { model: variant.name }),
+            )}`;
+            return (
+              <div
+                key={`cta-${variant.id}`}
+                className="flex items-center justify-center p-4"
+              >
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track.whatsappClick({
+                      source: "comparison_table_buy_cta",
+                      charger: variant.name,
+                    })
+                  }
+                  className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-neutral-900 text-lg tracking-tight text-center transition-all duration-200 ${variantTheme.accentBg} ${variantTheme.accentHover}`}
+                >
+                  <FaWhatsapp className="size-8 sm:size-4  shrink-0" />
+                  <span>
+                    {t("cta.buy", { price: `USD${variant.price}` })}{" "}
+                    {t("taxLabel")}
+                  </span>
+                </a>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

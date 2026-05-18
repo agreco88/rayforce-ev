@@ -64,14 +64,14 @@ export function ChargerModelHeroStats({ theme, variant }: Props) {
         return (
           <div
             key={item.title}
-            className="flex flex-col items-center gap-2 flex-1 sm:py-0 w-full sm:w-fit"
+            className="flex flex-col items-center  gap-2 flex-1 sm:py-0 w-full sm:w-fit"
           >
             {/* Icon + Title */}
             <div
               className={`${theme.accentText} flex flex-col gap-2 items-center sm:items-center`}
             >
               <Icon className="size-8 stroke-[1.5]" />
-              <h4 className="text-white font-medium text-center sm:text-center text-sm sm:text-lg">
+              <h4 className="text-white font-medium h-[2lh] text-center sm:text-center text-sm sm:text-lg">
                 {item.title}
               </h4>
               {/* Divider */}

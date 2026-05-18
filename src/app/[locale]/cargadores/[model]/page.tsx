@@ -132,6 +132,8 @@ export default async function ChargerDetailPage({ params }: Props) {
       <RayforceComparison
         theme={config.theme}
         powerKw={config.charger.powerKw}
+        price={variant.price}
+        variantPublicName={variant.publicName}
       />{" "}
       {/* App Highlights Desktop */}
       <div className="">
