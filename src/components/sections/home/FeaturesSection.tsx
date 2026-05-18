@@ -3,8 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { AppButton } from "@/components/ui/wrappers/AppButton";
 import { Link } from "@/i18n/navigation";
-import EvPlug from "../../../../public/images/ev-plug.svg";
-import SocketTypeTwo from "../../../../public/images/socket-type-2.svg";
+import SocketTypeTwo from "../../../../public/images/icons/socket-type-2.svg";
 
 import { motion } from "framer-motion";
 import {
@@ -59,7 +58,7 @@ export function FeaturesRayforce() {
   ];
 
   return (
-    <section className="w-full pt-16 md:pt-20 lg:pt-24 px-6 sm:px-0 bg-neutral-950 relative">
+    <section className="w-full py-16 md:py-20 lg:py-24 px-6 sm:px-0 bg-neutral-950 relative">
       {/* Background Grid (keep your premium feel) */}
       <div
         className="absolute inset-0 -z-0 opacity-80"
@@ -76,7 +75,7 @@ export function FeaturesRayforce() {
       />
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="mb-12 md:mb-16">
+        <div className="my-12 md:my-16">
           <div className="flex flex-col max-w-3xl">
             <motion.h3
               initial={{ opacity: 0, y: 10 }}

@@ -1,12 +1,45 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
-import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
-import { HomeChargersSection } from "@/components/sections/home/chargers/HomeChargersComparison";
-import { HomeBenefitsSection } from "@/components/sections/home/benefits/HomeBenefitsSection";
-import { HomeStandSection } from "@/components/sections/home/stand/HomeStandSection";
-import { HomeFaqSection } from "@/components/sections/home/faq/HomeFaqSection";
-import { Footer } from "@/components/sections/contact-footer/Footer";
+import HashScrollOnMount from "@/components/HashScrollOnMount";
+
+const HomeChargersSection = dynamic(() =>
+  import("@/components/sections/home/chargers/HomeChargersComparison").then(
+    (m) => ({ default: m.HomeChargersSection }),
+  ),
+);
+
+const HomeBenefitsSection = dynamic(() =>
+  import("@/components/sections/home/benefits/HomeBenefitsSection").then(
+    (m) => ({ default: m.HomeBenefitsSection }),
+  ),
+);
+
+const HomeStandSection = dynamic(() =>
+  import("@/components/sections/home/stand/HomeStandSection").then((m) => ({
+    default: m.HomeStandSection,
+  })),
+);
+
+const HomeFaqSection = dynamic(() =>
+  import("@/components/sections/home/faq/HomeFaqSection").then((m) => ({
+    default: m.HomeFaqSection,
+  })),
+);
+
+const CompatibilitySection = dynamic(() =>
+  import("@/components/pages/shared/CompatibilitySection").then((m) => ({
+    default: m.CompatibilitySection,
+  })),
+);
+
+const Footer = dynamic(() =>
+  import("@/components/sections/contact-footer/Footer").then((m) => ({
+    default: m.Footer,
+  })),
+);
 
 export async function generateMetadata({
   params,
@@ -25,13 +58,16 @@ export async function generateMetadata({
 export default function HomePage() {
   return (
     <main className="bg-neutral-950">
+      <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
-      <HomeChargersSection id="cargadores" />
-      <HomeBenefitsSection id="beneficios" />
-      <HomeStandSection id="columna" />
-      <HomeFaqSection id="faq" />
-      <CompatibilitySection id="compatibilidad" />
-      <Footer />
+      <Suspense fallback={null}>
+        <HomeChargersSection id="cargadores" />
+        <HomeBenefitsSection id="beneficios" />
+        <HomeStandSection id="columna" />
+        <HomeFaqSection id="faq" />
+        <CompatibilitySection id="compatibilidad" />
+        <Footer />
+      </Suspense>
     </main>
   );
 }

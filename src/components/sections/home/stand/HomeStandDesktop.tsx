@@ -23,7 +23,7 @@ export function HomeStandDesktop() {
             lg:h-[600px]
             xl:h-[840px]
             2xl:h-[1280px]
-            max-h-[1280px]
+            max-h-[840px]
             w-full
             overflow-hidden
           "
@@ -31,7 +31,7 @@ export function HomeStandDesktop() {
           {/* IMAGE */}
           <div className="absolute inset-0 flex justify-center bg-neutral-950">
             <img
-              src="/images/stand-9.png"
+              src="/images/stand/stand-9.png"
               alt={t("title")}
               className="
                 h-full

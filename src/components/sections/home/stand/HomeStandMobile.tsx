@@ -25,7 +25,7 @@ export function HomeStandMobile() {
         {/* IMAGE */}
         <div className="absolute inset-0 bg-neutral-950">
           <img
-            src="/images/stand-9.png"
+            src="/images/stand/stand-9.png"
             alt={t("title")}
             className="
               h-full

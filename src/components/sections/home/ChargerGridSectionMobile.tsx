@@ -18,7 +18,7 @@ const CHARGERS = [
   {
     title: "RESIDENCIAL",
     power: "7.4kW",
-    image: "/images/banners/chargers/res.png",
+    image: "/assets/images/banners/charger-residential.png",
     slug: "bs20-bc-7kw",
 
     accent: "text-sky-400",
@@ -33,26 +33,9 @@ const CHARGERS = [
   },
 
   {
-    title: "RESIDENCIAL+",
-    power: "11.0kW",
-    image: "/images/banners/chargers/res+.png",
-    slug: "bs20-bc-11kw",
-
-    accent: "text-green-400",
-    glow: "from-green-500/20",
-    bullet: "bg-green-400",
-
-    bullets: [
-      "Carga flexible día y noche",
-      "Ideal para 2 o más vehículos",
-      "Equilibrio entre potencia y consumo",
-    ],
-  },
-
-  {
-    title: "INDUSTRIAL",
+    title: "COMERCIAL",
     power: "22.0kW",
-    image: "/images/banners/chargers/ind.png",
+    image: "/assets/images/banners/charger-industrial.png",
     slug: "bs20-bc-22kw",
 
     accent: "text-orange-400",
@@ -124,7 +107,7 @@ export function ChargerBanners({ id }: { id?: string }) {
             text-neutral-400
           "
         >
-          Descubrí nuestra línea de cargadores Wallbox de 7kW, 11kW y 22kW.
+          Descubrí nuestra línea de cargadores Wallbox de 7kW y 22kW.
         </motion.p>
       </motion.div>
 

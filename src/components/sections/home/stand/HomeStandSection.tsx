@@ -1,6 +1,3 @@
-"use client";
-
-import { useIsMobile } from "@/hooks/useIsMobile";
 import { HomeStandMobile } from "./HomeStandMobile";
 import { HomeStandDesktop } from "./HomeStandDesktop";
 
@@ -9,12 +6,6 @@ type Props = {
 };
 
 export function HomeStandSection({ id }: Props) {
-  const isMobile = useIsMobile();
-
-  if (isMobile === null) {
-    return null;
-  }
-
   return (
     <section
       id={id}
@@ -23,7 +14,12 @@ export function HomeStandSection({ id }: Props) {
         bg-neutral-950
       "
     >
-      {isMobile ? <HomeStandMobile /> : <HomeStandDesktop />}
+      <div className="hidden lg:block">
+        <HomeStandDesktop />
+      </div>
+      <div className="lg:hidden">
+        <HomeStandMobile />
+      </div>
     </section>
   );
 }

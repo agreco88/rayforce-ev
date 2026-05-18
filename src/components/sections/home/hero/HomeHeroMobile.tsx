@@ -5,6 +5,10 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { AppButton } from "@/components/ui/wrappers/AppButton";
+import { FaWhatsapp } from "react-icons/fa6";
+
+const WHATSAPP_NUMBER = "598092041709";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 
@@ -15,8 +19,7 @@ function Feature({ title, subtitle }: { title: string; subtitle: string }) {
         flex flex-col
         rounded-2xl
         border border-white/10
-        bg-black/30
-        backdrop-blur-md
+        bg-black/80
 
         px-3 py-3
       "
@@ -62,8 +65,10 @@ export function HomeHeroMobile({ id }: { id?: string }) {
       {/* ---------------- IMAGE ---------------- */}
       <div className="absolute inset-0">
         <img
-          src="/images/banners/rayforce-charging.png"
+          src="/assets/images/banners/rayforce-charging.avif"
           alt="Rayforce EV Charger"
+          fetchPriority="high"
+          decoding="sync"
           className="
             h-full
             w-full
@@ -146,9 +151,8 @@ export function HomeHeroMobile({ id }: { id?: string }) {
             Carga inteligente para Uruguay
           </motion.span> */}
 
-          {/* Title */}
-          <motion.h1
-            variants={waterfallItem}
+          {/* Title — plain element, no animation: LCP target must paint immediately */}
+          <h1
             className="
               text-4xl
               md:text-6xl
@@ -156,11 +160,10 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               md:leading-[1.4]
               tracking-tight
               font-light
-          
             "
           >
             {t("title")}
-          </motion.h1>
+          </h1>
 
           {/* Description */}
           <motion.p
@@ -195,22 +198,15 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           {/* CTA */}
           <motion.div
             variants={waterfallItem}
-            className="
-              mt-8
-
-              flex flex-col
-              gap-3
-            "
+            className="mt-8 flex flex-col gap-3"
           >
             <Button
               asChild
               className="
                 h-14
                 rounded-2xl
-
                 bg-green-500
                 hover:bg-green-400
-
                 text-black
                 font-medium
               "
@@ -218,18 +214,24 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               <Link href="/cargadores">{t("ctaPrimary")}</Link>
             </Button>
 
+            <AppButton
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("ctaWhatsappMessage"))}`}
+              external
+              className="group h-14 rounded-2xl"
+              icon={<FaWhatsapp className="size-4 ml-1" />}
+            >
+              {t("ctaWhatsapp")}
+            </AppButton>
+
             <Button
               asChild
               variant="outline"
               className="
                 h-14
                 rounded-2xl
-
                 border-white/10
-                bg-black/20
-                backdrop-blur-md
-
-                hover:bg-white/5
+                bg-neutral-900
+                hover:bg-neutral-800
               "
             >
               <Link href="/#compatibilidad">{t("ctaTertiary")}</Link>

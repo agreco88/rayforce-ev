@@ -62,7 +62,7 @@ export function HeroMobile({ id }: { id?: string }) {
       {/* ---------------- IMAGE ---------------- */}
       <div className="absolute inset-0">
         <img
-          src="/images/banners/rayforce-charging.png"
+          src="/assets/images/banners/rayforce-charging.avif"
           alt="Rayforce EV Charger"
           className="
             h-full

@@ -36,35 +36,35 @@ const FEATURES: Feature[] = [
     icon: Activity,
     title: "Monitoreo en tiempo real",
     description: "Visualizá potencia, corriente y estado de carga en vivo.",
-    image: "/images/app/realtime.webp",
+    image: "/images/app/features/realtime.webp",
   },
 
   {
     icon: Clock,
     title: "Historial de carga",
     description: "Accedé a registros completos de cada sesión.",
-    image: "/images/app/history.webp",
+    image: "/images/app/features/history.webp",
   },
 
   {
     icon: Bell,
     title: "Notificaciones inteligentes",
     description: "Recibí alertas automáticas y eventos importantes.",
-    image: "/images/app/notifications.webp",
+    image: "/images/app/features/notifications.webp",
   },
 
   {
     icon: RefreshCw,
     title: "Actualizaciones remotas",
     description: "Mantené tu cargador actualizado desde la app.",
-    image: "/images/app/firmware.webp",
+    image: "/images/app/features/firmware.webp",
   },
 
   {
     icon: Settings2,
     title: "Configuración avanzada",
     description: "Gestioná parámetros y preferencias fácilmente.",
-    image: "/images/app/settings.webp",
+    image: "/images/app/features/settings.webp",
   },
 ];
 
@@ -321,17 +321,25 @@ export function AppHighlightsMobile({ theme }: { theme: Theme }) {
           </h3>
 
           <div className="flex flex-wrap gap-3">
-            <a href="#">
+            <a
+              href="https://apps.apple.com/us/app/evsemaster/id1474532183"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
-                src="/images/device/appstore.png"
+                src="/images/store/appstore.png"
                 alt="App Store"
                 className="h-11 w-auto"
               />
             </a>
 
-            <a href="#">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.evsemaster.dev&hl=en&pli=1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
-                src="/images/device/playstore.webp"
+                src="/images/store/playstore.webp"
                 alt="Google Play"
                 className="h-11 w-auto"
               />

@@ -120,7 +120,7 @@ export function RegulatorySection({ id }: { id?: string }) {
                 "
               >
                 <Image
-                  src="/images/post-bg.webp"
+                  src="/images/partners/post-bg.webp"
                   alt="Instalación certificada de cargadores eléctricos en Uruguay"
                   fill
                   className="object-cover"
@@ -138,7 +138,7 @@ export function RegulatorySection({ id }: { id?: string }) {
               >
                 <div className="relative w-full h-full">
                   <Image
-                    src="/images/logo-ursea.webp"
+                    src="/images/partners/logo-ursea.webp"
                     alt="URSEA Uruguay regulación energética"
                     fill
                     className="object-contain rounded-2xl"
@@ -156,7 +156,7 @@ export function RegulatorySection({ id }: { id?: string }) {
               >
                 <div className="relative w-full h-full">
                   <Image
-                    src="/images/logo-ute.webp"
+                    src="/images/partners/logo-ute.webp"
                     alt="UTE empresa estatal electricidad Uruguay"
                     fill
                     className="object-contain rounded-2xl"

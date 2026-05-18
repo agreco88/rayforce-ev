@@ -17,7 +17,7 @@ const CHARGERS = [
   {
     key: "residential",
     power: "7.4kW",
-    image: "/images/banners/chargers/res.png",
+    image: "/assets/images/chargers/bs20-bc-7kw-card.avif",
     slug: "bs20-bc-7kw",
 
     accent: "text-sky-400",
@@ -26,25 +26,14 @@ const CHARGERS = [
   },
 
   {
-    key: "mid",
-    power: "11.0kW",
-    image: "/images/banners/chargers/res+.png",
-    slug: "bs20-bc-11kw",
+    key: "pro",
+    power: "22.0kW",
+    image: "/assets/images/chargers/bs20-bc-22kw-card.avif",
+    slug: "bs20-bc-22kw",
 
     accent: "text-green-400",
     glow: "from-green-500/20",
     bullet: "bg-green-400",
-  },
-
-  {
-    key: "pro",
-    power: "22.0kW",
-    image: "/images/banners/chargers/ind.png",
-    slug: "bs20-bc-22kw",
-
-    accent: "text-orange-400",
-    glow: "from-orange-500/20",
-    bullet: "bg-orange-400",
   },
 ] as const;
 
@@ -134,7 +123,7 @@ export function HomeChargersMobile({ id }: { id?: string }) {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="flex flex-col gap-4"
+        className="grid sm:grid-cols-2 gap-4 w-full"
       >
         {CHARGERS.map((charger) => {
           const highlights = t.raw(
@@ -142,14 +131,18 @@ export function HomeChargersMobile({ id }: { id?: string }) {
           ) as string[];
 
           return (
-            <motion.div key={charger.slug} variants={waterfallItem}>
+            <motion.div
+              key={charger.slug}
+              variants={waterfallItem}
+              className="flex"
+            >
               <Link
                 href={`/cargadores/${charger.slug}`}
                 className="
                   group
                   relative
 
-                  flex flex-col
+                  flex flex-col w-full
 
                   overflow-hidden
                   rounded-xl
@@ -178,12 +171,13 @@ export function HomeChargersMobile({ id }: { id?: string }) {
                   className="
                     absolute
 
+                    
                     right-[-20%]
-                    top-1/3
+                    top-1/2
 
-                    -translate-y-1/3
+                    -translate-y-1/2
 
-                    opacity-20
+                    opacity-50
 
                     transition-all duration-500
 
@@ -199,6 +193,7 @@ export function HomeChargersMobile({ id }: { id?: string }) {
                     className="
                       h-auto
                       md:w-screen
+                      scale-x-[-1]
                     "
                   />
                 </div>

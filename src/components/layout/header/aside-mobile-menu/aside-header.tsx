@@ -14,13 +14,12 @@ export default function AsideHeader({ onClose }: AsideHeaderProps) {
   return (
     <header
       aria-label={tA11y("mobileMenuHeader")}
-      className="
-        h-16
-        pt-4 px-6
-      "
+      className="py-2 px-4 sm:px-0"
     >
-      <div className="flex h-16  items-center justify-between px-0 sm:px-6 lg:px-8">
-        <HeaderLogo aria-label={tA11y("logo")} />
+      <div className="flex items-center justify-between my-2">
+        <div className="ml-1.5 sm:ml-2">
+          <HeaderLogo aria-label={tA11y("logo")} />
+        </div>
         <HamburgerButton open onClick={onClose} />
       </div>
     </header>

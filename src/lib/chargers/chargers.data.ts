@@ -22,8 +22,8 @@ export const CHARGER_FAMILIES: ChargerFamily[] = [
     description:
       "La línea BS20 ofrece soluciones de carga para autos eléctricos con control desde app, instalación mural y versiones monofásicas y trifásicas.",
 
-    coverImage: "/images/chargers/bs20/cover.webp",
-    gallery: ["/images/chargers/bs20/01.webp", "/images/chargers/bs20/02.webp"],
+    coverImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
+    gallery: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
 
     useCases: ["home", "office", "commercial"],
 
@@ -49,8 +49,8 @@ export const CHARGER_FAMILIES: ChargerFamily[] = [
 
         badges: ["Monofásico", "Tipo 2", "App", "IP65"],
 
-        heroImage: "/images/7w/7w-hero-2.png",
-        images: ["/images/7w/images/03.png"],
+        heroImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
+        images: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
 
         specs: {
           maxPowerKw: 7,
@@ -77,64 +77,25 @@ export const CHARGER_FAMILIES: ChargerFamily[] = [
       },
 
       {
-        key: "bs20-bc-11kw-app",
-        slug: "bs20-bc-11kw",
-        modelCode: "BS20-BC-11KW-APP",
-
-        publicName: "Comercial 11kW",
-        shortName: "11kW",
-
-        headline: "Cargador eléctrico 11kW para autos en Uruguay",
-        subheadline: "Ideal para comercios y zonas de carga constante.",
-        description:
-          "Versión trifásica intermedia, ideal para oficinas y uso compartido.",
-
-        intendedUse: ["office", "commercial"],
-
-        badges: ["Trifásico", "Tipo 2", "App"],
-
-        heroImage: "/images/11w/hero-1.png",
-        images: ["/images/11w/01.png"],
-
-        specs: {
-          maxPowerKw: 11,
-          phaseType: "three",
-          connectorType: "type_2",
-          cableType: "integrated",
-          mountType: "wall",
-
-          nominalCurrentA: 16,
-          voltage: "380–400V",
-
-          ingressProtection: "IP65",
-
-          display: true,
-          appControl: true,
-          bluetooth: true,
-          rcdProtection: true,
-        },
-      },
-
-      {
         key: "bs20-bc-22kw-app",
         slug: "bs20-bc-22kw",
         modelCode: "BS20-BC-22KW-APP",
 
-        publicName: "Industrial EV 22kW",
+        publicName: "Comercial 22kW",
         shortName: "22kW",
 
         headline: "Cargador eléctrico 22kW para autos en Uruguay",
 
         description:
-          "Máxima potencia para empresas, flotas y cargas intensivas.",
-        subheadline: "Ideal para empresas y industrias de uso intensivo.",
+          "Máxima potencia para hogares con más de un auto o cuando necesitás cargar más rápido.",
+        subheadline: "Ideal para más de un vehículo o carga extra.",
 
-        intendedUse: ["commercial", "fleet"],
+        intendedUse: ["commercial"],
 
         badges: ["Trifásico", "Tipo 2", "App"],
 
-        heroImage: "/images/22w/hero-1.png",
-        images: ["/images/22w/01.png"],
+        heroImage: "/assets/images/chargers/bs20-bc-22kw-card.avif",
+        images: ["/assets/images/chargers/bs20-bc-22kw-card.avif"],
 
         specs: {
           maxPowerKw: 22,

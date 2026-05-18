@@ -28,21 +28,21 @@ const CHARGERS = [
     },
   },
 
-  {
-    key: "mid",
-    slug: "bs20-bc-11kw",
+  // {
+  //   key: "mid",
+  //   slug: "bs20-bc-11kw",
 
-    power: "11.0kW",
+  //   power: "11.0kW",
 
-    accent: "text-green-400",
+  //   accent: "text-green-400",
 
-    charger: {
-      powerKw: 11,
-      variant: "pro",
-      mode: "multi",
-      phases: 2,
-    },
-  },
+  //   charger: {
+  //     powerKw: 11,
+  //     variant: "pro",
+  //     mode: "multi",
+  //     phases: 2,
+  //   },
+  // },
 
   {
     key: "pro",
@@ -50,7 +50,7 @@ const CHARGERS = [
 
     power: "22.0kW",
 
-    accent: "text-orange-400",
+    accent: "text-green-400",
 
     charger: {
       powerKw: 22,
@@ -288,7 +288,7 @@ export default function HomeChargersDesktop({ id }: { id?: string }) {
                       tracking-tight
 
                       ${
-                        charger.key === "mid"
+                        charger.key === "residential"
                           ? "text-5xl"
                           : "text-4xl font-thin"
                       }

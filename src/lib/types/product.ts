@@ -3,6 +3,7 @@
 export type ChargerFeatureKey =
   | "power"
   | "phase"
+  | "connector"
   | "current"
   | "voltage"
   | "display"

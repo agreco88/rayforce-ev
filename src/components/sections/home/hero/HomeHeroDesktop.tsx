@@ -2,11 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa6";
 
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { HomeHeroFeatureStrip } from "./HomeHeroFeatureStrip";
+
+const WHATSAPP_NUMBER = "598092041709";
 
 export function HomeHeroDesktop({ id }: { id?: string }) {
   const t = useTranslations("HomePage.Hero");
@@ -26,8 +29,10 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
       <div className="absolute inset-0 flex justify-center">
         <div className="relative h-full">
           <img
-            src="/images/banners/rayforce-charging.png"
+            src="/assets/images/banners/rayforce-charging.avif"
             alt="Cargador EV Rayforce"
+            fetchPriority="high"
+            decoding="sync"
             className="
               h-full
               w-auto
@@ -120,9 +125,8 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             Carga inteligente para Uruguay
           </motion.span> */}
 
-          {/* Title */}
-          <motion.h1
-            variants={waterfallItem}
+          {/* Title — plain element, no animation: LCP target must paint immediately */}
+          <h1
             className="
               text-5xl
               lg:text-6xl
@@ -135,14 +139,14 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
               from-gray-50
               via-neutral-50
               to-stone-50
-             
+
               pb-2
               bg-clip-text
               text-transparent
             "
           >
             {t("title")}
-          </motion.h1>
+          </h1>
 
           {/* Description */}
           <motion.p
@@ -218,8 +222,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 className="
                   rounded-2xl
                   border border-neutral-800
-                  bg-neutral-950/70
-                  backdrop-blur-sm
+                  bg-neutral-900
                   px-4 py-4
                 "
               >
@@ -234,8 +237,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 className="
                   rounded-2xl
                   border border-neutral-800
-                  bg-neutral-950/70
-                  backdrop-blur-sm
+                  bg-neutral-900
                   px-4 py-4
                 "
               >
@@ -250,8 +252,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 className="
                   rounded-2xl
                   border border-neutral-800
-                  bg-neutral-950/70
-                  backdrop-blur-sm
+                  bg-neutral-900
                   px-4 py-4
                 "
               >
@@ -266,37 +267,32 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
 
           {/* CTA */}
           <motion.div
-            variants={waterfallItem}
-            className="
-              flex gap-4
-              mt-12
-            "
+            variants={waterfallList}
+            className="flex flex-wrap items-center gap-3 mt-12"
           >
-            <Button
-              asChild
-              className="
-                px-8 py-6
-                bg-green-500
-                hover:bg-green-400
-                text-black
-              "
-            >
-              <Link href="/cargadores">{t("ctaPrimary")}</Link>
-            </Button>
-
-            <Button
-              asChild
-              variant="outline"
-              className="
-                px-8 py-6
-                border-neutral-700
-                bg-black/20
-                backdrop-blur-sm
-                hover:bg-white/5
-              "
-            >
-              <Link href="/#compatibilidad">{t("ctaTertiary")}</Link>
-            </Button>
+            <motion.div variants={waterfallItem}>
+              <Button
+                asChild
+                className="px-8 py-6 bg-green-500 hover:bg-green-400 text-black"
+              >
+                <Link href="/cargadores">{t("ctaPrimary")}</Link>
+              </Button>
+            </motion.div>
+            <motion.div variants={waterfallItem}>
+              <Button
+                asChild
+                className="px-8 py-6 bg-neutral-950/50 text-white"
+              >
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("ctaWhatsappMessage"))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp className="size-4" />
+                  {t("ctaWhatsapp")}
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

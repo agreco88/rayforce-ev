@@ -40,7 +40,7 @@ const FEATURES: Feature[] = [
     title: "Monitoreo en tiempo real",
     description:
       "Visualizá potencia, corriente y estado de carga en vivo desde tu celular.",
-    image: "/images/app/01.jpeg",
+    image: "/images/app/screenshots/01.jpeg",
   },
 
   {
@@ -48,7 +48,7 @@ const FEATURES: Feature[] = [
     title: "Historial de carga",
     description:
       "Accedé al consumo, duración y registros completos de cada sesión.",
-    image: "/images/app/02.jpeg",
+    image: "/images/app/screenshots/02.jpeg",
   },
 
   {
@@ -56,7 +56,7 @@ const FEATURES: Feature[] = [
     title: "Notificaciones inteligentes",
     description:
       "Recibí alertas automáticas sobre inicio, finalización o fallas de carga.",
-    image: "/images/app/03.jpeg",
+    image: "/images/app/screenshots/03.jpeg",
   },
 
   {
@@ -64,7 +64,7 @@ const FEATURES: Feature[] = [
     title: "Actualizaciones remotas",
     description:
       "Mantené tu cargador actualizado con nuevas funciones y mejoras.",
-    image: "/images/app/05.jpeg",
+    image: "/images/app/screenshots/05.jpeg",
   },
 
   {
@@ -72,7 +72,7 @@ const FEATURES: Feature[] = [
     title: "Configuración avanzada",
     description:
       "Gestioná parámetros, modos y preferencias directamente desde la app.",
-    image: "/images/app/06.jpeg",
+    image: "/images/app/screenshots/06.jpeg",
   },
 ];
 
@@ -473,27 +473,29 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
               gap-4
             "
           >
-            <a href="#" className="inline-block">
+            <a
+              href="https://apps.apple.com/us/app/evsemaster/id1474532183"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
               <img
-                src="/images/device/appstore.png"
+                src="/images/store/appstore.png"
                 alt="Descargar en App Store"
-                className="
-                  h-12 w-auto
-
-                  sm:h-14
-                "
+                className="h-12 w-auto sm:h-14"
               />
             </a>
 
-            <a href="#" className="inline-block">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.evsemaster.dev&hl=en&pli=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
               <img
-                src="/images/device/playstore.webp"
+                src="/images/store/playstore.webp"
                 alt="Disponible en Google Play"
-                className="
-                  h-12 w-auto
-
-                  sm:h-14
-                "
+                className="h-12 w-auto sm:h-14"
               />
             </a>
           </div>

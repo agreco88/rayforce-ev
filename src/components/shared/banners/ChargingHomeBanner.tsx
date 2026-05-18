@@ -12,7 +12,7 @@ export function ChargingHomeBanner() {
       <div className="relative max-w-[120rem] rounded-2xl z-50 overflow-hidden shadow-xl shadow-neutral-900/50 border-neutral-900 bg-gradient-to-tr from-neutral-950 via-neutral-950 to-neutral-900 border mx-auto flex justify-center gap-8">
         {/* Image */}
         <Image
-          src="/images/banners/home-charging.png"
+          src="/assets/images/banners/home-charging.png"
           alt="Cargador eléctrico en hogar"
           height={1000}
           width={1000}

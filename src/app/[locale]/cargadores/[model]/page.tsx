@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import RayforceComparison from "@/components/sections/home/RayforceComparison";
 import { AppHighlightsMobile } from "@/components/pages/shared/AppHighlightsMobile";
 import { AppHighlightsInteractive } from "@/components/pages/shared/AppHighlightsStatic";
@@ -9,6 +10,7 @@ import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySec
 import { ChargingHomeBanner } from "@/components/shared/banners/ChargingHomeBanner";
 
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
+import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 
@@ -24,26 +26,26 @@ const VARIANT_CONFIG = {
       mode: "single",
     },
     theme: {
-      accentText: "text-sky-500",
-      accentBg: "bg-sky-500",
-      accentHover: "hover:bg-sky-600",
-      divide: "divide-sky-500/10",
-      gradientLine: "from-transparent s via-sky-700 to-transparent",
-      accentSoft: "bg-sky-500/10",
-      accentBorder: "border-sky-500/30",
-      accentGradient: "from-sky-400 via-sky-500 to-teal-400",
+      accentText: "text-sky-400",
+      accentBg: "bg-sky-400",
+      accentHover: "hover:bg-sky-400",
+      divide: "divide-sky-400/10",
+      gradientLine: "from-transparent s via-sky-400 to-transparent",
+      accentSoft: "bg-sky-400/10",
+      accentBorder: "border-sky-400/30",
+      accentGradient: "from-sky-400 via-sky-400 to-teal-400",
       glow: "rgba(56,189,248,0.25)",
       glowStrong: "rgba(20,184,166,0.35)",
-      accentRing: "ring-sky-500",
+      accentRing: "ring-sky-400",
     },
   },
 
-  "11kw": {
+  "22kw": {
     charger: {
-      powerKw: 11,
+      powerKw: 22,
       variant: "pro",
       mode: "multi",
-      phases: 2,
+      phases: 3,
     },
     theme: {
       accentText: "text-green-500",
@@ -59,28 +61,6 @@ const VARIANT_CONFIG = {
       accentRing: "ring-green-500",
     },
   },
-
-  "22kw": {
-    charger: {
-      powerKw: 22,
-      variant: "pro",
-      mode: "multi",
-      phases: 3,
-    },
-    theme: {
-      accentText: "text-amber-500",
-      accentBg: "bg-amber-500",
-      accentHover: "hover:bg-amber-600",
-      divide: "divide-amber-500/10",
-      gradientLine: "from-transparent via-amber-500 to-transparent",
-      accentSoft: "bg-amber-500/10",
-      accentBorder: "border-orange-400/50 border-2",
-      accentGradient: "from-amber-400 via-amber-500 to-orange-400",
-      glow: "rgba(245,158,11,0.25)",
-      glowStrong: "rgba(251,191,36,0.35)",
-      accentRing: "ring-amber-500",
-    },
-  },
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -89,9 +69,26 @@ const VARIANT_CONFIG = {
 
 type Props = {
   params: Promise<{
+    locale: string;
     model: string;
   }>;
 };
+
+export async function generateStaticParams() {
+  return getAllChargerVariants().map((v) => ({ model: v.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, model } = await params;
+  const variant = getAllChargerVariants().find((v) => v.slug === model);
+  if (!variant) return {};
+  const key = variant.shortName.toLowerCase();
+  return generateLocaleMetadata({
+    locale,
+    route: `cargadores-${key}`,
+    path: `/cargadores/${model}`,
+  });
+}
 
 /* ------------------------------------------------------------------ */
 /* Page                                                               */
@@ -119,7 +116,7 @@ export default async function ChargerDetailPage({ params }: Props) {
   /* ---------------- Render ---------------- */
 
   return (
-    <section className="relative w-full z-0 bg-neutral-950 overflow-hidden border-b border-neutral-900">
+    <section className="relative w-full z-0  overflow-hidden border-b border-neutral-900">
       {/* Hero */}
       <div className="hidden lg:block" id="inicio">
         <ChargerModelHero variant={variant} config={config} />
@@ -138,9 +135,7 @@ export default async function ChargerDetailPage({ params }: Props) {
         <AppHighlightsInteractive theme={config.theme} />
       </div>
       {/* Compatibility */}
-      <div className="bg-black">
-        <CompatibilitySection theme={config.theme} id="compatibilidad" />
-      </div>
+      <CompatibilitySection theme={config.theme} id="compatibilidad" />
       {/* <ChargingHomeBanner /> */}
       <Footer />
     </section>

@@ -9,6 +9,11 @@ import HeaderLogo from "@/components/layout/header/header-logo";
 import { renderFeatureValue } from "@/lib/formatFeatureValue";
 import { Product } from "@/lib/types/product";
 
+const VARIANT_THEME: Record<string, { price: string; check: string; highlight: string }> = {
+  residencial: { price: "text-sky-400", check: "text-sky-400", highlight: "border-sky-900" },
+  comercial: { price: "text-green-400", check: "text-green-400", highlight: "border-green-900" },
+};
+
 type Props = {
   product: Product;
 };
@@ -20,7 +25,7 @@ export function DesktopComparisonTable({ product }: Props) {
     <div className="hidden lg:block">
       <div
         className="
-          grid grid-cols-[250px_repeat(3,1fr)]
+          grid grid-cols-[250px_repeat(2,1fr)]
           max-w-7xl mx-auto my-32
           overflow-hidden
           rounded-2xl
@@ -54,7 +59,7 @@ export function DesktopComparisonTable({ product }: Props) {
 
               ${
                 variant.highlight
-                  ? "border-x border-green-900 bg-neutral-900/40 shadow-inner shadow-neutral-950"
+                  ? `border-x ${VARIANT_THEME[variant.id]?.highlight ?? "border-green-900"} bg-neutral-900/40 shadow-inner shadow-neutral-950`
                   : ""
               }
             `}
@@ -71,13 +76,13 @@ export function DesktopComparisonTable({ product }: Props) {
             </span>
 
             <span
-              className="
+              className={`
                 text-4xl
                 font-thin
                 tracking-tighter
 
-                text-green-400
-              "
+                ${VARIANT_THEME[variant.id]?.price ?? "text-green-400"}
+              `}
             >
               USD {variant.price}
             </span>
@@ -136,7 +141,7 @@ export function DesktopComparisonTable({ product }: Props) {
           text-center
         "
               >
-                {renderFeatureValue(variant.values[feature.key])}
+                {renderFeatureValue(variant.values[feature.key], VARIANT_THEME[variant.id]?.check)}
               </div>
             ))}
           </div>

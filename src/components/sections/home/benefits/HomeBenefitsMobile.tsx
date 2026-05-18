@@ -10,7 +10,7 @@ import { Link } from "@/i18n/navigation";
 
 import { BENEFITS } from "../../BenefitsSection/benefits.data";
 import { HomeBenefitCard } from "./HomeBenefitCard";
-import { Fragment } from "react";
+
 
 export function HomeBenefitsMobile() {
   const t = useTranslations("HomePage.HomeBenefitsSection");
@@ -77,14 +77,13 @@ export function HomeBenefitsMobile() {
           flex-col gap-4
         "
       >
-        {BENEFITS.map((benefit, index) => (
-          <Fragment key={index}>
-            <HomeBenefitCard
-              {...benefit}
-              title={t(`items.${benefit.key}.title`)}
-              description={t(`items.${benefit.key}.description`)}
-            />
-          </Fragment>
+        {BENEFITS.map(({ key, ...rest }) => (
+          <HomeBenefitCard
+            key={key}
+            {...rest}
+            title={t(`items.${key}.title`)}
+            description={t(`items.${key}.description`)}
+          />
         ))}
       </div>
 
@@ -124,11 +123,9 @@ export function HomeBenefitsMobile() {
             w-full
 
             border-neutral-800
-            bg-black/20
+            bg-neutral-900
 
-            backdrop-blur-sm
-
-            hover:bg-white/5
+            hover:bg-neutral-800
           "
         >
           <Link href="/#compatibilidad">{t("cta.secondary")}</Link>

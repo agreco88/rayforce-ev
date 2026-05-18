@@ -26,7 +26,7 @@ export function Hero({ id }: { id?: string }) {
       <div className="absolute inset-0 flex justify-center">
         <div className="relative h-full">
           <img
-            src="/images/banners/rayforce-charging.png"
+            src="/assets/images/banners/rayforce-charging.avif"
             alt="Cargador EV Rayforce"
             className="
               h-full

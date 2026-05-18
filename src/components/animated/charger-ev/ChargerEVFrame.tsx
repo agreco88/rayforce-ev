@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ChargerEVScreen } from "./ChargerEVScreen";
 import HeaderLogo from "../../layout/header/header-logo";
 
@@ -13,9 +14,12 @@ type Props = {
 
 export function ChargerEVFrame({ powerKw, variant, mode, phases }: Props) {
   const isResidential = variant === "residential";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { margin: "0px 0px -100px 0px" });
 
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -71,10 +75,10 @@ export function ChargerEVFrame({ powerKw, variant, mode, phases }: Props) {
 
           {/* LED Strip */}
           <motion.div
-            animate={{ opacity: [0.3, 1, 0.3] }}
+            animate={isInView ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.3 }}
             transition={{
               duration: isResidential ? 2.5 : 2,
-              repeat: Infinity,
+              repeat: isInView ? Infinity : 0,
               ease: "easeInOut",
             }}
             className={`

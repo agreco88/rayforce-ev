@@ -13,11 +13,6 @@ const HIGHLIGHTS = {
     "Ideal para 1 vehículo",
     "Máximo ahorro energético",
   ],
-  mid: [
-    "Carga flexible día y noche",
-    "Ideal para 2 o más vehículos",
-    "Equilibrio entre potencia y consumo",
-  ],
   pro: [
     "Uso intensivo continuo",
     "Pensado para flotas y transporte",
@@ -86,9 +81,8 @@ export default function ChargerGridSection({ id }: { id?: string }) {
           variants={waterfallItem}
           className="my-6 sm:my-4 lg:w-2xl text-neutral-400 text-base sm:text-md"
         >
-          Descubrí nuestra línea de cargadores eléctricos tipo Wallbox de 7kW,
-          11kW y 22kW. Diseñados para hogares, comercios e industrias en
-          Uruguay.
+          Descubrí nuestra línea de cargadores eléctricos tipo Wallbox de 7kW y
+          22kW. Diseñados para hogares y empresas en Uruguay.
         </motion.p>
       </motion.div>
 
@@ -115,20 +109,6 @@ export default function ChargerGridSection({ id }: { id?: string }) {
             <CTA slug="bs20-bc-7kw" />
           </motion.div>
 
-          {/* 11kW */}
-          <motion.div
-            variants={waterfallItem}
-            className="flex flex-col gap-2 items-center"
-          >
-            <ChargerEV powerKw={11} variant="pro" mode="multi" phases={2} />
-            <div className="flex flex-col gap-1.5 items-center my-8">
-              <h3 className="text-xl text-green-400">Residencial+</h3>
-              <h4 className="text-5xl ">11.0kW</h4>
-            </div>{" "}
-            <Highlights items={HIGHLIGHTS.mid} />
-            <CTA slug="bs20-bc-11kw" />
-          </motion.div>
-
           {/* 22kW */}
           <motion.div
             variants={waterfallItem}
@@ -141,7 +121,7 @@ export default function ChargerGridSection({ id }: { id?: string }) {
               phases={3}
             />{" "}
             <div className="flex flex-col items-center my-4 gap-2">
-              <h3 className="text-lg text-green-400">Industrial</h3>
+              <h3 className="text-lg text-green-400">Comercial</h3>
               <h4 className="text-4xl font-thin ">22.0kW</h4>
             </div>{" "}
             <Highlights items={HIGHLIGHTS.pro} />

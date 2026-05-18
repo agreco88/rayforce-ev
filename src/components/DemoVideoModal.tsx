@@ -21,21 +21,18 @@ export function DemoVideoModal() {
       </DialogHeader>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           className="
-            bg-neutral-950!
-            flex flex-1 items-center justify-center
-            px-8 py-6
-            text-neutral-50
-            hover:text-neutral-100
-            hover:border-neutral-800
-            transition-all duration-400
-            w-full sm:w-auto
+            flex items-center gap-2
+            px-4 py-2
+            text-white/70 hover:text-white
+            hover:bg-white/5
+            transition-all duration-300
             cursor-pointer
           "
         >
-          <HiOutlinePlayCircle />
-          <span className="sm:ml-1.5">{t("cta")}</span>
+          <HiOutlinePlayCircle className="size-5" />
+          <span>{t("cta")}</span>
         </Button>
       </DialogTrigger>
 

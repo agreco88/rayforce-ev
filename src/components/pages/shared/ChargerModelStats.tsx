@@ -1,8 +1,8 @@
 "use client";
 
-import { Zap, Plug, ShieldCheck, Award, DropletIcon } from "lucide-react";
+import { Zap, Plug, Award, DropletIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import SocketTypeTwo from "../../../../public/images/type-2-socket.svg";
+import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";
 
 /* ------------------ Types ------------------ */
 type StatItem = {
@@ -46,21 +46,7 @@ function getStats(model: string): StatItem[] {
         { icon: Zap, value: "7.4kW", label: "Potencia máxima" },
 
         { icon: DropletIcon, value: "IP65", label: "Uso interior y exterior" },
-        { icon: Award, value: "2 años", label: "Garantía oficial" },
-      ];
-
-    case "bs20-bc-11kw":
-      return [
-        { icon: Plug, value: "Trifásico", sub: "400V · 16A" },
-        {
-          isCustom: true,
-          value: "Tipo 2",
-          label: "Conector estándar",
-        },
-        { icon: Zap, value: "11kW", label: "Potencia máxima" },
-
-        { icon: ShieldCheck, value: "IP65", label: "Uso interior y exterior" },
-        { icon: Award, value: "2 años", label: "Garantía oficial" },
+        { icon: Award, value: "1 año", label: "Con técnico certificado" },
       ];
 
     case "bs20-bc-22kw":
@@ -71,10 +57,10 @@ function getStats(model: string): StatItem[] {
           value: "Tipo 2",
           label: "Conector estándar",
         },
-        { icon: Zap, value: "22kW", label: "Potencia máxima" },
+        { icon: Zap, value: "22kW", label: "Cargá más de un auto" },
 
         { icon: DropletIcon, value: "IP65", label: "Uso interior y exterior" },
-        { icon: Award, value: "2 años", label: "Garantía oficial" },
+        { icon: Award, value: "1 año", label: "Con técnico certificado" },
       ];
 
     default:
@@ -122,13 +108,7 @@ export function ChargerModelStats({ model, theme }: Props) {
               >
                 {/* Icon */}
                 <div
-                  className={cn(
-                    "border-2 rounded-xl p-2.5 flex items-center justify-center",
-                    theme.accentBorder,
-                  )}
-                  style={{
-                    boxShadow: `0 0 20px ${theme.glow}`,
-                  }}
+                  className="border border-white/10 bg-white/[0.03] rounded-xl p-2.5 flex items-center justify-center"
                 >
                   {item.isCustom ? (
                     <div

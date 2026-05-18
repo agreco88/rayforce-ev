@@ -2,10 +2,18 @@
 
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
 import { ArrowDownToLine } from "lucide-react";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
+import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
+import { waterfallItem } from "@/lib/animation-variants";
+
+const SLUG_ACCENT: Record<string, string> = {
+  "bs20-bc-7kw": "text-sky-400",
+  "bs20-bc-22kw": "text-green-400",
+};
 
 /* ------------------------------------------------------------------ */
 /* Types                                                              */
@@ -49,6 +57,7 @@ type Props = {
 /* ------------------------------------------------------------------ */
 
 export function ChargerModelHero({ variant, config }: Props) {
+  const t = useTranslations("ChargerModelPage");
   const whatsappNumber = "59892041709";
   const { theme, charger } = config;
 
@@ -97,7 +106,7 @@ export function ChargerModelHero({ variant, config }: Props) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col gap-12 relative z-20 w-7xl mx-auto h-[1000px] justify-center items-start"
+        className="flex flex-col gap-12 relative z-20 flex-1 max-w-7xl mx-auto h-[1000px] justify-center items-start"
       >
         <div className="flex w-full">
           {/* LEFT */}
@@ -105,8 +114,8 @@ export function ChargerModelHero({ variant, config }: Props) {
             {/* Breadcrumb */}
             <AppBreadcrumb
               items={[
-                { label: "Inicio", href: "/" },
-                { label: "Cargadores", href: "/cargadores" },
+                { label: t("breadcrumb.home"), href: "/" },
+                { label: t("breadcrumb.chargers"), href: "/cargadores" },
                 {
                   label: (
                     <p
@@ -115,6 +124,18 @@ export function ChargerModelHero({ variant, config }: Props) {
                       {variant.slug.toUpperCase()}
                     </p>
                   ),
+                  dropdown: getAllChargerVariants()
+                    .filter((v) => v.slug !== variant.slug)
+                    .map((v) => ({
+                      href: `/cargadores/${v.slug}`,
+                      label: (
+                        <span
+                          className={`text-sm uppercase tracking-widest ${SLUG_ACCENT[v.slug] ?? "text-neutral-400"}`}
+                        >
+                          {v.slug.toUpperCase()}
+                        </span>
+                      ),
+                    })),
                 },
               ]}
             />
@@ -124,7 +145,7 @@ export function ChargerModelHero({ variant, config }: Props) {
               <p
                 className={`text-sm uppercase tracking-widest ${theme.accentText}`}
               >
-                Cargador residencial
+                {t(`eyebrow.${charger.variant}`)}
               </p>
 
               <h1 className="flex text-7xl gap-2">
@@ -135,41 +156,51 @@ export function ChargerModelHero({ variant, config }: Props) {
               </h1>
 
               <span className="text-neutral-400 text-base leading-relaxed max-w-lg">
-                {variant.description}
+                {t(`variants.${variant.slug}.description`)}
               </span>
             </div>
 
             {/* Stats */}
-            <ChargerModelHeroStats theme={theme} />
+            <ChargerModelHeroStats theme={theme} variant={charger.variant} />
 
             {/* CTA */}
-            <div className="flex items-center gap-6 mt-8">
-              <a
+            <div className="flex items-center gap-4 mt-8">
+              <motion.a
+                variants={waterfallItem}
+                initial="hidden"
+                animate="show"
                 href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                  `Hola! Quería consultar por el modelo ${variant.publicName}`,
+                  t("cta.whatsappMessage", { model: variant.publicName }),
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`
-                  flex items-center gap-2 px-6 py-3 rounded-xl
-                  ${theme.accentBg} text-black font-medium
+                  flex items-center justify-center gap-2
+                  px-6 py-3.5 rounded-xl
+                  ${theme.accentBg} text-black font-semibold text-sm
                   ${theme.accentHover}
-                  transition hover:translate-y-[-1px]
                 `}
               >
-                <FaWhatsapp className="size-5" />
-                Solicitar asesoramiento
-              </a>
+                <FaWhatsapp className="size-4" />
+                {t("cta.whatsapp")}
+              </motion.a>
 
-              <button
+              <motion.a
+                variants={waterfallItem}
+                initial="hidden"
+                animate="show"
+                href="/assets/docs/bs20-ficha-tecnica.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
-                  text-neutral-300 flex items-center cursor-pointer gap-2
-                  hover:text-white transition hover:underline underline-offset-4
+                  flex items-center gap-2
+                  text-sm text-neutral-400
+                  hover:text-white transition-colors
                 "
               >
-                <ArrowDownToLine />
-                Descargar ficha técnica
-              </button>
+                <ArrowDownToLine size={16} />
+                {t("cta.manual")}
+              </motion.a>
             </div>
           </div>
 

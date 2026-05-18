@@ -3,10 +3,18 @@
 import { motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { ArrowDownToLine } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { waterfallItem } from "@/lib/animation-variants";
 
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
+import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
+
+const SLUG_ACCENT: Record<string, string> = {
+  "bs20-bc-7kw": "text-sky-400",
+  "bs20-bc-22kw": "text-green-400",
+};
 
 /* ------------------------------------------------------------------ */
 /* Types                                                              */
@@ -50,13 +58,14 @@ type Props = {
 /* ------------------------------------------------------------------ */
 
 export function ChargerModelHeroMobile({ variant, config }: Props) {
+  const t = useTranslations("ChargerModelPage");
   const whatsappNumber = "59892041709";
   const { theme, charger } = config;
 
   return (
     <section
       className="
-        relative overflow-hidden
+        relative overflow-x-hidden
         border-b border-neutral-900
         min-h-screen
       "
@@ -103,8 +112,8 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
         <AppBreadcrumb
           className="mt-16 mb-8 flex justify-center"
           items={[
-            { label: "Inicio", href: "/" },
-            { label: "Cargadores", href: "/cargadores" },
+            { label: t("breadcrumb.home"), href: "/" },
+            { label: t("breadcrumb.chargers"), href: "/cargadores" },
             {
               label: (
                 <p
@@ -113,6 +122,18 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
                   {variant.slug.toUpperCase()}
                 </p>
               ),
+              dropdown: getAllChargerVariants()
+                .filter((v) => v.slug !== variant.slug)
+                .map((v) => ({
+                  href: `/cargadores/${v.slug}`,
+                  label: (
+                    <span
+                      className={`text-xs uppercase tracking-widest ${SLUG_ACCENT[v.slug] ?? "text-neutral-400"}`}
+                    >
+                      {v.slug.toUpperCase()}
+                    </span>
+                  ),
+                })),
             },
           ]}
         />
@@ -125,7 +146,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
           <p
             className={`text-xs uppercase tracking-[0.3em] ${theme.accentText}`}
           >
-            Cargador residencial
+            {t(`eyebrow.${charger.variant}`)}
           </p>
 
           {/* Title */}
@@ -139,11 +160,11 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             </h1>
 
             <p className="text-neutral-400 pt-2 leading-relaxed text-lg text-center max-w-[35ch]">
-              {variant.description}
+              {t(`variants.${variant.slug}.description`)}
             </p>
           </div>
           {/* Stats */}
-          <ChargerModelHeroStats theme={theme} />
+          <ChargerModelHeroStats theme={theme} variant={charger.variant} />
           {/* -------------------------------------------------------------- */}
           {/* Charger                                                       */}
           {/* -------------------------------------------------------------- */}
@@ -169,43 +190,54 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             />
 
             {/* Charger */}
-            <div className="scale-[1]">
+            <div className="scale-[0.85] sm:scale-[1] origin-top">
               <ChargerEV {...charger} />
             </div>
           </div>
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-6 mb-16 sm:mb-22">
-            <a
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 sm:mb-22">
+            <motion.a
+              variants={waterfallItem}
+              initial="hidden"
+              animate="show"
+              transition={{ delay: 0.35 }}
               href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `Hola! Quería consultar por el modelo ${variant.publicName}`,
+                t("cta.whatsappMessage", { model: variant.publicName }),
               )}`}
               target="_blank"
               rel="noopener noreferrer"
               className={`
                 flex items-center justify-center gap-2
-                px-6 py-4 rounded-2xl
-                ${theme.accentBg}
-                text-black font-medium
+                px-6 py-3.5 rounded-xl w-full sm:w-auto
+                ${theme.accentBg} text-black font-semibold text-sm
                 ${theme.accentHover}
-                transition
+                transition-all hover:-translate-y-0.5
               `}
             >
-              <FaWhatsapp className="size-5" />
-              Solicitar asesoramiento
-            </a>
+              <FaWhatsapp className="size-4" />
+              {t("cta.whatsapp")}
+            </motion.a>
 
-            <button
+            <motion.a
+              variants={waterfallItem}
+              initial="hidden"
+              animate="show"
+              transition={{ delay: 0.5 }}
+              href="/assets/docs/bs20-ficha-tecnica.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 flex items-center justify-center gap-2
-                text-neutral-300
-                py-2
+                text-sm text-neutral-400 hover:text-white
+                transition-colors py-2
               "
             >
-              <ArrowDownToLine size={18} />
-              Descargar ficha técnica
-            </button>
+              <ArrowDownToLine size={16} />
+              {t("cta.manual")}
+            </motion.a>
           </div>
+
         </div>
       </motion.div>
     </section>

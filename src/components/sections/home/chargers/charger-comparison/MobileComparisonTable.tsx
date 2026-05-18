@@ -6,6 +6,11 @@ import type { Product } from "@/lib/types/product";
 
 import { renderFeatureValue } from "@/lib/formatFeatureValue";
 
+const VARIANT_THEME: Record<string, { price: string; check: string }> = {
+  residencial: { price: "text-sky-400", check: "text-sky-400" },
+  comercial: { price: "text-green-400", check: "text-green-400" },
+};
+
 type Props = {
   product: Product;
 };
@@ -25,11 +30,10 @@ export function MobileComparisonTable({ product }: Props) {
       <div
         className="
           border border-neutral-800
-          bg-neutral-950/90
-          backdrop-blur
+          bg-neutral-950
         "
       >
-        <div className="grid grid-cols-3 text-xs">
+        <div className="grid grid-cols-2 text-xs">
           {product.variants.map((variant) => (
             <div
               key={variant.id}
@@ -54,12 +58,12 @@ export function MobileComparisonTable({ product }: Props) {
               </span>
 
               <span
-                className="
+                className={`
                   text-xl
                   font-bold
                   tracking-tighter
-                  text-green-400
-                "
+                  ${VARIANT_THEME[variant.id]?.price ?? "text-green-400"}
+                `}
               >
                 USD {variant.price}
               </span>
@@ -100,7 +104,7 @@ export function MobileComparisonTable({ product }: Props) {
             </div>
 
             {/* Values */}
-            <div className="grid grid-cols-3">
+            <div className="grid grid-cols-2">
               {product.variants.map((variant) => (
                 <div
                   key={`${variant.id}-${feature.key}`}
@@ -111,7 +115,10 @@ export function MobileComparisonTable({ product }: Props) {
                     text-center
                   "
                 >
-                  {renderFeatureValue(variant.values[feature.key])}
+                  {renderFeatureValue(
+                    variant.values[feature.key],
+                    VARIANT_THEME[variant.id]?.check,
+                  )}
                 </div>
               ))}
             </div>

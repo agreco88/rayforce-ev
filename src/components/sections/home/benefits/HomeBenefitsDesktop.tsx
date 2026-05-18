@@ -115,13 +115,11 @@ export function HomeBenefitsDesktop() {
           variant="outline"
           className="
             border-neutral-700
-            bg-black/20
+            bg-neutral-900
 
             px-8 py-6
 
-            backdrop-blur-sm
-
-            hover:bg-white/5
+            hover:bg-neutral-800
           "
         >
           <Link href="/#compatibilidad">{t("cta.secondary")}</Link>

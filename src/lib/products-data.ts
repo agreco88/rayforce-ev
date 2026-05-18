@@ -2,7 +2,7 @@
 /* Rayforce – Chargers catalogue                                      */
 /* ------------------------------------------------------------------ */
 
-export type ChargerKey = "residential" | "commercial" | "industrial";
+export type ChargerKey = "residential" | "commercial";
 
 export type PriceDefinition = {
   currency: "U$$";
@@ -38,20 +38,6 @@ export const CHARGERS: ChargerDefinition[] = [
   {
     key: "commercial",
     roleLabel: "Comercial",
-    modelLabel: "BS20-BB",
-    featured: false,
-    price: {
-      currency: "U$$",
-      amount: 828,
-      vatLabel: "IVA Inc",
-    },
-    powerKw: 11,
-    description:
-      "Cargador trifásico de 11 kW pensado para oficinas, edificios y uso compartido.",
-  },
-  {
-    key: "industrial",
-    roleLabel: "Industrial",
     modelLabel: "BS20-BC",
     featured: false,
     price: {
@@ -59,9 +45,9 @@ export const CHARGERS: ChargerDefinition[] = [
       amount: 898,
       vatLabel: "IVA Inc",
     },
-    powerKw: 22.3,
+    powerKw: 22,
     description:
-      "Cargador trifásico de 22 kW diseñado para flotas, industrias y uso intensivo.",
+      "Cargador trifásico de 22 kW para empresas, flotas y uso intensivo.",
   },
 ];
 
@@ -89,8 +75,7 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         name: "Potencia máxima",
         tiers: {
           residential: "7_4_kw",
-          commercial: "11_kw",
-          industrial: "22_kw",
+          commercial: "22_kw",
         },
       },
       {
@@ -98,15 +83,13 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: "single_phase",
           commercial: "three_phase",
-          industrial: "three_phase",
         },
       },
       {
         name: "Corriente nominal",
         tiers: {
           residential: "32a_per_phase",
-          commercial: "16a_per_phase",
-          industrial: "32a_per_phase",
+          commercial: "32a_per_phase",
         },
       },
       {
@@ -114,7 +97,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: "220_230_v",
           commercial: "380_400_v_3p",
-          industrial: "380_400_v_3p",
         },
       },
       {
@@ -122,7 +104,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
-          industrial: true,
         },
       },
       {
@@ -130,7 +111,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
-          industrial: true,
         },
       },
     ],
@@ -143,7 +123,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
-          industrial: true,
         },
       },
       {
@@ -151,7 +130,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
-          industrial: true,
         },
       },
     ],
@@ -164,7 +142,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: true,
           commercial: true,
-          industrial: true,
         },
       },
       {
@@ -172,7 +149,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: "ip65",
           commercial: "ip65",
-          industrial: "ip65",
         },
       },
       {
@@ -180,7 +156,6 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
         tiers: {
           residential: "temp_range",
           commercial: "temp_range",
-          industrial: "temp_range",
         },
       },
     ],

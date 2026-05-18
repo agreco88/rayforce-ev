@@ -44,18 +44,14 @@ export default function AsideMobileMenu() {
             {/* Top / Header */}
             <AsideHeader onClose={() => setOpen(false)} />
 
-            {/* MAIN CONTENT (this owns the remaining height) */}
-            <div className="flex flex-1 flex-col">
-              <AsideNavLinks onSelect={() => setOpen(false)} />
+            {/* MAIN CONTENT — fills remaining height, distributes evenly */}
+            <AsideNavLinks onSelect={() => setOpen(false)} />
 
-              {/* Push language + footer down */}
-              <div className="mt-auto">
-                <LocaleSwitcherMobile onSelect={() => setOpen(false)} />
-              </div>
-            </div>
+            {/* Language switcher */}
+            <LocaleSwitcherMobile onSelect={() => setOpen(false)} />
 
-            {/* Bottom / Social footer */}
-            <AsideSocialLinks />
+            {/* Social footer */}
+            {/* <AsideSocialLinks /> */}
           </motion.aside>
         )}
       </AnimatePresence>

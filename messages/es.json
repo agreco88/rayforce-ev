@@ -7,19 +7,16 @@
         "benefits": "Beneficios",
         "stand": "Columna",
         "faq": "FAQ",
-        "compatibility": "Compatibilidad"
+        "compatibility": "Compatibilidad",
+        "contactCta": "Contactar ventas por WhatsApp"
       },
       "products": {
         "residential": {
           "title": "Residencial"
         },
 
-        "mid": {
-          "title": "Residencial+"
-        },
-
-        "industrial": {
-          "title": "Industrial"
+        "comercial": {
+          "title": "Comercial"
         }
       }
     },
@@ -74,10 +71,12 @@
   "HomePage": {
     "Hero": {
       "title": "Cargadores Wallbox para autos eléctricos y hibridos en Uruguay",
-      "description": "Conseguí hoy tu cargador eléctrico con garantía de 2 años y equipos certificados por UTE y URSEA.",
+      "description": "Conseguí hoy tu cargador eléctrico con garantía de 1 año con instalación por técnico certificado y equipos certificados por UTE y URSEA.",
       "ctaPrimary": "Ver cargadores",
       "ctaSecondary": "Ver demostración",
       "ctaTertiary": "Ver compatibilidad",
+      "ctaWhatsapp": "Solicitar presupuesto sin cargo",
+      "ctaWhatsappMessage": "Hola! Me gustaría solicitar un presupuesto sin cargo para la instalación de un cargador eléctrico.",
 
       "features": {
         "security": {
@@ -100,9 +99,14 @@
       "ComparisonTable": {
         "taxLabel": "IVA Inc.",
 
+        "cta": {
+          "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?"
+        },
+
         "features": {
           "power": "Potencia máxima",
           "phase": "Tipo de fase",
+          "connector": "Tipo de conector",
           "current": "Corriente nominal",
           "voltage": "Tensión típica",
 
@@ -114,7 +118,7 @@
       },
       "eyebrow": "Cargadores Wallbox Besen BS20",
       "title": "Soluciones inteligentes de carga",
-      "description": "Descubrí nuestra línea de cargadores eléctricos tipo Wallbox de 7kW, 11kW y 22kW. Diseñados para hogares, comercios e industrias en Uruguay.",
+      "description": "Descubrí nuestra línea de cargadores eléctricos tipo Wallbox de 7kW y 22kW. Diseñados para hogares y empresas en Uruguay.",
       "cta": {
         "moreInfo": "Más información"
       },
@@ -128,21 +132,12 @@
             "Máximo ahorro energético"
           ]
         },
-        "mid": {
-          "title": "Residencial+",
-
-          "highlights": [
-            "Carga flexible día y noche",
-            "Ideal para 2 o más vehículos",
-            "Equilibrio entre potencia y consumo"
-          ]
-        },
         "pro": {
-          "title": "Industrial",
+          "title": "Comercial",
 
           "highlights": [
-            "Uso intensivo continuo",
-            "Pensado para flotas y transporte",
+            "Ideal para más de un vehículo",
+            "Cargá 3 veces más rápido",
             "Máxima potencia disponible"
           ]
         }
@@ -206,7 +201,9 @@
 
       "cta": {
         "contactSales": "Contactar ventas",
-        "whatsapp": "Hablar por WhatsApp"
+        "whatsapp": "Hablar por WhatsApp",
+        "loadMore": "Ver más marcas",
+        "showLess": "Ver menos marcas"
       },
 
       "whatsapp": {
@@ -340,17 +337,85 @@
       }
     }
   },
+  "ChargersPage": {
+    "Hero": {
+      "breadcrumb": {
+        "home": "Inicio",
+        "chargers": "Cargadores"
+      },
+      "title": "Cargadores eléctricos de tipo Wallbox",
+      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos de Besen BS20 en sus variantes de 7kW y 22kW."
+    },
+    "ChargerCard": {
+      "cta": "Ver modelo",
+      "variants": {
+        "bs20-bc-7kw": {
+          "eyebrow": "Residencial",
+          "label": "Residencial 7kW",
+          "description": "Wallbox monofásico para carga diaria en el hogar. Fácil de instalar y pensado para la carga nocturna."
+        },
+        "bs20-bc-22kw": {
+          "eyebrow": "Comercial",
+          "label": "Comercial 22kW",
+          "description": "Wallbox trifásico para carga rápida o hogares y empresas con más de un vehículo eléctrico."
+        }
+      }
+    }
+  },
+  "ChargerModelPage": {
+    "breadcrumb": {
+      "home": "Inicio",
+      "chargers": "Cargadores"
+    },
+    "eyebrow": {
+      "residential": "Cargador Residencial",
+      "pro": "Cargador Comercial"
+    },
+    "cta": {
+      "whatsapp": "Solicitar asesoramiento",
+      "manual": "Manual de usuario",
+      "whatsappMessage": "Hola! Quería consultar por el modelo {model}"
+    },
+    "variants": {
+      "bs20-bc-7kw": {
+        "description": "Cargador wallbox monofásico, ideal para uso de carga residencial durante la noche."
+      },
+      "bs20-bc-22kw": {
+        "description": "Máxima potencia para hogares con más de un auto o cuando necesitás cargar más rápido."
+      }
+    }
+  },
+  "ChargerModelHeroStats": {
+    "residential": {
+      "stat1Title": "Ideal para hogares",
+      "stat1Description": "Perfecto para carga residencial diaria y nocturna.",
+      "stat2Title": "Enfocado en ahorro",
+      "stat2Description": "Aprovechá la tarifa nocturna y ahorrá en cada carga.",
+      "stat3Title": "Garantía 1 año",
+      "stat3Description": "Cubierto con instalación realizada por técnico certificado por UTE."
+    },
+    "pro": {
+      "stat1Title": "Más de un vehículo",
+      "stat1Description": "Potencia suficiente para cargar más de un auto en el hogar.",
+      "stat2Title": "3× más potencia",
+      "stat2Description": "Cargá hasta 3 veces más rápido que el modelo de 7kW.",
+      "stat3Title": "Garantía 1 año",
+      "stat3Description": "Cubierto con instalación realizada por técnico certificado por UTE."
+    }
+  },
   "Footer": {
     "sections": {
       "home": "Inicio",
-      "products": "Productos"
+      "products": "Productos",
+      "navigation": "Navegación"
     },
 
     "cta": {
       "eyebrow": "Contacto",
-      "title": "No encontraste lo que buscabas?",
+      "title": "Instalá tu cargador eléctrico",
       "description": "Te asesoramos para elegir el cargador ideal según tu vehículo, tu instalación eléctrica y tus hábitos de uso.",
-      "button": "Contactanos"
+      "button": "Solicitar presupuesto sin cargo",
+      "whatsappMessage": "Hola! Me gustaría solicitar un presupuesto sin cargo para la instalación de un cargador eléctrico."
     },
 
     "brand": {

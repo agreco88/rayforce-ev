@@ -1,48 +1,26 @@
-"use client";
-
-import { motion } from "framer-motion";
 import AsideMobileMenu from "./aside-mobile-menu/aside-mobile-menu";
 import HeaderLogo from "./header-logo";
 import HeaderNav from "./header-nav";
 
 export default function Header() {
   return (
-    <motion.header
-      className="fixed inset-x-0  z-[99] py-2  mx-auto px-4 sm:px-0  bg-linear-to-b from-black via-black/50 to-transparent"
-      initial="rest"
-      animate="rest"
-      whileHover="hover"
-    >
-      {/* Animated gradient backdrop */}
-      <motion.div
-        variants={{
-          rest: {
-            opacity: 0.85,
-            scaleY: 0.9,
-          },
-          hover: {
-            opacity: 1,
-            scaleY: 1.05,
-          },
+    <header className="group/header  fixed inset-x-0 z-[99] py-2 mx-auto px-4 sm:px-0 bg-linear-to-b from-black via-black/50 to-transparent">
+      {/* Gradient backdrop — fades in / scales up on hover via CSS */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.85] scale-y-[0.9] origin-top group-hover/header:opacity-100 group-hover/header:scale-y-[1.05]"
+        style={{
+          transition:
+            "opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)",
         }}
-        transition={{
-          opacity: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
-          scaleY: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-        }}
-        style={{ transformOrigin: "top" }}
-        className="
-          pointer-events-none
-          absolute inset-0
-        "
       />
       {/* Content */}
-      <div className="relative max-w-7xl flex items-center  mx-auto">
-        <div className="flex flex-1 my-2 mx-1.5 sm:mx-2 items-center gap-4">
+      <div className="relative flex-1 max-w-[1440px] flex items-center mx-auto">
+        <div className="flex flex-1 my-2 mx-1.5 sm:mx-0 items-center gap-4">
           <HeaderLogo />
           <HeaderNav />
         </div>
         <AsideMobileMenu />
       </div>
-    </motion.header>
+    </header>
   );
 }

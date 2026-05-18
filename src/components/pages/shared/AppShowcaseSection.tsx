@@ -19,31 +19,31 @@ const FEATURES = [
     title: "Chequea el estado y la configuracion de carga",
     description:
       "Configurá la potencia de carga según tus necesidades y optimizá el consumo energético.",
-    image: "/images/app/01.jpeg",
+    image: "/images/app/screenshots/01.jpeg",
   },
   {
     title: "Historial de carga",
     description:
       "Accedé a registros completos de uso y analizá cada sesión de carga al detalle.",
-    image: "/images/app/02.jpeg",
+    image: "/images/app/screenshots/02.jpeg",
   },
   {
     title: "Historial de uso",
     description:
       "Recibi notificaciones de cuando el cargador cominenza a cargar.",
-    image: "/images/app/03.jpeg",
+    image: "/images/app/screenshots/03.jpeg",
   },
   {
     title: "Diagnóstico inteligente",
     description:
       "Detectá errores rápidamente con información clara y accionable.",
-    image: "/images/app/04.jpeg",
+    image: "/images/app/screenshots/04.jpeg",
   },
   {
     title: "Monitoreo en tiempo real",
     description:
       "Visualizá consumo, potencia y estado en vivo desde tu celular.",
-    image: "/images/app/05.jpeg",
+    image: "/images/app/screenshots/05.jpeg",
   },
 ];
 

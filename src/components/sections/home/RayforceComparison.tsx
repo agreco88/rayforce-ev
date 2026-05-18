@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { GiElectricalSocket } from "react-icons/gi";
-import SocketTypeTwo from "../../../../public/images/type-2-socket.svg";
+import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";
 import { cn } from "@/lib/utils";
 
 /* ------------------ Types ------------------ */
@@ -189,7 +189,7 @@ export default function RayforceComparison({ theme, powerKw }: Props) {
         </div>
 
         {/* Rows */}
-        {rows.map((row, i) => (
+        {rows.map((row) => (
           <motion.div
             key={row.label}
             className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-4 border-b border-neutral-200 dark:border-neutral-800"
@@ -211,21 +211,10 @@ export default function RayforceComparison({ theme, powerKw }: Props) {
         ))}
 
         {/* Images */}
-        <div className="mt-8 sm:mt-20 grid grid-cols-1 md:grid-cols-2 gap-4 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
+        <div className="mt-8 sm:mt-20 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
           <div className="relative">
             <img
-              src="/images/banners/schuko-charging.png"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute top-4 left-4 text-red-400 text-sm">
-              ⚠️ Riesgoso
-            </div>
-          </div>
-
-          <div className="relative">
-            <img
-              src="/images/banners/rayforce-charging.png"
+              src="/assets/images/banners/rayforce-charging.avif"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/20" />

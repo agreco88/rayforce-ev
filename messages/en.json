@@ -7,19 +7,16 @@
         "benefits": "Benefits",
         "stand": "Stand",
         "faq": "FAQ",
-        "compatibility": "Compatibility"
+        "compatibility": "Compatibility",
+        "contactCta": "Contact sales via WhatsApp"
       },
       "products": {
         "residential": {
           "title": "Residential"
         },
 
-        "mid": {
-          "title": "Residential+"
-        },
-
-        "industrial": {
-          "title": "Industrial"
+        "comercial": {
+          "title": "Commercial"
         }
       }
     },
@@ -74,10 +71,12 @@
   "HomePage": {
     "Hero": {
       "title": "Wallbox chargers for electric and hybrid vehicles in Uruguay",
-      "description": "Get your EV charger today with a 2-year warranty and equipment certified by UTE and URSEA.",
+      "description": "Get your EV charger today with a 1-year warranty when installed by a certified technician, and equipment certified by UTE and URSEA.",
       "ctaPrimary": "View chargers",
       "ctaSecondary": "Watch demo",
       "ctaTertiary": "Check compatibility",
+      "ctaWhatsapp": "Request a free installation quote",
+      "ctaWhatsappMessage": "Hi! I'd like to request a free installation quote for an EV charger.",
 
       "features": {
         "security": {
@@ -100,9 +99,14 @@
       "ComparisonTable": {
         "taxLabel": "VAT Incl.",
 
+        "cta": {
+          "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?"
+        },
+
         "features": {
           "power": "Maximum power",
           "phase": "Phase type",
+          "connector": "Connector type",
           "current": "Nominal current",
           "voltage": "Typical voltage",
 
@@ -114,7 +118,7 @@
       },
       "eyebrow": "Besen BS20 Wallbox Chargers",
       "title": "Smart EV charging solutions",
-      "description": "Discover our 7kW, 11kW and 22kW Wallbox charger lineup. Designed for homes, businesses and industrial installations in Uruguay.",
+      "description": "Discover our 7kW and 22kW Wallbox charger lineup. Designed for homes and businesses in Uruguay.",
 
       "cta": {
         "moreInfo": "Learn more"
@@ -131,22 +135,12 @@
           ]
         },
 
-        "mid": {
-          "title": "Residential+",
-
-          "highlights": [
-            "Flexible day and night charging",
-            "Ideal for 2 or more vehicles",
-            "Balanced power and efficiency"
-          ]
-        },
-
         "pro": {
-          "title": "Industrial",
+          "title": "Commercial",
 
           "highlights": [
-            "Continuous heavy-duty usage",
-            "Designed for fleets and transport",
+            "Ideal for more than one vehicle",
+            "Charge 3× faster",
             "Maximum available power"
           ]
         }
@@ -210,7 +204,9 @@
 
       "cta": {
         "contactSales": "Contact sales",
-        "whatsapp": "Chat on WhatsApp"
+        "whatsapp": "Chat on WhatsApp",
+        "loadMore": "Load more brands",
+        "showLess": "View less brands"
       },
 
       "whatsapp": {
@@ -343,17 +339,85 @@
       }
     }
   },
+  "ChargersPage": {
+    "Hero": {
+      "breadcrumb": {
+        "home": "Home",
+        "chargers": "Chargers"
+      },
+      "title": "Wallbox electric vehicle chargers",
+      "description": "Charging solutions for electric cars, SUVs and trucks in Uruguay. Choose the power level that best fits your needs, with the Besen BS20 model family in 7kW and 22kW variants."
+    },
+    "ChargerCard": {
+      "cta": "View model",
+      "variants": {
+        "bs20-bc-7kw": {
+          "eyebrow": "Residential",
+          "label": "Residential 7kW",
+          "description": "Single-phase wallbox for daily home charging. Easy to install and built for overnight use."
+        },
+        "bs20-bc-22kw": {
+          "eyebrow": "Commercial",
+          "label": "Commercial 22kW",
+          "description": "Three-phase wallbox for faster charging or homes and offices with more than one electric vehicle."
+        }
+      }
+    }
+  },
+  "ChargerModelPage": {
+    "breadcrumb": {
+      "home": "Home",
+      "chargers": "Chargers"
+    },
+    "eyebrow": {
+      "residential": "Residential Charger",
+      "pro": "Commercial Charger"
+    },
+    "cta": {
+      "whatsapp": "Request consultation",
+      "manual": "User manual",
+      "whatsappMessage": "Hi! I wanted to ask about the {model} model"
+    },
+    "variants": {
+      "bs20-bc-7kw": {
+        "description": "Single-phase Wallbox charger, ideal for overnight residential charging."
+      },
+      "bs20-bc-22kw": {
+        "description": "Maximum power for homes with more than one car or when you need to charge faster."
+      }
+    }
+  },
+  "ChargerModelHeroStats": {
+    "residential": {
+      "stat1Title": "Ideal for homes",
+      "stat1Description": "Perfect for daily and overnight residential charging.",
+      "stat2Title": "Optimized for savings",
+      "stat2Description": "Take advantage of off-peak rates and save on every charge.",
+      "stat3Title": "1-Year Warranty",
+      "stat3Description": "Covered when installed by a UTE-certified technician."
+    },
+    "pro": {
+      "stat1Title": "More than one vehicle",
+      "stat1Description": "Enough power to charge more than one EV at home.",
+      "stat2Title": "3× more power",
+      "stat2Description": "Charge up to 3× faster than the 7kW model.",
+      "stat3Title": "1-Year Warranty",
+      "stat3Description": "Covered when installed by a UTE-certified technician."
+    }
+  },
   "Footer": {
     "sections": {
       "home": "Home",
-      "products": "Products"
+      "products": "Products",
+      "navigation": "Navigation"
     },
 
     "cta": {
       "eyebrow": "Contact",
       "title": "Install your EV charger",
-      "description": "We’ll help you choose the right charger based on your vehicle, electrical setup, and usage habits.",
-      "button": "Chat on WhatsApp"
+      "description": "We’ll help you choose the right charger for your vehicle, electrical setup, and usage habits.",
+      "button": "Request a free installation quote",
+      "whatsappMessage": "Hi! I’d like to request a free installation quote for an EV charger."
     },
 
     "brand": {

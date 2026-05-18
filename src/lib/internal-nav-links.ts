@@ -7,7 +7,7 @@ export interface NavLink {
 export const NAV_LINKS = [
   {
     id: "inicio",
-    label: "hero",
+    label: "home",
   },
   {
     id: "cargadores",
