@@ -24,8 +24,28 @@ export function useTrack() {
       trackEvent("whatsapp_click", { ...params, locale, page: pathname });
     },
 
-    heroCta(params: { cta: "primary" | "secondary" | "quote"; location: "desktop" | "mobile" }) {
-      trackEvent("hero_cta_clicked", { ...params, locale });
+    homeHeroPrimary(location: "desktop" | "mobile") {
+      trackEvent("home_hero_primary_cta", { location, locale });
+    },
+
+    homeHeroSecondary(location: "desktop" | "mobile") {
+      trackEvent("home_hero_secondary_cta", { location, locale });
+    },
+
+    homeHeroQuote(location: "desktop" | "mobile") {
+      trackEvent("home_hero_quote_cta", { location, locale });
+    },
+
+    chargerHeroPrimary(charger: string, location: "desktop" | "mobile") {
+      trackEvent("charger_hero_primary_cta", { charger, location, locale });
+    },
+
+    chargerHeroDatasheet(charger: string, location: "desktop" | "mobile") {
+      trackEvent("charger_hero_datasheet_cta", { charger, location, locale });
+    },
+
+    compatibilityModelSelected(brand: string, model: string) {
+      trackEvent("compatibility_model_selected", { brand, model, locale });
     },
 
     compatibilitySearch(query: string, results_count: number) {
@@ -38,6 +58,10 @@ export function useTrack() {
 
     compatibilityListExpanded() {
       trackEvent("compatibility_list_expanded", { locale });
+    },
+
+    compatibilityListCollapsed() {
+      trackEvent("compatibility_list_collapsed", { locale });
     },
 
     datasheetRequested(model: string) {

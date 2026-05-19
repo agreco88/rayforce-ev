@@ -11,7 +11,7 @@ export function FooterContactColumn() {
         {t("title")}
       </h3>
 
-      <ul className="mt-6 space-y-4 text-sm text-neutral-500">
+      <ul className="mt-6 space-y-4 text-sm text-neutral-400">
         <li>{t("phone")}</li>
         <li>
           <a

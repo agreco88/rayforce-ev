@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { Link } from "@/i18n/navigation";
@@ -33,10 +34,11 @@ function Highlights({ items }: { items: string[] }) {
   );
 }
 
-function CTA({ slug }: { slug: string }) {
+function CTA({ slug, ariaLabel }: { slug: string; ariaLabel: string }) {
   return (
     <Link
       href={`/cargadores/${slug}`}
+      aria-label={ariaLabel}
       className="
         mt-4 px-4 py-2 text-lg
         hover:text-green-400
@@ -51,6 +53,8 @@ function CTA({ slug }: { slug: string }) {
 /* ------------------ Section ------------------ */
 
 export default function ChargerGridSection({ id }: { id?: string }) {
+  const t = useTranslations("HomePage.HomeChargersSection");
+
   return (
     <section
       id={id}
@@ -106,7 +110,7 @@ export default function ChargerGridSection({ id }: { id?: string }) {
               <h4 className="text-4xl font-thin ">7.4kW</h4>
             </div>{" "}
             <Highlights items={HIGHLIGHTS.residential} />
-            <CTA slug="bs20-bc-7kw" />
+            <CTA slug="bs20-bc-7kw" ariaLabel={t("chargers.residential.ariaLabel")} />
           </motion.div>
 
           {/* 22kW */}
@@ -125,7 +129,7 @@ export default function ChargerGridSection({ id }: { id?: string }) {
               <h4 className="text-4xl font-thin ">22.0kW</h4>
             </div>{" "}
             <Highlights items={HIGHLIGHTS.pro} />
-            <CTA slug="bs20-bc-22kw" />
+            <CTA slug="bs20-bc-22kw" ariaLabel={t("chargers.pro.ariaLabel")} />
           </motion.div>
         </div>
       </motion.div>

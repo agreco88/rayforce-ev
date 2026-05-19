@@ -166,7 +166,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               asChild
               className="h-14 rounded-2xl bg-green-500 hover:bg-green-400 text-black font-medium"
             >
-              <Link href="/cargadores" onClick={() => track.heroCta({ cta: "primary", location: "mobile" })}>
+              <Link href="/cargadores" onClick={() => track.homeHeroPrimary("mobile")}>
                 {t("ctaPrimary")}
               </Link>
             </Button>
@@ -176,7 +176,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               variant="outline"
               className="h-14 rounded-2xl border-white/10 bg-neutral-900 hover:bg-neutral-800"
             >
-              <Link href="/#compatibilidad" onClick={() => track.heroCta({ cta: "secondary", location: "mobile" })}>
+              <Link href="/#compatibilidad" onClick={() => track.homeHeroSecondary("mobile")}>
                 {t("ctaSecondary")}
               </Link>
             </Button>
@@ -186,7 +186,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               variant="ghost"
               className="h-14 rounded-2xl text-neutral-400 hover:text-white"
             >
-              <Link href="/#contacto" onClick={() => track.heroCta({ cta: "quote", location: "mobile" })}>
+              <Link href="/#contacto" onClick={() => track.homeHeroQuote("mobile")}>
                 {t("ctaTertiary")}
               </Link>
             </Button>

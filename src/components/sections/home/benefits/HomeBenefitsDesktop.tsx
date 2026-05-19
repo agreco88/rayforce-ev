@@ -46,7 +46,7 @@ export function HomeBenefitsDesktop() {
           sm:mb-24
         "
       >
-        <h3>{t("eyebrow")}</h3>
+        <p>{t("eyebrow")}</p>
 
         <h2
           className="

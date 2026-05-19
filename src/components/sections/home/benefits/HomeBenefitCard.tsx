@@ -86,7 +86,7 @@ export function HomeBenefitCard({ title, description, icon }: Props) {
         </div>
 
         {/* Title */}
-        <h4
+        <h3
           className="
       mt-2 sm:mt-4
       text-4xl sm:text-3xl
@@ -96,7 +96,7 @@ export function HomeBenefitCard({ title, description, icon }: Props) {
     "
         >
           {title}
-        </h4>
+        </h3>
 
         <div className="h-[2px] bg-gradient-to-r from-transparent via-green-800 to-transparent w-3/4 my-6 sm:my-8" />
 

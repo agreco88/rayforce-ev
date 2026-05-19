@@ -125,6 +125,7 @@
       "chargers": {
         "residential": {
           "title": "Residencial",
+          "ariaLabel": "Más información sobre el cargador BS20 BC 7kW Residencial",
 
           "highlights": [
             "Carga nocturna eficiente",
@@ -134,6 +135,7 @@
         },
         "pro": {
           "title": "Comercial",
+          "ariaLabel": "Más información sobre el cargador BS20 BC 22kW Comercial",
 
           "highlights": [
             "Ideal para más de un vehículo",

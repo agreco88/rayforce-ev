@@ -264,6 +264,7 @@ export function CompatibilitySection({ theme, id }: Props) {
   }, [search, filteredData.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleWhatsAppModel(brand: string, model: string) {
+    track.compatibilityModelSelected(brand, model);
     track.whatsappClick({ source: "compatibility_model", vehicle_brand: brand, vehicle_model: model });
   }
 
@@ -662,6 +663,7 @@ export function CompatibilitySection({ theme, id }: Props) {
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     onClick={() => {
+                      track.compatibilityListCollapsed();
                       sectionRef.current?.scrollIntoView({
                         behavior: "smooth",
                         block: "start",

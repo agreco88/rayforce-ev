@@ -188,12 +188,7 @@ export function ChargerModelHero({ variant, config }: Props) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  track.whatsappClick({
-                    source: "charger_buy_cta",
-                    charger: variant.slug,
-                  })
-                }
+                onClick={() => track.chargerHeroPrimary(variant.slug, "desktop")}
                 className={`
                   flex items-center justify-center gap-2
                   px-6 py-3.5 rounded-xl
@@ -212,7 +207,7 @@ export function ChargerModelHero({ variant, config }: Props) {
                 href="/assets/docs/bs20-ficha-tecnica.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => track.datasheetRequested(variant.slug)}
+                onClick={() => track.chargerHeroDatasheet(variant.slug, "desktop")}
                 className="
                   flex items-center gap-2
                   text-sm text-neutral-400

@@ -41,7 +41,7 @@ export function HomeBenefitsMobile() {
           text-center
         "
       >
-        <h3>{t("eyebrow")}</h3>
+        <p>{t("eyebrow")}</p>
 
         <h2
           className="

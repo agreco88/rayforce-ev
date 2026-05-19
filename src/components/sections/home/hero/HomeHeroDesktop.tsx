@@ -274,7 +274,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 asChild
                 className="px-8 py-6 bg-green-500 hover:bg-green-400 text-black"
               >
-                <Link href="/cargadores" onClick={() => track.heroCta({ cta: "primary", location: "desktop" })}>
+                <Link href="/cargadores" onClick={() => track.homeHeroPrimary("desktop")}>
                   {t("ctaPrimary")}
                 </Link>
               </Button>
@@ -284,7 +284,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 asChild
                 className="px-8 py-6 bg-neutral-950/50 text-white"
               >
-                <Link href="/#compatibilidad" onClick={() => track.heroCta({ cta: "secondary", location: "desktop" })}>
+                <Link href="/#compatibilidad" onClick={() => track.homeHeroSecondary("desktop")}>
                   {t("ctaSecondary")}
                 </Link>
               </Button>
@@ -295,7 +295,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 variant="ghost"
                 className="px-8 py-6 text-neutral-400 hover:text-white"
               >
-                <Link href="/#contacto" onClick={() => track.heroCta({ cta: "quote", location: "desktop" })}>
+                <Link href="/#contacto" onClick={() => track.homeHeroQuote("desktop")}>
                   {t("ctaTertiary")}
                 </Link>
               </Button>

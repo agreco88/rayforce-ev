@@ -127,6 +127,7 @@
       "chargers": {
         "residential": {
           "title": "Residential",
+          "ariaLabel": "More information about the BS20 BC 7kW Residential charger",
 
           "highlights": [
             "Efficient overnight charging",
@@ -137,6 +138,7 @@
 
         "pro": {
           "title": "Commercial",
+          "ariaLabel": "More information about the BS20 BC 22kW Commercial charger",
 
           "highlights": [
             "Ideal for more than one vehicle",

@@ -19,12 +19,23 @@ export type AnalyticsEventMap = {
     vehicle_model?: string
   }
 
-  /** User clicked a hero section CTA */
-  hero_cta_clicked: {
-    cta: "primary" | "secondary" | "quote"
-    location: "desktop" | "mobile"
-    locale: string
-  }
+  /** Home hero — primary CTA (Ver cargadores) */
+  home_hero_primary_cta: { location: "desktop" | "mobile"; locale: string }
+
+  /** Home hero — secondary CTA (Compatibilidad) */
+  home_hero_secondary_cta: { location: "desktop" | "mobile"; locale: string }
+
+  /** Home hero — quote CTA (Contacto) */
+  home_hero_quote_cta: { location: "desktop" | "mobile"; locale: string }
+
+  /** Charger page hero — primary CTA (WhatsApp buy button) */
+  charger_hero_primary_cta: { charger: string; location: "desktop" | "mobile"; locale: string }
+
+  /** Charger page hero — datasheet download CTA */
+  charger_hero_datasheet_cta: { charger: string; location: "desktop" | "mobile"; locale: string }
+
+  /** User clicked a specific compatible model card */
+  compatibility_model_selected: { brand: string; model: string; locale: string }
 
   /** User performed a compatibility search that returned results (debounced) */
   compatibility_search: {
@@ -41,6 +52,11 @@ export type AnalyticsEventMap = {
 
   /** User expanded the full brand/model compatibility list */
   compatibility_list_expanded: {
+    locale: string
+  }
+
+  /** User collapsed the full brand/model compatibility list */
+  compatibility_list_collapsed: {
     locale: string
   }
 

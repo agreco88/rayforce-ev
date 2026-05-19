@@ -29,7 +29,7 @@ export function FooterNavColumn() {
         {tF("sections.navigation")}
       </h3>
 
-      <ul className="mt-6 space-y-4 text-sm text-neutral-500">
+      <ul className="mt-6 space-y-4 text-sm text-neutral-400">
         {/* Home — navigate or scroll */}
         <li>
           <button
