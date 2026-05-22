@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ChargersGrid from "@/components/pages/chargers/ChargersGrid";
 import { ChargersHero } from "@/components/pages/chargers/ChargersHero";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 import { FeaturesRayforce } from "@/components/sections/home/FeaturesSection";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
@@ -43,6 +44,7 @@ export default function ChargersPage() {
         <HomeStandSection />
         <HomeBenefitsSection id="beneficios" /> <Footer />
       </section>{" "}
+      <ScrollDepthTracker page="chargers" />
     </div>
   );
 }

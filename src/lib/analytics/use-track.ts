@@ -67,5 +67,61 @@ export function useTrack() {
     datasheetRequested(model: string) {
       trackEvent("datasheet_requested", { model, locale });
     },
+
+    navLinkClicked(label: string, destination: string) {
+      trackEvent("nav_link_clicked", { label, destination, locale });
+    },
+
+    mobileMenuOpened() {
+      trackEvent("mobile_menu_opened", { locale });
+    },
+
+    mobileMenuClosed() {
+      trackEvent("mobile_menu_closed", { locale });
+    },
+
+    mobileNavLinkClicked(label: string, destination: string) {
+      trackEvent("mobile_nav_link_clicked", { label, destination, locale });
+    },
+
+    productsFlyoutOpened() {
+      trackEvent("products_flyout_opened", { locale });
+    },
+
+    productsFlyoutLinkClicked(charger: string, destination: string) {
+      trackEvent("products_flyout_link_clicked", { charger, destination, locale });
+    },
+
+    localeSwitched(from: string, to: string) {
+      trackEvent("locale_switched", { from, to });
+    },
+
+    chargerCardClicked(charger: string) {
+      trackEvent("charger_card_clicked", { charger, locale });
+    },
+
+    faqCategorySelected(category: string) {
+      trackEvent("faq_category_selected", { category, locale });
+    },
+
+    faqItemExpanded(category: string, question: string, question_index: number) {
+      trackEvent("faq_item_expanded", { category, question, question_index, locale });
+    },
+
+    compatibilityBrandExpanded(brand: string) {
+      trackEvent("compatibility_brand_expanded", { brand, locale });
+    },
+
+    footerNavClicked(label: string, destination: string) {
+      trackEvent("footer_nav_clicked", { label, destination, locale });
+    },
+
+    emailLinkClicked() {
+      trackEvent("email_link_clicked", { locale });
+    },
+
+    scrollDepthMilestone(page: string, depth: 25 | 50 | 75 | 100) {
+      trackEvent("scroll_depth_milestone", { page, depth, locale });
+    },
   };
 }

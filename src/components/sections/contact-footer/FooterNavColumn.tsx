@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { scrollToSection } from "@/lib/scroll-to-section";
+import { useTrack } from "@/lib/analytics/use-track";
 
 const ROUTE_LINKS = [
   { href: "/cargadores", labelKey: "chargers" },
@@ -22,6 +23,7 @@ export function FooterNavColumn() {
   const tF = useTranslations("Footer");
   const pathname = usePathname();
   const router = useRouter();
+  const track = useTrack();
 
   return (
     <div>
@@ -34,6 +36,7 @@ export function FooterNavColumn() {
         <li>
           <button
             onClick={() => {
+              track.footerNavClicked(t("nav.home"), "inicio");
               if (pathname === "/") scrollToSection("inicio");
               else router.push("/");
             }}
@@ -46,7 +49,7 @@ export function FooterNavColumn() {
         {/* Route links */}
         {ROUTE_LINKS.map(({ href, labelKey }) => (
           <li key={href}>
-            <Link href={href} className={linkClass}>
+            <Link href={href} onClick={() => track.footerNavClicked(t(`nav.${labelKey}`), href)} className={linkClass}>
               {t(`nav.${labelKey}`)}
             </Link>
           </li>
@@ -57,6 +60,7 @@ export function FooterNavColumn() {
           <li key={id}>
             <button
               onClick={() => {
+                track.footerNavClicked(t(`nav.${labelKey}`), id);
                 if (pathname === "/") scrollToSection(id);
                 else router.push(`/#${id}`);
               }}

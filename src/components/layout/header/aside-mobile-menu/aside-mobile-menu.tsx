@@ -9,10 +9,12 @@ import AsideSocialLinks from "./aside-social-links";
 import AsideHeader from "./aside-header";
 import LocaleSwitcherMobile from "./aside-locale-switcher";
 import { fadeIn } from "@/lib/animation-variants";
+import { useTrack } from "@/lib/analytics/use-track";
 
 export default function AsideMobileMenu() {
   const [open, setOpen] = useState(false);
   const tA11y = useTranslations("AriaLabels");
+  const track = useTrack();
 
   // prevent background scroll when menu is open
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function AsideMobileMenu() {
             aria-modal="true"
           >
             {/* Top / Header */}
-            <AsideHeader onClose={() => setOpen(false)} />
+            <AsideHeader onClose={() => { track.mobileMenuClosed(); setOpen(false); }} />
 
             {/* MAIN CONTENT — fills remaining height, distributes evenly */}
             <AsideNavLinks onSelect={() => setOpen(false)} />
@@ -57,7 +59,7 @@ export default function AsideMobileMenu() {
       </AnimatePresence>
 
       {/* Static header trigger (when closed) */}
-      {!open && <HamburgerButton open={false} onClick={() => setOpen(true)} />}
+      {!open && <HamburgerButton open={false} onClick={() => { track.mobileMenuOpened(); setOpen(true); }} />}
     </div>
   );
 }

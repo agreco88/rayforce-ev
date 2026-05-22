@@ -65,4 +65,46 @@ export type AnalyticsEventMap = {
     model: string
     locale: string
   }
+
+  /** User clicked a desktop header nav link */
+  nav_link_clicked: { label: string; destination: string; locale: string }
+
+  /** User opened the mobile menu */
+  mobile_menu_opened: { locale: string }
+
+  /** User closed the mobile menu */
+  mobile_menu_closed: { locale: string }
+
+  /** User clicked a link inside the mobile menu drawer */
+  mobile_nav_link_clicked: { label: string; destination: string; locale: string }
+
+  /** User hovered the desktop Products flyout open */
+  products_flyout_opened: { locale: string }
+
+  /** User clicked a product inside the desktop Products flyout */
+  products_flyout_link_clicked: { charger: string; destination: string; locale: string }
+
+  /** User switched the site language */
+  locale_switched: { from: string; to: string }
+
+  /** User clicked a charger card on the /cargadores listing page */
+  charger_card_clicked: { charger: string; locale: string }
+
+  /** User switched FAQ category tab */
+  faq_category_selected: { category: string; locale: string }
+
+  /** User expanded a FAQ accordion item */
+  faq_item_expanded: { category: string; question: string; question_index: number; locale: string }
+
+  /** User expanded a brand accordion in the mobile compatibility list */
+  compatibility_brand_expanded: { brand: string; locale: string }
+
+  /** User clicked a footer navigation link */
+  footer_nav_clicked: { label: string; destination: string; locale: string }
+
+  /** User clicked the email contact link in the footer */
+  email_link_clicked: { locale: string }
+
+  /** User reached a scroll depth milestone on a page */
+  scroll_depth_milestone: { page: string; depth: 25 | 50 | 75 | 100; locale: string }
 }

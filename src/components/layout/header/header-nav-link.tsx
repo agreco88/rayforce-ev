@@ -10,6 +10,7 @@ import { waterfallItem } from "@/lib/animation-variants";
 import { scrollToSection } from "@/lib/scroll-to-section";
 
 import { Link } from "@/i18n/navigation";
+import { useTrack } from "@/lib/analytics/use-track";
 
 /* ---------- Types ---------- */
 
@@ -33,6 +34,7 @@ export default function HeaderNavLink({
   onClick,
 }: HeaderNavLinkProps) {
   const t = useTranslations("Layout.Header");
+  const track = useTrack();
 
   const className = clsx(
     "text-neutral-50!",
@@ -50,6 +52,7 @@ export default function HeaderNavLink({
         <Button
           variant="link"
           onClick={() => {
+            track.navLinkClicked(label, sectionId);
             scrollToSection(sectionId);
             onClick?.();
           }}
@@ -67,7 +70,7 @@ export default function HeaderNavLink({
   return (
     <motion.li variants={waterfallItem}>
       <Button asChild variant="link" className={className}>
-        <Link href={href ?? "/"}>{t(`nav.${label}`)}</Link>
+        <Link href={href ?? "/"} onClick={() => track.navLinkClicked(label, href ?? "/")}>{t(`nav.${label}`)}</Link>
       </Button>
     </motion.li>
   );

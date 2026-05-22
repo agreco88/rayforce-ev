@@ -8,6 +8,7 @@ import clsx from "clsx";
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { waterfallItem } from "@/lib/animation-variants";
+import { useTrack } from "@/lib/analytics/use-track";
 
 const PRODUCTS = [
   {
@@ -29,9 +30,11 @@ export default function HeaderProductsFlyout() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const track = useTrack();
 
   const handleEnter = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
+    if (!open) track.productsFlyoutOpened();
     setOpen(true);
   };
 
@@ -88,6 +91,7 @@ export default function HeaderProductsFlyout() {
                   <Link
                     key={product.href}
                     href={product.href}
+                    onClick={() => track.productsFlyoutLinkClicked(product.key, product.href)}
                     aria-disabled={isActive}
                     className={clsx(
                       "rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all duration-300",

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useTrack } from "@/lib/analytics/use-track";
 
 import {
   Accordion,
@@ -24,6 +25,27 @@ export default function HomeFaq({ id }: { id?: string }) {
 
   const categoryKeys = Object.keys(groups);
   const [active, setActive] = useState(categoryKeys[0]);
+  const [openItems, setOpenItems] = useState<string[]>([]);
+  const track = useTrack();
+
+  const handleCategoryChange = (key: string) => {
+    setActive(key);
+    setOpenItems([]);
+    track.faqCategorySelected(key);
+  };
+
+  const handleAccordionChange = (values: string[]) => {
+    const prev = openItems;
+    const added = values.filter((v) => !prev.includes(v));
+    added.forEach((value) => {
+      const match = value.match(/^faq-[^-]+-(\d+)$/);
+      if (!match) return;
+      const index = parseInt(match[1], 10);
+      const item = groups[active]?.[index];
+      if (item) track.faqItemExpanded(active, item.title, index);
+    });
+    setOpenItems(values);
+  };
 
   const whatsappNumber = "59892041709";
 
@@ -67,7 +89,7 @@ export default function HomeFaq({ id }: { id?: string }) {
           {categoryKeys.map((key) => (
             <button
               key={key}
-              onClick={() => setActive(key)}
+              onClick={() => handleCategoryChange(key)}
               className={`
                   cursor-pointer rounded-lg sm:px-6 px-3 py-4 min-h-12  shadow shadow-neutral-700/25 text-xs sm:text-sm font-medium transition
                   ${
@@ -94,6 +116,8 @@ export default function HomeFaq({ id }: { id?: string }) {
             >
               <Accordion
                 type="multiple"
+                value={openItems}
+                onValueChange={handleAccordionChange}
                 className="w-full rounded-lg border border-neutral-800 px-6 sm:px-8"
               >
                 {groups[active].map((item, i) => (

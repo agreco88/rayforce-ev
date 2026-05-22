@@ -5,6 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useTrack } from "@/lib/analytics/use-track";
 
 export type CardTheme = "green" | "blue";
 
@@ -44,10 +45,12 @@ export default function ChargerCard({
 }: Props) {
   const t = useTranslations("ChargersPage.ChargerCard");
   const th = THEMES[theme];
+  const track = useTrack();
 
   return (
     <Link
       href={href}
+      onClick={() => track.chargerCardClicked(href.split("/").pop() ?? href)}
       className={clsx(
         "group relative block overflow-hidden",
         "h-[420px] sm:h-[480px] lg:h-[720px]",

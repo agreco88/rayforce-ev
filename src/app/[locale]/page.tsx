@@ -5,6 +5,7 @@ import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
 import { FooterCTA } from "@/components/sections/contact-footer/FooterCTA";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
 const HomeChargersSection = dynamic(() =>
   import("@/components/sections/home/chargers/HomeChargersComparison").then(
@@ -70,6 +71,7 @@ export default function HomePage() {
         <HomeFaqSection id="faq" />
         <Footer />
       </Suspense>
+      <ScrollDepthTracker page="home" />
     </main>
   );
 }

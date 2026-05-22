@@ -15,6 +15,7 @@ import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/sections/contact-footer/Footer";
+import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
 /* ------------------------------------------------------------------ */
 /* Variant Config (LOCAL for now, keep it simple)                      */
@@ -143,6 +144,7 @@ export default async function ChargerDetailPage({ params }: Props) {
       <CompatibilitySection theme={config.theme} id="compatibilidad" />
       {/* <ChargingHomeBanner /> */}
       <Footer />
+      <ScrollDepthTracker page={`charger_${model}`} />
     </section>
   );
 }

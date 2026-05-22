@@ -3,6 +3,7 @@
 import { localeConfig, supportedLocales } from "@/lib/locale-config";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
+import { useTrack } from "@/lib/analytics/use-track";
 import clsx from "clsx";
 import ReactCountryFlag from "react-country-flag";
 
@@ -20,12 +21,14 @@ export default function LocaleSwitcherMobile({
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
+  const track = useTrack();
 
   const pathWithoutLocale =
     pathname.replace(new RegExp(`^/${locale}`), "") || "/";
 
   const handleChange = (newLocale: string) => {
     if (newLocale === locale) return;
+    track.localeSwitched(locale, newLocale);
     router.replace(`/${newLocale}${pathWithoutLocale}`);
     onSelect();
   };

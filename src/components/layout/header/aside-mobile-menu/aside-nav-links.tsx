@@ -11,6 +11,7 @@ import { NAV_LINKS } from "@/lib/internal-nav-links";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { scrollToSection } from "@/lib/scroll-to-section";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { useTrack } from "@/lib/analytics/use-track";
 
 const PRODUCTS = [
   {
@@ -40,6 +41,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
   const pathname = usePathname();
   const router = useRouter();
   const activeId = useActiveSection(NAV_LINKS.map((link) => link.id));
+  const track = useTrack();
 
   const routeLinkClass = (active: boolean) =>
     `block w-full text-left text-2xl font-light tracking-widest transition-all duration-300 ${
@@ -64,6 +66,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
         <motion.li variants={waterfallItem}>
           <button
             onClick={() => {
+              track.mobileNavLinkClicked("home", "inicio");
               if (pathname === "/") scrollToSection("inicio");
               else router.push("/");
               onSelect?.();
@@ -84,6 +87,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
                 <li key={link.id}>
                   <button
                     onClick={() => {
+                      track.mobileNavLinkClicked(link.label, link.id);
                       if (pathname === "/") scrollToSection(link.id);
                       else router.push(`/#${link.id}`);
                       onSelect?.();
@@ -119,7 +123,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
         <motion.li variants={waterfallItem} className="flex flex-col gap-3">
           <Link
             href="/cargadores"
-            onClick={() => onSelect?.()}
+            onClick={() => { track.mobileNavLinkClicked("chargers", "/cargadores"); onSelect?.(); }}
             className={routeLinkClass(pathname === "/cargadores")}
           >
             /{t("nav.chargers")}
@@ -129,7 +133,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
               <Link
                 key={product.href}
                 href={product.href}
-                onClick={() => onSelect?.()}
+                onClick={() => { track.mobileNavLinkClicked(product.key, product.href); onSelect?.(); }}
                 className="
                   rounded-2xl
                   border border-white/5

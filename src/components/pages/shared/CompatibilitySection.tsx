@@ -153,6 +153,7 @@ export function CompatibilitySection({ theme, id }: Props) {
   const [search, setSearch] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [openBrands, setOpenBrands] = useState<string[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const track = useTrack();
 
@@ -555,7 +556,16 @@ export function CompatibilitySection({ theme, id }: Props) {
                     ))}
                   </div>
                 ) : (
-                <Accordion type="multiple" className="flex flex-col gap-3">
+                <Accordion
+                  type="multiple"
+                  value={openBrands}
+                  onValueChange={(values) => {
+                    const added = values.filter((v) => !openBrands.includes(v));
+                    added.forEach((brand) => track.compatibilityBrandExpanded(brand));
+                    setOpenBrands(values);
+                  }}
+                  className="flex flex-col gap-3"
+                >
                   {displayedData.map((brand) => (
                     <AccordionItem
                       key={brand.name}

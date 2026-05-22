@@ -1,9 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useTrack } from "@/lib/analytics/use-track";
 
 export function FooterContactColumn() {
   const t = useTranslations("Footer.contact");
+  const track = useTrack();
 
   return (
     <div>
@@ -16,6 +18,7 @@ export function FooterContactColumn() {
         <li>
           <a
             href={`mailto:${t("email")}`}
+            onClick={() => track.emailLinkClicked()}
             className="hover:text-neutral-200 transition-colors"
           >
             {t("email")}
