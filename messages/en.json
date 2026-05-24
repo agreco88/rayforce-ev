@@ -126,6 +126,7 @@
         "moreInfo": "Learn more"
       },
 
+      "carouselLabel": "Charger navigation",
       "chargers": {
         "residential": {
           "title": "Residential",
@@ -133,7 +134,7 @@
 
           "highlights": [
             "Efficient overnight charging",
-            "Ideal for 1 vehicle",
+            "Charges up to 3× faster than conventional chargers",
             "Maximum energy savings"
           ]
         },
@@ -143,7 +144,7 @@
           "ariaLabel": "More information about the BS20 BC 22kW Commercial charger",
 
           "highlights": [
-            "Ideal for more than one vehicle",
+            "Charges up to 5× faster than conventional chargers",
             "Charge 3× faster",
             "Maximum available power"
           ]

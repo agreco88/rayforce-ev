@@ -124,6 +124,7 @@
       "cta": {
         "moreInfo": "Más información"
       },
+      "carouselLabel": "Navegación de cargadores",
       "chargers": {
         "residential": {
           "title": "Residencial",
@@ -131,7 +132,7 @@
 
           "highlights": [
             "Carga nocturna eficiente",
-            "Ideal para 1 vehículo",
+            "Carga hasta 3 veces más rápido respecto a cargadores convencionales",
             "Máximo ahorro energético"
           ]
         },
@@ -140,7 +141,7 @@
           "ariaLabel": "Más información sobre el cargador BS20 BC 22kW Comercial",
 
           "highlights": [
-            "Ideal para más de un vehículo",
+            "Carga hasta 5 veces más rápido respecto a cargadores convencionales",
             "Cargá 3 veces más rápido",
             "Máxima potencia disponible"
           ]
