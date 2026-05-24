@@ -2,9 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
-
 export function HomeStandDesktop() {
   const t = useTranslations("HomePage.HomeStandSection");
 
@@ -76,6 +73,11 @@ export function HomeStandDesktop() {
                   flex-col gap-4
                 "
               >
+                {/* EYEBROW */}
+                <span className="text-xs tracking-[0.25em] uppercase text-green-400">
+                  {t("eyebrow")}
+                </span>
+
                 {/* TITLE */}
                 <h2
                   className="
@@ -123,34 +125,8 @@ export function HomeStandDesktop() {
                   </span>
                 </div>
 
-                {/* CTA */}
-                <Button
-                  asChild
-                  variant="ghost"
-                  className="mb-8 w-fit p-0 hover:bg-transparent"
-                >
-                  <Link
-                    href="/#compatibilidad"
-                    className="
-                      mt-2
-
-                      flex items-center gap-1
-
-                      text-sm
-                      uppercase
-                      tracking-wide
-
-                      text-neutral-300
-                      transition-all
-
-                      hover:gap-3
-                      hover:bg-transparent!
-                      hover:text-green-500
-                    "
-                  >
-                    {t("cta.label")}
-                  </Link>
-                </Button>
+                {/* NOTE */}
+                <span className="text-xs text-neutral-500">{t("pricing.note")}</span>
               </div>
             </div>
           </div>

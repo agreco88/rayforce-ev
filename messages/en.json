@@ -180,19 +180,26 @@
       }
     },
     "HomeStandSection": {
-      "title": "Install your Rayforce charger anywhere",
+      "eyebrow": "INSTALLATION STAND",
+      "title": "Installation stand for Rayforce chargers",
 
-      "description": "Add a robust and elegant installation stand for your charger. Perfect for outdoor spaces or locations where wall installation is not available.",
+      "description": "Install your charger outdoors, in garages, or wherever a wall isn't available. Compatible with the full BS20 lineup.",
 
       "specs": "Height: 150 cm · Base: 26 × 14.5 cm",
 
       "pricing": {
-        "price": "USD 158",
-        "taxLabel": "VAT incl."
-      },
-
+        "price": "USD 129",
+        "taxLabel": "VAT incl.",
+        "note": "*Charger not included"
+      }
+    },
+    "InstallationSection": {
+      "eyebrow": "Installation in up to 12 interest-free installments",
+      "title": "We install your EV charger with equipment included from USD 1,398 VAT Inc.",
+      "subtitle": "Installation certified by UTE and approved by URSEA",
       "cta": {
-        "label": "Contact us and get yours"
+        "label": "Request a quote",
+        "whatsappMessage": "Hi, I'd like to request a quote for a Rayforce wallbox charger"
       }
     },
     "CompatibilitySection": {

@@ -2,9 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
-
 export function HomeStandMobile() {
   const t = useTranslations("HomePage.HomeStandSection");
 
@@ -17,40 +14,15 @@ export function HomeStandMobile() {
       <div
         className="
           relative
-          h-[560px]
+    
           w-full
           overflow-hidden
         "
       >
-        {/* IMAGE */}
-        <div className="absolute inset-0 bg-neutral-950">
-          <img
-            src="/images/stand/stand-9.png"
-            alt={t("title")}
-            className="
-              h-full
-              w-full
-              object-cover
-              object-[63%_center]
-            "
-          />
-        </div>
-
-        {/* OVERLAY */}
-        <div
-          className="
-            absolute inset-0
-            bg-gradient-to-t
-            from-black/50
-            via-black/70
-            to-transparent
-          "
-        />
-
         {/* CONTENT */}
         <div
           className="
-            absolute inset-0
+         
             flex items-center pt-16
           "
         >
@@ -65,6 +37,11 @@ export function HomeStandMobile() {
                 flex flex-col gap-4
               "
             >
+              {/* EYEBROW */}
+              <span className="text-xs tracking-[0.25em] uppercase text-green-400">
+                {t("eyebrow")}
+              </span>
+
               {/* TITLE */}
               <h2
                 className="
@@ -90,7 +67,28 @@ export function HomeStandMobile() {
               >
                 {t("description")}
               </p>
+              {/* IMAGE */}
+              <div className=" inset-0 bg-neutral-950">
+                <img
+                  src="/images/stand/charger-mobile.avif"
+                  alt={t("title")}
+                  className="
+              h-full
+              w-full
 
+            "
+                />
+                {/* <img
+            src="/images/stand/stand-9.png"
+            alt={t("title")}
+            className="
+              h-full
+              w-full
+              object-cover
+              object-[63%_center]
+            "
+          /> */}
+              </div>
               {/* SPECS */}
               <span className="text-sm text-neutral-500">{t("specs")}</span>
 
@@ -112,34 +110,10 @@ export function HomeStandMobile() {
                 </span>
               </div>
 
-              {/* CTA */}
-              <Button
-                asChild
-                variant="ghost"
-                className="mb-8 w-fit p-0 hover:bg-transparent"
-              >
-                <Link
-                  href="/#compatibilidad"
-                  className="
-                    mt-2
-
-                    flex items-center gap-1
-
-                    text-sm
-                    uppercase
-                    tracking-wide
-
-                    text-neutral-300
-                    transition-all
-
-                    hover:gap-3
-                    hover:bg-transparent!
-                    hover:text-green-500
-                  "
-                >
-                  {t("cta.label")}
-                </Link>
-              </Button>
+              {/* NOTE */}
+              <span className="text-xs text-neutral-500">
+                {t("pricing.note")}
+              </span>
             </div>
           </div>
         </div>

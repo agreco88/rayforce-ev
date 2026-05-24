@@ -25,6 +25,12 @@ const HomeStandSection = dynamic(() =>
   })),
 );
 
+const InstallationSection = dynamic(() =>
+  import("@/components/sections/home/installation/InstallationSection").then(
+    (m) => ({ default: m.InstallationSection }),
+  ),
+);
+
 const HomeFaqSection = dynamic(() =>
   import("@/components/sections/home/faq/HomeFaqSection").then((m) => ({
     default: m.HomeFaqSection,
@@ -66,6 +72,7 @@ export default function HomePage() {
         <HomeChargersSection id="cargadores" />
         <FooterCTA />
         <HomeStandSection id="columna" />
+        <InstallationSection />
         <CompatibilitySection id="compatibilidad" />
         <HomeBenefitsSection id="beneficios" />
         <HomeFaqSection id="faq" />

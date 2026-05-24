@@ -177,19 +177,26 @@
       }
     },
     "HomeStandSection": {
-      "title": "Instalá tu cargador Rayforce donde quieras",
+      "eyebrow": "COLUMNA DE INSTALACIÓN",
+      "title": "Columna de instalación para cargadores Rayforce",
 
-      "description": "Sumá una columna de instalación robusta y elegante para tu cargador. Ideal para espacios exteriores o donde no tenés una pared disponible.",
+      "description": "Instalá tu cargador en exteriores, cocheras o espacios sin pared disponible. Compatible con toda la línea BS20.",
 
       "specs": "Altura: 150 cm · Base: 26 × 14.5 cm",
 
       "pricing": {
-        "price": "USD 158",
-        "taxLabel": "IVA inc."
-      },
-
+        "price": "USD 129",
+        "taxLabel": "IVA inc.",
+        "note": "*Cargador no incluido"
+      }
+    },
+    "InstallationSection": {
+      "eyebrow": "Instalación hasta en 12 cuotas sin interés",
+      "title": "Instalamos tu cargador eléctrico con equipo incluido desde 1.398 USD IVA Inc.",
+      "subtitle": "Instalación certificada por UTE y homologada por URSEA",
       "cta": {
-        "label": "Contactanos y conseguí la tuya"
+        "label": "Solicitar presupuesto",
+        "whatsappMessage": "Hola, me gustaría solicitar un presupuesto para un cargador wallbox Rayforce"
       }
     },
     "CompatibilitySection": {
