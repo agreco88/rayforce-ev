@@ -16,11 +16,14 @@ const MERCADOPAGO_URLS: Record<string, string> = {
 
 function MercadoPagoLogo() {
   return (
-    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <circle cx="16" cy="16" r="16" fill="white" />
-      <path d="M7 16.5C7 11.806 10.806 8 15.5 8S24 11.806 24 16.5" stroke="#009EE3" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="7" cy="17" r="2.5" fill="#009EE3" />
-      <circle cx="24" cy="17" r="2.5" fill="#33CC99" />
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <circle cx="11" cy="11" r="11" fill="#009EE3" />
+      <g stroke="white" strokeWidth="2" strokeLinecap="round">
+        <line x1="11" y1="5.5" x2="11" y2="16.5" />
+        <line x1="5.5" y1="11" x2="16.5" y2="11" />
+        <line x1="7.2" y1="7.2" x2="14.8" y2="14.8" />
+        <line x1="14.8" y1="7.2" x2="7.2" y2="14.8" />
+      </g>
     </svg>
   );
 }
@@ -201,7 +204,7 @@ export function DesktopComparisonTable({ product }: Props) {
                 href={mpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#009EE3] hover:bg-[#0087c8] text-white font-semibold text-sm transition-all duration-200"
+                className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm text-[#009EE3] font-bold text-sm transition-all duration-200"
               >
                 <MercadoPagoLogo />
                 {t("cta.mercadopago")}

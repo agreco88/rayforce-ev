@@ -101,7 +101,7 @@
           "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?",
           "buy": "I want this charger for {price}",
           "buyMessage": "Hello! I want to buy the {model} charger",
-          "mercadopago": "Buy with Mercado Pago",
+          "mercadopago": "Buy now",
           "installments": "Up to 12 interest-free installments."
         },
 
