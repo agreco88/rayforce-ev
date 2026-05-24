@@ -4,8 +4,13 @@ import dynamic from "next/dynamic";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
-import { FooterCTA } from "@/components/sections/contact-footer/FooterCTA";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
+
+const HomeCostSection = dynamic(() =>
+  import("@/components/sections/home/cost/HomeCostSection").then((m) => ({
+    default: m.HomeCostSection,
+  })),
+);
 
 const HomeChargersSection = dynamic(() =>
   import("@/components/sections/home/chargers/HomeChargersComparison").then(
@@ -69,8 +74,9 @@ export default function HomePage() {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
+        <HomeCostSection />
         <HomeChargersSection id="cargadores" />
-        <FooterCTA />
+
         <HomeStandSection id="columna" />
         <InstallationSection />
         <CompatibilitySection id="compatibilidad" />

@@ -93,6 +93,30 @@
         }
       }
     },
+    "HomeCostSection": {
+      "eyebrow": "Comparativa de costos",
+      "title": "Cargá en casa y ahorrás hasta 23 veces más",
+      "description": "Para recorrer 350 km, cargar en casa con Rayforce cuesta $134. En cargadores públicos UTE, $523. En nafta, $3.081. La diferencia habla por sí sola.",
+      "cta": "Ver cargadores",
+      "winnerLabel": "Más económico",
+      "unit": "350 km",
+      "footnote": "* Pesos uruguayos. Estimación para 350 km con un eléctrico típico de 45 kWh/100 km. Tarifa residencial UTE vigente.",
+      "source": "Fuentes: UTE tarifas 2025 · ANCAP combustibles",
+      "items": {
+        "rayforce": {
+          "title": "Rayforce en casa",
+          "subtitle": "Tarifa residencial UTE"
+        },
+        "ute": {
+          "title": "Cargadores públicos",
+          "subtitle": "Red pública UTE"
+        },
+        "nafta": {
+          "title": "Auto a nafta",
+          "subtitle": "Nafta Super 95"
+        }
+      }
+    },
     "HomeChargersSection": {
       "ComparisonTable": {
         "taxLabel": "IVA Inc.",
@@ -101,7 +125,7 @@
           "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
           "buy": "Quiero mi cargador por {price}",
           "buyMessage": "Hola! Quiero comprar mi cargador {model}",
-          "mercadopago": "Comprar ahora",
+          "mercadopago": "Comprá ahora",
           "installments": "Hasta en 12 cuotas sin interés."
         },
 
