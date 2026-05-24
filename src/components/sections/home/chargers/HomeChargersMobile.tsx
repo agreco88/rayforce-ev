@@ -62,7 +62,7 @@ export function HomeChargersMobile({ id }: { id?: string }) {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="mb-10 flex flex-col items-start"
+        className="mb-6 flex flex-col items-start"
       >
         <motion.span
           variants={waterfallItem}
@@ -75,7 +75,7 @@ export function HomeChargersMobile({ id }: { id?: string }) {
         <motion.h2
           id="chargers-mobile-heading"
           variants={waterfallItem}
-          className="mt-4 text-4xl text-pretty"
+          className="mt-4 m-0 text-4xl  text-pretty"
         >
           {t("title")}
         </motion.h2>
@@ -96,19 +96,20 @@ export function HomeChargersMobile({ id }: { id?: string }) {
         viewport={{ once: true }}
       >
         {/* Track */}
-        <div
-          ref={trackRef}
-          onScroll={handleScroll}
-          className="
-            flex overflow-x-auto
-            snap-x snap-mandatory
-            gap-4
-            -mx-4 px-4
-            pb-2
-            [scrollbar-width:none]
-            [&::-webkit-scrollbar]:hidden
-          "
-        >
+        <div className="relative">
+          <div
+            ref={trackRef}
+            onScroll={handleScroll}
+            className="
+              flex overflow-x-auto
+              snap-x snap-mandatory
+              gap-4
+              px-4
+              pb-2
+              [scrollbar-width:none]
+              [&::-webkit-scrollbar]:hidden
+            "
+          >
           {CHARGERS.map((charger, i) => {
             const highlights = t.raw(
               `chargers.${charger.key}.highlights`,
@@ -121,7 +122,7 @@ export function HomeChargersMobile({ id }: { id?: string }) {
                 ref={(el: HTMLDivElement | null) => {
                   cardRefs.current[i] = el;
                 }}
-                className="snap-start shrink-0 w-[90%]"
+                className="snap-start shrink-0 w-[90%] "
               >
                 <Link
                   href={`/cargadores/${charger.slug}`}
@@ -173,19 +174,22 @@ export function HomeChargersMobile({ id }: { id?: string }) {
                         {t(`chargers.${charger.key}.title`)}
                       </span>
 
-                      <h3 className="pt-1 text-5xl font-semibold tracking-tight text-neutral-100">
+                      <h3 className="pt-1 normal-case text-5xl font-light tracking-tight text-neutral-100">
                         {charger.power}
                       </h3>
                     </div>
 
                     <ul
-                      className="mt-5 flex flex-col gap-2 text-sm text-neutral-400"
+                      className="mt-5 flex flex-col gap-6 text-sm text-neutral-400"
                       aria-label={`${t(`chargers.${charger.key}.title`)} highlights`}
                     >
                       {highlights.map((highlight) => (
-                        <li key={highlight} className="flex items-center gap-2">
+                        <li
+                          key={highlight}
+                          className="flex items-center gap-2 text-sm"
+                        >
                           <span
-                            className={`size-1.5 shrink-0 rounded-full ${charger.bullet}`}
+                            className={`size-1 shrink-0 rounded-full ${charger.bullet}`}
                             aria-hidden="true"
                           />
                           {highlight}
@@ -213,6 +217,10 @@ export function HomeChargersMobile({ id }: { id?: string }) {
               </motion.div>
             );
           })}
+          </div>
+
+          {/* Right vignette */}
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-neutral-950 to-transparent" />
         </div>
 
         {/* Dots */}
