@@ -164,7 +164,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           >
             <Button
               asChild
-              className="h-14 rounded-2xl bg-green-500 hover:bg-green-400 text-black font-medium"
+              className="h-14 rounded-2xl px-8 bg-green-700 hover:bg-green-600 text-white"
             >
               <Link href="/cargadores" onClick={() => track.homeHeroPrimary("mobile")}>
                 {t("ctaPrimary")}
@@ -173,8 +173,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
 
             <Button
               asChild
-              variant="outline"
-              className="h-14 rounded-2xl border-white/10 bg-neutral-900 hover:bg-neutral-800"
+              className="h-14 rounded-2xl px-8 bg-neutral-950 hover:bg-neutral-900 text-white border border-white/10"
             >
               <Link href="/#compatibilidad" onClick={() => track.homeHeroSecondary("mobile")}>
                 {t("ctaSecondary")}
@@ -183,8 +182,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
 
             <Button
               asChild
-              variant="ghost"
-              className="h-14 rounded-2xl text-neutral-400 hover:text-white"
+              className="h-14 rounded-2xl px-8 bg-neutral-900 hover:bg-neutral-800 text-white"
             >
               <Link href="/#contacto" onClick={() => track.homeHeroQuote("mobile")}>
                 {t("ctaTertiary")}

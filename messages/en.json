@@ -70,10 +70,10 @@
 
   "HomePage": {
     "Hero": {
-      "title": "Wallbox chargers for electric and hybrid vehicles in Uruguay",
+      "title": "Wallbox charger sales and installation for electric and hybrid vehicles in Uruguay",
       "description": "Get your EV charger today with a 1-year warranty when installed by a certified technician, and equipment certified by UTE and URSEA.",
       "ctaPrimary": "View chargers",
-      "ctaSecondary": "Check compatibility",
+      "ctaSecondary": "Compatible with your vehicle?",
       "ctaTertiary": "Request installation quote",
 
       "features": {
@@ -100,7 +100,9 @@
         "cta": {
           "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?",
           "buy": "I want this charger for {price}",
-          "buyMessage": "Hello! I want to buy the {model} charger"
+          "buyMessage": "Hello! I want to buy the {model} charger",
+          "mercadopago": "Buy with Mercado Pago",
+          "installments": "Up to 12 interest-free installments."
         },
 
         "features": {
@@ -157,7 +159,7 @@
 
       "cta": {
         "primary": "View chargers",
-        "secondary": "Check compatibility"
+        "secondary": "Compatible with your vehicle?"
       },
 
       "items": {

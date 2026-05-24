@@ -106,8 +106,8 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             h-full
             max-w-5xl
             flex flex-col
-            justify-end
-            pb-24
+            justify-center
+            gap-10
           "
         >
           {/* Eyebrow */}
@@ -139,9 +139,10 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
               via-neutral-50
               to-stone-50
 
-              pb-2
+
               bg-clip-text
               text-transparent
+            
             "
           >
             {t("title")}
@@ -151,65 +152,25 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
           <motion.p
             variants={waterfallItem}
             className="
-              mt-8
-              text-xl
-              text-neutral-300
+              text-md
+              text-neutral-400
               leading-relaxed
-              max-w-[50ch]
-              
+              max-w-[60ch]
             "
           >
             {t("description")}
           </motion.p>
 
           {/* Feature strip */}
-          <motion.div
+          {/* <motion.div
             variants={waterfallItem}
             className="
               mt-10
               w-full
             "
           >
-            {/* Desktop */}
-            {/* <div
-              className="
-                hidden md:flex
-                items-center
-                gap-8 lg:gap-10
-                text-sm
-              "
-            >
-              <div className="max-w-[220px]">
-                <div className="text-green-400 font-medium">Más seguro</div>
-
-                <div className="mt-1 text-neutral-400 text- leading-relaxed">
-                  Protecciones avanzadas para tu vehículo y tu hogar
-                </div>
-              </div>
-
-              <div className="w-px h-10 bg-neutral-800 shrink-0" />
-
-              <div className="max-w-[220px]">
-                <div className="text-green-400 font-medium">Más ahorro</div>
-
-                <div className="mt-1 text-neutral-400 text- leading-relaxed">
-                  Cargá tu EV por mucho menos que un auto a combustible
-                </div>
-              </div>
-
-              <div className="w-px h-10 bg-neutral-800 shrink-0" />
-
-              <div className="max-w-[220px]">
-                <div className="text-green-400 font-medium">Más práctico</div>
-
-                <div className="mt-1 text-neutral-400 text- leading-relaxed">
-                  Controlá y programá la carga desde tu celular
-                </div>
-              </div>
-            </div> */}
             <HomeHeroFeatureStrip />
 
-            {/* Mobile */}
             <div
               className="
                 md:hidden
@@ -262,19 +223,19 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA */}
-          <motion.div
-            variants={waterfallList}
-            className="flex flex-wrap items-center gap-3 mt-12"
-          >
+          <motion.div variants={waterfallList} className="flex flex-wrap gap-4">
             <motion.div variants={waterfallItem}>
               <Button
                 asChild
-                className="px-8 py-6 bg-green-500 hover:bg-green-400 text-black"
+                className="h-14 rounded-2xl px-8 bg-green-700 hover:bg-green-600 text-white"
               >
-                <Link href="/cargadores" onClick={() => track.homeHeroPrimary("desktop")}>
+                <Link
+                  href="/cargadores"
+                  onClick={() => track.homeHeroPrimary("desktop")}
+                >
                   {t("ctaPrimary")}
                 </Link>
               </Button>
@@ -282,9 +243,12 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             <motion.div variants={waterfallItem}>
               <Button
                 asChild
-                className="px-8 py-6 bg-neutral-950/50 text-white"
+                className="h-14 rounded-2xl px-8 bg-neutral-950 hover:bg-neutral-900 text-white border border-white/10"
               >
-                <Link href="/#compatibilidad" onClick={() => track.homeHeroSecondary("desktop")}>
+                <Link
+                  href="/#compatibilidad"
+                  onClick={() => track.homeHeroSecondary("desktop")}
+                >
                   {t("ctaSecondary")}
                 </Link>
               </Button>
@@ -292,10 +256,12 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             <motion.div variants={waterfallItem}>
               <Button
                 asChild
-                variant="ghost"
-                className="px-8 py-6 text-neutral-400 hover:text-white"
+                className="h-14 rounded-2xl px-8 bg-neutral-900 hover:bg-neutral-800 text-white"
               >
-                <Link href="/#contacto" onClick={() => track.homeHeroQuote("desktop")}>
+                <Link
+                  href="/#contacto"
+                  onClick={() => track.homeHeroQuote("desktop")}
+                >
                   {t("ctaTertiary")}
                 </Link>
               </Button>

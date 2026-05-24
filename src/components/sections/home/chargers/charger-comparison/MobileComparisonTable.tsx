@@ -1,32 +1,40 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FaWhatsapp } from "react-icons/fa";
 
 import type { Product } from "@/lib/types/product";
 
 import { renderFeatureValue } from "@/lib/formatFeatureValue";
-import { useTrack } from "@/lib/analytics";
 
-const WHATSAPP_NUMBER = "59892041709";
+const MERCADOPAGO_URLS: Record<string, string> = {
+  residencial: "http://mpago.la/1notnYD",
+  comercial: "https://mpago.la/2C6CFZe",
+};
 
 const VARIANT_THEME: Record<
   string,
-  { price: string; check: string; accentBg: string; accentHover: string }
+  { price: string; check: string }
 > = {
   residencial: {
     price: "text-sky-400",
     check: "text-sky-400",
-    accentBg: "bg-sky-400",
-    accentHover: "hover:bg-sky-300",
   },
   comercial: {
     price: "text-green-400",
     check: "text-green-400",
-    accentBg: "bg-green-500",
-    accentHover: "hover:bg-green-400",
   },
 };
+
+function MercadoPagoLogo() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <circle cx="16" cy="16" r="16" fill="white" />
+      <path d="M7 16.5C7 11.806 10.806 8 15.5 8S24 11.806 24 16.5" stroke="#009EE3" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="7" cy="17" r="2.5" fill="#009EE3" />
+      <circle cx="24" cy="17" r="2.5" fill="#33CC99" />
+    </svg>
+  );
+}
 
 type Props = {
   product: Product;
@@ -34,7 +42,6 @@ type Props = {
 
 export function MobileComparisonTable({ product }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection.ComparisonTable");
-  const track = useTrack();
 
   return (
     <div className="lg:hidden">
@@ -140,34 +147,23 @@ export function MobileComparisonTable({ product }: Props) {
         {/* Buy CTA row */}
         <div className="grid grid-cols-2 mt-6 border-t border-neutral-800">
           {product.variants.map((variant) => {
-            const variantTheme = VARIANT_THEME[variant.id];
-            if (!variantTheme || typeof variant.price !== "number") return null;
-            const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-              t("cta.buyMessage", { model: variant.name }),
-            )}`;
+            const mpUrl = MERCADOPAGO_URLS[variant.id];
+            if (!mpUrl) return null;
             return (
               <div
                 key={`cta-${variant.id}`}
-                className="flex items-center justify-center p-4"
+                className="flex flex-col items-center justify-center gap-1.5 p-4"
               >
                 <a
-                  href={whatsappHref}
+                  href={mpUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() =>
-                    track.whatsappClick({
-                      source: "comparison_table_buy_cta",
-                      charger: variant.name,
-                    })
-                  }
-                  className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-neutral-900 text-lg tracking-tight text-center transition-all duration-200 ${variantTheme.accentBg} ${variantTheme.accentHover}`}
+                  className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#009EE3] hover:bg-[#0087c8] text-white font-semibold text-sm transition-all duration-200 w-full justify-center"
                 >
-                  <FaWhatsapp className="size-8 sm:size-4  shrink-0" />
-                  <span>
-                    {t("cta.buy", { price: `USD${variant.price}` })}{" "}
-                    {t("taxLabel")}
-                  </span>
+                  <MercadoPagoLogo />
+                  {t("cta.mercadopago")}
                 </a>
+                <span className="text-[10px] text-neutral-500 text-center">{t("cta.installments")}</span>
               </div>
             );
           })}

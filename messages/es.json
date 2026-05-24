@@ -70,10 +70,10 @@
 
   "HomePage": {
     "Hero": {
-      "title": "Cargadores Wallbox para autos eléctricos y hibridos en Uruguay",
+      "title": "Instalación y venta de cargadores Wallbox para autos eléctricos e híbridos en Uruguay",
       "description": "Conseguí hoy tu cargador eléctrico con garantía de 1 año con instalación por técnico certificado y equipos certificados por UTE y URSEA.",
       "ctaPrimary": "Ver cargadores",
-      "ctaSecondary": "Ver compatibilidad",
+      "ctaSecondary": "¿Funciona con tu vehículo?",
       "ctaTertiary": "Solicitar presupuesto de instalación",
 
       "features": {
@@ -100,7 +100,9 @@
         "cta": {
           "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
           "buy": "Quiero mi cargador por {price}",
-          "buyMessage": "Hola! Quiero comprar mi cargador {model}"
+          "buyMessage": "Hola! Quiero comprar mi cargador {model}",
+          "mercadopago": "Comprar con Mercado Pago",
+          "installments": "Hasta en 12 cuotas sin interés."
         },
 
         "features": {
@@ -154,7 +156,7 @@
 
       "cta": {
         "primary": "Ver cargadores",
-        "secondary": "Ver compatibilidad"
+        "secondary": "¿Funciona con tu vehículo?"
       },
 
       "items": {
