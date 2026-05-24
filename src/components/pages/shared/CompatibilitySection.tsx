@@ -266,10 +266,22 @@ export function CompatibilitySection({ theme, id }: Props) {
 
   function handleWhatsAppModel(brand: string, model: string) {
     track.compatibilityModelSelected(brand, model);
-    track.whatsappClick({ source: "compatibility_model", vehicle_brand: brand, vehicle_model: model });
+    track.whatsappClick({
+      source: "compatibility_model",
+      vehicle_brand: brand,
+      vehicle_model: model,
+    });
   }
 
-  function handleWhatsAppFallback(source: "compatibility_no_results" | "compatibility_banner") {
+  function handleOpenBrandsChange(values: string[]) {
+    const added = values.filter((v) => !openBrands.includes(v));
+    added.forEach((brand) => track.compatibilityBrandExpanded(brand));
+    setOpenBrands(values);
+  }
+
+  function handleWhatsAppFallback(
+    source: "compatibility_no_results" | "compatibility_banner",
+  ) {
     track.whatsappClick({ source });
   }
 
@@ -468,76 +480,96 @@ export function CompatibilitySection({ theme, id }: Props) {
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {/* Desktop */}
-              <div className="hidden gap-16 md:grid md:grid-cols-2">
-                {displayedData.map((brand) => (
-                  <div key={brand.name}>
-                    <h3
-                      className="
-                        mb-5
-                        text-3xl
-                        font-semibold
-                        tracking-tight
-                        text-white
-                      "
-                    >
-                      {brand.name}
-                    </h3>
-
-                    <div className="grid gap-2 xl:grid-cols-2">
-                      {brand.models.map((model) => {
-                        const message = encodeURIComponent(
-                          t("whatsapp.message", { model }),
-                        );
-
-                        return (
-                          <a
-                            key={model}
-                            href={`https://wa.me/${whatsappNumber}?text=${message}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => handleWhatsAppModel(brand.name, model)}
-                            className="
-                              group
-                              flex items-center justify-between
-                              rounded-xl
-                              border border-neutral-900
-                              bg-neutral-950
-                              px-4 py-3
-                              transition-all duration-300
-                              hover:border-green-500/30
-                              hover:bg-neutral-900
-                            "
-                          >
-                            <div className="flex items-center gap-1.5">
-                              <CheckIcon className={cn("size-4", ui.accentText)} />
-                              <span className="flex-1 uppercase">
-                                {highlightMatch(model, search)}
-                              </span>
-                            </div>
-
-                            <div
-                              className="
-                                flex items-center gap-2
-                                translate-x-2
-                                opacity-0
-                                sm:uppercase tracking-tighter
-                                transition-all duration-300
-                                group-hover:translate-x-0
-                                group-hover:opacity-100
-                              "
-                            >
-                              <FaWhatsapp className="mt-0.5 text-green-500 size-3.5" />
-                              <span className="text-xs text-neutral-400">
-                                {t("cta.contactSales")}
-                              </span>
-                              <ChevronRight className="size-3 text-neutral-500" />
-                            </div>
-                          </a>
-                        );
-                      })}
-                    </div>
+              <div className="hidden md:block">
+                {!mounted ? (
+                  <div className="flex flex-col gap-3">
+                    {displayedData.map((brand) => (
+                      <div
+                        key={brand.name}
+                        className="rounded-2xl border border-neutral-900 bg-neutral-950 px-6 py-5"
+                      >
+                        <span className="text-2xl font-semibold tracking-tight text-white">
+                          {brand.name}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                ) : (
+                  <Accordion
+                    type="multiple"
+                    value={openBrands}
+                    onValueChange={handleOpenBrandsChange}
+                    className="flex flex-col gap-3"
+                  >
+                    {displayedData.map((brand) => (
+                      <AccordionItem
+                        key={brand.name}
+                        value={brand.name}
+                        className="rounded-2xl border border-neutral-900 bg-neutral-950 px-6"
+                      >
+                        <AccordionTrigger className="py-5 hover:no-underline">
+                          <span className="text-2xl font-semibold tracking-tight text-white">
+                            {highlightMatch(brand.name, search)}
+                          </span>
+                        </AccordionTrigger>
+
+                        <AccordionContent className="pb-5">
+                          <div className="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            {brand.models.map((model) => {
+                              const message = encodeURIComponent(
+                                t("whatsapp.message", { model }),
+                              );
+                              return (
+                                <a
+                                  key={model}
+                                  href={`https://wa.me/${whatsappNumber}?text=${message}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() =>
+                                    handleWhatsAppModel(brand.name, model)
+                                  }
+                                  className="
+                                    group
+                                    flex items-center justify-between
+                                    rounded-xl
+                                    border border-neutral-900
+                                    bg-neutral-950
+                                    px-4 py-3
+                                    transition-all duration-300
+                                    hover:border-green-500/30
+                                    hover:bg-neutral-900
+                                  "
+                                >
+                                  <div className="flex items-center gap-1.5">
+                                    <CheckIcon className={cn("size-4", ui.accentText)} />
+                                    <span className="flex-1 uppercase">
+                                      {highlightMatch(model, search)}
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="
+                                      flex items-center gap-2
+                                      translate-x-2 opacity-0
+                                      uppercase tracking-tighter
+                                      transition-all duration-300
+                                      group-hover:translate-x-0 group-hover:opacity-100
+                                    "
+                                  >
+                                    <FaWhatsapp className="mt-0.5 text-green-500 size-3.5" />
+                                    <span className="text-xs text-neutral-400">
+                                      {t("cta.contactSales")}
+                                    </span>
+                                    <ChevronRight className="size-3 text-neutral-500" />
+                                  </div>
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                )}
               </div>
 
               {/* Mobile */}
@@ -556,78 +588,76 @@ export function CompatibilitySection({ theme, id }: Props) {
                     ))}
                   </div>
                 ) : (
-                <Accordion
-                  type="multiple"
-                  value={openBrands}
-                  onValueChange={(values) => {
-                    const added = values.filter((v) => !openBrands.includes(v));
-                    added.forEach((brand) => track.compatibilityBrandExpanded(brand));
-                    setOpenBrands(values);
-                  }}
-                  className="flex flex-col gap-3"
-                >
-                  {displayedData.map((brand) => (
-                    <AccordionItem
-                      key={brand.name}
-                      value={brand.name}
-                      className="
+                  <Accordion
+                    type="multiple"
+                    value={openBrands}
+                    onValueChange={handleOpenBrandsChange}
+                    className="flex flex-col gap-3"
+                  >
+                    {displayedData.map((brand) => (
+                      <AccordionItem
+                        key={brand.name}
+                        value={brand.name}
+                        className="
                         rounded-2xl
                         border border-neutral-900
                         bg-neutral-950
                         px-4
                       "
-                    >
-                      <AccordionTrigger className="items-center py-4 hover:no-underline">
-                        <span className="mx-2 my-1 text-xl font-medium uppercase tracking-tighter text-white">
-                          {brand.name}
-                        </span>
-                      </AccordionTrigger>
+                      >
+                        <AccordionTrigger className="items-center py-4 hover:no-underline">
+                          <span className="mx-2 my-1 text-xl font-medium uppercase tracking-tighter text-white">
+                            {brand.name}
+                          </span>
+                        </AccordionTrigger>
 
-                      <AccordionContent className="pb-4">
-                        <div className="flex flex-col gap-1.5">
-                          {brand.models.map((model) => {
-                            const message = encodeURIComponent(
-                              t("whatsapp.message", { model }),
-                            );
+                        <AccordionContent className="pb-4">
+                          <div className="flex flex-col gap-1.5">
+                            {brand.models.map((model) => {
+                              const message = encodeURIComponent(
+                                t("whatsapp.message", { model }),
+                              );
 
-                            return (
-                              <div
-                                key={model}
-                                className="
+                              return (
+                                <div
+                                  key={model}
+                                  className="
                                   flex items-center justify-between
                                   rounded-xl
                                   border border-neutral-900
                                   bg-black/40
                                   px-4 py-3
                                 "
-                              >
-                                <span className="text-sm uppercase">
-                                  {highlightMatch(model, search)}
-                                </span>
+                                >
+                                  <span className="text-sm uppercase">
+                                    {highlightMatch(model, search)}
+                                  </span>
 
-                                <a
-                                  href={`https://wa.me/${whatsappNumber}?text=${message}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() => handleWhatsAppModel(brand.name, model)}
-                                  className="
+                                  <a
+                                    href={`https://wa.me/${whatsappNumber}?text=${message}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() =>
+                                      handleWhatsAppModel(brand.name, model)
+                                    }
+                                    className="
                                     flex w-15 justify-center
                                     rounded-lg
                                     border border-neutral-900
                                     bg-neutral-900
                                     py-1
                                   "
-                                >
-                                  <FaWhatsapp className="text-green-500" />
-                                </a>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+                                  >
+                                    <FaWhatsapp className="text-green-500" />
+                                  </a>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 )}
               </div>
             </motion.div>
@@ -650,7 +680,10 @@ export function CompatibilitySection({ theme, id }: Props) {
                     exit={{ opacity: 0, y: 4 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    onClick={() => { setExpanded(true); track.compatibilityListExpanded(); }}
+                    onClick={() => {
+                      setExpanded(true);
+                      track.compatibilityListExpanded();
+                    }}
                     className="
                       flex flex-col items-center gap-2
                       rounded-2xl border border-white/5 bg-white/[0.02]
