@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { SiMercadopago } from "react-icons/si";
 
 import type { Product } from "@/lib/types/product";
 
@@ -25,19 +26,6 @@ const VARIANT_THEME: Record<
   },
 };
 
-function MercadoPagoLogo() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-      <circle cx="11" cy="11" r="11" fill="#009EE3" />
-      <g stroke="white" strokeWidth="2" strokeLinecap="round">
-        <line x1="11" y1="5.5" x2="11" y2="16.5" />
-        <line x1="5.5" y1="11" x2="16.5" y2="11" />
-        <line x1="7.2" y1="7.2" x2="14.8" y2="14.8" />
-        <line x1="14.8" y1="7.2" x2="7.2" y2="14.8" />
-      </g>
-    </svg>
-  );
-}
 
 type Props = {
   product: Product;
@@ -161,9 +149,9 @@ export function MobileComparisonTable({ product }: Props) {
                   href={mpUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm text-[#009EE3] font-bold text-sm transition-all duration-200 w-full justify-center"
+                  className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#009EE3] hover:bg-[#0087c8] text-white font-semibold text-sm transition-all duration-200 w-full justify-center"
                 >
-                  <MercadoPagoLogo />
+                  <SiMercadopago size={20} aria-hidden="true" />
                   {t("cta.mercadopago")}
                 </a>
                 <span className="text-[10px] text-neutral-500 text-center">{t("cta.installments")}</span>
