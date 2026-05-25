@@ -124,10 +124,7 @@ export function HomeCostSection() {
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             {/* Chart: Y-axis + bars side by side */}
-            <div
-              className="flex gap-2 sm:gap-4"
-              style={{ height: CHART_HEIGHT }}
-            >
+            <div className="flex" style={{ height: CHART_HEIGHT }}>
               {/* Y axis */}
               <div
                 className="relative w-10 sm:w-14 shrink-0"
@@ -193,43 +190,47 @@ export function HomeCostSection() {
                       <div
                         key={id}
                         className="relative flex-1 min-w-0"
-                        style={{
-                          height: `${heightPct}%`,
-                          clipPath: "inset(0 0 0 0)",
-                        }}
+                        style={{ height: `${heightPct}%` }}
                       >
+                        {/* Glow sits outside the clipped wrapper so blur can spread */}
                         {isWinner && (
                           <div
                             aria-hidden="true"
-                            className="pointer-events-none absolute inset-0 bg-green-500 rounded-t-full blur-3xl opacity-20"
+                            className="pointer-events-none absolute inset-0 rounded-t-full bg-green-400 blur-3xl opacity-30"
                           />
                         )}
-                        <motion.div
-                          initial={{ y: barH }}
-                          whileInView={{ y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.1, delay, ease: "easeOut" }}
-                          className={`absolute inset-0 ${bg}`}
-                          style={{
-                            borderTopLeftRadius: "9999px",
-                            borderTopRightRadius: "9999px",
-                          }}
+                        {/* clipPath only on the bar itself, not the glow */}
+                        <div
+                          className="absolute inset-0"
+                          style={{ clipPath: "inset(0 0 0 0)" }}
                         >
                           <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                            initial={{ y: barH }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: delay + 0.75 }}
-                            className="absolute left-1/2 top-3 sm:top-4 -translate-x-1/2"
+                            transition={{ duration: 1.1, delay, ease: "easeOut" }}
+                            className={`absolute inset-0 ${bg}`}
+                            style={{
+                              borderTopLeftRadius: "9999px",
+                              borderTopRightRadius: "9999px",
+                            }}
                           >
-                            <div className="flex h-8 w-8 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white shadow-sm">
-                              <Icon
-                                className={`h-4 w-4 sm:h-6 sm:w-6 ${iconColor}`}
-                                aria-hidden="true"
-                              />
-                            </div>
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.4, delay: delay + 0.75 }}
+                              className="absolute left-1/2 top-3 sm:top-4 -translate-x-1/2"
+                            >
+                              <div className="flex h-8 w-8 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white shadow-sm">
+                                <Icon
+                                  className={`h-4 w-4 sm:h-6 sm:w-6 ${iconColor}`}
+                                  aria-hidden="true"
+                                />
+                              </div>
+                            </motion.div>
                           </motion.div>
-                        </motion.div>
+                        </div>
                       </div>
                     );
                   },
@@ -238,7 +239,7 @@ export function HomeCostSection() {
             </div>
 
             {/* Labels + price below bars — spacer matches Y-axis */}
-            <div className="flex gap-2 sm:gap-4 mt-5">
+            <div className="flex  mt-5">
               <div className="w-10 sm:w-14 shrink-0" aria-hidden="true" />
               {BARS.map(({ id, displayPrice, isWinner }) => (
                 <div key={id} className="flex-1 min-w-0 text-center">
