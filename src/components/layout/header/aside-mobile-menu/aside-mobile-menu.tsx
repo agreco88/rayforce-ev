@@ -36,7 +36,7 @@ export default function AsideMobileMenu() {
             className="
               fixed inset-0 z-50
               flex flex-col
-              min-h-dvh
+              min-h-dvh overflow-y-auto
               bg-background/95 backdrop-blur-md
               supports-[backdrop-filter]:bg-background
             "

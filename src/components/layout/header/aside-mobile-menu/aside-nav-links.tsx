@@ -53,14 +53,14 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
   return (
     <nav
       aria-label={tA11y("mobileNavigation")}
-      className="flex-1 flex flex-col justify-around px-4 py-6"
+      className="flex-1 flex flex-col justify-around px-4 py-10"
     >
       <motion.ul
         variants={waterfallList}
         initial="hidden"
         animate="show"
         exit="hidden"
-        className="flex flex-col gap-6"
+        className="flex flex-col gap-10"
       >
         {/* Home — main route link */}
         <motion.li variants={waterfallItem}>
@@ -80,7 +80,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
 
         {/* Hash section links — subordinate anchors */}
         <motion.li variants={waterfallItem}>
-          <ul className="flex flex-col gap-2 border-l border-white/10 pl-4">
+          <ul className="flex flex-col gap-1 border-l border-white/10 pl-4">
             {HASH_LINKS.map((link) => {
               const isActive = activeId === link.id;
               return (
