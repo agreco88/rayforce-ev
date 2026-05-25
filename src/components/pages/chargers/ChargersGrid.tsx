@@ -53,7 +53,8 @@ export default function ChargersGrid() {
   return (
     <div className="w-full">
       {/* ── Mobile: scroll-snap carousel ──────────────────── */}
-      <div className="sm:hidden">
+      {/* -mx-2 cancels the page section's px-2; overflow-x-hidden contains bleed */}
+      <div className="sm:hidden -mx-2 overflow-x-hidden">
         <div className="relative">
           <div
             ref={trackRef}
