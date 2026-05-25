@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Fuel, Home, Plug } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -44,6 +45,7 @@ const BARS = [
 
 export function HomeCostSection() {
   const t = useTranslations("HomePage.HomeCostSection");
+  const [chartInView, setChartInView] = useState(false);
 
   return (
     <section
@@ -120,6 +122,7 @@ export function HomeCostSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
+            onViewportEnter={() => setChartInView(true)}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
@@ -210,8 +213,7 @@ export function HomeCostSection() {
                         >
                           <motion.div
                             initial={{ y: barH }}
-                            whileInView={{ y: 0 }}
-                            viewport={{ once: true }}
+                            animate={{ y: chartInView ? 0 : barH }}
                             transition={{ duration: 1.1, delay, ease: "easeOut" }}
                             className={`absolute inset-0 ${bg}`}
                             style={{
@@ -221,8 +223,7 @@ export function HomeCostSection() {
                           >
                             <motion.div
                               initial={{ opacity: 0 }}
-                              whileInView={{ opacity: 1 }}
-                              viewport={{ once: true }}
+                              animate={{ opacity: chartInView ? 1 : 0 }}
                               transition={{ duration: 0.4, delay: delay + 0.75 }}
                               className="absolute left-1/2 top-3 sm:top-4 -translate-x-1/2"
                             >
