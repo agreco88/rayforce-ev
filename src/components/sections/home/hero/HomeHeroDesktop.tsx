@@ -243,7 +243,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             <motion.div variants={waterfallItem}>
               <Button
                 asChild
-                className="h-14 rounded-2xl px-8 bg-neutral-950 hover:bg-neutral-900 text-white border border-white/10"
+                className="h-14 rounded-2xl px-8 bg-neutral-950 hover:bg-neutral-900 text-white"
               >
                 <Link
                   href="/#compatibilidad"
@@ -259,7 +259,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
                 className="h-14 rounded-2xl px-8 bg-neutral-900 hover:bg-neutral-800 text-white"
               >
                 <Link
-                  href="/#contacto"
+                  href="/#instalacion"
                   onClick={() => track.homeHeroQuote("desktop")}
                 >
                   {t("ctaTertiary")}

@@ -78,7 +78,7 @@ export default function HomePage() {
         <HomeChargersSection id="cargadores" />
 
         <HomeStandSection id="columna" />
-        <InstallationSection />
+        <InstallationSection id="instalacion" />
         <CompatibilitySection id="compatibilidad" />
         <HomeBenefitsSection id="beneficios" />
         <HomeFaqSection id="faq" />

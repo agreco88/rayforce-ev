@@ -9,7 +9,7 @@ import { useTrack } from "@/lib/analytics";
 
 const WHATSAPP_NUMBER = "59892041709";
 
-export function InstallationSection() {
+export function InstallationSection({ id }: { id?: string }) {
   const t = useTranslations("HomePage.InstallationSection");
   const track = useTrack();
 
@@ -18,7 +18,7 @@ export function InstallationSection() {
   )}`;
 
   return (
-    <section className="relative bg-neutral-950 border-y border-neutral-900 py-24 sm:py-32 px-4 overflow-hidden">
+    <section id={id} className="relative bg-neutral-950 border-y border-neutral-900 py-24 sm:py-32 px-4 overflow-hidden">
       {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-30"
@@ -28,7 +28,8 @@ export function InstallationSection() {
             linear-gradient(to bottom, rgba(64,64,64,0.4) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%)",
+          maskImage:
+            "radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%)",
         }}
       />
 
@@ -50,7 +51,7 @@ export function InstallationSection() {
         {/* Title */}
         <motion.h2
           variants={waterfallItem}
-          className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight tracking-tight normal-case"
+          className="text-4xl m-0 sm:text-5xl lg:text-6xl font-medium leading-tight tracking-tight normal-case"
         >
           {t("title")}
         </motion.h2>

@@ -128,7 +128,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           </h1>
 
           {/* Description */}
-          <motion.p
+          {/* <motion.p
             variants={waterfallItem}
             className="
               mt-6
@@ -140,7 +140,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
             "
           >
             {t("description")}
-          </motion.p>
+          </motion.p> */}
 
           {/* Features */}
           {/* <motion.div
@@ -166,7 +166,10 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               asChild
               className="h-14 rounded-2xl px-8 bg-green-700 hover:bg-green-600 text-white"
             >
-              <Link href="/cargadores" onClick={() => track.homeHeroPrimary("mobile")}>
+              <Link
+                href="/cargadores"
+                onClick={() => track.homeHeroPrimary("mobile")}
+              >
                 {t("ctaPrimary")}
               </Link>
             </Button>
@@ -175,7 +178,10 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               asChild
               className="h-14 rounded-2xl px-8 bg-neutral-950 hover:bg-neutral-900 text-white border border-white/10"
             >
-              <Link href="/#compatibilidad" onClick={() => track.homeHeroSecondary("mobile")}>
+              <Link
+                href="/#compatibilidad"
+                onClick={() => track.homeHeroSecondary("mobile")}
+              >
                 {t("ctaSecondary")}
               </Link>
             </Button>
@@ -184,7 +190,10 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               asChild
               className="h-14 rounded-2xl px-8 bg-neutral-900 hover:bg-neutral-800 text-white"
             >
-              <Link href="/#contacto" onClick={() => track.homeHeroQuote("mobile")}>
+              <Link
+                href="/#instalacion"
+                onClick={() => track.homeHeroQuote("mobile")}
+              >
                 {t("ctaTertiary")}
               </Link>
             </Button>
