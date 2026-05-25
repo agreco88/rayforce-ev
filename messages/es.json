@@ -95,10 +95,10 @@
     },
     "HomeCostSection": {
       "eyebrow": "Comparativa de costos",
-      "title": "Cargá en casa y ahorrás hasta 23 veces más",
-      "description": "Para recorrer 350 km, cargar en casa con Rayforce cuesta $134. En cargadores públicos UTE, $523. En nafta, $3.081. La diferencia habla por sí sola.",
+      "title": "350 km por $134. La diferencia habla sola.",
+      "subheading": "Convertí tu casa en tu estación de carga",
+      "description": "Cada vez que sube ANCAP, cargar en casa rinde más. Con tarifas residenciales UTE, recorrer 350 km puede costar hasta 23 veces menos que en un vehículo a combustión.",
       "cta": "Ver cargadores",
-      "winnerLabel": "Más económico",
       "unit": "350 km",
       "footnote": "* Pesos uruguayos. Estimación para 350 km con un eléctrico típico de 45 kWh/100 km. Tarifa residencial UTE vigente.",
       "source": "Fuentes: UTE tarifas 2025 · ANCAP combustibles",

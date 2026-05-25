@@ -95,10 +95,10 @@
     },
     "HomeCostSection": {
       "eyebrow": "Cost comparison",
-      "title": "Charge at home and save up to 23× more",
-      "description": "To travel 350 km, home charging with Rayforce costs $134 UYU. At UTE public chargers, $523 UYU. On gasoline, $3,081 UYU. The savings speak for themselves.",
+      "title": "350 km for $134. The difference speaks for itself.",
+      "subheading": "Turn your home into your charging station",
+      "description": "Every time ANCAP raises fuel prices, home charging pays off more. With UTE residential rates, traveling 350 km can cost up to 23× less than a combustion vehicle.",
       "cta": "View chargers",
-      "winnerLabel": "Most affordable",
       "unit": "350 km",
       "footnote": "* Uruguayan pesos. Estimate for 350 km with a typical EV at 45 kWh/100 km. Current UTE residential rate.",
       "source": "Sources: UTE 2025 rates · ANCAP fuel prices",
