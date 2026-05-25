@@ -123,6 +123,10 @@ export function HomeCostSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
+            <p className="text-xs uppercase tracking-widest text-neutral-500 text-center mb-6">
+              {t("chartTitle")}
+            </p>
+
             {/* Chart: Y-axis + bars side by side */}
             <div className="flex" style={{ height: CHART_HEIGHT }}>
               {/* Y axis */}
