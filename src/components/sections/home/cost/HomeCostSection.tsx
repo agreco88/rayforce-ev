@@ -61,7 +61,6 @@ export function HomeCostSection() {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
-
           {/* ── Left: copy ─────────────────────────────────── */}
           <motion.div
             variants={waterfallList}
@@ -117,100 +116,139 @@ export function HomeCostSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            {/* Price labels row */}
-            <div className="flex items-end justify-center gap-4 sm:gap-8 mb-6">
+            {/* Price labels row — spacer matches Y-axis width */}
+            <div className="flex items-end gap-2 sm:gap-4 mb-6">
+              <div className="w-10 sm:w-14 shrink-0" aria-hidden="true" />
               {BARS.map(({ id, displayPrice, isWinner }) => (
-                <div key={id} className="w-28 sm:w-36 text-center">
+                <div key={id} className="flex-1 min-w-0 text-center">
                   {isWinner && (
-                    <span className="inline-block mb-2 rounded-full bg-green-500/15 border border-green-500/30 px-3 py-0.5 text-[10px] uppercase tracking-wider text-green-400">
+                    <span className="inline-block mb-2 rounded-full bg-green-500/15 border border-green-500/30 px-2 py-0.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-green-400">
                       {t("winnerLabel")}
                     </span>
                   )}
                   <div
-                    className={`text-3xl sm:text-4xl font-thin tracking-tighter ${
+                    className={`text-2xl sm:text-4xl font-thin tracking-tighter ${
                       isWinner ? "text-green-400" : "text-neutral-300"
                     }`}
                   >
                     {displayPrice}
                   </div>
-                  <div className="text-[10px] uppercase tracking-widest text-neutral-600 mt-1">
+                  <div className="text-[9px] sm:text-[10px] uppercase tracking-widest text-neutral-600 mt-1">
                     {t("unit")}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Bar chart */}
-            <div
-              className="relative flex items-end justify-center gap-4 sm:gap-8"
-              style={{ height: CHART_HEIGHT }}
-            >
-              {/* Grid lines */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 flex flex-col justify-between"
-              >
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="h-px w-full bg-neutral-800/60" />
+            {/* Chart: Y-axis + bars side by side */}
+            <div className="flex gap-2 sm:gap-4" style={{ height: CHART_HEIGHT }}>
+
+              {/* Y axis */}
+              <div className="relative w-10 sm:w-14 shrink-0" aria-hidden="true">
+                <div className="absolute right-0 top-0 bottom-0 w-px bg-neutral-800" />
+                {BARS.map(({ id, displayPrice, heightPct, isWinner }) => (
+                  <div
+                    key={id}
+                    className="absolute right-2 flex items-center"
+                    style={{ bottom: `${heightPct}%`, transform: "translateY(50%)" }}
+                  >
+                    <span
+                      className={`text-[8px] sm:text-[10px] tabular-nums whitespace-nowrap ${
+                        isWinner ? "text-green-500" : "text-neutral-600"
+                      }`}
+                    >
+                      {displayPrice}
+                    </span>
+                    <div
+                      className={`h-px w-1.5 ml-1 ${
+                        isWinner ? "bg-green-500/60" : "bg-neutral-700"
+                      }`}
+                    />
+                  </div>
                 ))}
               </div>
 
-              {BARS.map(({ id, heightPct, bg, Icon, iconColor, isWinner, delay }) => {
-                const barH = (CHART_HEIGHT * heightPct) / 100;
-                return (
-                  <div
-                    key={id}
-                    className="relative w-28 sm:w-36 shrink-0"
-                    style={{ height: `${heightPct}%`, clipPath: "inset(0 0 0 0)" }}
-                  >
-                    {isWinner && (
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-green-500 rounded-t-full blur-3xl opacity-20"
-                      />
-                    )}
+              {/* Bars area */}
+              <div className="relative flex-1 flex items-end justify-around gap-2 sm:gap-4">
+                {/* Background grid lines */}
+                <div className="pointer-events-none absolute inset-0 flex flex-col justify-between" aria-hidden="true">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-px w-full bg-neutral-800/60" />
+                  ))}
+                </div>
 
-                    <motion.div
-                      initial={{ y: barH }}
-                      whileInView={{ y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.1, delay, ease: "easeOut" }}
-                      className={`absolute inset-0 ${bg}`}
-                      style={{
-                        borderTopLeftRadius: "9999px",
-                        borderTopRightRadius: "9999px",
-                      }}
+                {/* Dashed reference lines at bar heights */}
+                {BARS.map(({ id, heightPct, isWinner }) => (
+                  <div
+                    key={`ref-${id}`}
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute left-0 right-0 h-0 border-t border-dashed ${
+                      isWinner ? "border-green-500/35" : "border-neutral-700/50"
+                    }`}
+                    style={{ bottom: `${heightPct}%` }}
+                  />
+                ))}
+
+                {/* Bars */}
+                {BARS.map(({ id, heightPct, bg, Icon, iconColor, isWinner, delay }) => {
+                  const barH = (CHART_HEIGHT * heightPct) / 100;
+                  return (
+                    <div
+                      key={id}
+                      className="relative flex-1 min-w-0"
+                      style={{ height: `${heightPct}%`, clipPath: "inset(0 0 0 0)" }}
                     >
-                      {/* Icon circle */}
+                      {isWinner && (
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-0 bg-green-500 rounded-t-full blur-3xl opacity-20"
+                        />
+                      )}
                       <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                        initial={{ y: barH }}
+                        whileInView={{ y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: delay + 0.75 }}
-                        className="absolute left-1/2 top-3 sm:top-4 -translate-x-1/2"
+                        transition={{ duration: 1.1, delay, ease: "easeOut" }}
+                        className={`absolute inset-0 ${bg}`}
+                        style={{
+                          borderTopLeftRadius: "9999px",
+                          borderTopRightRadius: "9999px",
+                        }}
                       >
-                        <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white shadow-sm">
-                          <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${iconColor}`} aria-hidden="true" />
-                        </div>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: delay + 0.75 }}
+                          className="absolute left-1/2 top-3 sm:top-4 -translate-x-1/2"
+                        >
+                          <div className="flex h-8 w-8 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white shadow-sm">
+                            <Icon
+                              className={`h-4 w-4 sm:h-6 sm:w-6 ${iconColor}`}
+                              aria-hidden="true"
+                            />
+                          </div>
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  </div>
-                );
-              })}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Labels below bars */}
-            <div className="flex justify-center gap-4 sm:gap-8 mt-5">
+            {/* Labels below bars — spacer matches Y-axis */}
+            <div className="flex gap-2 sm:gap-4 mt-5">
+              <div className="w-10 sm:w-14 shrink-0" aria-hidden="true" />
               {BARS.map(({ id, isWinner }) => (
-                <div key={id} className="w-28 sm:w-36 text-center">
+                <div key={id} className="flex-1 min-w-0 text-center">
                   <p
-                    className={`text-sm font-medium leading-tight ${
+                    className={`text-xs sm:text-sm font-medium leading-tight ${
                       isWinner ? "text-green-400" : "text-neutral-400"
                     }`}
                   >
                     {t(`items.${id}.title`)}
                   </p>
-                  <p className="text-xs text-neutral-600 mt-0.5">
+                  <p className="text-[9px] sm:text-xs text-neutral-600 mt-0.5">
                     {t(`items.${id}.subtitle`)}
                   </p>
                 </div>
