@@ -133,7 +133,7 @@ function Cell({
   }
 
   return (
-    <span className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+    <span className="text-xs sm:text-sm text-neutral-300">
       {value}
     </span>
   );
@@ -161,10 +161,11 @@ export default function RayforceComparison({
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Quiero comprar mi cargador ${variantPublicName}`)}`
     : `https://wa.me/${WHATSAPP_NUMBER}`;
 
-  const mpUrl = powerKw >= 11 ? MERCADOPAGO_URLS.comercial : MERCADOPAGO_URLS.residencial;
+  const mpUrl =
+    powerKw >= 11 ? MERCADOPAGO_URLS.comercial : MERCADOPAGO_URLS.residencial;
 
   return (
-    <section className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-neutral-950">
       <div className="max-w-[1400px] mx-auto w-full">
         {/* Title */}
         <motion.h2
@@ -176,7 +177,7 @@ export default function RayforceComparison({
         </motion.h2>
 
         {/* Table */}
-        <div className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] border-b border-neutral-200 dark:border-neutral-800 pb-6">
+        <div className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] border-b border-neutral-800 pb-6">
           <span />
 
           {columns.map((col, i) => {
@@ -216,9 +217,9 @@ export default function RayforceComparison({
         {rows.map((row) => (
           <motion.div
             key={row.label}
-            className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-4 border-b  border-neutral-200 dark:border-neutral-800"
+            className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-4 border-b  border-neutral-800"
           >
-            <span className="text-xs sm:text-sm text-neutral-900 dark:text-neutral-100">
+            <span className="text-xs sm:text-sm text-neutral-100">
               {row.label}
             </span>
 
@@ -235,8 +236,8 @@ export default function RayforceComparison({
         ))}
 
         {/* Buy CTA row */}
-        {price && (
-          <div className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-6 border-b border-neutral-200 dark:border-neutral-800">
+        {/* {price && (
+          <div className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-6 border-b border-neutral-800">
             <span />
             <span />
             <div className="flex justify-center">
@@ -263,10 +264,10 @@ export default function RayforceComparison({
               </a>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Images */}
-        {/* <div className="mt-8 sm:mt-20 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
+        {/* <div className="mt-8 sm:mt-20 rounded-2xl overflow-hidden border border-neutral-800">
           <div className="relative">
             <img
               src="/assets/images/banners/rayforce-charging.avif"
