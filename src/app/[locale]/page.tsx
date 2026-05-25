@@ -80,8 +80,8 @@ export default function HomePage() {
         <HomeStandSection id="columna" />
         <InstallationSection id="instalacion" />
         <CompatibilitySection id="compatibilidad" />
-        <HomeBenefitsSection id="beneficios" />
         <HomeFaqSection id="faq" />
+        <HomeBenefitsSection id="beneficios" />
         <Footer />
       </Suspense>
       <ScrollDepthTracker page="home" />

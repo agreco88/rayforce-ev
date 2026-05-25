@@ -41,8 +41,8 @@ export default function ChargersPage() {
           }}
         />{" "}
         <FeaturesRayforce />
-        <HomeStandSection />
-        <HomeBenefitsSection id="beneficios" /> <Footer />
+        {/* <HomeStandSection />
+        <HomeBenefitsSection id="beneficios" /> <Footer /> */}
       </section>{" "}
       <ScrollDepthTracker page="chargers" />
     </div>

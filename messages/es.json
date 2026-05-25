@@ -105,11 +105,11 @@
       "source": "Fuentes: UTE tarifas 2025 · ANCAP combustibles",
       "items": {
         "rayforce": {
-          "title": "Rayforce en casa",
+          "title": "Rayforce",
           "subtitle": "Tarifa residencial UTE"
         },
         "ute": {
-          "title": "Cargadores públicos",
+          "title": "Red pública",
           "subtitle": "Red pública UTE"
         },
         "nafta": {
