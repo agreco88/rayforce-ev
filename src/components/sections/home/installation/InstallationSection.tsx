@@ -78,6 +78,7 @@ export function InstallationSection({ id }: { id?: string }) {
           <FaWhatsapp className="size-5 shrink-0" />
           {t("cta.label")}
         </motion.a>
+
       </motion.div>
     </section>
   );
