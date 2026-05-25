@@ -73,7 +73,7 @@ export function InstallationSection({ id }: { id?: string }) {
           onClick={() =>
             track.whatsappClick({ source: "installation_section" })
           }
-          className="mt-2 flex items-center gap-3 h-14 rounded-2xl px-8 bg-green-700 hover:bg-green-600 text-white font-medium transition-all duration-200"
+          className="mt-2 flex items-center gap-3 h-14 rounded-2xl px-8 bg-green-700 hover:bg-green-600 text-white font-medium transition-colors duration-200"
         >
           <FaWhatsapp className="size-5 shrink-0" />
           {t("cta.label")}

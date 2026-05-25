@@ -143,13 +143,25 @@ function Cell({
 
 const WHATSAPP_NUMBER = "59892041709";
 
-export default function RayforceComparison({ theme, powerKw, price, variantPublicName }: Props) {
+const MERCADOPAGO_URLS: Record<string, string> = {
+  residencial: "http://mpago.la/1notnYD",
+  comercial: "https://mpago.la/2C6CFZe",
+};
+
+export default function RayforceComparison({
+  theme,
+  powerKw,
+  price,
+  variantPublicName,
+}: Props) {
   const rows = getRows(powerKw);
   const track = useTrack();
 
   const whatsappHref = variantPublicName
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Quiero comprar mi cargador ${variantPublicName}`)}`
     : `https://wa.me/${WHATSAPP_NUMBER}`;
+
+  const mpUrl = powerKw >= 11 ? MERCADOPAGO_URLS.comercial : MERCADOPAGO_URLS.residencial;
 
   return (
     <section className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
@@ -204,7 +216,7 @@ export default function RayforceComparison({ theme, powerKw, price, variantPubli
         {rows.map((row) => (
           <motion.div
             key={row.label}
-            className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-4 border-b border-neutral-200 dark:border-neutral-800"
+            className="grid grid-cols-[1.4fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr] py-4 border-b  border-neutral-200 dark:border-neutral-800"
           >
             <span className="text-xs sm:text-sm text-neutral-900 dark:text-neutral-100">
               {row.label}
@@ -232,7 +244,12 @@ export default function RayforceComparison({ theme, powerKw, price, variantPubli
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => track.whatsappClick({ source: "comparison_buy_cta", charger: variantPublicName })}
+                onClick={() =>
+                  track.whatsappClick({
+                    source: "comparison_buy_cta",
+                    charger: variantPublicName,
+                  })
+                }
                 className={cn(
                   "flex items-center gap-2 px-4 py-2.5 rounded-xl",
                   "text-black font-semibold text-xs sm:text-sm",
@@ -249,7 +266,7 @@ export default function RayforceComparison({ theme, powerKw, price, variantPubli
         )}
 
         {/* Images */}
-        <div className="mt-8 sm:mt-20 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
+        {/* <div className="mt-8 sm:mt-20 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
           <div className="relative">
             <img
               src="/assets/images/banners/rayforce-charging.avif"
@@ -262,14 +279,34 @@ export default function RayforceComparison({ theme, powerKw, price, variantPubli
               ✔ Seguro
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* CTA */}
-        <div className="mt-10 flex flex-col gap-2 text-center">
+        <div className="mt-10 flex flex-col items-center gap-6 text-center">
           <p>No arriesgues la protección de tu hogar.</p>
           <p className={cn("text-2xl font-medium", theme.accentText)}>
             Instalá un Wallbox y descansá tranquilo.
           </p>
+          <div className="flex flex-col items-center gap-2">
+            <a
+              href={mpUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-colors duration-200"
+            >
+              <span className="text-[#0a0080] uppercase tracking-tighter">
+                Comprar con
+              </span>
+              <img
+                src="/images/icons/mpago.png"
+                alt="MercadoPago"
+                className="h-8 w-auto"
+              />
+            </a>
+            <span className="text-[11px] text-neutral-500">
+              *Hasta 12 cuotas sin interés.
+            </span>
+          </div>
         </div>
       </div>
     </section>
