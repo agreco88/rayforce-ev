@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default function ChargersPage() {
   return (
     <div className="bg-neutral-950 flex justify-center">
-      <section className="mt-40 pb-8 sm:mt-58 flex flex-col max-w-7xl px-2 sm:px-0">
+      <section className="mt-28 pb-8 sm:mt-58 flex flex-col max-w-7xl px-2 sm:px-0">
         <ChargersHero />
         <ChargersGrid />
         <div

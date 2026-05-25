@@ -69,8 +69,8 @@ export function HomeStandDesktop() {
             >
               <div
                 className="
-                  flex max-w-lg
-                  flex-col gap-4
+                  flex max-w-xl
+                  flex-col gap-8
                 "
               >
                 {/* EYEBROW */}
@@ -80,13 +80,8 @@ export function HomeStandDesktop() {
 
                 {/* TITLE */}
                 <h2
-                  className="
-                    text-5xl
-                    lg:text-6xl
-
-                    leading-[0.95]
-                    tracking-tight
-                  "
+                  id="stand-desktop-heading"
+                  className="text-5xl leading-[1.1] tracking-tight font-light m-0"
                 >
                   {t("title")}
                 </h2>
@@ -97,6 +92,7 @@ export function HomeStandDesktop() {
                     text-lg
                     leading-relaxed
                     text-neutral-300
+                    max-w-lg
                   "
                 >
                   {t("description")}
@@ -126,7 +122,9 @@ export function HomeStandDesktop() {
                 </div>
 
                 {/* NOTE */}
-                <span className="text-xs text-neutral-500">{t("pricing.note")}</span>
+                <span className="text-xs text-neutral-500">
+                  {t("pricing.note")}
+                </span>
               </div>
             </div>
           </div>

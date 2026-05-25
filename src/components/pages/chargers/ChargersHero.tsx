@@ -13,7 +13,7 @@ export async function ChargersHero() {
         ]}
       />
       <div className="flex flex-col py-7 gap-2.5">
-        <h1 className="text-5xl sm:text-6xl font-thin">{t("title")}</h1>
+        <h1 className="text-3xl sm:text-6xl font-medium">{t("title")}</h1>
         <p className="text-neutral-400 max-w-2xl sm:max-w-4xl sm:py-4">
           {t("description")}
         </p>

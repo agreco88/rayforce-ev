@@ -126,7 +126,7 @@
           "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
           "buy": "Quiero mi cargador por {price}",
           "buyMessage": "Hola! Quiero comprar mi cargador {model}",
-          "mercadopago": "Comprá ahora",
+          "mercadopago": "Comprá ahora con",
           "installments": "Hasta en 12 cuotas sin interés."
         },
 

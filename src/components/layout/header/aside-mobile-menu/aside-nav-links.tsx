@@ -123,7 +123,10 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
         <motion.li variants={waterfallItem} className="flex flex-col gap-3">
           <Link
             href="/cargadores"
-            onClick={() => { track.mobileNavLinkClicked("chargers", "/cargadores"); onSelect?.(); }}
+            onClick={() => {
+              track.mobileNavLinkClicked("chargers", "/cargadores");
+              onSelect?.();
+            }}
             className={routeLinkClass(pathname === "/cargadores")}
           >
             /{t("nav.chargers")}
@@ -133,7 +136,10 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
               <Link
                 key={product.href}
                 href={product.href}
-                onClick={() => { track.mobileNavLinkClicked(product.key, product.href); onSelect?.(); }}
+                onClick={() => {
+                  track.mobileNavLinkClicked(product.key, product.href);
+                  onSelect?.();
+                }}
                 className="
                   rounded-2xl
                   border border-white/5
@@ -160,6 +166,7 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
       <Button
         asChild
         className="
+        mt-8
           h-14
           rounded-2xl
           bg-green-500

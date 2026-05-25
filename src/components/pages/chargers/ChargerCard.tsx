@@ -69,19 +69,18 @@ export default function ChargerCard({
             object-cover object-center
             transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]
             group-hover:scale-[1.009]
-            blur-[1px] group-hover:blur-none
-            grayscale-75 group-hover:grayscale-0
+            grayscale-0 group-hover:grayscale-0
           "
         />
       </div>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
       {/* Top-right accent glow */}
       <div
         className={clsx(
-          "absolute inset-0 opacity-40 group-hover:opacity-80 transition-opacity duration-700",
+          "absolute inset-0 opacity-20 group-hover:opacity-80 transition-opacity duration-700",
           th.topGlow,
         )}
       />

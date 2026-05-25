@@ -22,7 +22,7 @@ export function HomeStandMobile() {
 
           <h2
             id="stand-mobile-heading"
-            className="text-4xl leading-[1.1] tracking-tight font-light m-0"
+            className="text-3xl leading-[1.1] tracking-tight font-light m-0"
           >
             {t("title")}
           </h2>
@@ -42,7 +42,7 @@ export function HomeStandMobile() {
         </figure>
 
         {/* SPECS + PRICE */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-center gap-4">
           <span className="text-xs text-neutral-500 tracking-wide">
             {t("specs")}
           </span>

@@ -15,7 +15,6 @@ const MERCADOPAGO_URLS: Record<string, string> = {
   comercial: "https://mpago.la/2C6CFZe",
 };
 
-
 const VARIANT_THEME: Record<
   string,
   {
@@ -192,12 +191,23 @@ export function DesktopComparisonTable({ product }: Props) {
                 href={mpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#009EE3] hover:bg-[#0087c8] text-white font-semibold text-sm transition-all duration-200"
+                className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm  font-semibold text-sm transition-all duration-200"
               >
-                <SiMercadopago size={20} aria-hidden="true" />
-                {t("cta.mercadopago")}
+                <span className="text-[#0a0080] uppercase tracking-tighter!">
+                  {t("cta.mercadopago")}
+                </span>
+                {/* <span className="w-0.5 bg-[#0c0384]/10 h-10 rouded-full "></span> */}
+
+                <img
+                  src="/images/icons/mpago.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-8 w-auto"
+                />
               </a>
-              <span className="text-[11px] text-neutral-500">{t("cta.installments")}</span>
+              <span className="text-[11px] text-neutral-500">
+                *{t("cta.installments")}
+              </span>
             </div>
           );
         })}
