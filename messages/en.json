@@ -105,7 +105,7 @@
       "source": "Sources: UTE 2025 rates · ANCAP fuel prices",
       "items": {
         "rayforce": {
-          "title": "Rayforce at home",
+          "title": "Rayforce",
           "subtitle": "UTE residential rate"
         },
         "ute": {
@@ -113,7 +113,7 @@
           "subtitle": "UTE public network"
         },
         "nafta": {
-          "title": "Gas vehicle",
+          "title": "Gas vehicle ",
           "subtitle": "Super 95 gasoline"
         }
       }
@@ -264,6 +264,7 @@
       }
     },
     "FaqSection": {
+      "eyebrow": "Most asked questions",
       "title": "Frequently asked questions",
 
       "categories": {
