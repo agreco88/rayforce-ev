@@ -58,7 +58,7 @@ export default function HomeFaq({ id }: { id?: string }) {
   return (
     <section
       id={id}
-      className="px-4 relative bg-gradient-to-tr from-neutral-950 via-neutral-950 to-neutral-950 border-t border-t-neutral-900 py-24 sm:py-32"
+      className="px-4 relative bg-neutral-900 border-t border-t-neutral-800 py-24 sm:py-32"
     >
       {" "}
       <div

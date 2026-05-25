@@ -10,8 +10,8 @@ export function HomeStandSection({ id }: Props) {
     <section
       id={id}
       className="
-        border-y border-neutral-900
-        bg-neutral-950
+        border-y border-neutral-800
+        bg-neutral-900
       "
     >
       <div className="hidden lg:block">

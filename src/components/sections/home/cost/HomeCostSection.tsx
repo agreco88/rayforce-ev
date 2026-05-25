@@ -50,7 +50,7 @@ export function HomeCostSection() {
   return (
     <section
       aria-labelledby="cost-heading"
-      className="relative bg-neutral-950 border-b border-neutral-900 px-6 py-16 sm:py-28 overflow-hidden"
+      className="relative bg-neutral-900 border-b border-neutral-800 px-6 py-16 sm:py-28 overflow-hidden"
     >
       <div
         aria-hidden="true"
