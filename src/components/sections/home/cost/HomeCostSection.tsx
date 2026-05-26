@@ -82,21 +82,21 @@ export function HomeCostSection() {
             <motion.h2
               id="cost-heading"
               variants={waterfallItem}
-              className="mt-4 text-4xl sm:text-5xl font-light tracking-tight text-pretty"
+              className="mt-3 text-3xl sm:text-4xl font-light tracking-tight"
             >
               {t("title")}
             </motion.h2>
 
             <motion.p
               variants={waterfallItem}
-              className="mt-5 text-xl sm:text-2xl font-medium text-white"
+              className="mt-5 text-xl sm:text-2xl font-semibold text-white leading-snug text-pretty max-w-md"
             >
               {t("subheading")}
             </motion.p>
 
             <motion.p
               variants={waterfallItem}
-              className="mt-4 text-lg leading-relaxed text-neutral-400 max-w-md"
+              className="mt-4 text-sm sm:text-base leading-relaxed text-neutral-400"
             >
               {t("description")}
             </motion.p>
@@ -214,7 +214,11 @@ export function HomeCostSection() {
                           <motion.div
                             initial={{ y: barH }}
                             animate={{ y: chartInView ? 0 : barH }}
-                            transition={{ duration: 1.1, delay, ease: "easeOut" }}
+                            transition={{
+                              duration: 1.1,
+                              delay,
+                              ease: "easeOut",
+                            }}
                             className={`absolute inset-0 ${bg}`}
                             style={{
                               borderTopLeftRadius: "9999px",
@@ -224,7 +228,10 @@ export function HomeCostSection() {
                             <motion.div
                               initial={{ opacity: 0 }}
                               animate={{ opacity: chartInView ? 1 : 0 }}
-                              transition={{ duration: 0.4, delay: delay + 0.75 }}
+                              transition={{
+                                duration: 0.4,
+                                delay: delay + 0.75,
+                              }}
                               className="absolute left-1/2 top-3 sm:top-4 -translate-x-1/2"
                             >
                               <div className="flex h-8 w-8 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white shadow-sm">
