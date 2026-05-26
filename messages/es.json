@@ -95,9 +95,9 @@
     },
     "HomeCostSection": {
       "eyebrow": "Comparativa de costos",
-      "title": "350 km por $134. La diferencia habla sola.",
-      "subheading": "Convertí tu casa en tu estación de carga",
-      "description": "Cada vez que sube ANCAP, cargar en casa rinde más. Con tarifas residenciales UTE, recorrer 350 km puede costar hasta 23 veces menos que en un vehículo a combustión.",
+      "title": "Beneficios de cargar en casa",
+      "subheading": "Con el cargador residencial Rayforce cargás tu batería al 100% por solo $134",
+      "description": "Despreocupate por el aumento de los combustibles y empezá a ahorrar.",
       "chartTitle": "Costo por 350 km recorridos",
       "cta": "Ver cargadores",
       "unit": "350 km",
@@ -126,7 +126,7 @@
           "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
           "buy": "Quiero mi cargador por {price}",
           "buyMessage": "Hola! Quiero comprar mi cargador {model}",
-          "mercadopago": "Comprá ahora con",
+          "mercadopago": "Comprá ahora",
           "installments": "Hasta en 12 cuotas sin interés."
         },
 
