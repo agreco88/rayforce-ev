@@ -121,12 +121,13 @@
     "HomeChargersSection": {
       "ComparisonTable": {
         "taxLabel": "IVA Inc.",
+        "priceLabel": "Precio",
 
         "cta": {
           "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
           "buy": "Quiero mi cargador por {price}",
           "buyMessage": "Hola! Quiero comprar mi cargador {model}",
-          "mercadopago": "Comprá ahora",
+          "mercadopago": "Comprar",
           "installments": "Hasta en 12 cuotas sin interés."
         },
 
@@ -211,14 +212,15 @@
       "imageAlt": "Columna de instalación vacía a la izquierda con una flecha verde indicando una columna con el cargador Rayforce BS20 instalado, mostrando un diseño premium en lugar de montaje en pared",
 
       "pricing": {
-        "price": "USD 129",
+        "price": "USD 158",
         "taxLabel": "IVA inc.",
-        "note": "*Cargador no incluido"
+        "note": "*Cargador no incluido",
+        "cta": "Comprar"
       }
     },
     "InstallationSection": {
       "eyebrow": "Instalación hasta en 12 cuotas sin interés",
-      "title": "Instalamos tu cargador eléctrico con equipo incluido desde 1.398 USD IVA Inc.",
+      "title": "Instalamos tu cargador eléctrico con equipo incluido desde 1.498 USD IVA Inc.",
       "subtitle": "Instalación certificada por UTE y homologada por URSEA",
       "cta": {
         "label": "Solicitar presupuesto",
@@ -411,7 +413,8 @@
     "cta": {
       "whatsapp": "Quiero comprar este cargador",
       "manual": "Manual de usuario",
-      "whatsappMessage": "Hola! Quiero comprar mi cargador {model}"
+      "whatsappMessage": "Hola! Quiero comprar mi cargador {model}",
+      "mercadopago": "Comprar"
     },
     "price": {
       "taxLabel": "IVA Inc."

@@ -56,6 +56,9 @@ export async function generateLocaleMetadata({
   const description = t(`${route}.description`);
   const ogDescription = t(`${route}.ogDescription`);
   const keywords = splitKeywords(t(`${route}.keywords`));
+  const imageAlt = t.has(`${route}.imageAlt`)
+    ? t(`${route}.imageAlt`)
+    : title;
 
   const normalizedPath = path === "/" ? "" : path;
   const fullUrl = `${SITE.baseUrl}/${locale}${normalizedPath}`;
@@ -83,7 +86,7 @@ export async function generateLocaleMetadata({
       images: [
         {
           ...DEFAULT_OG_IMAGE,
-          alt: "Rayforce EV – Cargadores eléctricos en Uruguay",
+          alt: imageAlt,
         },
       ],
     },

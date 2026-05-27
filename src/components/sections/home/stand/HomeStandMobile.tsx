@@ -59,6 +59,24 @@ export function HomeStandMobile() {
             </span>
           </div>
 
+          {/* MERCADOPAGO */}
+          <a
+            href="https://mpago.la/1VArJbv"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
+          >
+            <img
+              src="/images/icons/mpago.png"
+              alt=""
+              aria-hidden="true"
+              className="h-8 w-auto"
+            />
+            <div className="w-0.5 bg-[#0a0080]/20 h-full rounded-full" />
+            <span className="text-[#0a0080] uppercase tracking-tighter!">
+              {t("pricing.cta")}
+            </span>
+          </a>
           <span className="text-xs text-neutral-500">{t("pricing.note")}</span>
         </div>
       </div>

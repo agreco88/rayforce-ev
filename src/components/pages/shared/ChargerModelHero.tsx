@@ -1,6 +1,5 @@
 "use client";
 
-import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
@@ -10,6 +9,11 @@ import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
 import { waterfallItem } from "@/lib/animation-variants";
 import { useTrack } from "@/lib/analytics";
+
+const MERCADOPAGO_URLS: Record<string, string> = {
+  "bs20-bc-7kw": "http://mpago.la/1notnYD",
+  "bs20-bc-22kw": "https://mpago.la/2C6CFZe",
+};
 
 const SLUG_ACCENT: Record<string, string> = {
   "bs20-bc-7kw": "text-sky-400",
@@ -61,8 +65,8 @@ type Props = {
 export function ChargerModelHero({ variant, config }: Props) {
   const t = useTranslations("ChargerModelPage");
   const track = useTrack();
-  const whatsappNumber = "59892041709";
   const { theme, charger } = config;
+  const mpUrl = MERCADOPAGO_URLS[variant.slug] ?? "#";
 
   return (
     <section className="relative w-full flex items-center overflow-hidden border-b border-neutral-900">
@@ -179,26 +183,23 @@ export function ChargerModelHero({ variant, config }: Props) {
 
             {/* CTA */}
             <div className="flex items-center gap-4 mt-8">
-              <motion.a
-                variants={waterfallItem}
-                initial="hidden"
-                animate="show"
-                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                  t("cta.whatsappMessage", { model: variant.publicName }),
-                )}`}
+              <a
+                href={mpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => track.chargerHeroPrimary(variant.slug, "desktop")}
-                className={`
-                  flex items-center justify-center gap-2
-                  px-6 py-3.5 rounded-xl
-                  ${theme.accentBg} text-black font-semibold text-sm
-                  ${theme.accentHover}
-                `}
+                className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
               >
-                <FaWhatsapp className="size-4" />
-                {t("cta.whatsapp")}
-              </motion.a>
+                <img
+                  src="/images/icons/mpago.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-8 w-auto"
+                />
+                <div className="w-0.5 self-stretch bg-[#0a0080]/20 rounded-full" />
+                <span className="text-[#0a0080] uppercase tracking-tighter!">
+                  {t("cta.mercadopago")}
+                </span>
+              </a>
 
               <motion.a
                 variants={waterfallItem}

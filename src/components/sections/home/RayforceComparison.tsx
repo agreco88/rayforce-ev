@@ -132,11 +132,7 @@ function Cell({
     );
   }
 
-  return (
-    <span className="text-xs sm:text-sm text-neutral-300">
-      {value}
-    </span>
-  );
+  return <span className="text-xs sm:text-sm text-neutral-300">{value}</span>;
 }
 
 /* ------------------ Component ------------------ */
@@ -293,16 +289,18 @@ export default function RayforceComparison({
               href={mpUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-colors duration-200"
+              className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-colors duration-200"
             >
-              <span className="text-[#0a0080] uppercase tracking-tighter">
-                Comprar con
-              </span>
               <img
                 src="/images/icons/mpago.png"
-                alt="MercadoPago"
+                alt=""
+                aria-hidden="true"
                 className="h-8 w-auto"
               />
+              <div className="w-0.5 self-stretch bg-[#0a0080]/20 rounded-full" />
+              <span className="text-[#0a0080] uppercase tracking-tighter">
+                Comprar
+              </span>
             </a>
             <span className="text-[11px] text-neutral-500">
               *Hasta 12 cuotas sin interés.

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaWhatsapp } from "react-icons/fa";
 import { ArrowDownToLine } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { waterfallItem } from "@/lib/animation-variants";
@@ -11,6 +10,11 @@ import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
+
+const MERCADOPAGO_URLS: Record<string, string> = {
+  "bs20-bc-7kw": "http://mpago.la/1notnYD",
+  "bs20-bc-22kw": "https://mpago.la/2C6CFZe",
+};
 
 const SLUG_ACCENT: Record<string, string> = {
   "bs20-bc-7kw": "text-sky-400",
@@ -62,8 +66,8 @@ type Props = {
 export function ChargerModelHeroMobile({ variant, config }: Props) {
   const t = useTranslations("ChargerModelPage");
   const track = useTrack();
-  const whatsappNumber = "59892041709";
   const { theme, charger } = config;
+  const mpUrl = MERCADOPAGO_URLS[variant.slug] ?? "#";
 
   return (
     <section
@@ -172,8 +176,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             className="
             relative
             flex justify-center items-center
-            flex-1
-            pt-10
+            pt-4
           "
           >
             {/* Bottom Glow */}
@@ -198,7 +201,7 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
           {/* Price */}
 
           {variant.price && (
-            <div className="my-3 flex flex-col items-center gap-4">
+            <div className="mt-2 flex flex-col items-center gap-2">
               <div className="flex items-end gap-2">
                 <span className={`text-7xl font-thin text-white`}>
                   {variant.price.amount}
@@ -213,35 +216,12 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
             </div>
           )}
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center gap-8 pt-8">
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
             <motion.a
               variants={waterfallItem}
               initial="hidden"
               animate="show"
               transition={{ delay: 0.35 }}
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                t("cta.whatsappMessage", { model: variant.publicName }),
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track.chargerHeroPrimary(variant.slug, "mobile")}
-              className={`
-                flex items-center justify-center gap-2
-                px-6 py-3.5 rounded-xl w-full sm:w-auto
-                ${theme.accentBg} text-black uppercase text-xs tracking-wide font-medium
-                ${theme.accentHover}
-                transition-all hover:-translate-y-0.5
-              `}
-            >
-              <FaWhatsapp className="size-5" />
-              {t("cta.whatsapp")}
-            </motion.a>
-
-            <motion.a
-              variants={waterfallItem}
-              initial="hidden"
-              animate="show"
-              transition={{ delay: 0.5 }}
               href="/assets/docs/bs20-ficha-tecnica.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -255,6 +235,24 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
               <ArrowDownToLine size={16} />
               {t("cta.manual")}
             </motion.a>
+
+            <a
+              href={mpUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
+            >
+              <img
+                src="/images/icons/mpago.png"
+                alt=""
+                aria-hidden="true"
+                className="h-8 w-auto"
+              />
+              <div className="w-0.5 self-stretch bg-[#0a0080]/20 rounded-full" />
+              <span className="text-[#0a0080] uppercase tracking-tighter!">
+                {t("cta.mercadopago")}
+              </span>
+            </a>
           </div>
         </div>
       </motion.div>

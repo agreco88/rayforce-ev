@@ -82,21 +82,21 @@ export function HomeCostSection() {
             <motion.h2
               id="cost-heading"
               variants={waterfallItem}
-              className="mt-3 text-3xl sm:text-4xl font-light tracking-tight"
+              className="mt-4 mb-4 text-3xl text-white sm:text-5xl text-balance font-light tracking-tight"
             >
               {t("title")}
             </motion.h2>
 
             <motion.p
               variants={waterfallItem}
-              className="mt-5 text-xl sm:text-2xl font-semibold text-white leading-snug text-pretty max-w-md"
+              className="mt-4 text-xl sm:text-xl font-medium text-neutral-300 leading-snug text-pretty max-w-md"
             >
               {t("subheading")}
             </motion.p>
 
             <motion.p
               variants={waterfallItem}
-              className="mt-4 text-sm sm:text-base leading-relaxed text-neutral-400"
+              className="mt-4 text-sm sm:text-base max-w-[34ch] leading-relaxed text-neutral-400"
             >
               {t("description")}
             </motion.p>

@@ -121,6 +121,7 @@
     "HomeChargersSection": {
       "ComparisonTable": {
         "taxLabel": "VAT Incl.",
+        "priceLabel": "Price",
 
         "cta": {
           "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?",
@@ -214,14 +215,15 @@
       "imageAlt": "Empty installation stand on the left with a green arrow pointing to a Rayforce BS20 charger installed on a stand, showing a premium finish instead of a wall-mounted setup",
 
       "pricing": {
-        "price": "USD 129",
+        "price": "USD 158",
         "taxLabel": "VAT incl.",
-        "note": "*Charger not included"
+        "note": "*Charger not included",
+        "cta": "Buy now"
       }
     },
     "InstallationSection": {
       "eyebrow": "Installation in up to 12 interest-free installments",
-      "title": "We install your EV charger with equipment included from USD 1,398 VAT Inc.",
+      "title": "We install your EV charger with equipment included from USD 1,498 VAT Inc.",
       "subtitle": "Installation certified by UTE and approved by URSEA",
       "cta": {
         "label": "Request a quote",
@@ -414,7 +416,8 @@
     "cta": {
       "whatsapp": "I want to buy this charger",
       "manual": "User manual",
-      "whatsappMessage": "Hello! I want to buy the {model} charger"
+      "whatsappMessage": "Hello! I want to buy the {model} charger",
+      "mercadopago": "Buy now"
     },
     "price": {
       "taxLabel": "VAT Inc."

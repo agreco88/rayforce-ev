@@ -177,6 +177,26 @@ export function DesktopComparisonTable({ product }: Props) {
           </div>
         ))}
 
+        {/* Price row */}
+        <div className="border-t border-neutral-900 p-6 pl-8 flex items-center text-sm text-neutral-400">
+          {t("priceLabel")}
+        </div>
+        {product.variants.map((variant) => (
+          <div
+            key={`price-${variant.id}`}
+            className="border-t border-neutral-900 p-6 flex flex-col items-center justify-center gap-1"
+          >
+            <span
+              className={`text-4xl font-thin tracking-tighter ${VARIANT_THEME[variant.id]?.price ?? "text-green-400"}`}
+            >
+              USD {variant.price}
+            </span>
+            <span className="text-[11px] font-thin text-neutral-400">
+              {t("taxLabel")}
+            </span>
+          </div>
+        ))}
+
         {/* Buy CTA row */}
         <div className="border-t border-neutral-900 p-6 pl-8 flex items-center" />
         {product.variants.map((variant) => {
@@ -193,9 +213,6 @@ export function DesktopComparisonTable({ product }: Props) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm  font-semibold text-sm transition-all duration-200"
               >
-                <span className="text-[#0a0080] uppercase tracking-tighter!">
-                  {t("cta.mercadopago")}
-                </span>
                 {/* <span className="w-0.5 bg-[#0c0384]/10 h-10 rouded-full "></span> */}
 
                 <img
@@ -204,6 +221,10 @@ export function DesktopComparisonTable({ product }: Props) {
                   aria-hidden="true"
                   className="h-8 w-auto"
                 />
+                <div className="w-0.5 bg-[#0a0080]/20 h-full rounded-full" />
+                <span className="text-[#0a0080] uppercase tracking-tighter!">
+                  {t("cta.mercadopago")}
+                </span>
               </a>
               <span className="text-[11px] text-neutral-500">
                 *{t("cta.installments")}

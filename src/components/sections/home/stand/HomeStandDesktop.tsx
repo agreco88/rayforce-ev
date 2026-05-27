@@ -26,7 +26,7 @@ export function HomeStandDesktop() {
           "
         >
           {/* IMAGE */}
-          <div className="absolute inset-0 flex justify-center bg-neutral-950">
+          <div className="absolute inset-0 flex justify-center bg-neutral-900">
             <img
               src="/images/stand/stand-9.png"
               alt={t("title")}
@@ -53,9 +53,9 @@ export function HomeStandDesktop() {
 
           {/* SIDE VIGNETTE */}
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-0 h-full w-[15%] bg-gradient-to-r from-neutral-950 via-neutral-950 to-transparent" />
+            <div className="absolute left-0 h-full w-[15%] bg-gradient-to-r from-neutral-900 via-neutral-900 to-transparent" />
 
-            <div className="absolute right-0 h-full w-[15%] bg-gradient-to-l from-neutral-950 via-neutral-950 to-transparent" />
+            <div className="absolute right-0 h-full w-[15%] bg-gradient-to-l from-neutral-900 via-neutral-900 to-transparent" />
           </div>
 
           {/* CONTENT */}
@@ -70,7 +70,7 @@ export function HomeStandDesktop() {
               <div
                 className="
                   flex max-w-xl
-                  flex-col gap-8
+                  flex-col gap-6
                 "
               >
                 {/* EYEBROW */}
@@ -121,6 +121,24 @@ export function HomeStandDesktop() {
                   </span>
                 </div>
 
+                {/* MERCADOPAGO */}
+                <a
+                  href="https://mpago.la/1VArJbv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 self-start px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
+                >
+                  <img
+                    src="/images/icons/mpago.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="h-8 w-auto"
+                  />
+                  <div className="w-0.5 bg-[#0a0080]/20 h-full rounded-full" />
+                  <span className="text-[#0a0080] uppercase tracking-tighter!">
+                    {t("pricing.cta")}
+                  </span>
+                </a>
                 {/* NOTE */}
                 <span className="text-xs text-neutral-500">
                   {t("pricing.note")}
