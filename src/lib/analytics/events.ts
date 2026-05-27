@@ -107,4 +107,12 @@ export type AnalyticsEventMap = {
 
   /** User reached a scroll depth milestone on a page */
   scroll_depth_milestone: { page: string; depth: 25 | 50 | 75 | 100; locale: string }
+
+  /** User clicked a MercadoPago buy button */
+  mercadopago_click: {
+    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand"
+    charger: string
+    location: "desktop" | "mobile"
+    locale: string
+  }
 }

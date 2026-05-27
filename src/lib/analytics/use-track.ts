@@ -123,5 +123,13 @@ export function useTrack() {
     scrollDepthMilestone(page: string, depth: 25 | 50 | 75 | 100) {
       trackEvent("scroll_depth_milestone", { page, depth, locale });
     },
+
+    mercadopagoClick(params: {
+      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand";
+      charger: string;
+      location: "desktop" | "mobile";
+    }) {
+      trackEvent("mercadopago_click", { ...params, locale });
+    },
   };
 }

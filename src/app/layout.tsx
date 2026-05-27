@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rayforce EV – Cargadores Wallbox en Uruguay",
+  title: "Rayforce – Cargadores Wallbox en Uruguay",
   description:
     "Venta e instalación de cargadores Wallbox para vehículos eléctricos e híbridos en Uruguay. Equipos certificados por UTE y URSEA.",
 };

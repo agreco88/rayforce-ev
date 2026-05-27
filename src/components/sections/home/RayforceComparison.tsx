@@ -289,6 +289,7 @@ export default function RayforceComparison({
               href={mpUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track.mercadopagoClick({ source: "charger_comparison", charger: powerKw >= 11 ? "comercial" : "residencial", location: "desktop" })}
               className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-colors duration-200"
             >
               <img

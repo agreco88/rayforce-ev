@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useTrack } from "@/lib/analytics";
 
 import type { Product } from "@/lib/types/product";
 
@@ -28,6 +29,7 @@ type Props = {
 
 export function MobileComparisonTable({ product }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection.ComparisonTable");
+  const track = useTrack();
 
   return (
     <div className="lg:hidden">
@@ -163,6 +165,7 @@ export function MobileComparisonTable({ product }: Props) {
                   href={mpUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track.mercadopagoClick({ source: "comparison_table", charger: variant.id, location: "mobile" })}
                   className="flex items-center gap-1.5 px-2 py-2 my-2 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm transition-all duration-200 w-full justify-center"
                 >
                   <img

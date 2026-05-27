@@ -4,6 +4,7 @@
 
 import { useTranslations } from "next-intl";
 import { SiMercadopago } from "react-icons/si";
+import { useTrack } from "@/lib/analytics";
 
 import HeaderLogo from "@/components/layout/header/header-logo";
 
@@ -47,6 +48,7 @@ type Props = {
 
 export function DesktopComparisonTable({ product }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection.ComparisonTable");
+  const track = useTrack();
 
   return (
     <div className="hidden lg:block">
@@ -211,6 +213,7 @@ export function DesktopComparisonTable({ product }: Props) {
                 href={mpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track.mercadopagoClick({ source: "comparison_table", charger: variant.id, location: "desktop" })}
                 className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm  font-semibold text-sm transition-all duration-200"
               >
                 {/* <span className="w-0.5 bg-[#0c0384]/10 h-10 rouded-full "></span> */}
