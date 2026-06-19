@@ -25,9 +25,9 @@ const SITE = {
 /* ------------------ OG Image ------------------ */
 
 const DEFAULT_OG_IMAGE = {
-  url: `${SITE.baseUrl}/images/og-rayforce.jpg`, // create this
-  width: 1200,
-  height: 630,
+  url: `${SITE.baseUrl}/images/og-rayforce.jpg`,
+  width: 1730,
+  height: 909,
 };
 
 /* ------------------ Helpers ------------------ */

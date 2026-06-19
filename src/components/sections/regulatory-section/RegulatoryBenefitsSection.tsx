@@ -74,7 +74,7 @@ export function RegulatorySection({ id }: { id?: string }) {
                 ),
                 email: (chunks) => (
                   <a
-                    href="mailto:comercial@rayforce.com.uy"
+                    href="mailto:comercial@rayforce.uy"
                     className="text-green-400 hover:underline"
                   >
                     {chunks}

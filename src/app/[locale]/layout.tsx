@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
 import BaseLayout from "@/components/layout/base-layout";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const lexend = Lexend_Deca({
 	subsets: ["latin"],
@@ -45,6 +46,22 @@ export default async function LocaleLayout({
 				</NextIntlClientProvider>
 				<Analytics />
 				<SpeedInsights />
+				<JsonLd
+					schema={{
+						"@context": "https://schema.org",
+						"@type": "Organization",
+						name: "Rayforce",
+						url: "https://www.rayforce.uy",
+						email: "comercial@rayforce.uy",
+						telephone: "+59892041709",
+						address: {
+							"@type": "PostalAddress",
+							addressLocality: "Montevideo",
+							addressCountry: "UY",
+						},
+						areaServed: "UY",
+					}}
+				/>
 			</body>
 		</html>
 	);

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { getTranslations } from "next-intl/server";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
@@ -54,23 +56,32 @@ const Footer = dynamic(() =>
   })),
 );
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
+type Props = { params: Promise<{ locale: string }> };
 
-  return generateLocaleMetadata({
-    locale,
-    route: "home",
-    path: "/",
-  });
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return generateLocaleMetadata({ locale, route: "home", path: "/" });
 }
 
-export default function HomePage() {
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "HomePage.FaqSection" });
+  const groups = t.raw("groups") as Record<string, { title: string; answer: string }[]>;
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: Object.values(groups)
+      .flat()
+      .map((item) => ({
+        "@type": "Question",
+        name: item.title,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+  };
+
   return (
     <main className="bg-neutral-950">
+      <JsonLd schema={faqSchema} />
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>

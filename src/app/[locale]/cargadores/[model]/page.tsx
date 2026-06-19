@@ -12,10 +12,12 @@ import { ChargingHomeBanner } from "@/components/shared/banners/ChargingHomeBann
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
 import { hasLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 /* ------------------------------------------------------------------ */
 /* Variant Config (LOCAL for now, keep it simple)                      */
@@ -99,7 +101,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /* ------------------------------------------------------------------ */
 
 export default async function ChargerDetailPage({ params }: Props) {
-  const { model } = await params;
+  const { locale, model } = await params;
 
   /* ---------------- Resolve Variant ---------------- */
 
@@ -117,10 +119,31 @@ export default async function ChargerDetailPage({ params }: Props) {
 
   if (!config) return notFound();
 
+  /* ---------------- Product Schema ---------------- */
+
+  const t = await getTranslations({ locale, namespace: "ChargerModelPage" });
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `Rayforce ${variant.publicName}`,
+    brand: { "@type": "Brand", name: "Rayforce" },
+    description: t(`variants.${variant.slug}.description`),
+    ...(variant.price && {
+      offers: {
+        "@type": "Offer",
+        price: String(variant.price.amount),
+        priceCurrency: variant.price.currency,
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "Organization", name: "Rayforce" },
+      },
+    }),
+  };
+
   /* ---------------- Render ---------------- */
 
   return (
     <section className="relative w-full z-0  overflow-hidden border-b border-neutral-900">
+      <JsonLd schema={productSchema} />
       {/* Hero */}
       <div className="hidden lg:block" id="inicio">
         <ChargerModelHero variant={variant} config={config} />
