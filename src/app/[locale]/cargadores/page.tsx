@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import ChargersGrid from "@/components/pages/chargers/ChargersGrid";
 import { ChargersHero } from "@/components/pages/chargers/ChargersHero";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
-import { Footer } from "@/components/sections/contact-footer/Footer";
 import { FeaturesRayforce } from "@/components/sections/home/FeaturesSection";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
-import { HomeStandSection } from "@/components/sections/home/stand/HomeStandSection";
-import { HomeBenefitsSection } from "@/components/sections/home/benefits/HomeBenefitsSection";
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

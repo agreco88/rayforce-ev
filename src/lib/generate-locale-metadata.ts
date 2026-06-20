@@ -11,7 +11,7 @@ const baseUrl =
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000";
 
-const SITE = {
+export const SITE = {
   name: "Rayforce",
   baseUrl,
   localeMap: {

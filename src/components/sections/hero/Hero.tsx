@@ -25,6 +25,7 @@ export function Hero({ id }: { id?: string }) {
       {/* -------------------------------- IMAGE -------------------------------- */}
       <div className="absolute inset-0 flex justify-center">
         <div className="relative h-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/assets/images/banners/rayforce-charging.avif"
             alt="Cargador EV Rayforce"

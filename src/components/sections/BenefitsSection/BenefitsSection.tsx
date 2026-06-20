@@ -1,7 +1,6 @@
 "use client";
 import { waterfallItem } from "@/lib/animation-variants";
-import { BENEFITS, STATS } from "./benefits.data";
-import { StatCard } from "./StatCard";
+import { BENEFITS } from "./benefits.data";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";

@@ -8,43 +8,6 @@ import { Link } from "@/i18n/navigation";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 
-function Feature({ title, subtitle }: { title: string; subtitle: string }) {
-  return (
-    <div
-      className="
-        flex flex-col
-        rounded-2xl
-        border border-white/10
-        bg-black/30
-        backdrop-blur-md
-
-        px-3 py-3
-      "
-    >
-      <span
-        className="
-          text-[11px]
-          font-semibold
-          tracking-wide
-          text-green-400
-        "
-      >
-        {title}
-      </span>
-
-      <span
-        className="
-          mt-1
-          text-[11px]
-          text-neutral-400
-        "
-      >
-        {subtitle}
-      </span>
-    </div>
-  );
-}
-
 export function HeroMobile({ id }: { id?: string }) {
   const t = useTranslations("HomePage.HeroIntro");
 
@@ -61,6 +24,7 @@ export function HeroMobile({ id }: { id?: string }) {
     >
       {/* ---------------- IMAGE ---------------- */}
       <div className="absolute inset-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/images/banners/rayforce-charging.avif"
           alt="Rayforce EV Charger"

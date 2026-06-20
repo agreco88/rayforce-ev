@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { GiElectricalSocket } from "react-icons/gi";
-import { FaWhatsapp } from "react-icons/fa";
 import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";
 import { cn } from "@/lib/utils";
 import { useTrack } from "@/lib/analytics";
@@ -137,8 +136,6 @@ function Cell({
 
 /* ------------------ Component ------------------ */
 
-const WHATSAPP_NUMBER = "59892041709";
-
 const MERCADOPAGO_URLS: Record<string, string> = {
   residencial: "http://mpago.la/1notnYD",
   comercial: "https://mpago.la/2C6CFZe",
@@ -147,15 +144,9 @@ const MERCADOPAGO_URLS: Record<string, string> = {
 export default function RayforceComparison({
   theme,
   powerKw,
-  price,
-  variantPublicName,
 }: Props) {
   const rows = getRows(powerKw);
   const track = useTrack();
-
-  const whatsappHref = variantPublicName
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola! Quiero comprar mi cargador ${variantPublicName}`)}`
-    : `https://wa.me/${WHATSAPP_NUMBER}`;
 
   const mpUrl =
     powerKw >= 11 ? MERCADOPAGO_URLS.comercial : MERCADOPAGO_URLS.residencial;
@@ -292,6 +283,7 @@ export default function RayforceComparison({
               onClick={() => track.mercadopagoClick({ source: "charger_comparison", charger: powerKw >= 11 ? "comercial" : "residencial", location: "desktop" })}
               className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-colors duration-200"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/icons/mpago.png"
                 alt=""

@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  AlertTriangle,
-  PlugZap,
   BatteryCharging,
   Smartphone,
   SlidersHorizontal,
@@ -56,38 +54,12 @@ function CarouselIndicator({
 export function ChargingSafetyMobile({ id }: { id?: string }) {
   const t = useTranslations("HomePage.ChargingSafetySection");
 
-  const risks = [
-    { key: "overload", icon: PlugZap },
-    { key: "protections", icon: AlertTriangle },
-    { key: "outlets", icon: PlugZap },
-    { key: "batteryWear", icon: BatteryCharging },
-  ] as const;
-
   const solutions = [
     { key: "smartScheduling", icon: Clock },
     { key: "mobileControl", icon: Smartphone },
     { key: "powerRegulation", icon: SlidersHorizontal },
     { key: "batteryCare", icon: BatteryCharging },
   ] as const;
-
-  /* ---------------- RISKS carousel state ---------------- */
-  const [riskApi, setRiskApi] = useState<CarouselApi | null>(null);
-  const [riskIndex, setRiskIndex] = useState(0);
-
-  useEffect(() => {
-    if (!riskApi) return;
-
-    const onSelect = () => {
-      setRiskIndex(riskApi.selectedScrollSnap());
-    };
-
-    onSelect();
-    riskApi.on("select", onSelect);
-
-    return () => {
-      riskApi.off("select", onSelect);
-    };
-  }, [riskApi]);
 
   /* ---------------- SOLUTIONS carousel state ---------------- */
   const [solutionApi, setSolutionApi] = useState<CarouselApi | null>(null);

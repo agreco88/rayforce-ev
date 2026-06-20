@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaWhatsapp } from "react-icons/fa";
-import { Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type CTAItem = {

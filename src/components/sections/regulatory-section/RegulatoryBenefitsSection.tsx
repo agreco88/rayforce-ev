@@ -10,13 +10,6 @@ import { FaWhatsapp } from "react-icons/fa6";
 export function RegulatorySection({ id }: { id?: string }) {
   const t = useTranslations("HomePage.RegulatorySection");
   const t2 = useTranslations("HomePage.ChargerStandSection");
-  const whatsappNumber = "59892041709";
-
-  const message = encodeURIComponent(
-    `Hola! Me interesa saber mas sobre los beneficios de UTE/URSEA`,
-  );
-
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
   return (
     <section
       id={id}

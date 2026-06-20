@@ -1,20 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { AppButton } from "@/components/ui/wrappers/AppButton";
-import { Link } from "@/i18n/navigation";
 import SocketTypeTwo from "../../../../public/images/icons/socket-type-2.svg";
 
 import { motion } from "framer-motion";
 import {
   Zap,
-  Plug,
   ShieldCheck,
   Wifi,
   Gauge,
   Wrench,
-  ArrowRight,
-  Unplug,
 } from "lucide-react";
 
 export function FeaturesRayforce() {

@@ -4,7 +4,6 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import clsx from "clsx";
-import { motion } from "framer-motion";
 
 type Props = {
   children: React.ReactNode;

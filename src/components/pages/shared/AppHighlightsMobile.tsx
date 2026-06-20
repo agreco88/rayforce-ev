@@ -326,9 +326,12 @@ export function AppHighlightsMobile({ theme }: { theme: Theme }) {
               target="_blank"
               rel="noopener noreferrer"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/store/appstore.png"
                 alt="App Store"
+                loading="lazy"
+                decoding="async"
                 className="h-11 w-auto"
               />
             </a>
@@ -338,9 +341,12 @@ export function AppHighlightsMobile({ theme }: { theme: Theme }) {
               target="_blank"
               rel="noopener noreferrer"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/store/playstore.webp"
                 alt="Google Play"
+                loading="lazy"
+                decoding="async"
                 className="h-11 w-auto"
               />
             </a>

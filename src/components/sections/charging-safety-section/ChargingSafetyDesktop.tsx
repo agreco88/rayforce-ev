@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  AlertTriangle,
-  PlugZap,
   BatteryCharging,
   Smartphone,
   SlidersHorizontal,
@@ -79,28 +77,6 @@ export function ChargingSafetyDesktop() {
 /* ------------------------------------------------------------------
  * Helpers
  * ---------------------------------------------------------------- */
-
-function RiskItem({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-}) {
-  return (
-    <li className="flex flex-col sm:flex-row gap-4 min-h-[72px] lg:min-h-[80px]">
-      <Icon className="size-4 mt-0.5 text-red-500 shrink-0" />
-      <div>
-        <h4 className="text-sm font-medium text-white">{title}</h4>
-        <p className="mt-1 text-sm leading-relaxed text-neutral-400">
-          {description}
-        </p>
-      </div>
-    </li>
-  );
-}
 
 function SolutionItem({
   icon: Icon,

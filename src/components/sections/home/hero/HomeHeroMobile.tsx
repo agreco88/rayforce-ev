@@ -26,6 +26,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
     >
       {/* ---------------- IMAGE ---------------- */}
       <div className="absolute inset-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/images/banners/rayforce-charging.avif"
           alt="Rayforce EV Charger"

@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { HomeHeroFeatureStrip } from "./HomeHeroFeatureStrip";
 import { useTrack } from "@/lib/analytics";
 
 export function HomeHeroDesktop({ id }: { id?: string }) {
@@ -27,6 +26,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
       {/* -------------------------------- IMAGE -------------------------------- */}
       <div className="absolute inset-0 flex justify-center">
         <div className="relative h-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/assets/images/banners/rayforce-charging.avif"
             alt="Cargador EV Rayforce"

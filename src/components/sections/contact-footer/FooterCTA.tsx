@@ -4,7 +4,7 @@ import { AppButton } from "@/components/ui/wrappers/AppButton";
 import { useTranslations } from "next-intl";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useTrack } from "@/lib/analytics";
-import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
+
 
 const WHATSAPP_NUMBER = "598092041709";
 

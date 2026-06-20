@@ -133,6 +133,7 @@ export function ChargerEVScreen({
     ];
 
     return () => controls.forEach((c) => c.stop());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [powerKw]);
 
   const powerText = useTransform(power, (v) => v.toFixed(1));
@@ -146,7 +147,6 @@ export function ChargerEVScreen({
     return `00:${mins}:${secs}`;
   });
 
-  const ampsText = useTransform(power, (v) => (v * 4.2).toFixed(1));
   return (
     <div className={`rounded border shadow-inner ${theme.container} w-54`}>
       {mode === "single" ? (

@@ -29,9 +29,12 @@ export function HomeStandDesktop() {
         >
           {/* IMAGE */}
           <div className="absolute inset-0 flex justify-center bg-neutral-900">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/stand/stand-9.png"
               alt={t("title")}
+              loading="lazy"
+              decoding="async"
               className="
                 h-full
                 w-full
@@ -131,6 +134,7 @@ export function HomeStandDesktop() {
                   onClick={() => track.mercadopagoClick({ source: "stand", charger: "stand", location: "desktop" })}
                   className="inline-flex items-center gap-2.5 self-start px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/images/icons/mpago.png"
                     alt=""

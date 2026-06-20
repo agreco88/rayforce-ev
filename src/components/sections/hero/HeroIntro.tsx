@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-import { DemoVideoModal } from "@/components/DemoVideoModal";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { waterfallList } from "@/lib/animation-variants";

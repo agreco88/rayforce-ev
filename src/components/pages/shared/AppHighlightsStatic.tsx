@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -349,7 +349,7 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
 
                       {/* Text */}
                       <div className="min-w-0">
-                        <h4
+                        <h3
                           className="
                             text-sm
                             font-medium
@@ -359,7 +359,7 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
                           "
                         >
                           {feature.title}
-                        </h4>
+                        </h3>
 
                         <p
                           className="
@@ -479,9 +479,12 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
               rel="noopener noreferrer"
               className="inline-block"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/store/appstore.png"
                 alt="Descargar en App Store"
+                loading="lazy"
+                decoding="async"
                 className="h-12 w-auto sm:h-14"
               />
             </a>
@@ -492,9 +495,12 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
               rel="noopener noreferrer"
               className="inline-block"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/store/playstore.webp"
                 alt="Disponible en Google Play"
+                loading="lazy"
+                decoding="async"
                 className="h-12 w-auto sm:h-14"
               />
             </a>

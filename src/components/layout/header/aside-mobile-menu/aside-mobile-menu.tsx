@@ -2,10 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import HamburgerButton from "../hamburguer-button";
 import AsideNavLinks from "./aside-nav-links";
-import AsideSocialLinks from "./aside-social-links";
 import AsideHeader from "./aside-header";
 import LocaleSwitcherMobile from "./aside-locale-switcher";
 import { fadeIn } from "@/lib/animation-variants";
@@ -13,7 +11,6 @@ import { useTrack } from "@/lib/analytics/use-track";
 
 export default function AsideMobileMenu() {
   const [open, setOpen] = useState(false);
-  const tA11y = useTranslations("AriaLabels");
   const track = useTrack();
 
   // prevent background scroll when menu is open

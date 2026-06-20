@@ -56,7 +56,7 @@ const CHARGERS = [
 
 export function ChargerBanners({ id }: { id?: string }) {
   return (
-    <section className="bg-black px-4 py-20 sm:hidden">
+    <section id={id} className="bg-black px-4 py-20 sm:hidden">
       {/* ------------------------------------------------------------------ */}
       {/* Header                                                             */}
       {/* ------------------------------------------------------------------ */}

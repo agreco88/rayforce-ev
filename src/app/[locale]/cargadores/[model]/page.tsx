@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import RayforceComparison from "@/components/sections/home/RayforceComparison";
-import { AppHighlightsMobile } from "@/components/pages/shared/AppHighlightsMobile";
 import { AppHighlightsInteractive } from "@/components/pages/shared/AppHighlightsStatic";
-import { AppHighlightsWithDevice } from "@/components/pages/shared/AppShowcaseSection";
 import { ChargerModelHero } from "@/components/pages/shared/ChargerModelHero";
 import { ChargerModelHeroMobile } from "@/components/pages/shared/ChargerModelHeroMobile";
 import { ChargerModelStats } from "@/components/pages/shared/ChargerModelStats";
 import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
-import { ChargingHomeBanner } from "@/components/shared/banners/ChargingHomeBanner";
+
 
 import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
-import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
+import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -128,6 +126,7 @@ export default async function ChargerDetailPage({ params }: Props) {
     name: `Rayforce ${variant.publicName}`,
     brand: { "@type": "Brand", name: "Rayforce" },
     description: t(`variants.${variant.slug}.description`),
+    image: `${SITE.baseUrl}${variant.heroImage}`,
     ...(variant.price && {
       offers: {
         "@type": "Offer",
