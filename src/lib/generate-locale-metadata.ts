@@ -22,14 +22,6 @@ export const SITE = {
   city: "Montevideo",
 };
 
-/* ------------------ OG Image ------------------ */
-
-const DEFAULT_OG_IMAGE = {
-  url: `${SITE.baseUrl}/images/og-rayforce.jpg`,
-  width: 1200,
-  height: 630,
-};
-
 /* ------------------ Helpers ------------------ */
 
 function splitKeywords(value: string): string[] {
@@ -56,10 +48,6 @@ export async function generateLocaleMetadata({
   const description = t(`${route}.description`);
   const ogDescription = t(`${route}.ogDescription`);
   const keywords = splitKeywords(t(`${route}.keywords`));
-  const imageAlt = t.has(`${route}.imageAlt`)
-    ? t(`${route}.imageAlt`)
-    : title;
-
   const normalizedPath = path === "/" ? "" : path;
   const fullUrl = `${SITE.baseUrl}/${locale}${normalizedPath}`;
 
@@ -83,19 +71,12 @@ export async function generateLocaleMetadata({
       siteName: SITE.name,
       locale: SITE.localeMap[locale as keyof typeof SITE.localeMap],
       type: "website",
-      images: [
-        {
-          ...DEFAULT_OG_IMAGE,
-          alt: imageAlt,
-        },
-      ],
     },
 
     twitter: {
       card: "summary_large_image",
       title,
       description: ogDescription,
-      images: [DEFAULT_OG_IMAGE.url],
     },
 
     alternates: {
