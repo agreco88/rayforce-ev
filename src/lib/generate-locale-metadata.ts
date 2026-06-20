@@ -26,8 +26,8 @@ export const SITE = {
 
 const DEFAULT_OG_IMAGE = {
   url: `${SITE.baseUrl}/images/og-rayforce.jpg`,
-  width: 1730,
-  height: 909,
+  width: 1200,
+  height: 630,
 };
 
 /* ------------------ Helpers ------------------ */
