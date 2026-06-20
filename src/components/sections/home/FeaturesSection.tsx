@@ -142,21 +142,8 @@ export function FeaturesRayforce() {
                     <Icon
                       className="size-20"
                       strokeWidth={0.4}
-                      stroke={`url(#grad-${index})`}
-                    >
-                      <defs>
-                        <linearGradient
-                          id={`grad-${index}`}
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop offset="100%" stopColor="#00c950" />
-                          <stop offset="0%" stopColor="#00c950" />
-                        </linearGradient>
-                      </defs>
-                    </Icon>
+                      stroke="#00c950"
+                    />
                   )}
                 </div>
 
