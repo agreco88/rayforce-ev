@@ -4,7 +4,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcherTrigger } from "./locale-switcher-trigger";
 import { LocaleSwitcherItem } from "./locale-switcher-item";
 import { supportedLocales } from "@/lib/locale-config";
@@ -17,8 +17,7 @@ export function LocaleSwitcherSelect() {
 
   const handleChange = (newLocale: string) => {
     if (newLocale === locale) return;
-    const newPath = pathname.replace(/^\/[a-z]{2}/, `/${newLocale}`);
-    router.replace(newPath);
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (

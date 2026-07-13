@@ -49,7 +49,11 @@ export async function generateLocaleMetadata({
   const ogDescription = t(`${route}.ogDescription`);
   const keywords = splitKeywords(t(`${route}.keywords`));
   const normalizedPath = path === "/" ? "" : path;
-  const fullUrl = `${SITE.baseUrl}/${locale}${normalizedPath}`;
+  const localizedPath = (l: string) =>
+    l === routing.defaultLocale
+      ? `${SITE.baseUrl}${normalizedPath}`
+      : `${SITE.baseUrl}/${l}${normalizedPath}`;
+  const fullUrl = localizedPath(locale);
 
   return {
     metadataBase: new URL(SITE.baseUrl),
@@ -82,10 +86,7 @@ export async function generateLocaleMetadata({
     alternates: {
       canonical: fullUrl,
       languages: Object.fromEntries(
-        routing.locales.map((l) => [
-          l,
-          `${SITE.baseUrl}/${l}${normalizedPath}`,
-        ]),
+        routing.locales.map((l) => [l, localizedPath(l)]),
       ),
     },
 

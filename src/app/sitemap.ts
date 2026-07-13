@@ -4,7 +4,10 @@ import { routing } from "@/i18n/routing";
 const BASE_URL = "https://www.rayforce.uy";
 const DEFAULT_LOCALE = routing.defaultLocale || "es";
 
-const CHARGER_SLUGS = ["bs20-bc-7kw", "bs20-bc-22kw"];
+const CHARGERS = [
+  { slug: "bs20-bc-7kw", priority: 0.9 },
+  { slug: "bs20-bc-22kw", priority: 0.8 },
+];
 
 function localeUrl(locale: string, path: string): string {
   const base =
@@ -33,8 +36,8 @@ function buildEntry(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const chargerEntries = CHARGER_SLUGS.map((slug) =>
-    buildEntry(`/cargadores/${slug}`, 0.9, "monthly"),
+  const chargerEntries = CHARGERS.map(({ slug, priority }) =>
+    buildEntry(`/cargadores/${slug}`, priority, "monthly"),
   );
 
   return [

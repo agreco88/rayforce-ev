@@ -1,5 +1,6 @@
 import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 
 /**
  * Returns a normalized path without locale prefix,
@@ -7,17 +8,16 @@ import { usePathname } from "next/navigation";
  */
 export function useLocalizedPath() {
 	const locale = useLocale();
-	const pathname = usePathname();
-
-	// remove the current locale prefix if present
-	const basePath = pathname.replace(new RegExp(`^/${locale}`), "") || "/";
+	const basePath = usePathname();
 
 	/**
 	 * Given a target locale, returns a proper localized path
-	 * (e.g. "/about" -> "/es/about")
+	 * (e.g. "/about" -> "/es/about", or "/about" for the default locale)
 	 */
 	const getLocalizedPath = (targetLocale: string) => {
-		return `/${targetLocale}${basePath}`;
+		return targetLocale === routing.defaultLocale
+			? basePath
+			: `/${targetLocale}${basePath}`;
 	};
 
 	return { locale, basePath, getLocalizedPath };
