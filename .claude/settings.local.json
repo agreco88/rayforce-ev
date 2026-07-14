@@ -33,7 +33,17 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(pnpm install *)"
+      "Bash(pnpm install *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm build *)",
+      "Bash(npx tsc *)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\agrep\\\\Desktop\\\\Code\\\\rayforce-ev\" -Recurse -ErrorAction SilentlyContinue)",
+      "Bash(Format-Table FullName)",
+      "Bash(find \"/mnt/c/Users/agrep/Desktop/Code/rayforce-ev/src/components/layout/header\" -type f -name \"*locale*\" -o -name \"*switcher*\")",
+      "Read(//mnt/c/Users/agrep/Desktop/Code/rayforce-ev/src/components/layout/**)",
+      "Bash(node -e \"const {SiMercadopago} = require\\('react-icons/si'\\); console.log\\(!!SiMercadopago\\)\")",
+      "Bash(git reset *)",
+      "Bash(findstr /S /R /I \"bg-neutral-950\\\\|bg-neutral-900\\\\|bg-black\" src\\\\components\\\\sections\\\\*.tsx src\\\\app\\\\*.tsx)"
     ]
   }
 }
