@@ -39,8 +39,8 @@ export default function HeaderLogo() {
         src="/images/brand/rayforce-logo.webp"
         className="invert opacity-85 saturate-0"
         alt="Rayforce"
-        height={125}
         width={125}
+        height={20}
         priority
       />
     </motion.button>

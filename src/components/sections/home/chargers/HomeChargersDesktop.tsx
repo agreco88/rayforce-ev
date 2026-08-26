@@ -102,10 +102,12 @@ function Highlights({ items, accent }: { items: string[]; accent: string }) {
 function CTA({
   slug,
   label,
+  context,
   accent,
 }: {
   slug: string;
   label: string;
+  context: string;
   accent: string;
 }) {
   return (
@@ -127,6 +129,7 @@ function CTA({
       `}
     >
       {label}
+      <span className="sr-only"> — {context}</span>
     </Link>
   );
 }
@@ -305,6 +308,7 @@ export default function HomeChargersDesktop({ id }: { id?: string }) {
                 <CTA
                   slug={charger.slug}
                   label={t("cta.moreInfo")}
+                  context={`${t(`chargers.${charger.key}.title`)} ${charger.power}`}
                   accent={charger.accent}
                 />
               </motion.div>

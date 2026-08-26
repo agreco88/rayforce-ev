@@ -228,7 +228,7 @@ export function DesktopComparisonTable({ product }: Props) {
                   {t("cta.mercadopago")}
                 </span>
               </a>
-              <span className="text-[11px] text-neutral-500">
+              <span className="text-[11px] text-neutral-400">
                 *{t("cta.installments")}
               </span>
             </div>

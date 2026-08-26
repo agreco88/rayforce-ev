@@ -104,7 +104,7 @@ export function HomeStandDesktop() {
                 </p>
 
                 {/* SPECS */}
-                <span className="text-sm text-neutral-500">{t("specs")}</span>
+                <span className="text-sm text-neutral-400">{t("specs")}</span>
 
                 {/* PRICE */}
                 <div className="mt-4 flex items-end gap-2.5">
@@ -147,7 +147,7 @@ export function HomeStandDesktop() {
                   </span>
                 </a>
                 {/* NOTE */}
-                <span className="text-xs text-neutral-500">
+                <span className="text-xs text-neutral-400">
                   {t("pricing.note")}
                 </span>
               </div>

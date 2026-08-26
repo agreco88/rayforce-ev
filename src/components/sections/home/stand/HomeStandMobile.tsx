@@ -48,7 +48,7 @@ export function HomeStandMobile() {
 
         {/* SPECS + PRICE */}
         <div className="flex flex-col items-center gap-4">
-          <span className="text-xs text-neutral-500 tracking-wide">
+          <span className="text-xs text-neutral-400 tracking-wide">
             {t("specs")}
           </span>
 
@@ -84,7 +84,7 @@ export function HomeStandMobile() {
               {t("pricing.cta")}
             </span>
           </a>
-          <span className="text-xs text-neutral-500">{t("pricing.note")}</span>
+          <span className="text-xs text-neutral-400">{t("pricing.note")}</span>
         </div>
       </div>
     </section>

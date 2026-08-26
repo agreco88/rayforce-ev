@@ -295,7 +295,7 @@ export default function RayforceComparison({
                 Comprar
               </span>
             </a>
-            <span className="text-[11px] text-neutral-500">
+            <span className="text-[11px] text-neutral-400">
               *Hasta 12 cuotas sin interés.
             </span>
           </div>

@@ -180,7 +180,7 @@ export function MobileComparisonTable({ product }: Props) {
                     {t("cta.mercadopago")}
                   </span>
                 </a>
-                <span className="text-[10px] text-neutral-500 text-center">
+                <span className="text-[10px] text-neutral-400 text-center">
                   {t("cta.installments")}
                 </span>
               </div>
