@@ -55,7 +55,7 @@ export function FeaturesRayforce() {
     <section className="w-full py-16 md:py-20 lg:py-24 px-6 sm:px-0 bg-neutral-950 relative">
       {/* Background Grid (keep your premium feel) */}
       <div
-        className="absolute inset-0 -z-0 opacity-80"
+        className="absolute inset-0 -z-0 opacity-30"
         style={{
           backgroundImage: `
           linear-gradient(to right, rgba(64,64,64,0.3) 1px, transparent 1px),

@@ -47,9 +47,10 @@ export function ChargerEVMobile({ powerKw, variant, mode, phases }: Props) {
             px-4 pt-4 pb-5
           "
         >
-          <span className="text-xs tracking-wide uppercase text-neutral-300 pt-3">
-            EV Charger
-          </span>
+          {/* Logo */}
+          <div className="flex pt-3 mb-3 items-center justify-center">
+            <HeaderLogo />
+          </div>
 
           {/* Screen */}
           <div className="mt-3 w-full flex justify-center">
@@ -61,11 +62,6 @@ export function ChargerEVMobile({ powerKw, variant, mode, phases }: Props) {
                 phases={phases}
               />
             </div>
-          </div>
-
-          {/* Logo */}
-          <div className="flex mb-3 items-center justify-center">
-            <HeaderLogo />
           </div>
 
           {/* Status indicator */}

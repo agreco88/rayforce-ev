@@ -8,12 +8,6 @@ import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection
 import HashScrollOnMount from "@/components/HashScrollOnMount";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
-const HomeCostSection = dynamic(() =>
-  import("@/components/sections/home/cost/HomeCostSection").then((m) => ({
-    default: m.HomeCostSection,
-  })),
-);
-
 const HomeChargersSection = dynamic(() =>
   import("@/components/sections/home/chargers/HomeChargersComparison").then(
     (m) => ({ default: m.HomeChargersSection }),
@@ -24,6 +18,12 @@ const HomeBenefitsSection = dynamic(() =>
   import("@/components/sections/home/benefits/HomeBenefitsSection").then(
     (m) => ({ default: m.HomeBenefitsSection }),
   ),
+);
+
+const ChargerGallery = dynamic(() =>
+  import("@/components/sections/home/gallery/ChargerGallery").then((m) => ({
+    default: m.ChargerGallery,
+  })),
 );
 
 const HomeStandSection = dynamic(() =>
@@ -85,8 +85,8 @@ export default async function HomePage({ params }: Props) {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
-        <HomeCostSection />
         <HomeChargersSection id="cargadores" />
+        <ChargerGallery id="galeria" />
 
         <HomeStandSection id="columna" />
         <InstallationSection id="instalacion" />

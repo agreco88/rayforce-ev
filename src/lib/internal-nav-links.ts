@@ -14,6 +14,10 @@ export const NAV_LINKS = [
     label: "chargers",
   },
   {
+    id: "cables",
+    label: "cables",
+  },
+  {
     id: "beneficios",
     label: "benefits",
   },

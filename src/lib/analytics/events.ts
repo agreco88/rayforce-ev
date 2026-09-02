@@ -110,9 +110,43 @@ export type AnalyticsEventMap = {
 
   /** User clicked a MercadoPago buy button */
   mercadopago_click: {
-    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand"
+    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section"
     charger: string
     location: "desktop" | "mobile"
+    locale: string
+  }
+
+  /** User toggled the "include installation" switch on the pricing section */
+  pricing_installation_toggled: {
+    charger: string
+    included: boolean
+    locale: string
+  }
+
+  /** User toggled the "Sin cable / Con cable enrulado" switch on the pricing section */
+  pricing_cable_toggled: {
+    charger: string
+    included: boolean
+    locale: string
+  }
+
+  /** User toggled the "Sin columna / Con columna" switch on the pricing section */
+  pricing_column_toggled: {
+    charger: string
+    included: boolean
+    locale: string
+  }
+
+  /** User clicked an individual review card in the social proof section */
+  social_proof_review_clicked: {
+    charger: string
+    review_id: string
+    locale: string
+  }
+
+  /** User clicked the "view all reviews" link in the social proof section */
+  social_proof_view_all_clicked: {
+    charger: string
     locale: string
   }
 }

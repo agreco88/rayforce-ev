@@ -54,7 +54,7 @@ export default function HomeFaq({ id }: { id?: string }) {
     >
       {" "}
       <div
-        className="absolute inset-0 z-50 pointer-events-none opacity-50 top-0"
+        className="absolute inset-0 z-50 pointer-events-none opacity-30 top-0"
         style={{
           backgroundImage: `
                   linear-gradient(to right, rgba(64,64,64,0.3) 1px, transparent 1px),

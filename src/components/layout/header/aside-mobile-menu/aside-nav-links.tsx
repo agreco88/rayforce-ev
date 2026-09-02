@@ -12,22 +12,10 @@ import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { scrollToSection } from "@/lib/scroll-to-section";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useTrack } from "@/lib/analytics/use-track";
-
-const PRODUCTS = [
-  {
-    key: "residential",
-    power: "7.4kW",
-    href: "/cargadores/bs20-bc-7kw",
-  },
-  {
-    key: "comercial",
-    power: "22kW",
-    href: "/cargadores/bs20-bc-22kw",
-  },
-] as const;
+import { getCableProducts, getChargerProducts, getPowerLabel } from "@/lib/catalog/catalog.helpers";
 
 const HASH_LINKS = NAV_LINKS.filter(
-  (l) => !["inicio", "cargadores"].includes(l.id),
+  (l) => !["inicio", "cargadores", "cables"].includes(l.id),
 );
 
 type AsideNavLinksProps = {
@@ -37,11 +25,14 @@ type AsideNavLinksProps = {
 export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
   const t = useTranslations("Layout.Header");
   const tA11y = useTranslations("AriaLabels");
+  const tCableModel = useTranslations("CableModelPage");
 
   const pathname = usePathname();
   const router = useRouter();
   const activeId = useActiveSection(NAV_LINKS.map((link) => link.id));
   const track = useTrack();
+  const products = getChargerProducts();
+  const cables = getCableProducts();
 
   const routeLinkClass = (active: boolean) =>
     `block w-full text-left text-2xl font-light tracking-widest transition-all duration-300 ${
@@ -132,32 +123,80 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
             /{t("nav.chargers")}
           </Link>
           <div className="grid grid-cols-2 gap-3">
-            {PRODUCTS.map((product) => (
-              <Link
-                key={product.href}
-                href={product.href}
-                onClick={() => {
-                  track.mobileNavLinkClicked(product.key, product.href);
-                  onSelect?.();
-                }}
-                className="
-                  rounded-2xl
-                  border border-white/5
-                  bg-white/[0.02]
-                  p-4
-                  transition-all duration-300
-                  hover:border-green-500/30
-                  hover:bg-white/[0.04]
-                "
-              >
-                <div className="text-xs uppercase tracking-[0.2em] text-green-400">
-                  {t(`products.${product.key}.title`)}
-                </div>
-                <div className="mt-1 text-2xl font-light tracking-tight">
-                  {product.power}
-                </div>
-              </Link>
-            ))}
+            {products.map((product) => {
+              const href = `/cargadores/${product.slug}`;
+              return (
+                <Link
+                  key={product.slug}
+                  href={href}
+                  onClick={() => {
+                    track.mobileNavLinkClicked(product.slug, href);
+                    onSelect?.();
+                  }}
+                  className="
+                    rounded-2xl
+                    border border-white/5
+                    bg-white/[0.02]
+                    p-4
+                    transition-all duration-300
+                    hover:border-green-500/30
+                    hover:bg-white/[0.04]
+                  "
+                >
+                  <div className="text-xs uppercase tracking-[0.2em] text-green-400">
+                    {t(`products.${product.slug}.title`)}
+                  </div>
+                  <div className="mt-1 text-2xl font-light tracking-tight">
+                    {getPowerLabel(product)}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </motion.li>
+
+        {/* Cables — main route link + product cards */}
+        <motion.li variants={waterfallItem} className="flex flex-col gap-3">
+          <Link
+            href="/cables"
+            onClick={() => {
+              track.mobileNavLinkClicked("cables", "/cables");
+              onSelect?.();
+            }}
+            className={routeLinkClass(pathname === "/cables")}
+          >
+            /{t("nav.cables")}
+          </Link>
+          <div className="grid grid-cols-2 gap-3">
+            {cables.map((cable) => {
+              const href = `/cables/${cable.slug}`;
+              return (
+                <Link
+                  key={cable.slug}
+                  href={href}
+                  onClick={() => {
+                    track.mobileNavLinkClicked(cable.slug, href);
+                    onSelect?.();
+                  }}
+                  className="
+                    rounded-2xl
+                    border border-white/5
+                    bg-white/[0.02]
+                    p-4
+                    transition-all duration-300
+                    hover:border-amber-500/30
+                    hover:bg-white/[0.04]
+                  "
+                >
+                  <div className="text-xs uppercase tracking-[0.2em] text-amber-400">
+                    {tCableModel(`eyebrow.${cable.slug}`)}
+                  </div>
+                  <div className="mt-1 text-2xl font-light tracking-tight">
+                    {cable.shortName}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </motion.li>
       </motion.ul>

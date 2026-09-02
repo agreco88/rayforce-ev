@@ -41,6 +41,9 @@ export default function HeaderNav() {
         {/* Products Flyout */}
         <HeaderProductsFlyout />
 
+        {/* Cables */}
+        <NavLink href="/cables" label="cables" />
+
         {/* compatibility */}
         <NavLink sectionId="compatibilidad" label="compatibility" />
       </motion.ul>

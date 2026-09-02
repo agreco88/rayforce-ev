@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@base-ui/react": "^1.7.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -26,6 +27,7 @@
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.545.0",
     "mathjs": "^14.9.1",
+    "motion": "^13.1.1",
     "motion-plus": "^1.5.1",
     "next": "15.5.9",
     "next-intl": "^4.3.12",

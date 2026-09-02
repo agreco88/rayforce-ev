@@ -8,23 +8,31 @@
         "stand": "Stand",
         "faq": "FAQ",
         "compatibility": "Compatibility",
-        "contactCta": "Contact sales via WhatsApp"
+        "contactCta": "Contact sales via WhatsApp",
+        "cables": "Cables"
       },
       "products": {
-        "residential": {
-          "title": "Residential"
+        "bs20-bc-7kw": {
+          "title": "Residential",
+          "cableNote": "Integrated cable"
         },
-
-        "comercial": {
-          "title": "Commercial"
+        "bs20-ba-7kw": {
+          "title": "Residential w/ Socket",
+          "cableNote": "Cable not included"
+        },
+        "bs20-bc-11kw": {
+          "title": "Three-Phase",
+          "cableNote": "Integrated cable"
+        },
+        "bs20-bc-22kw": {
+          "title": "Commercial",
+          "cableNote": "Integrated cable"
         }
       }
     },
-
     "Aside": {
       "language": "Language"
     },
-
     "Footer": {
       "meta": {
         "copyright": "© 2025 Rayforce EV. All rights reserved."
@@ -40,6 +48,30 @@
     "DemoVideo": {
       "cta": "Watch demo",
       "title": "Rayforce EV – Demo"
+    },
+    "Specs": {
+      "phase": {
+        "single": "Single-phase",
+        "three": "Three-phase"
+      },
+      "connector": {
+        "type2": "Type 2",
+        "integratedLabel": "{length}m integrated cable",
+        "socketLabel": "Interchangeable socket — cable not included"
+      },
+      "ursea": {
+        "value": "URSEA",
+        "label": "Approved"
+      },
+      "protection": {
+        "water": "Water resistance",
+        "impact": "Impact resistance"
+      }
+    },
+    "RegulatoryBadges": {
+      "label": "Certifications",
+      "urseaAlt": "Approved by URSEA",
+      "uteAlt": "Compatible with UTE-certified installation"
     }
   },
   "LocaleSwitcher": {
@@ -49,7 +81,6 @@
       "es": "Spanish"
     }
   },
-
   "AriaLabels": {
     "logo": "Go to homepage",
     "mobileMenu": "Open mobile menu",
@@ -62,12 +93,10 @@
     "followUs": "Follow us",
     "language": "Language"
   },
-
   "Languages": {
     "en": "English",
     "es": "Spanish"
   },
-
   "HomePage": {
     "Hero": {
       "title": "Wallbox charger sales and installation for electric and hybrid vehicles in Uruguay",
@@ -75,18 +104,15 @@
       "ctaPrimary": "View chargers",
       "ctaSecondary": "Compatible with your vehicle?",
       "ctaTertiary": "Request installation quote",
-
       "features": {
         "security": {
           "title": "Safer",
           "description": "Advanced protection systems for your vehicle and your home"
         },
-
         "savings": {
           "title": "More savings",
           "description": "Charge your EV for far less than a fuel-powered vehicle"
         },
-
         "control": {
           "title": "More convenient",
           "description": "Control and schedule charging directly from your phone"
@@ -122,7 +148,6 @@
       "ComparisonTable": {
         "taxLabel": "VAT Incl.",
         "priceLabel": "Price",
-
         "cta": {
           "message": "Hi! I'm interested in a Rayforce charger. Can you help me choose?",
           "buy": "I want this charger for {price}",
@@ -130,44 +155,49 @@
           "mercadopago": "Buy with",
           "installments": "Up to 12 interest-free installments."
         },
-
         "features": {
           "power": "Maximum power",
           "phase": "Phase type",
           "connector": "Connector type",
           "current": "Nominal current",
           "voltage": "Typical voltage",
-
           "app": "Mobile app control",
           "protection": "Electrical protection",
           "ip": "Protection rating",
           "temperature": "Operating temperature"
         }
       },
-      "eyebrow": "Besen BS20 Wallbox Chargers",
+      "eyebrow": "Rayforce BS20 Wallbox Chargers",
       "title": "Smart EV charging solutions",
-      "description": "Discover our 7kW and 22kW Wallbox charger lineup. Designed for homes and businesses in Uruguay.",
-
+      "description": "Discover our Wallbox charger lineup, from 7.2kW to 22kW. Four models built for homes and businesses in Uruguay.",
       "cta": {
         "moreInfo": "Learn more"
       },
-
       "carouselLabel": "Charger navigation",
       "chargers": {
-        "residential": {
+        "bs20-bc-7kw": {
           "title": "Residential",
-          "ariaLabel": "More information about the BS20 BC 7kW Residential charger",
-
           "highlights": [
             "Charges up to 3× faster than conventional chargers",
             "Maximum energy savings"
           ]
         },
-
-        "pro": {
+        "bs20-ba-7kw": {
+          "title": "Residential w/ Socket",
+          "highlights": [
+            "Interchangeable Type 2 socket — cable not included",
+            "Ideal for overnight home charging"
+          ]
+        },
+        "bs20-bc-11kw": {
+          "title": "Three-Phase",
+          "highlights": [
+            "Balances power output with contracted electrical capacity",
+            "Built for three-phase homes and businesses"
+          ]
+        },
+        "bs20-bc-22kw": {
           "title": "Commercial",
-          "ariaLabel": "More information about the BS20 BC 22kW Commercial charger",
-
           "highlights": [
             "Charges up to 5× faster than conventional chargers",
             "Maximum available power"
@@ -175,29 +205,28 @@
         }
       }
     },
+    "ChargerGallery": {
+      "eyebrow": "Real installations",
+      "title": "Chargers in the field",
+      "description": "A look at Rayforce chargers installed in homes and businesses across Uruguay, from our team and our clients."
+    },
     "HomeBenefitsSection": {
       "eyebrow": "Benefits",
-
       "title": "More savings, more convenience, more safety.",
-
       "description": "Electric mobility is already a reality in Uruguay. Reduce costs, take advantage of smart energy rates, and join a cleaner energy future.",
-
       "cta": {
         "primary": "View chargers",
         "secondary": "Compatible with your vehicle?"
       },
-
       "items": {
         "security": {
           "title": "Safer charging",
           "description": "EV chargers include dedicated electrical protections, reducing risks compared to conventional household outlets."
         },
-
         "savings": {
           "title": "More savings",
           "description": "Lower your cost per kilometer, take advantage of cheaper electricity rates, and reduce maintenance costs compared to combustion vehicles."
         },
-
         "control": {
           "title": "More convenience",
           "description": "Control charging from your phone, schedule charging times, and monitor energy consumption in real time through the app."
@@ -207,13 +236,9 @@
     "HomeStandSection": {
       "eyebrow": "INSTALLATION STAND",
       "title": "Installation stand for Rayforce chargers",
-
       "description": "Install your charger outdoors, in garages, or wherever a wall isn't available. Compatible with the full BS20 lineup.",
-
       "specs": "Height: 150 cm · Base: 26 × 14.5 cm",
-
       "imageAlt": "Empty installation stand on the left with a green arrow pointing to a Rayforce BS20 charger installed on a stand, showing a premium finish instead of a wall-mounted setup",
-
       "pricing": {
         "price": "USD 159",
         "taxLabel": "VAT incl.",
@@ -236,29 +261,25 @@
         "title": "Will it work with your vehicle?",
         "description": "Search for your brand or model and confirm compatibility with your EV"
       },
-
       "search": {
-        "placeholder": "Search brand or model..."
+        "placeholder": "Choose your brand to see compatible vehicles..."
       },
-
+      "modelsLabel": "Compatible models:",
       "cta": {
         "contactSales": "Contact sales",
         "whatsapp": "Chat on WhatsApp",
         "loadMore": "Load more brands",
         "showLess": "View less brands"
       },
-
       "whatsapp": {
         "message": "Hi! I'm interested in a charger for my {model}",
         "fallbackMessage": "Hi! I need more information about a Rayforce charger"
       },
-
       "emptyState": {
         "title": "Didn't find your model?",
         "description": "Send us a WhatsApp message and we'll help confirm compatibility.",
         "note": "*Replies within minutes"
       },
-
       "banner": {
         "title": "Didn't find your model?",
         "description": "Send us a WhatsApp message and we'll help confirm compatibility.",
@@ -268,7 +289,6 @@
     "FaqSection": {
       "eyebrow": "Most asked questions",
       "title": "Frequently asked questions",
-
       "categories": {
         "compatibility": "Compatibility",
         "installation": "Installation",
@@ -277,7 +297,6 @@
         "costs": "Costs & savings",
         "support": "Support & warranty"
       },
-
       "groups": {
         "compatibility": [
           {
@@ -297,7 +316,6 @@
             "answer": "We advise you based on your vehicle, your electrical installation, and your usage habits to recommend the best option."
           }
         ],
-
         "installation": [
           {
             "title": "Can it be installed at my home?",
@@ -316,7 +334,6 @@
             "answer": "It is not recommended. Rayforce performs installation and certification with technicians authorized by UTE, ensuring safety and regulatory compliance."
           }
         ],
-
         "usage": [
           {
             "title": "How long does it take to charge the car?",
@@ -339,7 +356,6 @@
             "answer": "When power is restored, the charger resumes normal operation."
           }
         ],
-
         "safety": [
           {
             "title": "Is it safe to leave the car charging overnight?",
@@ -358,14 +374,12 @@
             "answer": "Yes. You can set charging limits, such as stopping at 80%, to help extend battery life."
           }
         ],
-
         "costs": [
           {
             "title": "Is it better to always use public charging stations?",
             "answer": "Public charging is useful for trips or occasional situations, but it is not always the most economical option. As of January 1, 2026, public charging rates from UTE increased by approximately 50%, and the general trend is to encourage home charging."
           }
         ],
-
         "support": [
           {
             "title": "Does it include warranty and local support?",
@@ -383,23 +397,34 @@
     "Hero": {
       "breadcrumb": {
         "home": "Home",
-        "chargers": "Chargers"
+        "chargers": "Chargers",
+        "cables": "Cables"
       },
       "title": "Wallbox electric vehicle chargers",
-      "description": "Charging solutions for electric cars, SUVs and trucks in Uruguay. Choose the power level that best fits your needs, with the Besen BS20 model family in 7kW and 22kW variants."
+      "description": "Charging solutions for electric cars, SUVs and trucks in Uruguay. Choose the power level that best fits your needs, with the BS20 model family in 4 variants from 7.2kW to 22kW."
     },
     "ChargerCard": {
       "cta": "View model",
       "variants": {
         "bs20-bc-7kw": {
           "eyebrow": "Residential",
-          "label": "Residential 7kW",
+          "label": "Residential 7.2kW",
           "description": "Single-phase wallbox for daily home charging. Easy to install and built for overnight use."
         },
         "bs20-bc-22kw": {
           "eyebrow": "Commercial",
           "label": "Commercial 22kW",
           "description": "Three-phase wallbox for faster charging or homes and offices with more than one electric vehicle."
+        },
+        "bs20-ba-7kw": {
+          "eyebrow": "Residential",
+          "label": "Residential 7.2kW w/ Socket",
+          "description": "Single-phase wallbox with an interchangeable Type 2 socket. Same power as the 7.2kW, with more cable flexibility."
+        },
+        "bs20-bc-11kw": {
+          "eyebrow": "Three-Phase",
+          "label": "Three-Phase 11kW",
+          "description": "Three-phase wallbox at 11kW. The ideal balance between power output and contracted electrical capacity."
         }
       }
     }
@@ -407,20 +432,145 @@
   "ChargerModelPage": {
     "breadcrumb": {
       "home": "Home",
-      "chargers": "Chargers"
+      "chargers": "Chargers",
+      "cables": "Cables"
     },
     "eyebrow": {
-      "residential": "Residential Charger",
-      "pro": "Commercial Charger"
+      "bs20-bc-7kw": "Residential Charger",
+      "bs20-ba-7kw": "Residential Charger",
+      "bs20-bc-11kw": "Three-Phase Charger",
+      "bs20-bc-22kw": "Commercial Charger"
     },
     "cta": {
       "whatsapp": "I want to buy this charger",
-      "manual": "User manual",
+      "manual": "Download user manual",
+      "compatibility": "Does it work with my EV?",
       "whatsappMessage": "Hello! I want to buy the {model} charger",
-      "mercadopago": "Buy now"
+      "mercadopago": "Buy now",
+      "mercadopagoFull": "Buy via MercadoPago"
     },
     "price": {
-      "taxLabel": "VAT Inc."
+      "taxLabel": "VAT Inc.",
+      "installation": {
+        "label": "Include installation",
+        "with": "Includes charger and installation",
+        "without": "Charger only — installation not included"
+      }
+    },
+    "certificationSection": {
+      "eyebrow": "Certifications",
+      "title": "Approved and certified in Uruguay",
+      "description": "Your charger and its installation meet current regulations: the unit holds URSEA approval and installation follows UTE requirements, so you can count on a safe, backed charging setup.",
+      "urseaAlt": "URSEA approval",
+      "uteAlt": "UTE certified installation"
+    },
+    "pricingSection": {
+      "eyebrow": "Pricing",
+      "title": "Simple pricing, no surprises",
+      "subtitle": "Choose how you want to get your charger: buy the unit and install it yourself, or add certified professional installation.",
+      "descriptions": {
+        "bs20-bc-7kw": "Includes the 7.2kW single-phase wallbox with integrated cable, official warranty, and access to the Rayforce app to monitor your charging from your phone.",
+        "bs20-ba-7kw": "Includes the 7.2kW single-phase wallbox with an interchangeable Type 2 socket, official warranty, and access to the Rayforce app. Charging cable not included — sold separately, and if it wears out over time, only the cable needs replacing.",
+        "bs20-bc-11kw": "Includes the 11kW three-phase wallbox, official warranty, and access to the Rayforce app. The balance between power and contracted capacity for homes and businesses with three-phase power already available.",
+        "bs20-bc-22kw": "Includes the 22kW three-phase wallbox, official warranty, and access to the Rayforce app. Built for businesses, building garages and fleets — we'll help confirm your electrical contract can use the full power before you buy."
+      },
+      "includes": {
+        "title": "What's included"
+      },
+      "features": {
+        "charger": {
+          "bs20-bc-7kw": [
+            "BS20-BC-7KW Wallbox charger",
+            "6m integrated charging cable included",
+            "Remote control and monitoring via mobile app",
+            "Local warranty",
+            "URSEA certification included",
+            "Up to 12 interest-free installments"
+          ],
+          "bs20-ba-7kw": [
+            "BS20-BA-7KW Wallbox charger",
+            "Remote control and monitoring via mobile app",
+            "Local warranty",
+            "URSEA certification included",
+            "Up to 12 interest-free installments"
+          ],
+          "bs20-bc-11kw": [
+            "BS20-BC-11KW Wallbox charger",
+            "6m integrated charging cable included",
+            "Remote control and monitoring via mobile app",
+            "Local warranty",
+            "URSEA certification included",
+            "Up to 12 interest-free installments"
+          ],
+          "bs20-bc-22kw": [
+            "BS20-BC-22KW Wallbox charger",
+            "6m integrated charging cable included",
+            "Remote control and monitoring via mobile app",
+            "Local warranty",
+            "URSEA certification included",
+            "Up to 12 interest-free installments"
+          ]
+        },
+        "installation": [
+          "UTE-certified installation",
+          "Technical support",
+          "Personalized technical guidance"
+        ],
+        "cable": "7kW coiled charging cable included",
+        "column": "Floor mounting post"
+      },
+      "toggle": {
+        "label": "Include installation",
+        "chargerOnlyLabel": "Charger only",
+        "withInstallationLabel": "Include installation",
+        "fromPrefix": "From"
+      },
+      "cableToggle": {
+        "label": "Include coiled cable",
+        "withoutCableLabel": "No cable",
+        "withCableLabel": "With coiled cable"
+      },
+      "columnToggle": {
+        "label": "Include mounting post",
+        "withoutColumnLabel": "No post",
+        "withColumnLabel": "With post"
+      },
+      "taxLabel": "VAT included",
+      "cta": {
+        "buy": "Buy via MercadoPago",
+        "quote": "Get a quote",
+        "whatsappMessage": "Hi! I'd like an installation quote for my {model} charger"
+      },
+      "footnote": {
+        "chargerOnly": "Install it yourself, or add certified installation later — whenever you're ready.",
+        "withInstallation": "The final price depends on the distance to your electrical panel, whether civil work is needed, or if your existing setup needs an upgrade. We'll confirm the exact quote at no cost before you commit."
+      }
+    },
+    "socialProofSection": {
+      "eyebrow": "Reviews",
+      "title": "What our customers say",
+      "subtitle": "Real experiences from people who already charge their EV with Rayforce.",
+      "source": "Google review",
+      "viewReview": "View review on Google",
+      "viewAll": "View all reviews on Google"
+    },
+    "comparisonSection": {
+      "bs20-bc-7kw": {
+        "title": "Why charge with a Wallbox instead of a standard outlet?",
+        "intro": "For your daily charging at home, a 7.2kW wallbox cuts charging time and avoids the risks of leaving a standard outlet running all night."
+      },
+      "bs20-ba-7kw": {
+        "title": "Why charge with a Wallbox instead of a standard outlet?",
+        "intro": "The wallbox with an interchangeable socket (cable not included, sold separately) adds to the safety of dedicated charging the advantage of replacing only the cable if it's damaged."
+      },
+      "bs20-bc-11kw": {
+        "title": "Why charge with a three-phase Wallbox instead of a standard outlet?",
+        "intro": "With three-phase power available, an 11kW wallbox charges considerably faster than a standard outlet, without requiring the contracted capacity a 22kW unit needs."
+      },
+      "bs20-bc-22kw": {
+        "title": "Why install a 22kW Wallbox at your business or fleet?",
+        "intro": "For building garages, businesses and fleets with higher-capacity three-phase contracts, a 22kW wallbox charges many vehicles faster and more safely than relying on standard outlets."
+      }
     },
     "variants": {
       "bs20-bc-7kw": {
@@ -428,25 +578,77 @@
       },
       "bs20-bc-22kw": {
         "description": "Maximum power for homes with more than one car or when you need to charge faster."
+      },
+      "bs20-ba-7kw": {
+        "description": "Single-phase Wallbox charger with a Type 2 socket, ideal for overnight residential charging. Charging cable not included."
+      },
+      "bs20-bc-11kw": {
+        "description": "Three-phase 400V wallbox with a 6-meter integrated cable. More power than a single-phase unit without requiring the contracted capacity a 22kW unit needs, making it the most practical three-phase option for homes and businesses that already have three-phase power."
+      }
+    },
+    "stats": {
+      "bs20-bc-7kw": {
+        "power": { "label": "Maximum power" },
+        "protection": { "label": "Protection", "sub": "Outdoor rated" },
+        "warranty": { "value": "1 year", "label": "Warranty" }
+      },
+      "bs20-ba-7kw": {
+        "power": { "label": "Maximum power" },
+        "protection": { "label": "Protection", "sub": "Outdoor rated" },
+        "warranty": { "value": "1 year", "label": "Warranty" },
+        "connector": {
+          "title": "Type 2 Socket",
+          "description": "Cable not included"
+        }
+      },
+      "bs20-bc-22kw": {
+        "power": { "label": "Maximum power" },
+        "protection": { "label": "Protection", "sub": "Outdoor rated" },
+        "warranty": { "value": "1 year", "label": "Warranty" }
+      },
+      "bs20-bc-11kw": {
+        "power": { "label": "Rated power" },
+        "protection": { "label": "Indoor and outdoor use" },
+        "warranty": { "value": "1 year", "label": "By certified technicians" }
       }
     }
   },
   "ChargerModelHeroStats": {
-    "residential": {
-      "stat1Title": "Ideal for homes",
-      "stat1Description": "Perfect for daily and overnight residential charging.",
-      "stat2Title": "Optimized for savings",
-      "stat2Description": "Take advantage of off-peak rates and save on every charge.",
-      "stat3Title": "1-Year Warranty",
-      "stat3Description": "Covered when installed by a UTE-certified technician."
+    "ursea": {
+      "title": "Approved by URSEA",
+      "description": "Certified equipment for residential and commercial use."
     },
-    "pro": {
-      "stat1Title": "More than one vehicle",
-      "stat1Description": "Enough power to charge more than one EV at home.",
-      "stat2Title": "3× more power output",
-      "stat2Description": "Charge up to 3× faster than the 7kW model.",
-      "stat3Title": "1-Year Warranty",
-      "stat3Description": "Covered when installed by a UTE-certified technician."
+    "cable": {
+      "integrated": {
+        "title": "Integrated cable",
+        "description": "Cable built into the charger."
+      },
+      "socket": {
+        "title": "Cable not included",
+        "description": "External charging cable not included."
+      }
+    },
+    "tier": {
+      "residential": {
+        "title": "Residential use",
+        "description": "Built for everyday charging at home."
+      },
+      "commercial": {
+        "title": "Commercial use",
+        "description": "Built for fleets and heavy daily use."
+      }
+    },
+    "overrides": {
+      "bs20-bc-11kw": {
+        "stat2": {
+          "title": "Three-phase charging",
+          "description": "More than double a standard single-phase charger."
+        },
+        "stat3": {
+          "title": "Balanced power",
+          "description": "Splits the load across all three phases without needing a 22kW unit."
+        }
+      }
     }
   },
   "Footer": {
@@ -455,7 +657,6 @@
       "products": "Products",
       "navigation": "Navigation"
     },
-
     "cta": {
       "eyebrow": "Contact",
       "title": "Install your EV charger",
@@ -463,20 +664,123 @@
       "button": "Request a free installation quote",
       "whatsappMessage": "Hi! I’d like to request a free installation quote for an EV charger."
     },
-
     "brand": {
       "description": "We design and install smart charging solutions for electric vehicles, focused on safety, efficiency, and regulatory compliance in Uruguay."
     },
-
     "contact": {
       "title": "Contact",
       "phone": "+598 99 168 085",
       "email": "comercial@rayforce.uy",
       "location": "Montevideo, Uruguay"
     },
-
     "meta": {
       "rights": "All rights reserved."
+    }
+  },
+  "CablesPage": {
+    "Hero": {
+      "breadcrumb": {
+        "home": "Home",
+        "cables": "Cables",
+        "chargers": "Chargers"
+      },
+      "title": "Type 2 Charging Cables",
+      "description": "Type 2 to Type 2 charging cables to pair with your charger or charge from any compatible outlet. Straight or coiled, from 7kW to 22kW, with a temperature sensor and carrying bag included."
+    },
+    "carouselLabel": "Cable navigation",
+    "ProductCard": {
+      "variants": {
+        "bs-chc003": {
+          "label": "7kW Cable",
+          "description": "5m straight Type 2 cable for single-phase charging up to 7kW."
+        },
+        "bs-chc004": {
+          "label": "22kW Cable",
+          "description": "5m straight Type 2 cable for three-phase charging up to 22kW."
+        },
+        "bs-chc003-s": {
+          "label": "7kW Coiled Cable",
+          "description": "5m coiled Type 2 cable, self-retracting and takes up less space."
+        }
+      }
+    }
+  },
+  "CableModelPage": {
+    "breadcrumb": {
+      "home": "Home",
+      "cables": "Cables",
+      "chargers": "Chargers"
+    },
+    "eyebrow": {
+      "bs-chc003": "Single-Phase Charging Cable",
+      "bs-chc004": "Three-Phase Charging Cable",
+      "bs-chc003-s": "Single-Phase Coiled Cable"
+    },
+    "titlePrefix": {
+      "bs-chc003": "Cable",
+      "bs-chc004": "Cable",
+      "bs-chc003-s": "Coiled cable"
+    },
+    "cta": {
+      "mercadopago": "Buy now"
+    },
+    "price": {
+      "taxLabel": "VAT Inc."
+    },
+    "variants": {
+      "bs-chc003": {
+        "description": "5-meter straight Type 2 to Type 2 cable for single-phase charging up to 7kW. The simplest option to pair with your wallbox, with a temperature sensor and carrying bag included."
+      },
+      "bs-chc004": {
+        "description": "5-meter straight Type 2 to Type 2 cable for three-phase charging up to 22kW. Includes a temperature sensor and carrying bag."
+      },
+      "bs-chc003-s": {
+        "description": "5-meter coiled Type 2 to Type 2 cable (stretched length) for single-phase charging up to 7kW. Same usable reach as the straight cable, but self-retracts and won't trail across the garage floor. Includes a temperature sensor and carrying bag."
+      }
+    },
+    "stats": {
+      "connector": {
+        "value": "Type 2 – Type 2",
+        "label": "Both ends"
+      },
+      "length": {
+        "total": "Total length",
+        "stretched": "Stretched length"
+      },
+      "protection": {
+        "label": "Protection"
+      },
+      "sensor": {
+        "value": "Included",
+        "label": "Temperature sensor",
+        "sub": "In the connector"
+      }
+    }
+  },
+  "CableModelHeroStats": {
+    "bs-chc003": {
+      "stat1Title": "Temperature sensor",
+      "stat1Description": "The connector cuts power if it overheats.",
+      "stat2Title": "IP66 certified",
+      "stat2Description": "Resists rain and dust, tested and renewed in 2025.",
+      "stat3Title": "Carrying bag included",
+      "stat3Description": "Store it and take it along in your trunk."
+    },
+    "bs-chc004": {
+      "stat1Title": "Temperature sensor",
+      "stat1Description": "The connector cuts power if it overheats.",
+      "stat2Title": "IP66 certified",
+      "stat2Description": "Resists rain and dust, tested and renewed in 2025.",
+      "stat3Title": "Carrying bag included",
+      "stat3Description": "Store it and take it along in your trunk."
+    },
+    "bs-chc003-s": {
+      "stat1Title": "Temperature sensor",
+      "stat1Description": "The connector cuts power if it overheats.",
+      "stat2Title": "IP66 certified",
+      "stat2Description": "Resists rain and dust, tested and renewed in 2025.",
+      "stat3Title": "Coiled design",
+      "stat3Description": "Retracts on its own instead of dragging on the ground."
     }
   }
 }

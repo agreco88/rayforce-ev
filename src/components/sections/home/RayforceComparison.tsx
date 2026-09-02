@@ -43,8 +43,9 @@ type Row =
 type Props = {
   theme: Theme;
   powerKw: number;
-  price?: { currency: string; amount: number };
-  variantPublicName?: string;
+  mercadopagoUrl: string;
+  productSlug: string;
+  title?: string;
 };
 
 /* ------------------ Config ------------------ */
@@ -136,20 +137,17 @@ function Cell({
 
 /* ------------------ Component ------------------ */
 
-const MERCADOPAGO_URLS: Record<string, string> = {
-  residencial: "http://mpago.la/1notnYD",
-  comercial: "https://mpago.la/2C6CFZe",
-};
-
 export default function RayforceComparison({
   theme,
   powerKw,
+  mercadopagoUrl,
+  productSlug,
+  title,
 }: Props) {
   const rows = getRows(powerKw);
   const track = useTrack();
 
-  const mpUrl =
-    powerKw >= 11 ? MERCADOPAGO_URLS.comercial : MERCADOPAGO_URLS.residencial;
+  const mpUrl = mercadopagoUrl || "#";
 
   return (
     <section className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-neutral-950">
@@ -160,7 +158,7 @@ export default function RayforceComparison({
           whileInView={{ opacity: 1, y: 0 }}
           className="sm:text-5xl py-8 sm:py-16 text-center"
         >
-          ¿Por qué cargar con un Wallbox y no con un enchufe común?
+          {title ?? "¿Por qué cargar con un Wallbox y no con un enchufe común?"}
         </motion.h2>
 
         {/* Table */}
@@ -280,7 +278,7 @@ export default function RayforceComparison({
               href={mpUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => track.mercadopagoClick({ source: "charger_comparison", charger: powerKw >= 11 ? "comercial" : "residencial", location: "desktop" })}
+              onClick={() => track.mercadopagoClick({ source: "charger_comparison", charger: productSlug, location: "desktop" })}
               className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-colors duration-200"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -9,21 +9,7 @@ import clsx from "clsx";
 import { Link, usePathname } from "@/i18n/navigation";
 import { waterfallItem } from "@/lib/animation-variants";
 import { useTrack } from "@/lib/analytics/use-track";
-
-const PRODUCTS = [
-  {
-    key: "residential",
-    power: "7.4kW",
-    href: "/cargadores/bs20-bc-7kw",
-    accent: "text-sky-400",
-  },
-  {
-    key: "comercial",
-    power: "22kW",
-    href: "/cargadores/bs20-bc-22kw",
-    accent: "text-green-400",
-  },
-] as const;
+import { getChargerProducts, getPowerLabel } from "@/lib/catalog/catalog.helpers";
 
 export default function HeaderProductsFlyout() {
   const t = useTranslations("Layout.Header");
@@ -31,6 +17,7 @@ export default function HeaderProductsFlyout() {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const track = useTrack();
+  const products = getChargerProducts();
 
   const handleEnter = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -77,44 +64,53 @@ export default function HeaderProductsFlyout() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="
               absolute left-1/2 top-full
-              z-50 mt-4 w-[720px]
+              z-50 mt-4 w-[360px]
               -translate-x-1/2
               rounded-3xl border border-white/10
               bg-neutral-950/95 p-4 backdrop-blur-xl
               shadow-[0_8px_40px_rgba(0,0,0,0.5)]
             "
           >
-            <div className="grid grid-cols-2 gap-4">
-              {PRODUCTS.map((product) => {
-                const isActive = pathname === product.href;
+            <div className="flex flex-col gap-3">
+              {products.map((product) => {
+                const href = `/cargadores/${product.slug}`;
+                const isActive = pathname === href;
                 return (
                   <Link
-                    key={product.href}
-                    href={product.href}
-                    onClick={() => track.productsFlyoutLinkClicked(product.key, product.href)}
+                    key={product.slug}
+                    href={href}
+                    onClick={() => track.productsFlyoutLinkClicked(product.slug, href)}
                     aria-disabled={isActive}
                     className={clsx(
-                      "rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all duration-300",
+                      "flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all duration-300",
                       isActive
                         ? "opacity-50 pointer-events-none cursor-default"
                         : "hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1 active:scale-[0.90]",
                     )}
                   >
-                    <div
-                      className={clsx(
-                        "text-xs uppercase tracking-[0.2em]",
-                        isActive ? "text-neutral-400" : product.accent,
-                      )}
-                    >
-                      {t(`products.${product.key}.title`)}
+                    <div>
+                      <div
+                        className={clsx(
+                          "text-xs uppercase tracking-[0.2em]",
+                          isActive ? "text-neutral-400" : "text-white",
+                        )}
+                      >
+                        {t(`products.${product.slug}.title`)}
+                      </div>
+                      <div
+                        className={clsx(
+                          "mt-2 text-3xl font-light tracking-tight",
+                          isActive ? "text-neutral-400" : product.theme.accentText,
+                        )}
+                      >
+                        {getPowerLabel(product)}
+                      </div>
+                      <div className="mt-1 text-xs text-neutral-500">
+                        {t(`products.${product.slug}.cableNote`)}
+                      </div>
                     </div>
-                    <div
-                      className={clsx(
-                        "mt-2 text-3xl font-light tracking-tight",
-                        isActive ? "text-neutral-400" : product.accent,
-                      )}
-                    >
-                      {product.power}
+                    <div className="shrink-0 text-sm text-neutral-400">
+                      USD {product.price.amount}
                     </div>
                   </Link>
                 );

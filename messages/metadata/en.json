@@ -6,28 +6,67 @@
     "keywords": "EV charger Uruguay, Wallbox Uruguay, electric vehicle charger Uruguay, plug-in hybrid charger, BYD charger Uruguay, home EV charger, Wallbox installation Montevideo, Rayforce",
     "imageAlt": "Rayforce Wallbox charger for electric and hybrid vehicles in Uruguay"
   },
-
   "cargadores": {
-    "title": "Wallbox EV Chargers 7kW & 22kW | Rayforce",
-    "description": "Explore the BS20 Wallbox lineup: 7kW and 22kW models for homes and businesses. Compatible with BYD, Hyundai, Kia, BMW, Renault, Tesla and more.",
-    "ogDescription": "7kW and 22kW Wallbox chargers with certified installation in Uruguay. Compatible with most EVs and plug-in hybrids.",
-    "keywords": "Wallbox Uruguay, EV charger 7kW, EV charger 22kW, Tesla charger Uruguay, BYD charger Uruguay, residential EV charger, commercial EV charger, BS20",
+    "title": "Wallbox EV Chargers 7.2kW to 22kW | Rayforce",
+    "description": "Four BS20 Wallbox chargers, from 7.2kW to 22kW, for homes and businesses in Uruguay. Compatible with BYD, Hyundai, Kia, BMW, Renault, Tesla and more.",
+    "ogDescription": "BS20 Wallbox chargers from 7.2kW to 22kW with certified installation in Uruguay. Compatible with most EVs and plug-in hybrids.",
+    "keywords": "Wallbox Uruguay, EV charger 7kW, EV charger 11kW, EV charger 22kW, Tesla charger Uruguay, BYD charger Uruguay, residential EV charger, commercial EV charger, BS20",
     "imageAlt": "Rayforce BS20 Wallbox EV charger lineup for electric vehicles in Uruguay"
   },
-
-  "cargadores-7kw": {
+  "cargadores-bc-7kw": {
     "title": "7kW Residential Wallbox EV Charger | Rayforce Uruguay",
     "description": "7kW single-phase Wallbox for home EV charging and overnight use. Compatible with electric and hybrid vehicles. Certified installation and local warranty.",
     "ogDescription": "Residential 7kW Wallbox charger for electric vehicles in Uruguay. Ideal for daily home charging with mobile app control.",
     "keywords": "7kW EV charger Uruguay, residential Wallbox Uruguay, single-phase EV charger, home charger for electric car, overnight EV charging, plug-in hybrid home charger",
     "imageAlt": "Rayforce BS20 7kW single-phase Wallbox charger for home EV charging in Uruguay"
   },
-
-  "cargadores-22kw": {
+  "cargadores-bc-22kw": {
     "title": "22kW Three-Phase Wallbox EV Charger | Rayforce Uruguay",
     "description": "22kW three-phase EV charger for businesses, fleets and multi-vehicle homes. Faster charging, app control and professional local installation.",
     "ogDescription": "22kW Wallbox charger for electric vehicles in Uruguay. Ideal for companies, parking facilities and multi-EV households.",
     "keywords": "22kW EV charger Uruguay, three-phase Wallbox Uruguay, commercial EV charger, fleet EV charger, fast EV charger, business EV charging station",
     "imageAlt": "Rayforce BS20 22kW three-phase Wallbox charger for businesses and homes in Uruguay"
+  },
+  "cargadores-ba-7kw": {
+    "title": "7.2kW Wallbox EV Charger w/ Socket | Rayforce Uruguay",
+    "description": "7.2kW single-phase Wallbox with an interchangeable Type 2 socket for homes. Compatible with electric and hybrid vehicles. Certified installation and local warranty.",
+    "ogDescription": "Residential 7.2kW Wallbox charger with an interchangeable Type 2 socket for electric vehicles in Uruguay. Maximum cable flexibility.",
+    "keywords": "EV charger with socket Uruguay, Wallbox Type 2 socket Uruguay, single-phase EV charger, home charger for electric car, overnight EV charging, plug-in hybrid home charger",
+    "imageAlt": "Rayforce BS20 7.2kW Wallbox charger with interchangeable Type 2 socket in Uruguay"
+  },
+  "cargadores-bc-11kw": {
+    "title": "11kW Three-Phase Wallbox EV Charger | Rayforce Uruguay",
+    "description": "11kW three-phase EV charger, the balance between power output and contracted electrical capacity. Certified installation and app control.",
+    "ogDescription": "11kW three-phase Wallbox charger for homes and businesses in Uruguay. More power without overloading your electrical contract.",
+    "keywords": "11kW EV charger Uruguay, three-phase Wallbox 11kW, three-phase EV charger, home business EV charger, balanced power Wallbox",
+    "imageAlt": "Rayforce BS20 11kW three-phase Wallbox charger for homes and businesses in Uruguay"
+  },
+  "cables": {
+    "title": "Type 2 Charging Cables | Rayforce",
+    "description": "Straight and coiled Type 2 to Type 2 charging cables, from 7kW to 22kW, to pair with your Wallbox charger in Uruguay.",
+    "ogDescription": "Rayforce straight and coiled Type 2 charging cables, with a temperature sensor and carrying bag included.",
+    "keywords": "Type 2 cable Uruguay, EV charging cable, wallbox cable, coiled EV cable, BYD charger cable, EV charging accessories Uruguay",
+    "imageAlt": "Rayforce Type 2 charging cables for electric vehicles in Uruguay"
+  },
+  "cables-chc003": {
+    "title": "7kW Type 2 Charging Cable | Rayforce Uruguay",
+    "description": "5-meter straight Type 2 to Type 2 cable for single-phase charging up to 7kW. Includes a temperature sensor and carrying bag.",
+    "ogDescription": "5-meter single-phase Type 2 charging cable, with a temperature sensor and carrying bag included.",
+    "keywords": "Type 2 cable 7kW, single-phase EV cable Uruguay, 5-meter wallbox cable, EV charging cable",
+    "imageAlt": "Rayforce 7kW Type 2 charging cable, 5 meters"
+  },
+  "cables-chc004": {
+    "title": "22kW Type 2 Charging Cable | Rayforce Uruguay",
+    "description": "5-meter straight Type 2 to Type 2 cable for three-phase charging up to 22kW. Includes a temperature sensor and carrying bag.",
+    "ogDescription": "5-meter three-phase Type 2 charging cable, with a temperature sensor and carrying bag included.",
+    "keywords": "Type 2 cable 22kW, three-phase EV cable Uruguay, 5-meter wallbox cable, fast charging cable",
+    "imageAlt": "Rayforce 22kW Type 2 charging cable, 5 meters"
+  },
+  "cables-chc003-s": {
+    "title": "Coiled Type 2 Charging Cable 7kW | Rayforce Uruguay",
+    "description": "5-meter coiled Type 2 to Type 2 cable (stretched length) for single-phase charging up to 7kW. Self-retracting and takes up less space.",
+    "ogDescription": "Coiled Type 2 charging cable that retracts on its own instead of dragging on the ground.",
+    "keywords": "coiled Type 2 cable, retractable EV cable Uruguay, compact EV charging cable, coiled wallbox cable",
+    "imageAlt": "Rayforce coiled Type 2 charging cable, 7kW"
   }
 }

@@ -4,6 +4,7 @@ import { FooterBrand } from "./FooterBrand";
 import { FooterNavColumn } from "./FooterNavColumn";
 import { FooterContactColumn } from "./FooterContactColumn";
 import { FooterMeta } from "./FooterMeta";
+import { RegulatoryBadges } from "@/components/sections/regulatory-section/RegulatoryBadges";
 
 export function Footer() {
   return (
@@ -34,6 +35,7 @@ export function Footer() {
           </div>
         </div>
 
+        <RegulatoryBadges />
         <FooterMeta />
       </div>
     </footer>

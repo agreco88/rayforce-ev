@@ -4,10 +4,10 @@ import { AppHighlightsInteractive } from "@/components/pages/shared/AppHighlight
 import { ChargerModelHero } from "@/components/pages/shared/ChargerModelHero";
 import { ChargerModelHeroMobile } from "@/components/pages/shared/ChargerModelHeroMobile";
 import { ChargerModelStats } from "@/components/pages/shared/ChargerModelStats";
+import { ChargerPricingSection } from "@/components/pages/shared/ChargerPricingSection";
 import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
 
-
-import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
+import { getChargerProductBySlug, getChargerProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -16,55 +16,6 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 import { JsonLd } from "@/components/seo/JsonLd";
-
-/* ------------------------------------------------------------------ */
-/* Variant Config (LOCAL for now, keep it simple)                      */
-/* ------------------------------------------------------------------ */
-
-const VARIANT_CONFIG = {
-  "7kw": {
-    charger: {
-      powerKw: 7.4,
-      variant: "residential",
-      mode: "single",
-    },
-    theme: {
-      accentText: "text-sky-400",
-      accentBg: "bg-sky-400",
-      accentHover: "hover:bg-sky-400",
-      divide: "divide-sky-400/10",
-      gradientLine: "from-transparent s via-sky-400 to-transparent",
-      accentSoft: "bg-sky-400/10",
-      accentBorder: "border-sky-400/30",
-      accentGradient: "from-sky-400 via-sky-400 to-teal-400",
-      glow: "rgba(56,189,248,0.25)",
-      glowStrong: "rgba(20,184,166,0.35)",
-      accentRing: "ring-sky-400",
-    },
-  },
-
-  "22kw": {
-    charger: {
-      powerKw: 22,
-      variant: "pro",
-      mode: "multi",
-      phases: 3,
-    },
-    theme: {
-      accentText: "text-green-500",
-      accentBg: "bg-green-500",
-      accentHover: "hover:bg-green-600",
-      divide: "divide-green-500/10",
-      gradientLine: "from-transparent  via-green-700 to-transparent",
-      accentSoft: "bg-green-500/10",
-      accentBorder: "border-green-500/30",
-      accentGradient: "from-green-400 via-green-500 to-emerald-400",
-      glow: "rgba(34,197,94,0.25)",
-      glowStrong: "rgba(22,163,74,0.35)",
-      accentRing: "ring-green-500",
-    },
-  },
-} as const;
 
 /* ------------------------------------------------------------------ */
 /* Types                                                              */
@@ -78,18 +29,17 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return getAllChargerVariants().map((v) => ({ model: v.slug }));
+  return getChargerProducts().map((product) => ({ model: product.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, model } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const variant = getAllChargerVariants().find((v) => v.slug === model);
-  if (!variant) return {};
-  const key = variant.shortName.toLowerCase();
+  const product = getChargerProductBySlug(model);
+  if (!product) return {};
   return generateLocaleMetadata({
     locale,
-    route: `cargadores-${key}`,
+    route: `cargadores-${product.metadataKey}`,
     path: `/cargadores/${model}`,
   });
 }
@@ -101,21 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ChargerDetailPage({ params }: Props) {
   const { locale, model } = await params;
 
-  /* ---------------- Resolve Variant ---------------- */
-
-  const variants = getAllChargerVariants();
-  const variant = variants.find((v) => v.slug === model);
-
-  if (!variant) return notFound();
-
-  /* ---------------- Resolve Config ---------------- */
-
-  const variantKey =
-    variant.shortName.toLowerCase() as keyof typeof VARIANT_CONFIG;
-
-  const config = VARIANT_CONFIG[variantKey];
-
-  if (!config) return notFound();
+  const product = getChargerProductBySlug(model);
+  if (!product) return notFound();
 
   /* ---------------- Product Schema ---------------- */
 
@@ -123,19 +60,39 @@ export default async function ChargerDetailPage({ params }: Props) {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `Rayforce ${variant.publicName}`,
+    name: `Rayforce ${product.publicName}`,
+    sku: product.modelCode,
+    mpn: product.modelCode,
     brand: { "@type": "Brand", name: "Rayforce" },
-    description: t(`variants.${variant.slug}.description`),
-    image: `${SITE.baseUrl}${variant.heroImage}`,
-    ...(variant.price && {
-      offers: {
-        "@type": "Offer",
-        price: String(variant.price.amount),
-        priceCurrency: variant.price.currency,
-        availability: "https://schema.org/InStock",
-        seller: { "@type": "Organization", name: "Rayforce" },
+    description: t(`variants.${product.slug}.description`),
+    image: `${SITE.baseUrl}${product.heroImage}`,
+    offers: {
+      "@type": "Offer",
+      price: String(product.price.amount),
+      priceCurrency: product.price.currency,
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Rayforce" },
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: t("breadcrumb.home"), item: SITE.baseUrl },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: t("breadcrumb.chargers"),
+        item: `${SITE.baseUrl}/cargadores`,
       },
-    }),
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.publicName,
+        item: `${SITE.baseUrl}/cargadores/${model}`,
+      },
+    ],
   };
 
   /* ---------------- Render ---------------- */
@@ -143,28 +100,49 @@ export default async function ChargerDetailPage({ params }: Props) {
   return (
     <section className="relative w-full z-0  overflow-hidden border-b border-neutral-900">
       <JsonLd schema={productSchema} />
+      <JsonLd schema={breadcrumbSchema} />
       {/* Hero */}
       <div className="hidden lg:block" id="inicio">
-        <ChargerModelHero variant={variant} config={config} />
+        <ChargerModelHero product={product} />
       </div>
       <div className="block lg:hidden">
-        <ChargerModelHeroMobile variant={variant} config={config} />
+        <ChargerModelHeroMobile product={product} />
       </div>
-      {/* Stats */}
-      <ChargerModelStats model={variant.slug} theme={config.theme} />
-      <RayforceComparison
-        theme={config.theme}
-        powerKw={config.charger.powerKw}
-        price={variant.price}
-        variantPublicName={variant.publicName}
-      />{" "}
-      {/* App Highlights Desktop */}
+      {/* Stats strip */}
+      <div className="relative z-20 bg-neutral-950">
+        {/* Mobile: own section, normal flow (hero is too tall to straddle) */}
+        <div className="block lg:hidden mx-auto w-full max-w-[1440px] px-4 py-12 sm:px-6">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.06] px-4 py-6 shadow-2xl shadow-black/40 backdrop-blur-2xl">
+            <ChargerModelStats product={product} theme={product.theme} />
+          </div>
+        </div>
+
+        {/* Desktop: floats over the Hero/App Highlights seam, full hero width */}
+        <div className="hidden lg:block h-0 overflow-visible">
+          <div className="-translate-y-1/2">
+            <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-16 2xl:px-0">
+              <div className="rounded-3xl border border-white/10 bg-white/[0.06] px-10 py-10 shadow-2xl shadow-black/40 backdrop-blur-2xl">
+                <ChargerModelStats product={product} theme={product.theme} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* App Highlights (includes wallbox intro + certification blocks) */}
       <div className="">
-        <AppHighlightsInteractive theme={config.theme} />
+        <AppHighlightsInteractive theme={product.theme} />
       </div>
       {/* Compatibility */}
-      <CompatibilitySection theme={config.theme} id="compatibilidad" />
-      {/* <ChargingHomeBanner /> */}
+      <CompatibilitySection theme={product.theme} id="compatibilidad" />
+      {/* Pricing + social proof */}
+      <ChargerPricingSection product={product} id="precios" />
+      <RayforceComparison
+        theme={product.theme}
+        powerKw={product.specs.maxPowerKw}
+        mercadopagoUrl={product.mercadopagoUrl}
+        productSlug={product.slug}
+        title={t(`comparisonSection.${product.slug}.title`)}
+      />
       <Footer />
       <ScrollDepthTracker page={`charger_${model}`} />
     </section>

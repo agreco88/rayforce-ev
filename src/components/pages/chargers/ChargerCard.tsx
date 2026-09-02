@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useTrack } from "@/lib/analytics/use-track";
 
-export type CardTheme = "green" | "blue";
+export type CardTheme = "green" | "blue" | "cyan" | "lime" | "amber";
 
 const THEMES = {
   green: {
@@ -24,6 +24,27 @@ const THEMES = {
     border: "via-sky-400/60",
     cta: "group-hover:text-sky-400",
   },
+  cyan: {
+    title: "text-cyan-400",
+    topGlow:
+      "bg-[radial-gradient(circle_at_75%_15%,rgba(34,211,238,0.18),transparent_55%)]",
+    border: "via-cyan-400/60",
+    cta: "group-hover:text-cyan-400",
+  },
+  lime: {
+    title: "text-lime-400",
+    topGlow:
+      "bg-[radial-gradient(circle_at_75%_15%,rgba(163,230,53,0.18),transparent_55%)]",
+    border: "via-lime-400/60",
+    cta: "group-hover:text-lime-400",
+  },
+  amber: {
+    title: "text-amber-400",
+    topGlow:
+      "bg-[radial-gradient(circle_at_75%_15%,rgba(251,191,36,0.18),transparent_55%)]",
+    border: "via-amber-400/60",
+    cta: "group-hover:text-amber-400",
+  },
 } as const;
 
 type Props = {
@@ -32,6 +53,7 @@ type Props = {
   description: string;
   image: string;
   theme?: CardTheme;
+  namespace?: string;
   className?: string;
 };
 
@@ -41,9 +63,10 @@ export default function ChargerCard({
   description,
   image,
   theme = "green",
+  namespace = "ChargersPage.ChargerCard",
   className,
 }: Props) {
-  const t = useTranslations("ChargersPage.ChargerCard");
+  const t = useTranslations(namespace);
   const th = THEMES[theme];
   const track = useTrack();
 

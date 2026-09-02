@@ -1,13 +1,9 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
+import { getCableProducts, getChargerProducts } from "@/lib/catalog/catalog.helpers";
 
 const BASE_URL = "https://www.rayforce.uy";
 const DEFAULT_LOCALE = routing.defaultLocale || "es";
-
-const CHARGERS = [
-  { slug: "bs20-bc-7kw", priority: 0.9 },
-  { slug: "bs20-bc-22kw", priority: 0.8 },
-];
 
 function localeUrl(locale: string, path: string): string {
   const base =
@@ -36,13 +32,23 @@ function buildEntry(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const chargerEntries = CHARGERS.map(({ slug, priority }) =>
-    buildEntry(`/cargadores/${slug}`, priority, "monthly"),
+  const chargerEntries = getChargerProducts().map((product) =>
+    buildEntry(
+      `/cargadores/${product.slug}`,
+      product.featured ? 0.9 : 0.8,
+      "monthly",
+    ),
+  );
+
+  const cableEntries = getCableProducts().map((product) =>
+    buildEntry(`/cables/${product.slug}`, 0.8, "monthly"),
   );
 
   return [
     buildEntry("/", 1.0, "weekly"),
     buildEntry("/cargadores", 0.9, "monthly"),
     ...chargerEntries,
+    buildEntry("/cables", 0.9, "monthly"),
+    ...cableEntries,
   ];
 }

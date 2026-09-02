@@ -1,79 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownToLine } from "lucide-react";
+import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { waterfallItem } from "@/lib/animation-variants";
-import { useTrack } from "@/lib/analytics";
+import { ArrowDownToLine, Zap } from "lucide-react";
 
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
+import { GradientText } from "@/components/animated/GradientText";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
-import { getAllChargerVariants } from "@/lib/chargers/chargers.helpers";
-
-const MERCADOPAGO_URLS: Record<string, string> = {
-  "bs20-bc-7kw": "http://mpago.la/1notnYD",
-  "bs20-bc-22kw": "https://mpago.la/2C6CFZe",
-};
-
-const SLUG_ACCENT: Record<string, string> = {
-  "bs20-bc-7kw": "text-sky-400",
-  "bs20-bc-22kw": "text-green-400",
-};
-
-/* ------------------------------------------------------------------ */
-/* Types                                                              */
-/* ------------------------------------------------------------------ */
-
-type Theme = {
-  accentText: string;
-  accentBg: string;
-  accentHover: string;
-  divide: string;
-  gradientLine: string;
-  accentSoft: string;
-  accentBorder: string;
-  accentGradient: string;
-  glow: string;
-  glowStrong: string;
-};
-
-type ChargerConfig = {
-  charger: {
-    powerKw: number;
-    variant: "residential" | "pro";
-    mode: "single" | "multi";
-    phases?: 1 | 2 | 3;
-  };
-  theme: Theme;
-};
+import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
+import { useTrack } from "@/lib/analytics";
+import type { ChargerProduct } from "@/lib/catalog/catalog.types";
 
 type Props = {
-  variant: {
-    publicName: string;
-    description: string;
-    shortName: string;
-    slug: string;
-    price?: { currency: string; amount: number; taxLabel?: string };
-  };
-  config: ChargerConfig;
+  product: ChargerProduct;
 };
 
 /* ------------------------------------------------------------------ */
 /* Component                                                          */
 /* ------------------------------------------------------------------ */
 
-export function ChargerModelHeroMobile({ variant, config }: Props) {
+export function ChargerModelHeroMobile({ product }: Props) {
   const t = useTranslations("ChargerModelPage");
+  const tPricing = useTranslations("ChargerModelPage.pricingSection");
   const track = useTrack();
-  const { theme, charger } = config;
-  const mpUrl = MERCADOPAGO_URLS[variant.slug] ?? "#";
+  const { theme } = product;
 
   return (
     <section
       className="
         relative overflow-x-hidden
-        border-b border-neutral-900
         min-h-screen
       "
     >
@@ -117,27 +74,39 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
           className="mt-16 mb-8 flex justify-center z-[999]"
           items={[
             { label: t("breadcrumb.home"), href: "/" },
-            { label: t("breadcrumb.chargers"), href: "/cargadores" },
+            {
+              label: t("breadcrumb.chargers"),
+              dropdown: [
+                {
+                  href: "/cargadores",
+                  label: t("breadcrumb.chargers"),
+                  current: true,
+                },
+                {
+                  href: "/cables",
+                  label: t("breadcrumb.cables"),
+                },
+              ],
+            },
             {
               label: (
                 <p
                   className={`text-xs uppercase tracking-widest ${theme.accentText}`}
                 >
-                  {variant.slug.toUpperCase()}
+                  {product.slug.toUpperCase()}
                 </p>
               ),
-              dropdown: getAllChargerVariants()
-                .filter((v) => v.slug !== variant.slug)
-                .map((v) => ({
-                  href: `/cargadores/${v.slug}`,
-                  label: (
-                    <span
-                      className={`text-xs uppercase tracking-widest ${SLUG_ACCENT[v.slug] ?? "text-neutral-400"}`}
-                    >
-                      {v.slug.toUpperCase()}
-                    </span>
-                  ),
-                })),
+              dropdown: getChargerProducts().map((p) => ({
+                href: `/cargadores/${p.slug}`,
+                current: p.slug === product.slug,
+                label: (
+                  <span
+                    className={`text-xs uppercase tracking-widest ${p.theme.accentText}`}
+                  >
+                    {p.slug.toUpperCase()}
+                  </span>
+                ),
+              })),
             },
           ]}
         />
@@ -145,39 +114,63 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
         {/* -------------------------------------------------------------- */}
         {/* Content Block                                                 */}
         {/* -------------------------------------------------------------- */}
-        <div className="flex flex-col gap-2.5 items-center">
+        <div className="flex flex-col gap-4 items-center">
           {/* Eyebrow */}
           <p
             className={`text-xs uppercase tracking-[0.3em] ${theme.accentText}`}
           >
-            {t(`eyebrow.${charger.variant}`)}
+            {t(`eyebrow.${product.slug}`)}
           </p>
 
           {/* Title */}
           <div className="flex flex-col items-center gap-2">
-            <h1 className="flex items-end gap-2 leading-none">
+            <h1 className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 leading-none text-center">
               <span className="text-6xl font-semibold text-white">BS20</span>
 
-              <span className={`text-6xl font-thin ${theme.accentText}`}>
-                {variant.shortName}
-              </span>
+              <GradientText
+                colors={theme.gradientColors}
+                className="text-6xl font-thin"
+              >
+                {product.shortName}
+              </GradientText>
             </h1>
 
             <p className="text-neutral-400 pt-2 leading-snug text-base  text-center max-w-[35ch]">
-              {t(`variants.${variant.slug}.description`)}
+              {t(`variants.${product.slug}.description`)}
             </p>
+
+            <div className="mt-2 flex items-baseline">
+              <AnimateNumber
+                locales="en-US"
+                format={{ maximumFractionDigits: 0 }}
+                prefix={tPricing("toggle.fromPrefix")}
+                suffix={` ${product.price.currency}`}
+                className={`
+                  text-3xl font-thin tabular-nums ${theme.accentText}
+                  [&_.number-section-pre]:mr-2 [&_.number-section-pre]:self-end [&_.number-section-pre]:pb-1! [&_.number-section-pre]:text-xs [&_.number-section-pre]:font-medium [&_.number-section-pre]:text-neutral-500
+                  [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1! [&_.number-section-post]:text-xs [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide [&_.number-section-post]:text-neutral-400
+                `}
+                transition={{
+                  visualDuration: 0.6,
+                  type: "spring",
+                  bounce: 0.25,
+                  opacity: { duration: 0.3, ease: "linear" },
+                }}
+              >
+                {product.price.amount}
+              </AnimateNumber>
+            </div>
           </div>
-          {/* Stats */}
-          <ChargerModelHeroStats theme={theme} variant={charger.variant} />
           {/* -------------------------------------------------------------- */}
           {/* Charger                                                       */}
           {/* -------------------------------------------------------------- */}
           <div
-            className="
+            className={`
             relative
             flex justify-center items-center
             pt-4
-          "
+            ${product.visual.cableType === "socket" ? "mb-[175px]" : "mb-0"}
+          `}
           >
             {/* Bottom Glow */}
             <div
@@ -194,68 +187,48 @@ export function ChargerModelHeroMobile({ variant, config }: Props) {
 
             {/* Charger */}
             <div className="scale-[0.85] sm:scale-[1] origin-top">
-              <ChargerEV {...charger} />
+              <ChargerEV {...product.visual} />
             </div>
           </div>
+          {/* Stats */}
+          <ChargerModelHeroStats theme={theme} product={product} />
 
-          {/* Price */}
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row items-center gap-6 pt-10 w-full"
+          >
+            {product.datasheetUrl && (
+              <motion.a
+                href={product.datasheetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  track.chargerHeroDatasheet(product.slug, "mobile")
+                }
+                className={`
+                  inline-flex items-center justify-center h-16 sm:h-14 gap-2 w-full sm:w-fit px-5 rounded-xl
+                  border ${theme.accentBorder} ${theme.accentText}
+                  text-sm font-semibold
+                  hover:bg-white/5 transition-colors
+                `}
+              >
+                <ArrowDownToLine size={16} />
+                {t("cta.manual")}
+              </motion.a>
+            )}
 
-          {variant.price && (
-            <div className="mt-2 flex flex-col items-center gap-2">
-              <div className="flex items-end gap-2">
-                <span className={`text-7xl font-thin text-white`}>
-                  {variant.price.amount}
-                </span>
-                <span className={`text-5xl mb-1 font-thin text-white`}>
-                  {variant.price.currency}
-                </span>
-              </div>
-              <span className={`text-xl font-thin ${theme.accentText}`}>
-                ({t("price.taxLabel")})
-              </span>
-            </div>
-          )}
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
             <motion.a
-              variants={waterfallItem}
-              initial="hidden"
-              animate="show"
-              transition={{ delay: 0.35 }}
-              href="/assets/docs/bs20-ficha-tecnica.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track.chargerHeroDatasheet(variant.slug, "mobile")}
-              className="
-                flex items-center justify-center gap-2
-                text-sm text-neutral-400 hover:text-white
-                transition-colors py-2
-              "
+              href="#compatibilidad"
+              className="inline-flex items-center justify-center h-16 sm:h-14 gap-2 w-full sm:w-fit px-5 rounded-xl border border-white/30 text-white/80 text-sm font-semibold hover:bg-white/5 transition-colors"
             >
-              <ArrowDownToLine size={16} />
-              {t("cta.manual")}
+              <Zap size={16} />
+              {t("cta.compatibility")}
             </motion.a>
-
-            <a
-              href={mpUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track.mercadopagoClick({ source: "charger_hero", charger: variant.slug, location: "mobile" })}
-              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/icons/mpago.png"
-                alt=""
-                aria-hidden="true"
-                className="h-8 w-auto"
-              />
-              <div className="w-0.5 self-stretch bg-[#0a0080]/20 rounded-full" />
-              <span className="text-[#0a0080] uppercase tracking-tighter!">
-                {t("cta.mercadopago")}
-              </span>
-            </a>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

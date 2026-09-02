@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { waterfallItem } from "@/lib/animation-variants";
 import { scrollToSection } from "@/lib/scroll-to-section";
 
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useTrack } from "@/lib/analytics/use-track";
 
 /* ---------- Types ---------- */
@@ -35,6 +35,8 @@ export default function HeaderNavLink({
 }: HeaderNavLinkProps) {
   const t = useTranslations("Layout.Header");
   const track = useTrack();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const className = clsx(
     "text-neutral-50!",
@@ -53,7 +55,13 @@ export default function HeaderNavLink({
           variant="link"
           onClick={() => {
             track.navLinkClicked(label, sectionId);
-            scrollToSection(sectionId);
+            if (pathname === "/") {
+              scrollToSection(sectionId);
+            } else if (sectionId === "inicio") {
+              router.push("/");
+            } else {
+              router.push(`/#${sectionId}`);
+            }
             onClick?.();
           }}
           aria-current={isActive ? "true" : undefined}

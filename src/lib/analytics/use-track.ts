@@ -125,11 +125,31 @@ export function useTrack() {
     },
 
     mercadopagoClick(params: {
-      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand";
+      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section";
       charger: string;
       location: "desktop" | "mobile";
     }) {
       trackEvent("mercadopago_click", { ...params, locale });
+    },
+
+    pricingInstallationToggled(charger: string, included: boolean) {
+      trackEvent("pricing_installation_toggled", { charger, included, locale });
+    },
+
+    pricingCableToggled(charger: string, included: boolean) {
+      trackEvent("pricing_cable_toggled", { charger, included, locale });
+    },
+
+    pricingColumnToggled(charger: string, included: boolean) {
+      trackEvent("pricing_column_toggled", { charger, included, locale });
+    },
+
+    socialProofReviewClicked(charger: string, review_id: string) {
+      trackEvent("social_proof_review_clicked", { charger, review_id, locale });
+    },
+
+    socialProofViewAllClicked(charger: string) {
+      trackEvent("social_proof_view_all_clicked", { charger, locale });
     },
   };
 }

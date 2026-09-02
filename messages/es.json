@@ -8,23 +8,31 @@
         "stand": "Columna",
         "faq": "FAQ",
         "compatibility": "Compatibilidad",
-        "contactCta": "Contactar ventas por WhatsApp"
+        "contactCta": "Contactar ventas por WhatsApp",
+        "cables": "Cables"
       },
       "products": {
-        "residential": {
-          "title": "Residencial"
+        "bs20-bc-7kw": {
+          "title": "Residencial",
+          "cableNote": "Cable integrado"
         },
-
-        "comercial": {
-          "title": "Comercial"
+        "bs20-ba-7kw": {
+          "title": "Residencial con toma",
+          "cableNote": "No incluye cable"
+        },
+        "bs20-bc-11kw": {
+          "title": "Trifásico",
+          "cableNote": "Cable integrado"
+        },
+        "bs20-bc-22kw": {
+          "title": "Comercial",
+          "cableNote": "Cable integrado"
         }
       }
     },
-
     "Aside": {
       "language": "Idioma"
     },
-
     "Footer": {
       "meta": {
         "copyright": "© 2025 Rayforce EV. Todos los derechos reservados."
@@ -40,6 +48,30 @@
     "DemoVideo": {
       "cta": "Ver demostración",
       "title": "Rayforce EV – Demostración"
+    },
+    "Specs": {
+      "phase": {
+        "single": "Monofásico",
+        "three": "Trifásico"
+      },
+      "connector": {
+        "type2": "Tipo 2",
+        "integratedLabel": "Cable integrado de {length}m",
+        "socketLabel": "Toma intercambiable — no incluye cable"
+      },
+      "ursea": {
+        "value": "URSEA",
+        "label": "Aprobado"
+      },
+      "protection": {
+        "water": "Resistencia al agua",
+        "impact": "Resistencia a golpes"
+      }
+    },
+    "RegulatoryBadges": {
+      "label": "Certificaciones",
+      "urseaAlt": "Aprobado por URSEA",
+      "uteAlt": "Compatible con instalación certificada UTE"
     }
   },
   "LocaleSwitcher": {
@@ -49,7 +81,6 @@
       "es": "Español"
     }
   },
-
   "AriaLabels": {
     "logo": "Ir a la página principal",
     "mobileMenu": "Abrir menú móvil",
@@ -62,12 +93,10 @@
     "followUs": "Seguinos",
     "language": "Idioma"
   },
-
   "Languages": {
     "en": "Inglés",
     "es": "Español"
   },
-
   "HomePage": {
     "Hero": {
       "title": "Instalación y venta de cargadores Wallbox para autos eléctricos e híbridos en Uruguay",
@@ -75,18 +104,15 @@
       "ctaPrimary": "Ver cargadores",
       "ctaSecondary": "¿Funciona con tu vehículo?",
       "ctaTertiary": "Solicitar presupuesto de instalación",
-
       "features": {
         "security": {
           "title": "Más seguro",
-          "description": "Protecciones avanzadas para tu vehículo y tu hogar"
+          "description": "Protecciones avanzadas para tu eléctrico y tu hogar"
         },
-
         "savings": {
           "title": "Más ahorro",
           "description": "Cargá tu EV por mucho menos que un auto a combustible"
         },
-
         "control": {
           "title": "Más práctico",
           "description": "Controlá y programá la carga desde tu celular"
@@ -122,7 +148,6 @@
       "ComparisonTable": {
         "taxLabel": "IVA Inc.",
         "priceLabel": "Precio",
-
         "cta": {
           "message": "Hola! Me interesa un cargador Rayforce. ¿Me podés asesorar?",
           "buy": "Quiero mi cargador por {price}",
@@ -130,41 +155,49 @@
           "mercadopago": "Comprar",
           "installments": "Hasta en 12 cuotas sin interés."
         },
-
         "features": {
           "power": "Potencia máxima",
           "phase": "Tipo de fase",
           "connector": "Tipo de conector",
           "current": "Corriente nominal",
           "voltage": "Tensión típica",
-
           "app": "Control mediante app móvil",
           "protection": "Protección eléctrica",
           "ip": "Grado de protección",
           "temperature": "Temperatura de operación"
         }
       },
-      "eyebrow": "Cargadores Wallbox Besen BS20",
+      "eyebrow": "Cargadores Wallbox Rayforce BS20",
       "title": "Soluciones inteligentes de carga",
-      "description": "Descubrí nuestra línea de cargadores eléctricos tipo Wallbox de 7kW y 22kW. Diseñados para hogares y empresas en Uruguay.",
+      "description": "Descubrí nuestra línea de cargadores eléctricos tipo Wallbox, de 7,2kW a 22kW. Cuatro modelos pensados para hogares y empresas en Uruguay.",
       "cta": {
         "moreInfo": "Más información"
       },
       "carouselLabel": "Navegación de cargadores",
       "chargers": {
-        "residential": {
+        "bs20-bc-7kw": {
           "title": "Residencial",
-          "ariaLabel": "Más información sobre el cargador BS20 BC 7kW Residencial",
-
           "highlights": [
             "Carga hasta 3 veces más rápido respecto a cargadores convencionales",
             "Máximo ahorro energético"
           ]
         },
-        "pro": {
+        "bs20-ba-7kw": {
+          "title": "Residencial con toma",
+          "highlights": [
+            "Toma Tipo 2 intercambiable — no incluye cable",
+            "Ideal para carga nocturna en el hogar"
+          ]
+        },
+        "bs20-bc-11kw": {
+          "title": "Trifásico",
+          "highlights": [
+            "Equilibrio entre potencia y consumo eléctrico contratado",
+            "Pensado para hogares y comercios con trifásica"
+          ]
+        },
+        "bs20-bc-22kw": {
           "title": "Comercial",
-          "ariaLabel": "Más información sobre el cargador BS20 BC 22kW Comercial",
-
           "highlights": [
             "Carga hasta 5 veces más rápido respecto a cargadores convencionales",
             "Máxima potencia disponible"
@@ -172,29 +205,28 @@
         }
       }
     },
+    "ChargerGallery": {
+      "eyebrow": "Instalaciones reales",
+      "title": "Cargadores en acción",
+      "description": "Un vistazo a los cargadores Rayforce instalados en hogares y negocios de todo Uruguay, de nuestro equipo y de nuestros clientes."
+    },
     "HomeBenefitsSection": {
       "eyebrow": "Beneficios",
-
       "title": "Más ahorro, más práctico, más seguro.",
-
       "description": "La movilidad eléctrica ya es una realidad en Uruguay. Reducí costos, aprovechá tarifas inteligentes y sumate a una matriz energética limpia.",
-
       "cta": {
         "primary": "Ver cargadores",
         "secondary": "¿Funciona con tu vehículo?"
       },
-
       "items": {
         "security": {
           "title": "Más seguro",
           "description": "Los cargadores EV cuentan con protecciones eléctricas, reduciendo riesgos frente a enchufes domésticos convencionales."
         },
-
         "savings": {
           "title": "Más ahorro",
-          "description": "Reducí el costo por kilómetro, aprovechá tarifas eléctricas más económicas y disminuí gastos de mantenimiento frente a vehículos a combustible."
+          "description": "Reducí el costo por kilómetro, aprovechá tarifas eléctricas más económicas y disminuí gastos de mantenimiento frente a eléctricos a combustible."
         },
-
         "control": {
           "title": "Más práctico",
           "description": "Controlá la carga desde tu celular, programá horarios y monitoreá el consumo en tiempo real desde la app."
@@ -204,13 +236,9 @@
     "HomeStandSection": {
       "eyebrow": "COLUMNA DE INSTALACIÓN",
       "title": "Columna de instalación para cargadores Rayforce",
-
       "description": "Instalá tu cargador en exteriores, cocheras o espacios sin pared disponible. Compatible con toda la línea BS20.",
-
       "specs": "Altura: 150 cm · Base: 26 × 14.5 cm",
-
       "imageAlt": "Columna de instalación vacía a la izquierda con una flecha verde indicando una columna con el cargador Rayforce BS20 instalado, mostrando un diseño premium en lugar de montaje en pared",
-
       "pricing": {
         "price": "USD 159",
         "taxLabel": "IVA inc.",
@@ -231,31 +259,27 @@
       "header": {
         "eyebrow": "Compatibilidad",
         "title": "¿Funciona con tu vehículo?",
-        "description": "Buscá tu modelo o marca y confirmá si tu vehículo es compatible"
+        "description": "Buscá la marca de tu vehiculo y confirmá si tu vehículo es compatible"
       },
-
       "search": {
-        "placeholder": "Buscar marca o modelo..."
+        "placeholder": "Elegí tu marca para ver eléctricos compatibles..."
       },
-
+      "modelsLabel": "Modelos compatibles:",
       "cta": {
         "contactSales": "Contactar ventas",
         "whatsapp": "Hablar por WhatsApp",
         "loadMore": "Ver más marcas",
         "showLess": "Ver menos marcas"
       },
-
       "whatsapp": {
         "message": "Hola, estoy interesado en un cargador para mi {model}",
         "fallbackMessage": "Hola! Necesito información extra sobre un cargador Rayforce"
       },
-
       "emptyState": {
         "title": "¿No encontraste tu modelo?",
         "description": "Escribinos por WhatsApp y te ayudamos a confirmar la compatibilidad.",
         "note": "*Respuesta en minutos"
       },
-
       "banner": {
         "title": "¿No encontraste tu modelo?",
         "description": "Escribinos por WhatsApp y te ayudamos a confirmar la compatibilidad.",
@@ -265,7 +289,6 @@
     "FaqSection": {
       "title": "Preguntas frecuentes",
       "eyebrow": "LO MAS PREGUNTADO",
-
       "categories": {
         "compatibility": "Compatibilidad",
         "installation": "Instalación",
@@ -274,27 +297,25 @@
         "costs": "Costos y ahorro",
         "support": "Soporte y respaldo"
       },
-
       "groups": {
         "compatibility": [
           {
-            "title": "¿Sirve para mi vehículo eléctrico?",
+            "title": "¿Sirve para mi eléctrico eléctrico?",
             "answer": "Sí. Nuestros cargadores funcionan con la gran mayoría de autos eléctricos e híbridos enchufables que se venden e importan en Uruguay."
           },
           {
             "title": "¿Para qué marcas funciona?",
-            "answer": "Son compatibles con las principales marcas de vehículos eléctricos presentes en Uruguay, incluyendo fabricantes asiáticos, europeos y americanos. BYD, Hyundai, Kia, Chevrolet, Renault, Nissan, BMW, Audi, Mercedes-Benz, Peugeot, Citroën, MG, Geely, OMODA, Haval, Chery, JAC, Dongfeng/Nammi, DFSK, Seres, Forthing, Jaecoo, Mini, Volvo, Jaguar, entre otras."
+            "answer": "Son compatibles con las principales marcas de eléctricos eléctricos presentes en Uruguay, incluyendo fabricantes asiáticos, europeos y americanos. BYD, Hyundai, Kia, Chevrolet, Renault, Nissan, BMW, Audi, Mercedes-Benz, Peugeot, Citroën, MG, Geely, OMODA, Haval, Chery, JAC, Dongfeng/Nammi, DFSK, Seres, Forthing, Jaecoo, Mini, Volvo, Jaguar, entre otras."
           },
           {
             "title": "¿También funciona con híbridos enchufables?",
-            "answer": "Sí. Funciona con vehículos híbridos enchufables. Si el auto puede cargarse conectado a la red eléctrica, es compatible con nuestros cargadores."
+            "answer": "Sí. Funciona con eléctricos híbridos enchufables. Si el auto puede cargarse conectado a la red eléctrica, es compatible con nuestros cargadores."
           },
           {
             "title": "¿Cómo sé cuál cargador necesito?",
-            "answer": "Te asesoramos según tu vehículo, tu instalación eléctrica y tus hábitos de uso para recomendarte la mejor opción."
+            "answer": "Te asesoramos según tu eléctrico, tu instalación eléctrica y tus hábitos de uso para recomendarte la mejor opción."
           }
         ],
-
         "installation": [
           {
             "title": "¿Puedo instalarlo en mi casa?",
@@ -313,11 +334,10 @@
             "answer": "No se recomienda. Rayforce realiza la instalación y certificación con técnicos autorizados por UTE, garantizando seguridad y cumplimiento normativo."
           }
         ],
-
         "usage": [
           {
             "title": "¿Cuánto tarda en cargar el auto?",
-            "answer": "Depende del vehículo, pero suele ser mucho más rápido y seguro que usar un enchufe común."
+            "answer": "Depende del eléctrico, pero suele ser mucho más rápido y seguro que usar un enchufe común."
           },
           {
             "title": "¿Puedo manejarlo desde el celular?",
@@ -336,7 +356,6 @@
             "answer": "Cuando vuelve el suministro eléctrico, el equipo retoma su funcionamiento normal."
           }
         ],
-
         "safety": [
           {
             "title": "¿Es seguro dejar el auto cargando toda la noche?",
@@ -355,14 +374,12 @@
             "answer": "Sí. Podés configurar límites de carga, como por ejemplo al 80 %, para prolongar la vida útil de la batería."
           }
         ],
-
         "costs": [
           {
             "title": "¿Conviene cargar siempre en la red pública?",
             "answer": "La red pública es útil para viajes o situaciones puntuales, pero no siempre es la opción más económica. Desde el 1 de enero de 2026, las tarifas públicas de UTE aumentaron aproximadamente un 50 %, y la tendencia es incentivar la carga domiciliaria."
           }
         ],
-
         "support": [
           {
             "title": "¿Tiene garantía y respaldo local?",
@@ -380,23 +397,34 @@
     "Hero": {
       "breadcrumb": {
         "home": "Inicio",
-        "chargers": "Cargadores"
+        "chargers": "Cargadores",
+        "cables": "Cables"
       },
       "title": "Cargadores eléctricos de tipo Wallbox",
-      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos de Besen BS20 en sus variantes de 7kW y 22kW."
+      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos BS20 en sus 4 variantes de 7,2kW a 22kW."
     },
     "ChargerCard": {
       "cta": "Ver modelo",
       "variants": {
         "bs20-bc-7kw": {
           "eyebrow": "Residencial",
-          "label": "Residencial 7kW",
+          "label": "Residencial 7,2kW",
           "description": "Wallbox monofásico para carga diaria en el hogar. Fácil de instalar y pensado para la carga nocturna."
         },
         "bs20-bc-22kw": {
           "eyebrow": "Comercial",
           "label": "Comercial 22kW",
-          "description": "Wallbox trifásico para carga rápida o hogares y empresas con más de un vehículo eléctrico."
+          "description": "Wallbox trifásico para carga rápida o hogares y empresas con más de un eléctrico eléctrico."
+        },
+        "bs20-ba-7kw": {
+          "eyebrow": "Residencial",
+          "label": "Residencial 7,2kW con toma",
+          "description": "Wallbox monofásico con toma Tipo 2 intercambiable. Misma potencia que el 7,2kW, con más flexibilidad de cable."
+        },
+        "bs20-bc-11kw": {
+          "eyebrow": "Trifásico",
+          "label": "Trifásico 11kW",
+          "description": "Wallbox trifásico de 11kW. El equilibrio ideal entre potencia y consumo eléctrico contratado."
         }
       }
     }
@@ -404,46 +432,223 @@
   "ChargerModelPage": {
     "breadcrumb": {
       "home": "Inicio",
-      "chargers": "Cargadores"
+      "chargers": "Cargadores",
+      "cables": "Cables"
     },
     "eyebrow": {
-      "residential": "Cargador Residencial",
-      "pro": "Cargador Comercial"
+      "bs20-bc-7kw": "Cargador Residencial Monofásico ",
+      "bs20-ba-7kw": "Cargador Residencial Monofásico ",
+      "bs20-bc-11kw": "Cargador Residencial Trifásico",
+      "bs20-bc-22kw": "Cargador Comercial Trifásico"
     },
     "cta": {
       "whatsapp": "Quiero comprar este cargador",
-      "manual": "Manual de usuario",
+      "manual": "Descargar manual de usuario",
+      "compatibility": "¿Sirve para mi auto?",
       "whatsappMessage": "Hola! Quiero comprar mi cargador {model}",
-      "mercadopago": "Comprar"
+      "mercadopago": "Comprar",
+      "mercadopagoFull": "Comprar por MercadoPago"
     },
     "price": {
-      "taxLabel": "IVA Inc."
+      "taxLabel": "IVA Inc.",
+      "installation": {
+        "label": "Incluir instalación",
+        "with": "Incluye cargador e instalación",
+        "without": "Solo cargador — no incluye instalación"
+      }
+    },
+    "certificationSection": {
+      "eyebrow": "Certificaciones",
+      "title": "Aprobado y certificado en Uruguay",
+      "description": "Tu cargador y su instalación cumplen con la normativa vigente: el equipo cuenta con homologación URSEA y la instalación se realiza según las exigencias de UTE, para que tengas la tranquilidad de una carga segura y respaldada.",
+      "urseaAlt": "Homologación URSEA",
+      "uteAlt": "Instalación certificada UTE"
+    },
+    "pricingSection": {
+      "eyebrow": "Precios",
+      "title": "Precio simple, sin sorpresas",
+      "subtitle": "Elegí cómo querés recibir tu cargador: comprá el equipo para instalarlo vos mismo, o sumá la instalación profesional certificada.",
+      "descriptions": {
+        "bs20-bc-7kw": "Incluye el wallbox 7,2kW monofásico con cable integrado, garantía oficial y acceso a la app Rayforce para monitorear tu carga desde el celular.",
+        "bs20-ba-7kw": "Incluye el wallbox 7,2kW monofásico con toma Tipo 2 intercambiable, garantía oficial y acceso a la app Rayforce. No incluye cable de carga — se compra por separado, y si se daña con el tiempo, se repone solo el cable.",
+        "bs20-bc-11kw": "Incluye el wallbox trifásico de 11kW, garantía oficial y acceso a la app Rayforce. El equilibrio entre potencia y consumo contratado para hogares y comercios con trifásica disponible.",
+        "bs20-bc-22kw": "Incluye el wallbox trifásico de 22kW, garantía oficial y acceso a la app Rayforce. Pensado para comercios, cocheras de edificios y flotas — te ayudamos a confirmar si tu contrato eléctrico aprovecha toda la potencia antes de comprar."
+      },
+      "includes": {
+        "title": "Incluye"
+      },
+      "features": {
+        "charger": {
+          "bs20-bc-7kw": [
+            "Cargador Wallbox BS20-BC-7KW",
+            "Cable de carga incluido",
+            "Control remoto vía app móvil",
+            "Garantía local",
+            "Homologación URSEA incluida",
+            "Hasta 12 cuotas sin interés"
+          ],
+          "bs20-ba-7kw": [
+            "Cargador Wallbox BS20-BA-7KW",
+            "Control remoto vía app móvil",
+            "Garantía local",
+            "Homologación URSEA incluida",
+            "Hasta 12 cuotas sin interés"
+          ],
+          "bs20-bc-11kw": [
+            "Cargador Wallbox BS20-BC-11KW",
+            "Cable de carga incluido",
+            "Control remoto vía app móvil",
+            "Garantía local",
+            "Homologación URSEA incluida",
+            "Hasta 12 cuotas sin interés"
+          ],
+          "bs20-bc-22kw": [
+            "Cargador Wallbox BS20-BC-22KW",
+            "Cable de carga incluido",
+            "Control remoto vía app móvil",
+            "Garantía local",
+            "Homologación URSEA incluida",
+            "Hasta 12 cuotas sin interés"
+          ]
+        },
+        "installation": [
+          "Instalación certificada por UTE",
+          "Soporte técnico",
+          "Asesoramiento técnico personalizado"
+        ],
+        "cable": "Cable de carga enrulado 7kW",
+        "column": "Columna de piso"
+      },
+      "toggle": {
+        "label": "Incluir instalación",
+        "chargerOnlyLabel": "Solo cargador",
+        "withInstallationLabel": "Incluir instalación",
+        "fromPrefix": "Desde"
+      },
+      "cableToggle": {
+        "label": "Incluir cable enrulado",
+        "withoutCableLabel": "Sin cable",
+        "withCableLabel": "Con cable enrulado"
+      },
+      "columnToggle": {
+        "label": "Incluir columna",
+        "withoutColumnLabel": "Sin columna",
+        "withColumnLabel": "Con columna"
+      },
+      "taxLabel": "IVA incluido",
+      "cta": {
+        "buy": "Comprar por MercadoPago",
+        "quote": "Cotizar instalación",
+        "whatsappMessage": "Hola! Quiero pedir un presupuesto de instalación para mi cargador {model}"
+      },
+      "footnote": {
+        "chargerOnly": "Instalalo vos mismo o contratá la instalación certificada más adelante, cuando quieras.",
+        "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
+      }
+    },
+    "socialProofSection": {
+      "eyebrow": "Opiniones",
+      "title": "Lo que dicen nuestros clientes",
+      "subtitle": "Experiencias reales de personas que ya cargan su eléctrico con Rayforce.",
+      "source": "Reseña de Google",
+      "viewReview": "Ver reseña en Google",
+      "viewAll": "Ver todas las reseñas en Google"
+    },
+    "comparisonSection": {
+      "bs20-bc-7kw": {
+        "title": "¿Por qué cargar con un Wallbox y no con un enchufe común?",
+        "intro": "Para tu carga diaria en casa, un wallbox de 7,2kW reduce el tiempo de carga y evita los riesgos de dejar un enchufe común trabajando toda la noche."
+      },
+      "bs20-ba-7kw": {
+        "title": "¿Por qué cargar con un Wallbox y no con un enchufe común?",
+        "intro": "El wallbox con toma intercambiable (cable no incluido, se compra por separado) suma a la seguridad de la carga dedicada la ventaja de poder reponer solo el cable si se daña."
+      },
+      "bs20-bc-11kw": {
+        "title": "¿Por qué cargar con un Wallbox trifásico y no con un enchufe común?",
+        "intro": "Con instalación trifásica disponible, un wallbox de 11kW carga bastante más rápido que un enchufe común, sin exigir la potencia contratada que necesita un equipo de 22kW."
+      },
+      "bs20-bc-22kw": {
+        "title": "¿Por qué instalar un Wallbox de 22kW en tu comercio o flota?",
+        "intro": "Para cocheras de edificios, comercios y flotas con contrato trifásico de mayor potencia, un wallbox de 22kW carga muchos eléctricos más rápido y de forma más segura que depender de enchufes comunes."
+      }
     },
     "variants": {
       "bs20-bc-7kw": {
-        "description": "Cargador wallbox monofásico, ideal para uso de carga residencial durante la noche."
+        "description": "Cargador wallbox monofásico Tipo 2 con cable integrado de 6 metros, pensado para la carga nocturna en el hogar. Al no tener piezas sueltas, no hay cable que reemplazar ni conector que se pueda perder."
       },
       "bs20-bc-22kw": {
-        "description": "Máxima potencia para hogares con más de un auto o cuando necesitás cargar más rápido."
+        "description": "Cargador wallbox trifásico de 22kW pensado para comercios, cocheras de edificios y flotas con contrato trifásico de mayor potencia. En una vivienda particular, la potencia contratada habitual en Uruguay suele limitar la carga real por debajo de los 22kW: para uso residencial, el 11kW suele ser la opción más eficiente."
+      },
+      "bs20-ba-7kw": {
+        "description": "Cargador wallbox monofásico con toma Tipo 2, ideal para uso de carga residencial durante la noche. No incluye cable de carga."
+      },
+      "bs20-bc-11kw": {
+        "description": "Cargador wallbox trifásico de 400V con cable integrado de 6 metros. Ofrece más potencia que un monofásico sin exigir la potencia contratada que necesita un equipo de 22kW, por lo que es la opción trifásica más práctica para hogares y comercios con instalación trifásica ya disponible."
+      }
+    },
+    "stats": {
+      "bs20-bc-7kw": {
+        "power": { "label": "Potencia máxima" },
+        "protection": { "label": "Protección", "sub": "Apto uso exterior" },
+        "warranty": { "value": "1 año", "label": "Garantía" }
+      },
+      "bs20-ba-7kw": {
+        "power": { "label": "Potencia máxima" },
+        "protection": { "label": "Protección", "sub": "Apto uso exterior" },
+        "warranty": { "value": "1 año", "label": "Garantía" },
+        "connector": {
+          "title": "Toma Tipo 2",
+          "description": "No incluye cable"
+        }
+      },
+      "bs20-bc-22kw": {
+        "power": { "label": "Potencia máxima" },
+        "protection": { "label": "Protección", "sub": "Apto uso exterior" },
+        "warranty": { "value": "1 año", "label": "Garantía" }
+      },
+      "bs20-bc-11kw": {
+        "power": { "label": "Potencia nominal" },
+        "protection": { "label": "Uso interior y exterior" },
+        "warranty": { "value": "1 año", "label": "Con técnicos certificados" }
       }
     }
   },
   "ChargerModelHeroStats": {
-    "residential": {
-      "stat1Title": "Ideal para hogares",
-      "stat1Description": "Perfecto para carga residencial diaria y nocturna.",
-      "stat2Title": "Enfocado en ahorro",
-      "stat2Description": "Aprovechá la tarifa nocturna y ahorrá en cada carga.",
-      "stat3Title": "Garantía 1 año",
-      "stat3Description": "Cubierto con instalación realizada por técnico certificado por UTE."
+    "ursea": {
+      "title": "Aprobado por URSEA",
+      "description": "Equipo homologado para uso residencial y comercial."
     },
-    "pro": {
-      "stat1Title": "Más de un vehículo",
-      "stat1Description": "Potencia suficiente para cargar más de un auto en el hogar.",
-      "stat2Title": "3× más potencia",
-      "stat2Description": "Cargá hasta 3 veces más rápido que el modelo de 7kW.",
-      "stat3Title": "Garantía 1 año",
-      "stat3Description": "Cubierto con instalación realizada por técnico certificado por UTE."
+    "cable": {
+      "integrated": {
+        "title": "Cable integrado",
+        "description": "Cable integrado dentro del cargador."
+      },
+      "socket": {
+        "title": "No incluye cable",
+        "description": "Cable de carga externo no incluido."
+      }
+    },
+    "tier": {
+      "residential": {
+        "title": "Uso residencial",
+        "description": "Pensado para la carga diaria en el hogar."
+      },
+      "commercial": {
+        "title": "Uso comercial",
+        "description": "Preparado para flotas y uso intensivo."
+      }
+    },
+    "overrides": {
+      "bs20-bc-11kw": {
+        "stat2": {
+          "title": "Carga trifásica",
+          "description": "Más del doble que un cargador monofásico convencional."
+        },
+        "stat3": {
+          "title": "Potencia equilibrada",
+          "description": "Reparte la carga entre las tres fases sin exigir la potencia de un equipo de 22kW."
+        }
+      }
     }
   },
   "Footer": {
@@ -452,28 +657,130 @@
       "products": "Productos",
       "navigation": "Navegación"
     },
-
     "cta": {
       "eyebrow": "Contacto",
       "title": "Instalá tu cargador eléctrico",
-      "description": "Te asesoramos para elegir el cargador ideal según tu vehículo, tu instalación eléctrica y tus hábitos de uso.",
+      "description": "Te asesoramos para elegir el cargador ideal según tu eléctrico, tu instalación eléctrica y tus hábitos de uso.",
       "button": "Solicitar presupuesto sin cargo",
       "whatsappMessage": "Hola! Me gustaría solicitar un presupuesto sin cargo para la instalación de un cargador eléctrico."
     },
-
     "brand": {
-      "description": "Diseñamos e instalamos soluciones de carga inteligente para vehículos eléctricos, con foco en seguridad, eficiencia y cumplimiento normativo en Uruguay."
+      "description": "Diseñamos e instalamos soluciones de carga inteligente para eléctricos eléctricos, con foco en seguridad, eficiencia y cumplimiento normativo en Uruguay."
     },
-
     "contact": {
       "title": "Contacto",
       "phone": "+598 92 041 709",
       "email": "comercial@rayforce.uy",
       "location": "Montevideo, Uruguay"
     },
-
     "meta": {
       "rights": "Todos los derechos reservados."
+    }
+  },
+  "CablesPage": {
+    "Hero": {
+      "breadcrumb": {
+        "home": "Inicio",
+        "cables": "Cables",
+        "chargers": "Cargadores"
+      },
+      "title": "Cables de carga Tipo 2",
+      "description": "Cables de carga Tipo 2 a Tipo 2 para complementar tu cargador o cargar en cualquier toma compatible. Rectos o espiralados, de 7kW a 22kW, con sensor de temperatura y bolso incluido."
+    },
+    "carouselLabel": "Navegación de cables",
+    "ProductCard": {
+      "variants": {
+        "bs-chc003": {
+          "label": "Cable 7kW",
+          "description": "Cable recto Tipo 2 de 5m para carga monofásica de hasta 7kW."
+        },
+        "bs-chc004": {
+          "label": "Cable 22kW",
+          "description": "Cable recto Tipo 2 de 5m para carga trifásica de hasta 22kW."
+        },
+        "bs-chc003-s": {
+          "label": "Cable espiral 7kW",
+          "description": "Cable espiralado Tipo 2 de 5m, se recoge solo y ocupa menos lugar."
+        }
+      }
+    }
+  },
+  "CableModelPage": {
+    "breadcrumb": {
+      "home": "Inicio",
+      "cables": "Cables",
+      "chargers": "Cargadores"
+    },
+    "eyebrow": {
+      "bs-chc003": "Cable de Carga Monofásico",
+      "bs-chc004": "Cable de Carga Trifásico",
+      "bs-chc003-s": "Cable Espiralado Monofásico"
+    },
+    "titlePrefix": {
+      "bs-chc003": "Cable",
+      "bs-chc004": "Cable",
+      "bs-chc003-s": "Cable espiral"
+    },
+    "cta": {
+      "mercadopago": "Comprar"
+    },
+    "price": {
+      "taxLabel": "IVA Inc."
+    },
+    "variants": {
+      "bs-chc003": {
+        "description": "Cable recto Type 2 a Type 2 de 5 metros para carga monofásica de hasta 7 kW. La opción más simple para complementar tu wallbox, con sensor de temperatura y bolso incluido."
+      },
+      "bs-chc004": {
+        "description": "Cable recto Type 2 a Type 2 de 5 metros para carga trifásica de hasta 22 kW. Con sensor de temperatura y bolso incluido."
+      },
+      "bs-chc003-s": {
+        "description": "Cable espiralado Type 2 a Type 2 de 5 metros estirado, para carga monofásica de hasta 7 kW. Mismo alcance útil que el cable recto, pero se recoge solo y no queda arrastrando por el piso del garage. Con sensor de temperatura y bolso incluido."
+      }
+    },
+    "stats": {
+      "connector": {
+        "value": "Type 2 – Type 2",
+        "label": "Ambos extremos"
+      },
+      "length": {
+        "total": "Largo total",
+        "stretched": "Largo estirado"
+      },
+      "protection": {
+        "label": "Protección"
+      },
+      "sensor": {
+        "value": "Incluido",
+        "label": "Sensor de temperatura",
+        "sub": "En el conector"
+      }
+    }
+  },
+  "CableModelHeroStats": {
+    "bs-chc003": {
+      "stat1Title": "Sensor de temperatura",
+      "stat1Description": "El conector corta la carga si se recalienta.",
+      "stat2Title": "IP66 certificado",
+      "stat2Description": "Resiste lluvia y polvo, con ensayo renovado en 2025.",
+      "stat3Title": "Bolso incluido",
+      "stat3Description": "Para guardarlo y llevarlo fácil en el baúl."
+    },
+    "bs-chc004": {
+      "stat1Title": "Sensor de temperatura",
+      "stat1Description": "El conector corta la carga si se recalienta.",
+      "stat2Title": "IP66 certificado",
+      "stat2Description": "Resiste lluvia y polvo, con ensayo renovado en 2025.",
+      "stat3Title": "Bolso incluido",
+      "stat3Description": "Para guardarlo y llevarlo fácil en el baúl."
+    },
+    "bs-chc003-s": {
+      "stat1Title": "Sensor de temperatura",
+      "stat1Description": "El conector corta la carga si se recalienta.",
+      "stat2Title": "IP66 certificado",
+      "stat2Description": "Resiste lluvia y polvo, con ensayo renovado en 2025.",
+      "stat3Title": "Espiralado",
+      "stat3Description": "Se recoge solo y no queda arrastrando por el piso."
     }
   }
 }

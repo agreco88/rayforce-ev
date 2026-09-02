@@ -1,28 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { Select } from "@base-ui/react/select";
+import { motion, AnimatePresence } from "motion/react";
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
 import { useTrack } from "@/lib/analytics";
 
-import { FaWhatsapp } from "react-icons/fa";
-
-import {
-  CheckIcon,
-  ChevronDown,
-  ChevronRight,
-  ChevronUp,
-  Search,
-} from "lucide-react";
-
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { CheckIcon, ChevronDown } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
 /*                                   TYPES                                    */
@@ -36,6 +22,7 @@ type Theme = {
   gradientLine: string;
   accentSoft: string;
   accentBorder: string;
+  accentBorderHover: string;
   accentGradient: string;
   glow: string;
   glowStrong: string;
@@ -65,6 +52,7 @@ const DEFAULT_THEME: Theme = {
     "from-transparent sm:from-green-600 via-green-700 to-transparent",
   accentSoft: "bg-green-500/10",
   accentBorder: "border-green-500/30",
+  accentBorderHover: "hover:border-green-500/30",
   accentGradient: "from-green-400 via-green-500 to-emerald-400",
   glow: "rgba(34,197,94,0.25)",
   glowStrong: "rgba(22,163,74,0.35)",
@@ -92,6 +80,10 @@ const COMPATIBILITY_DATA: Brand[] = [
       "D1",
     ],
   },
+  {
+    name: "Tesla",
+    models: ["Model 3", "Model Y", "Model S", "Model X"],
+  },
   { name: "Dongfeng", models: ["Vigo", "Mage", "Huge", "Nammi", "Nano Box"] },
   {
     name: "Chery",
@@ -99,7 +91,6 @@ const COMPATIBILITY_DATA: Brand[] = [
   },
   { name: "Chevrolet", models: ["Bolt EV", "Bolt EUV", "Spark EUV"] },
   { name: "Suzuki", models: ["Swift ", "Fronx "] },
-
   { name: "Geely", models: ["Geometry E", "Geometry C", "EX5"] },
   {
     name: "Omoda",
@@ -129,17 +120,9 @@ const COMPATIBILITY_DATA: Brand[] = [
     models: ["Q4 e-tron", "e-tron", "e-tron Sport", "e-tron GT"],
   },
   { name: "BMW", models: ["i3", "i4", "iX1", "iX3", "iX"] },
-
-  {
-    name: "Tesla",
-    models: ["Model 3", "Model Y", "Model S", "Model X"],
-  },
-
   { name: "Volkswagen", models: ["ID.3", "ID.4", "ID.5"] },
   { name: "Volvo", models: ["EX30", "XC40", "C40"] },
 ];
-
-const INITIAL_BRAND_COUNT = 8;
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -150,148 +133,49 @@ export function CompatibilitySection({ theme, id }: Props) {
 
   const t = useTranslations("HomePage.CompatibilitySection");
 
-  const [search, setSearch] = useState("");
-  const [expanded, setExpanded] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [openBrands, setOpenBrands] = useState<string[]>([]);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [selectedBrand, setSelectedBrand] = useState<string | null>("BYD");
+  const [selectOpen, setSelectOpen] = useState(false);
   const track = useTrack();
-
-  useEffect(() => setMounted(true), []);
 
   const whatsappNumber = "59892041709";
 
-  /* ---------------------------------------------------------------------- */
-  /* Utils                                                                  */
-  /* ---------------------------------------------------------------------- */
+  const brand = COMPATIBILITY_DATA.find((b) => b.name === selectedBrand);
 
-  const normalize = (str: string) =>
-    str
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "")
-      .replace(/-/g, "");
+  const modelsContentRef = useRef<HTMLDivElement>(null);
+  const [modelsHeight, setModelsHeight] = useState<number | undefined>(
+    undefined,
+  );
 
-  function highlightMatch(text: string, query: string) {
-    if (!query) return text;
+  useEffect(() => {
+    const node = modelsContentRef.current;
+    if (!node) return;
 
-    const clean = (str: string) =>
-      str
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[\s-]/g, "");
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry)
+        setModelsHeight(
+          entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height,
+        );
+    });
+    observer.observe(node);
+    setModelsHeight(node.getBoundingClientRect().height);
 
-    const normalizedText = clean(text);
-    const normalizedQuery = clean(query);
+    return () => observer.disconnect();
+  }, [selectedBrand]);
 
-    const index = normalizedText.indexOf(normalizedQuery);
-
-    if (index === -1) return text;
-
-    const map: number[] = [];
-    let normalizedIndex = 0;
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-
-      if (char === " " || char === "-") continue;
-
-      map[normalizedIndex++] = i;
-    }
-
-    const start = map[index];
-    const end = map[index + normalizedQuery.length - 1] + 1;
-
-    return [
-      <span key="before">{text.slice(0, start)}</span>,
-
-      <span key="match" className={cn("font-semibold", ui.accentText)}>
-        {text.slice(start, end)}
-      </span>,
-
-      <span key="after">{text.slice(end)}</span>,
-    ];
+  function handleBrandChange(name: string | null) {
+    setSelectedBrand(name);
+    if (name) track.compatibilityBrandExpanded(name);
   }
 
-  /* ---------------------------------------------------------------------- */
-  /* Filtering                                                              */
-  /* ---------------------------------------------------------------------- */
-
-  const filteredData = useMemo(() => {
-    const term = normalize(search);
-
-    if (!term) return COMPATIBILITY_DATA;
-
-    return COMPATIBILITY_DATA.map((brand) => {
-      const normalizedBrand = normalize(brand.name);
-
-      const matchesBrand = normalizedBrand.includes(term);
-
-      const matchingModels = brand.models.filter((model) =>
-        normalize(model).includes(term),
-      );
-
-      if (matchingModels.length > 0) {
-        return {
-          ...brand,
-          models: matchingModels,
-        };
-      }
-
-      if (matchesBrand) {
-        return brand;
-      }
-
-      return null;
-    }).filter(Boolean) as Brand[];
-  }, [search]);
-
-  const isSearching = search.trim().length > 0;
-
-  // Debounced search tracking — fires 800 ms after the user stops typing
-  useEffect(() => {
-    const query = search.trim();
-    if (query.length < 2) return;
-    const id = setTimeout(() => {
-      if (filteredData.length === 0) {
-        track.compatibilityNoResults(query);
-      } else {
-        track.compatibilitySearch(query, filteredData.length);
-      }
-    }, 800);
-    return () => clearTimeout(id);
-  }, [search, filteredData.length]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  function handleWhatsAppModel(brand: string, model: string) {
-    track.compatibilityModelSelected(brand, model);
+  function handleWhatsAppModel(brandName: string, model: string) {
+    track.compatibilityModelSelected(brandName, model);
     track.whatsappClick({
       source: "compatibility_model",
-      vehicle_brand: brand,
+      vehicle_brand: brandName,
       vehicle_model: model,
     });
   }
-
-  function handleOpenBrandsChange(values: string[]) {
-    const added = values.filter((v) => !openBrands.includes(v));
-    added.forEach((brand) => track.compatibilityBrandExpanded(brand));
-    setOpenBrands(values);
-  }
-
-  function handleWhatsAppFallback(
-    source: "compatibility_no_results" | "compatibility_banner",
-  ) {
-    track.whatsappClick({ source });
-  }
-
-  const displayedData =
-    isSearching || expanded
-      ? filteredData
-      : filteredData.slice(0, INITIAL_BRAND_COUNT);
-
-  const showLoadMore =
-    !isSearching && !expanded && filteredData.length > INITIAL_BRAND_COUNT;
 
   /* ---------------------------------------------------------------------- */
   /* Render                                                                 */
@@ -299,440 +183,185 @@ export function CompatibilitySection({ theme, id }: Props) {
 
   return (
     <section
-      ref={sectionRef}
       id={id}
-      className="
-        relative
-        container
-        mx-auto
-        max-w-[1600px]
-
-
-        px-6
-        py-16
-
-        sm:px-8
-        sm:py-32
-      "
+      className="relative overflow-hidden bg-neutral-950 px-6 pt-24 pb-24 sm:px-8 sm:pt-32 sm:pb-32"
     >
-      {/* ------------------------------------------------------------------ */}
-      {/* Header                                                             */}
-      {/* ------------------------------------------------------------------ */}
-
-      <div className="mx-auto max-w-3xl text-center">
-        <p className={cn("text-sm uppercase tracking-[0.25em]", ui.accentText)}>
-          {t("header.eyebrow")}
-        </p>
-
-        <h2 className="mt-4 text-4xl tracking-tight sm:text-6xl">
-          {t("header.title")}
-        </h2>
-
-        <p className="mt-6 text-lg text-neutral-400">
-          {t("header.description")}
-        </p>
-
-        {/* Search */}
-        <div className="relative mx-auto mt-10 max-w-2xl">
-          <Search
-            className="
-              absolute left-5 top-1/2
-              size-5 -translate-y-1/2
-              text-neutral-500
-            "
-          />
-
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={t("search.placeholder")}
-            className={cn(
-              "h-14 w-full rounded-2xl",
-              "border bg-neutral-950",
-              "pl-14 pr-5",
-              "text-neutral-200 placeholder:text-neutral-500",
-              "focus:outline-none focus:ring-1",
-              ui.accentBorder,
-              ui.accentRing,
-            )}
-          />
-        </div>
-      </div>
-
-      {/* Divider */}
+      {/* Grid */}
       <div
-        className={cn(
-          "mt-14 mb-10 h-[2px] w-full bg-gradient-to-r opacity-50",
-          ui.gradientLine,
-        )}
+        className="pointer-events-none absolute inset-0 z-0 opacity-30"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(64,64,64,0.3) 2px, transparent 1px),
+            linear-gradient(to bottom, rgba(64,64,64,0.3) 2px, transparent 1px)
+          `,
+          backgroundSize: "64px 64px",
+          maskImage:
+            "radial-gradient(ellipse 80% 80% at 50% 0%, #000 20%, transparent 80%)",
+        }}
       />
 
-      {/* ------------------------------------------------------------------ */}
-      {/* Empty State                                                        */}
-      {/* ------------------------------------------------------------------ */}
+      <div className="relative z-10 container mx-auto max-w-[1600px]">
+        {/* ------------------------------------------------------------------ */}
+        {/* Header                                                             */}
+        {/* ------------------------------------------------------------------ */}
 
-      {isSearching && filteredData.length === 0 && (
-        <div
-          className="
-            relative
-            mx-auto mt-10
-            w-fit overflow-hidden
-
-            rounded-3xl
-            border border-green-500/20
-
-            bg-gradient-to-br
-            from-green-500/10
-            via-green-500/[0.07]
-            to-transparent
-
-            p-6
-
-            sm:mt-14
-            sm:p-8
-          "
-        >
-          <div
-            className="
-              absolute inset-0
-              pointer-events-none
-              bg-[radial-gradient(circle_at_top,rgba(34,197,94,0.15),transparent_70%)]
-            "
-          />
-
-          <div
-            className="
-              relative z-10
-
-              flex flex-col gap-6
-
-              sm:flex-row
-              sm:items-center
-              sm:justify-around
-              sm:gap-32
-            "
+        <div className="mx-auto max-w-3xl text-center">
+          <p
+            className={cn("text-sm uppercase tracking-[0.25em]", ui.accentText)}
           >
-            <div className="flex flex-col items-center gap-4 sm:flex-row">
-              <div
-                className="
-                  flex size-16 shrink-0
-                  items-center justify-center
-                  rounded-full
-                  bg-green-700
-                "
+            {t("header.eyebrow")}
+          </p>
+
+          <h2 className="mt-4 text-4xl tracking-tight sm:text-6xl">
+            {t("header.title")}
+          </h2>
+
+          <p className="mt-6 text-lg text-neutral-400">
+            {t("header.description")}
+          </p>
+
+          {/* Brand dropdown */}
+          <div className="mx-auto mt-10 max-w-[13rem]">
+            <Select.Root
+              items={COMPATIBILITY_DATA.map((b) => ({
+                value: b.name,
+                label: b.name,
+              }))}
+              value={selectedBrand}
+              onValueChange={handleBrandChange}
+              open={selectOpen}
+              onOpenChange={setSelectOpen}
+              modal={false}
+            >
+              <Select.Trigger
+                className={cn(
+                  "relative flex h-14 w-full items-center justify-center rounded-2xl",
+                  "border border-white/10 bg-neutral-950",
+                  "px-10",
+                  "text-neutral-200",
+                  "transition-colors duration-200",
+                  "focus:outline-none focus:ring-1",
+                  "data-[popup-open]:ring-1",
+                  ui.accentBorderHover,
+                  ui.accentRing,
+                )}
               >
-                <FaWhatsapp className="size-20 text-white" />
-              </div>
+                <Select.Value className="text-center">
+                  {(value: string | null) => value || t("search.placeholder")}
+                </Select.Value>
+                <Select.Icon className="absolute right-4 flex items-center">
+                  <ChevronDown className="size-5 text-neutral-500" />
+                </Select.Icon>
+              </Select.Trigger>
 
-              <div className="mt-4 text-center sm:ml-8 sm:mt-0 sm:text-start">
-                <h3
-                  className="
-                    text-xl
-                    font-semibold
-                    tracking-tight
-                    text-white
-
-                    sm:text-2xl
-                  "
-                >
-                  {t("emptyState.title")}
-                </h3>
-
-                <p className="mt-4 text-neutral-300 sm:mt-2">
-                  {t("emptyState.description")}
-                </p>
-
-                <p className="mt-5 text-sm text-neutral-500 sm:mt-3">
-                  {t("emptyState.note")}
-                </p>
-              </div>
-            </div>
-
-            <a
-              href={`https://wa.me/${whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => handleWhatsAppFallback("compatibility_no_results")}
-              className={cn(
-                "inline-flex items-center justify-center gap-2",
-                "h-12 rounded-xl px-6",
-                "font-medium text-black",
-                "bg-green-400 transition-all hover:bg-green-500",
-              )}
-            >
-              {t("cta.whatsapp")}
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* ------------------------------------------------------------------ */}
-      {/* Results                                                            */}
-      {/* ------------------------------------------------------------------ */}
-
-      {filteredData.length > 0 && (
-        <>
-          <div className="relative">
-            <motion.div
-              key={`${search}-${expanded}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              {/* Desktop */}
-              <div className="hidden md:block">
-                {!mounted ? (
-                  <div className="flex flex-col gap-3">
-                    {displayedData.map((brand) => (
-                      <div
-                        key={brand.name}
-                        className="rounded-2xl border border-neutral-900 bg-neutral-950 px-6 py-5"
+              <AnimatePresence>
+                {selectOpen && (
+                  <Select.Portal>
+                    <Select.Positioner
+                      className="z-20 outline-none"
+                      sideOffset={8}
+                      align="center"
+                      alignItemWithTrigger={false}
+                    >
+                      <Select.Popup
+                        render={
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.96, y: -4 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.96, y: -4 }}
+                            transition={{ duration: 0.15, ease: "easeOut" }}
+                            style={{ willChange: "transform, opacity" }}
+                            className={cn(
+                              "max-h-[28rem] w-max min-w-[var(--anchor-width)] overflow-y-auto overflow-x-hidden rounded-2xl",
+                              "flex flex-col gap-1",
+                              "border bg-neutral-950 p-1.5",
+                              "shadow-xl shadow-black/40",
+                              ui.accentBorder,
+                            )}
+                          />
+                        }
                       >
-                        <span className="text-2xl font-semibold tracking-tight text-white">
-                          {brand.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <Accordion
-                    type="multiple"
-                    value={openBrands}
-                    onValueChange={handleOpenBrandsChange}
-                    className="flex flex-col gap-3"
-                  >
-                    {displayedData.map((brand) => (
-                      <AccordionItem
-                        key={brand.name}
-                        value={brand.name}
-                        className="rounded-2xl border border-neutral-900 bg-neutral-950 px-6"
-                      >
-                        <AccordionTrigger className="py-5 hover:no-underline">
-                          <span className="text-2xl font-semibold tracking-tight text-white">
-                            {highlightMatch(brand.name, search)}
-                          </span>
-                        </AccordionTrigger>
-
-                        <AccordionContent className="pb-5">
-                          <div className="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                            {brand.models.map((model) => {
-                              const message = encodeURIComponent(
-                                t("whatsapp.message", { model }),
-                              );
-                              return (
-                                <a
-                                  key={model}
-                                  href={`https://wa.me/${whatsappNumber}?text=${message}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() =>
-                                    handleWhatsAppModel(brand.name, model)
-                                  }
-                                  className="
-                                    group
-                                    flex items-center justify-between
-                                    rounded-xl
-                                    border border-neutral-900
-                                    bg-neutral-950
-                                    px-4 py-3
-                                    transition-all duration-300
-                                    hover:border-green-500/30
-                                    hover:bg-neutral-900
-                                  "
-                                >
-                                  <div className="flex items-center gap-1.5">
-                                    <CheckIcon className={cn("size-4", ui.accentText)} />
-                                    <span className="flex-1 uppercase">
-                                      {highlightMatch(model, search)}
-                                    </span>
-                                  </div>
-                                  <div
-                                    className="
-                                      flex items-center gap-2
-                                      translate-x-2 opacity-0
-                                      uppercase tracking-tighter
-                                      transition-all duration-300
-                                      group-hover:translate-x-0 group-hover:opacity-100
-                                    "
-                                  >
-                                    <FaWhatsapp className="mt-0.5 text-green-500 size-3.5" />
-                                    <span className="text-xs text-neutral-400">
-                                      {t("cta.contactSales")}
-                                    </span>
-                                    <ChevronRight className="size-3 text-neutral-500" />
-                                  </div>
-                                </a>
-                              );
+                        {COMPATIBILITY_DATA.map((b) => (
+                          <Select.Item
+                            key={b.name}
+                            value={b.name}
+                            className="flex cursor-pointer items-center justify-center rounded-md px-4 py-3 text-center text-base text-neutral-300 outline-none transition-colors duration-100 data-[highlighted]:text-white data-[selected]:text-white"
+                            style={(state) => ({
+                              backgroundColor:
+                                state.highlighted || state.selected
+                                  ? ui.glow
+                                  : "transparent",
                             })}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                )}
-              </div>
-
-              {/* Mobile */}
-              <div className="md:hidden">
-                {!mounted ? (
-                  <div className="flex flex-col gap-3">
-                    {displayedData.map((brand) => (
-                      <div
-                        key={brand.name}
-                        className="rounded-2xl border border-neutral-900 bg-neutral-950 px-4 py-4"
-                      >
-                        <span className="mx-2 my-1 text-xl font-medium uppercase tracking-tighter text-white">
-                          {brand.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <Accordion
-                    type="multiple"
-                    value={openBrands}
-                    onValueChange={handleOpenBrandsChange}
-                    className="flex flex-col gap-3"
-                  >
-                    {displayedData.map((brand) => (
-                      <AccordionItem
-                        key={brand.name}
-                        value={brand.name}
-                        className="
-                        rounded-2xl
-                        border border-neutral-900
-                        bg-neutral-950
-                        px-4
-                      "
-                      >
-                        <AccordionTrigger className="items-center py-4 hover:no-underline">
-                          <span className="mx-2 my-1 text-xl font-medium uppercase tracking-tighter text-white">
-                            {brand.name}
-                          </span>
-                        </AccordionTrigger>
-
-                        <AccordionContent className="pb-4">
-                          <div className="flex flex-col gap-1.5">
-                            {brand.models.map((model) => {
-                              const message = encodeURIComponent(
-                                t("whatsapp.message", { model }),
-                              );
-
-                              return (
-                                <div
-                                  key={model}
-                                  className="
-                                  flex items-center justify-between
-                                  rounded-xl
-                                  border border-neutral-900
-                                  bg-black/40
-                                  px-4 py-3
-                                "
-                                >
-                                  <span className="text-sm uppercase">
-                                    {highlightMatch(model, search)}
-                                  </span>
-
-                                  <a
-                                    href={`https://wa.me/${whatsappNumber}?text=${message}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() =>
-                                      handleWhatsAppModel(brand.name, model)
-                                    }
-                                    className="
-                                    flex w-15 justify-center
-                                    rounded-lg
-                                    border border-neutral-900
-                                    bg-neutral-900
-                                    py-1
-                                  "
-                                  >
-                                    <FaWhatsapp className="text-green-500" />
-                                  </a>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                )}
-              </div>
-            </motion.div>
-
-            {/* Gradient fade over bottom of list */}
-            {showLoadMore && (
-              <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-neutral-950 to-transparent" />
-            )}
-          </div>
-
-          {/* Load more / show less button */}
-          {!isSearching && (showLoadMore || expanded) && (
-            <div className="flex justify-center pt-8 pb-2">
-              <AnimatePresence mode="wait">
-                {showLoadMore ? (
-                  <motion.button
-                    key="load-more"
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    onClick={() => {
-                      setExpanded(true);
-                      track.compatibilityListExpanded();
-                    }}
-                    className="
-                      flex flex-col items-center gap-2
-                      rounded-2xl border border-white/5 bg-white/[0.02]
-                      px-10 py-5
-                      text-xs uppercase tracking-[0.2em] text-neutral-400
-                      transition-colors duration-300
-                      hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1
-                      cursor-pointer
-                    "
-                  >
-                    {t("cta.loadMore")}
-                    <ChevronDown className="size-4 text-neutral-500" />
-                  </motion.button>
-                ) : (
-                  <motion.button
-                    key="show-less"
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    onClick={() => {
-                      track.compatibilityListCollapsed();
-                      sectionRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                      });
-                      setTimeout(() => setExpanded(false), 400);
-                    }}
-                    className="
-                      flex flex-col items-center gap-2
-                      rounded-2xl border border-white/5 bg-white/[0.02]
-                      px-10 py-5
-                      text-xs uppercase tracking-[0.2em] text-neutral-400
-                      transition-colors duration-300
-                      hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1
-                      cursor-pointer
-                    "
-                  >
-                    {t("cta.showLess")}
-                    <ChevronUp className="size-4 text-neutral-500" />
-                  </motion.button>
+                          >
+                            <Select.ItemText>{b.name}</Select.ItemText>
+                          </Select.Item>
+                        ))}
+                      </Select.Popup>
+                    </Select.Positioner>
+                  </Select.Portal>
                 )}
               </AnimatePresence>
+            </Select.Root>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div
+          className={cn(
+            "mx-auto mt-14 mb-10 h-[2px] max-w-3xl bg-gradient-to-r opacity-50",
+            ui.gradientLine,
+          )}
+        />
+
+        {/* ------------------------------------------------------------------ */}
+        {/* Models — pills for the selected brand                             */}
+        {/* ------------------------------------------------------------------ */}
+
+        <motion.div
+          animate={{ height: modelsHeight }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="overflow-hidden"
+        >
+          {brand && (
+            <div ref={modelsContentRef} className="mx-auto max-w-3xl">
+              <p className="text-center text-xs font-semibold uppercase mb-12 tracking-[0.2em] text-neutral-500">
+                {t("modelsLabel")}
+              </p>
+              <div className="mt-3 grid grid-cols-2 justify-center gap-2 sm:grid-cols-3">
+                {brand.models.map((model) => {
+                  const message = encodeURIComponent(
+                    t("whatsapp.message", { model }),
+                  );
+                  return (
+                    <a
+                      key={model}
+                      href={`https://wa.me/${whatsappNumber}?text=${message}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleWhatsAppModel(brand.name, model)}
+                      className="
+                        flex  justify-center  items-center gap-1.5
+                        rounded-lg
+                        border border-white/10
+                        bg-white/[0.03]
+                        px-4 py-2
+                        text-sm text-neutral-300
+                        transition-colors duration-200
+                        hover:border-white/20 hover:bg-white/5 hover:text-white
+                      "
+                    >
+                      <CheckIcon
+                        className={cn("size-3.5 shrink-0", ui.accentText)}
+                      />
+                      <span className="truncate">{model}</span>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           )}
-
-        </>
-      )}
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -6,28 +6,67 @@
     "keywords": "cargador auto eléctrico Uruguay, wallbox Uruguay, cargador EV Uruguay, cargador híbrido enchufable, cargador BYD Uruguay, instalación wallbox Montevideo, cargador vehículo eléctrico casa, Rayforce",
     "imageAlt": "Cargador Wallbox Rayforce para autos eléctricos e híbridos en Uruguay"
   },
-
   "cargadores": {
-    "title": "Cargadores Wallbox BS20 7kW y 22kW | Rayforce",
-    "description": "Cargadores Wallbox BS20 de 7kW y 22kW para hogares, edificios y empresas en Uruguay. Compatibles con BYD, Hyundai, Kia, BMW, Renault, Tesla y más.",
-    "ogDescription": "Wallbox BS20 de 7kW y 22kW con instalación certificada en Uruguay. Compatibles con la mayoría de autos eléctricos e híbridos.",
-    "keywords": "wallbox Uruguay, cargador EV 7kW, cargador EV 22kW, cargador BYD Uruguay, cargador Tesla Uruguay, cargador auto eléctrico Montevideo, cargador eléctrico residencial, BS20",
+    "title": "Cargadores Wallbox BS20 de 7,2kW a 22kW | Rayforce",
+    "description": "Cuatro cargadores Wallbox BS20, de 7,2kW a 22kW, para hogares, edificios y empresas en Uruguay. Compatibles con BYD, Hyundai, Kia, BMW, Renault, Tesla y más.",
+    "ogDescription": "Wallbox BS20 de 7,2kW a 22kW con instalación certificada en Uruguay. Compatibles con la mayoría de autos eléctricos e híbridos.",
+    "keywords": "wallbox Uruguay, cargador EV 7kW, cargador EV 11kW, cargador EV 22kW, cargador BYD Uruguay, cargador Tesla Uruguay, cargador auto eléctrico Montevideo, cargador eléctrico residencial, BS20",
     "imageAlt": "Línea de cargadores Wallbox Rayforce BS20 para autos eléctricos en Uruguay"
   },
-
-  "cargadores-7kw": {
+  "cargadores-bc-7kw": {
     "title": "Cargador Wallbox 7kW Residencial | Rayforce Uruguay",
     "description": "Wallbox 7kW monofásico para hogares y carga nocturna. Compatible con autos eléctricos e híbridos enchufables. Instalación certificada y garantía local.",
     "ogDescription": "Wallbox residencial de 7kW para vehículos eléctricos en Uruguay. Ideal para carga diaria en el hogar con control desde app.",
     "keywords": "cargador residencial auto eléctrico Uruguay, wallbox 7kW Uruguay, cargador monofásico EV, cargador casa BYD, cargador híbrido enchufable hogar, carga nocturna vehículo eléctrico",
     "imageAlt": "Cargador Wallbox Rayforce BS20 7kW monofásico para hogares en Uruguay"
   },
-
-  "cargadores-22kw": {
+  "cargadores-bc-22kw": {
     "title": "Cargador Wallbox 22kW Trifásico | Rayforce Uruguay",
     "description": "Cargador EV trifásico de 22kW para empresas, flotas y hogares con múltiples vehículos. Máxima velocidad de carga, control desde app y soporte local.",
     "ogDescription": "Wallbox 22kW para empresas y hogares en Uruguay. Ideal para estacionamientos y flotas eléctricas con múltiples vehículos.",
     "keywords": "cargador 22kW Uruguay, wallbox trifásico Uruguay, cargador empresa vehículos eléctricos, cargador flota eléctrica, cargador rápido auto eléctrico, wallbox comercial",
     "imageAlt": "Cargador Wallbox Rayforce BS20 22kW trifásico para empresas y hogares en Uruguay"
+  },
+  "cargadores-ba-7kw": {
+    "title": "Cargador Wallbox 7,2kW con Toma | Rayforce Uruguay",
+    "description": "Wallbox 7,2kW monofásico con toma Tipo 2 intercambiable para hogares. Compatible con autos eléctricos e híbridos enchufables. Instalación certificada y garantía local.",
+    "ogDescription": "Wallbox residencial de 7,2kW con toma Tipo 2 intercambiable para vehículos eléctricos en Uruguay. Máxima flexibilidad de cable.",
+    "keywords": "cargador residencial con toma Uruguay, wallbox toma tipo 2 Uruguay, cargador monofásico EV, cargador casa BYD, cargador híbrido enchufable hogar, carga nocturna vehículo eléctrico",
+    "imageAlt": "Cargador Wallbox Rayforce BS20 7,2kW con toma Tipo 2 intercambiable en Uruguay"
+  },
+  "cargadores-bc-11kw": {
+    "title": "Cargador Wallbox 11kW Trifásico | Rayforce Uruguay",
+    "description": "Cargador EV trifásico de 11kW, el equilibrio entre potencia y consumo eléctrico contratado. Instalación certificada y control desde app.",
+    "ogDescription": "Wallbox trifásico de 11kW para hogares y comercios en Uruguay. Más potencia sin exigir tanto a tu contrato eléctrico.",
+    "keywords": "cargador 11kW Uruguay, wallbox trifásico 11kW, cargador auto eléctrico trifásico, cargador eléctrico hogar comercio, wallbox equilibrado consumo",
+    "imageAlt": "Cargador Wallbox Rayforce BS20 11kW trifásico para hogares y comercios en Uruguay"
+  },
+  "cables": {
+    "title": "Cables de Carga Tipo 2 | Rayforce",
+    "description": "Cables de carga Tipo 2 a Tipo 2 rectos y espiralados, de 7kW a 22kW, para complementar tu cargador Wallbox en Uruguay.",
+    "ogDescription": "Cables de carga Tipo 2 rectos y espiralados de Rayforce, con sensor de temperatura y bolso incluido.",
+    "keywords": "cable tipo 2 Uruguay, cable carga auto eléctrico, cable wallbox, cable espiralado auto eléctrico, cable cargador BYD, accesorios carga EV Uruguay",
+    "imageAlt": "Cables de carga Tipo 2 Rayforce para autos eléctricos en Uruguay"
+  },
+  "cables-chc003": {
+    "title": "Cable de Carga Tipo 2 7kW | Rayforce Uruguay",
+    "description": "Cable recto Type 2 a Type 2 de 5 metros para carga monofásica de hasta 7kW. Con sensor de temperatura y bolso incluido.",
+    "ogDescription": "Cable de carga monofásico Tipo 2 de 5 metros, con sensor de temperatura y bolso incluido.",
+    "keywords": "cable tipo 2 7kW, cable carga monofásico Uruguay, cable wallbox 5 metros, cable cargador auto eléctrico",
+    "imageAlt": "Cable de carga Tipo 2 Rayforce de 7kW y 5 metros"
+  },
+  "cables-chc004": {
+    "title": "Cable de Carga Tipo 2 22kW | Rayforce Uruguay",
+    "description": "Cable recto Type 2 a Type 2 de 5 metros para carga trifásica de hasta 22kW. Con sensor de temperatura y bolso incluido.",
+    "ogDescription": "Cable de carga trifásico Tipo 2 de 5 metros, con sensor de temperatura y bolso incluido.",
+    "keywords": "cable tipo 2 22kW, cable carga trifásico Uruguay, cable wallbox 5 metros, cable cargador rápido",
+    "imageAlt": "Cable de carga Tipo 2 Rayforce de 22kW y 5 metros"
+  },
+  "cables-chc003-s": {
+    "title": "Cable de Carga Espiralado Tipo 2 7kW | Rayforce Uruguay",
+    "description": "Cable espiralado Type 2 a Type 2 de 5 metros estirado, para carga monofásica de hasta 7kW. Se recoge solo y ocupa menos lugar.",
+    "ogDescription": "Cable de carga espiralado Tipo 2, se recoge solo y no queda arrastrando por el piso.",
+    "keywords": "cable espiralado tipo 2, cable enrollable auto eléctrico Uruguay, cable carga compacto EV, cable wallbox espiral",
+    "imageAlt": "Cable de carga espiralado Tipo 2 Rayforce de 7kW"
   }
 }

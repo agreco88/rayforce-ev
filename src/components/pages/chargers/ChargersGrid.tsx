@@ -4,22 +4,13 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-import { CHARGER_FAMILIES } from "@/lib/chargers/chargers.data";
+import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
 import ChargerModelCard, { type CardTheme } from "./ChargerCard";
-
-function getAllVariants() {
-  return CHARGER_FAMILIES.flatMap((family) =>
-    family.variants.map((variant) => ({
-      id: variant.key,
-      slug: variant.slug,
-      image: variant.images[0],
-      href: `/cargadores/${variant.slug}`,
-    })),
-  );
-}
 
 const VARIANT_THEMES: Record<string, CardTheme> = {
   "bs20-bc-7kw": "blue",
+  "bs20-ba-7kw": "cyan",
+  "bs20-bc-11kw": "lime",
   "bs20-bc-22kw": "green",
 };
 
@@ -30,7 +21,7 @@ export default function ChargersGrid() {
     string,
     { label: string; description: string }
   >;
-  const models = getAllVariants();
+  const products = getChargerProducts();
 
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -39,8 +30,10 @@ export default function ChargersGrid() {
   const handleScroll = () => {
     const el = trackRef.current;
     if (!el || el.scrollWidth <= el.clientWidth) return;
-    const progress = el.scrollLeft / (el.scrollWidth - el.clientWidth);
-    setActiveIndex(progress < 0.5 ? 0 : 1);
+    const cardWidth = el.scrollWidth / products.length;
+    setActiveIndex(
+      Math.min(products.length - 1, Math.round(el.scrollLeft / cardWidth)),
+    );
   };
 
   const scrollToCard = (index: number) => {
@@ -66,27 +59,27 @@ export default function ChargersGrid() {
               [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
             "
           >
-            {models.map((model, i) => (
+            {products.map((product, i) => (
               <div
-                key={model.id}
+                key={product.slug}
                 ref={(el: HTMLDivElement | null) => {
                   cardRefs.current[i] = el;
                 }}
                 className="snap-start shrink-0 w-[90%]"
               >
                 <ChargerModelCard
-                  href={model.href}
-                  image={model.image}
-                  label={variantsT[model.slug]?.label ?? model.slug}
-                  description={variantsT[model.slug]?.description ?? ""}
-                  theme={VARIANT_THEMES[model.slug] ?? "green"}
+                  href={`/cargadores/${product.slug}`}
+                  image={product.heroImage}
+                  label={variantsT[product.slug]?.label ?? product.slug}
+                  description={variantsT[product.slug]?.description ?? ""}
+                  theme={VARIANT_THEMES[product.slug] ?? "green"}
                 />
               </div>
             ))}
           </div>
 
           {/* Right vignette — only when more cards remain */}
-          {activeIndex < models.length - 1 && (
+          {activeIndex < products.length - 1 && (
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-neutral-950 to-transparent" />
           )}
         </div>
@@ -96,11 +89,11 @@ export default function ChargersGrid() {
           aria-label={tHome("carouselLabel")}
           className="flex justify-center gap-2 mt-5"
         >
-          {models.map((model, i) => (
+          {products.map((product, i) => (
             <button
-              key={model.id}
+              key={product.slug}
               onClick={() => scrollToCard(i)}
-              aria-label={variantsT[model.slug]?.label ?? model.slug}
+              aria-label={variantsT[product.slug]?.label ?? product.slug}
               aria-current={activeIndex === i ? "true" : undefined}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeIndex === i ? "bg-white w-6" : "bg-neutral-600 w-1.5"
@@ -118,14 +111,14 @@ export default function ChargersGrid() {
         viewport={{ once: true, margin: "-100px" }}
         className="hidden sm:grid list-none grid-cols-2 px-4 sm:px-0 gap-8"
       >
-        {models.map((model) => (
-          <motion.li key={model.id} variants={waterfallItem}>
+        {products.map((product) => (
+          <motion.li key={product.slug} variants={waterfallItem}>
             <ChargerModelCard
-              href={model.href}
-              image={model.image}
-              label={variantsT[model.slug]?.label ?? model.slug}
-              description={variantsT[model.slug]?.description ?? ""}
-              theme={VARIANT_THEMES[model.slug] ?? "green"}
+              href={`/cargadores/${product.slug}`}
+              image={product.heroImage}
+              label={variantsT[product.slug]?.label ?? product.slug}
+              description={variantsT[product.slug]?.description ?? ""}
+              theme={VARIANT_THEMES[product.slug] ?? "green"}
             />
           </motion.li>
         ))}

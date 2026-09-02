@@ -20,6 +20,7 @@ import { Link } from "@/i18n/navigation";
 type DropdownItem = {
   label: React.ReactNode;
   href: string;
+  current?: boolean;
 };
 
 type Item = {
@@ -86,11 +87,7 @@ export function AppBreadcrumb({ items, className }: Props) {
             return (
               <span key={index} className="contents">
                 <BreadcrumbItem>
-                  {!isLast && item.href ? (
-                    <BreadcrumbLink asChild>
-                      <Link href={item.href}>{item.label}</Link>
-                    </BreadcrumbLink>
-                  ) : hasDropdown ? (
+                  {hasDropdown ? (
                     <div
                       className="relative"
                       onMouseEnter={() => handleEnter(index)}
@@ -99,7 +96,7 @@ export function AppBreadcrumb({ items, className }: Props) {
                       <BreadcrumbPage>
                         <button
                           onClick={() => handleToggle(index)}
-                          className="flex items-center gap-1 cursor-pointer select-none"
+                          className="flex items-center gap-2 cursor-pointer select-none"
                         >
                           {item.label}
                           <motion.span
@@ -107,7 +104,7 @@ export function AppBreadcrumb({ items, className }: Props) {
                             transition={{ duration: 0.25, ease: "easeOut" }}
                             className="flex items-center"
                           >
-                            <ChevronDown className="size-3.5 text-neutral-400" />
+                            <ChevronDown className="size-3 text-neutral-500" />
                           </motion.span>
                         </button>
                       </BreadcrumbPage>
@@ -119,25 +116,40 @@ export function AppBreadcrumb({ items, className }: Props) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -2.5 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="absolute top-full left-0 mt-2 z-50 min-w-[180px]"
+                            className="absolute top-full left-0 mt-2 z-50"
                             onMouseEnter={() => handleEnter(index)}
                             onMouseLeave={handleLeave}
                           >
-                            <div className="rounded-xl border border-white/10 bg-neutral-950/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.6)] p-1 border">
-                              {item.dropdown!.map((d, di) => (
-                                <Link
-                                  key={di}
-                                  href={d.href}
-                                  className="flex items-center px-3 py-2 w-fit rounded-lg text-sm text-neutral-300 hover:text-white hover:bg-white/5 transition-colors duration-150"
-                                >
-                                  {d.label}
-                                </Link>
-                              ))}
+                            <div className="w-max rounded-xl border border-white/10 bg-neutral-950/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.6)] p-1">
+                              {item.dropdown!.map((d, di) =>
+                                d.current ? (
+                                  <span
+                                    key={di}
+                                    aria-current="page"
+                                    aria-disabled="true"
+                                    className="flex items-center w-full px-3 py-2 rounded-lg text-sm text-white bg-white/[0.06] cursor-default select-none whitespace-nowrap"
+                                  >
+                                    {d.label}
+                                  </span>
+                                ) : (
+                                  <Link
+                                    key={di}
+                                    href={d.href}
+                                    className="flex items-center w-full px-3 py-2 rounded-lg text-sm text-neutral-300 hover:text-white hover:bg-white/5 transition-colors duration-150 whitespace-nowrap"
+                                  >
+                                    {d.label}
+                                  </Link>
+                                )
+                              )}
                             </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
+                  ) : !isLast && item.href ? (
+                    <BreadcrumbLink asChild>
+                      <Link href={item.href}>{item.label}</Link>
+                    </BreadcrumbLink>
                   ) : (
                     <BreadcrumbPage>{item.label}</BreadcrumbPage>
                   )}
