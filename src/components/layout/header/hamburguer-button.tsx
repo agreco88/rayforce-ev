@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { iconRotate, fadeIn } from "@/lib/animation-variants";

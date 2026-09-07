@@ -6,7 +6,7 @@ import {
   useTransform,
   animate,
   MotionValue,
-} from "framer-motion";
+} from "motion/react";
 import { useEffect } from "react";
 
 type Variant = "residential" | "pro";

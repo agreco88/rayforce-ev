@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Fuel, Home, Plug } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";

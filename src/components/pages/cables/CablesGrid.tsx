@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { getCableProducts } from "@/lib/catalog/catalog.helpers";

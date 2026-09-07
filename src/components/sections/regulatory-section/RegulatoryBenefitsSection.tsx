@@ -3,7 +3,7 @@
 import Container from "@/components/layout/container";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { waterfallList, waterfallItem } from "@/lib/animation-variants";
 import { FaWhatsapp } from "react-icons/fa6";
 

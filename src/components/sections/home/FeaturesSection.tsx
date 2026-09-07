@@ -2,7 +2,7 @@
 
 import SocketTypeTwo from "../../../../public/images/icons/socket-type-2.svg";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   Zap,
   ShieldCheck,

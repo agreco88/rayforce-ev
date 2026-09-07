@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { motion, useMotionValue, useAnimationFrame, useTransform } from "framer-motion";
+import { motion, useMotionValue, useAnimationFrame, useTransform } from "motion/react";
 
 type Props = {
   children: ReactNode;

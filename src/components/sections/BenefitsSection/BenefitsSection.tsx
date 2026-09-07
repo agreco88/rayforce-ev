@@ -3,7 +3,7 @@ import { waterfallItem } from "@/lib/animation-variants";
 import { BENEFITS } from "./benefits.data";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { HomeBenefitCard } from "../home/benefits/HomeBenefitCard";
 

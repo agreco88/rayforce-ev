@@ -1,5 +1,5 @@
 // src/lib/animation-variants.ts
-import { Variants } from "framer-motion";
+import { Variants } from "motion/react";
 
 /* ------------------ Core Animations ------------------ */
 

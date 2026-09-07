@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ChargerEVScreen } from "./ChargerEVScreen";
 import HeaderLogo from "../../layout/header/header-logo";
 

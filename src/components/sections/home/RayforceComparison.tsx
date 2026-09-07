@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Check, X } from "lucide-react";
 import { GiElectricalSocket } from "react-icons/gi";
 import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";

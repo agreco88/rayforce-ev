@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { ChargerEVScreen } from "./ChargerEVScreen";
 import HeaderLogo from "../../layout/header/header-logo";
 import type { CableType } from "@/lib/catalog/catalog.types";

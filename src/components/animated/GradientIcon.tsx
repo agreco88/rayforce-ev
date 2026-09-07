@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef, type ComponentType } from "react";
-import { useAnimationFrame } from "framer-motion";
+import { useAnimationFrame } from "motion/react";
 
 type IconComponent = ComponentType<{
   className?: string;

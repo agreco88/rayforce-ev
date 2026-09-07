@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";

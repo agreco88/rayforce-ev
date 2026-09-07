@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { GradientText } from "@/components/animated/GradientText";
-import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { Link } from "@/i18n/navigation";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { getChargerProducts, getPowerLabel } from "@/lib/catalog/catalog.helpers";
@@ -58,16 +57,16 @@ export function ChargersCardGrid({ className }: Props) {
             <Link
               href={`/cargadores/${product.slug}`}
               aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product)} — ${t("cta.moreInfo")}`}
-              className="
+              className={`
                 group flex h-full flex-col items-start
                 overflow-hidden rounded-2xl border border-white/10
                 bg-neutral-950
                 transition-colors duration-300
-                hover:border-white/20
-              "
+                ${product.theme.accentBorderHover}
+              `}
             >
-              <div className="relative flex h-[480px] w-full items-center justify-center overflow-hidden">
-                <GridBackground cellSize={24} lineOpacity={0.05} />
+              {/* ── Photo plate ─────────────────────────────────── */}
+              <div className="relative flex h-[480px] w-full items-center justify-center overflow-hidden bg-white">
                 <div
                   className="absolute inset-0 blur-2xl"
                   style={{
@@ -80,72 +79,73 @@ export function ChargersCardGrid({ className }: Props) {
                   alt=""
                   width={500}
                   height={500}
-                  className="relative h-full w-full scale-110 object-contain"
-                />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-950 to-transparent"
-                  aria-hidden="true"
+                  className="
+                    relative h-full w-full scale-110 object-contain
+                    transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
+                    group-hover:scale-[1.15]
+                  "
                 />
               </div>
 
-              <div className="mt-2 w-full border-t border-t-neutral-800">
-                <div className="flex flex-col items-start gap-1 px-6 pt-6">
-                  <span className="text-xs uppercase tracking-widest text-neutral-500">
-                    {product.modelCode}
-                  </span>
-                  <span className="text-2xl font-medium tracking-tight text-white">
-                    {t(`chargers.${product.slug}.title`)}
-                  </span>
-                  <GradientText
-                    colors={product.theme.gradientColors}
-                    className="text-4xl font-thin tracking-tight"
-                  >
-                    {getPowerLabel(product)}
-                  </GradientText>
-                </div>
+              {/* ── Body ────────────────────────────────────────── */}
+              <div className="flex w-full flex-1 flex-col border-t border-t-neutral-800 p-6">
+                <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
+                  {product.modelCode}
+                </span>
 
-                <p className="mt-3 px-6 text-sm leading-relaxed text-neutral-400">
+                <h3 className="mt-1 text-lg font-semibold tracking-tight text-white">
+                  {t(`chargers.${product.slug}.title`)}
+                </h3>
+
+                <GradientText
+                  colors={product.theme.gradientColors}
+                  className="mt-1 text-4xl font-thin tracking-tight"
+                >
+                  {getPowerLabel(product)}
+                </GradientText>
+
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400">
                   {t(`chargers.${product.slug}.blurb`)}
                 </p>
-              </div>
 
-              <ul
-                className="mt-5 flex flex-col gap-2 px-6 text-left text-sm text-neutral-400"
-                aria-label={`${t(`chargers.${product.slug}.title`)} highlights`}
-              >
-                {highlights.map((highlight, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <span
-                      className={`size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
-                      aria-hidden="true"
+                <ul
+                  className="mt-5 flex list-none flex-col gap-2 border-t border-neutral-800 pt-5 text-left text-sm text-neutral-400"
+                  aria-label={`${t(`chargers.${product.slug}.title`)} highlights`}
+                >
+                  {highlights.map((highlight, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <span
+                        className={`size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
+                        aria-hidden="true"
+                      />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Price + CTA */}
+                <div className="mt-auto flex items-end justify-between gap-4 border-t border-neutral-800 pt-5">
+                  <span
+                    className={`text-3xl font-thin tracking-tighter ${product.theme.accentText}`}
+                  >
+                    USD {product.price.amount}
+                  </span>
+
+                  <span
+                    className={`
+                      inline-flex items-center gap-2
+                      text-sm font-medium
+                      transition-all duration-300
+                      ${product.theme.accentText}
+                    `}
+                    aria-hidden="true"
+                  >
+                    {t("cta.moreInfo")}
+                    <ArrowRight
+                      size={16}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5"
                     />
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-6 flex items-baseline gap-1 px-6">
-                <span
-                  className={`text-4xl font-thin tracking-tighter ${product.theme.accentText}`}
-                >
-                  USD {product.price.amount}
-                </span>
-              </div>
-
-              <div className="mt-6 w-full border-t border-t-neutral-800">
-                <div
-                  className={`
-                    flex items-center justify-between
-                    px-6 pt-4 pb-6
-                    text-sm font-medium
-                    transition-all duration-300
-                    ${product.theme.accentText}
-                    group-hover:gap-3
-                  `}
-                  aria-hidden="true"
-                >
-                  {t("cta.moreInfo")}
-                  <ArrowRight size={18} />
+                  </span>
                 </div>
               </div>
             </Link>
