@@ -8,10 +8,22 @@ import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection
 import HashScrollOnMount from "@/components/HashScrollOnMount";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 
+const WhatIsWallboxSection = dynamic(() =>
+  import("@/components/sections/home/wallbox-intro/WhatIsWallboxSection").then(
+    (m) => ({ default: m.WhatIsWallboxSection }),
+  ),
+);
+
 const HomeChargersSection = dynamic(() =>
   import("@/components/sections/home/chargers/HomeChargersComparison").then(
     (m) => ({ default: m.HomeChargersSection }),
   ),
+);
+
+const PublicChargingCableSection = dynamic(() =>
+  import(
+    "@/components/sections/home/public-charging/PublicChargingCableSection"
+  ).then((m) => ({ default: m.PublicChargingCableSection })),
 );
 
 const HomeBenefitsSection = dynamic(() =>
@@ -85,14 +97,16 @@ export default async function HomePage({ params }: Props) {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
+        <WhatIsWallboxSection id="que-es-un-wallbox" />
         <HomeChargersSection id="cargadores" />
         <ChargerGallery id="galeria" />
 
+        <PublicChargingCableSection id="cables-carga-publica" />
         <HomeStandSection id="columna" />
         <InstallationSection id="instalacion" />
-        <CompatibilitySection id="compatibilidad" />
         <HomeFaqSection id="faq" />
         <HomeBenefitsSection id="beneficios" />
+        <CompatibilitySection id="compatibilidad" />
         <Footer />
       </Suspense>
       <ScrollDepthTracker page="home" />

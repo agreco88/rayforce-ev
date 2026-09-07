@@ -199,6 +199,20 @@ export default function AsideNavLinks({ onSelect }: AsideNavLinksProps) {
             })}
           </div>
         </motion.li>
+
+        {/* Empresas — route link */}
+        <motion.li variants={waterfallItem}>
+          <Link
+            href="/empresas"
+            onClick={() => {
+              track.mobileNavLinkClicked("companies", "/empresas");
+              onSelect?.();
+            }}
+            className={routeLinkClass(pathname === "/empresas")}
+          >
+            /{t("nav.companies")}
+          </Link>
+        </motion.li>
       </motion.ul>
 
       {/* WhatsApp CTA */}

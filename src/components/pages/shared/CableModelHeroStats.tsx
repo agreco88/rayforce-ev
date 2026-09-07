@@ -2,6 +2,7 @@
 
 import { Thermometer, ShieldCheck, Briefcase, RefreshCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { GradientIcon } from "@/components/animated/GradientIcon";
 import type { CatalogTheme } from "@/lib/catalog/catalog.types";
 
 /* ------------------------------------------------------------------ */
@@ -42,7 +43,7 @@ export function CableModelHeroStats({ theme, slug }: Props) {
 
   return (
     <div
-      className={`grid grid-cols-1 mt-5 lg:mt-0 sm:grid-cols-3 gap-8 sm:gap-16 w-full sm:w-fit ${theme.divide}`}
+      className={`grid grid-cols-1 sm:grid-cols-3 my-16 sm:my-5 lg:my-0 gap-16 sm:gap-8 lg:gap-12 w-full sm:w-fit ${theme.divide}`}
     >
       {stats.map((item) => {
         const Icon = item.icon;
@@ -50,22 +51,30 @@ export function CableModelHeroStats({ theme, slug }: Props) {
         return (
           <div
             key={item.title}
-            className="flex flex-col items-center gap-3 sm:gap-2 flex-1 sm:py-0 w-full sm:w-fit"
+            className="flex flex-col items-center sm:items-start gap-1.5 sm:gap-2 flex-1 sm:py-0 w-full sm:w-fit"
           >
             {/* Icon + Title */}
             <div
-              className={`${theme.accentText} flex flex-col gap-3 sm:gap-2 items-center sm:items-center`}
+              className={`${theme.accentText} flex flex-col gap-1 sm:gap-2 items-center sm:items-start`}
             >
-              <Icon className="size-8 stroke-[1.5]" />
-              <h4 className="">{item.title}</h4>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+                <GradientIcon
+                  icon={Icon}
+                  colors={theme.gradientColors}
+                  className="size-8 stroke-[1.5] shrink-0"
+                />
+                <h4 className="text-white font-medium text-center sm:text-left text-lg">
+                  {item.title}
+                </h4>
+              </div>
               {/* Divider */}
               <div
-                className={`w-full h-[2px] bg-gradient-to-r ${theme.gradientLine} my-1`}
+                className={`w-full h-[1px] bg-gradient-to-r ${theme.gradientLine} my-1`}
               />
             </div>
 
             {/* Description */}
-            <p className="text-xs sm:text-sm w-full flex items-center text-neutral-400 leading-relaxed text-pretty text-center sm:text-center max-w-[30ch] sm:max-w-[24ch]">
+            <p className="text-base sm:text-sm w-full flex items-center text-neutral-400 leading-relaxed text-pretty text-center sm:text-start sm:items-start max-w-[30ch]">
               {item.description}
             </p>
           </div>

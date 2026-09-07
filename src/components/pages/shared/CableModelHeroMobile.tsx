@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
+import { ExternalLink } from "lucide-react";
 import { useTrack } from "@/lib/analytics";
 
 import { CableModelHeroStats } from "./CableModelHeroStats";
@@ -49,6 +51,30 @@ export function CableModelHeroMobile({ product }: Props) {
             background: `radial-gradient(circle at 50% 20%, ${theme.glow}, transparent 70%)`,
           }}
         />
+      </div>
+
+      {/* -------------------------------------------------------------- */}
+      {/* Product photo — absolute backdrop behind the hero content       */}
+      {/* -------------------------------------------------------------- */}
+      <div className="absolute inset-0 z-[5] pointer-events-none flex items-center justify-center overflow-hidden">
+        <div className="relative w-[min(780px,150vw)] h-[min(780px,150vw)]">
+          {/* Glow */}
+          <div
+            className="
+              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+              w-[60%] h-[100px]
+              blur-3xl rounded-full animate-pulse
+            "
+            style={{ backgroundColor: theme.glowStrong }}
+          />
+          <Image
+            src={product.heroImage}
+            alt={product.publicName}
+            fill
+            priority
+            className="object-contain"
+          />
+        </div>
       </div>
 
       {/* -------------------------------------------------------------- */}
@@ -138,65 +164,37 @@ export function CableModelHeroMobile({ product }: Props) {
           </div>
           {/* Stats */}
           <CableModelHeroStats theme={theme} slug={product.slug} />
-          {/* -------------------------------------------------------------- */}
-          {/* Product photo                                                 */}
-          {/* -------------------------------------------------------------- */}
-          <div
-            className="
-            relative
-            flex justify-center items-center
-            pt-4
-          "
-          >
-            {/* Bottom Glow */}
-            <div
-              className="
-              absolute bottom-12 left-1/2 -translate-x-1/2
-              w-[220px] h-[80px]
-              blur-3xl rounded-full
-              animate-pulse
-            "
-              style={{
-                backgroundColor: theme.glowStrong,
-              }}
-            />
-
-            {/* Product photo */}
-            <div className="relative w-[260px] h-[260px] scale-[0.85] sm:scale-[1] origin-top">
-              <Image
-                src={product.heroImage}
-                alt={product.publicName}
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
 
           {/* Price */}
-          <div
-            className={`relative mt-4 py-12 w-screen mx-[calc(50%-50vw)] flex flex-col items-center gap-2 border-y ${theme.accentBorder}`}
-          >
-            <div
-              className="absolute inset-0 -z-10"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${theme.glow}, transparent)`,
+          <div className="mt-2 flex items-baseline">
+            <AnimateNumber
+              locales="en-US"
+              format={{ maximumFractionDigits: 0 }}
+              suffix={` ${product.price.currency}`}
+              className={`
+                text-3xl font-thin tabular-nums ${theme.accentText}
+                [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1! [&_.number-section-post]:text-xs [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide [&_.number-section-post]:text-neutral-400
+              `}
+              transition={{
+                visualDuration: 0.6,
+                type: "spring",
+                bounce: 0.25,
+                opacity: { duration: 0.3, ease: "linear" },
               }}
-            />
-            <div className="flex items-end gap-2">
-              <span className="text-7xl font-thin text-white">
-                {product.price.amount}
-              </span>
-              <span className="text-5xl mb-1 font-thin text-neutral-100">
-                {product.price.currency}
-              </span>
-            </div>
-            <span className="text-base text-neutral-400">
-              ({t("price.taxLabel")})
-            </span>
+            >
+              {product.price.amount}
+            </AnimateNumber>
           </div>
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center gap-6 pt-10 w-full">
-            <a
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row items-center gap-6 pt-10 w-full"
+          >
+            <motion.a
               href={mpUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -207,21 +205,17 @@ export function CableModelHeroMobile({ product }: Props) {
                   location: "mobile",
                 })
               }
-              className="inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200 w-full sm:w-fit"
+              className={`
+                inline-flex min-h-[48px] w-full sm:w-fit items-center justify-center gap-2 rounded-xl px-6 py-3
+                border ${theme.accentBorder} ${theme.accentText}
+                text-sm font-semibold transition-colors
+                hover:bg-white/5
+              `}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/icons/mpago.png"
-                alt=""
-                aria-hidden="true"
-                className="h-8 w-auto"
-              />
-              <div className="w-0.5 self-stretch bg-[#0a0080]/20 rounded-full" />
-              <span className="text-[#0a0080] uppercase tracking-tighter!">
-                {t("cta.mercadopago")}
-              </span>
-            </a>
-          </div>
+              {t("cta.mercadopago")}
+              <ExternalLink size={16} />
+            </motion.a>
+          </motion.div>
         </div>
       </motion.div>
     </section>

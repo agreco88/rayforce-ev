@@ -28,12 +28,12 @@ export function useTrack() {
       trackEvent("home_hero_primary_cta", { location, locale });
     },
 
-    homeHeroSecondary(location: "desktop" | "mobile") {
-      trackEvent("home_hero_secondary_cta", { location, locale });
+    homeHeroEmpresas(location: "desktop" | "mobile") {
+      trackEvent("home_hero_empresas_cta", { location, locale });
     },
 
-    homeHeroQuote(location: "desktop" | "mobile") {
-      trackEvent("home_hero_quote_cta", { location, locale });
+    homeHeroBadge(location: "desktop" | "mobile") {
+      trackEvent("home_hero_badge", { location, locale });
     },
 
     chargerHeroPrimary(charger: string, location: "desktop" | "mobile") {
@@ -150,6 +150,17 @@ export function useTrack() {
 
     socialProofViewAllClicked(charger: string) {
       trackEvent("social_proof_view_all_clicked", { charger, locale });
+    },
+
+    publicChargingCableCta(params: {
+      cta: "product" | "all_cables";
+      location: "desktop" | "mobile";
+    }) {
+      trackEvent("public_charging_cable_cta", { ...params, locale });
+    },
+
+    publicChargingVideoOpened(params: { location: "desktop" | "mobile" }) {
+      trackEvent("public_charging_video_opened", { ...params, locale });
     },
   };
 }

@@ -52,6 +52,15 @@ export type CableSpecs = {
   impactProtection?: string;
   temperatureSensor?: boolean;
   bagIncluded?: boolean;
+
+  /** e.g. "3 x 6.0 mm² + 1 x 0.75 mm²" */
+  conductorSection?: string;
+  jacketMaterial?: string;
+  contactMaterial?: string;
+  mechanicalLatch?: string;
+  proximityResistorOhm?: number;
+  certification?: string;
+  standard?: string;
 };
 
 /** Regulatory registration under URSEA — chargers only, never cables. */

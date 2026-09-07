@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
+import { ExternalLink } from "lucide-react";
 import { CableModelHeroStats } from "./CableModelHeroStats";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { getCableProducts } from "@/lib/catalog/catalog.helpers";
@@ -12,6 +14,31 @@ import type { CableProduct } from "@/lib/catalog/catalog.types";
 type Props = {
   product: CableProduct;
 };
+
+/**
+ * Per-model photo transform overrides. The coiled BS-CHC003-S photo is shot
+ * flat and left-right symmetric, which looks static under the shared
+ * diagonal perspective tilt — mirrored and rotated to echo the dynamic
+ * framing of the straight-cable photos instead.
+ */
+const PHOTO_TRANSFORM: Record<string, string> = {
+  "bs-chc003-s":
+    "perspective(1200px) rotateY(14deg) rotateX(2deg) rotate(-6deg) scaleX(-1)",
+};
+const DEFAULT_PHOTO_TRANSFORM =
+  "perspective(1200px) rotateY(-14deg) rotateX(2deg)";
+
+/** Per-model photo box size override — BS-CHC003-S renders at a reduced scale. */
+const PHOTO_SIZE: Record<string, string> = {
+  "bs-chc003-s": "min(740px,62vw)",
+};
+const DEFAULT_PHOTO_SIZE = "min(1140px,95vw)";
+
+/** Per-model horizontal offset of the photo box — shifts it toward the text column. */
+const PHOTO_OFFSET_X: Record<string, string> = {
+  "bs-chc003-s": "-8%",
+};
+const DEFAULT_PHOTO_OFFSET_X = "12%";
 
 /* ------------------------------------------------------------------ */
 /* Component                                                          */
@@ -57,6 +84,41 @@ export function CableModelHero({ product }: Props) {
             "radial-gradient(ellipse 80% 80% at 100% 0%, #000 20%, transparent 80%)",
         }}
       />
+      {/* ------------------------------------------------------------------ */}
+      {/* Product photo — absolute backdrop behind the hero content          */}
+      {/* ------------------------------------------------------------------ */}
+      <div className="absolute inset-0 z-[15] pointer-events-none flex items-center justify-end overflow-hidden">
+        <div
+          className="relative [transform-style:preserve-3d]"
+          style={{
+            width: PHOTO_SIZE[product.slug] ?? DEFAULT_PHOTO_SIZE,
+            height: PHOTO_SIZE[product.slug] ?? DEFAULT_PHOTO_SIZE,
+            transform: `translateX(${PHOTO_OFFSET_X[product.slug] ?? DEFAULT_PHOTO_OFFSET_X})`,
+          }}
+        >
+          {/* Glow */}
+          <div
+            className="
+              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+              w-[60%] h-[120px]
+              blur-3xl rounded-full animate-pulse
+            "
+            style={{ backgroundColor: theme.glowStrong }}
+          />
+          <Image
+            src={product.heroImage}
+            alt={product.publicName}
+            fill
+            priority
+            className="object-contain"
+            style={{
+              transform:
+                PHOTO_TRANSFORM[product.slug] ?? DEFAULT_PHOTO_TRANSFORM,
+            }}
+          />
+        </div>
+      </div>
+
 
       {/* ------------------------------------------------------------------ */}
       {/* Content                                                            */}
@@ -65,11 +127,11 @@ export function CableModelHero({ product }: Props) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col gap-12 relative min-h-screen z-20 flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 h-[1000px] justify-center items-start"
+        className="flex flex-col gap-12 relative min-h-screen z-20 flex-1 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 h-[1000px] justify-center items-start"
       >
         <div className="flex w-full items-center gap-12 lg:gap-20">
           {/* LEFT */}
-          <div className="flex flex-col gap-6 flex-1 justify-center shrink-0">
+          <div className="flex flex-col gap-6 sm:gap-10 justify-center flex-1 shrink-0">
             {/* Breadcrumb */}
             <AppBreadcrumb
               items={[
@@ -126,19 +188,7 @@ export function CableModelHero({ product }: Props) {
                 </span>
               </h1>
 
-              <div className="my-3 flex items-baseline gap-2">
-                <span className={`text-4xl font-thin ${theme.accentText}`}>
-                  {product.price.amount}
-                </span>
-                <span className={`text-4xl font-thin ${theme.accentText}`}>
-                  {product.price.currency}
-                </span>
-                <span className="text-base text-neutral-400">
-                  ({t("price.taxLabel")})
-                </span>
-              </div>
-
-              <span className="text-neutral-400 text-base leading-relaxed max-w-lg ">
+              <span className="mt-3 block text-neutral-400 text-base leading-relaxed max-w-lg">
                 {t(`variants.${product.slug}.description`)}
               </span>
             </div>
@@ -146,9 +196,43 @@ export function CableModelHero({ product }: Props) {
             {/* Stats */}
             <CableModelHeroStats theme={theme} slug={product.slug} />
 
-            {/* CTA */}
-            <div className="flex items-center gap-4 mt-8">
-              <a
+            {/* Price */}
+            <div
+              className="flex items-baseline"
+              aria-label={`${product.price.amount} ${product.price.currency}`}
+            >
+              <div aria-hidden="true">
+                <AnimateNumber
+                  locales="en-US"
+                  format={{ maximumFractionDigits: 0 }}
+                  suffix={` ${product.price.currency}`}
+                  style={{
+                    // @ts-expect-error -- CSS custom property consumed by the [&_.number-section-integer] rule below
+                    "--price-gradient": `linear-gradient(to right, ${theme.gradientColors.join(", ")})`,
+                  }}
+                  className={`
+                    text-5xl font-thin tabular-nums text-neutral-400
+                    [&_.number-section-integer]:bg-[image:var(--price-gradient)] [&_.number-section-integer]:bg-clip-text [&_.number-section-integer]:text-transparent
+                    [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1.5! [&_.number-section-post]:text-sm [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide
+                  `}
+                  transition={{
+                    visualDuration: 0.6,
+                    type: "spring",
+                    bounce: 0.25,
+                    opacity: { duration: 0.3, ease: "linear" },
+                  }}
+                >
+                  {product.price.amount}
+                </AnimateNumber>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex items-center gap-6">
+              <motion.a
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
                 href={mpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -159,53 +243,16 @@ export function CableModelHero({ product }: Props) {
                     location: "desktop",
                   })
                 }
-                className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#009EE3]/40 shadow-sm font-semibold text-sm transition-all duration-200"
+                className={`
+                    inline-flex min-h-[48px] w-fit items-center justify-center gap-2 rounded-xl px-6 py-3
+                    border ${theme.accentBorder} ${theme.accentText}
+                    text-sm font-semibold transition-colors
+                    hover:bg-white/5
+                  `}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/icons/mpago.png"
-                  alt=""
-                  aria-hidden="true"
-                  className="h-8 w-auto"
-                />
-                <div className="w-0.5 self-stretch bg-[#0a0080]/20 rounded-full" />
-                <span className="text-[#0a0080] uppercase tracking-tighter!">
-                  {t("cta.mercadopago")}
-                </span>
-              </a>
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="relative z-[99] shrink-0">
-            {/* Bottom Glow */}
-            <div
-              className="
-                absolute bottom-0 left-1/2 -translate-x-1/2
-                w-[60%] h-[80px]
-                blur-3xl rounded-full pointer-events-none animate-pulse
-              "
-              style={{ backgroundColor: theme.glowStrong }}
-            />
-
-            {/* Top Glow */}
-            <div
-              className="
-                absolute top-0 left-1/2 -translate-x-1/2
-                w-[60%] h-[80px]
-                blur-3xl rounded-full pointer-events-none animate-pulse
-              "
-              style={{ backgroundColor: theme.glowStrong }}
-            />
-
-            {/* Product photo */}
-            <div className="relative w-[380px] h-[380px] [transform:perspective(1200px)_rotateY(-14deg)_rotateX(2deg)]">
-              <Image
-                src={product.heroImage}
-                alt={product.publicName}
-                fill
-                className="object-contain"
-              />
+                {t("cta.mercadopago")}
+                <ExternalLink size={16} />
+              </motion.a>
             </div>
           </div>
         </div>

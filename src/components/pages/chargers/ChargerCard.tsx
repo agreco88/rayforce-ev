@@ -55,6 +55,8 @@ type Props = {
   theme?: CardTheme;
   namespace?: string;
   className?: string;
+  /** CSS `object-position` for the thumbnail — defaults to centered. */
+  imagePosition?: string;
 };
 
 export default function ChargerCard({
@@ -65,6 +67,7 @@ export default function ChargerCard({
   theme = "green",
   namespace = "ChargersPage.ChargerCard",
   className,
+  imagePosition = "center",
 }: Props) {
   const t = useTranslations(namespace);
   const th = THEMES[theme];
@@ -88,8 +91,9 @@ export default function ChargerCard({
           alt={label}
           fill
           priority={false}
+          style={{ objectPosition: imagePosition }}
           className="
-            object-cover object-center
+            object-cover
             transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]
             group-hover:scale-[1.009]
             grayscale-0 group-hover:grayscale-0

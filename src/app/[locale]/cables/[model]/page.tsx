@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CableModelHero } from "@/components/pages/shared/CableModelHero";
 import { CableModelHeroMobile } from "@/components/pages/shared/CableModelHeroMobile";
 import { CableModelStats } from "@/components/pages/shared/CableModelStats";
+import { CableProofVideoSection } from "@/components/pages/shared/CableProofVideoSection";
 
 import { getCableProductBySlug, getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
@@ -106,6 +107,10 @@ export default async function CableDetailPage({ params }: Props) {
       </div>
       {/* Stats */}
       <CableModelStats product={product} theme={product.theme} />
+      {/* Proof video — car driving over the coiled cable */}
+      {product.slug === "bs-chc003-s" && (
+        <CableProofVideoSection theme={product.theme} />
+      )}
       <Footer />
       <ScrollDepthTracker page={`cable_${model}`} />
     </section>

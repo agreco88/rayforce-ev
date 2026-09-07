@@ -2,11 +2,10 @@
 /* Rayforce – Cable Catalog                                           */
 /* ------------------------------------------------------------------ */
 /*
- * Placeholder assets: heroImage/images point at
- * public/assets/images/cables/<slug>-card.avif, which do not exist yet
- * — the user is adding real product photos separately. mercadopagoUrl
- * is "" for all 3 — the checkout CTA renders disabled until a real
- * MercadoPago link is provided.
+ * Temporary shared asset: all 3 cables use the BS-CHC003 photo as
+ * their heroImage/images until the BS-CHC003-S and BS-CHC004 product
+ * shots are available. mercadopagoUrl is "" for all 3 — the checkout
+ * CTA renders disabled until a real MercadoPago link is provided.
  */
 
 import type { CableProduct } from "./catalog.types";
@@ -41,8 +40,8 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     price: { currency: "USD", amount: 220, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Tipo 2", "IP66"],
 
-    heroImage: "/assets/images/cables/bs-chc003-card.avif",
-    images: ["/assets/images/cables/bs-chc003-card.avif"],
+    heroImage: "/assets/images/cables/BS-CHC003.png",
+    images: ["/assets/images/cables/BS-CHC003.png"],
 
     theme: THEME_AMBER,
     mercadopagoUrl: "",
@@ -57,6 +56,13 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       ingressProtection: "IP66",
       temperatureSensor: true,
       bagIncluded: true,
+      conductorSection: "3 x 6.0 mm² + 1 x 0.75 mm²",
+      jacketMaterial: "TPU negro",
+      contactMaterial: "Aleación de cobre, plateados",
+      mechanicalLatch: "Lateral, sin botón superior",
+      proximityResistorOhm: 220,
+      certification: "CE",
+      standard: "EN 62196-2",
     },
   },
 
@@ -71,8 +77,8 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     price: { currency: "USD", amount: 285, taxLabel: "IVA Inc." },
     badges: ["Trifásico", "Tipo 2", "IP66"],
 
-    heroImage: "/assets/images/cables/bs-chc004-card.avif",
-    images: ["/assets/images/cables/bs-chc004-card.avif"],
+    heroImage: "/assets/images/cables/BS-CHC003.png",
+    images: ["/assets/images/cables/BS-CHC003.png"],
 
     theme: THEME_AMBER,
     mercadopagoUrl: "",
@@ -87,6 +93,13 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       ingressProtection: "IP66",
       temperatureSensor: true,
       bagIncluded: true,
+      conductorSection: "5 x 6.0 mm² + 1 x 0.75 mm²",
+      jacketMaterial: "TPU negro",
+      contactMaterial: "Aleación de cobre, plateados",
+      mechanicalLatch: "Lateral, sin botón superior",
+      proximityResistorOhm: 220,
+      certification: "CE",
+      standard: "EN 62196-2",
     },
   },
 
@@ -101,8 +114,8 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     price: { currency: "USD", amount: 235, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Tipo 2", "Espiralado", "IP66"],
 
-    heroImage: "/assets/images/cables/bs-chc003-s-card.avif",
-    images: ["/assets/images/cables/bs-chc003-s-card.avif"],
+    heroImage: "/assets/images/cables/BS-CHC003-S.png",
+    images: ["/assets/images/cables/BS-CHC003-S.png"],
 
     theme: THEME_AMBER,
     mercadopagoUrl: "",
@@ -117,6 +130,13 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       ingressProtection: "IP66",
       temperatureSensor: true,
       bagIncluded: true,
+      conductorSection: "3 x 6.0 mm² + 1 x 0.75 mm²",
+      jacketMaterial: "TPU negro",
+      contactMaterial: "Aleación de cobre, plateados",
+      mechanicalLatch: "Lateral, sin botón superior",
+      proximityResistorOhm: 220,
+      certification: "CE",
+      standard: "EN 62196-2",
     },
   },
 ];

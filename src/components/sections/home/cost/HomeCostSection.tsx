@@ -5,7 +5,6 @@ import { Fuel, Home, Plug } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-import { Link } from "@/i18n/navigation";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 
 const CHART_HEIGHT = 480;
@@ -92,18 +91,9 @@ export function HomeCostSection({ theme, id }: { theme?: Theme; id?: string }) {
             {t("description")}
           </motion.p>
 
-          <motion.div variants={waterfallItem} className="mt-8">
-            <Link
-              href="/cargadores"
-              className="inline-flex items-center gap-2 h-14 rounded-2xl px-8 bg-green-700 hover:bg-green-600 text-white font-medium transition-colors duration-200"
-            >
-              {t("cta")}
-            </Link>
-          </motion.div>
-
           <motion.p
             variants={waterfallItem}
-            className="mt-8 text-xs text-neutral-600 leading-relaxed max-w-sm"
+            className="mt-8 text-xs text-neutral-500 leading-relaxed max-w-sm"
           >
             {t("footnote")}
           </motion.p>
@@ -137,7 +127,7 @@ export function HomeCostSection({ theme, id }: { theme?: Theme; id?: string }) {
                 >
                   <span
                     className={`text-md tabular-nums tracking-tighter whitespace-nowrap ${
-                      isWinner ? "text-green-500 font-bold" : "text-neutral-600"
+                      isWinner ? "text-green-500 font-bold" : "text-neutral-400"
                     }`}
                   >
                     {displayPrice}
@@ -248,7 +238,7 @@ export function HomeCostSection({ theme, id }: { theme?: Theme; id?: string }) {
                 >
                   {t(`items.${id}.title`)}
                 </p>
-                <p className="text-[9px] sm:text-xs text-neutral-600 mt-0.5">
+                <p className="text-[9px] sm:text-xs text-neutral-400 mt-0.5">
                   {t(`items.${id}.subtitle`)}
                 </p>
                 <p
@@ -262,7 +252,7 @@ export function HomeCostSection({ theme, id }: { theme?: Theme; id?: string }) {
             ))}
           </div>
 
-          <p className="mt-6 text-center text-xs text-neutral-700">
+          <p className="mt-6 text-center text-xs text-neutral-500">
             {t("source")}
           </p>
         </motion.div>

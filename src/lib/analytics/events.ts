@@ -22,11 +22,11 @@ export type AnalyticsEventMap = {
   /** Home hero — primary CTA (Ver cargadores) */
   home_hero_primary_cta: { location: "desktop" | "mobile"; locale: string }
 
-  /** Home hero — secondary CTA (Compatibilidad) */
-  home_hero_secondary_cta: { location: "desktop" | "mobile"; locale: string }
+  /** Home hero — secondary CTA (Empresas: edificios y proyectos B2B) */
+  home_hero_empresas_cta: { location: "desktop" | "mobile"; locale: string }
 
-  /** Home hero — quote CTA (Contacto) */
-  home_hero_quote_cta: { location: "desktop" | "mobile"; locale: string }
+  /** Home hero — badge (respaldo Bamibel / URSEA / producto) */
+  home_hero_badge: { location: "desktop" | "mobile"; locale: string }
 
   /** Charger page hero — primary CTA (WhatsApp buy button) */
   charger_hero_primary_cta: { charger: string; location: "desktop" | "mobile"; locale: string }
@@ -147,6 +147,19 @@ export type AnalyticsEventMap = {
   /** User clicked the "view all reviews" link in the social proof section */
   social_proof_view_all_clicked: {
     charger: string
+    locale: string
+  }
+
+  /** User clicked a CTA in the public-charging (UTE totem) cable section */
+  public_charging_cable_cta: {
+    cta: "product" | "all_cables"
+    location: "desktop" | "mobile"
+    locale: string
+  }
+
+  /** User opened the durability proof video in the public-charging cable section */
+  public_charging_video_opened: {
+    location: "desktop" | "mobile"
     locale: string
   }
 }

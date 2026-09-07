@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useTrack } from "@/lib/analytics";
 
-import { CheckIcon, ChevronDown } from "lucide-react";
+import { CheckIcon, ChevronDown, Info } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
 /*                                   TYPES                                    */
@@ -220,6 +220,15 @@ export function CompatibilitySection({ theme, id }: Props) {
             {t("header.description")}
           </p>
 
+          <p
+            className={cn(
+              "mt-4 text-sm font-medium tracking-tight sm:text-base",
+              ui.accentText,
+            )}
+          >
+            {t("header.stat")}
+          </p>
+
           {/* Brand dropdown */}
           <div className="mx-auto mt-10 max-w-[13rem]">
             <Select.Root
@@ -361,6 +370,28 @@ export function CompatibilitySection({ theme, id }: Props) {
             </div>
           )}
         </motion.div>
+
+        {/* Known exceptions — placeholder until the client confirms the final list */}
+        <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+          <div className="flex gap-4">
+            <Info
+              className={cn("mt-0.5 size-5 shrink-0", ui.accentText)}
+              strokeWidth={1.6}
+            />
+            <div className="min-w-0">
+              <h3 className="text-sm font-medium tracking-tight text-white">
+                {t("exclusions.title")}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-neutral-400">
+                {t("exclusions.description")}
+              </p>
+              {/* TODO: reemplazar por el listado real de modelos no compatibles cuando el cliente lo confirme */}
+              <p className="mt-3 text-xs tracking-wide text-neutral-500 uppercase">
+                {t("exclusions.placeholder")}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

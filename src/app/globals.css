@@ -9,6 +9,7 @@ html {
 @theme {
   --animate-spin-slow: spin 5s linear infinite;
   --animate-spin-reverse-slower: spin-reverse 10s linear infinite;
+  --animate-gradient-shift: gradient-shift 4s linear infinite;
 }
 
 @keyframes spin-reverse {
@@ -17,6 +18,15 @@ html {
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes gradient-shift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
   }
 }
 

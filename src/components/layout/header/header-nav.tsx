@@ -44,6 +44,9 @@ export default function HeaderNav() {
         {/* Cables */}
         <NavLink href="/cables" label="cables" />
 
+        {/* Empresas */}
+        <NavLink href="/empresas" label="companies" />
+
         {/* compatibility */}
         <NavLink sectionId="compatibilidad" label="compatibility" />
       </motion.ul>

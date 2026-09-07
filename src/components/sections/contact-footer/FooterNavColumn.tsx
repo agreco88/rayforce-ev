@@ -8,6 +8,7 @@ import { useTrack } from "@/lib/analytics/use-track";
 const ROUTE_LINKS = [
   { href: "/cargadores", labelKey: "chargers" },
   { href: "/cables", labelKey: "cables" },
+  { href: "/empresas", labelKey: "companies" },
 ] as const;
 
 const HASH_LINKS = [

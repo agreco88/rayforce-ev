@@ -1,39 +1,37 @@
 "use client";
 
-import { Fragment } from "react";
 import { useTranslations } from "next-intl";
 
-const FEATURE_KEYS = ["security", "savings", "control"] as const;
+const TRUST_KEYS = ["ownInstall", "ursea", "team", "warranty"] as const;
 
 export function HomeHeroFeatureStrip() {
-  const t = useTranslations("HomePage.Hero.features");
+  const t = useTranslations("HomePage.Hero.trust");
 
   return (
-    <div
+    <ul
       className="
-        hidden md:flex
-        items-center
-        gap-8 lg:gap-10
+        grid
+        grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+        gap-x-6 gap-y-4
         text-sm
       "
     >
-      {FEATURE_KEYS.map((key, index) => (
-        <Fragment key={key}>
-          <div className="max-w-[220px]">
-            <div className="text-green-400 font-medium">
-              {t(`${key}.title`)}
-            </div>
+      {TRUST_KEYS.map((key) => (
+        <li
+          key={key}
+          className="
+            border-l
+            border-green-400/30
+            pl-3
+          "
+        >
+          <div className="text-green-400 font-medium">{t(`${key}.title`)}</div>
 
-            <div className="mt-1 text-neutral-400 leading-relaxed">
-              {t(`${key}.description`)}
-            </div>
+          <div className="mt-1 text-neutral-400 leading-relaxed">
+            {t(`${key}.description`)}
           </div>
-
-          {index < FEATURE_KEYS.length - 1 && (
-            <div className="w-px h-10 bg-neutral-800 shrink-0" />
-          )}
-        </Fragment>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

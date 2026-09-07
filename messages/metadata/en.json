@@ -1,9 +1,9 @@
 {
   "home": {
     "title": "Wallbox EV Chargers in Uruguay | Rayforce",
-    "description": "Wallbox EV charger sales and installation in Uruguay. UTE and URSEA-certified equipment with local support for electric and hybrid vehicles.",
-    "ogDescription": "Wallbox charging for homes, businesses and EV fleets in Uruguay. Certified installation, local support and app control.",
-    "keywords": "EV charger Uruguay, Wallbox Uruguay, electric vehicle charger Uruguay, plug-in hybrid charger, BYD charger Uruguay, home EV charger, Wallbox installation Montevideo, Rayforce",
+    "description": "Wallbox EV charger sales and installation in Uruguay for homes, buildings, businesses and parking facilities. In-house installation certified by UTE, equipment authorised by URSEA.",
+    "ogDescription": "Wallbox charging for homes, buildings, businesses and EV fleets in Uruguay. In-house certified installation, local support and app control.",
+    "keywords": "EV charger Uruguay, Wallbox Uruguay, electric vehicle charger Uruguay, plug-in hybrid charger, BYD charger Uruguay, home EV charger, Wallbox installation Montevideo, EV chargers for buildings Uruguay, business EV chargers Uruguay, parking garage charger installation, Rayforce",
     "imageAlt": "Rayforce Wallbox charger for electric and hybrid vehicles in Uruguay"
   },
   "cargadores": {
@@ -68,5 +68,12 @@
     "ogDescription": "Coiled Type 2 charging cable that retracts on its own instead of dragging on the ground.",
     "keywords": "coiled Type 2 cable, retractable EV cable Uruguay, compact EV charging cable, coiled wallbox cable",
     "imageAlt": "Rayforce coiled Type 2 charging cable, 7kW"
+  },
+  "empresas": {
+    "title": "EV Chargers for Buildings and Business | Rayforce Uruguay",
+    "description": "Charging infrastructure for buildings, businesses and parking facilities in Uruguay. Electrical design, works and our own installation certified by UTE, with equipment authorised by URSEA.",
+    "ogDescription": "Design, works and in-house installation of chargers for buildings, businesses and parking facilities, backed by over 25 years of engineering in Uruguay.",
+    "keywords": "EV chargers for buildings Uruguay, building charging infrastructure, business EV chargers Uruguay, parking charger installation, 22kW wallbox business, corporate fleet chargers Uruguay",
+    "imageAlt": "Rayforce charging infrastructure in a building parking garage"
   }
 }

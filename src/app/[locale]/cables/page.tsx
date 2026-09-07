@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import CablesGrid from "@/components/pages/cables/CablesGrid";
+import { CablesShopGrid } from "@/components/pages/cables/CablesShopGrid";
 import { CablesHero } from "@/components/pages/cables/CablesHero";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 import { FeaturesRayforce } from "@/components/sections/home/FeaturesSection";
 import { Footer } from "@/components/sections/contact-footer/Footer";
+import { CablesComparisonTable } from "@/components/sections/home/chargers/charger-comparison/CablesComparisonTable";
+import { getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 type Props = { params: Promise<{ locale: string }> };
@@ -39,9 +42,13 @@ export default async function CablesPage({ params }: Props) {
   return (
     <div className="bg-neutral-950">
       <JsonLd schema={breadcrumbSchema} />
-      <section className="mt-28 pb-8 sm:mt-58 flex flex-col max-w-7xl mx-auto px-2 sm:px-0">
+      <section className="mt-28 pb-8 sm:mt-58 flex flex-col w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 2xl:px-0">
         <CablesHero />
         <CablesGrid />
+        <div className="mt-16">
+          <CablesShopGrid />
+        </div>
+        <CablesComparisonTable products={getCableProducts()} />
         <div
           className="absolute inset-0 -z-0 pointer-events-none opacity-30"
           style={{

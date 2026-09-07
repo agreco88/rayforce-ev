@@ -5,7 +5,7 @@ export async function CablesHero() {
   const t = await getTranslations("CablesPage.Hero");
 
   return (
-    <div className="flex flex-col px-4 sm:px-0">
+    <div className="flex flex-col">
       <AppBreadcrumb
         items={[
           { label: t("breadcrumb.home"), href: "/" },

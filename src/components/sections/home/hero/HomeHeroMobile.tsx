@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { HomeHeroFeatureStrip } from "./HomeHeroFeatureStrip";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { useTrack } from "@/lib/analytics";
@@ -129,34 +130,22 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           </h1>
 
           {/* Description */}
-          {/* <motion.p
+          <motion.p
             variants={waterfallItem}
             className="
               mt-6
-              md:my-6
-              h-[2lh]
-              md:text-xl!
-              leading-relaxed md:leading-snug
+              text-sm
+              leading-relaxed
               text-neutral-300
             "
           >
             {t("description")}
-          </motion.p> */}
+          </motion.p>
 
-          {/* Features */}
-          {/* <motion.div
-            variants={waterfallItem}
-            className="
-              mt-8
-              grid grid-cols-2
-              gap-1
-            "
-          >
-            <Feature title="Ahorra" subtitle="Hasta 90% por km" />
-            <Feature title="Garantia" subtitle="2 años" />{" "}
-            <Feature title="Garantia" subtitle="2 años" />{" "}
-            <Feature title="Garantia" subtitle="2 años" />
-          </motion.div> */}
+          {/* Trust signals */}
+          <motion.div variants={waterfallItem} className="mt-6">
+            <HomeHeroFeatureStrip />
+          </motion.div>
 
           {/* CTA */}
           <motion.div
@@ -180,22 +169,10 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               className="h-14 rounded-2xl px-8 bg-neutral-950 hover:bg-neutral-900 text-white border border-white/10"
             >
               <Link
-                href="/#compatibilidad"
-                onClick={() => track.homeHeroSecondary("mobile")}
+                href="/empresas"
+                onClick={() => track.homeHeroEmpresas("mobile")}
               >
                 {t("ctaSecondary")}
-              </Link>
-            </Button>
-
-            <Button
-              asChild
-              className="h-14 rounded-2xl px-8 bg-neutral-900 hover:bg-neutral-800 text-white"
-            >
-              <Link
-                href="/#instalacion"
-                onClick={() => track.homeHeroQuote("mobile")}
-              >
-                {t("ctaTertiary")}
               </Link>
             </Button>
           </motion.div>

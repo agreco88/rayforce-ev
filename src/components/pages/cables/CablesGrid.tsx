@@ -39,7 +39,7 @@ export default function CablesGrid() {
   return (
     <div className="w-full">
       {/* ── Mobile: scroll-snap carousel ──────────────────── */}
-      <div className="sm:hidden -mx-2 overflow-x-hidden">
+      <div className="sm:hidden -mx-6 overflow-x-hidden">
         <div className="relative">
           <div
             ref={trackRef}
@@ -66,6 +66,7 @@ export default function CablesGrid() {
                   description={variantsT[product.slug]?.description ?? ""}
                   theme="amber"
                   namespace="CablesPage.ProductCard"
+                  imagePosition="65% center"
                 />
               </div>
             ))}
@@ -102,7 +103,7 @@ export default function CablesGrid() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="hidden sm:grid list-none grid-cols-3 px-4 sm:px-0 gap-8"
+        className="hidden sm:grid list-none grid-cols-3 gap-8"
       >
         {products.map((product) => (
           <motion.li key={product.slug} variants={waterfallItem}>

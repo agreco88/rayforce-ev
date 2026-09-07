@@ -50,5 +50,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...chargerEntries,
     buildEntry("/cables", 0.9, "monthly"),
     ...cableEntries,
+    buildEntry("/empresas", 0.8, "monthly"),
   ];
 }

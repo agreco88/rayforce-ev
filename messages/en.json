@@ -9,7 +9,8 @@
         "faq": "FAQ",
         "compatibility": "Compatibility",
         "contactCta": "Contact sales via WhatsApp",
-        "cables": "Cables"
+        "cables": "Cables",
+        "companies": "Business"
       },
       "products": {
         "bs20-bc-7kw": {
@@ -66,6 +67,14 @@
       "protection": {
         "water": "Water resistance",
         "impact": "Impact resistance"
+      },
+      "tier": {
+        "residential": "Residential use",
+        "commercial": "Commercial use"
+      },
+      "cable": {
+        "integrated": "Integrated charging cable",
+        "socket": "DOES NOT INCLUDE CHARGING CABLE"
       }
     },
     "RegulatoryBadges": {
@@ -99,23 +108,82 @@
   },
   "HomePage": {
     "Hero": {
-      "title": "Wallbox charger sales and installation for electric and hybrid vehicles in Uruguay",
-      "description": "Get your EV charger today with a 1-year warranty when installed by a certified technician, and equipment certified by UTE and URSEA.",
+      "badge": {
+        "bamibel": {
+          "tag": "Bamibel S.A.",
+          "label": "25 years of engineering in Uruguay"
+        },
+        "ursea": {
+          "tag": "URSEA",
+          "label": "Authorisation VU-SE-17-000123"
+        },
+        "product": {
+          "tag": "New arrival",
+          "label": "BS20 11kW residential charger"
+        }
+      },
+      "title": "Wallbox chargers for electric vehicles with our own certified installation",
+      "description": "We are the charging line of Bamibel S.A., a Uruguayan engineering company with more than 25 years. We do not subcontract: we install with our own engineers and electricians certified by UTE, using equipment authorised by URSEA. Wallboxes of 7, 11 and 22 kW for homes, buildings, businesses and parking facilities.",
       "ctaPrimary": "View chargers",
-      "ctaSecondary": "Compatible with your vehicle?",
-      "ctaTertiary": "Request installation quote",
-      "features": {
-        "security": {
-          "title": "Safer",
-          "description": "Advanced protection systems for your vehicle and your home"
+      "ctaSecondary": "Projects for buildings and businesses",
+      "trust": {
+        "ownInstall": {
+          "title": "In-house installation",
+          "description": "We sell, install and answer for how it works"
         },
-        "savings": {
-          "title": "More savings",
-          "description": "Charge your EV for far less than a fuel-powered vehicle"
+        "ursea": {
+          "title": "URSEA authorisation",
+          "description": "Full line registered under authorisation VU-SE-17-000123"
         },
-        "control": {
-          "title": "More convenient",
-          "description": "Control and schedule charging directly from your phone"
+        "team": {
+          "title": "UTE-certified team",
+          "description": "Our own engineers, architects and electricians"
+        },
+        "warranty": {
+          "title": "Local warranty",
+          "description": "One year of warranty, handled directly by us"
+        }
+      }
+    },
+    "WallboxIntro": {
+      "whatIsIt": {
+        "eyebrow": "Rayforce wallbox",
+        "title": "What is a wallbox?",
+        "description": "A wall-mounted charger built for fast, everyday charging. It's a fixed charger installed in your garage that delivers far more power than the cable that comes with your car: instead of waiting all night, you charge in a couple of hours.",
+        "imageAlt": "Rayforce wallbox charger mounted on a wall",
+        "items": {
+          "fastCharging": {
+            "title": "Charges up to 10 times faster",
+            "description": "The car's emergency cable charges at 2.3 kW. A Rayforce wallbox charges at up to 22 kW."
+          },
+          "vsCable": {
+            "title": "Built for daily use",
+            "description": "The cable that comes with your car is designed for occasional charging, not to be your everyday charger."
+          },
+          "ursea": {
+            "title": "Approved by URSEA",
+            "description": "Certified equipment with an installation that meets Uruguayan electrical regulations."
+          }
+        }
+      },
+      "whyBetter": {
+        "eyebrow": "The question everyone asks",
+        "title": "Why get a wallbox if the cable that came with my car works fine?",
+        "description": "Because \"it works\" isn't the same as being built for daily use. The cable that comes with your car is an emergency accessory: it charges slowly, lacks the protection of a fixed installation, and wears out much faster under everyday use.",
+        "imageAlt": "Detail of a Rayforce charger with coiled cable",
+        "items": {
+          "protection": {
+            "title": "No fixed-installation protection",
+            "description": "The cable plugs straight into a regular outlet, with no dedicated protection against overload, short circuits or current leaks. A wallbox is installed with its own certified electrical protection."
+          },
+          "app": {
+            "title": "Wears out with daily use",
+            "description": "It's built for occasional charging, not to be plugged and unplugged every day for years. That speeds up wear on the plug and cable."
+          },
+          "power": {
+            "title": "Keeps your car charging for hours longer",
+            "description": "It charges at 2.3 kW versus up to 22 kW on a wallbox: the same charge takes several times longer, every single day."
+          }
         }
       }
     },
@@ -141,6 +209,45 @@
         "nafta": {
           "title": "Gas vehicle ",
           "subtitle": "Super 95 gasoline"
+        }
+      }
+    },
+    "EnergyTrend": {
+      "eyebrow": "10 years of prices",
+      "title": "Fuel price headlines won't ruin your day anymore",
+      "subheading": "If you're going to depend on a state-owned company, pick the one that runs on renewables and isn't tied to overseas markets.",
+      "description": "Over the past ten years a litre of petrol has risen more than twice as much as a kWh of electricity. One follows the oil barrel and the dollar; the other runs on the wind, water and sun we already have here.",
+      "chartTitle": "Petrol vs. electricity in Uruguay",
+      "chartSubtitle": "Index base 100 = 2016 · hover over each year",
+      "chartAriaLabel": "Line chart comparing the price evolution of Super 95 petrol and UTE residential electricity between 2016 and 2026",
+      "axisNote": "Index base 100 in 2016. The steeper the line, the more the price rose.",
+      "source": "Sources: ANCAP historical fuel prices (Super 95 petrol) · UTE residential simple tariff schedule (101-600 kWh tier).",
+      "series": {
+        "nafta": {
+          "label": "Petrol (ANCAP)",
+          "short": "Petrol",
+          "delta": "+102%",
+          "deltaNote": "in 10 years"
+        },
+        "ute": {
+          "label": "Electricity (UTE)",
+          "short": "Power",
+          "delta": "+53%",
+          "deltaNote": "in 10 years"
+        }
+      },
+      "points": {
+        "renewable": {
+          "title": "Energy from here, not from a barrel",
+          "description": "Over 90% of Uruguay's electricity is renewable. It doesn't depend on a war across the world or on how the dollar wakes up."
+        },
+        "stable": {
+          "title": "It rises, but far more gently",
+          "description": "UTE's tariff is adjusted once a year, in small steps. Petrol moves every month, and always in the same direction."
+        },
+        "usage": {
+          "title": "The more you drive, the more it costs you",
+          "description": "Every kilometre on petrol hurts more than the last. With an EV charged at home, the bill barely moves."
         }
       }
     },
@@ -173,10 +280,38 @@
       "cta": {
         "moreInfo": "Learn more"
       },
+      "commonStats": {
+        "title": "Every charger model includes:",
+        "connector": {
+          "value": "Type 2",
+          "label": "Compatible with 99% of EVs"
+        },
+        "ursea": {
+          "value": "URSEA",
+          "label": "Approved and certified"
+        },
+        "protection": {
+          "value": "IP66",
+          "label": "Water and dust resistant"
+        },
+        "impact": {
+          "value": "IK10",
+          "label": "Impact resistant"
+        },
+        "app": {
+          "value": "App",
+          "label": "Remote control and monitoring"
+        },
+        "warranty": {
+          "value": "1 year",
+          "label": "Local equipment warranty"
+        }
+      },
       "carouselLabel": "Charger navigation",
       "chargers": {
         "bs20-bc-7kw": {
           "title": "Residential",
+          "blurb": "With an integrated cable — plug in and charge, no extra steps.",
           "highlights": [
             "Charges up to 3× faster than conventional chargers",
             "Maximum energy savings"
@@ -184,6 +319,7 @@
         },
         "bs20-ba-7kw": {
           "title": "Residential w/ Socket",
+          "blurb": "Socket instead of a fixed cable: lighter, for those who prefer their own cable.",
           "highlights": [
             "Interchangeable Type 2 socket — cable not included",
             "Ideal for overnight home charging"
@@ -191,6 +327,7 @@
         },
         "bs20-bc-11kw": {
           "title": "Three-Phase",
+          "blurb": "For EVs with three-phase capacity up to 11kW, no extra contracted power needed.",
           "highlights": [
             "Balances power output with contracted electrical capacity",
             "Built for three-phase homes and businesses"
@@ -198,6 +335,7 @@
         },
         "bs20-bc-22kw": {
           "title": "Commercial",
+          "blurb": "Maximum available power, built for fleets, businesses and building garages.",
           "highlights": [
             "Charges up to 5× faster than conventional chargers",
             "Maximum available power"
@@ -233,6 +371,48 @@
         }
       }
     },
+    "PublicChargingCableSection": {
+      "eyebrow": "FOR DRIVERS WHO CHARGE ON THE GO",
+      "title": "Charging at UTE public stations? Bring your own cable.",
+      "description": "The cable that came with your car wasn't built for public streets. Ours was: it coils itself back up, never drags along the ground, and holds up when a car drives over it.",
+      "comparison": {
+        "theirs": "Standard car cable",
+        "theirsDetail": "Lies on the ground, gets stepped on, and charges slower.",
+        "ours": "Rayforce coiled cable",
+        "oursDetail": "Coils itself up, resists impact, and uses the station's full power."
+      },
+      "stats": {
+        "durability": {
+          "value": "Withstands a car driving over it",
+          "label": "Proven on video"
+        },
+        "speed": {
+          "value": "Up to 7 kW",
+          "label": "Faster than the factory cable"
+        },
+        "protection": {
+          "value": "IP66",
+          "label": "Rain, dust and public streets"
+        },
+        "comfort": {
+          "value": "Self-coiling",
+          "label": "Never tangles or blocks the way"
+        }
+      },
+      "video": {
+        "cta": "Watch the test video",
+        "title": "Durability test: a car drives over the coiled cable",
+        "badge": "Test video",
+        "replay": "Watch again"
+      },
+      "pricing": {
+        "price": "USD 235",
+        "taxLabel": "VAT Incl.",
+        "cta": "See the coiled cable",
+        "secondaryCta": "See all cables"
+      },
+      "imageAlt": "Coiled Rayforce Type 2 charging cable, ready to use at a public charging station"
+    },
     "HomeStandSection": {
       "eyebrow": "INSTALLATION STAND",
       "title": "Installation stand for Rayforce chargers",
@@ -259,12 +439,18 @@
       "header": {
         "eyebrow": "Compatibility",
         "title": "Will it work with your vehicle?",
-        "description": "Search for your brand or model and confirm compatibility with your EV"
+        "description": "Search for your brand or model and confirm compatibility with your EV",
+        "stat": "Compatible with 99.99% of Uruguay's electric and plug-in hybrid vehicle fleet"
       },
       "search": {
         "placeholder": "Choose your brand to see compatible vehicles..."
       },
       "modelsLabel": "Compatible models:",
+      "exclusions": {
+        "title": "Known exceptions",
+        "description": "A very small number of models are not compatible with this charger. We're confirming the final list.",
+        "placeholder": "List under review — coming soon"
+      },
       "cta": {
         "contactSales": "Contact sales",
         "whatsapp": "Chat on WhatsApp",
@@ -588,28 +774,59 @@
     },
     "stats": {
       "bs20-bc-7kw": {
-        "power": { "label": "Maximum power" },
-        "protection": { "label": "Protection", "sub": "Outdoor rated" },
-        "warranty": { "value": "1 year", "label": "Warranty" }
+        "power": {
+          "label": "Maximum power"
+        },
+        "protection": {
+          "label": "Protection",
+          "sub": "Outdoor rated"
+        },
+        "warranty": {
+          "value": "1 year",
+          "label": "Warranty"
+        }
       },
       "bs20-ba-7kw": {
-        "power": { "label": "Maximum power" },
-        "protection": { "label": "Protection", "sub": "Outdoor rated" },
-        "warranty": { "value": "1 year", "label": "Warranty" },
+        "power": {
+          "label": "Maximum power"
+        },
+        "protection": {
+          "label": "Protection",
+          "sub": "Outdoor rated"
+        },
+        "warranty": {
+          "value": "1 year",
+          "label": "Warranty"
+        },
         "connector": {
           "title": "Type 2 Socket",
           "description": "Cable not included"
         }
       },
       "bs20-bc-22kw": {
-        "power": { "label": "Maximum power" },
-        "protection": { "label": "Protection", "sub": "Outdoor rated" },
-        "warranty": { "value": "1 year", "label": "Warranty" }
+        "power": {
+          "label": "Maximum power"
+        },
+        "protection": {
+          "label": "Protection",
+          "sub": "Outdoor rated"
+        },
+        "warranty": {
+          "value": "1 year",
+          "label": "Warranty"
+        }
       },
       "bs20-bc-11kw": {
-        "power": { "label": "Rated power" },
-        "protection": { "label": "Indoor and outdoor use" },
-        "warranty": { "value": "1 year", "label": "By certified technicians" }
+        "power": {
+          "label": "Rated power"
+        },
+        "protection": {
+          "label": "Indoor and outdoor use"
+        },
+        "warranty": {
+          "value": "1 year",
+          "label": "By certified technicians"
+        }
       }
     }
   },
@@ -703,6 +920,35 @@
           "description": "5m coiled Type 2 cable, self-retracting and takes up less space."
         }
       }
+    },
+    "ComparisonTable": {
+      "features": {
+        "power": "Power",
+        "current": "Current and phases",
+        "connector": "Connector type",
+        "length": "Total length",
+        "conductorSection": "Conductor cross-section",
+        "jacketMaterial": "Jacket material",
+        "contacts": "Contacts",
+        "temperatureSensor": "Temperature sensor",
+        "ingressProtection": "Protection rating",
+        "mechanicalLatch": "Mechanical latch",
+        "proximityResistor": "Proximity resistor",
+        "certification": "Certification",
+        "standard": "Standard",
+        "bag": "Carrying bag"
+      }
+    },
+    "ShopCard": {
+      "cta": "View details",
+      "specs": {
+        "length": "{length} meters long",
+        "straight": "Straight cable",
+        "coiled": "Coiled cable",
+        "current": "Up to {current}A",
+        "temperatureSensor": "Temperature sensor",
+        "bag": "Carrying bag included"
+      }
     }
   },
   "CableModelPage": {
@@ -717,8 +963,8 @@
       "bs-chc003-s": "Single-Phase Coiled Cable"
     },
     "titlePrefix": {
-      "bs-chc003": "Cable",
-      "bs-chc004": "Cable",
+      "bs-chc003": "Straight cable",
+      "bs-chc004": "Straight cable",
       "bs-chc003-s": "Coiled cable"
     },
     "cta": {
@@ -755,6 +1001,12 @@
         "label": "Temperature sensor",
         "sub": "In the connector"
       }
+    },
+    "proofVideo": {
+      "eyebrow": "Put to the test",
+      "title": "Yes, a car can drive over it",
+      "description": "We ran over the coiled cable with a full-size EV. No cracks, no exposed wires — it went right back to charging.",
+      "replay": "Watch again"
     }
   },
   "CableModelHeroStats": {
@@ -781,6 +1033,114 @@
       "stat2Description": "Resists rain and dust, tested and renewed in 2025.",
       "stat3Title": "Coiled design",
       "stat3Description": "Retracts on its own instead of dragging on the ground."
+    }
+  },
+  "EmpresasPage": {
+    "Hero": {
+      "breadcrumb": {
+        "home": "Home",
+        "empresas": "Business"
+      },
+      "eyebrow": "Turnkey projects",
+      "title": "Charging infrastructure for buildings, businesses and parking facilities",
+      "description": "Rayforce wallboxes of 7, 11 and 22 kW for homes, businesses and parking facilities. Installation certified by UTE, equipment authorised by URSEA, and the backing of an engineering company with more than 25 years in Uruguay.",
+      "ctaPrimary": "Request a site visit",
+      "ctaSecondary": "See our methodology",
+      "imageAlt": "Building parking garage with Rayforce chargers installed"
+    },
+    "Why": {
+      "eyebrow": "Why Rayforce",
+      "title": "Our own installation team.",
+      "description": "We don't outsource installation. The same team that sells the charger installs it, commissions it and answers for how it works.",
+      "items": {
+        "ownInstall": {
+          "title": "We sell, install and guarantee",
+          "description": "Every unit is installed by our own technical staff, who take responsibility for the installation and its operation."
+        },
+        "engineering": {
+          "title": "Engineering behind the brand",
+          "description": "We are the EV charging line of Bamibel S.A., a Uruguayan engineering company with more than 25 years of experience."
+        },
+        "team": {
+          "title": "In-house team",
+          "description": "Engineers, architects and electrical technicians certified by UTE."
+        },
+        "ursea": {
+          "title": "URSEA authorisation",
+          "description": "Our complete line of chargers for cars and trucks is registered with URSEA under authorisation VU-SE-17-000123. The registry is public and can be consulted."
+        },
+        "warranty": {
+          "title": "Warranty with local backing",
+          "description": "One year of warranty, handled directly by us."
+        }
+      }
+    },
+    "Installation": {
+      "eyebrow": "Installation",
+      "title": "The installation defines the result.",
+      "description": "Most problems with chargers come not from the equipment but from the installation. That is why we don't delegate it: our technical staff assess the panel, size the circuit and hand over the charger working and verified.",
+      "scopeTitle": "Scope of service",
+      "items": {
+        "survey": "Site visit: assessment of the panel, contracted power and cable routing",
+        "line": "Dedicated circuit with the protections the installation requires",
+        "mounting": "Wallbox mounting and commissioning with the client's vehicle",
+        "certification": "Certification of the installation with UTE",
+        "app": "App setup and a walkthrough of how to use it"
+      }
+    },
+    "Buildings": {
+      "eyebrow": "Buildings and garages",
+      "title": "Charging infrastructure for the entire building",
+      "description": "We design and execute the infrastructure so every parking space can add its own charger: adapting the cabling, reorganising the distribution and preparing the connection points, so that adding a charger later is simply a matter of plugging it in.",
+      "methodologyTitle": "Methodology",
+      "steps": {
+        "survey": {
+          "title": "Survey",
+          "description": "Analysis of the plans and the existing installation, the available power and the number of parking spaces to prepare."
+        },
+        "project": {
+          "title": "Design",
+          "description": "Design of the cabling and distribution for the building as a whole, allowing for future growth."
+        },
+        "works": {
+          "title": "Works",
+          "description": "Execution of the necessary alterations: conduits, panels and rewiring, carried out by our own staff."
+        },
+        "commissioning": {
+          "title": "Commissioning",
+          "description": "Installation of the first chargers and handover of the remaining spaces with their connection point ready."
+        }
+      },
+      "note": {
+        "title": "For property managers and owners' associations",
+        "description": "A single planned project avoids repeated interventions. Each new EV owner connects without further works or new assembly votes."
+      }
+    },
+    "Business": {
+      "eyebrow": "Business, retail and hospitality",
+      "title": "Charging for customers, fleets and staff, with a full electrical design",
+      "description": "Three-phase wallboxes of 11 and 22 kW, sized according to the available power and installed by our technical team. For supermarkets, hotels, parking facilities and corporate fleets.",
+      "items": {
+        "power": {
+          "title": "Chargers of 7, 11 and 22 kW",
+          "description": "Managed from a mobile app to monitor sessions and consumption."
+        },
+        "project": {
+          "title": "Electrical design and works on us",
+          "description": "Sized according to the available power and executed by our technical team."
+        },
+        "column": {
+          "title": "Pedestal installation",
+          "description": "For outdoor areas and parking lots, with no wall required."
+        }
+      }
+    },
+    "Contact": {
+      "eyebrow": "Contact",
+      "title": "Let's talk about your project",
+      "description": "Tell us what it involves and we'll arrange a site visit to assess the existing installation and the available power.",
+      "ctaWhatsapp": "Ask us on WhatsApp",
+      "whatsappMessage": "Hi, I wanted to ask about charging infrastructure for a project."
     }
   }
 }

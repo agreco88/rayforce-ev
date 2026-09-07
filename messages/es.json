@@ -9,7 +9,8 @@
         "faq": "FAQ",
         "compatibility": "Compatibilidad",
         "contactCta": "Contactar ventas por WhatsApp",
-        "cables": "Cables"
+        "cables": "Cables",
+        "companies": "Empresas"
       },
       "products": {
         "bs20-bc-7kw": {
@@ -66,6 +67,14 @@
       "protection": {
         "water": "Resistencia al agua",
         "impact": "Resistencia a golpes"
+      },
+      "tier": {
+        "residential": "Uso residencial",
+        "commercial": "Uso comercial"
+      },
+      "cable": {
+        "integrated": "Cable de carga integrado",
+        "socket": "NO INCLUYE CABLE DE CARGA"
       }
     },
     "RegulatoryBadges": {
@@ -99,23 +108,82 @@
   },
   "HomePage": {
     "Hero": {
-      "title": "Instalación y venta de cargadores Wallbox para autos eléctricos e híbridos en Uruguay",
-      "description": "Conseguí hoy tu cargador eléctrico con garantía de 1 año con instalación por técnico certificado y equipos certificados por UTE y URSEA.",
+      "badge": {
+        "bamibel": {
+          "tag": "Bamibel S.A.",
+          "label": "25 años de ingeniería en Uruguay"
+        },
+        "ursea": {
+          "tag": "URSEA",
+          "label": "Autorización VU-SE-17-000123"
+        },
+        "product": {
+          "tag": "Nuevo ingreso",
+          "label": "Cargador BS20 11kW residencial"
+        }
+      },
+      "title": "Cargadores de tipo wallbox para vehículos eléctricos con instalación propia certificada",
+      "description": "Somos la línea de carga de Bamibel S.A., empresa uruguaya de ingeniería con más de 25 años. No tercerizamos: instalamos con ingenieros y técnicos electricistas certificados por UTE, con equipos autorizados por URSEA. Wallbox de 7, 11 y 22 kW para residencias, edificios, comercios y estacionamientos.",
       "ctaPrimary": "Ver cargadores",
-      "ctaSecondary": "¿Funciona con tu vehículo?",
-      "ctaTertiary": "Solicitar presupuesto de instalación",
-      "features": {
-        "security": {
-          "title": "Más seguro",
-          "description": "Protecciones avanzadas para tu eléctrico y tu hogar"
+      "ctaSecondary": "Proyectos para edificios y empresas",
+      "trust": {
+        "ownInstall": {
+          "title": "Instalación propia",
+          "description": "Vendemos, instalamos y respondemos por el funcionamiento"
         },
-        "savings": {
-          "title": "Más ahorro",
-          "description": "Cargá tu EV por mucho menos que un auto a combustible"
+        "ursea": {
+          "title": "Autorización URSEA",
+          "description": "Línea registrada bajo la autorización VU-SE-17-000123"
         },
-        "control": {
-          "title": "Más práctico",
-          "description": "Controlá y programá la carga desde tu celular"
+        "team": {
+          "title": "Equipo certificado por UTE",
+          "description": "Ingenieros, arquitectos y técnicos electricistas propios"
+        },
+        "warranty": {
+          "title": "Garantía local",
+          "description": "Un año de garantía, que atendemos directamente"
+        }
+      }
+    },
+    "WallboxIntro": {
+      "whatIsIt": {
+        "eyebrow": "Wallbox Rayforce",
+        "title": "¿Qué es un wallbox?",
+        "description": "Un cargador de pared pensado para cargar rápido, todos los días. Es un cargador fijo que se instala en tu garaje o cochera y entrega mucha más potencia que el cable que viene con el auto: en vez de esperar toda la noche, cargás en horas.",
+        "imageAlt": "Cargador Rayforce wallbox instalado en pared",
+        "items": {
+          "fastCharging": {
+            "title": "Carga hasta 10 veces más rápido",
+            "description": "El cable de emergencia del auto carga a 2,3 kW. Un wallbox Rayforce carga hasta 22 kW."
+          },
+          "vsCable": {
+            "title": "Pensado para uso diario",
+            "description": "El cable que viene con el auto está diseñado para una carga ocasional, no para ser tu cargador de todos los días."
+          },
+          "ursea": {
+            "title": "Aprobado por URSEA",
+            "description": "Equipo homologado y con instalación certificada según la normativa eléctrica uruguaya."
+          }
+        }
+      },
+      "whyBetter": {
+        "eyebrow": "La pregunta que te hacés",
+        "title": "¿Para qué quiero un wallbox si el cable que me dieron con el auto anda bien?",
+        "description": "Porque una cosa es que \"ande\" y otra que aguante el uso de todos los días. Ese cable es un accesorio de emergencia, pensado para salir del paso alguna vez: carga lentísimo, no tiene protección eléctrica propia y enchufarlo y desenchufarlo a diario lo termina rompiendo antes de lo que pensás.",
+        "imageAlt": "Detalle de cargador Rayforce con cable enrulado",
+        "items": {
+          "protection": {
+            "title": "No tiene protección eléctrica propia",
+            "description": "El cable va directo a un tomacorriente común, sin protección dedicada contra sobrecarga, cortocircuito o fugas de corriente. El wallbox se instala con su propia protección certificada."
+          },
+          "app": {
+            "title": "Se rompe de tanto uso",
+            "description": "Está pensado para usarlo de vez en cuando, no para enchufarlo y desenchufarlo todos los días durante años. A la corta, la ficha y el cable terminan sufriendo."
+          },
+          "power": {
+            "title": "Te deja horas y horas cargando",
+            "description": "Carga a 2,3 kW contra los hasta 22 kW de un wallbox: la misma carga te lleva varias veces más tiempo, todos los días."
+          }
         }
       }
     },
@@ -141,6 +209,45 @@
         "nafta": {
           "title": "Auto a nafta",
           "subtitle": "Nafta Super 95"
+        }
+      }
+    },
+    "EnergyTrend": {
+      "eyebrow": "10 años de precios",
+      "title": "Las noticias de ANCAP ya no te van a amargar el día",
+      "subheading": "Si vas a depender de una empresa pública, que sea la que es renovable y no cotiza en el exterior.",
+      "description": "En los últimos diez años el litro de nafta subió más del doble que el kWh de UTE. Uno depende del barril de petróleo y del dólar; el otro, del viento, del agua y del sol que ya tenemos acá.",
+      "chartTitle": "Nafta vs. electricidad en Uruguay",
+      "chartSubtitle": "Índice base 100 = 2016 · pasá el mouse por cada año",
+      "chartAriaLabel": "Gráfico de líneas comparando la evolución del precio de la nafta súper y de la tarifa eléctrica residencial de UTE entre 2016 y 2026",
+      "axisNote": "Índice base 100 en 2016. Cuanto más empinada la línea, más subió el precio.",
+      "source": "Fuentes: ANCAP, histórico de precios de combustibles (nafta súper 95) · UTE, pliego tarifario residencial simple (escalón 101-600 kWh).",
+      "series": {
+        "nafta": {
+          "label": "Nafta (ANCAP)",
+          "short": "Nafta",
+          "delta": "+102%",
+          "deltaNote": "en 10 años"
+        },
+        "ute": {
+          "label": "Electricidad (UTE)",
+          "short": "Luz",
+          "delta": "+53%",
+          "deltaNote": "en 10 años"
+        }
+      },
+      "points": {
+        "renewable": {
+          "title": "Energía de acá, no del barril",
+          "description": "Más del 90% de la electricidad uruguaya es renovable. No depende de una guerra del otro lado del mundo ni de cómo amanezca el dólar."
+        },
+        "stable": {
+          "title": "Sube, pero mucho más tranquila",
+          "description": "La tarifa de UTE se ajusta una vez al año y de a poco. La nafta se mueve todos los meses y siempre para el mismo lado."
+        },
+        "usage": {
+          "title": "Lo pagás mientras más lo manejes",
+          "description": "Cada kilómetro que hacés con nafta te duele más que el anterior. Con el auto eléctrico cargado en casa, la cuenta casi no se mueve."
         }
       }
     },
@@ -173,10 +280,38 @@
       "cta": {
         "moreInfo": "Más información"
       },
+      "commonStats": {
+        "title": "Todos los modelos de cargadores tienen:",
+        "connector": {
+          "value": "Tipo 2",
+          "label": "Compatible con el 99% de los autos eléctricos"
+        },
+        "ursea": {
+          "value": "URSEA",
+          "label": "Aprobado y homologado"
+        },
+        "protection": {
+          "value": "IP66",
+          "label": "Resistencia al agua y al polvo"
+        },
+        "impact": {
+          "value": "IK10",
+          "label": "Resistencia a golpes"
+        },
+        "app": {
+          "value": "App",
+          "label": "Control y monitoreo remoto"
+        },
+        "warranty": {
+          "value": "1 año",
+          "label": "Garantía de equipo local"
+        }
+      },
       "carouselLabel": "Navegación de cargadores",
       "chargers": {
         "bs20-bc-7kw": {
           "title": "Residencial",
+          "blurb": "Con cable integrado, listo para enchufar y cargar sin vueltas.",
           "highlights": [
             "Carga hasta 3 veces más rápido respecto a cargadores convencionales",
             "Máximo ahorro energético"
@@ -184,6 +319,7 @@
         },
         "bs20-ba-7kw": {
           "title": "Residencial con toma",
+          "blurb": "Con toma en vez de cable fijo: más liviano y para quienes prefieren su propio cable.",
           "highlights": [
             "Toma Tipo 2 intercambiable — no incluye cable",
             "Ideal para carga nocturna en el hogar"
@@ -191,6 +327,7 @@
         },
         "bs20-bc-11kw": {
           "title": "Trifásico",
+          "blurb": "Para autos con capacidad trifásica de hasta 11kW, sin necesitar más potencia contratada.",
           "highlights": [
             "Equilibrio entre potencia y consumo eléctrico contratado",
             "Pensado para hogares y comercios con trifásica"
@@ -198,6 +335,7 @@
         },
         "bs20-bc-22kw": {
           "title": "Comercial",
+          "blurb": "Máxima potencia disponible, pensado para flotas, comercios y cocheras de edificios.",
           "highlights": [
             "Carga hasta 5 veces más rápido respecto a cargadores convencionales",
             "Máxima potencia disponible"
@@ -233,6 +371,48 @@
         }
       }
     },
+    "PublicChargingCableSection": {
+      "eyebrow": "PARA QUIENES CARGAN EN LA CALLE",
+      "title": "¿Cargás en los tótems públicos de UTE? Llevá tu propio cable.",
+      "description": "El cable que viene con el auto no está pensado para la vía pública. El nuestro sí: se recoge solo, no queda arrastrando por el piso y aguanta que le pase un auto por encima.",
+      "comparison": {
+        "theirs": "Cable común del auto",
+        "theirsDetail": "Queda tirado en el piso, se pisa y carga más lento.",
+        "ours": "Cable espiralado Rayforce",
+        "oursDetail": "Se recoge solo, resiste golpes y aprovecha toda la potencia del tótem."
+      },
+      "stats": {
+        "durability": {
+          "value": "Resiste el paso de un auto",
+          "label": "Probado en video"
+        },
+        "speed": {
+          "value": "Hasta 7 kW",
+          "label": "Más rápido que el cable de fábrica"
+        },
+        "protection": {
+          "value": "IP66",
+          "label": "Lluvia, polvo y vía pública"
+        },
+        "comfort": {
+          "value": "Se recoge solo",
+          "label": "No se enreda ni molesta el paso"
+        }
+      },
+      "video": {
+        "cta": "Ver el video de la prueba",
+        "title": "Prueba de resistencia: un auto pasa por encima del cable espiralado",
+        "badge": "Video de la prueba",
+        "replay": "Ver de nuevo"
+      },
+      "pricing": {
+        "price": "USD 235",
+        "taxLabel": "IVA Inc.",
+        "cta": "Ver el cable espiralado",
+        "secondaryCta": "Ver todos los cables"
+      },
+      "imageAlt": "Cable de carga espiralado Rayforce Tipo 2 enrollado, listo para usar en un tótem de carga público"
+    },
     "HomeStandSection": {
       "eyebrow": "COLUMNA DE INSTALACIÓN",
       "title": "Columna de instalación para cargadores Rayforce",
@@ -259,12 +439,18 @@
       "header": {
         "eyebrow": "Compatibilidad",
         "title": "¿Funciona con tu vehículo?",
-        "description": "Buscá la marca de tu vehiculo y confirmá si tu vehículo es compatible"
+        "description": "Buscá la marca de tu vehiculo y confirmá si tu vehículo es compatible",
+        "stat": "Compatible con el 99,99% del parque automotor eléctrico e híbrido enchufable de Uruguay"
       },
       "search": {
         "placeholder": "Elegí tu marca para ver eléctricos compatibles..."
       },
       "modelsLabel": "Modelos compatibles:",
+      "exclusions": {
+        "title": "Excepciones conocidas",
+        "description": "Un número muy reducido de modelos no es compatible con este cargador. Estamos confirmando el listado final.",
+        "placeholder": "Listado en revisión — próximamente"
+      },
       "cta": {
         "contactSales": "Contactar ventas",
         "whatsapp": "Hablar por WhatsApp",
@@ -588,28 +774,59 @@
     },
     "stats": {
       "bs20-bc-7kw": {
-        "power": { "label": "Potencia máxima" },
-        "protection": { "label": "Protección", "sub": "Apto uso exterior" },
-        "warranty": { "value": "1 año", "label": "Garantía" }
+        "power": {
+          "label": "Potencia máxima"
+        },
+        "protection": {
+          "label": "Protección",
+          "sub": "Apto uso exterior"
+        },
+        "warranty": {
+          "value": "1 año",
+          "label": "Garantía"
+        }
       },
       "bs20-ba-7kw": {
-        "power": { "label": "Potencia máxima" },
-        "protection": { "label": "Protección", "sub": "Apto uso exterior" },
-        "warranty": { "value": "1 año", "label": "Garantía" },
+        "power": {
+          "label": "Potencia máxima"
+        },
+        "protection": {
+          "label": "Protección",
+          "sub": "Apto uso exterior"
+        },
+        "warranty": {
+          "value": "1 año",
+          "label": "Garantía"
+        },
         "connector": {
           "title": "Toma Tipo 2",
           "description": "No incluye cable"
         }
       },
       "bs20-bc-22kw": {
-        "power": { "label": "Potencia máxima" },
-        "protection": { "label": "Protección", "sub": "Apto uso exterior" },
-        "warranty": { "value": "1 año", "label": "Garantía" }
+        "power": {
+          "label": "Potencia máxima"
+        },
+        "protection": {
+          "label": "Protección",
+          "sub": "Apto uso exterior"
+        },
+        "warranty": {
+          "value": "1 año",
+          "label": "Garantía"
+        }
       },
       "bs20-bc-11kw": {
-        "power": { "label": "Potencia nominal" },
-        "protection": { "label": "Uso interior y exterior" },
-        "warranty": { "value": "1 año", "label": "Con técnicos certificados" }
+        "power": {
+          "label": "Potencia nominal"
+        },
+        "protection": {
+          "label": "Uso interior y exterior"
+        },
+        "warranty": {
+          "value": "1 año",
+          "label": "Con técnicos certificados"
+        }
       }
     }
   },
@@ -703,6 +920,35 @@
           "description": "Cable espiralado Tipo 2 de 5m, se recoge solo y ocupa menos lugar."
         }
       }
+    },
+    "ComparisonTable": {
+      "features": {
+        "power": "Potencia",
+        "current": "Corriente y fases",
+        "connector": "Tipo de conector",
+        "length": "Largo total",
+        "conductorSection": "Sección de conductores",
+        "jacketMaterial": "Material de cubierta",
+        "contacts": "Contactos",
+        "temperatureSensor": "Sensor de temperatura",
+        "ingressProtection": "Grado de protección",
+        "mechanicalLatch": "Traba mecánica",
+        "proximityResistor": "Resistor de proximidad",
+        "certification": "Certificación",
+        "standard": "Norma",
+        "bag": "Bolso de transporte"
+      }
+    },
+    "ShopCard": {
+      "cta": "Ver detalle",
+      "specs": {
+        "length": "{length} metros de largo",
+        "straight": "Cable recto",
+        "coiled": "Cable espiralado",
+        "current": "Hasta {current}A",
+        "temperatureSensor": "Sensor de temperatura",
+        "bag": "Bolso de transporte incluido"
+      }
     }
   },
   "CableModelPage": {
@@ -717,8 +963,8 @@
       "bs-chc003-s": "Cable Espiralado Monofásico"
     },
     "titlePrefix": {
-      "bs-chc003": "Cable",
-      "bs-chc004": "Cable",
+      "bs-chc003": "Cable recto",
+      "bs-chc004": "Cable recto",
       "bs-chc003-s": "Cable espiral"
     },
     "cta": {
@@ -755,6 +1001,12 @@
         "label": "Sensor de temperatura",
         "sub": "En el conector"
       }
+    },
+    "proofVideo": {
+      "eyebrow": "Puesto a prueba",
+      "title": "Sí, un auto le puede pasar por encima",
+      "description": "Le pasamos un auto eléctrico por encima al cable espiralado. Sin rajaduras ni cables expuestos: siguió cargando sin problema.",
+      "replay": "Ver de nuevo"
     }
   },
   "CableModelHeroStats": {
@@ -781,6 +1033,114 @@
       "stat2Description": "Resiste lluvia y polvo, con ensayo renovado en 2025.",
       "stat3Title": "Espiralado",
       "stat3Description": "Se recoge solo y no queda arrastrando por el piso."
+    }
+  },
+  "EmpresasPage": {
+    "Hero": {
+      "breadcrumb": {
+        "home": "Inicio",
+        "empresas": "Empresas"
+      },
+      "eyebrow": "Proyectos llave en mano",
+      "title": "Infraestructura de carga para edificios, empresas y estacionamientos",
+      "description": "Wallbox Rayforce de 7, 11 y 22 kW para residencias, comercios y estacionamientos. Instalación certificada por UTE, equipos autorizados por URSEA y el respaldo de una empresa de ingeniería con más de 25 años en Uruguay.",
+      "ctaPrimary": "Solicitar una visita técnica",
+      "ctaSecondary": "Ver la metodología",
+      "imageAlt": "Estacionamiento de edificio con cargadores Rayforce instalados"
+    },
+    "Why": {
+      "eyebrow": "Por qué Rayforce",
+      "title": "Instalación propia.",
+      "description": "No tercerizamos la instalación. El mismo equipo que vende el cargador es el que lo instala, lo pone en marcha y responde por su funcionamiento.",
+      "items": {
+        "ownInstall": {
+          "title": "Vendemos, instalamos y garantizamos",
+          "description": "Cada equipo lo instala nuestro propio personal técnico, que responde por la instalación y su funcionamiento."
+        },
+        "engineering": {
+          "title": "Ingeniería detrás de la marca",
+          "description": "Somos la línea de carga para vehículos eléctricos de Bamibel S.A., empresa uruguaya de ingeniería con más de 25 años de trayectoria."
+        },
+        "team": {
+          "title": "Equipo propio",
+          "description": "Ingenieros, arquitectos y técnicos electricistas certificados por UTE."
+        },
+        "ursea": {
+          "title": "Autorización URSEA",
+          "description": "Nuestra línea completa de cargadores para autos y camiones está registrada ante URSEA bajo la autorización VU-SE-17-000123. El registro es público y puede consultarse."
+        },
+        "warranty": {
+          "title": "Garantía con respaldo local",
+          "description": "Un año de garantía, que atendemos directamente."
+        }
+      }
+    },
+    "Installation": {
+      "eyebrow": "Instalación",
+      "title": "La instalación define el resultado.",
+      "description": "La mayor parte de los inconvenientes con cargadores no proviene del equipo sino de la instalación. Por esa razón no la delegamos: nuestro personal técnico evalúa el tablero, dimensiona la línea y entrega el cargador en funcionamiento y verificado.",
+      "scopeTitle": "Alcance del servicio",
+      "items": {
+        "survey": "Visita técnica: evaluación de tablero, potencia contratada y recorrido del cableado",
+        "line": "Línea dedicada con las protecciones que corresponden a la instalación",
+        "mounting": "Montaje del wallbox y puesta en marcha con el vehículo del cliente",
+        "certification": "Certificación de la instalación ante UTE",
+        "app": "Configuración de la aplicación y explicación de uso"
+      }
+    },
+    "Buildings": {
+      "eyebrow": "Edificios y garajes",
+      "title": "Infraestructura de carga para el edificio completo",
+      "description": "Diseñamos y ejecutamos la infraestructura necesaria para que cada cochera pueda incorporar su cargador: adecuación del tendido, reorganización de la distribución y preparación de los puntos de conexión, de modo que sumar un cargador en el futuro sea únicamente conectarlo.",
+      "methodologyTitle": "Metodología",
+      "steps": {
+        "survey": {
+          "title": "Relevamiento",
+          "description": "Análisis de los planos y de la instalación existente, de la potencia disponible y del número de cocheras a preparar."
+        },
+        "project": {
+          "title": "Proyecto",
+          "description": "Diseño del tendido y de la distribución para el conjunto del edificio, con previsión de crecimiento."
+        },
+        "works": {
+          "title": "Obra",
+          "description": "Ejecución de las refacciones necesarias: canalizaciones, tableros y reorganización del cableado, con personal propio."
+        },
+        "commissioning": {
+          "title": "Puesta en marcha",
+          "description": "Instalación de los primeros cargadores y entrega de las restantes cocheras con su punto de conexión preparado."
+        }
+      },
+      "note": {
+        "title": "Para administraciones y comisiones de copropietarios",
+        "description": "Una única obra planificada evita intervenciones sucesivas. Cada nuevo propietario de un vehículo eléctrico se conecta sin obras adicionales ni nuevas asambleas."
+      }
+    },
+    "Business": {
+      "eyebrow": "Empresas, comercios y hotelería",
+      "title": "Carga para clientes, flotas y personal, con proyecto eléctrico",
+      "description": "Wallbox trifásicos de 11 y 22 kW, dimensionados según la potencia disponible e instalados por nuestro equipo técnico. Para supermercados, hoteles, estacionamientos y flotas corporativas.",
+      "items": {
+        "power": {
+          "title": "Cargadores de 7, 11 y 22 kW",
+          "description": "Con gestión desde aplicación móvil para monitorear sesiones y consumos."
+        },
+        "project": {
+          "title": "Proyecto eléctrico y obra a nuestro cargo",
+          "description": "Dimensionado según la potencia disponible, ejecutado por nuestro equipo técnico."
+        },
+        "column": {
+          "title": "Instalación sobre columna",
+          "description": "Para exteriores y playas de estacionamiento, sin necesidad de pared disponible."
+        }
+      }
+    },
+    "Contact": {
+      "eyebrow": "Contacto",
+      "title": "Conversemos sobre tu proyecto",
+      "description": "Contanos de qué se trata y coordinamos una visita técnica para evaluar la instalación existente y la potencia disponible.",
+      "ctaWhatsapp": "Consultar por WhatsApp",
+      "whatsappMessage": "Hola, quería consultar por infraestructura de carga para un proyecto."
     }
   }
 }
