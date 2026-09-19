@@ -29,7 +29,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/images/banners/rayforce-charging.avif"
+          src="/images/brand/rayforce-hero-2.webp"
           alt="Rayforce EV Charger"
           fetchPriority="high"
           decoding="sync"
@@ -37,7 +37,8 @@ export function HomeHeroMobile({ id }: { id?: string }) {
             h-full
             w-full
             object-cover
-            object-[63%_center]
+            object-[37%_center]
+            scale-x-[-1]
           "
         />
 
