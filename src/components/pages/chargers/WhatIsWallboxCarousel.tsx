@@ -100,16 +100,21 @@ function AutoplayProgress({ isActive }: { isActive: boolean }) {
 }
 
 /**
- * Tipografia y espaciado calcados de las tarjetas mobile de
- * `AppHighlightsStatic` (`text-xl` el titulo, `text-sm tracking-tighter` el
- * cuerpo, `p-4`, `gap-4` entre icono y texto, `mt-1` entre titulo y bajada).
- * La caja es la de la tarjeta de desktop (`border-neutral-900
- * bg-neutral-900/20`) para no meter una tercera familia visual en la pagina.
+ * Anatomia: icono + titulo en una fila, divisor, descripcion abajo.
  *
- * El icono va suelto, sin tile de fondo: a `size-8` ya tiene presencia propia y
- * la caja de color solo le agregaba peso. Lo que lo separa del titulo es una
- * regla fina a lo ancho de la tarjeta — el mismo recurso que el borde de la
- * tarjeta, asi que no introduce vocabulario nuevo.
+ * Agrupar el icono con el titulo los vuelve una sola unidad —el icono lee como
+ * marca de ese titulo y no como un elemento aparte— y el divisor separa el
+ * enunciado de su explicacion, que es la division que importa. Apilado
+ * (icono / divisor / titulo+texto) el divisor caia entre el icono y su propio
+ * titulo, separando lo que va junto.
+ *
+ * Sin uppercase, igual que el original (`AppHighlightsStatic.tsx:684` fuerza
+ * `normal-case`): estos titulos son oraciones de 32-41 caracteres, y en
+ * versalitas a ese largo el ojo pierde la forma de la palabra.
+ *
+ * El titulo ocupa 2-3 lineas en una tarjeta de 17rem, asi que el icono se
+ * alinea a la primera linea (`items-start` + `mt-0.5` optico) en vez de
+ * centrarse contra el bloque entero.
  *
  * `h-full` hace que las cuatro midan lo mismo (el alto lo fija la mas larga),
  * asi cambiar de pagina no salta.
@@ -119,20 +124,32 @@ function MobileCard({ card }: { card: WallboxCarouselCard }) {
 
   return (
     <div className="flex h-full w-[17rem] flex-col rounded-2xl border border-neutral-900 bg-neutral-900/20 p-4">
-      <Icon
-        aria-hidden="true"
-        className="size-8 shrink-0 text-green-400"
-        strokeWidth={1.6}
-      />
+      {/* Icono arriba del titulo, no al lado: la tarjeta mide 17rem y el icono
+          mas su gap se comian 40px de ancho, dejando el titulo en 200px y
+          empujandolo a 3 lineas. Apilado, el titulo usa los 240px completos.
 
-      {/* Separador: `mt-4` iguala el `gap-4` del original. */}
-      <hr className="mt-4 border-0 border-t border-neutral-800" />
+          Los dos siguen en el mismo bloque para que el divisor caiga entre el
+          enunciado y su explicacion, y no entre el icono y su propio titulo.
 
-      <h3 className="mt-4 text-xl font-medium tracking-tight text-balance text-white">
-        {card.headline}
-      </h3>
+          `min-h`: los titulos van de 2 a 3 lineas segun la tarjeta, y sin un
+          piso comun el divisor caeria a distinta altura en cada una — se nota
+          como un salto al pasar de pagina. Icono (28) + gap (12) + 2 lineas de
+          `text-xl`/`leading-snug` (55) = 95px, redondeado a 6rem. */}
+      <div className="flex min-h-[6rem] flex-col items-start gap-3">
+        <Icon
+          aria-hidden="true"
+          className="size-7 shrink-0 text-green-400"
+          strokeWidth={1.6}
+        />
 
-      <p className="mt-1 text-sm leading-relaxed tracking-tighter text-pretty text-neutral-400">
+        <h3 className="text-xl font-medium normal-case leading-snug tracking-tight text-balance text-white">
+          {card.headline}
+        </h3>
+      </div>
+
+      <hr className="mt-4 mb-4 border-0 border-t border-neutral-800" />
+
+      <p className="text-sm leading-relaxed tracking-tighter text-pretty text-neutral-400">
         {card.short}
       </p>
     </div>
