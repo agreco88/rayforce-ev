@@ -45,7 +45,32 @@ export function ChargersGrid({ id }: { id?: string }) {
         </motion.p>
       </motion.div>
 
-      <ChargersCardGrid className="mx-auto mt-12 grid max-w-[1600px] grid-cols-4 gap-6 px-4" />
+      {/* Desde `sm`: la grilla de siempre, sin tocar.
+
+          Debajo de `sm` el `grid-cols-4` no tenia breakpoint, asi que las
+          cuatro tarjetas entraban lado a lado en ~52px cada una — con su
+          plancha de foto, titulo, precio y lista de 5 items adentro.
+
+          El carousel es scroll nativo con snap (`snap-x snap-mandatory`), el
+          mismo patron que ya usaba `ChargersCarousel` en esta carpeta: sin JS,
+          sin dependencias y con la inercia nativa de iOS. La tarjeta es la
+          misma `ChargersCardGrid` — cambia el contenedor, no el contenido, asi
+          que no hay una segunda implementacion de la tarjeta que mantener. */}
+      <ChargersCardGrid className="mx-auto mt-12 hidden max-w-[1600px] gap-6 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4" />
+
+      {/* `w-[85%]`: la tarjeta siguiente se asoma, que es lo que avisa que hay
+          mas para arrastrar. `pb-2` deja aire para la sombra del hover.
+          `scroll-px-4` alinea el snap con el `px-4` del track. */}
+      <ChargersCardGrid
+        className="
+          mt-12 flex snap-x snap-mandatory gap-4
+          overflow-x-auto scroll-px-4 px-4 pb-2
+          sm:hidden
+          [scrollbar-width:none]
+          [&>*]:w-[85%] [&>*]:shrink-0 [&>*]:snap-start
+          [&::-webkit-scrollbar]:hidden
+        "
+      />
     </section>
   );
 }

@@ -80,7 +80,10 @@ export function ChargersCardGrid({ className }: Props) {
               style={getHighlightBorderStyle(product)}
             >
               {/* ── Photo plate ─────────────────────────────────── */}
-              <div className="relative flex h-[480px] w-full items-center justify-center overflow-hidden bg-white">
+              {/* 480px es la plancha de desktop; en una tarjeta de ~300px de
+                  ancho esa altura deja el producto flotando en un mar blanco,
+                  asi que en mobile baja a 320. */}
+              <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-white sm:h-[480px]">
                 <ProductHighlightRibbon product={product} className="right-4 top-4" />
                 <div
                   className="absolute inset-0 blur-2xl"
