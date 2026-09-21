@@ -3,12 +3,13 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { ShieldCheck, SmartphoneNfc } from "lucide-react";
+import { BatteryCharging, PlugZap, ShieldCheck, SmartphoneNfc } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { ChargeSpeedStatCard } from "@/components/charts/ChargeSpeedStatCard";
+import { WhatIsWallboxCarousel } from "./WhatIsWallboxCarousel";
 
 const THEME = {
   accentText: "text-green-400",
@@ -24,12 +25,18 @@ const WALLBOX_IMAGE_SRC = "/assets/images/chargers/que-es-un-wallbox.webp";
  * copy contra `whyBetter.cards.<key>` y decide su visual: el 0->100 sigue siendo
  * el anillo (es el unico que realmente cuenta un porcentaje) y el resto usa
  * icono, salvo compatibilidad, que usa el conector Tipo 2 del proyecto.
+ *
+ * `mobileIcon` es lo que muestra el carousel, que siempre usa un icono de
+ * lucide. Dos razones para no reusar el visual de desktop: el anillo tarda 3s
+ * en contar y el autoplay cambia a los 4s, asi que casi nunca se veria entero;
+ * y la mascara del conector es un bloque de 28px pensado para una tarjeta
+ * ancha. Al tile chico de mobile le va mejor un icono parejo en las cuatro.
  */
 const CARDS = [
-  { key: "safety", visual: "icon", icon: ShieldCheck },
-  { key: "speed", visual: "ring" },
-  { key: "app", visual: "icon", icon: SmartphoneNfc },
-  { key: "compatible", visual: "mask" },
+  { key: "safety", visual: "icon", icon: ShieldCheck, mobileIcon: ShieldCheck },
+  { key: "speed", visual: "ring", mobileIcon: BatteryCharging },
+  { key: "app", visual: "icon", icon: SmartphoneNfc, mobileIcon: SmartphoneNfc },
+  { key: "compatible", visual: "mask", mobileIcon: PlugZap },
 ] as const;
 
 export function WhatIsWallboxSection({ id }: { id?: string }) {
@@ -108,8 +115,12 @@ export function WhatIsWallboxSection({ id }: { id?: string }) {
           </motion.div>
         </div>
 
-        {/* Grilla 2x2: cada celda es una tarjeta con su visual y su copy. */}
-        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+        {/* Grilla 2x2: cada celda es una tarjeta con su visual y su copy.
+            Desde `sm` para arriba; abajo de eso va el carousel. El corte es el
+            mismo `sm` (640px) en el que `ChargeSpeedStatCard` invierte su
+            layout interno, asi el cambio de estructura y el de la tarjeta
+            ocurren en el mismo punto y no hay una franja intermedia rara. */}
+        <div className="hidden grid-cols-1 items-stretch gap-6 sm:grid lg:grid-cols-2 lg:gap-8">
           {CARDS.map((card, index) => (
             <motion.div
               key={card.key}
@@ -135,6 +146,25 @@ export function WhatIsWallboxSection({ id }: { id?: string }) {
               />
             </motion.div>
           ))}
+        </div>
+
+        {/* Mobile: las mismas cuatro tarjetas en carousel. El header 50/50 de
+            arriba no cambia — la foto del wallbox queda fija y esto corre
+            debajo, sin acople entre una cosa y la otra.
+
+            El `-mx-6` cancela el padding lateral de la seccion: con `overflow`
+            el carousel necesita el ancho completo del viewport para que la
+            tarjeta siguiente se asome por el borde. El padding se repone en la
+            primera tarjeta via `align="start"` + el propio gap. */}
+        <div className="-mx-6 sm:hidden">
+          <WhatIsWallboxCarousel
+            cards={CARDS.map((card) => ({
+              key: card.key,
+              icon: card.mobileIcon,
+              headline: tCards(`${card.key}.headline`),
+              short: tCards(`${card.key}.short`),
+            }))}
+          />
         </div>
       </div>
     </section>

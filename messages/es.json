@@ -253,19 +253,23 @@
         "cards": {
           "safety": {
             "headline": "El modelo mas seguro del mercado",
-            "footnote": "Trae las protecciones eléctricas incorporadas: sobrecarga, cortocircuito, sobretensión y fuga a tierra. Con certificación IP66 va a la intemperie y carga bajo la lluvia."
+            "footnote": "Trae las protecciones eléctricas incorporadas: sobrecarga, cortocircuito, sobretensión y fuga a tierra. Con certificación IP66 va a la intemperie y carga bajo la lluvia.",
+            "short": "Protecciones eléctricas incorporadas y certificación IP66: carga bajo la lluvia."
           },
           "speed": {
             "headline": "Carga de 0 a 100 en menos de 4 horas",
-            "footnote": "El cable del auto entrega 2,3 kW; el wallbox llega hasta 22 kW. Además podés fijarle el rango, para que corte al 80 % y no cargue de más."
+            "footnote": "El cable del auto entrega 2,3 kW; el wallbox llega hasta 22 kW. Además podés fijarle el rango, para que corte al 80 % y no cargue de más.",
+            "short": "Hasta 22 kW contra los 2,3 kW del cable del auto. Podés fijarle el rango."
           },
           "app": {
             "headline": "Manejalo desde la comodidad de tu celular",
-            "footnote": "Arrancás, parás y programás la carga a distancia. Podés anularlo para garajes compartidos, fijarle el rango y dejarlo cargando en el horario de tarifa llana de UTE."
+            "footnote": "Arrancás, parás y programás la carga a distancia. Podés anularlo para garajes compartidos, fijarle el rango y dejarlo cargando en el horario de tarifa llana de UTE.",
+            "short": "Arrancá, pará y programá la carga a distancia, con la tarifa llana de UTE."
           },
           "compatible": {
             "headline": "Compatible con todos los modelos del mercado uruguayo",
-            "footnote": "Conector Tipo 2, el estándar de todos los eléctricos e híbridos enchufables que se venden acá. Si cambiás de auto, el cargador te sigue sirviendo igual."
+            "footnote": "Conector Tipo 2, el estándar de todos los eléctricos e híbridos enchufables que se venden acá. Si cambiás de auto, el cargador te sigue sirviendo igual.",
+            "short": "Conector Tipo 2, el estándar de todos los eléctricos e híbridos de acá."
           },
           "socketAlt": "Conector Tipo 2"
         },

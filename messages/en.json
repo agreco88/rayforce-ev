@@ -267,19 +267,23 @@
         "cards": {
           "safety": {
             "headline": "The safest model on the market",
-            "footnote": "Electrical protections are built in: overload, short circuit, overvoltage and earth leakage. IP66-certified, so it mounts outdoors and charges in the rain."
+            "footnote": "Electrical protections are built in: overload, short circuit, overvoltage and earth leakage. IP66-certified, so it mounts outdoors and charges in the rain.",
+            "short": "Built-in electrical protections and IP66 certification: it charges in the rain."
           },
           "speed": {
             "headline": "Charge from 0 to 100 in under 4 hours",
-            "footnote": "Your car's cable delivers 2.3 kW; the wallbox goes up to 22 kW. You can also cap the range so it stops at 80% instead of overcharging."
+            "footnote": "Your car's cable delivers 2.3 kW; the wallbox goes up to 22 kW. You can also cap the range so it stops at 80% instead of overcharging.",
+            "short": "Up to 22 kW against the 2.3 kW of your car cable. You can cap the range."
           },
           "app": {
             "headline": "Run it from the comfort of your phone",
-            "footnote": "Start, stop and schedule charging remotely. Lock it for shared garages, cap the charging range and leave it running during UTE's flat-rate window."
+            "footnote": "Start, stop and schedule charging remotely. Lock it for shared garages, cap the charging range and leave it running during UTE's flat-rate window.",
+            "short": "Start, stop and schedule charging remotely, on UTE flat-rate hours."
           },
           "compatible": {
             "headline": "Works with every model on the Uruguayan market",
-            "footnote": "Type 2 connector, the standard on every EV and plug-in hybrid sold here. Change cars and the charger still works just the same."
+            "footnote": "Type 2 connector, the standard on every EV and plug-in hybrid sold here. Change cars and the charger still works just the same.",
+            "short": "Type 2 connector, the standard on every EV and plug-in hybrid sold here."
           },
           "socketAlt": "Type 2 connector"
         },
