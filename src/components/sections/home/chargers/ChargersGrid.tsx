@@ -58,16 +58,17 @@ export function ChargersGrid({ id }: { id?: string }) {
           que no hay una segunda implementacion de la tarjeta que mantener. */}
       <ChargersCardGrid className="mx-auto mt-12 hidden max-w-[1600px] gap-6 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4" />
 
-      {/* `w-[85%]`: la tarjeta siguiente se asoma, que es lo que avisa que hay
-          mas para arrastrar. `pb-2` deja aire para la sombra del hover.
-          `scroll-px-4` alinea el snap con el `px-4` del track. */}
+      {/* `w-[94%]`: la tarjeta ocupa casi todo el ancho y de la siguiente solo
+          asoma un filo — suficiente para que se lea que hay mas, sin robarle
+          ancho a la tarjeta que estas mirando. `pb-2` deja aire para la sombra
+          del hover. `scroll-px-4` alinea el snap con el `px-4` del track. */}
       <ChargersCardGrid
         className="
           mt-12 flex snap-x snap-mandatory gap-4
           overflow-x-auto scroll-px-4 px-4 pb-2
           sm:hidden
           [scrollbar-width:none]
-          [&>*]:w-[85%] [&>*]:shrink-0 [&>*]:snap-start
+          [&>*]:w-[94%] [&>*]:shrink-0 [&>*]:snap-start
           [&::-webkit-scrollbar]:hidden
         "
       />

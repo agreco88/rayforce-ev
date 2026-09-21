@@ -49,6 +49,8 @@ interface ProductPanelItem {
   slug: string;
   image: string;
   title: string;
+  /** El titulo sin la potencia concatenada; el acordeon mobile la pinta aparte. */
+  baseTitle: string;
   description: string;
   power: string;
   modelCode: string;
@@ -213,6 +215,10 @@ export function NavigationScroll() {
       // el kW ya aparece por separado. Acá es el texto del link, así que
       // suma para SEO y desambigua los dos modelos de 7kW.
       title: `${t(`chargers.${product.slug}.title`)} de ${power}`,
+      // El mismo titulo sin la potencia pegada. El acordeon mobile la pinta
+      // aparte, al final de la linea: concatenada quedaba dos veces en la
+      // misma card (una en el titulo, otra en el bloque de kW).
+      baseTitle: t(`chargers.${product.slug}.title`),
       description: t(`chargers.${product.slug}.blurb`),
       power,
       modelCode: product.modelCode,
@@ -236,6 +242,12 @@ export function NavigationScroll() {
       `type.${product.specs.cableStyle}.${product.specs.phaseType ?? "single"}`,
       { power: product.specs.maxPowerKw ?? 7 },
     ),
+    // Los cables no concatenan la potencia, asi que el titulo del acordeon es
+    // el mismo — el campo existe para que las dos listas compartan forma.
+    baseTitle: tCableShop(
+      `type.${product.specs.cableStyle}.${product.specs.phaseType ?? "single"}`,
+      { power: product.specs.maxPowerKw ?? 7 },
+    ),
     description: tCables(`variants.${product.slug}.description`),
     power: getCatalogPowerLabel(product, locale),
     modelCode: product.modelCode,
@@ -256,7 +268,7 @@ export function NavigationScroll() {
     {
       label: "Cargadores Wallbox",
       dropdown: {
-        title: "CARGADORES WALLBOX RAYFORCE",
+        title: "LINEA DE CARGADORES WALLBOX BESEN BS20",
         // Rendered from `chargerItems` instead of this list — see the panel below.
         items: [],
       },
@@ -515,11 +527,6 @@ export function NavigationScroll() {
                           }`}
                         >
                           {activeItem.dropdown.title}
-                          {productPanels[activeItem.label] && (
-                            <span className="ml-0.5 align-top text-[6px] leading-none">
-                              TM
-                            </span>
-                          )}
                         </motion.div>
 
                         {productPanels[activeItem.label] ? (
@@ -670,9 +677,15 @@ export function NavigationScroll() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-white dark:bg-neutral-950 md:hidden"
+            /* `z-[110]`, por encima del header (`z-[100]`). Con `z-50` el
+               header quedaba arriba del panel abierto: su caja fija ocupa la
+               misma franja superior que la X, asi que el tap de cerrar lo
+               interceptaba el boton de abrir que hay debajo — que llama a
+               `setIsMobileMenuOpen(true)` sobre un menu ya abierto. De ahi que
+               el menu "no cerrara". */
+            className="fixed inset-0 z-[110] flex flex-col bg-white dark:bg-neutral-950 md:hidden"
           >
-            <div className="flex items-center justify-between py-6 px-4">
+            <div className="flex shrink-0 items-center justify-between py-6 px-4">
               <HeaderLogo />
               <button
                 onClick={() => {
@@ -686,9 +699,32 @@ export function NavigationScroll() {
               </button>
             </div>
 
-            <div className="overflow-y-auto h-[calc(100vh-240px)] p-4 sm:p-6">
+            {/* `flex-1 min-h-0` en vez de `h-[calc(100vh-240px)]`: el alto
+                fijo no coincidia con el header ni con el footer reales, asi que
+                el area de scroll terminaba antes de tiempo y debajo quedaba una
+                franja del fondo del panel tapando las cards. Con el panel como
+                columna flex, esta fila toma exactamente lo que sobra. */}
+            <div className="min-h-0 flex-1 overflow-y-auto py-4 sm:py-6">
               <nav className="space-y-2">
-                {navItems.map((item, index) => (
+                {/* Con un acordeon abierto quedan los items ANTERIORES (cerrados)
+                    mas el activo, y se ocultan los posteriores.
+
+                    Ocultar tambien los de arriba hacia que el trigger activo
+                    saltara al tope del panel al abrirse: el dedo lo toca en una
+                    posicion y el contenido aparece en otra. Dejandolos, el
+                    trigger no se mueve de donde estaba y el panel crece hacia
+                    abajo, que es donde ya no hay nada que desplazar. Los
+                    posteriores si se van: con cards de ~1400px caian fuera de
+                    pantalla igual. */}
+                {navItems
+                  .filter((_item, itemIndex) => {
+                    if (mobileExpandedItem === null) return true;
+                    const expandedIndex = navItems.findIndex(
+                      (navItem) => navItem.label === mobileExpandedItem,
+                    );
+                    return itemIndex <= expandedIndex;
+                  })
+                  .map((item, index) => (
                   <motion.div
                     key={item.label}
                     initial={{ opacity: 0, x: -20 }}
@@ -706,7 +742,7 @@ export function NavigationScroll() {
                           setIsMobileMenuOpen(false);
                           setMobileExpandedItem(null);
                         }}
-                        className="w-full flex items-center px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md text-left transition-colors font-medium text-neutral-900 dark:text-neutral-100"
+                        className="w-full flex items-center px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors font-medium text-neutral-900 dark:text-neutral-100"
                       >
                         {item.label}
                       </Link>
@@ -720,7 +756,7 @@ export function NavigationScroll() {
                                 : item.label,
                             )
                           }
-                          className="w-full flex items-center justify-between px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md text-left transition-colors"
+                          className="w-full flex items-center justify-between px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors"
                         >
                           <span className="font-medium text-neutral-900 dark:text-neutral-100">
                             {item.label}
@@ -749,7 +785,20 @@ export function NavigationScroll() {
                                 }}
                                 className="overflow-hidden"
                               >
-                                <div className="pt-2 pb-1 space-y-1">
+                                {/* 2x2 cuando son cards de producto: apiladas
+                                    de a una, cuatro cards con plancha de 160px
+                                    dan ~1400px de acordeon y el item siguiente
+                                    del nav queda fuera de pantalla. La lista
+                                    simple (sin panel de productos) sigue en
+                                    una columna: son titulo + descripcion, no
+                                    entran de a dos. */}
+                                <div
+                                  className={
+                                    productPanels[item.label]
+                                      ? "grid grid-cols-2 gap-2 px-2 pt-2 pb-3"
+                                      : "space-y-1 px-2 pt-2 pb-3"
+                                  }
+                                >
                                   {productPanels[item.label]
                                     ? productPanels[item.label].map(
                                         (charger, idx) => (
@@ -761,6 +810,12 @@ export function NavigationScroll() {
                                               duration: 0.2,
                                               delay: idx * 0.03,
                                             }}
+                                            /* `h-full` para que el `h-full` de
+                                               la card resuelva contra el alto
+                                               de la fila: sin esto cada card
+                                               mide su contenido y las dos de
+                                               una fila quedan desparejas. */
+                                            className="h-full"
                                           >
                                             <Link
                                               href={charger.href}
@@ -768,57 +823,152 @@ export function NavigationScroll() {
                                                 setIsMobileMenuOpen(false);
                                                 setMobileExpandedItem(null);
                                               }}
-                                              className="flex gap-4 p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
+                                              /* Apilada, no en fila: la card
+                                                 mide ~280px y el thumb de
+                                                 96px le dejaba al titulo solo
+                                                 ~160px, que es lo que lo
+                                                 empujaba a 4 lineas — y ese
+                                                 alto era el que estiraba la
+                                                 plancha. Arriba y a todo el
+                                                 ancho, la foto respira y el
+                                                 titulo entra en 2 lineas. */
+                                              className="flex h-full flex-col gap-3 p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
                                               style={getHighlightBorderStyle(
                                                 charger.product,
                                               )}
                                             >
-                                              <div className="relative shrink-0 w-24 aspect-square rounded-lg overflow-hidden bg-white flex items-center justify-center">
+                                              {/* Alto fijo en vez de
+                                                  `aspect-square`: a todo el
+                                                  ancho, cuadrada daria ~280px
+                                                  de plancha para un item de
+                                                  acordeon que ya viene
+                                                  acompaniado de titulo, kW,
+                                                  blurb y precio. 160px alcanza
+                                                  para leer el producto sin
+                                                  comerse la lista. */}
+                                              <div className="relative h-40 w-full shrink-0 rounded-lg overflow-hidden bg-white flex items-center justify-center">
                                                 <ProductHighlightRibbon
                                                   product={charger.product}
-                                                  className="right-1 top-1 px-1.5 py-0.5 text-[8px]"
+                                                  className="right-2 top-2 px-1.5 py-0.5 text-[8px]"
                                                 />
                                                 <Image
                                                   src={charger.image}
                                                   alt=""
-                                                  width={120}
-                                                  height={120}
+                                                  width={320}
+                                                  height={320}
                                                   className="h-full w-full object-contain"
                                                 />
                                               </div>
-                                              <div className="min-w-0 flex-1 flex flex-col">
+                                              <div className="flex min-w-0 flex-col">
                                                 <span className="text-[10px] font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                                                   {charger.modelCode}
                                                 </span>
-                                                <h3 className="mt-1 text-sm font-medium text-neutral-900 dark:text-neutral-100 leading-snug">
-                                                  {charger.title}
-                                                </h3>
-                                                <GradientText
-                                                  colors={
-                                                    charger.gradientColors
-                                                  }
-                                                  className="mt-0.5 text-3xl font-thin tracking-tight"
-                                                >
-                                                  {charger.power}
-                                                </GradientText>
-                                                <p className="mt-2 mb-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                                                  {charger.description}
-                                                </p>
-                                                <div className="mt-auto pt-3 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between gap-3">
+                                                {/* `normal-case` explicito: el
+                                                    `h3` de `globals.css:153`
+                                                    aplica `uppercase` a todos
+                                                    los h3 del sitio. En
+                                                    versalitas y a 175px de
+                                                    ancho, "WALLBOX RESIDENCIAL
+                                                    MONOFASICO CON CABLE
+                                                    INTEGRADO" son 4 lineas de
+                                                    bloque solido: el ojo
+                                                    pierde la forma de cada
+                                                    palabra y no hay donde
+                                                    engancharse.
+
+                                                    Sin versalitas el texto se
+                                                    lee de un saque, asi que
+                                                    entra a `text-xs` sin
+                                                    perder legibilidad. */}
+                                                {/* La potencia cierra la misma
+                                                    linea en vez de ocupar su
+                                                    propio bloque de 3xl. El
+                                                    gradiente ya la despega de
+                                                    todo lo demas; el tamaño
+                                                    grande encima la hacia
+                                                    pelear con el titulo por
+                                                    ser lo primero que se mira,
+                                                    y ademas repetia los kW que
+                                                    el titulo ya traia pegados
+                                                    (por eso `baseTitle`). */}
+                                                {/* `text-[13px]` + `leading-relaxed`
+                                                    + `py-1`: a `text-xs` justo
+                                                    y con las lineas pegadas el
+                                                    titulo se leia apretado.
+                                                    Medio punto mas de cuerpo y
+                                                    aire entre lineas alcanzan
+                                                    sin sumar una linea mas. */}
+                                                <h3 className="mt-1 py-1 text-[13px] font-medium normal-case tracking-tight text-neutral-800 dark:text-neutral-200 leading-relaxed">
+                                                  {charger.baseTitle}{" "}
                                                   <GradientText
                                                     colors={
                                                       charger.gradientColors
                                                     }
-                                                    className="text-xl font-thin tracking-tighter"
+                                                    className="font-semibold whitespace-nowrap"
                                                   >
-                                                    USD {charger.price}
+                                                    {charger.power}
                                                   </GradientText>
+                                                </h3>
+                                                {/* Sin blurb: a 143px de
+                                                    contenido util son 5-6
+                                                    lineas de texto chico por
+                                                    card, que en un menu es mas
+                                                    de lo que nadie lee. El
+                                                    detalle esta en la pagina
+                                                    del producto.
+
+                                                    Precio y chevron vuelven a
+                                                    una fila: sin el texto
+                                                    "Mas informacion" entran
+                                                    holgados. El chevron dice
+                                                    lo mismo — la card entera
+                                                    ya es un link — y no se
+                                                    come el ancho.
+
+                                                    Precio en color plano: con
+                                                    la potencia ya pintada en
+                                                    el titulo, un segundo
+                                                    gradiente en la misma card
+                                                    le saca fuerza al primero. */}
+                                                <div className="mt-auto flex items-end justify-between gap-2 border-t border-neutral-200 dark:border-neutral-800 pt-3">
+                                                  {/* El precio vuelve al
+                                                      gradiente y sube a `xl`:
+                                                      es el dato que cierra la
+                                                      decision. El "IVA Inc."
+                                                      sale del catalogo
+                                                      (`price.taxLabel`), no
+                                                      hardcodeado — los siete
+                                                      productos ya lo traen. */}
+                                                  <span className="flex min-w-0 flex-col">
+                                                    <GradientText
+                                                      colors={
+                                                        charger.gradientColors
+                                                      }
+                                                      className="text-xl font-light tracking-tight"
+                                                    >
+                                                      USD {charger.price}
+                                                    </GradientText>
+                                                    {charger.product.price
+                                                      .taxLabel && (
+                                                      <span className="text-[10px] font-medium tracking-wide text-neutral-500 dark:text-neutral-500">
+                                                        {
+                                                          charger.product.price
+                                                            .taxLabel
+                                                        }
+                                                      </span>
+                                                    )}
+                                                  </span>
+                                                  {/* `self-center`: con el IVA
+                                                      debajo del precio, el
+                                                      `items-end` del contenedor
+                                                      dejaba el chevron a la
+                                                      altura de la letra chica
+                                                      en vez de la del precio. */}
                                                   <span
-                                                    className={`inline-flex items-center gap-1.5 text-xs font-medium ${charger.accentText}`}
+                                                    className={`inline-flex size-6 shrink-0 self-center items-center justify-center rounded-full border border-current/20 ${charger.accentText}`}
                                                     aria-hidden="true"
                                                   >
-                                                    Más información
-                                                    <ArrowRight size={14} />
+                                                    <ChevronRight size={14} />
                                                   </span>
                                                 </div>
                                               </div>
@@ -867,26 +1017,36 @@ export function NavigationScroll() {
                     )}
                   </motion.div>
                 ))}
+
+                {/* "Cotizar instalacion" como una fila mas del nav en vez de un
+                    footer fijo: el footer se comia alto del area de scroll y
+                    tapaba la ultima fila de cards. Sigue la misma regla que los
+                    demas items — con un acordeon abierto no se muestra. */}
+                {mobileExpandedItem === null && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: navItems.length * 0.05,
+                      ease: [0.4, 0, 0.2, 1],
+                    }}
+                  >
+                    <a
+                      href={buildWhatsAppHref(tNav("quoteCtaMessage"))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full flex items-center gap-2 px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors font-medium text-neutral-900 dark:text-neutral-100"
+                    >
+                      <FaWhatsapp className="size-4 text-[#25D366]" />
+                      {tNav("quoteCta")}
+                    </a>
+                  </motion.div>
+                )}
               </nav>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              className="fixed bottom-0 left-0 right-0 p-4 sm:p-6 space-y-3 bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-800"
-            >
-              <a
-                href={buildWhatsAppHref(tNav("quoteCtaMessage"))}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#25D366] hover:bg-[#1EBE5B] rounded-md text-sm font-medium tracking-tight text-neutral-950 transition-colors"
-              >
-                <FaWhatsapp className="size-4" />
-                {tNav("quoteCta")}
-              </a>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

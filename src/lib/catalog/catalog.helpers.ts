@@ -10,8 +10,25 @@ export function getAllProducts(): CatalogProduct[] {
   return [...CHARGER_PRODUCTS, ...CABLE_PRODUCTS];
 }
 
+/**
+ * Ordena dejando los productos con `highlight` ("Más vendido") primero, sin
+ * alterar el orden relativo del resto.
+ *
+ * Va acá y no reordenando el array del catálogo porque el orden es una regla
+ * de presentación, no un dato del producto: el destacado va primero en toda
+ * superficie que liste su categoría — la grilla de la home, /cargadores,
+ * /cables, el panel del header y el acordeón mobile. Poniéndolo en los getters
+ * queda en un solo lugar, y los catálogos siguen leyéndose como fichas.
+ */
+function highlightedFirst<T extends CatalogProduct>(products: T[]): T[] {
+  return [
+    ...products.filter((product) => product.highlight),
+    ...products.filter((product) => !product.highlight),
+  ];
+}
+
 export function getChargerProducts(): ChargerProduct[] {
-  return CHARGER_PRODUCTS;
+  return highlightedFirst(CHARGER_PRODUCTS);
 }
 
 export function getFeaturedChargerProducts(): ChargerProduct[] {
@@ -19,7 +36,7 @@ export function getFeaturedChargerProducts(): ChargerProduct[] {
 }
 
 export function getCableProducts(): CableProduct[] {
-  return CABLE_PRODUCTS;
+  return highlightedFirst(CABLE_PRODUCTS);
 }
 
 export function getProductBySlug(slug: string): CatalogProduct | undefined {
