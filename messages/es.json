@@ -192,7 +192,12 @@
         "eyebrow": "Wallbox Rayforce",
         "title": "¿Qué es un cargador wallbox?",
         "description": "Es un cargador de pared pensado para cargar rápido, todos los días. Es un cargador fijo que se instala en tu garaje o cochera y entrega mucha más potencia que el cable que viene con el auto: en vez de esperar toda la noche, cargás en horas.",
-        "imageAlt": "Cargador Rayforce wallbox instalado en pared",
+        "imageAlt": "Wallbox Rayforce instalado en la cochera de un edificio, con un auto enchufado",
+        "video": {
+          "cta": "Ver el wallbox en uso",
+          "loading": "Cargando video",
+          "replay": "Ver de nuevo"
+        },
         "items": {
           "fastCharging": {
             "title": "Carga hasta 10 veces más rápido",
@@ -558,13 +563,100 @@
       "title": "Columna de instalación para cargadores Rayforce",
       "description": "Instalá tu cargador en exteriores, cocheras o espacios sin pared disponible. Compatible con toda la línea BS20.",
       "specs": "Altura: 150 cm · Base: 26 × 14.5 cm",
-      "imageAlt": "Columna de instalación vacía a la izquierda con una flecha verde indicando una columna con el cargador Rayforce BS20 instalado, mostrando un diseño premium en lugar de montaje en pared",
+      "dimensions": {
+        "height": {
+          "label": "Altura",
+          "value": "150 cm"
+        },
+        "base": {
+          "label": "Base",
+          "value": "26 × 14,5 cm"
+        },
+        "description": "Se ancla al piso sobre una base compacta, así que no necesitás pared ni perforar nada del edificio ni tu casa. La altura deja el conector a la altura ideal, sin tener que hacer ningun tipo de esfuero para usarlo."
+      },
+      "contactCta": "Contactanos",
+      "contactMessage": "Hola! Tengo una consulta sobre la columna de instalación",
+      "browseChargersCta": "Ver otros cargadores disponibles",
+      "imageAlt": "Cargador Rayforce BS20 instalado sobre una columna en el exterior de un edificio, junto a un auto eléctrico estacionado",
+      "comparisonImageAlt": "Comparación entre la columna de instalación sola y la misma columna con un wallbox Rayforce BS20 y su cable montados",
       "pricing": {
         "price": "USD 159",
         "taxLabel": "IVA inc.",
         "note": "*Cargador no incluido",
         "cta": "Comprar",
         "compatibleCta": "Ver cargadores compatibles"
+      },
+      "videosTitle": "La columna en uso",
+      "video1Caption": "Instalación en exteriores",
+      "video2Caption": "Carga diaria sin pared",
+      "highlightsProgressLabel": "Ir a la tarjeta {index} de {total}",
+      "highlights": {
+        "shared": {
+          "title": "Ideal para cocheras y espacios compartidos",
+          "description": "Resuelve la carga donde no hay pared disponible: cocheras, estacionamientos de consorcio o playas descubiertas."
+        },
+        "socket": {
+          "title": "Con dummy socket Tipo 2 para guardar el conector",
+          "description": "Soporte integrado para dejar el conector guardado y protegido cuando no estás cargando. Evita que el cable quede en el piso, expuesto a la humedad o a que lo pisen."
+        },
+        "install": {
+          "title": "Prolijidad en la instalación, sin obra a la vista",
+          "description": "El cableado va por dentro de la columna: sin caños a la vista ni perforar paredes ajenas. Queda prolijo incluso en cocheras de consorcio, donde no siempre se puede intervenir la pared."
+        }
+      },
+      "pricingPanel": {
+        "title": "Precio simple. Sin sorpresas",
+        "description": "La columna se vende sola o junto al cargador. Sumá el wallbox y mirá cómo queda el precio final antes de comprar.",
+        "includes": "Incluye",
+        "detailLink": "Ver detalles",
+        "features": {
+          "column": [
+            "Columna de piso de 150 cm",
+            "Dummy socket Tipo 2 integrado",
+            "Cableado interno, sin caños a la vista",
+            "Compatible con toda la línea BS20"
+          ],
+          "charger": [
+            "Cable de carga incluido",
+            "Control remoto vía app móvil",
+            "Homologación URSEA incluida",
+            "Garantía local"
+          ],
+          "installation": [
+            "Instalación certificada por UTE",
+            "Soporte técnico",
+            "Asesoramiento técnico personalizado"
+          ],
+          "chargerModel": "Cargador Wallbox BS20-BC-7KW, 7,2kW monofásico",
+          "mobile": {
+            "column": "Columna de piso de 150 cm",
+            "charger": "Cargador Wallbox Residencial BS20-BC-7KW, 7,2kW monofásico",
+            "installation": "Instalación con técnicos certificados por UTE"
+          }
+        },
+        "toggle": {
+          "label": "Incluir cargador",
+          "columnOnly": "Solo columna",
+          "withCharger": "Columna + cargador"
+        },
+        "installationToggle": {
+          "label": "Incluir instalación",
+          "without": "Sin instalación",
+          "with": "Con instalación"
+        },
+        "fromPrefix": "Desde",
+        "taxLabel": "IVA incluido",
+        "cta": {
+          "columnOnly": "Comprar columna",
+          "withCharger": "Comprar columna + cargador",
+          "quote": "Cotizar instalación",
+          "whatsappMessage": "Hola! Quiero cotizar la columna con el cargador BS20-BC-7KW y la instalación"
+        },
+        "footnote": {
+          "columnOnly": "Solo la columna. Si ya tenés un wallbox BS20, esto es todo lo que te falta para montarlo.",
+          "withCharger": "Columna y cargador juntos, listos para instalar. Podés montarlo vos o sumar la instalación certificada.",
+          "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
+        }
       }
     },
     "InstallationSection": {

@@ -192,7 +192,12 @@
         "eyebrow": "Rayforce wallbox",
         "title": "What is a wallbox?",
         "description": "A wall-mounted charger built for fast, everyday charging. It's a fixed charger installed in your garage that delivers far more power than the cable that comes with your car: instead of waiting all night, you charge in a couple of hours.",
-        "imageAlt": "Rayforce wallbox charger mounted on a wall",
+        "imageAlt": "Rayforce wallbox installed in an apartment building garage, with a car plugged in",
+        "video": {
+          "cta": "See the wallbox in use",
+          "loading": "Loading video",
+          "replay": "Replay"
+        },
         "items": {
           "fastCharging": {
             "title": "Charges up to 10 times faster",
@@ -558,13 +563,100 @@
       "title": "Installation stand for Rayforce chargers",
       "description": "Install your charger outdoors, in garages, or wherever a wall isn't available. Compatible with the full BS20 lineup.",
       "specs": "Height: 150 cm · Base: 26 × 14.5 cm",
-      "imageAlt": "Empty installation stand on the left with a green arrow pointing to a Rayforce BS20 charger installed on a stand, showing a premium finish instead of a wall-mounted setup",
+      "dimensions": {
+        "height": {
+          "label": "Height",
+          "value": "150 cm"
+        },
+        "base": {
+          "label": "Base",
+          "value": "26 × 14.5 cm"
+        },
+        "description": "It anchors to the floor on a compact base, so you need no wall and no drilling into the building. The height keeps the connector within easy reach, with no bending down."
+      },
+      "contactCta": "Contact us",
+      "contactMessage": "Hi! I have a question about the installation stand",
+      "browseChargersCta": "See other available chargers",
+      "imageAlt": "Rayforce BS20 charger installed on a stand outside an office building, next to a parked electric car",
+      "comparisonImageAlt": "Comparison between the bare installation stand and the same stand with a Rayforce BS20 wallbox and its cable mounted",
       "pricing": {
         "price": "USD 159",
         "taxLabel": "VAT incl.",
         "note": "*Charger not included",
         "cta": "Buy now",
         "compatibleCta": "See compatible chargers"
+      },
+      "videosTitle": "The stand in use",
+      "video1Caption": "Outdoor installation",
+      "video2Caption": "Daily charging without a wall",
+      "highlightsProgressLabel": "Go to card {index} of {total}",
+      "highlights": {
+        "shared": {
+          "title": "Ideal for garages and shared spaces",
+          "description": "Solves charging where no wall is available: garages, shared building parking, or open-air lots."
+        },
+        "socket": {
+          "title": "With a Type 2 dummy socket to store the connector",
+          "description": "Built-in holder to keep the connector stored and protected when you are not charging. Keeps the cable off the ground, away from moisture and foot traffic."
+        },
+        "install": {
+          "title": "A tidy installation, with no exposed work",
+          "description": "Wiring runs inside the stand: no exposed conduit and no drilling into shared walls. It stays tidy even in shared building garages, where touching the wall is not always an option."
+        }
+      },
+      "pricingPanel": {
+        "title": "Build your setup",
+        "description": "The stand is sold on its own or together with the charger. Add the wallbox and see the final price before you buy.",
+        "includes": "Includes",
+        "detailLink": "See details",
+        "features": {
+          "column": [
+            "150 cm floor stand",
+            "Built-in Type 2 dummy socket",
+            "Internal wiring, no exposed conduit",
+            "Compatible with the full BS20 lineup"
+          ],
+          "charger": [
+            "Charging cable included",
+            "Remote control via mobile app",
+            "URSEA certification included",
+            "Local warranty"
+          ],
+          "installation": [
+            "UTE-certified installation",
+            "Technical support",
+            "Personalized technical advice"
+          ],
+          "chargerModel": "BS20-BC-7KW Wallbox charger, 7.2kW single-phase",
+          "mobile": {
+            "column": "150 cm floor stand",
+            "charger": "BS20-BC-7KW Residential Wallbox charger, 7.2kW single-phase",
+            "installation": "Installation by UTE-certified technicians"
+          }
+        },
+        "toggle": {
+          "label": "Include charger",
+          "columnOnly": "Stand only",
+          "withCharger": "Stand + charger"
+        },
+        "installationToggle": {
+          "label": "Include installation",
+          "without": "No installation",
+          "with": "With installation"
+        },
+        "fromPrefix": "From",
+        "taxLabel": "VAT included",
+        "cta": {
+          "columnOnly": "Buy the stand",
+          "withCharger": "Buy stand + charger",
+          "quote": "Get an installation quote",
+          "whatsappMessage": "Hi! I'd like a quote for the stand with the BS20-BC-7KW charger and installation"
+        },
+        "footnote": {
+          "columnOnly": "The stand on its own. If you already own a BS20 wallbox, this is all you need to mount it.",
+          "withCharger": "Stand and charger together, ready to install. Mount it yourself or add certified installation.",
+          "withInstallation": "The final price depends on the distance to the electrical panel, and whether civil works or an upgrade to the existing installation are required."
+        }
       }
     },
     "InstallationSection": {
