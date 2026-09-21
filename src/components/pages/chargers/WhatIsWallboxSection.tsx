@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { BatteryCharging, PlugZap, ShieldCheck, SmartphoneNfc } from "lucide-react";
@@ -10,6 +9,7 @@ import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { ChargeSpeedStatCard } from "@/components/charts/ChargeSpeedStatCard";
 import { WhatIsWallboxCarousel } from "./WhatIsWallboxCarousel";
+import { WallboxDemoVideo } from "./WallboxDemoVideo";
 
 const THEME = {
   accentText: "text-green-400",
@@ -17,8 +17,12 @@ const THEME = {
 
 const SOCKET_TYPE_2_SRC = "/images/icons/socket-type-2.svg";
 
-/** Foto del wallbox instalado. El alt sale de `whatIsIt.imageAlt`. */
-const WALLBOX_IMAGE_SRC = "/assets/images/chargers/que-es-un-wallbox.webp";
+/**
+ * Foto del wallbox instalado. El alt sale de `whatIsIt.imageAlt`. Hace de thumb
+ * y de `poster` del video de demo, asi el click no produce ningun salto.
+ */
+const WALLBOX_IMAGE_SRC =
+  "/assets/images/chargers/wallbox-shared-space-building-apartment-complex.webp";
 
 /**
  * Los cuatro argumentos de la grilla, en orden de lectura. Cada uno resuelve su
@@ -101,16 +105,19 @@ export function WhatIsWallboxSection({ id }: { id?: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            /* `16/9`: es la proporcion nativa del archivo (1672x941), asi que
-               el `object-cover` no recorta nada. */
+            /* `16/9`: es la proporcion nativa de la foto (1672x941) y la del
+               video (1280x720), asi que el `object-cover` no recorta ninguno
+               de los dos ni hay salto al pasar de uno al otro. */
             className="relative aspect-video overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-neutral-800"
           >
-            <Image
-              src={WALLBOX_IMAGE_SRC}
-              alt={t("whatIsIt.imageAlt")}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+            <WallboxDemoVideo
+              posterSrc={WALLBOX_IMAGE_SRC}
+              posterAlt={t("whatIsIt.imageAlt")}
+              labels={{
+                cta: t("whatIsIt.video.cta"),
+                loading: t("whatIsIt.video.loading"),
+                replay: t("whatIsIt.video.replay"),
+              }}
             />
           </motion.div>
         </div>
