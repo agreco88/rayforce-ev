@@ -24,6 +24,15 @@ import { cn } from "@/lib/utils";
 /** Cuanto dura cada tarjeta antes de pasar a la siguiente. */
 const STEP_DURATION = 4;
 
+/**
+ * Padding lateral de la seccion en mobile (`px-6` = 24px). El carousel sangra
+ * hasta el borde del viewport para que la tarjeta siguiente se asome, pero la
+ * primera tiene que arrancar exactamente donde arranca la foto del wallbox de
+ * arriba — si no, la columna se rompe. Por eso el contenedor cancela el padding
+ * (`-mx-6`, del lado de la seccion) y aca se repone solo al contenido.
+ */
+const SECTION_PADDING_PX = 24;
+
 export type WallboxCarouselCard = {
   key: string;
   icon: LucideIcon;
@@ -61,26 +70,29 @@ function AutoplayProgress({ isActive }: { isActive: boolean }) {
   }, [isActive, nextPage, progress, currentPage]);
 
   return (
-    <div className="mt-6 flex items-center justify-center gap-2">
+    /* Mismo inset lateral que las tarjetas: las barras tienen que caer dentro
+       de la misma columna que la foto de arriba, no a lo ancho del viewport. */
+    <div
+      className="mt-6 flex w-full gap-1.5"
+      style={{ paddingInline: SECTION_PADDING_PX }}
+    >
       {Array.from({ length: totalPages }, (_, index) => (
         <button
           key={index}
           type="button"
           onClick={() => gotoPage(index)}
           aria-label={`Ir a la tarjeta ${index + 1} de ${totalPages}`}
-          className="group h-4 flex-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-400"
+          className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-400"
         >
-          <span className="relative block h-1 overflow-hidden rounded-full bg-neutral-800">
-            {index < currentPage ? (
-              /* Ya pasadas: llenas y quietas. */
-              <span className="absolute inset-0 rounded-full bg-green-400" />
-            ) : index === currentPage ? (
-              <motion.span
-                className="absolute inset-0 origin-left rounded-full bg-green-400"
-                style={{ scaleX: progress, willChange: "transform" }}
-              />
-            ) : null}
-          </span>
+          {index < currentPage ? (
+            /* Ya pasadas: llenas y quietas. */
+            <span className="absolute inset-0 rounded-full bg-green-400" />
+          ) : index === currentPage ? (
+            <motion.span
+              className="absolute inset-0 origin-left rounded-full bg-green-400"
+              style={{ scaleX: progress, willChange: "transform" }}
+            />
+          ) : null}
         </button>
       ))}
     </div>
@@ -88,30 +100,39 @@ function AutoplayProgress({ isActive }: { isActive: boolean }) {
 }
 
 /**
- * Misma familia visual que la tarjeta de desktop (`ChargeSpeedStatCard`:
- * `rounded-2xl border border-neutral-900 bg-neutral-900/20`), pero en vertical
- * y con el icono chico: acá el icono es acento, no el elemento principal.
+ * Tipografia y espaciado calcados de las tarjetas mobile de
+ * `AppHighlightsStatic` (`text-xl` el titulo, `text-sm tracking-tighter` el
+ * cuerpo, `p-4`, `gap-4` entre icono y texto, `mt-1` entre titulo y bajada).
+ * La caja es la de la tarjeta de desktop (`border-neutral-900
+ * bg-neutral-900/20`) para no meter una tercera familia visual en la pagina.
  *
- * `h-full` + el alto minimo del contenedor hacen que las cuatro midan lo mismo,
- * asi cambiar de pagina no salta de alto.
+ * El icono va suelto, sin tile de fondo: a `size-8` ya tiene presencia propia y
+ * la caja de color solo le agregaba peso. Lo que lo separa del titulo es una
+ * regla fina a lo ancho de la tarjeta — el mismo recurso que el borde de la
+ * tarjeta, asi que no introduce vocabulario nuevo.
+ *
+ * `h-full` hace que las cuatro midan lo mismo (el alto lo fija la mas larga),
+ * asi cambiar de pagina no salta.
  */
 function MobileCard({ card }: { card: WallboxCarouselCard }) {
   const Icon = card.icon;
 
   return (
-    <div className="flex h-full w-[17rem] flex-col rounded-2xl border border-neutral-900 bg-neutral-900/20 p-6">
-      <span
+    <div className="flex h-full w-[17rem] flex-col rounded-2xl border border-neutral-900 bg-neutral-900/20 p-4">
+      <Icon
         aria-hidden="true"
-        className="mb-5 grid size-11 shrink-0 place-items-center rounded-xl border border-green-400/20 bg-green-400/10"
-      >
-        <Icon className="size-5 text-green-400" />
-      </span>
+        className="size-8 shrink-0 text-green-400"
+        strokeWidth={1.6}
+      />
 
-      <p className="text-base font-medium leading-snug tracking-tight text-balance text-white">
+      {/* Separador: `mt-4` iguala el `gap-4` del original. */}
+      <hr className="mt-4 border-0 border-t border-neutral-800" />
+
+      <h3 className="mt-4 text-xl font-medium tracking-tight text-balance text-white">
         {card.headline}
-      </p>
+      </h3>
 
-      <p className="mt-2.5 text-sm leading-relaxed text-pretty text-neutral-400">
+      <p className="mt-1 text-sm leading-relaxed tracking-tighter text-pretty text-neutral-400">
         {card.short}
       </p>
     </div>
@@ -139,9 +160,12 @@ export function WhatIsWallboxCarousel({
         loop
         align="start"
         /* `overflow`: las tarjetas sangran hasta el borde del viewport, asi la
-           siguiente se asoma y se lee que hay mas para arrastrar. El padding
-           lateral de la seccion sigue marcando donde arranca la primera. */
+           siguiente se asoma y se lee que hay mas para arrastrar. */
         overflow
+        /* El padding va en el track y no en el contenedor: asi la primera
+           tarjeta cae alineada con la foto de arriba y las demas siguen
+           pudiendo salirse por el borde. */
+        style={{ paddingInline: SECTION_PADDING_PX }}
       >
         <AutoplayProgress isActive={isInView} />
       </Carousel>
