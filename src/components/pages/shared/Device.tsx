@@ -11,20 +11,34 @@ type Props = {
   direction?: number;
 };
 
+/** Frame's intrinsic box: w-[280px] at aspect-[9/19]. */
+const DEVICE_WIDTH = 280;
+const DEVICE_HEIGHT = (DEVICE_WIDTH * 19) / 9;
+
 export default function Device({
   image,
   className,
   scale = 1,
   direction = 1,
 }: Props) {
+  // scale() paints large but leaves the unscaled box in the layout, so a
+  // scaled-up device overflows its slot and covers whatever follows it.
+  // Sizing the outer div to the scaled dimensions and scaling from the top
+  // left keeps layout and paint in sync, so siblings below sit clear of it.
   return (
     <div
       className={cn("relative", className)}
       style={{
-        transform: `scale(${scale})`,
-        transformOrigin: "center",
+        width: DEVICE_WIDTH * scale,
+        height: DEVICE_HEIGHT * scale,
       }}
     >
+      <div
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+        }}
+      >
       <div
         className="
           relative
@@ -80,6 +94,7 @@ export default function Device({
         {/* Frame */}
         <div className="absolute inset-0 border-[3px] border-[#484848] rounded-[3rem]" />
         <div className="absolute inset-[4px] border-[10px] border-black rounded-[2.8rem]" />
+        </div>
       </div>
     </div>
   );

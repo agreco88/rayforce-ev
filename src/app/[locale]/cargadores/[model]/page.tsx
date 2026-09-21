@@ -60,7 +60,7 @@ export default async function ChargerDetailPage({ params }: Props) {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `Rayforce ${product.publicName}`,
+    name: `Rayforce ${product.familyName} ${t(`variants.${product.slug}.fullName`)}`,
     sku: product.modelCode,
     mpn: product.modelCode,
     brand: { "@type": "Brand", name: "Rayforce" },
@@ -89,7 +89,7 @@ export default async function ChargerDetailPage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 3,
-        name: product.publicName,
+        name: t(`variants.${product.slug}.fullName`),
         item: `${SITE.baseUrl}/cargadores/${model}`,
       },
     ],
@@ -128,14 +128,14 @@ export default async function ChargerDetailPage({ params }: Props) {
           </div>
         </div>
       </div>
+      {/* Pricing + social proof */}
+      <ChargerPricingSection product={product} id="precios" />
       {/* App Highlights (includes wallbox intro + certification blocks) */}
       <div className="">
         <AppHighlightsInteractive theme={product.theme} />
       </div>
       {/* Compatibility */}
       <CompatibilitySection theme={product.theme} id="compatibilidad" />
-      {/* Pricing + social proof */}
-      <ChargerPricingSection product={product} id="precios" />
       <RayforceComparison
         theme={product.theme}
         powerKw={product.specs.maxPowerKw}

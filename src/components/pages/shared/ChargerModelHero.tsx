@@ -68,7 +68,7 @@ export function ChargerModelHero({ product }: Props) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-col gap-12 relative min-h-screen z-20 flex-1 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 h-[1000px] justify-center items-start"
+        className="flex flex-col gap-12 relative z-20 flex-1 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 pt-40 pb-24 lg:pt-56 lg:pb-32 justify-center items-start"
       >
         <div className="flex w-full items-center gap-12 lg:gap-20">
           {/* LEFT */}
@@ -237,7 +237,7 @@ export function ChargerModelHero({ product }: Props) {
             </div>
 
             {/* Spacer accounting for the cable/toma overhang below the frame,
-                so the whole charger graphic centers on the section's min-h-screen */}
+                so the whole charger graphic centers within the section */}
             <div
               aria-hidden="true"
               className={

@@ -7,9 +7,15 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 const logoMotion = {
   initial: { opacity: 0, y: 0 },
   animate: { opacity: 1, y: 0 },
+  transition: { duration: 2, ease: [0.16, 1, 0.3, 1] as const },
+};
+
+/** El logo del footer conserva el scale; el del header no, para que no baile
+ *  contra los chips de la fila. */
+const footerLogoMotion = {
+  ...logoMotion,
   whileHover: { scale: 1.05 },
   whileTap: { scale: 0.95 },
-  transition: { duration: 2, ease: [0.16, 1, 0.3, 1] as const },
 };
 
 function useLogoClick() {
@@ -25,7 +31,11 @@ function useLogoClick() {
   };
 }
 
-export default function HeaderLogo() {
+/** Relacion de aspecto del wordmark: 165 x 26. Los tamaños salen de acá para
+ *  que no se deforme al cambiar el ancho. */
+const LOGO_RATIO = 26 / 165;
+
+export default function HeaderLogo({ width = 120 }: { width?: number }) {
   const handleClick = useLogoClick();
 
   return (
@@ -35,12 +45,13 @@ export default function HeaderLogo() {
       aria-label="Ir al inicio"
       className="flex items-center gap-2 cursor-pointer"
     >
+      {/* Opacidad plena: al 85% quedaba por detras de los chips del nav. */}
       <Image
         src="/images/brand/rayforce-logo.webp"
-        className="invert opacity-85 saturate-0"
+        className="invert saturate-0"
         alt="Rayforce"
-        width={125}
-        height={20}
+        width={width}
+        height={Math.round(width * LOGO_RATIO)}
         priority
       />
     </motion.button>
@@ -52,7 +63,7 @@ export function FooterLogo() {
 
   return (
     <motion.button
-      {...logoMotion}
+      {...footerLogoMotion}
       onClick={handleClick}
       aria-label="Ir al inicio"
       className="flex items-center gap-2 cursor-pointer"

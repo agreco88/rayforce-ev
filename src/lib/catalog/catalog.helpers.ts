@@ -42,6 +42,27 @@ export function isThreePhase(product: ChargerProduct): boolean {
   return product.specs.phaseType === "three";
 }
 
-export function getPowerLabel(product: ChargerProduct): string {
-  return `${product.specs.maxPowerKw}kW`;
+/**
+ * Formats a power value for display. Spanish uses a decimal comma ("7,2kW"),
+ * English a decimal point ("7.2kW"); integers render unchanged in both.
+ */
+export function formatPowerKw(powerKw: number, locale?: string): string {
+  const value = String(powerKw);
+  return locale?.startsWith("es") ? value.replace(".", ",") : value;
+}
+
+export function getPowerLabel(product: ChargerProduct, locale?: string): string {
+  return `${formatPowerKw(product.specs.maxPowerKw, locale)}kW`;
+}
+
+export function getCatalogPowerLabel(
+  product: CatalogProduct,
+  locale?: string,
+): string {
+  return `${formatPowerKw(product.specs.maxPowerKw ?? 0, locale)}kW`;
+}
+
+/** Products carrying a commercial badge ("Más vendido", …), in catalog order. */
+export function getHighlightedProducts(): CatalogProduct[] {
+  return getAllProducts().filter((product) => product.highlight);
 }

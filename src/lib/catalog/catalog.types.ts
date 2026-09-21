@@ -12,7 +12,7 @@ export type PhaseType = "single" | "three";
 export type MountType = "wall" | "pole";
 export type CableType = "integrated" | "socket";
 export type ConnectorType = "type_2";
-export type ChargerTier = "residential" | "commercial";
+export type ChargerTier = "residential" | "commercial" | "industrial";
 
 export type ChargerSpecs = {
   maxPowerKw: number;
@@ -93,6 +93,16 @@ export type CatalogTheme = {
   gradientColors: [string, string, string];
 };
 
+/**
+ * Commercial highlight ("Más vendido", "Más popular", …) shown as a ribbon or
+ * accent on any surface that lists the product. `labelKey` resolves under
+ * `Catalog.highlights` in messages/{locale}.json, so the copy stays translated
+ * and swapping a product's label never touches a component.
+ */
+export type ProductHighlight = {
+  labelKey: "bestSeller" | "mostPopular" | "newArrival";
+};
+
 export type ChargerVisualProps = {
   powerKw: number;
   variant: "residential" | "pro";
@@ -108,7 +118,10 @@ type ProductBase = {
   modelCode: string;
   publicName: string;
   shortName: string;
+  /** Internal ranking flag: sitemap priority and the comparison table's emphasized column. */
   featured?: boolean;
+  /** Commercial badge shown to users. Independent of `featured` — set it per product. */
+  highlight?: ProductHighlight;
 
   price: PriceDefinition;
   badges?: string[];

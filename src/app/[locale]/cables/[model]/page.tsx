@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { CableModelHero } from "@/components/pages/shared/CableModelHero";
 import { CableModelHeroMobile } from "@/components/pages/shared/CableModelHeroMobile";
 import { CableModelStats } from "@/components/pages/shared/CableModelStats";
+import { CablePricingSection } from "@/components/pages/shared/CablePricingSection";
 import { CableProofVideoSection } from "@/components/pages/shared/CableProofVideoSection";
+import { CableWhatsAppCtaSection } from "@/components/pages/shared/CableWhatsAppCtaSection";
+import { CablesComparisonTable } from "@/components/sections/home/chargers/charger-comparison/CablesComparisonTable";
 
 import { getCableProductBySlug, getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
@@ -95,7 +98,7 @@ export default async function CableDetailPage({ params }: Props) {
   /* ---------------- Render ---------------- */
 
   return (
-    <section className="relative w-full z-0  overflow-hidden border-b border-neutral-900">
+    <section className="relative w-full z-0 overflow-hidden border-b border-neutral-900 bg-[#0a0a0a]">
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
       {/* Hero */}
@@ -111,6 +114,17 @@ export default async function CableDetailPage({ params }: Props) {
       {product.slug === "bs-chc003-s" && (
         <CableProofVideoSection theme={product.theme} />
       )}
+      {/* Pricing — cable, or bundled with wallbox + installation */}
+      <CablePricingSection product={product} id="precio" />
+      {/* Comparison table — highlights the currently viewed model */}
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0">
+        <CablesComparisonTable
+          products={getCableProducts()}
+          selectedSlug={product.slug}
+        />
+      </div>
+      {/* WhatsApp CTA */}
+      <CableWhatsAppCtaSection product={product} />
       <Footer />
       <ScrollDepthTracker page={`cable_${model}`} />
     </section>

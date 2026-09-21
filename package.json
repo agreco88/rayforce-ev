@@ -27,7 +27,7 @@
     "lucide-react": "^0.545.0",
     "mathjs": "^14.9.1",
     "motion": "^12.23.24",
-    "motion-plus": "^1.5.1",
+    "motion-plus": "npm:@motionplus/core@^2.12.0",
     "next": "15.5.9",
     "next-intl": "^4.3.12",
     "ogl": "^1.0.11",

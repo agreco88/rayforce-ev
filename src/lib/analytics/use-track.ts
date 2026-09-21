@@ -84,8 +84,8 @@ export function useTrack() {
       trackEvent("mobile_nav_link_clicked", { label, destination, locale });
     },
 
-    productsFlyoutOpened() {
-      trackEvent("products_flyout_opened", { locale });
+    productsFlyoutOpened(category: string) {
+      trackEvent("products_flyout_opened", { category, locale });
     },
 
     productsFlyoutLinkClicked(charger: string, destination: string) {
@@ -125,7 +125,7 @@ export function useTrack() {
     },
 
     mercadopagoClick(params: {
-      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section";
+      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section" | "cable_pricing_section";
       charger: string;
       location: "desktop" | "mobile";
     }) {
@@ -142,6 +142,10 @@ export function useTrack() {
 
     pricingColumnToggled(charger: string, included: boolean) {
       trackEvent("pricing_column_toggled", { charger, included, locale });
+    },
+
+    pricingWallboxToggled(cable: string, included: boolean) {
+      trackEvent("pricing_wallbox_toggled", { charger: cable, included, locale });
     },
 
     socialProofReviewClicked(charger: string, review_id: string) {

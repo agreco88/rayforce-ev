@@ -79,7 +79,7 @@ export type AnalyticsEventMap = {
   mobile_nav_link_clicked: { label: string; destination: string; locale: string }
 
   /** User hovered the desktop Products flyout open */
-  products_flyout_opened: { locale: string }
+  products_flyout_opened: { category: string; locale: string }
 
   /** User clicked a product inside the desktop Products flyout */
   products_flyout_link_clicked: { charger: string; destination: string; locale: string }
@@ -110,7 +110,7 @@ export type AnalyticsEventMap = {
 
   /** User clicked a MercadoPago buy button */
   mercadopago_click: {
-    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section"
+    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section" | "cable_pricing_section"
     charger: string
     location: "desktop" | "mobile"
     locale: string
@@ -132,6 +132,13 @@ export type AnalyticsEventMap = {
 
   /** User toggled the "Sin columna / Con columna" switch on the pricing section */
   pricing_column_toggled: {
+    charger: string
+    included: boolean
+    locale: string
+  }
+
+  /** User toggled the "include wallbox" switch on the cable pricing section */
+  pricing_wallbox_toggled: {
     charger: string
     included: boolean
     locale: string

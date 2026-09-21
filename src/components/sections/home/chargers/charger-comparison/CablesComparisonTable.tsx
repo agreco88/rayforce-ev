@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { useTranslations } from "next-intl";
 
 import HeaderLogo from "@/components/layout/header/header-logo";
@@ -9,6 +10,7 @@ import type { CableProduct } from "@/lib/catalog/catalog.types";
 
 type Props = {
   products: CableProduct[];
+  selectedSlug?: string;
 };
 
 const FEATURE_KEYS = [
@@ -34,6 +36,7 @@ function getFeatureValue(
   product: CableProduct,
   key: FeatureKey,
   tSpecs: (key: string) => string,
+  tCables: (key: string) => string,
 ) {
   const { specs } = product;
   switch (key) {
@@ -42,11 +45,13 @@ function getFeatureValue(
     case "current":
       return specs.maxCurrentA
         ? `${specs.maxCurrentA}A, ${
-            specs.phaseType === "three" ? tSpecs("phase.three") : tSpecs("phase.single")
+            specs.phaseType === "three"
+              ? tSpecs("phase.three")
+              : tSpecs("phase.single")
           }`
         : undefined;
     case "connector":
-      return tSpecs("connector.type2");
+      return tCables("features.connectorEnds");
     case "length":
       return `${specs.lengthM}m`;
     case "conductorSection":
@@ -62,7 +67,9 @@ function getFeatureValue(
     case "mechanicalLatch":
       return specs.mechanicalLatch;
     case "proximityResistor":
-      return specs.proximityResistorOhm ? `${specs.proximityResistorOhm} Ω` : undefined;
+      return specs.proximityResistorOhm
+        ? `${specs.proximityResistorOhm} Ω`
+        : undefined;
     case "certification":
       return specs.certification;
     case "standard":
@@ -72,40 +79,61 @@ function getFeatureValue(
   }
 }
 
-export function CablesComparisonTable({ products }: Props) {
+export function CablesComparisonTable({ products, selectedSlug }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection.ComparisonTable");
   const tCables = useTranslations("CablesPage.ComparisonTable");
   const tSpecs = useTranslations("Common.Specs");
 
   const gridTemplateColumns = `220px repeat(${products.length}, minmax(170px, 1fr))`;
 
+  const selectedColumnClass = "relative z-20";
+  const selectedColumnStyle: CSSProperties = {
+    backgroundColor: "rgba(251,191,36,0.06)",
+    boxShadow:
+      "inset 2px 0 0 0 rgba(251,191,36,0.6), inset -2px 0 0 0 rgba(251,191,36,0.6)",
+  };
+
   return (
-    <div className="mx-auto my-32 w-full max-w-[1600px] px-4 sm:px-6">
+    <div className="my-32 w-full">
+      <h2 className="mb-6 text-2xl font-semibold tracking-tight text-white">
+        {tCables("title")}
+      </h2>
       <div className="w-full overflow-x-auto rounded-2xl border border-neutral-900">
-        <div
-          className="grid min-w-[900px] divide-x divide-neutral-900"
-          style={{ gridTemplateColumns }}
-        >
+        <div className="grid min-w-[900px]" style={{ gridTemplateColumns }}>
           {/* -------------------------------------------------------------- */}
           {/* Product images                                                 */}
           {/* -------------------------------------------------------------- */}
 
-          <div className="sticky left-0 z-10 border-r border-neutral-900 bg-neutral-950" />
+          <div className="sticky left-0 z-10 border-r border-neutral-900 bg-neutral-900" />
 
-          {products.map((product) => (
-            <div
-              key={`image-${product.slug}`}
-              className="relative flex h-80 items-center justify-center bg-neutral-950 p-4"
-            >
-              <Image
-                src={product.heroImage}
-                alt=""
-                width={400}
-                height={400}
-                className="h-full w-full object-contain"
-              />
-            </div>
-          ))}
+          {products.map((product, index) => {
+            const isSelected = product.slug === selectedSlug;
+            const isLast = index === products.length - 1;
+            return (
+              <div
+                key={`image-${product.slug}`}
+                className={`flex h-56 items-center justify-start border-neutral-900 bg-neutral-900 pl-6 ${
+                  isLast ? "" : "border-r"
+                } ${isSelected ? "relative z-20" : ""}`}
+                style={
+                  isSelected
+                    ? {
+                        boxShadow:
+                          "inset 2px 0 0 0 rgba(251,191,36,0.6), inset -2px 0 0 0 rgba(251,191,36,0.6)",
+                      }
+                    : undefined
+                }
+              >
+                <Image
+                  src={product.heroImage}
+                  alt=""
+                  width={260}
+                  height={260}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            );
+          })}
 
           {/* -------------------------------------------------------------- */}
           {/* Header                                                         */}
@@ -115,24 +143,27 @@ export function CablesComparisonTable({ products }: Props) {
             <HeaderLogo />
           </div>
 
-          {products.map((product) => (
-            <div
-              key={product.slug}
-              className="flex flex-col gap-2 border-t border-neutral-900 bg-neutral-950 py-8 text-center shadow"
-            >
-              <span className="font-light uppercase tracking-wide text-white">
-                {product.shortName}
-              </span>
-              <span
-                className={`text-4xl font-thin tracking-tighter sm:text-5xl ${product.theme.accentText}`}
+          {products.map((product, index) => {
+            const isSelected = product.slug === selectedSlug;
+            const isLast = index === products.length - 1;
+            return (
+              <div
+                key={product.slug}
+                className={`flex flex-col items-start gap-2 border-t border-neutral-900 bg-neutral-950 py-8 pl-6 text-left ${
+                  isLast ? "" : "border-r"
+                } ${isSelected ? selectedColumnClass : ""}`}
+                style={isSelected ? selectedColumnStyle : undefined}
               >
-                USD {product.price.amount}
-              </span>
-              <span className="text-[11px] font-thin text-neutral-400">
-                {t("taxLabel")}
-              </span>
-            </div>
-          ))}
+                <span
+                  className={`text-lg font-semibold ${
+                    isSelected ? "text-amber-300" : "text-white"
+                  }`}
+                >
+                  {product.publicName}
+                </span>
+              </div>
+            );
+          })}
 
           {/* -------------------------------------------------------------- */}
           {/* Features                                                       */}
@@ -140,43 +171,111 @@ export function CablesComparisonTable({ products }: Props) {
 
           {FEATURE_KEYS.map((key) => (
             <div key={key} className="contents">
-              <div className="sticky left-0 z-10 flex items-center border-t border-neutral-900 bg-neutral-950 p-4 pl-8 text-sm text-neutral-400">
+              <div className="sticky left-0 z-10 flex items-center border-r border-t border-neutral-900 bg-neutral-950 p-4 pl-8 text-sm text-neutral-400">
                 {tCables(`features.${key}`)}
               </div>
 
-              {products.map((product) => (
-                <div
-                  key={product.slug + key}
-                  className="flex items-center justify-center border-t border-neutral-900 bg-neutral-950 p-4 text-center"
-                >
-                  {renderFeatureValue(
-                    getFeatureValue(product, key, tSpecs),
-                    product.theme.check,
-                  )}
-                </div>
-              ))}
+              {products.map((product, index) => {
+                const isSelected = product.slug === selectedSlug;
+                const isLast = index === products.length - 1;
+                return (
+                  <div
+                    key={product.slug + key}
+                    className={`flex items-center justify-start border-t border-neutral-900 bg-neutral-950 p-4 pl-6 text-left ${
+                      isLast ? "" : "border-r"
+                    } ${isSelected ? selectedColumnClass : ""}`}
+                    style={isSelected ? selectedColumnStyle : undefined}
+                  >
+                    <div className={key === "connector" ? "line-clamp-2" : undefined}>
+                      {renderFeatureValue(
+                        getFeatureValue(product, key, tSpecs, tCables),
+                        product.theme.check,
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ))}
 
+          {/* Model row */}
+          <div className="sticky left-0 z-10 flex items-center border-r border-t border-neutral-900 bg-neutral-950 p-4 pl-8 text-sm text-neutral-400">
+            {tCables("features.model")}
+          </div>
+          {products.map((product, index) => {
+            const isSelected = product.slug === selectedSlug;
+            const isLast = index === products.length - 1;
+            return (
+              <div
+                key={`model-${product.slug}`}
+                className={`flex items-center justify-start border-t border-neutral-900 bg-neutral-950 p-4 pl-6 text-left ${
+                  isLast ? "" : "border-r"
+                } ${isSelected ? selectedColumnClass : ""}`}
+                style={isSelected ? selectedColumnStyle : undefined}
+              >
+                {product.modelCode}
+              </div>
+            );
+          })}
+
           {/* Price row */}
-          <div className="sticky left-0 z-10 flex items-center border-t border-neutral-900 bg-neutral-950 p-6 pl-8 text-sm text-neutral-400">
+          <div className="sticky left-0 z-10 flex items-center border-r border-t border-neutral-900 bg-neutral-950 p-6 pl-8 text-sm text-neutral-400">
             {t("priceLabel")}
           </div>
-          {products.map((product) => (
-            <div
-              key={`price-${product.slug}`}
-              className="flex flex-col items-center justify-center gap-1 border-t border-neutral-900 bg-neutral-950 p-6"
-            >
-              <span
-                className={`text-4xl font-thin tracking-tighter ${product.theme.accentText}`}
+          {products.map((product, index) => {
+            const isSelected = product.slug === selectedSlug;
+            const isLast = index === products.length - 1;
+            return (
+              <div
+                key={`price-${product.slug}`}
+                className={`flex items-baseline justify-start gap-2 border-t border-neutral-900 bg-neutral-950 p-6 pl-6 ${
+                  isLast ? "" : "border-r"
+                } ${isSelected ? selectedColumnClass : ""}`}
+                style={isSelected ? selectedColumnStyle : undefined}
               >
-                USD {product.price.amount}
-              </span>
-              <span className="text-[11px] font-thin text-neutral-400">
-                {t("taxLabel")}
-              </span>
-            </div>
-          ))}
+                <span
+                  className={`text-4xl font-thin tracking-tighter ${product.theme.accentText}`}
+                >
+                  USD {product.price.amount}
+                </span>
+                <span className="text-[11px] font-thin text-neutral-400">
+                  {t("taxLabel")}
+                </span>
+              </div>
+            );
+          })}
+
+          {/* More info row */}
+          <div className="sticky left-0 z-10 flex items-center border-r border-t border-neutral-900 bg-neutral-950 p-6 pl-8 text-sm text-neutral-400" />
+          {products.map((product, index) => {
+            const isSelected = product.slug === selectedSlug;
+            const isLast = index === products.length - 1;
+            return (
+              <div
+                key={`more-info-${product.slug}`}
+                className={`flex items-center justify-start border-t border-neutral-900 bg-neutral-950 p-6 pl-6 ${
+                  isLast ? "" : "border-r"
+                } ${isSelected ? selectedColumnClass : ""}`}
+                style={isSelected ? selectedColumnStyle : undefined}
+              >
+                {isSelected ? (
+                  <span
+                    aria-disabled="true"
+                    className="pointer-events-none inline-flex items-center justify-center rounded-lg border border-neutral-800 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-600"
+                  >
+                    {tCables("currentLabel")}
+                  </span>
+                ) : (
+                  <a
+                    href={`/cables/${product.slug}`}
+                    className={`inline-flex items-center justify-center rounded-lg border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-white/5 ${product.theme.accentBorder} ${product.theme.accentText}`}
+                  >
+                    {tCables("moreInfo")}
+                  </a>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

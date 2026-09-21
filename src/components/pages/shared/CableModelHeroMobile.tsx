@@ -148,14 +148,17 @@ export function CableModelHeroMobile({ product }: Props) {
 
           {/* Title */}
           <div className="flex flex-col items-center gap-2">
-            <h1 className="flex items-end gap-2 leading-none">
-              <span className="text-6xl font-semibold text-white">
-                {t(`titlePrefix.${product.slug}`)}
-              </span>
-
-              <span className={`text-6xl font-thin ${theme.accentText}`}>
-                {product.shortName}
-              </span>
+            <h1 className="text-4xl font-semibold text-white leading-tight text-center max-w-[18ch]">
+              {t(`titlePrefix.${product.slug}`)}
+              {product.specs.maxPowerKw && (
+                <>
+                  {" "}
+                  {t("titlePowerConnector")}{" "}
+                  <span className={`font-thin ${theme.accentText}`}>
+                    {product.specs.maxPowerKw}kW
+                  </span>
+                </>
+              )}
             </h1>
 
             <p className="text-neutral-400 pt-2 leading-snug text-base  text-center max-w-[35ch]">
@@ -166,24 +169,29 @@ export function CableModelHeroMobile({ product }: Props) {
           <CableModelHeroStats theme={theme} slug={product.slug} />
 
           {/* Price */}
-          <div className="mt-2 flex items-baseline">
-            <AnimateNumber
-              locales="en-US"
-              format={{ maximumFractionDigits: 0 }}
-              suffix={` ${product.price.currency}`}
-              className={`
-                text-3xl font-thin tabular-nums ${theme.accentText}
-                [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1! [&_.number-section-post]:text-xs [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide [&_.number-section-post]:text-neutral-400
-              `}
-              transition={{
-                visualDuration: 0.6,
-                type: "spring",
-                bounce: 0.25,
-                opacity: { duration: 0.3, ease: "linear" },
-              }}
-            >
-              {product.price.amount}
-            </AnimateNumber>
+          <div className="mt-2 flex flex-col items-center gap-1">
+            <div className="flex items-baseline">
+              <AnimateNumber
+                locales="en-US"
+                format={{ maximumFractionDigits: 0 }}
+                suffix={` ${product.price.currency}`}
+                className={`
+                  text-3xl font-thin tabular-nums ${theme.accentText}
+                  [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1! [&_.number-section-post]:text-xs [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide [&_.number-section-post]:text-neutral-400
+                `}
+                transition={{
+                  visualDuration: 0.6,
+                  type: "spring",
+                  bounce: 0.25,
+                  opacity: { duration: 0.3, ease: "linear" },
+                }}
+              >
+                {product.price.amount}
+              </AnimateNumber>
+            </div>
+            <span className="text-[11px] text-neutral-500">
+              {t("price.taxLabel")}
+            </span>
           </div>
 
           {/* CTAs */}

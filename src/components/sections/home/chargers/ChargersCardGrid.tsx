@@ -3,12 +3,19 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { GradientText } from "@/components/animated/GradientText";
 import { Link } from "@/i18n/navigation";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-import { getChargerProducts, getPowerLabel } from "@/lib/catalog/catalog.helpers";
+import {
+  getChargerProducts,
+  getPowerLabel,
+} from "@/lib/catalog/catalog.helpers";
+import {
+  ProductHighlightRibbon,
+  getHighlightBorderStyle,
+} from "@/components/catalog/ProductHighlightRibbon";
 
 const PRODUCT_IMAGES: Record<string, string> = {
   "bs20-bc-7kw": "/assets/images/chargers/BS20-7KW.png",
@@ -25,6 +32,7 @@ type Props = {
 export function ChargersCardGrid({ className }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection");
   const tSpecs = useTranslations("Common.Specs");
+  const locale = useLocale();
   const products = getChargerProducts();
 
   return (
@@ -47,16 +55,21 @@ export function ChargersCardGrid({ className }: Props) {
             : tSpecs("phase.three"),
           tSpecs("connector.type2"),
           product.specs.voltage,
-          product.tier === "residential"
-            ? tSpecs("tier.residential")
-            : tSpecs("tier.commercial"),
+          tSpecs(`tier.${product.tier}`),
         ];
 
+        // h-full on the wrapper so it stretches to the row, letting the card's
+        // own h-full resolve — otherwise it shrinks to its content and the
+        // highlighted card's ring/glow sits lower than its neighbours.
         return (
-          <motion.div key={product.slug} variants={waterfallItem}>
+          <motion.div
+            key={product.slug}
+            variants={waterfallItem}
+            className="h-full"
+          >
             <Link
               href={`/cargadores/${product.slug}`}
-              aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product)} — ${t("cta.moreInfo")}`}
+              aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product, locale)} — ${t("cta.moreInfo")}`}
               className={`
                 group flex h-full flex-col items-start
                 overflow-hidden rounded-2xl border border-white/10
@@ -64,9 +77,11 @@ export function ChargersCardGrid({ className }: Props) {
                 transition-colors duration-300
                 ${product.theme.accentBorderHover}
               `}
+              style={getHighlightBorderStyle(product)}
             >
               {/* ── Photo plate ─────────────────────────────────── */}
               <div className="relative flex h-[480px] w-full items-center justify-center overflow-hidden bg-white">
+                <ProductHighlightRibbon product={product} className="right-4 top-4" />
                 <div
                   className="absolute inset-0 blur-2xl"
                   style={{
@@ -88,12 +103,12 @@ export function ChargersCardGrid({ className }: Props) {
               </div>
 
               {/* ── Body ────────────────────────────────────────── */}
-              <div className="flex w-full flex-1 flex-col border-t border-t-neutral-800 p-6">
+              <div className="flex w-full flex-1 flex-col border-t border-t-neutral-800 px-6 pb-7 pt-6">
                 <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
                   {product.modelCode}
                 </span>
 
-                <h3 className="mt-1 text-lg font-semibold tracking-tight text-white">
+                <h3 className="mt-1 text-base font-semibold tracking-tight text-white">
                   {t(`chargers.${product.slug}.title`)}
                 </h3>
 
@@ -101,7 +116,7 @@ export function ChargersCardGrid({ className }: Props) {
                   colors={product.theme.gradientColors}
                   className="mt-1 text-4xl font-thin tracking-tight"
                 >
-                  {getPowerLabel(product)}
+                  {getPowerLabel(product, locale)}
                 </GradientText>
 
                 <p className="mt-3 text-sm leading-relaxed text-neutral-400">
@@ -113,9 +128,9 @@ export function ChargersCardGrid({ className }: Props) {
                   aria-label={`${t(`chargers.${product.slug}.title`)} highlights`}
                 >
                   {highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-center gap-2">
+                    <li key={index} className="flex items-start gap-2.5">
                       <span
-                        className={`size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
+                        className={`mt-[0.4375rem] size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
                         aria-hidden="true"
                       />
                       {highlight}
@@ -124,7 +139,7 @@ export function ChargersCardGrid({ className }: Props) {
                 </ul>
 
                 {/* Price + CTA */}
-                <div className="mt-auto flex items-end justify-between gap-4 border-t border-neutral-800 pt-5">
+                <div className="mt-auto flex items-center justify-between gap-4 border-t border-neutral-800 pt-6">
                   <span
                     className={`text-3xl font-thin tracking-tighter ${product.theme.accentText}`}
                   >

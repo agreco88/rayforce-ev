@@ -1,6 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { useTrack } from "@/lib/analytics";
 
 export function HomeStandDesktop() {
@@ -126,7 +128,11 @@ export function HomeStandDesktop() {
                   </span>
                 </div>
 
-                {/* MERCADOPAGO */}
+                {/* MERCADOPAGO + CTA al catálogo.
+                    El segundo link importa: la grilla de cargadores ya no está
+                    en la home, así que esta es una de las pocas entradas al
+                    catálogo desde el cuerpo de la página. */}
+                <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="https://mpago.la/1VArJbv"
                   target="_blank"
@@ -146,6 +152,16 @@ export function HomeStandDesktop() {
                     {t("pricing.cta")}
                   </span>
                 </a>
+
+                  <Link
+                    href="/cargadores"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
+                  >
+                    {t("pricing.compatibleCta")}
+                    <ArrowRight className="size-4" strokeWidth={2} />
+                  </Link>
+                </div>
+
                 {/* NOTE */}
                 <span className="text-xs text-neutral-400">
                   {t("pricing.note")}

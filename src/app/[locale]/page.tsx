@@ -7,36 +7,72 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
+import { HomeChargersSection } from "@/components/sections/home/chargers/HomeChargersComparison";
+// Oculto — ver el comentario en el JSX. El componente vive en disco como
+// HomeWallboxSectionVariant. NO BORRAR.
+// import { HomeWallboxSectionVariant } from "@/components/sections/home/wallbox/HomeWallboxSectionVariant";
+import { WallboxIntroSection } from "@/components/sections/home/wallbox-intro/WallboxIntroSection";
+import { WhatIsWallboxSection } from "@/components/pages/chargers/WhatIsWallboxSection";
 
-const WhatIsWallboxSection = dynamic(() =>
-  import("@/components/sections/home/wallbox-intro/WhatIsWallboxSection").then(
-    (m) => ({ default: m.WhatIsWallboxSection }),
+/*
+  Ocultos: todo el bloque de wallbox de la home (bento nuevo, la comparativa
+  extraída y el explainer original). Se saca mientras se rearma la sección.
+  Los componentes y sus traducciones quedan en disco. NO BORRAR.
+
+const HomeWallboxSectionVariant = dynamic(() =>
+  import(
+    "@/components/sections/home/wallbox/HomeWallboxSectionVariant"
+  ).then((m) => ({
+    default: m.HomeWallboxSectionVariant,
+  })),
+);
+
+const HomeComparisonSection = dynamic(() =>
+  import("@/components/sections/home/comparison/HomeComparisonSection").then(
+    (m) => ({ default: m.HomeComparisonSection }),
   ),
 );
+
+const WallboxIntroSection = dynamic(() =>
+  import("@/components/sections/home/wallbox-intro/WallboxIntroSection").then(
+    (m) => ({ default: m.WallboxIntroSection }),
+  ),
+);
+*/
+
+/*
+  Oculto: el bloque de costos/tendencia (barras UTE vs nafta, contadores
+  gigantes y grafico historico) se reutiliza en otro proyecto. El componente,
+  sus charts y sus traducciones quedan en disco. NO BORRAR.
+
+const EnergyCostAndTrendSection = dynamic(() =>
+  import("@/components/sections/home/cost/EnergyCostAndTrendSection").then(
+    (m) => ({ default: m.EnergyCostAndTrendSection }),
+  ),
+);
+*/
+
+/*
+  Oculto: los cargadores se capturan por el flyout del header y por los CTAs de
+  la seccion de wallbox. La grilla sigue montada en /cargadores. NO BORRAR.
 
 const HomeChargersSection = dynamic(() =>
   import("@/components/sections/home/chargers/HomeChargersComparison").then(
     (m) => ({ default: m.HomeChargersSection }),
   ),
 );
+*/
 
 const PublicChargingCableSection = dynamic(() =>
-  import(
-    "@/components/sections/home/public-charging/PublicChargingCableSection"
-  ).then((m) => ({ default: m.PublicChargingCableSection })),
-);
-
-const HomeBenefitsSection = dynamic(() =>
-  import("@/components/sections/home/benefits/HomeBenefitsSection").then(
-    (m) => ({ default: m.HomeBenefitsSection }),
+  import("@/components/sections/home/public-charging/PublicChargingCableSection").then(
+    (m) => ({ default: m.PublicChargingCableSection }),
   ),
 );
 
-const ChargerGallery = dynamic(() =>
-  import("@/components/sections/home/gallery/ChargerGallery").then((m) => ({
-    default: m.ChargerGallery,
-  })),
-);
+// HomeBenefitsSection ya no se monta acá: sus tres cards pasaron a ser el
+// bloque de cierre de WallboxIntroSection, que heredó el ancla #beneficios.
+// Con esa sección ahora oculta, #beneficios no existe en la home y el enlace
+// del footer (FooterNavColumn) se queda sin destino hasta que se rearme.
 
 const HomeStandSection = dynamic(() =>
   import("@/components/sections/home/stand/HomeStandSection").then((m) => ({
@@ -78,17 +114,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "HomePage.FaqSection" });
-  const groups = t.raw("groups") as Record<string, { title: string; answer: string }[]>;
+  // El FAQ pasó de 6 categorías a una lista plana de preguntas de empresa, así
+  // que el schema lee `items` directo (antes aplanaba `groups`).
+  const faqItems = t.raw("items") as { title: string; answer: string }[];
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: Object.values(groups)
-      .flat()
-      .map((item) => ({
-        "@type": "Question",
-        name: item.title,
-        acceptedAnswer: { "@type": "Answer", text: item.answer },
-      })),
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.title,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   };
 
   return (
@@ -97,15 +133,26 @@ export default async function HomePage({ params }: Props) {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
+        {/* Ocultas: la home va del hero directo al banner de cables mientras se
+            rearma el bloque de wallbox. Los componentes quedan en disco. NO BORRAR.
+
+            OJO: #beneficios vivía dentro de WallboxIntroSection, así que
+            mientras esté oculta ese enlace del footer no tiene destino. */}
         <WhatIsWallboxSection id="que-es-un-wallbox" />
+
+        {/* Oculto: el bento no va en la home. Se guardo como
+            HomeWallboxSectionVariant para reusarlo en otra pagina. NO BORRAR. */}
+        {/* <HomeWallboxSectionVariant id="wallbox-bento" /> */}
+        {/* <HomeComparisonSection id="por-que-un-wallbox" /> */}
+
+        {/* Oculto — ver el comentario del import. NO BORRAR. */}
+        {/* <EnergyCostAndTrendSection id="ahorro" /> */}
         <HomeChargersSection id="cargadores" />
-        <ChargerGallery id="galeria" />
 
         <PublicChargingCableSection id="cables-carga-publica" />
         <HomeStandSection id="columna" />
         <InstallationSection id="instalacion" />
         <HomeFaqSection id="faq" />
-        <HomeBenefitsSection id="beneficios" />
         <CompatibilitySection id="compatibilidad" />
         <Footer />
       </Suspense>

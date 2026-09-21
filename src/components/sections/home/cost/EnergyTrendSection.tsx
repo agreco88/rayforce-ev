@@ -1,12 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Leaf, TrendingDown, Wallet } from "lucide-react";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-import { EnergyPriceTrendChart } from "./EnergyPriceTrendChart";
-import LineGraph from "./LineGraph";
+import LineGraph from "@/components/charts/LineGraph";
+import CombinedTrendGraph from "@/components/charts/CombinedTrendGraph";
+import { PriceComparison } from "@/components/charts/PriceComparison";
+import { TrendHeadline } from "./TrendHeadline";
+import {
+  NAFTA_COLOR,
+  NAFTA_PRICES,
+  UTE_COLOR,
+  UTE_PRICES,
+  YEARS,
+  Y_MAX,
+  changeUpTo,
+  totalChange,
+} from "./energy-price-data";
 
 const POINTS = [
   { icon: Leaf, key: "renewable" },
@@ -14,8 +27,18 @@ const POINTS = [
   { icon: Wallet, key: "usage" },
 ] as const;
 
+const SERIES = [
+  { key: "nafta", data: NAFTA_PRICES, color: NAFTA_COLOR, delay: 0 },
+  { key: "ute", data: UTE_PRICES, color: UTE_COLOR, delay: 0.15 },
+] as const;
+
 export function EnergyTrendSection({ id }: { id?: string }) {
   const t = useTranslations("HomePage.EnergyTrend");
+
+  /* Año con hover, compartido por el par de abajo: pasar el mouse por
+     cualquiera de las dos actualiza los dos paneles a la vez. */
+  const [hoveredYear, setHoveredYear] = useState<number | null>(null);
+  const readoutIndex = hoveredYear ?? YEARS.length - 1;
 
   return (
     <div id={id} className="relative mx-auto w-full max-w-7xl">
@@ -56,28 +79,187 @@ export function EnergyTrendSection({ id }: { id?: string }) {
         </motion.p>
       </motion.div>
 
-      {/* ── Gráfico full width ──────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="mt-14 rounded-2xl border border-neutral-900 bg-neutral-900/20 p-5 sm:mt-16 sm:p-8 lg:p-10"
-      >
-        <p className="mb-1 text-center text-xs tracking-widest text-neutral-500 uppercase">
-          {t("chartTitle")}
-        </p>
-        <p className="mb-8 text-center text-[11px] text-neutral-600">
-          {t("chartSubtitle")}
-        </p>
+      {/* ── VARIANTE en prueba: el argumento en dos números
+             grandes, sin gráfica ───────────────────────────── */}
+      <TrendHeadline />
 
-        <EnergyPriceTrendChart />
-      </motion.div>
-
-      {/* ── Ejemplo Motion (line graph) ─────────────────── */}
-      <div className="mt-8 flex justify-center">
-        <LineGraph />
+      {/* ── VARIANTE en prueba: una sola gráfica con las dos
+             series y un tooltip combinado ─────────────────── */}
+      <div className="mt-10 rounded-2xl border border-neutral-900 bg-neutral-900/20 p-5 sm:p-6 lg:p-8">
+        <CombinedTrendGraph
+          labels={[...YEARS]}
+          series={[
+            {
+              key: "nafta",
+              data: [...NAFTA_PRICES],
+              color: NAFTA_COLOR,
+              prefix: "$",
+              tooltipLabel: t("series.nafta.combinedLabel"),
+            },
+            {
+              key: "ute",
+              data: [...UTE_PRICES],
+              color: UTE_COLOR,
+              prefix: "$",
+              tooltipLabel: t("series.ute.combinedLabel"),
+            },
+          ]}
+        />
       </div>
+
+      {/* ── Ocultas: las dos variantes 50/50 (individual y
+             sincronizada). Se dejan comentadas, no borradas, por si se
+             retoman más adelante — sólo queda visible la comparativa
+             de arriba (CombinedTrendGraph). ──────────────────────── */}
+      {false && (
+        <>
+          {/* ── Dos gráficas 50/50: nafta y luz, cada una en sus
+                 propias unidades y con su propio tooltip ──────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-10 grid gap-4 lg:grid-cols-2 lg:gap-6"
+          >
+            {(
+              [
+                {
+                  key: "nafta",
+                  data: NAFTA_PRICES,
+                  color: NAFTA_COLOR,
+                  delay: 0,
+                },
+                {
+                  key: "ute",
+                  data: UTE_PRICES,
+                  color: UTE_COLOR,
+                  delay: 0.15,
+                },
+              ] as const
+            ).map(({ key, data, color, delay }) => (
+              <div
+                key={key}
+                className="rounded-2xl border border-neutral-900 bg-neutral-900/20 p-5 sm:p-6 lg:p-8"
+              >
+                <div className="mb-6 flex items-baseline justify-between gap-4">
+                  <div className="flex flex-col gap-1">
+                    <span
+                      className="text-sm font-medium tracking-tight sm:text-base"
+                      style={{ color }}
+                    >
+                      {t(`series.${key}.label`)}
+                    </span>
+                    <span className="text-[11px] text-neutral-500">
+                      {t(`series.${key}.unit`)}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-end">
+                    <span
+                      className="text-2xl font-light tracking-tighter tabular-nums sm:text-3xl"
+                      style={{ color }}
+                    >
+                      {t(`series.${key}.delta`)}
+                    </span>
+                    <span className="text-[10px] tracking-wide text-neutral-500 uppercase">
+                      {t(`series.${key}.deltaNote`)}
+                    </span>
+                  </div>
+                </div>
+
+                <LineGraph
+                  data={[...data]}
+                  labels={[...YEARS]}
+                  color={color}
+                  prefix="$"
+                  tooltipTitle={t(`series.${key}.tooltipTitle`)}
+                  label={t(`series.${key}.short`)}
+                  delay={delay}
+                />
+              </div>
+            ))}
+          </motion.div>
+
+          <p className="mt-5 text-center text-xs text-neutral-600">
+            {t("chartSubtitle")}
+          </p>
+
+          {/* ── Variante sincronizada ────────────────────────
+                 Las mismas dos gráficas, pero sin tooltip: el año con hover
+                 en cualquiera de las dos actualiza los dos paneles de abajo,
+                 así los precios se comparan de una sola mirada. */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-10 grid gap-4 lg:grid-cols-2 lg:gap-6"
+            onPointerLeave={() => setHoveredYear(null)}
+          >
+            {SERIES.map(({ key, data, color, delay }) => (
+              <div
+                key={key}
+                className="rounded-2xl border border-neutral-900 bg-neutral-900/20 p-5 sm:p-6 lg:p-8"
+              >
+                <div className="mb-6 flex items-baseline justify-between gap-4">
+                  <span
+                    className="text-sm font-medium tracking-tight sm:text-base"
+                    style={{ color }}
+                  >
+                    {t(`series.${key}.label`)}
+                  </span>
+                  <span className="text-[11px] text-neutral-500">
+                    {t(`series.${key}.unit`)}
+                  </span>
+                </div>
+
+                {/* Las dos comparten el techo del eje: a escala propia, $8
+                    y $88 dibujan la misma curva. */}
+                <LineGraph
+                  data={[...data]}
+                  labels={[...YEARS]}
+                  color={color}
+                  prefix="$"
+                  label={`sync-${key}`}
+                  delay={delay}
+                  hovered={hoveredYear}
+                  onHoverChange={setHoveredYear}
+                  hideTooltip
+                  yMax={Y_MAX}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </>
+      )}
+
+      {/* ── Oculto: panel de variación del año con hover, parte de
+             la variante 50/50 sincronizada (ya oculta arriba). ──── */}
+      {false && (
+        <div
+          className="mt-4 lg:mt-6"
+          onPointerLeave={() => setHoveredYear(null)}
+        >
+          <PriceComparison
+            year={YEARS[readoutIndex]}
+            label={t("comparisonLabel")}
+            prefix="$"
+            series={SERIES.map(({ key, data, color }) => ({
+              key,
+              label: t(`series.${key}.label`),
+              value: data[readoutIndex],
+              change: changeUpTo([...data], readoutIndex),
+              color,
+              unit: t(`series.${key}.unit`),
+            }))}
+            summary={t("comparisonSummary", {
+              nafta: `+${Math.round(totalChange([...NAFTA_PRICES]))}%`,
+              ute: `+${Math.round(totalChange([...UTE_PRICES]))}%`,
+            })}
+          />
+        </div>
+      )}
 
       {/* ── Puntos en fila ──────────────────────────────── */}
       <motion.ul

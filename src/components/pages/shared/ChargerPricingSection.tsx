@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { CheckIcon, ExternalLink, Star } from "lucide-react";
+import { Ban, CheckIcon, ExternalLink, Star } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
@@ -19,6 +19,14 @@ import type { ChargerProduct } from "@/lib/catalog/catalog.types";
 
 /** Only the socket-only model (no cable in the box) offers the cable add-on toggle. */
 const CABLE_ADDON_SLUG = "bs20-ba-7kw";
+
+/**
+ * The socket-only model's feature list carries one line that's an
+ * exclusion rather than an inclusion ("no incluye cable"), so it renders
+ * a Ban icon instead of the usual check. Matched on the translated copy,
+ * which is upper-case in every locale, so it survives list reordering.
+ */
+const EXCLUDED_FEATURE_RE = /NO INCLUYE CABLE|CABLE NOT INCLUDED/;
 
 const WHATSAPP_NUMBER = "59892041709";
 
@@ -116,6 +124,7 @@ type Props = {
 export function ChargerPricingSection({ product, id }: Props) {
   const t = useTranslations("ChargerModelPage.pricingSection");
   const tReviews = useTranslations("ChargerModelPage.socialProofSection");
+  const tVariants = useTranslations("ChargerModelPage.variants");
   const track = useTrack();
   const { theme } = product;
   const [includeInstallation, setIncludeInstallation] = useState(false);
@@ -135,14 +144,25 @@ export function ChargerPricingSection({ product, id }: Props) {
    * was added, since they're separate add-ons.
    */
   const items = [
-    ...chargerFeatures.map((text) => ({ text, active: true })),
+    ...chargerFeatures.map((text) => ({
+      text,
+      active: true,
+      excluded: EXCLUDED_FEATURE_RE.test(text),
+    })),
     ...(hasCableAddon
-      ? [{ text: t("features.cable"), active: includeCoiledCable }]
+      ? [
+          {
+            text: t("features.cable"),
+            active: includeCoiledCable,
+            excluded: false,
+          },
+        ]
       : []),
-    { text: t("features.column"), active: includeColumn },
+    { text: t("features.column"), active: includeColumn, excluded: false },
     ...installationFeatures.map((text) => ({
       text,
       active: includeInstallation,
+      excluded: false,
     })),
   ];
 
@@ -171,10 +191,11 @@ export function ChargerPricingSection({ product, id }: Props) {
     track.pricingColumnToggled(product.slug, next);
   }
 
+  // lg:pt-64 clears the stats strip, which floats up over this section's seam.
   return (
     <section
       id={id}
-      className="relative overflow-hidden border-y border-neutral-900 bg-neutral-950 py-24 sm:py-32"
+      className="relative overflow-hidden border-y border-neutral-900 bg-neutral-950 py-24 sm:py-32 lg:pt-64"
     >
       {/* Grid */}
       <div
@@ -239,7 +260,7 @@ export function ChargerPricingSection({ product, id }: Props) {
           {/* -------------------------------------------------------------- */}
           <div className="p-8 sm:p-8 lg:flex-auto lg:p-10">
             <h3 className="text-3xl font-medium tracking-tight text-white">
-              {product.publicName}
+              {tVariants(`${product.slug}.fullName`)}
             </h3>
             <p className="mt-6 text-base leading-relaxed text-neutral-400">
               {t(`descriptions.${product.slug}`)}
@@ -271,21 +292,25 @@ export function ChargerPricingSection({ product, id }: Props) {
             >
               {items.map((item) => {
                 const active = item.active;
+                const excluded = item.excluded;
+                const Icon = excluded ? Ban : CheckIcon;
                 return (
                   <li
                     key={item.text}
                     className="flex items-start gap-x-3 text-left"
                   >
-                    <CheckIcon
+                    <Icon
                       aria-hidden="true"
                       className={cn(
                         "h-6 w-5 flex-none transition-all duration-300",
-                        active
-                          ? cn(
-                              theme.check,
-                              "drop-shadow-[0_0_6px_currentColor]",
-                            )
-                          : "text-neutral-700",
+                        excluded
+                          ? "text-neutral-500"
+                          : active
+                            ? cn(
+                                theme.check,
+                                "drop-shadow-[0_0_6px_currentColor]",
+                              )
+                            : "text-neutral-700",
                       )}
                     />
                     <span

@@ -67,7 +67,7 @@ export function ComparisonTable({ products }: Props) {
   const gridTemplateColumns = `220px repeat(${products.length}, minmax(170px, 1fr))`;
 
   return (
-    <div className="mx-auto my-32 w-full max-w-[1600px] px-4 sm:px-6">
+    <div className="mx-auto my-32 w-full max-w-[1440px] px-6 sm:px-8 lg:px-16 2xl:px-0">
       <div className="w-full overflow-x-auto rounded-2xl border border-neutral-900">
         <div
           className="grid min-w-[900px] divide-x divide-neutral-900"

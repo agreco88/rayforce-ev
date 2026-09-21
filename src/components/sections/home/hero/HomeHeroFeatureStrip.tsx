@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-const TRUST_KEYS = ["ownInstall", "ursea", "team", "warranty"] as const;
+const TRUST_KEYS = ["compatibility", "ursea", "safety", "ownInstall"] as const;
 
 export function HomeHeroFeatureStrip() {
   const t = useTranslations("HomePage.Hero.trust");

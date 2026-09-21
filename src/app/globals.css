@@ -88,8 +88,14 @@ html {
   --primary: oklch(0.72 0.18 145); /* green-500 */
   --primary-foreground: oklch(0.15 0 0);
 
-  --accent: oklch(0.78 0.2 120); /* lime-400 */
-  --accent-foreground: oklch(0.12 0 0);
+  /*
+    Superficie de hover/focus de las primitivas (button ghost/outline, dropdown,
+    badge, navigation-menu, dialog). Va neutral oscuro, no color: el tema es
+    oscuro, así que un accent saturado pinta el fondo entero del item en hover.
+    El color de marca se aplica al texto/borde, no a la superficie.
+  */
+  --accent: oklch(0.22 0 0); /* neutral-800 */
+  --accent-foreground: oklch(0.97 0 0); /* neutral-50 */
 
   /* =========================
      NEUTRALS

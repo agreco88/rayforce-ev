@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
-import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 import { useTrack } from "@/lib/analytics/use-track";
 import type { CableProduct } from "@/lib/catalog/catalog.types";
+import {
+  ProductHighlightRibbon,
+  getHighlightBorderStyle,
+} from "@/components/catalog/ProductHighlightRibbon";
 
 type Props = {
   product: CableProduct;
@@ -26,25 +29,28 @@ export function CableShopCard({ product }: Props) {
   const copy = variants[product.slug];
   const href = `/cables/${product.slug}`;
 
+  const powerKw = product.specs.maxPowerKw ?? 7;
+  const typeLabel = t(
+    `type.${product.specs.cableStyle}.${product.specs.phaseType ?? "single"}`,
+    { power: powerKw },
+  );
+
   const highlights = [
     t("specs.length", { length: product.specs.lengthM }),
-    product.specs.cableStyle === "coiled"
-      ? t("specs.coiled")
-      : t("specs.straight"),
     t("specs.current", { current: product.specs.maxCurrentA ?? 32 }),
     product.specs.temperatureSensor ? t("specs.temperatureSensor") : null,
     product.specs.bagIncluded ? t("specs.bag") : null,
+    t("delivery", { power: powerKw }),
   ].filter(Boolean) as string[];
 
   return (
-    <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", visualDuration: 0.35, bounce: 0.2 }}
+    <article
       className="
         group flex h-full flex-col overflow-hidden
         rounded-2xl border border-white/10 bg-neutral-950
         transition-colors duration-300 hover:border-amber-400/30
       "
+      style={getHighlightBorderStyle(product)}
     >
       {/* ── Photo plate ─────────────────────────────────────── */}
       <Link
@@ -53,6 +59,8 @@ export function CableShopCard({ product }: Props) {
         aria-label={copy?.label ?? product.publicName}
         className="relative block aspect-[4/3] w-full overflow-hidden bg-white"
       >
+        <ProductHighlightRibbon product={product} className="right-4 top-4" />
+
         {/* Model code chip */}
         <span className="absolute left-4 top-4 z-10 rounded-full bg-neutral-900/90 px-2.5 py-1 text-[11px] font-medium uppercase tracking-widest text-neutral-300">
           {product.modelCode}
@@ -65,19 +73,19 @@ export function CableShopCard({ product }: Props) {
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
           className="
             object-contain p-6
-            transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
-            group-hover:scale-[1.04]
+            opacity-90 transition-opacity duration-300
+            group-hover:opacity-100
           "
         />
       </Link>
 
       {/* ── Body ────────────────────────────────────────────── */}
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
-          {copy?.label ?? product.publicName}
+        <h3 className="text-lg font-semibold tracking-tight text-amber-400">
+          {typeLabel}
         </h3>
 
-        <p className="mt-2 text-sm leading-relaxed text-neutral-400">
+        <p className="mt-2 line-clamp-3 min-h-[3.75rem] w-xs text-sm leading-relaxed text-neutral-400">
           {copy?.description ?? ""}
         </p>
 
@@ -116,7 +124,7 @@ export function CableShopCard({ product }: Props) {
               {product.price.currency} {product.price.amount}
             </span>
             {product.price.taxLabel && (
-              <span className="text-[11px] text-neutral-500">
+              <span className="mt-1 text-[11px] text-neutral-500">
                 {product.price.taxLabel}
               </span>
             )}
@@ -140,6 +148,6 @@ export function CableShopCard({ product }: Props) {
           </Link>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

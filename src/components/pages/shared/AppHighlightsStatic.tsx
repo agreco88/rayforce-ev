@@ -31,6 +31,7 @@ type Theme = {
   accentBg?: string;
   accentBorder?: string;
   glowStrong?: string;
+  gradientColors?: [string, string, string];
 };
 
 type Feature = {
@@ -106,10 +107,37 @@ function clamp(value: number, min: number, max: number) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Icon lit state                                                             */
+/* -------------------------------------------------------------------------- */
+
+/** Fallbacks match the old Tailwind classes (white/10 tile, neutral-500 icon). */
+const ICON_DIM_BG = "rgba(255,255,255,0.05)";
+const ICON_DIM_COLOR = "#737373";
+const ICON_FALLBACK_ACCENT = "#ffffff";
+
+/** Slow enough to read as a fade-in rather than a flip. */
+const ICON_LIT_TRANSITION = { duration: 0.45, ease: "easeOut" } as const;
+
+/**
+ * Motion interpolates colour values, not Tailwind classes, so the accent has
+ * to arrive as a real colour. `gradientColors` carries the catalog's raw hex.
+ */
+function withAlpha(hex: string, alpha: number) {
+  const value = hex.replace("#", "");
+  const r = parseInt(value.slice(0, 2), 16);
+  const g = parseInt(value.slice(2, 4), 16);
+  const b = parseInt(value.slice(4, 6), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Section                                                                    */
 /* -------------------------------------------------------------------------- */
 
 export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
+  const accent = theme.gradientColors?.[0] ?? ICON_FALLBACK_ACCENT;
+  const accentSoft = withAlpha(accent, 0.12);
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [previousIndex, setPreviousIndex] = useState(0);
@@ -288,7 +316,7 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
 
           sm:px-0
 
-          lg:pt-64
+          lg:pt-32
         "
       >
         {/* ---------------------------------------------------------------- */}
@@ -296,66 +324,6 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
         {/* ---------------------------------------------------------------- */}
 
         <ChargerCertificationSection theme={theme} />
-
-        {/* ---------------------------------------------------------------- */}
-        {/* Header                                                           */}
-        {/* ---------------------------------------------------------------- */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{
-            once: true,
-            margin: "-80px",
-          }}
-          className="
-            mx-auto
-            max-w-3xl
-            text-center
-          "
-        >
-          <p
-            className={cn(
-              `
-                text-sm
-                uppercase
-                tracking-[0.35em]
-              `,
-              theme.accentText,
-            )}
-          >
-            App Rayforce
-          </p>
-
-          <h2
-            className="
-              mt-4
-
-              text-4xl
-              font-medium
-              text-white
-
-              sm:text-5xl
-            "
-          >
-            Controlá tu carga desde tu celular
-          </h2>
-
-          <p
-            className="
-              mx-auto
-              mt-5
-              max-w-2xl
-
-              text-base
-              leading-relaxed
-              text-neutral-400
-            "
-          >
-            Monitoreá sesiones, revisá consumos, recibí alertas y mantené el
-            cargador actualizado desde una app simple y práctica.
-          </p>
-        </motion.div>
 
         {/* ---------------------------------------------------------------- */}
         {/* Features + Device                                                */}
@@ -373,20 +341,138 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
           "
         >
           {/* -------------------------------------------------------------- */}
-          {/* Features (desktop hover list)                                  */}
+          {/* Header + features (desktop hover list)                         */}
           {/* -------------------------------------------------------------- */}
 
-          <motion.ul
-            variants={waterfallList}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="hidden flex-col gap-4 sm:flex"
+          {/* Header sits above the highlights column, not above the section */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{
+              once: true,
+              margin: "-80px",
+            }}
+            className="
+              order-first
+              w-full
+              max-w-2xl
+
+              text-center
+
+              sm:hidden
+            "
           >
+            <p
+              className={cn(
+                `
+                  text-sm
+                  uppercase
+                  tracking-[0.35em]
+                `,
+                theme.accentText,
+              )}
+            >
+              App EVSEMaster
+            </p>
+
+            <h2
+              className="
+                mt-4
+
+                text-4xl
+                font-medium
+                text-white
+
+                sm:text-5xl
+              "
+            >
+              Controlá tu carga desde tu celular
+            </h2>
+
+            <p
+              className="
+                mx-auto
+                mt-5
+                max-w-2xl
+
+                text-base
+                leading-relaxed
+                text-neutral-400
+              "
+            >
+              Monitoreá sesiones, revisá consumos, recibí alertas y mantené el
+              cargador actualizado desde una app simple y práctica.
+            </p>
+          </motion.div>
+
+          <div className="hidden flex-col items-start justify-center sm:flex">
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{
+                once: true,
+                margin: "-80px",
+              }}
+              className="mb-10 max-w-xl text-left"
+            >
+              <p
+                className={cn(
+                  `
+                    text-sm
+                    uppercase
+                    tracking-[0.35em]
+                  `,
+                  theme.accentText,
+                )}
+              >
+                App EVSEMaster
+              </p>
+
+              <h2
+                className="
+                  mt-4
+
+                  text-4xl
+                  font-medium
+                  text-white
+
+                  sm:text-5xl
+                "
+              >
+                Controlá tu carga desde tu celular
+              </h2>
+
+              <p
+                className="
+                  mt-5
+                  max-w-xl
+
+                  text-base
+                  leading-relaxed
+                  text-neutral-400
+                "
+              >
+                Monitoreá sesiones, revisá consumos, recibí alertas y mantené el
+                cargador actualizado desde una app simple y práctica.
+              </p>
+            </motion.div>
+
+            <motion.ul
+              variants={waterfallList}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="flex flex-col gap-4"
+            >
             {FEATURES.map((feature, index) => {
               const Icon = feature.icon;
 
               const isActive = activeIndex === index;
+
+              /* Stays true once autoplay has reached this item, so the icon
+                 lights up and stays lit like the divider fill beside it. */
+              const isLit = index <= activeIndex;
 
               return (
                 <motion.li key={feature.title} variants={waterfallItem}>
@@ -432,35 +518,31 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
                         sm:p-2
                       "
                     >
-                      {/* Icon */}
-                      <div
-                        className={cn(
-                          `
-                            shrink-0
+                      {/* Icon — lights up as autoplay reaches it and stays lit,
+                          mirroring the divider's progress fill below */}
+                      <motion.div
+                        className="
+                          shrink-0
 
-                            rounded-xl
+                          rounded-xl
 
-                            p-2
-
-                            transition-all duration-300
-                          `,
-                          isActive
-                            ? (theme.accentSoft ?? "bg-white/10")
-                            : "bg-white/5",
-                        )}
+                          p-2
+                        "
+                        initial={false}
+                        animate={{
+                          backgroundColor: isLit ? accentSoft : ICON_DIM_BG,
+                        }}
+                        transition={ICON_LIT_TRANSITION}
                       >
-                        <Icon
-                          className={cn(
-                            `
-                              h-5 w-5
-
-                              transition-colors duration-300
-                            `,
-                            isActive ? theme.accentText : "text-neutral-500",
-                          )}
-                          strokeWidth={1.6}
-                        />
-                      </div>
+                        <motion.span
+                          className="block"
+                          initial={false}
+                          animate={{ color: isLit ? accent : ICON_DIM_COLOR }}
+                          transition={ICON_LIT_TRANSITION}
+                        >
+                          <Icon className="h-5 w-5" strokeWidth={1.6} />
+                        </motion.span>
+                      </motion.div>
 
                       {/* Divider (doubles as autoplay progress) */}
                       <div
@@ -543,7 +625,8 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
                 </motion.li>
               );
             })}
-          </motion.ul>
+            </motion.ul>
+          </div>
 
           {/* -------------------------------------------------------------- */}
           {/* Features (mobile drag carousel)                                */}
@@ -661,40 +744,49 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
 
           <div
             className="
-              relative
-              flex justify-center
               mt-20
+              flex flex-col items-center
               sm:hidden
             "
           >
-            {/* Glow */}
-            <div
-              className="
-                absolute top-1/2
+            <div className="relative">
+              {/* Glow */}
+              <div
+                className="
+                  absolute left-1/2 top-1/2
 
-                h-[360px]
-                w-[260px]
+                  h-[360px]
+                  w-[260px]
 
-                -translate-y-1/2
+                  -translate-x-1/2
+                  -translate-y-1/2
 
-                rounded-full
-                blur-3xl
-              "
-              style={{
-                backgroundColor: theme.glowStrong ?? "rgba(20,184,166,0.25)",
-              }}
-            />
-            <Device
-              image={activeFeature.image}
-              direction={direction}
-              scale={1.2}
-            />
+                  rounded-full
+                  blur-3xl
+                "
+                style={{
+                  backgroundColor: theme.glowStrong ?? "rgba(20,184,166,0.25)",
+                }}
+              />
+              <Device
+                image={activeFeature.image}
+                direction={direction}
+                scale={1.2}
+              />
+            </div>
+
+            {/* Store buttons sit directly under the device frame */}
+            <div className="mt-12 flex w-[336px] flex-col gap-4">
+              <StoreButtons theme={theme} />
+            </div>
           </div>
 
           {/* -------------------------------------------------------------- */}
-          {/* Device (desktop - fades in on scroll)                          */}
+          {/* Device + store CTA (desktop - fades in on scroll)              */}
           {/* -------------------------------------------------------------- */}
 
+          {/* Device and CTA travel together as one column, centred against
+              the taller highlights column via the parent's items-center. */}
           <motion.div
             initial={{
               opacity: 0,
@@ -712,94 +804,82 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
               duration: 0.5,
             }}
             className="
-              relative
               hidden sm:flex
-              justify-center
+              flex-col items-start justify-center
             "
           >
-            {/* Glow */}
-            <div
-              className="
-                absolute top-1/2
+            <div className="relative">
+              {/* Glow */}
+              <div
+                className="
+                  absolute left-1/2 top-1/2
 
-                h-[360px]
-                w-[260px]
+                  h-[360px]
+                  w-[260px]
 
-                -translate-y-1/2
+                  -translate-x-1/2
+                  -translate-y-1/2
 
-                rounded-full
-                blur-3xl
-              "
-              style={{
-                backgroundColor: theme.glowStrong ?? "rgba(20,184,166,0.25)",
-              }}
-            />
-            <Device
-              image={activeFeature.image}
-              direction={direction}
-              scale={1.2}
-            />
+                  rounded-full
+                  blur-3xl
+                "
+                style={{
+                  backgroundColor: theme.glowStrong ?? "rgba(20,184,166,0.25)",
+                }}
+              />
+              <Device
+                image={activeFeature.image}
+                direction={direction}
+                scale={1.2}
+              />
+            </div>
+
+            {/* Store buttons sit under the frame, matching the device's width so
+                the two stay centred on the same axis */}
+            <div className="mt-16 flex w-[336px] flex-col gap-4">
+              <StoreButtons theme={theme} />
+            </div>
           </motion.div>
         </div>
 
-        {/* ---------------------------------------------------------------- */}
-        {/* Store Buttons                                                    */}
-        {/* ---------------------------------------------------------------- */}
-
-        <div
-          className="
-            mt-32 sm:mt-8
-
-            flex flex-col
-            items-center
-            gap-4
-
-            text-center
-          "
-        >
-          <h3
-            className="
-              mb-4
-
-              text-xl
-              text-white
-
-              normal-case
-              tracking-normal
-
-              sm:text-3xl
-            "
-          >
-            Descargá la aplicación en App Store o Google Play
-          </h3>
-
-          <div className="flex w-[336px] flex-col gap-4 md:w-auto md:flex-row">
-            <a
-              href="https://apps.apple.com/us/app/evsemaster/id1474532183"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl border border-white/30 px-5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 md:w-auto"
-            >
-              <SiApple size={18} />
-              Descargar en App Store
-            </a>
-
-            <a
-              href="https://play.google.com/store/apps/details?id=com.evsemaster.dev&hl=en&pli=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition-colors hover:bg-white/5 md:w-auto",
-                theme.accentBorder ?? "border-white/30",
-                theme.accentText ?? "text-white/80",
-              )}
-            >
-              <SiGoogleplay size={18} />
-              Disponible en Google Play
-            </a>
-          </div>
-        </div>
       </div>
     </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Store buttons                                                              */
+/* -------------------------------------------------------------------------- */
+
+/** Rendered under each device frame (one mobile copy, one desktop). */
+function StoreButtons({ theme }: { theme: Theme }) {
+  return (
+    <>
+      <a
+        href="https://apps.apple.com/us/app/evsemaster/id1474532183"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Descargar EVSEMaster en el App Store"
+        className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl border border-white/30 px-5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5"
+      >
+        <SiApple size={18} />
+        Descargar EVSEMaster en App Store
+      </a>
+
+      <a
+        href="https://play.google.com/store/apps/details?id=com.evsemaster.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Descargar EVSEMaster en Google Play"
+        className={cn(
+          "inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition-colors hover:bg-white/5",
+          theme.accentBorder ?? "border-white/30",
+          theme.accentText ?? "text-white/80",
+        )}
+      >
+        <SiGoogleplay size={18} />
+        Descargar EVSEMaster en Play Store
+      </a>
+    </>
   );
 }

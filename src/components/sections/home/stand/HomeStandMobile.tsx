@@ -1,6 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { useTrack } from "@/lib/analytics";
 
 export function HomeStandMobile() {
@@ -84,6 +86,16 @@ export function HomeStandMobile() {
               {t("pricing.cta")}
             </span>
           </a>
+
+          {/* Entrada al catálogo: la grilla de cargadores ya no está en la home. */}
+          <Link
+            href="/cargadores"
+            className="flex items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
+          >
+            {t("pricing.compatibleCta")}
+            <ArrowRight className="size-4" strokeWidth={2} />
+          </Link>
+
           <span className="text-xs text-neutral-400">{t("pricing.note")}</span>
         </div>
       </div>

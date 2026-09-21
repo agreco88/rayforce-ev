@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
 import { Link } from "@/i18n/navigation";
@@ -12,6 +12,7 @@ import { getChargerProducts, getPowerLabel } from "@/lib/catalog/catalog.helpers
 
 export function ChargersCarousel({ id }: { id?: string }) {
   const t = useTranslations("HomePage.HomeChargersSection");
+  const locale = useLocale();
   const products = getChargerProducts();
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -105,7 +106,7 @@ export function ChargersCarousel({ id }: { id?: string }) {
                 >
                   <Link
                     href={`/cargadores/${product.slug}`}
-                    aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product)} — ${t("cta.moreInfo")}`}
+                    aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product, locale)} — ${t("cta.moreInfo")}`}
                     className="
                       group flex h-full flex-col items-center
                       rounded-2xl border border-white/10
@@ -131,7 +132,7 @@ export function ChargersCarousel({ id }: { id?: string }) {
                         {t(`chargers.${product.slug}.title`)}
                       </span>
                       <span className="text-4xl font-thin tracking-tight text-neutral-100">
-                        {getPowerLabel(product)}
+                        {getPowerLabel(product, locale)}
                       </span>
                     </div>
 
@@ -187,7 +188,7 @@ export function ChargersCarousel({ id }: { id?: string }) {
             <button
               key={product.slug}
               onClick={() => scrollToCard(i)}
-              aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product)}`}
+              aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product, locale)}`}
               aria-current={activeIndex === i ? "true" : undefined}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeIndex === i ? "bg-white w-6" : "bg-neutral-600 w-1.5"

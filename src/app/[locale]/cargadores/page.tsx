@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { ChargersHero } from "@/components/pages/chargers/ChargersHero";
+import { WhatIsWallboxSection } from "@/components/pages/chargers/WhatIsWallboxSection";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 import { FeaturesRayforce } from "@/components/sections/home/FeaturesSection";
 import { Footer } from "@/components/sections/contact-footer/Footer";
@@ -23,7 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ChargersPage({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "ChargersPage.Hero.breadcrumb" });
+  const t = await getTranslations({
+    locale,
+    namespace: "ChargersPage.Hero.breadcrumb",
+  });
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -57,9 +61,11 @@ export default async function ChargersPage({ params }: Props) {
           `,
           }}
         />
+        <ChargersCardGrid className="mt-16 lg:mt-0 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" />
       </section>
 
-      <ChargersCardGrid className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4" />
+      <WhatIsWallboxSection id="que-es-un-wallbox" />
+
       <ChargersCommonStats />
       <ComparisonTable products={getChargerProducts()} />
 

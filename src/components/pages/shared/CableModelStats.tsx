@@ -58,7 +58,7 @@ export function CableModelStats({ product, theme }: Props) {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto sm:-mt-20 relative z-30">
+    <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 sm:-mt-20 sm:-mb-20 relative z-30">
       <div
         className={cn(
           "relative rounded-2xl border",

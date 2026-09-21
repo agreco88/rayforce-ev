@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Check, X } from "lucide-react";
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { useTrack } from "@/lib/analytics";
-import { PublicChargingCableStats } from "./PublicChargingCableStats";
 import { PublicChargingVideoModal } from "./PublicChargingVideoModal";
 
 export function PublicChargingCableDesktop() {
@@ -45,29 +43,6 @@ export function PublicChargingCableDesktop() {
             <p className="text-lg leading-relaxed text-neutral-300 max-w-lg">
               {t("description")}
             </p>
-
-            {/* COMPARISON */}
-            <div className="mt-2 grid grid-cols-2 gap-4 max-w-lg">
-              <div className="flex flex-col gap-2 rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                <span className="flex items-center gap-2 text-sm font-medium text-neutral-400">
-                  <X className="size-4 shrink-0 text-neutral-500" />
-                  {t("comparison.theirs")}
-                </span>
-                <span className="text-sm leading-relaxed text-neutral-500">
-                  {t("comparison.theirsDetail")}
-                </span>
-              </div>
-
-              <div className="flex flex-col gap-2 rounded-xl border border-amber-400/30 bg-amber-400/[0.06] p-4">
-                <span className="flex items-center gap-2 text-sm font-medium text-white">
-                  <Check className="size-4 shrink-0 text-amber-400" />
-                  {t("comparison.ours")}
-                </span>
-                <span className="text-sm leading-relaxed text-neutral-300">
-                  {t("comparison.oursDetail")}
-                </span>
-              </div>
-            </div>
 
             {/* PRICE */}
             <div className="mt-4 flex items-end gap-2.5">
@@ -111,11 +86,6 @@ export function PublicChargingCableDesktop() {
 
           {/* ── RIGHT: video proof ─────────────────────────── */}
           <PublicChargingVideoModal location="desktop" />
-        </div>
-
-        {/* ── STATS ─────────────────────────────────────────── */}
-        <div className="mt-16 border-t border-white/10 pt-12">
-          <PublicChargingCableStats />
         </div>
       </div>
     </div>

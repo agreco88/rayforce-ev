@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   Building2,
   Cable,
+  Factory,
   Home,
   Scale,
   Unplug,
@@ -35,6 +36,7 @@ type Props = {
 const TIER_ICONS: Record<ChargerTier, IconComponent> = {
   residential: Home,
   commercial: Building2,
+  industrial: Factory,
 };
 
 /**

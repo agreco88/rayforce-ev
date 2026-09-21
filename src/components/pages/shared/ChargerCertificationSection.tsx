@@ -8,7 +8,10 @@ import { cn } from "@/lib/utils";
 import { HomeCostSection } from "@/components/sections/home/cost/HomeCostSection";
 
 type Props = {
-  theme: { accentText: string };
+  theme: {
+    accentText: string;
+    gradientColors?: [string, string, string];
+  };
   id?: string;
 };
 
@@ -29,7 +32,7 @@ export function ChargerCertificationSection({ theme, id }: Props) {
       {/* ------------------------------------------------------------ */}
       {/* Cost comparison chart                                         */}
       {/* ------------------------------------------------------------ */}
-      <div className="py-4">
+      <div className="w-full py-4">
         <HomeCostSection theme={theme} />
       </div>
 
@@ -41,22 +44,22 @@ export function ChargerCertificationSection({ theme, id }: Props) {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          className="order-2 flex items-center justify-center gap-6 lg:order-1"
+          className="order-2 flex items-center justify-center gap-6 lg:order-1 lg:gap-8"
         >
-          <div className="relative flex h-32 w-40 items-center justify-center rounded-2xl bg-white p-4 sm:h-40 sm:w-48">
+          <div className="relative flex h-40 w-1/2 max-w-xs items-center justify-center rounded-2xl bg-white p-4 sm:h-56 lg:h-64">
             <Image
               src="/images/partners/logo-ursea.webp"
               alt={t("urseaAlt")}
               fill
-              className="object-contain p-4"
+              className="object-contain p-5 sm:p-6"
             />
           </div>
-          <div className="relative flex h-32 w-40 items-center justify-center rounded-2xl bg-white p-4 sm:h-40 sm:w-48">
+          <div className="relative flex h-40 w-1/2 max-w-xs items-center justify-center rounded-2xl bg-white p-4 sm:h-56 lg:h-64">
             <Image
               src="/images/partners/logo-ute.webp"
               alt={t("uteAlt")}
               fill
-              className="object-contain p-4"
+              className="object-contain p-5 sm:p-6"
             />
           </div>
         </motion.div>

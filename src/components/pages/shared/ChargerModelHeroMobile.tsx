@@ -117,7 +117,7 @@ export function ChargerModelHeroMobile({ product }: Props) {
         <div className="flex flex-col gap-4 items-center">
           {/* Eyebrow */}
           <p
-            className={`text-xs uppercase tracking-[0.3em] ${theme.accentText}`}
+            className={`max-w-[30ch] text-center text-xs uppercase leading-relaxed tracking-[0.2em] ${theme.accentText}`}
           >
             {t(`eyebrow.${product.slug}`)}
           </p>

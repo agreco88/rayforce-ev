@@ -4,17 +4,11 @@ import { AppButton } from "@/components/ui/wrappers/AppButton";
 import { useTranslations } from "next-intl";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useTrack } from "@/lib/analytics";
-
-
-const WHATSAPP_NUMBER = "598092041709";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 export function FooterCTA() {
   const t = useTranslations("Footer.cta");
   const track = useTrack();
-
-  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    t("whatsappMessage"),
-  )}`;
 
   return (
     <div
@@ -28,7 +22,7 @@ export function FooterCTA() {
       </p>
       <div className="mt-8 flex justify-center">
         <AppButton
-          href={whatsappHref}
+          href={buildWhatsAppHref(t("whatsappMessage"))}
           external
           className="group text-green-500! hover:text-green-400! hover:shadow-green-300/50 py-6 px-6"
           icon={<FaWhatsapp className="size-4 ml-1" />}

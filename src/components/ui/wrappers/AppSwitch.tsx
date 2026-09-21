@@ -8,6 +8,7 @@ type Props = {
   /** Tailwind bg-* class applied to the track when checked. */
   activeClassName?: string;
   className?: string;
+  disabled?: boolean;
   "aria-label"?: string;
 };
 
@@ -16,6 +17,7 @@ export function AppSwitch({
   onChange,
   activeClassName = "bg-white",
   className = "",
+  disabled = false,
   "aria-label": ariaLabel,
 }: Props) {
   return (
@@ -23,11 +25,14 @@ export function AppSwitch({
       type="button"
       role="switch"
       aria-checked={checked}
+      aria-disabled={disabled}
       aria-label={ariaLabel}
-      onClick={() => onChange(!checked)}
-      className={`relative h-8 w-14 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ${
-        checked ? activeClassName : "bg-white/15"
-      } ${className}`}
+      onClick={() => {
+        if (!disabled) onChange(!checked);
+      }}
+      className={`relative h-8 w-14 shrink-0 rounded-full p-1 transition-colors duration-200 ${
+        disabled ? "cursor-not-allowed opacity-40" : "cursor-pointer"
+      } ${checked ? activeClassName : "bg-white/15"} ${className}`}
     >
       <motion.span
         animate={{ x: checked ? 24 : 0 }}

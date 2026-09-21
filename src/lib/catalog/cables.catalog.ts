@@ -34,7 +34,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     slug: "bs-chc003",
     metadataKey: "chc003",
     modelCode: "BS-CHC003",
-    publicName: "Cable recto 7kW",
+    publicName: "Cable recto Tipo 2 a Tipo 2, 7kW",
     shortName: "7kW · 5 m",
 
     price: { currency: "USD", amount: 220, taxLabel: "IVA Inc." },
@@ -71,7 +71,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     slug: "bs-chc004",
     metadataKey: "chc004",
     modelCode: "BS-CHC004",
-    publicName: "Cable recto 22kW",
+    publicName: "Cable recto Tipo 2 a Tipo 2, 22kW",
     shortName: "22kW · 5 m",
 
     price: { currency: "USD", amount: 285, taxLabel: "IVA Inc." },
@@ -108,8 +108,9 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     slug: "bs-chc003-s",
     metadataKey: "chc003-s",
     modelCode: "BS-CHC003-S",
-    publicName: "Cable espiral 7kW",
+    publicName: "Cable espiral Tipo 2 a Tipo 2, 7kW",
     shortName: "7kW · 5 m",
+    highlight: { labelKey: "bestSeller" },
 
     price: { currency: "USD", amount: 235, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Tipo 2", "Espiralado", "IP66"],

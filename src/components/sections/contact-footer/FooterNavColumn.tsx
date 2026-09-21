@@ -29,7 +29,7 @@ export function FooterNavColumn() {
 
   return (
     <div>
-      <h3 className="text-xs tracking-[0.18em] uppercase text-neutral-400">
+      <h3 className="text-xs tracking-[0.18em] uppercase text-neutral-300">
         {tF("sections.navigation")}
       </h3>
 

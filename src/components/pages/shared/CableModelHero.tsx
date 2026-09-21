@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import { CableModelHeroStats } from "./CableModelHeroStats";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { getCableProducts } from "@/lib/catalog/catalog.helpers";
@@ -252,6 +252,21 @@ export function CableModelHero({ product }: Props) {
               >
                 {t("cta.mercadopago")}
                 <ExternalLink size={16} />
+              </motion.a>
+
+              <motion.a
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.25 }}
+                href="#precio"
+                className={`
+                    inline-flex min-h-[48px] w-fit items-center justify-center gap-2 rounded-xl px-6 py-3
+                    text-sm font-semibold text-neutral-300 transition-colors
+                    hover:text-white
+                  `}
+              >
+                {t("cta.viewPrice")}
+                <ChevronDown size={16} />
               </motion.a>
             </div>
           </div>

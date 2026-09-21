@@ -46,23 +46,19 @@ export function PublicChargingVideoModal({ location }: Props) {
         alt={t("imageAlt")}
         loading="lazy"
         decoding="async"
-        className="aspect-video w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+        className="aspect-video w-full object-cover grayscale [will-change:filter] transition-[filter] duration-500 group-hover:grayscale-0"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/30 to-neutral-950/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/30 to-neutral-950/10 transition-opacity duration-500 group-hover:opacity-60" />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-        <span className="flex size-16 items-center justify-center rounded-full bg-amber-400 text-neutral-950 transition-transform duration-300 group-hover:scale-110">
+        <span className="flex size-16 items-center justify-center rounded-full bg-amber-400 text-neutral-950">
           <Play className="size-7 translate-x-0.5 fill-current" />
         </span>
-        <span className="text-sm font-medium text-white">
+        <span className="text-sm font-medium uppercase tracking-wider text-white">
           {t("video.cta")}
         </span>
       </div>
-
-      <span className="absolute left-4 top-4 rounded-full border border-amber-400/30 bg-neutral-950/70 px-3 py-1 text-[11px] uppercase tracking-wider text-amber-400">
-        {t("video.badge")}
-      </span>
     </button>
   );
 

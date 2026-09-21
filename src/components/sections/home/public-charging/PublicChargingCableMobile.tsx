@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Check, X } from "lucide-react";
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { useTrack } from "@/lib/analytics";
-import { PublicChargingCableStats } from "./PublicChargingCableStats";
 import { PublicChargingVideoModal } from "./PublicChargingVideoModal";
 
 export function PublicChargingCableMobile() {
@@ -46,31 +44,6 @@ export function PublicChargingCableMobile() {
         </div>
 
         <PublicChargingVideoModal location="mobile" />
-
-        {/* COMPARISON */}
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-col gap-1.5 rounded-xl border border-white/10 bg-white/[0.02] p-4">
-            <span className="flex items-center gap-2 text-sm font-medium text-neutral-400">
-              <X className="size-4 shrink-0 text-neutral-500" />
-              {t("comparison.theirs")}
-            </span>
-            <span className="text-sm leading-relaxed text-neutral-500">
-              {t("comparison.theirsDetail")}
-            </span>
-          </div>
-
-          <div className="flex flex-col gap-1.5 rounded-xl border border-amber-400/30 bg-amber-400/[0.06] p-4">
-            <span className="flex items-center gap-2 text-sm font-medium text-white">
-              <Check className="size-4 shrink-0 text-amber-400" />
-              {t("comparison.ours")}
-            </span>
-            <span className="text-sm leading-relaxed text-neutral-300">
-              {t("comparison.oursDetail")}
-            </span>
-          </div>
-        </div>
-
-        <PublicChargingCableStats />
 
         {/* PRICE + CTAs */}
         <div className="flex flex-col items-center gap-4">
