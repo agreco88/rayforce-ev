@@ -389,7 +389,24 @@
       "eyebrow": "Cargadores Wallbox Rayforce BS20",
       "title": "Elegí tu modelo",
       "description": "Cuatro modelos, de 7,2kW a 22kW, para hogares y empresas en Uruguay.",
-      "cta": "Ver todos los modelos wallbox de Rayforce"
+      "guide": {
+        "title": "¿Cuál elegir?",
+        "items": [
+          {
+            "title": "Primero mirá tu instalación",
+            "description": "Si tu casa es monofásica (lo más común en Uruguay), tu opción es un 7,2kW. Los de 11 y 22kW necesitan instalación trifásica: si no la tenés, el cargador no va a entregar esa potencia."
+          },
+          {
+            "title": "Cable integrado o toma Tipo 2",
+            "description": "Con cable integrado enchufás y cargás, sin accesorios aparte. La toma es más liviana y te deja usar tu propio cable, pero no viene incluido."
+          },
+          {
+            "title": "Más kW, menos horas",
+            "description": "Un 7,2kW carga de noche sin problema para el uso diario. Los de 11 y 22kW rinden cuando el auto rota entre varios conductores o no podés esperar toda la noche."
+          }
+        ],
+        "footnote": "Los cuatro modelos son Tipo 2, están aprobados por URSEA y los instala nuestro equipo. Si tenés dudas sobre tu instalación, la resolvemos en la visita técnica."
+      }
     },
     "HomeChargersSection": {
       "ComparisonTable": {

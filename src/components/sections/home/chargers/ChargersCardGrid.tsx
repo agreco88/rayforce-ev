@@ -83,15 +83,19 @@ export function ChargersCardGrid({ className }: Props) {
               {/* 480px es la plancha de desktop; en una tarjeta de ~300px de
                   ancho esa altura deja el producto flotando en un mar blanco,
                   asi que en mobile baja a 320. */}
-              <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-white sm:h-[480px]">
-                <ProductHighlightRibbon product={product} className="right-4 top-4" />
-                <div
-                  className="absolute inset-0 blur-2xl"
-                  style={{
-                    background: `radial-gradient(circle at 50% 45%, ${product.theme.glow}, transparent 70%)`,
-                  }}
-                  aria-hidden="true"
+              {/* El destacado va sobre blanco puro y el resto sobre
+                  `neutral-100`: la plancha mas clara lo adelanta sin agregarle
+                  otro adorno encima del riel y el borde de color. */}
+              <div
+                className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden sm:h-[480px] ${
+                  product.highlight ? "bg-white" : "bg-neutral-100"
+                }`}
+              >
+                <ProductHighlightRibbon
+                  product={product}
+                  className="right-4 top-4"
                 />
+
                 <Image
                   src={PRODUCT_IMAGES[product.slug]}
                   alt=""
@@ -113,13 +117,13 @@ export function ChargersCardGrid({ className }: Props) {
 
                 {/* `min-h` de tres lineas, misma razon que el blurb: los
                     titulos ocupan 2 o 3 lineas segun el modelo. */}
-                <h3 className="mt-1 text-base font-semibold tracking-tight text-white xl:min-h-[4.5rem]">
+                <h3 className="mt-1.5 text-base font-semibold tracking-tight text-white">
                   {t(`chargers.${product.slug}.title`)}
                 </h3>
 
                 <GradientText
                   colors={product.theme.gradientColors}
-                  className="mt-1 text-4xl font-thin tracking-tight"
+                  className="mt-3 text-4xl font-thin tracking-tight"
                 >
                   {getPowerLabel(product, locale)}
                 </GradientText>
@@ -133,11 +137,14 @@ export function ChargersCardGrid({ className }: Props) {
                 </p>
 
                 <ul
-                  className="mt-5 flex list-none flex-col gap-2 border-t border-neutral-800 pt-5 text-left text-sm text-neutral-400"
+                  className="flex list-none flex-col gap-2 border-t border-neutral-800 py-6 text-left text-sm text-neutral-400"
                   aria-label={`${t(`chargers.${product.slug}.title`)} highlights`}
                 >
                   {highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start gap-2.5">
+                    <li
+                      key={index}
+                      className="flex items-start gap-2.5 first:text-neutral-200!"
+                    >
                       <span
                         className={`mt-[0.4375rem] size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
                         aria-hidden="true"

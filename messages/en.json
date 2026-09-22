@@ -389,7 +389,24 @@
       "eyebrow": "Rayforce BS20 Wallbox Chargers",
       "title": "Choose your model",
       "description": "Four models, from 7.2kW to 22kW, for homes and businesses in Uruguay.",
-      "cta": "See every Rayforce wallbox model"
+      "guide": {
+        "title": "Which one should you choose?",
+        "items": [
+          {
+            "title": "Start with your electrical supply",
+            "description": "If your home is single-phase — the most common setup in Uruguay — a 7.2kW is your model. The 11 and 22kW need a three-phase supply: without one, the charger will not deliver that power."
+          },
+          {
+            "title": "Integrated cable or Type 2 socket",
+            "description": "An integrated cable means you plug in and charge, with nothing else to buy. The socket is lighter and lets you use your own cable, but none is included."
+          },
+          {
+            "title": "More kW, fewer hours",
+            "description": "A 7.2kW charges overnight comfortably for everyday use. The 11 and 22kW pay off when the car is shared between drivers or you cannot wait all night."
+          }
+        ],
+        "footnote": "All four models are Type 2, URSEA-approved and installed by our own team. If you are unsure about your supply, we confirm it during the technical visit."
+      }
     },
     "HomeChargersSection": {
       "ComparisonTable": {
