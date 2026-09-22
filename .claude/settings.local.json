@@ -92,7 +92,10 @@
       "Bash(cp \"C:/Users/agrep/AppData/Local/Temp/claude/c--Users-agrep-Desktop-Old-Code-rayforce-ev/ce49de47-24a0-4a32-9cad-73646864f4f5/scratchpad/measure.mjs\" ./.measure-tmp.mjs)",
       "Bash(node ./.measure-tmp.mjs)",
       "Bash(node -e \"let s='';process.stdin.on\\('data',d=>s+=d\\).on\\('end',\\(\\)=>{try{const j=JSON.parse\\(s\\);console.log\\('gap header->grupo :', j[1].gapsEntreHijosDelContenedor[0].gapReal+'px'\\);console.log\\('gap grilla->CTA   :', j[2].grupoGrillaYCta.gapsReales[0].gapReal+'px'\\);console.log\\('aire debajo CTA   :', j[3].CTA.aireAbajo_hastaFinDeSeccion+'px'\\);}catch\\(e\\){console.log\\(s\\)}}\\)\")",
-      "Bash(node -e \"const m=require\\('./messages/es.json'\\); console.log\\(JSON.stringify\\(m.Footer.cta,null,2\\)\\);\")"
+      "Bash(node -e \"const m=require\\('./messages/es.json'\\); console.log\\(JSON.stringify\\(m.Footer.cta,null,2\\)\\);\")",
+      "Bash(rm src/components/pages/chargers/WhatIsWallboxCta.tsx)",
+      "Bash(curl -s http://localhost:3000/es)",
+      "Bash(curl -sL http://localhost:3000/es -o /tmp/home.html -w \"%{http_code} %{url_effective}\\\\n\")"
     ]
   }
 }

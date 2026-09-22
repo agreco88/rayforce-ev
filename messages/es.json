@@ -302,8 +302,7 @@
             "description": "Carga a 2,3 kW contra los hasta 22 kW de un wallbox: la misma carga te lleva varias veces más tiempo, todos los días."
           }
         }
-      },
-      "cta": "Ver todos los cargadores"
+      }
     },
     "HomeCostSection": {
       "eyebrow": "Comparativa de costos",
@@ -385,6 +384,12 @@
       },
       "comparisonLabel": "Variación desde 2016",
       "comparisonSummary": "Desde 2016 la nafta subió {nafta}, mientras que la luz subió {ute}. Casi el doble, con la misma plata en el bolsillo."
+    },
+    "Lineup": {
+      "eyebrow": "Cargadores Wallbox Rayforce BS20",
+      "title": "Elegí tu modelo",
+      "description": "Cuatro modelos, de 7,2kW a 22kW, para hogares y empresas en Uruguay.",
+      "cta": "Ver todos los modelos wallbox de Rayforce"
     },
     "HomeChargersSection": {
       "ComparisonTable": {

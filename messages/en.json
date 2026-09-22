@@ -302,8 +302,7 @@
             }
           }
         }
-      },
-      "cta": "View all chargers"
+      }
     },
     "HomeCostSection": {
       "eyebrow": "Cost comparison",
@@ -385,6 +384,12 @@
       },
       "comparisonLabel": "Change since 2016",
       "comparisonSummary": "Since 2016 petrol went up {nafta}, while electricity went up {ute}. Almost twice as much, out of the same pocket."
+    },
+    "Lineup": {
+      "eyebrow": "Rayforce BS20 Wallbox Chargers",
+      "title": "Choose your model",
+      "description": "Four models, from 7.2kW to 22kW, for homes and businesses in Uruguay.",
+      "cta": "See every Rayforce wallbox model"
     },
     "HomeChargersSection": {
       "ComparisonTable": {

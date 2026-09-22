@@ -111,7 +111,9 @@ export function ChargersCardGrid({ className }: Props) {
                   {product.modelCode}
                 </span>
 
-                <h3 className="mt-1 text-base font-semibold tracking-tight text-white">
+                {/* `min-h` de tres lineas, misma razon que el blurb: los
+                    titulos ocupan 2 o 3 lineas segun el modelo. */}
+                <h3 className="mt-1 text-base font-semibold tracking-tight text-white xl:min-h-[4.5rem]">
                   {t(`chargers.${product.slug}.title`)}
                 </h3>
 
@@ -122,7 +124,11 @@ export function ChargersCardGrid({ className }: Props) {
                   {getPowerLabel(product, locale)}
                 </GradientText>
 
-                <p className="mt-3 text-sm leading-relaxed text-neutral-400">
+                {/* `min-h`: a cuatro columnas cada blurb ocupa distinta
+                    cantidad de lineas y sin esto la lista de bullets arranca a
+                    distinta altura en cada tarjeta. En la franja angosta el mas
+                    largo necesita 4 lineas; de `2xl` para arriba, 3. */}
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400 xl:min-h-[5.7rem] 2xl:min-h-[4.275rem]">
                   {t(`chargers.${product.slug}.blurb`)}
                 </p>
 
@@ -142,16 +148,19 @@ export function ChargersCardGrid({ className }: Props) {
                 </ul>
 
                 {/* Price + CTA */}
-                <div className="mt-auto flex items-center justify-between gap-4 border-t border-neutral-800 pt-6">
+                {/* Precio y CTA apilados: a cuatro columnas los dos en una
+                    fila no entran en la tarjeta — el precio se partia en
+                    "USD" / "597" y la flecha quedaba cortada contra el borde. */}
+                <div className="mt-auto flex flex-col items-start gap-3 border-t border-neutral-800 pt-6">
                   <span
-                    className={`text-3xl font-thin tracking-tighter ${product.theme.accentText}`}
+                    className={`text-3xl font-thin tracking-tighter whitespace-nowrap ${product.theme.accentText}`}
                   >
                     USD {product.price.amount}
                   </span>
 
                   <span
                     className={`
-                      inline-flex items-center gap-2
+                      inline-flex items-center gap-2 whitespace-nowrap
                       text-sm font-medium
                       transition-all duration-300
                       ${product.theme.accentText}

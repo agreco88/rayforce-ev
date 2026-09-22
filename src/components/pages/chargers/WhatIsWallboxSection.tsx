@@ -3,9 +3,8 @@
 import { motion } from "motion/react";
 
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
-import { cardContainer, cardItem } from "@/lib/animation-variants";
+import { cardContainer } from "@/lib/animation-variants";
 
-import { WhatIsWallboxCta } from "./WhatIsWallboxCta";
 import { WhatIsWallboxGrid } from "./WhatIsWallboxGrid";
 import { WhatIsWallboxHeader } from "./WhatIsWallboxHeader";
 import { WhatIsWallboxMobileCards } from "./WhatIsWallboxMobileCards";
@@ -36,9 +35,7 @@ export function WhatIsWallboxSection({ id }: { id?: string }) {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 lg:gap-8">
           <WhatIsWallboxHeader />
 
-          {/* Las mismas cuatro tarjetas: grilla desde `sm`, carousel abajo de eso.
-              El CTA entra como un item mas de la cascada, ultimo, asi la cierra en
-              vez de aparecer por su cuenta. */}
+          {/* Las mismas cuatro tarjetas: grilla desde `sm`, carousel abajo de eso. */}
           <motion.div
             variants={cardContainer}
             initial="hidden"
@@ -48,10 +45,6 @@ export function WhatIsWallboxSection({ id }: { id?: string }) {
           >
             <WhatIsWallboxGrid />
             <WhatIsWallboxMobileCards />
-
-            <motion.div variants={cardItem} className="flex justify-center">
-              <WhatIsWallboxCta />
-            </motion.div>
           </motion.div>
         </div>
       </div>

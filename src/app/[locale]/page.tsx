@@ -75,6 +75,13 @@ const PublicChargingCableSection = dynamic(() =>
 // Con esa sección ahora oculta, #beneficios no existe en la home y el enlace
 // del footer (FooterNavColumn) se queda sin destino hasta que se rearme.
 
+// El lineup de wallboxes, solo desktop: la seccion no se monta en mobile.
+const HomeLineupSection = dynamic(() =>
+  import("@/components/sections/home/lineup/HomeLineupSection").then((m) => ({
+    default: m.HomeLineupSection,
+  })),
+);
+
 const HomeStandSection = dynamic(() =>
   import("@/components/sections/home/stand/HomeStandSection").then((m) => ({
     default: m.HomeStandSection,
@@ -144,8 +151,10 @@ export default async function HomePage({ params }: Props) {
             header y por /cargadores, donde esta misma grilla sigue montada.
             El componente y sus traducciones quedan en disco. NO BORRAR.
 
-            OJO: con esto #cargadores deja de existir en la home. */}
+            El ancla #cargadores la toma HomeLineupSection, acá abajo. */}
         {/* <HomeChargersSection id="cargadores" /> */}
+
+        <HomeLineupSection id="cargadores" />
 
         <HomeStandSection id="columna" />
         <PublicChargingCableSection id="cables-carga-publica" />
