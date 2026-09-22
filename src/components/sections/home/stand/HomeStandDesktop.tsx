@@ -123,7 +123,7 @@ export function HomeStandDesktop() {
             Sin epígrafes: cortaban la grilla contra los bloques de abajo y no
             agregaban nada que la imagen no diga. El texto sobrevive como
             aria-label del <video> para lectores de pantalla. */}
-        <div className="mt-10 grid w-full max-w-7xl grid-cols-2 gap-6">
+        <div className="mt-12 grid w-full max-w-7xl grid-cols-2 gap-6">
           <HoverPlayVideo
             src="/assets/videos/column/bs20-column-clip-1.mp4"
             poster="/assets/images/column/bs20-column-clip-1-poster.webp"
@@ -151,14 +151,14 @@ export function HomeStandDesktop() {
             para adentro, así que ni los bordes ni las canaletas coincidían con
             la grilla de videos de arriba. Ahora comparte con ella el mismo
             `max-w-7xl` y el mismo `gap-6`, y las columnas quedan alineadas. */}
-        <div className="mt-6 w-full max-w-7xl">
+        <div className="mt-12 w-full max-w-7xl">
           <ul className="grid grid-cols-3 items-stretch gap-6 text-left">
             {HIGHLIGHTS.map(({ key, icon: Icon, maskSrc }) => (
               <li
                 key={key}
-                className="flex h-full flex-col rounded-2xl border border-neutral-900 bg-neutral-950/40 p-6"
+                className="flex h-full flex-col rounded-2xl border border-neutral-900 bg-neutral-950 p-6"
               >
-                <div className="flex size-12 shrink-0 items-center justify-center">
+                <div className="flex size-18 shrink-0 items-center justify-center">
                   {maskSrc ? (
                     /* El SVG del Tipo 2 es un círculo con los pines adentro:
                        a igual tamaño que un icono de lucide se lee más chico,
@@ -167,7 +167,7 @@ export function HomeStandDesktop() {
                     <div
                       role="img"
                       aria-label={t(`highlights.${key}.title`)}
-                      className="size-12 bg-green-400"
+                      className="size-16 bg-green-400"
                       style={{
                         WebkitMaskImage: `url(${maskSrc})`,
                         maskImage: `url(${maskSrc})`,
@@ -182,8 +182,8 @@ export function HomeStandDesktop() {
                   ) : (
                     Icon && (
                       <Icon
-                        className="size-10 text-green-400"
-                        strokeWidth={0.85}
+                        className="size-12 text-green-400"
+                        strokeWidth={1}
                         aria-hidden="true"
                       />
                     )
@@ -196,14 +196,14 @@ export function HomeStandDesktop() {
                     Reservando las dos líneas, los tres dividers caen en la
                     misma línea y siempre pegados al título. El sobrante lo
                     absorbe la descripción, abajo. */}
-                <p className="mt-5 flex min-h-[3.5rem] items-start text-xl font-light tracking-tight text-balance text-white">
+                <p className="mt-5 flex min-h-[3.5rem] items-start text-2xl font-light tracking-tighter text-balance text-neutral-50">
                   {t(`highlights.${key}.title`)}
                 </p>
 
                 {/* Divider entre título y descripción. */}
-                <div className="mt-4 h-px w-full bg-white/10" />
+                <div className="mt-4 h-px w-full bg-green-400/10" />
 
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-neutral-500">
+                <p className="mt-5 flex-1 text-sm leading-relaxed text-neutral-400">
                   {t(`highlights.${key}.description`)}
                 </p>
               </li>
@@ -220,7 +220,7 @@ export function HomeStandDesktop() {
             tiene un solo borde izquierdo y derecho. */}
         {/* La descripción que iba acá abajo repetía lo que ya dicen los
             destacados y el propio panel, y las medidas subieron al principio. */}
-        <StandPricingPanel className="mt-16 max-w-7xl" />
+        <StandPricingPanel className="mt-12 max-w-7xl" />
 
         {/* Acá iban dos salidas secundarias (consultar por WhatsApp / ver otros
             cargadores). Sacadas a propósito: el CTA del panel es el único que se

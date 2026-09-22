@@ -1,14 +1,28 @@
 "use client";
 
+import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
+
 import { FooterCTA } from "./FooterCTA";
 import { FooterBrand } from "./FooterBrand";
 import { FooterNavColumn } from "./FooterNavColumn";
 import { FooterContactColumn } from "./FooterContactColumn";
 import { FooterMeta } from "./FooterMeta";
 
-export function Footer() {
+type Props = {
+  /**
+   * Monta la compatibilidad arriba del CTA, con este id de ancla. Solo la home:
+   * las páginas de cargador ya la montan en el medio, teñida con su color.
+   */
+  compatibilityId?: string;
+};
+
+export function Footer({ compatibilityId }: Props = {}) {
   return (
     <footer id="footer" className="bg-neutral-950 text-neutral-200">
+      {/* Fuera del contenedor de abajo: su fondo y su grilla van a todo el
+          ancho, y el contenido ya se centra solo. */}
+      {compatibilityId && <CompatibilitySection id={compatibilityId} />}
+
       {/* Mismo contenedor que el header (`navigation-scroll.tsx`): ancho y
           padding tienen que coincidir para que logo y marca queden a plomo. */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-16 2xl:px-0">

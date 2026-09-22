@@ -81,15 +81,11 @@ const HomeStandSection = dynamic(() =>
   })),
 );
 
-const HomeFaqSection = dynamic(() =>
-  import("@/components/sections/home/faq/HomeFaqSection").then((m) => ({
-    default: m.HomeFaqSection,
-  })),
-);
-
-const CompatibilitySection = dynamic(() =>
-  import("@/components/pages/shared/CompatibilitySection").then((m) => ({
-    default: m.CompatibilitySection,
+// Las preguntas frecuentes. La compatibilidad la monta el footer, arriba de su
+// CTA.
+const HomeClosingSection = dynamic(() =>
+  import("@/components/sections/home/closing/HomeClosingSection").then((m) => ({
+    default: m.HomeClosingSection,
   })),
 );
 
@@ -108,7 +104,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "HomePage.FaqSection" });
+  const t = await getTranslations({ locale, namespace: "HomePage.Faq" });
   // El FAQ pasó de 6 categorías a una lista plana de preguntas de empresa, así
   // que el schema lee `items` directo (antes aplanaba `groups`).
   const faqItems = t.raw("items") as { title: string; answer: string }[];
@@ -153,9 +149,8 @@ export default async function HomePage({ params }: Props) {
 
         <HomeStandSection id="columna" />
         <PublicChargingCableSection id="cables-carga-publica" />
-        <HomeFaqSection id="faq" />
-        <CompatibilitySection id="compatibilidad" />
-        <Footer />
+        <HomeClosingSection faqId="faq" />
+        <Footer compatibilityId="compatibilidad" />
       </Suspense>
       <ScrollDepthTracker page="home" />
     </main>

@@ -36,11 +36,7 @@ export function AppButton({
   const content = (
     <span className="inline-flex items-center gap-1 px-1.5">
       {children}
-      {icon && (
-        <span className="transition-transform duration-300 group-hover:translate-x-1">
-          {icon}
-        </span>
-      )}
+      {icon && <span>{icon}</span>}
     </span>
   );
 

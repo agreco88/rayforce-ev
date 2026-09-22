@@ -19,7 +19,8 @@ const WALLBOX_IMAGE_SRC =
  * En mobile la imagen baja debajo del texto.
  *
  * Los gaps son los mismos que los de la grilla de tarjetas (`gap-6 lg:gap-8`),
- * asi las dos columnas caen exactamente sobre las dos columnas de abajo.
+ * en los dos ejes: las columnas caen sobre las de abajo, y el salto hasta la
+ * primera fila de tarjetas es el mismo que separa las filas entre si.
  */
 export function WhatIsWallboxHeader() {
   const t = useTranslations("HomePage.WallboxIntro");
@@ -31,9 +32,7 @@ export function WhatIsWallboxHeader() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
-        /* `lg:pr-8`: con el gap alineado a la grilla, el texto quedaba
-           demasiado cerca del borde de la imagen. */
-        className="flex max-w-2xl flex-col lg:pr-8"
+        className="flex flex-col"
       >
         <motion.span
           variants={waterfallItem}
@@ -49,9 +48,12 @@ export function WhatIsWallboxHeader() {
           {t("whatIsIt.title")}
         </motion.h2>
 
+        {/* El `max-w` lo lleva la descripcion y no la columna: asi la caja del
+            texto termina donde termina la tarjeta de abajo, y el que frena el
+            largo de linea es el parrafo, que es el unico que lo necesita. */}
         <motion.p
           variants={waterfallItem}
-          className="mt-6 leading-relaxed text-neutral-400"
+          className="mt-6 max-w-2xl leading-relaxed text-neutral-400"
         >
           {t("whatIsIt.description")}
         </motion.p>
@@ -62,10 +64,12 @@ export function WhatIsWallboxHeader() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        /* `16/9`: es la proporcion nativa de la foto (1672x941) y la del video
-           (1280x720), asi que el `object-cover` no recorta ninguno de los dos
-           ni hay salto al pasar de uno al otro. */
-        className="relative aspect-video overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-neutral-800"
+        /* `4/3` y no el `16/9` nativo de la foto (1672x941) y del video
+           (1280x720): a media fila el 16/9 dejaba el header casi tan bajo como
+           una tarjeta y no se leia como la cabecera de la grilla. Los dos
+           comparten proporcion, asi que `object-cover` recorta a ambos por los
+           costados por igual y no hay salto al pasar de poster a video. */
+        className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-neutral-800"
       >
         <WallboxDemoVideo
           posterSrc={WALLBOX_IMAGE_SRC}

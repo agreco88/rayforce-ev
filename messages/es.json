@@ -642,18 +642,12 @@
       "header": {
         "eyebrow": "Compatibilidad",
         "title": "¿Funciona con tu vehículo?",
-        "description": "Buscá la marca de tu vehiculo y confirmá si tu vehículo es compatible",
-        "stat": "Compatible con el 99,99% del parque automotor eléctrico e híbrido enchufable de Uruguay"
+        "description": "Seleccioná la marca de tu vehículo y confirmá si es compatible"
       },
       "search": {
         "placeholder": "Elegí tu marca para ver eléctricos compatibles..."
       },
-      "modelsLabel": "Modelos compatibles:",
-      "exclusions": {
-        "title": "Excepciones conocidas",
-        "description": "Un número muy reducido de modelos no es compatible con este cargador. Estamos confirmando el listado final.",
-        "placeholder": "Listado en revisión — próximamente"
-      },
+      "modelsLabel": "Modelos compatibles {brand}:",
       "cta": {
         "contactSales": "Contactar ventas",
         "whatsapp": "Hablar por WhatsApp",
@@ -675,9 +669,10 @@
         "note": "*Respuesta en minutos"
       }
     },
-    "FaqSection": {
+    "Faq": {
       "eyebrow": "SOBRE NOSOTROS",
       "title": "Preguntas frecuentes",
+      "description": "Lo que más nos preguntan sobre quiénes somos, cómo instalamos y qué pasa después de la compra.",
       "items": [
         {
           "title": "¿Quiénes son Rayforce?",

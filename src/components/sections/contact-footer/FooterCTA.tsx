@@ -13,7 +13,7 @@ export function FooterCTA() {
   return (
     <div
       id="contacto"
-      className="mx-auto max-w-4xl py-18 md:pb-28 px-4 sm:px-0 text-center relative"
+      className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-0 lg:py-36"
     >
       <h3>{t("eyebrow")}</h3>
       <h2 className="my-4!">{t("title")}</h2>
@@ -21,11 +21,13 @@ export function FooterCTA() {
         {t("description")}
       </p>
       <div className="mt-8 flex justify-center">
+        {/* El verde sólido del CTA principal (mismo que `ChargerModelHeroCTA`).
+            Los `!` pisan el outline verde que `AppButton` trae por defecto. */}
         <AppButton
           href={buildWhatsAppHref(t("whatsappMessage"))}
           external
-          className="group text-green-500! hover:text-green-400! hover:shadow-green-300/50 py-6 px-6"
-          icon={<FaWhatsapp className="size-4 ml-1" />}
+          className="group border-transparent! bg-green-500! px-6 py-6 font-medium text-black! shadow-lg shadow-green-500/20 hover:bg-green-400! hover:text-black! hover:shadow-green-500/30"
+          icon={<FaWhatsapp className="ml-1 size-4" />}
           track={() => track.whatsappClick({ source: "footer" })}
         >
           {t("button")}

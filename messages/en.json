@@ -642,18 +642,12 @@
       "header": {
         "eyebrow": "Compatibility",
         "title": "Will it work with your vehicle?",
-        "description": "Search for your brand or model and confirm compatibility with your EV",
-        "stat": "Compatible with 99.99% of Uruguay's electric and plug-in hybrid vehicle fleet"
+        "description": "Select your vehicle's brand and confirm whether your vehicle is compatible"
       },
       "search": {
         "placeholder": "Choose your brand to see compatible vehicles..."
       },
-      "modelsLabel": "Compatible models:",
-      "exclusions": {
-        "title": "Known exceptions",
-        "description": "A very small number of models are not compatible with this charger. We're confirming the final list.",
-        "placeholder": "List under review — coming soon"
-      },
+      "modelsLabel": "Compatible {brand} models:",
       "cta": {
         "contactSales": "Contact sales",
         "whatsapp": "Chat on WhatsApp",
@@ -675,9 +669,10 @@
         "note": "*Replies within minutes"
       }
     },
-    "FaqSection": {
+    "Faq": {
       "eyebrow": "ABOUT US",
       "title": "Frequently asked questions",
+      "description": "The questions we get most often: who we are, how we install and what happens after the purchase.",
       "items": [
         {
           "title": "Who is Rayforce?",
