@@ -387,10 +387,10 @@
     },
     "Lineup": {
       "eyebrow": "Cargadores Wallbox Rayforce BS20",
-      "title": "Elegí tu modelo",
-      "description": "Cuatro modelos, de 7,2kW a 22kW, para hogares y empresas en Uruguay.",
+      "title": "Elegí el wallbox que te sirve",
+      "description": "Cuatro modelos de la línea BS20, de 7,2kW a 22kW, para cargar en casa o en la empresa. Cambian la potencia, el tipo de instalación que necesitan y si traen el cable puesto o una toma. Abajo te contamos cómo elegir entre ellos.",
       "guide": {
-        "title": "¿Cuál elegir?",
+        "title": "Consejos a la hora de elegir un cargador wallbox",
         "items": [
           {
             "title": "Primero mirá tu instalación",
@@ -398,7 +398,7 @@
           },
           {
             "title": "Cable integrado o toma Tipo 2",
-            "description": "Con cable integrado enchufás y cargás, sin accesorios aparte. La toma es más liviana y te deja usar tu propio cable, pero no viene incluido."
+            "description": "Comprá uno con cable integrado si el cargador es para tu auto: cargar es colgar el cable y listo, siempre en su soporte y sin nada suelto en el garaje. Comprá uno con toma si lo van a usar varios autos, porque cada uno llega con su cable y no dependés de que el integrado le sirva a todos. Ojo: el cable no viene incluido."
           },
           {
             "title": "Más kW, menos horas",

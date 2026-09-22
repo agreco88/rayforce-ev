@@ -61,14 +61,16 @@ export function HomeLineupSection({ id }: { id?: string }) {
             <motion.h2
               id="home-lineup-heading"
               variants={waterfallItem}
-              className="mt-5 text-4xl font-light tracking-tight text-balance text-white sm:text-5xl"
+              className="mt-4 text-4xl font-light tracking-tight text-balance text-white sm:text-5xl"
             >
               {t("title")}
             </motion.h2>
 
+            {/* `max-w-3xl` y no `2xl`: a dos lineas la bajada acompaña el ancho
+                del h2; a tres se lee como una columna angosta al costado. */}
             <motion.p
               variants={waterfallItem}
-              className="mt-4 max-w-2xl leading-relaxed text-neutral-400"
+              className="mt-5 max-w-3xl leading-relaxed text-neutral-400"
             >
               {t("description")}
             </motion.p>

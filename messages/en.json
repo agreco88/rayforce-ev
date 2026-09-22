@@ -387,10 +387,10 @@
     },
     "Lineup": {
       "eyebrow": "Rayforce BS20 Wallbox Chargers",
-      "title": "Choose your model",
-      "description": "Four models, from 7.2kW to 22kW, for homes and businesses in Uruguay.",
+      "title": "Find the wallbox that fits",
+      "description": "Four models in the BS20 line, from 7.2kW to 22kW, for charging at home or at work. They differ in power, in the supply they need, and in whether they come with a cable attached or a socket. Here is how to choose between them.",
       "guide": {
-        "title": "Which one should you choose?",
+        "title": "Tips for choosing a wallbox charger",
         "items": [
           {
             "title": "Start with your electrical supply",
@@ -398,7 +398,7 @@
           },
           {
             "title": "Integrated cable or Type 2 socket",
-            "description": "An integrated cable means you plug in and charge, with nothing else to buy. The socket is lighter and lets you use your own cable, but none is included."
+            "description": "Buy one with an integrated cable if the charger is for your own car: charging is unhooking the cable and done, always on its holster, with nothing loose in the garage. Buy one with a socket if several cars will use it, since each arrives with its own cable and you are not betting on one suiting them all. Note: no cable is included."
           },
           {
             "title": "More kW, fewer hours",

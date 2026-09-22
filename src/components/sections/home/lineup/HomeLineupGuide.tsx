@@ -6,9 +6,10 @@ import { useTranslations } from "next-intl";
  * La guia de decision, debajo de la grilla: las cuatro fichas dicen que hay,
  * esto responde cual conviene.
  *
- * Tres criterios y no una tabla comparativa: la eleccion real se define por la
- * instalacion que ya tenes (monofasica o trifasica), y recien despues por cable
- * y potencia. La tabla completa vive en la pagina de cada modelo.
+ * Numerada y no una tabla comparativa: la eleccion real es una secuencia — te
+ * la define la instalacion que ya tenes (monofasica o trifasica), recien
+ * despues elegis cable o toma, y al final potencia. La tabla completa vive en
+ * la pagina de cada modelo.
  */
 export function HomeLineupGuide() {
   const t = useTranslations("HomePage.Lineup.guide");
@@ -22,29 +23,40 @@ export function HomeLineupGuide() {
         {t("title")}
       </h3>
 
-      <div className="mt-8 grid grid-cols-3 gap-x-10 gap-y-8">
-        {items.map((item) => (
-          <div key={item.title} className="flex flex-col">
-            <span className="flex items-start gap-2.5 text-sm font-medium text-neutral-200">
+      {/* `items-start`: sin esto las tres columnas se estiran a la mas alta y
+          el numero de cada una queda alineado pero el texto no. */}
+      <ol className="mt-8 grid list-none grid-cols-3 items-start gap-x-10 gap-y-8">
+        {items.map((item, index) => (
+          <li key={item.title} className="flex flex-col">
+            <span className="flex items-start gap-3 text-sm font-medium text-neutral-200">
+              {/* El numero lleva el orden de lectura: la guia se lee de a pasos
+                  (instalacion → cable → potencia), no como una lista suelta. */}
               <span
-                className="mt-[0.4375rem] size-1 shrink-0 rounded-full bg-green-400"
+                className="flex size-5 shrink-0 items-center justify-center rounded-full border border-green-400/30 bg-green-400/10 text-[0.6875rem] font-semibold tabular-nums text-green-400"
                 aria-hidden="true"
-              />
+              >
+                {index + 1}
+              </span>
               {item.title}
             </span>
 
-            {/* El sangrado alinea la descripcion con el titulo, salteando la
-                vineta: `size-1` mas el `gap-2.5`. */}
-            <p className="mt-2 pl-[1.125rem] text-sm leading-relaxed text-neutral-400">
+            {/* El sangrado alinea la descripcion con el titulo, salteando el
+                numero: `size-5` mas el `gap-3`. */}
+            <p className="mt-2 pl-8 text-sm leading-relaxed text-neutral-400">
               {item.description}
             </p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
 
-      <p className="mt-8 border-t border-neutral-800 pt-6 text-sm leading-relaxed text-neutral-500">
-        {t("footnote")}
-      </p>
+      {/* El filete va en el contenedor y no en el `p`: centrado y con
+          `max-w-2xl`, el borde se cortaria al ancho del texto en vez de cerrar
+          el bloque entero. */}
+      <div className="mt-8 border-t border-neutral-800 pt-6">
+        <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-neutral-500">
+          {t("footnote")}
+        </p>
+      </div>
     </div>
   );
 }
