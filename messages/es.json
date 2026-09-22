@@ -64,6 +64,11 @@
     }
   },
   "Common": {
+    "Carousel": {
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "progress": "Diapositiva {current} de {total}"
+    },
     "DemoVideo": {
       "cta": "Ver demostración",
       "title": "Rayforce EV – Demostración"
@@ -128,41 +133,13 @@
   "HomePage": {
     "Hero": {
       "badge": {
-        "bamibel": {
-          "tag": "Bamibel S.A.",
-          "label": "25 años de ingeniería en Uruguay"
-        },
-        "ursea": {
-          "tag": "URSEA",
-          "label": "Autorización VU-SE-17-000123"
-        },
-        "product": {
-          "tag": "Nuevo ingreso",
-          "label": "Cargador BS20 11kW comercial trifásico"
-        }
+        "tag": "Bamibel S.A.",
+        "label": "25 años de ingeniería en Uruguay"
       },
       "title": "Cargadores de tipo wallbox y accesorios para vehículos eléctricos",
       "description": "Vendemos cargadores wallbox y cables de carga de 7, 11 y 22 kW para residencias, edificios, comercios y estacionamientos, con instalación propia en todo el país.",
       "ctaPrimary": "Ver cargadores",
-      "ctaSecondary": "Proyectos para edificios y empresas",
-      "trust": {
-        "ownInstall": {
-          "title": "Instalación propia",
-          "description": "Cotizamos e instalamos con tecnicos certificados por UTE"
-        },
-        "ursea": {
-          "title": "Autorización URSEA",
-          "description": "Línea registrada bajo la autorización VU-SE-17-000123"
-        },
-        "safety": {
-          "title": "El más seguro",
-          "description": "Protecciones eléctricas integradas en el propio equipo"
-        },
-        "compatibility": {
-          "title": "Compatible con todos",
-          "description": "Conector Tipo 2, el estándar de todos los eléctricos"
-        }
-      }
+      "ctaSecondary": "Proyectos para edificios y empresas"
     },
     "HomeWallboxSection": {
       "eyebrow": "Wallbox Rayforce",
@@ -325,7 +302,8 @@
             "description": "Carga a 2,3 kW contra los hasta 22 kW de un wallbox: la misma carga te lleva varias veces más tiempo, todos los días."
           }
         }
-      }
+      },
+      "cta": "Ver todos los cargadores"
     },
     "HomeCostSection": {
       "eyebrow": "Comparativa de costos",
@@ -548,7 +526,8 @@
       "video": {
         "cta": "Ver prueba de durabilidad",
         "title": "Prueba de resistencia: un auto pasa por encima del cable espiralado",
-        "replay": "Ver de nuevo"
+        "replay": "Ver de nuevo",
+        "loading": "Cargando video…"
       },
       "pricing": {
         "price": "USD 235",
@@ -556,7 +535,8 @@
         "cta": "Ver el cable espiralado",
         "secondaryCta": "Ver todos los cables"
       },
-      "imageAlt": "Cable de carga espiralado Rayforce Tipo 2 enrollado, listo para usar en un tótem de carga público"
+      "imageAlt": "Cable de carga espiralado Rayforce Tipo 2 enrollado, listo para usar en un tótem de carga público",
+      "photoAlt": "Persona cargando su auto eléctrico en un tótem público de UTE con un cable Tipo 2"
     },
     "HomeStandSection": {
       "eyebrow": "COLUMNA DE INSTALACIÓN",
@@ -572,7 +552,7 @@
           "label": "Base",
           "value": "26 × 14,5 cm"
         },
-        "description": "Se ancla al piso sobre una base compacta, así que no necesitás pared ni perforar nada del edificio ni tu casa. La altura deja el conector a la altura ideal, sin tener que hacer ningun tipo de esfuero para usarlo."
+        "description": "La columna se ancla al piso sobre una base compacta, así que no necesitás perforar ninguna pared. La altura deja el conector a la altura ideal, sin tener que hacer ningun tipo de esfuero para usarlo."
       },
       "contactCta": "Contactanos",
       "contactMessage": "Hola! Tengo una consulta sobre la columna de instalación",
@@ -589,7 +569,6 @@
       "videosTitle": "La columna en uso",
       "video1Caption": "Instalación en exteriores",
       "video2Caption": "Carga diaria sin pared",
-      "highlightsProgressLabel": "Ir a la tarjeta {index} de {total}",
       "highlights": {
         "shared": {
           "title": "Ideal para cocheras y espacios compartidos",
@@ -606,7 +585,7 @@
       },
       "pricingPanel": {
         "title": "Precio simple. Sin sorpresas",
-        "description": "La columna se vende sola o junto al cargador. Sumá el wallbox y mirá cómo queda el precio final antes de comprar.",
+        "description": "La columna se vende sola o junto al cargador. Sumá el wallbox y la instalacion, y mirá cómo queda el precio final antes de comprar.",
         "includes": "Incluye",
         "detailLink": "Ver detalles",
         "features": {
@@ -657,15 +636,6 @@
           "withCharger": "Columna y cargador juntos, listos para instalar. Podés montarlo vos o sumar la instalación certificada.",
           "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
         }
-      }
-    },
-    "InstallationSection": {
-      "eyebrow": "Instalación hasta en 12 cuotas sin interés",
-      "title": "Instalamos tu cargador eléctrico con equipo incluido desde 1.699 USD IVA Inc.",
-      "subtitle": "Instalación certificada por UTE y homologada por URSEA",
-      "cta": {
-        "label": "Solicitar presupuesto",
-        "whatsappMessage": "Hola, me gustaría solicitar un presupuesto para un cargador wallbox Rayforce"
       }
     },
     "CompatibilitySection": {

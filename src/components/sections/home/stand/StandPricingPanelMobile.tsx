@@ -225,7 +225,7 @@ export function StandPricingPanelMobile({ className }: { className?: string }) {
             entre el CTA y el texto en lugar de acumularse abajo, y el bloque
             respira como los toggles de arriba. El `gap` es el piso mínimo
             entre los dos cuando la variante larga ocupa casi todo. */}
-        <div className="mt-10 flex min-h-[168px] flex-col justify-between gap-5">
+        <div className="mt-10 flex min-h-[168px] flex-col justify-around gap-5">
           <a
             href={includeInstallation ? whatsappHref : checkoutHref}
             target="_blank"
@@ -242,7 +242,7 @@ export function StandPricingPanelMobile({ className }: { className?: string }) {
                     location: "mobile",
                   })
             }
-            className="flex min-h-[52px] w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-green-400 px-3 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300"
+            className="flex min-h-[52px] w-[80%] self-center shrink-0 items-center justify-center gap-8 rounded-xl bg-green-400 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300"
           >
             <AnimatePresence mode="wait">
               <motion.span

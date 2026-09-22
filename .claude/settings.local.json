@@ -43,7 +43,24 @@
       "Read(//mnt/c/Users/agrep/Desktop/Code/rayforce-ev/src/components/layout/**)",
       "Bash(node -e \"const {SiMercadopago} = require\\('react-icons/si'\\); console.log\\(!!SiMercadopago\\)\")",
       "Bash(git reset *)",
-      "Bash(findstr /S /R /I \"bg-neutral-950\\\\|bg-neutral-900\\\\|bg-black\" src\\\\components\\\\sections\\\\*.tsx src\\\\app\\\\*.tsx)"
+      "Bash(findstr /S /R /I \"bg-neutral-950\\\\|bg-neutral-900\\\\|bg-black\" src\\\\components\\\\sections\\\\*.tsx src\\\\app\\\\*.tsx)",
+      "mcp__motion-plus__search-motion-source",
+      "Bash(findstr LISTENING)",
+      "Bash(findstr \"300 301 302 303\")",
+      "PowerShell(\\(Get-CimInstance Win32_Process -Filter \"ProcessId=29060\"\\).CommandLine)",
+      "Bash(node -e \"const es=require\\('./messages/es.json'\\),en=require\\('./messages/en.json'\\);const f=\\(o,p=''\\)=>Object.entries\\(o\\).flatMap\\(\\([k,v]\\)=>typeof v==='object'&&v!==null&&!Array.isArray\\(v\\)?f\\(v,p+k+'.'\\):[p+k]\\);const a=f\\(es\\).sort\\(\\),b=f\\(en\\).sort\\(\\);console.log\\('paridad es/en:', JSON.stringify\\(a\\)===JSON.stringify\\(b\\)?'OK':'ROTA'\\);\")",
+      "PowerShell(Get-NetTCPConnection -State Listen | Where-Object { $_.OwningProcess } | ForEach-Object { $conn = $_; try { $cmdline = \\(Get-CimInstance Win32_Process -Filter \"ProcessId=$\\($conn.OwningProcess\\)\" -ErrorAction Stop\\).CommandLine } catch { $cmdline = $null }; if \\($cmdline -match \"rayforce-ev\"\\) { [PSCustomObject]@{ Port = $conn.LocalPort; PID = $conn.OwningProcess; Cmd = $cmdline } } } | Sort-Object Port -Unique)",
+      "Bash(node -e \"console.log\\('checking tailwind neutral scale oklch values \\(v4 default\\)'\\)\")",
+      "Bash(findstr /C:\"127.0.0.1:3\" /C:\"0.0.0.0:3\" /C:\"[::]:3\")",
+      "PowerShell($c = Get-NetTCPConnection -State Listen | Where-Object { $_.LocalPort -ge 3000 -and $_.LocalPort -le 3010 } | Select-Object -Unique LocalPort, OwningProcess; foreach \\($x in $c\\) { $p = \\(Get-CimInstance Win32_Process -Filter \"ProcessId=$\\($x.OwningProcess\\)\"\\).CommandLine; \"PORT $\\($x.LocalPort\\) PID $\\($x.OwningProcess\\) :: $p\" })",
+      "Bash(curl -s http://localhost:3000/es -o /tmp/page.html -w \"%{http_code}\\\\n\")",
+      "Bash(curl -sL http://localhost:3000/ -o /tmp/page.html -w \"%{http_code}\\\\n\")",
+      "mcp__motion__search-motion-docs",
+      "Bash(curl -sL http://localhost:3000/ -o /tmp/p.html -w \"%{http_code}\\\\n\")",
+      "Bash(curl -sL http://localhost:3000/ -o /tmp/p.html -w \"HTTP %{http_code}\\\\n\")",
+      "PowerShell($pids = netstat -ano | Select-String LISTENING | ForEach-Object { \\($_ -split '\\\\s+'\\)[-1] } | Sort-Object -Unique; foreach \\($p in $pids\\) { try { $cl = \\(Get-CimInstance Win32_Process -Filter \"ProcessId=$p\" -ErrorAction Stop\\).CommandLine } catch { $cl = $null }; if \\($cl -and $cl -match 'rayforce-ev'\\) { \"$p :: $cl\" } })",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/es\" -UseBasicParsing -TimeoutSec 90; \"status=$\\($r.StatusCode\\)\"; if \\($r.Content -match 'rgba\\\\\\(64,64,64,0\\\\.3\\\\\\)'\\) { \"grid pattern present in HTML\" } else { \"grid pattern NOT found\" })",
+      "Bash(node -e \"const es=require\\('./messages/es.json'\\),en=require\\('./messages/en.json'\\);const f=\\(o,p=''\\)=>Object.entries\\(o\\).flatMap\\(\\([k,v]\\)=>typeof v==='object'&&v!==null&&!Array.isArray\\(v\\)?f\\(v,p+k+'.'\\):[p+k]\\);const a=f\\(es\\).sort\\(\\),b=f\\(en\\).sort\\(\\);console.log\\('paridad es/en:', JSON.stringify\\(a\\)===JSON.stringify\\(b\\)?'OK':'ROTA'\\);if\\(JSON.stringify\\(a\\)!==JSON.stringify\\(b\\)\\){console.log\\('solo es:',a.filter\\(x=>!b.includes\\(x\\)\\)\\);console.log\\('solo en:',b.filter\\(x=>!a.includes\\(x\\)\\)\\)}\")"
     ]
   }
 }

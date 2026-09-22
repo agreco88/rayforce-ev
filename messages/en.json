@@ -64,6 +64,11 @@
     }
   },
   "Common": {
+    "Carousel": {
+      "prev": "Previous",
+      "next": "Next",
+      "progress": "Slide {current} of {total}"
+    },
     "DemoVideo": {
       "cta": "Watch demo",
       "title": "Rayforce EV – Demo"
@@ -128,41 +133,13 @@
   "HomePage": {
     "Hero": {
       "badge": {
-        "bamibel": {
-          "tag": "Bamibel S.A.",
-          "label": "25 years of engineering in Uruguay"
-        },
-        "ursea": {
-          "tag": "URSEA",
-          "label": "Authorisation VU-SE-17-000123"
-        },
-        "product": {
-          "tag": "New arrival",
-          "label": "BS20 11kW commercial three-phase charger"
-        }
+        "tag": "Bamibel S.A.",
+        "label": "25 years of engineering in Uruguay"
       },
       "title": "Wallbox chargers for electric vehicles with our own certified installation",
       "description": "Wallboxes of 7, 11 and 22 kW for homes, buildings, businesses and parking facilities, with our own installation nationwide.",
       "ctaPrimary": "View chargers",
-      "ctaSecondary": "Projects for buildings and businesses",
-      "trust": {
-        "ownInstall": {
-          "title": "In-house install",
-          "description": "We quote, install and answer for the unit"
-        },
-        "ursea": {
-          "title": "URSEA authorised",
-          "description": "Full line registered under VU-SE-17-000123"
-        },
-        "safety": {
-          "title": "The safest one",
-          "description": "Electrical protections built into the unit"
-        },
-        "compatibility": {
-          "title": "Fits every model",
-          "description": "Type 2 connector, the EV standard"
-        }
-      }
+      "ctaSecondary": "Projects for buildings and businesses"
     },
     "HomeWallboxSection": {
       "eyebrow": "Rayforce wallbox",
@@ -325,7 +302,8 @@
             }
           }
         }
-      }
+      },
+      "cta": "View all chargers"
     },
     "HomeCostSection": {
       "eyebrow": "Cost comparison",
@@ -548,7 +526,8 @@
       "video": {
         "cta": "Watch durability test",
         "title": "Durability test: a car drives over the coiled cable",
-        "replay": "Watch again"
+        "replay": "Watch again",
+        "loading": "Loading video…"
       },
       "pricing": {
         "price": "USD 235",
@@ -556,7 +535,8 @@
         "cta": "See the coiled cable",
         "secondaryCta": "See all cables"
       },
-      "imageAlt": "Coiled Rayforce Type 2 charging cable, ready to use at a public charging station"
+      "imageAlt": "Coiled Rayforce Type 2 charging cable, ready to use at a public charging station",
+      "photoAlt": "Person charging their electric car at a public UTE station with a Type 2 cable"
     },
     "HomeStandSection": {
       "eyebrow": "INSTALLATION STAND",
@@ -589,7 +569,6 @@
       "videosTitle": "The stand in use",
       "video1Caption": "Outdoor installation",
       "video2Caption": "Daily charging without a wall",
-      "highlightsProgressLabel": "Go to card {index} of {total}",
       "highlights": {
         "shared": {
           "title": "Ideal for garages and shared spaces",
@@ -657,15 +636,6 @@
           "withCharger": "Stand and charger together, ready to install. Mount it yourself or add certified installation.",
           "withInstallation": "The final price depends on the distance to the electrical panel, and whether civil works or an upgrade to the existing installation are required."
         }
-      }
-    },
-    "InstallationSection": {
-      "eyebrow": "Installation in up to 12 interest-free installments",
-      "title": "We install your EV charger with equipment included from USD 1,699 VAT Inc.",
-      "subtitle": "Installation certified by UTE and approved by URSEA",
-      "cta": {
-        "label": "Request a quote",
-        "whatsappMessage": "Hi, I'd like to request a quote for a Rayforce wallbox charger"
       }
     },
     "CompatibilitySection": {

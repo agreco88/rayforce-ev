@@ -62,7 +62,7 @@ export function StandPricingPanel({ className }: { className?: string }) {
         {/* `normal-case` porque el reset global pone los `h3` en uppercase
             (globals.css, capa base). Acá el título es una frase, no una
             etiqueta. */}
-        <h3 className="text-2xl font-light tracking-tight text-white normal-case">
+        <h3 className="text-3xl mb-4 font-medium tracking-tight text-white normal-case">
           {t("title")}
         </h3>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-neutral-400">
@@ -268,7 +268,9 @@ export function StandPricingPanel({ className }: { className?: string }) {
                   </>
                 ) : (
                   <>
-                    {includeCharger ? t("cta.withCharger") : t("cta.columnOnly")}
+                    {includeCharger
+                      ? t("cta.withCharger")
+                      : t("cta.columnOnly")}
                     <ExternalLink size={16} />
                   </>
                 )}

@@ -7,7 +7,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
-import { HomeChargersSection } from "@/components/sections/home/chargers/HomeChargersComparison";
+// Oculto — ver el comentario en el JSX. NO BORRAR.
+// import { HomeChargersSection } from "@/components/sections/home/chargers/HomeChargersComparison";
 // Oculto — ver el comentario en el JSX. El componente vive en disco como
 // HomeWallboxSectionVariant. NO BORRAR.
 // import { HomeWallboxSectionVariant } from "@/components/sections/home/wallbox/HomeWallboxSectionVariant";
@@ -80,12 +81,6 @@ const HomeStandSection = dynamic(() =>
   })),
 );
 
-const InstallationSection = dynamic(() =>
-  import("@/components/sections/home/installation/InstallationSection").then(
-    (m) => ({ default: m.InstallationSection }),
-  ),
-);
-
 const HomeFaqSection = dynamic(() =>
   import("@/components/sections/home/faq/HomeFaqSection").then((m) => ({
     default: m.HomeFaqSection,
@@ -147,11 +142,17 @@ export default async function HomePage({ params }: Props) {
 
         {/* Oculto — ver el comentario del import. NO BORRAR. */}
         {/* <EnergyCostAndTrendSection id="ahorro" /> */}
-        <HomeChargersSection id="cargadores" />
 
-        <PublicChargingCableSection id="cables-carga-publica" />
+        {/* Oculta: la grilla "Soluciones inteligentes de carga". La home queda
+            más corta y los cargadores se siguen capturando por el flyout del
+            header y por /cargadores, donde esta misma grilla sigue montada.
+            El componente y sus traducciones quedan en disco. NO BORRAR.
+
+            OJO: con esto #cargadores deja de existir en la home. */}
+        {/* <HomeChargersSection id="cargadores" /> */}
+
         <HomeStandSection id="columna" />
-        <InstallationSection id="instalacion" />
+        <PublicChargingCableSection id="cables-carga-publica" />
         <HomeFaqSection id="faq" />
         <CompatibilitySection id="compatibilidad" />
         <Footer />

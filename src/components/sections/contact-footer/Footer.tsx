@@ -9,7 +9,9 @@ import { FooterMeta } from "./FooterMeta";
 export function Footer() {
   return (
     <footer id="footer" className="bg-neutral-950 text-neutral-200">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* Mismo contenedor que el header (`navigation-scroll.tsx`): ancho y
+          padding tienen que coincidir para que logo y marca queden a plomo. */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-16 2xl:px-0">
         {/*
           El CTA lleva el id="contacto", que es el destino del link "Contacto"
           del header. Hasta ahora el componente existia pero no se montaba en

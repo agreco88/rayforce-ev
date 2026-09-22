@@ -1,18 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import {
-  ArrowRight,
-  ParkingCircle,
-  Wrench,
-  type LucideIcon,
-} from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa6";
-import { Link } from "@/i18n/navigation";
-import { useTrack } from "@/lib/analytics";
+import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
+import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
+import { CarouselCard } from "@/components/shared/carousel/CarouselCard";
 import { HoverPlayVideo } from "./HoverPlayVideo";
 import { StandPricingPanelMobile } from "./StandPricingPanelMobile";
-import { StandHighlightsCarousel } from "./StandHighlightsCarousel";
 
 const SOCKET_TYPE_2_SRC = "/images/icons/socket-type-2.svg";
 
@@ -27,8 +20,6 @@ const HIGHLIGHTS: {
   { key: "install", icon: Wrench },
 ];
 
-const WHATSAPP_NUMBER = "59892041709";
-
 /**
  * Versión mobile de la sección de la columna. Cuenta el mismo recorrido que
  * desktop —qué es → cómo se ve → en uso → por qué → cuánto sale— pero con la
@@ -40,7 +31,8 @@ const WHATSAPP_NUMBER = "59892041709";
  *   diferencia del `aspect-[4/5]` de desktop, que existe para llenar media
  *   fila).
  * - La foto de la columna instalada no está: ver el comentario en su lugar.
- * - Los dos videos, que en desktop van lado a lado, acá se apilan.
+ * - De los dos videos que desktop pone lado a lado queda solo el segundo: ver
+ *   el comentario en su lugar.
  * - El bento de tres tarjetas pasa a carousel, para no comer scroll justo
  *   antes del panel de precio.
  * - El panel de precio tiene su propia variante (`StandPricingPanelMobile`),
@@ -48,11 +40,6 @@ const WHATSAPP_NUMBER = "59892041709";
  */
 export function HomeStandMobile() {
   const t = useTranslations("HomePage.HomeStandSection");
-  const track = useTrack();
-
-  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    t("contactMessage"),
-  )}`;
 
   return (
     <section
@@ -150,19 +137,21 @@ export function HomeStandMobile() {
 
             El `-mx-6` cancela el padding lateral de la sección: con `overflow`
             el carousel necesita el ancho completo del viewport para que la
-            tarjeta siguiente se asome. El padding se repone en el track. */}
+            tarjeta siguiente se asome. */}
         <div className="-mx-6 mt-14">
-          <StandHighlightsCarousel
-            progressLabel={(index, total) =>
-              t("highlightsProgressLabel", { index, total })
-            }
-            cards={HIGHLIGHTS.map(({ key, icon, maskSrc }) => ({
-              key,
-              icon,
-              maskSrc,
-              title: t(`highlights.${key}.title`),
-              description: t(`highlights.${key}.description`),
-            }))}
+          <CardCarousel
+            items={HIGHLIGHTS.map(({ key, icon, maskSrc }) => (
+              <CarouselCard
+                key={key}
+                card={{
+                  key,
+                  icon,
+                  maskSrc,
+                  title: t(`highlights.${key}.title`),
+                  description: t(`highlights.${key}.description`),
+                }}
+              />
+            ))}
           />
         </div>
 
@@ -171,28 +160,12 @@ export function HomeStandMobile() {
             así no quedan dos contenedores anidados comiéndose el ancho. */}
         <StandPricingPanelMobile className="mt-14" />
 
-        {/* SALIDAS — las dos alternativas para quien no cierra con el combo de
-            arriba. A ancho completo y apiladas, para que entren en el pulgar. */}
-        <div className="mt-14 flex flex-col gap-3">
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track.whatsappClick({ source: "stand" })}
-            className="flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-          >
-            {t("contactCta")}
-            <FaWhatsapp size={16} />
-          </a>
-
-          <Link
-            href="/cargadores"
-            className="flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-          >
-            {t("browseChargersCta")}
-            <ArrowRight className="size-4" strokeWidth={2} />
-          </Link>
-        </div>
+        {/* Acá iban dos salidas secundarias (consultar por WhatsApp / ver otros
+            cargadores). Sacadas a propósito: el CTA del panel es el único que se
+            necesita en esta sección, y dos opciones más abajo lo diluyen justo
+            donde la persona tiene que decidir. Las claves `contactCta`,
+            `browseChargersCta` y `contactMessage` quedan en los mensajes por si
+            vuelven. */}
       </div>
     </section>
   );

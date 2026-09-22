@@ -125,6 +125,14 @@ export function useStandPricing() {
     t("cta.whatsappMessage"),
   )}`;
 
+  /**
+   * TODO(precio): con el cargador prendido el panel muestra 756 (159 de la
+   * columna + 597 del BS20-BC-7KW) pero manda al checkout del cargador solo,
+   * que cobra 597. Faltan los 159 de la columna.
+   *
+   * No hay preferencia de MercadoPago para el combo: hace falta crearla por
+   * 756 y ponerla acá. Hasta entonces esta rama cobra de menos.
+   */
   const checkoutHref = includeCharger
     ? charger?.mercadopagoUrl || COLUMN_MERCADOPAGO_URL
     : COLUMN_MERCADOPAGO_URL;

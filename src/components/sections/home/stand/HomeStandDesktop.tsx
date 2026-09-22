@@ -1,15 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import {
-  ArrowRight,
-  ParkingCircle,
-  Wrench,
-  type LucideIcon,
-} from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa6";
-import { Link } from "@/i18n/navigation";
-import { useTrack } from "@/lib/analytics";
+import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
 import { HoverPlayVideo } from "./HoverPlayVideo";
 import { StandPricingPanel } from "./StandPricingPanel";
 
@@ -30,15 +22,8 @@ const HIGHLIGHTS: {
   { key: "install", icon: Wrench },
 ];
 
-const WHATSAPP_NUMBER = "59892041709";
-
 export function HomeStandDesktop() {
   const t = useTranslations("HomePage.HomeStandSection");
-  const track = useTrack();
-
-  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    t("contactMessage"),
-  )}`;
 
   return (
     <section
@@ -46,15 +31,16 @@ export function HomeStandDesktop() {
       className="relative isolate overflow-hidden"
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 pt-20 pb-20 text-center">
-        {/* HEADER — 50/50: el bloque de texto (apilado y colapsado a la
-            izquierda, como estaba) comparte fila con la imagen de la columna
-            vacía y la columna con el wallbox. Es la misma que usa el mobile, y
-            acá gana sentido al lado del título: muestra de entrada qué se
-            compra y qué queda después, antes de la foto instalada de abajo.
+        {/* HEADER — 50/50: el texto comparte fila con la foto de la columna
+            instalada. Antes acá iba `charger-mobile.avif` (el comparativo
+            columna vacía → columna con wallbox, que el mobile conserva) y la
+            foto instalada iba a ancho completo más abajo. Se intercambiaron:
+            la foto en contexto —columna, auto enchufado, edificio— dice de
+            entrada de qué se trata mejor que el comparativo de producto, y
+            los videos ganan el ancho completo que ésta dejó.
 
-            `items-center` en vez de `items-end` porque las dos columnas de la
-            imagen están centradas verticalmente en su encuadre: alinear por el
-            pie dejaba la foto colgando respecto del texto. */}
+            `items-center` porque la foto es 16:9 y el bloque de texto más
+            alto: alinear por el pie la dejaba colgando. */}
         <div className="grid w-full max-w-7xl grid-cols-2 items-center gap-12 text-left">
           <div>
             {/* EYEBROW */}
@@ -68,7 +54,7 @@ export function HomeStandDesktop() {
               className="
                 m-0 mt-5
                 text-5xl
-                xl:text-6xl
+                xl:text-5xl
                 leading-[1.08]
                 tracking-tight
                 font-light
@@ -80,7 +66,7 @@ export function HomeStandDesktop() {
 
             {/* MEDIDAS — separadas por un divider vertical en vez de apiladas,
                 para que las dos se lean como un mismo dato de tamaño. */}
-            <dl className="mt-8 flex items-stretch gap-8">
+            <dl className="mt-12 flex items-stretch gap-8">
               {(["height", "base"] as const).map((key, index) => (
                 <div key={key} className="flex items-stretch gap-8">
                   {index > 0 && <div className="w-px bg-white/10" />}
@@ -96,7 +82,7 @@ export function HomeStandDesktop() {
               ))}
             </dl>
 
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-neutral-400">
+            <p className="mt-12 max-w-xl text-sm leading-relaxed text-neutral-400">
               {t("dimensions.description")}
             </p>
 
@@ -107,37 +93,29 @@ export function HomeStandDesktop() {
             </span>
           </div>
 
-          {/* COLUMNA VACÍA → CON WALLBOX. El original es 3:2 con mucho aire
-              arriba, abajo y a los costados: a media fila las dos columnas
-              quedaban diminutas. Se reencuadra a 4/5 con object-cover para
-              recortar ese aire y que el producto llene la celda. */}
+          {/* COLUMNA INSTALADA. La foto original es 16:9. A media fila se
+              reencuadra a 4/3: el 4/5 vertical que se probó antes la dejaba
+              más alta que el bloque de texto y recortaba de más a los costados
+              (se comía el edificio y pegaba el auto contra el borde). 4/3 baja
+              el alto, devuelve parte de ese contexto y sigue llenando la
+              celda sin dejar el aire lateral del 16:9 completo. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/stand/charger-mobile.avif"
-            alt={t("comparisonImageAlt")}
-            width={1536}
-            height={1024}
+            src="/assets/images/column/bs20-mounted-on-column.webp"
+            alt={t("imageAlt")}
+            width={1672}
+            height={941}
             loading="lazy"
             decoding="async"
-            className="aspect-[4/5] w-full rounded-2xl object-cover"
+            className="aspect-[4/3] w-full rounded-2xl border border-white/10 object-cover"
           />
         </div>
 
-        {/* COLUMNA — foto de la columna instalada, en flujo normal.
-            Es 16:9 opaca (no un recorte), así que va enmarcada al ancho del
-            contenido en vez de escalada por altura. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/images/column/bs20-mounted-on-column.webp"
-          alt={t("imageAlt")}
-          width={1672}
-          height={941}
-          loading="lazy"
-          decoding="async"
-          className="mt-10 w-full max-w-7xl rounded-2xl border border-white/10 object-cover"
-        />
-
-        {/* VIDEOS — referencia de uso real, entre la foto y los destacados.
+        {/* VIDEOS — referencia de uso real. Heredan el lugar que tenía la foto
+            instalada, que subió al header, pero conservan el `max-w-7xl` que
+            comparten el header, los destacados y el panel de precio: a ancho
+            completo eran el único bloque que rompía esa caja y la sección
+            perdía su borde izquierdo y derecho recto.
             Los dos clips tienen orientación distinta (16:9 y 9:16), así que
             cada celda fija su propio aspect-ratio y recorta con object-cover
             para que las dos columnas queden a la misma altura.
@@ -145,7 +123,7 @@ export function HomeStandDesktop() {
             Sin epígrafes: cortaban la grilla contra los bloques de abajo y no
             agregaban nada que la imagen no diga. El texto sobrevive como
             aria-label del <video> para lectores de pantalla. */}
-        <div className="mt-6 grid w-full max-w-7xl grid-cols-2 gap-6">
+        <div className="mt-10 grid w-full max-w-7xl grid-cols-2 gap-6">
           <HoverPlayVideo
             src="/assets/videos/column/bs20-column-clip-1.mp4"
             poster="/assets/images/column/bs20-column-clip-1-poster.webp"
@@ -244,29 +222,12 @@ export function HomeStandDesktop() {
             destacados y el propio panel, y las medidas subieron al principio. */}
         <StandPricingPanel className="mt-16 max-w-7xl" />
 
-        {/* SALIDAS — las dos alternativas para quien no cierra con el combo de
-            arriba: preguntar, o mirar otros cargadores. Van afuera del panel y
-            en secundario (borde, sin relleno) para no competir con su CTA. */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track.whatsappClick({ source: "stand" })}
-            className="inline-flex min-h-[48px] items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-          >
-            {t("contactCta")}
-            <FaWhatsapp size={16} />
-          </a>
-
-          <Link
-            href="/cargadores"
-            className="inline-flex min-h-[48px] items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-          >
-            {t("browseChargersCta")}
-            <ArrowRight className="size-4" strokeWidth={2} />
-          </Link>
-        </div>
+        {/* Acá iban dos salidas secundarias (consultar por WhatsApp / ver otros
+            cargadores). Sacadas a propósito: el CTA del panel es el único que se
+            necesita en esta sección, y dos opciones más abajo lo diluyen justo
+            donde la persona tiene que decidir. Las claves `contactCta`,
+            `browseChargersCta` y `contactMessage` quedan en los mensajes por si
+            vuelven. */}
       </div>
     </section>
   );

@@ -28,8 +28,10 @@ export function PublicChargingCableMobile() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex flex-col gap-6 px-6 pt-12 pb-10">
-        <div className="flex flex-col gap-3">
+      {/* `gap-10` entre bloques (texto, video, precio+CTAs) en vez de `gap-6`:
+          con 24px los tres se leían como un solo bloque corrido. */}
+      <div className="relative z-10 flex flex-col gap-10 px-6 pt-12 pb-12">
+        <div className="flex flex-col gap-4">
           <span className="text-[10px] tracking-[0.3em] uppercase text-amber-400">
             {t("eyebrow")}
           </span>
@@ -46,7 +48,7 @@ export function PublicChargingCableMobile() {
         <PublicChargingVideoModal location="mobile" />
 
         {/* PRICE + CTAs */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-6">
           <div className="flex items-end gap-2.5">
             <span className="text-5xl font-thin tracking-tighter text-amber-400">
               {t("pricing.price")}
@@ -56,31 +58,40 @@ export function PublicChargingCableMobile() {
             </span>
           </div>
 
-          <Link
-            href="/cables/bs-chc003-s"
-            onClick={() =>
-              track.publicChargingCableCta({
-                cta: "product",
-                location: "mobile",
-              })
-            }
-            className="w-full rounded-xl bg-amber-400 px-6 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors duration-200 hover:bg-amber-300"
-          >
-            {t("pricing.cta")}
-          </Link>
+          {/* Los dos CTAs en una fila 50/50 (`grid-cols-2`) en vez de apilados.
+              El secundario era un link subrayado suelto debajo del botón: como
+              ahora comparten fila, pasa a botón con borde, el mismo par
+              primario/secundario que usa el desktop. `text-center` y no
+              `whitespace-nowrap` porque a 375px el copy puede necesitar dos
+              líneas, y con `items-stretch` (por defecto en grid) las dos
+              celdas quedan igual de altas si eso pasa. */}
+          <div className="grid w-full grid-cols-2 gap-3">
+            <Link
+              href="/cables/bs-chc003-s"
+              onClick={() =>
+                track.publicChargingCableCta({
+                  cta: "product",
+                  location: "mobile",
+                })
+              }
+              className="flex items-center justify-center rounded-xl bg-amber-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors duration-200 hover:bg-amber-300"
+            >
+              {t("pricing.cta")}
+            </Link>
 
-          <Link
-            href="/cables"
-            onClick={() =>
-              track.publicChargingCableCta({
-                cta: "all_cables",
-                location: "mobile",
-              })
-            }
-            className="text-sm text-neutral-400 underline underline-offset-4 transition-colors duration-200 hover:text-white"
-          >
-            {t("pricing.secondaryCta")}
-          </Link>
+            <Link
+              href="/cables"
+              onClick={() =>
+                track.publicChargingCableCta({
+                  cta: "all_cables",
+                  location: "mobile",
+                })
+              }
+              className="flex items-center justify-center rounded-xl border border-white/15 px-4 py-3 text-center text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
+            >
+              {t("pricing.secondaryCta")}
+            </Link>
+          </div>
         </div>
       </div>
     </div>
