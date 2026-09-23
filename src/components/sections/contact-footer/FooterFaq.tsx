@@ -9,13 +9,20 @@ import {
   type FaqItem,
 } from "@/components/sections/home/faq/FaqAccordion";
 
+type Props = {
+  /** Namespace con `eyebrow`, `title`, `description` e `items`. */
+  namespace: string;
+};
+
 /**
- * FAQ propio de /cargadores: preguntas sobre potencia, instalacion y garantia
- * de los wallbox. Namespace separado de `HomePage.Faq`, que es sobre la
- * empresa — acá no se repiten esas preguntas.
+ * Las preguntas de la ruta que lo monta. El namespace entra por prop porque
+ * cada pagina tiene las suyas — antes esto eran dos componentes identicos
+ * (`HomeFaqContent` y `ChargersFaqContent`) que solo diferian en esa string.
+ *
+ * La salida a WhatsApp no va aca: es el CTA que sigue abajo.
  */
-export function ChargersFaqContent() {
-  const t = useTranslations("ChargersPage.Faq");
+export function FooterFaq({ namespace }: Props) {
+  const t = useTranslations(namespace);
   const items = t.raw("items") as FaqItem[];
 
   return (
@@ -24,9 +31,13 @@ export function ChargersFaqContent() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
-      className="mx-auto w-full max-w-3xl px-6 pt-24 pb-24 lg:pt-36 lg:pb-36"
+      // Sin padding abajo: el CTA que sigue ya trae el suyo, y sumados dejaban
+      // casi 300px de aire entre los dos.
+      className="mx-auto w-full max-w-3xl pt-24 lg:pt-36"
     >
-      <motion.div variants={waterfallItem}>
+      {/* Encabezado centrado como el del CTA: ahora son el mismo bloque de
+          cierre y alineados distinto se leian como dos secciones sueltas. */}
+      <motion.div variants={waterfallItem} className="text-center">
         <span className="text-[10px] tracking-[0.3em] uppercase text-green-400 sm:text-xs sm:tracking-[0.25em]">
           {t("eyebrow")}
         </span>
@@ -35,7 +46,7 @@ export function ChargersFaqContent() {
           {t("title")}
         </h2>
 
-        <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-400 sm:mt-6">
+        <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-neutral-400 sm:mt-6">
           {t("description")}
         </p>
       </motion.div>

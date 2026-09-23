@@ -35,7 +35,9 @@ function useLogoClick() {
  *  que no se deforme al cambiar el ancho. */
 const LOGO_RATIO = 26 / 165;
 
-export default function HeaderLogo({ width = 120 }: { width?: number }) {
+/* 165 es el ancho nativo del wordmark — el mismo que usa el footer, para que
+   la marca se lea igual arriba y abajo. */
+export default function HeaderLogo({ width = 165 }: { width?: number }) {
   const handleClick = useLogoClick();
 
   return (

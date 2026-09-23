@@ -109,7 +109,10 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     metadataKey: "chc003-s",
     modelCode: "BS-CHC003-S",
     publicName: "Cable espiral Tipo 2 a Tipo 2, 7kW",
-    shortName: "7kW · 5 m",
+    /* "espiral" y no solo los kW: es lo unico que lo distingue del BS-CHC003,
+       que tambien es 7kW · 5 m. Sin eso los dos se leen igual en el footer, en
+       la comparativa y en el mensaje de WhatsApp. */
+    shortName: "7kW · 5 m espiral",
     highlight: { labelKey: "bestSeller" },
 
     price: { currency: "USD", amount: 235, taxLabel: "IVA Inc." },

@@ -88,14 +88,7 @@ const HomeStandSection = dynamic(() =>
   })),
 );
 
-// Las preguntas frecuentes. La compatibilidad la monta el footer, arriba de su
-// CTA.
-const HomeClosingSection = dynamic(() =>
-  import("@/components/sections/home/closing/HomeClosingSection").then((m) => ({
-    default: m.HomeClosingSection,
-  })),
-);
-
+// FAQ + compatibilidad + CTA + navegacion: el cierre entero.
 const Footer = dynamic(() =>
   import("@/components/sections/contact-footer/Footer").then((m) => ({
     default: m.Footer,
@@ -158,8 +151,11 @@ export default async function HomePage({ params }: Props) {
 
         <HomeStandSection id="columna" />
         <PublicChargingCableSection id="cables-carga-publica" />
-        <HomeClosingSection faqId="faq" />
-        <Footer compatibilityId="compatibilidad" />
+        <Footer
+          faqNamespace="HomePage.Faq"
+          faqId="faq"
+          compatibilityId="compatibilidad"
+        />
       </Suspense>
       <ScrollDepthTracker page="home" />
     </main>

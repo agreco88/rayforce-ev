@@ -53,7 +53,7 @@ export default async function EmpresasPage({ params }: Props) {
       <EmpresasBuildings id="metodologia" />
       <EmpresasBusiness />
       <EmpresasContact id="contacto-empresas" />
-      <Footer />
+      <Footer ctaSource="empresas" />
       <ScrollDepthTracker page="empresas" />
     </div>
   );

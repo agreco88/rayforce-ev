@@ -314,13 +314,9 @@
     "HomeCostSection": {
       "eyebrow": "Cost comparison",
       "title": "Benefits of charging at home",
-      "subheading": "With the Rayforce residential charger you charge your battery to 100% for just $134",
-      "description": "Stop worrying about rising fuel prices and start saving.",
+      "subheading": "Charging at home costs less than a third of filling the tank",
       "chartTitle": "Cost per 350 km traveled",
-      "cta": "View chargers",
-      "unit": "350 km",
-      "footnote": "* Uruguayan pesos. Estimate for 350 km with a typical EV at 45 kWh/100 km. Current UTE residential rate.",
-      "source": "Sources: UTE 2025 rates · ANCAP fuel prices",
+      "footnote": "* Uruguayan pesos, VAT included. Estimate for 350 km with an EV at 17 kWh/100 km (59.5 kWh) against a petrol car at 7.5 L/100 km. At home, UTE's simple residential rate (101-600 kWh tier). On the public network, fast charging with its per-session base fee.",
       "items": {
         "rayforce": {
           "title": "Rayforce",
@@ -334,7 +330,14 @@
           "title": "Gas vehicle ",
           "subtitle": "Super 95 gasoline"
         }
-      }
+      },
+      "sourcesLabel": "Sources",
+      "sources": {
+        "ute": "UTE rate schedule",
+        "movilidad": "UTE charging network",
+        "ancap": "ANCAP fuel prices"
+      },
+      "sourcesNote": "Rates current as of September 2026."
     },
     "EnergyTrend": {
       "eyebrow": "10 years of prices",
@@ -451,7 +454,7 @@
         "moreInfo": "Learn more"
       },
       "commonStats": {
-        "title": "Every charger model includes:",
+        "title": "Every charger model includes",
         "connector": {
           "value": "Type 2",
           "label": "Compatible with 99% of EVs"
@@ -1052,9 +1055,7 @@
   },
   "Footer": {
     "sections": {
-      "home": "Home",
-      "products": "Products",
-      "navigation": "Navigation"
+      "stand": "Stand"
     },
     "cta": {
       "eyebrow": "Contact",
@@ -1074,6 +1075,12 @@
     },
     "meta": {
       "rights": "All rights reserved."
+    },
+    "products": {
+      "cable": "{phase} {power}kW charging cable{style}",
+      "single": "Single-phase",
+      "three": "Three-phase",
+      "coiled": " coiled"
     }
   },
   "CablesPage": {

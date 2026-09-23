@@ -60,7 +60,7 @@ export default async function CablesPage({ params }: Props) {
         />{" "}
         <FeaturesRayforce />
       </section>{" "}
-      <Footer />
+      <Footer ctaSource="cables" />
       <ScrollDepthTracker page="cables" />
     </div>
   );

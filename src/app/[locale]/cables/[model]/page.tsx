@@ -125,7 +125,7 @@ export default async function CableDetailPage({ params }: Props) {
       </div>
       {/* WhatsApp CTA */}
       <CableWhatsAppCtaSection product={product} />
-      <Footer />
+      <Footer ctaSource={`cable_${model}`} />
       <ScrollDepthTracker page={`cable_${model}`} />
     </section>
   );

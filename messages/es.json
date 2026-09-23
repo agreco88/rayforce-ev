@@ -313,14 +313,10 @@
     },
     "HomeCostSection": {
       "eyebrow": "Comparativa de costos",
-      "title": "Beneficios de cargar en casa",
-      "subheading": "Con el cargador residencial Rayforce cargás tu batería al 100% por solo $134",
-      "description": "Despreocupate por el aumento de los combustibles y empezá a ahorrar.",
+      "title": "Beneficios de cargar en casa con un wallbox Rayforce",
+      "subheading": "Cargar en casa te sale menos de un tercio que llenar el tanque",
       "chartTitle": "Costo por 350 km recorridos",
-      "cta": "Ver cargadores",
-      "unit": "350 km",
-      "footnote": "* Pesos uruguayos. Estimación para 350 km con un eléctrico típico de 45 kWh/100 km. Tarifa residencial UTE vigente.",
-      "source": "Fuentes: UTE tarifas 2025 · ANCAP combustibles",
+      "footnote": "* Pesos uruguayos, IVA incluido. Estimación para 350 km con un eléctrico de 17 kWh/100 km (59,5 kWh) contra un nafta de 7,5 L/100 km. En casa, tarifa residencial simple de UTE (escalón 101-600 kWh). En la red pública, carga rápida con su cargo base por sesión.",
       "items": {
         "rayforce": {
           "title": "Rayforce",
@@ -334,7 +330,14 @@
           "title": "Auto a nafta",
           "subtitle": "Nafta Super 95"
         }
-      }
+      },
+      "sourcesLabel": "Fuentes",
+      "sources": {
+        "ute": "Pliego tarifario de UTE",
+        "movilidad": "Red de carga de UTE",
+        "ancap": "Precios de ANCAP"
+      },
+      "sourcesNote": "Tarifas vigentes a septiembre de 2026."
     },
     "EnergyTrend": {
       "eyebrow": "10 años de precios",
@@ -451,7 +454,7 @@
         "moreInfo": "Más información"
       },
       "commonStats": {
-        "title": "Todos los modelos de cargadores tienen:",
+        "title": "Todos los modelos de cargadores tienen",
         "connector": {
           "value": "Tipo 2",
           "label": "Compatible con el 99% de los autos eléctricos"
@@ -752,7 +755,7 @@
         "cables": "Cables"
       },
       "title": "Cargadores eléctricos de tipo Wallbox",
-      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos BS20 en sus 4 variantes de 7,2kW a 22kW."
+      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas/híbridos en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos BS20 en sus 4 variantes de 7,2kW a 22kW."
     },
     "ChargerCard": {
       "cta": "Ver modelo"
@@ -1052,9 +1055,7 @@
   },
   "Footer": {
     "sections": {
-      "home": "Inicio",
-      "products": "Productos",
-      "navigation": "Navegación"
+      "stand": "Columna"
     },
     "cta": {
       "eyebrow": "Contacto",
@@ -1074,6 +1075,12 @@
     },
     "meta": {
       "rights": "Todos los derechos reservados."
+    },
+    "products": {
+      "cable": "Cable de carga {phase} {power}kW{style}",
+      "single": "monofásico",
+      "three": "trifásico",
+      "coiled": " espiralado"
     }
   },
   "CablesPage": {

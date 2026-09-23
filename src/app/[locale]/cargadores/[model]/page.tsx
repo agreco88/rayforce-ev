@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import RayforceComparison from "@/components/sections/home/RayforceComparison";
-import { AppHighlightsInteractive } from "@/components/pages/shared/AppHighlightsStatic";
 import { ChargerModelHero } from "@/components/pages/shared/ChargerModelHero";
 import { ChargerModelHeroMobile } from "@/components/pages/shared/ChargerModelHeroMobile";
 import { ChargerModelStats } from "@/components/pages/shared/ChargerModelStats";
@@ -130,10 +129,6 @@ export default async function ChargerDetailPage({ params }: Props) {
       </div>
       {/* Pricing + social proof */}
       <ChargerPricingSection product={product} id="precios" />
-      {/* App Highlights (includes wallbox intro + certification blocks) */}
-      <div className="">
-        <AppHighlightsInteractive theme={product.theme} />
-      </div>
       {/* Compatibility */}
       <CompatibilitySection theme={product.theme} id="compatibilidad" />
       <RayforceComparison
@@ -143,7 +138,9 @@ export default async function ChargerDetailPage({ params }: Props) {
         productSlug={product.slug}
         title={t(`comparisonSection.${product.slug}.title`)}
       />
-      <Footer />
+      {/* Sin `compatibilityId`: esta pagina ya la monta arriba, teñida con el
+          color del producto. */}
+      <Footer ctaSource={`charger_${model}`} />
       <ScrollDepthTracker page={`charger_${model}`} />
     </section>
   );
