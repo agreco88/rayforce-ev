@@ -4,11 +4,12 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { Ban, CheckIcon, ExternalLink, Star } from "lucide-react";
+import { Ban, CheckIcon, ExternalLink } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
 import { AppSwitch } from "@/components/ui/wrappers/AppSwitch";
+import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
 import {
   CHARGER_INSTALLATION_PRICE_USD,
   CHARGER_COILED_CABLE_PRICE_USD,
@@ -29,77 +30,6 @@ const CABLE_ADDON_SLUG = "bs20-ba-7kw";
 const EXCLUDED_FEATURE_RE = /NO INCLUYE CABLE|CABLE NOT INCLUDED/;
 
 const WHATSAPP_NUMBER = "59892041709";
-
-const GOOGLE_REVIEWS_URL =
-  "https://www.google.com/search?q=Rayforce+Uruguay#lrd=reviews";
-
-/**
- * TODO(reviews): placeholder names/quotes/avatars until the real Google
- * Business reviews (and their individual review permalinks) are supplied.
- * Do not ship to production as-is.
- */
-const REVIEWS = [
-  {
-    id: "review-1",
-    name: "Martín Ferreira",
-    initials: "MF",
-    rating: 5,
-    quote:
-      "Instalación rápida y la app funciona diez puntos. El soporte respondió todas mis dudas antes de comprar.",
-    href: GOOGLE_REVIEWS_URL,
-    color: "bg-sky-500/15 text-sky-300",
-  },
-  {
-    id: "review-2",
-    name: "Lucía Gómez",
-    initials: "LG",
-    rating: 5,
-    quote:
-      "Excelente atención de principio a fin. El cargador quedó impecable y la certificación URSEA me dio mucha tranquilidad.",
-    href: GOOGLE_REVIEWS_URL,
-    color: "bg-cyan-500/15 text-cyan-300",
-  },
-  {
-    id: "review-3",
-    name: "Diego Bentancor",
-    initials: "DB",
-    rating: 5,
-    quote:
-      "Comparé varias opciones y esta fue la mejor relación precio-calidad. Recomendado para quien recién arranca con un eléctrico.",
-    href: GOOGLE_REVIEWS_URL,
-    color: "bg-lime-500/15 text-lime-300",
-  },
-  {
-    id: "review-4",
-    name: "Valentina Rocha",
-    initials: "VR",
-    rating: 4,
-    quote:
-      "Muy conformes con la instalación trifásica. Coordinaron todo por WhatsApp y cumplieron los tiempos acordados.",
-    href: GOOGLE_REVIEWS_URL,
-    color: "bg-green-500/15 text-green-300",
-  },
-  {
-    id: "review-5",
-    name: "Nicolás Suárez",
-    initials: "NS",
-    rating: 5,
-    quote:
-      "El monitoreo desde el celular es un golazo. Se nota que es un equipo pensado para uso real, no solo de vidriera.",
-    href: GOOGLE_REVIEWS_URL,
-    color: "bg-sky-500/15 text-sky-300",
-  },
-  {
-    id: "review-6",
-    name: "Camila Etchart",
-    initials: "CE",
-    rating: 5,
-    quote:
-      "Desde la consulta inicial hasta el service post-venta, todo con respuestas claras y sin vueltas. Lo recomiendo sin dudar.",
-    href: GOOGLE_REVIEWS_URL,
-    color: "bg-cyan-500/15 text-cyan-300",
-  },
-] as const;
 
 type Props = {
   product: ChargerProduct;
@@ -123,7 +53,6 @@ type Props = {
  */
 export function ChargerPricingSection({ product, id }: Props) {
   const t = useTranslations("ChargerModelPage.pricingSection");
-  const tReviews = useTranslations("ChargerModelPage.socialProofSection");
   const tVariants = useTranslations("ChargerModelPage.variants");
   const track = useTrack();
   const { theme } = product;
@@ -542,127 +471,13 @@ export function ChargerPricingSection({ product, id }: Props) {
           </div>
         </motion.div>
 
-        {/* ---------------------------------------------------------------- */}
-        {/* Social proof — what our customers say                           */}
-        {/* ---------------------------------------------------------------- */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          className="mx-auto mt-20 max-w-3xl text-center sm:mt-28"
-        >
-          <p
-            className={cn(
-              "text-sm uppercase tracking-[0.35em]",
-              theme.accentText,
-            )}
-          >
-            {tReviews("eyebrow")}
-          </p>
-          <h2 className="mt-4 text-4xl font-medium text-white sm:text-5xl">
-            {tReviews("title")}
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-400">
-            {tReviews("subtitle")}
-          </p>
-        </motion.div>
-
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3">
-          {REVIEWS.map((review, index) => (
-            <motion.a
-              key={review.id}
-              href={review.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                track.socialProofReviewClicked(product.slug, review.id)
-              }
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: index * 0.06 }}
-              whileHover={{ y: -4 }}
-              className={cn(
-                "group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left transition-colors duration-300",
-                "hover:border-white/20 hover:bg-white/[0.05]",
-              )}
-            >
-              {/* Hover overlay: "View review on Google" */}
-              <div
-                className={cn(
-                  "pointer-events-none absolute inset-0 z-10 flex items-center justify-center gap-2 bg-black/70 opacity-0 backdrop-blur-sm transition-opacity duration-300",
-                  "group-hover:opacity-100 group-focus-visible:opacity-100",
-                )}
-              >
-                <span
-                  className={cn(
-                    "flex items-center gap-2 text-sm font-medium",
-                    theme.accentText,
-                  )}
-                >
-                  {tReviews("viewReview")}
-                  <ExternalLink className="h-4 w-4" />
-                </span>
-              </div>
-
-              {/* Stars */}
-              <div className="flex items-center gap-0.5">
-                {Array.from({ length: 5 }).map((_, starIndex) => (
-                  <Star
-                    key={starIndex}
-                    className={cn(
-                      "h-4 w-4",
-                      starIndex < review.rating
-                        ? "fill-amber-400 text-amber-400"
-                        : "fill-neutral-800 text-neutral-800",
-                    )}
-                  />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-neutral-300">
-                &ldquo;{review.quote}&rdquo;
-              </p>
-
-              {/* Author */}
-              <div className="mt-6 flex items-center gap-3">
-                <div
-                  className={cn(
-                    "flex h-10 w-10 flex-none items-center justify-center rounded-full text-sm font-semibold",
-                    review.color,
-                  )}
-                  aria-hidden="true"
-                >
-                  {review.initials}
-                </div>
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-white">
-                    {review.name}
-                  </p>
-                  <p className="text-xs text-neutral-500">
-                    {tReviews("source")}
-                  </p>
-                </div>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <a
-            href={GOOGLE_REVIEWS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track.socialProofViewAllClicked(product.slug)}
-            className={cn(
-              "text-sm font-medium underline-offset-4 hover:underline",
-              theme.accentText,
-            )}
-          >
-            {tReviews("viewAll")}
-          </a>
-        </div>
+        <GoogleReviewsBlock
+          accentText={theme.accentText}
+          onReviewClick={(reviewId) =>
+            track.socialProofReviewClicked(product.slug, reviewId)
+          }
+          className="mt-20 sm:mt-28"
+        />
       </div>
     </section>
   );

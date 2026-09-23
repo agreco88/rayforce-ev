@@ -10,6 +10,9 @@ import { useTrack } from "@/lib/analytics";
 /** Foto vertical (2:3): alguien cargando en un tótem público de UTE. */
 const PHOTO_SRC = "/assets/images/cables/man-charging-ute.jpg";
 
+/** Cable recto: el otro modelo del catálogo, de fondo en la caja "ver todos". */
+const STRAIGHT_CABLE_SRC = "/assets/images/cables/BS-CHC003.png";
+
 const PROOF_VIDEO_SRC = "/assets/videos/cables/chc-cable-run-over-test.mp4";
 const PROOF_POSTER_SRC =
   "/assets/images/cables/chc-cable-run-over-test-poster.jpg";
@@ -44,7 +47,7 @@ export function PublicChargingCableDesktop() {
           Antes era `max-w-7xl` con `px-6 sm:px-8 lg:px-16`: el padding se
           comía 128px de esos 1280 y el banner quedaba más angosto que la
           columna, aunque las dos clases dijeran `max-w-7xl`. */}
-      <div className="relative z-10 flex w-full max-w-[1440px] justify-center px-6 py-14 lg:py-20 xl:py-28">
+      <div className="relative z-10 flex w-full max-w-[1440px] justify-center px-6 py-20 lg:py-28 xl:py-32">
         <div className="w-full max-w-7xl">
           {/* Reparto 2fr/3fr y no 50/50: la foto es un retrato 2:3, y a media
             fila se estira tanto de alto que empuja la sección. En dos quintos
@@ -115,74 +118,70 @@ export function PublicChargingCableDesktop() {
                 />
               </div>
 
-              {/* PRECIO + CTAs. Dos layouts distintos según el ancho, porque
-                los tres elementos no entran en fila hasta bien entrado `lg`:
+              {/* PRECIO + CTAs: dos cajas en fila, alineadas con el ancho del
+                video de arriba. El precio vive adentro de la caja primaria,
+                sobre el CTA del cable espiralado, en vez de ir suelto arriba
+                de los dos botones — así ambas cajas pesan igual en la grilla. */}
+              <div className="mt-10 grid grid-cols-2 gap-4">
+                <Link
+                  href="/cables/bs-chc003-s"
+                  onClick={() =>
+                    track.publicChargingCableCta({
+                      cta: "product",
+                      location: "desktop",
+                    })
+                  }
+                  className="group flex flex-col justify-between gap-6 rounded-2xl bg-amber-400 p-6 transition-colors duration-200 hover:bg-amber-300"
+                >
+                  <div className="flex items-end gap-2">
+                    <span className="text-4xl font-thin tracking-tighter text-neutral-950">
+                      {t("pricing.price")}
+                    </span>
+                    <span className="mb-1 text-sm text-neutral-800">
+                      {t("pricing.taxLabel")}
+                    </span>
+                  </div>
 
-                · md (768–1023px): la columna derecha mide ~410px, así que no
-                  hay chance de fila. El precio va solo, grande y centrado, y
-                  los CTAs abajo también centrados. Al quedar solo en su línea
-                  el precio puede crecer (`text-5xl`) sin apretar nada.
-                · lg en adelante: precio encima de los CTAs, los dos alineados
-                  a la izquierda. Se probó el `justify-between` con los tres en
-                  una fila, pero el español daba ~750px contra ~742 de columna
-                  y el precio terminaba envolviendo igual; apilado no depende
-                  del largo del copy, que cambia por idioma.
-
-                `items-start` y no `items-center` para que en lg el bloque no
-                se centre respecto de la columna. */}
-              <div className="mt-10 flex flex-col items-center gap-6 lg:items-start lg:gap-5">
-                {/* PRICE */}
-                <div className="flex shrink-0 items-end gap-2.5">
-                  <span className="text-5xl font-thin tracking-tighter text-amber-400">
-                    {t("pricing.price")}
-                  </span>
-                  <span className="mb-1 text-sm text-neutral-400">
-                    {t("pricing.taxLabel")}
-                  </span>
-                </div>
-
-                {/* CTAs. En md los dos botones juntos miden ~470px contra los
-                    ~410px de la columna, así que van en grid 50/50 a ancho
-                    completo —igual que en mobile— y recién en lg pasan a ser
-                    dos botones sueltos dimensionados por su contenido. */}
-                <div className="grid w-full grid-cols-2 gap-3 lg:flex lg:w-auto lg:shrink-0 lg:items-center lg:gap-4">
-                  <Link
-                    href="/cables/bs-chc003-s"
-                    onClick={() =>
-                      track.publicChargingCableCta({
-                        cta: "product",
-                        location: "desktop",
-                      })
-                    }
-                    className="group flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors duration-200 hover:bg-amber-300 lg:inline-flex lg:px-6 lg:whitespace-nowrap"
-                  >
+                  <span className="flex items-center gap-2 text-sm font-semibold text-neutral-950">
                     {t("pricing.cta")}
-                    {/* El `group` va en cada Link y no en el contenedor porque
-                        los dos botones son hermanos: en el padre, pasar por uno
-                        movería también la flecha del otro. */}
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-0.5"
                     />
-                  </Link>
+                  </span>
+                </Link>
 
-                  <Link
-                    href="/cables"
-                    onClick={() =>
-                      track.publicChargingCableCta({
-                        cta: "all_cables",
-                        location: "desktop",
-                      })
-                    }
-                    className="group flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-3 text-center text-sm font-medium text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white lg:inline-flex lg:px-6 lg:whitespace-nowrap"
-                  >
+                <Link
+                  href="/cables"
+                  onClick={() =>
+                    track.publicChargingCableCta({
+                      cta: "all_cables",
+                      location: "desktop",
+                    })
+                  }
+                  className="group relative flex flex-col items-start justify-end gap-2 overflow-hidden rounded-2xl border border-white/15 p-6 text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
+                >
+                  {/* El cable recto: el otro modelo del catálogo, de fondo y
+                      oscurecido para que compita menos que la caja ámbar. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={STRAIGHT_CABLE_SRC}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover opacity-30 transition-opacity duration-200 group-hover:opacity-40"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/20" />
+
+                  <span className="relative flex items-center gap-2 text-sm font-medium">
                     {t("pricing.secondaryCta")}
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-0.5"
                     />
-                  </Link>
-                </div>
+                  </span>
+                </Link>
               </div>
             </div>
           </div>

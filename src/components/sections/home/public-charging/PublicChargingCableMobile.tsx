@@ -30,7 +30,7 @@ export function PublicChargingCableMobile() {
 
       {/* `gap-10` entre bloques (texto, video, precio+CTAs) en vez de `gap-6`:
           con 24px los tres se leían como un solo bloque corrido. */}
-      <div className="relative z-10 flex flex-col gap-10 px-6 pt-12 pb-12">
+      <div className="relative z-10 flex flex-col gap-10 px-6 pt-16 pb-16">
         <div className="flex flex-col gap-4">
           <span className="text-[10px] tracking-[0.3em] uppercase text-amber-400">
             {t("eyebrow")}

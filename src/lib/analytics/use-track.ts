@@ -152,10 +152,6 @@ export function useTrack() {
       trackEvent("social_proof_review_clicked", { charger, review_id, locale });
     },
 
-    socialProofViewAllClicked(charger: string) {
-      trackEvent("social_proof_view_all_clicked", { charger, locale });
-    },
-
     publicChargingCableCta(params: {
       cta: "product" | "all_cables";
       location: "desktop" | "mobile";

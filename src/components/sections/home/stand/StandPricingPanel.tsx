@@ -61,11 +61,15 @@ export function StandPricingPanel({ className }: { className?: string }) {
       <div className="flex-auto p-10 text-left">
         {/* `normal-case` porque el reset global pone los `h3` en uppercase
             (globals.css, capa base). Acá el título es una frase, no una
-            etiqueta. */}
-        <h3 className="text-3xl mb-4 font-medium tracking-tight text-white normal-case">
+            etiqueta.
+
+            `font-medium` y no el `font-light` del resto de la seccion: este es
+            el titulo de la ficha de compra, el unico bloque donde hay que
+            decidir — pesa mas a proposito. */}
+        <h3 className="text-3xl font-medium tracking-tight text-balance text-white normal-case">
           {t("title")}
         </h3>
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-neutral-400">
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-neutral-400 sm:mt-5">
           {t("description")}
         </p>
 

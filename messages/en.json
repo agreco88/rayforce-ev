@@ -105,6 +105,13 @@
       "label": "Certifications",
       "urseaAlt": "Approved by URSEA",
       "uteAlt": "Compatible with UTE-certified installation"
+    },
+    "Reviews": {
+      "eyebrow": "Reviews",
+      "title": "What our customers say",
+      "subtitle": "Real experiences from people who already charge their EV with Rayforce.",
+      "source": "Google review",
+      "viewReview": "View review on Google"
     }
   },
   "LocaleSwitcher": {
@@ -398,14 +405,20 @@
           },
           {
             "title": "Integrated cable or Type 2 socket",
-            "description": "Buy one with an integrated cable if the charger is for your own car: charging is unhooking the cable and done, always on its holster, with nothing loose in the garage. Buy one with a socket if several cars will use it, since each arrives with its own cable and you are not betting on one suiting them all. Note: no cable is included."
+            "description": "Get an integrated cable if the charger is for your own car: charging is unhooking the cable, nothing loose in the garage. Get a Type 2 socket if several cars will use it, since each arrives with its own — but the cable is not included."
           },
           {
             "title": "More kW, fewer hours",
-            "description": "A 7.2kW charges overnight comfortably for everyday use. The 11 and 22kW pay off when the car is shared between drivers or you cannot wait all night."
+            "description": "A 7.2kW charges overnight comfortably for everyday use. The 11 and 22kW pay off when the car is shared between drivers or you cannot wait all night. Keep in mind: those kW depend on your supply — a 22kW on a single-phase supply will not charge any faster than a 7.2kW."
           }
-        ],
-        "footnote": "All four models are Type 2, URSEA-approved and installed by our own team. If you are unsure about your supply, we confirm it during the technical visit."
+        ]
+      },
+      "gridTitle": "Our models",
+      "help": {
+        "title": "Not sure which one to pick?",
+        "description": "Write to us and we will help you choose.",
+        "cta": "Start chat",
+        "whatsappMessage": "Hi! I would like help choosing a wallbox charger."
       }
     },
     "HomeChargersSection": {
@@ -743,6 +756,45 @@
     },
     "ChargerCard": {
       "cta": "View model"
+    },
+    "Faq": {
+      "eyebrow": "CHARGERS",
+      "title": "Frequently asked questions",
+      "description": "What people ask us most about the Rayforce Besen BS20 chargers before choosing a model.",
+      "items": [
+        {
+          "title": "Which power level should I choose, 7.2kW, 11kW or 22kW?",
+          "answer": "It depends on your electrical supply. With single-phase — the most common setup in a home — the cap is 7.2kW. The 11 and 22kW need a three-phase supply: without one, they won't deliver that power no matter what the unit supports."
+        },
+        {
+          "title": "Integrated cable or Type 2 socket?",
+          "answer": "Integrated cable if the charger is for your own car: charging is unhooking the cable, nothing loose in the garage. Type 2 socket if more than one car will use it, since each arrives with its own — but the cable isn't included there."
+        },
+        {
+          "title": "Does a higher-kW charger always charge faster?",
+          "answer": "Not if your supply can't match it. A 22kW on a single-phase supply charges at the same speed as a 7.2kW: the real power is capped by the supply, not the charger."
+        },
+        {
+          "title": "Are the chargers approved by URSEA?",
+          "answer": "Yes, the whole BS20 line is registered with URSEA under authorization VU-SE-17-000123. It's a public registry and you can check it."
+        },
+        {
+          "title": "What's the difference between residential and commercial use?",
+          "answer": "Power and the supply it needs. The 7.2kW covers a home's daily use; the 11 and 22kW are built for where the car rotates between several drivers, like a business or a fleet, and they need a three-phase supply."
+        },
+        {
+          "title": "Do they come with an app?",
+          "answer": "Yes, every model is controlled through the Rayforce app: start and stop charging, and check your consumption from your phone."
+        },
+        {
+          "title": "What's the warranty on the charger?",
+          "answer": "One year, which we handle ourselves here in Uruguay — you don't depend on a service center abroad."
+        },
+        {
+          "title": "Is installation included in the price?",
+          "answer": "You can choose: buy just the unit, or add installation by our UTE-certified electricians. That option is set at checkout."
+        }
+      ]
     }
   },
   "ChargerModelPage": {
@@ -861,14 +913,6 @@
         "chargerOnly": "Install it yourself, or add certified installation later — whenever you're ready.",
         "withInstallation": "The final price depends on the distance to your electrical panel, whether civil work is needed, or if your existing setup needs an upgrade. We'll confirm the exact quote at no cost before you commit."
       }
-    },
-    "socialProofSection": {
-      "eyebrow": "Reviews",
-      "title": "What our customers say",
-      "subtitle": "Real experiences from people who already charge their EV with Rayforce.",
-      "source": "Google review",
-      "viewReview": "View review on Google",
-      "viewAll": "View all reviews on Google"
     },
     "comparisonSection": {
       "bs20-bc-7kw": {

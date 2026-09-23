@@ -38,7 +38,7 @@ export function ChargersCommonStats() {
   ];
 
   return (
-    <div className="mx-auto mt-16 w-full max-w-[1440px] px-6 sm:px-8 lg:px-16 2xl:px-0">
+    <div className="mx-auto mt-16 w-full max-w-[1600px] px-6 sm:px-8 lg:px-16 2xl:px-0">
       <p className="mb-6 text-center text-sm font-medium text-neutral-300 sm:mb-8">
         {t("title")}
       </p>

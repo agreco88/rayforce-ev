@@ -362,7 +362,7 @@ export function NavigationScroll() {
       >
         <div
           ref={panelAnchorRef}
-          className="relative max-w-[1440px] mx-auto w-full flex items-center justify-between gap-8"
+          className="relative max-w-[1600px] mx-auto w-full flex items-center justify-between gap-8"
         >
           {/* Tres bloques: logo | nav centrado | contacto. El del medio toma
               el espacio sobrante para quedar centrado respecto del header. */}
@@ -725,105 +725,105 @@ export function NavigationScroll() {
                     return itemIndex <= expandedIndex;
                   })
                   .map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: index * 0.05,
-                      ease: [0.4, 0, 0.2, 1],
-                    }}
-                  >
-                    {item.href ? (
-                      <Link
-                        href={item.href}
-                        onClick={() => {
-                          setIsMobileMenuOpen(false);
-                          setMobileExpandedItem(null);
-                        }}
-                        className="w-full flex items-center px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors font-medium text-neutral-900 dark:text-neutral-100"
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <>
-                        <button
-                          onClick={() =>
-                            setMobileExpandedItem(
-                              mobileExpandedItem === item.label
-                                ? null
-                                : item.label,
-                            )
-                          }
-                          className="w-full flex items-center justify-between px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors"
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.05,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                    >
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setMobileExpandedItem(null);
+                          }}
+                          className="w-full flex items-center px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors font-medium text-neutral-900 dark:text-neutral-100"
                         >
-                          <span className="font-medium text-neutral-900 dark:text-neutral-100">
-                            {item.label}
-                          </span>
-                          <motion.div
-                            animate={{
-                              rotate:
-                                mobileExpandedItem === item.label ? 180 : 0,
-                            }}
-                            transition={{ duration: 0.2 }}
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() =>
+                              setMobileExpandedItem(
+                                mobileExpandedItem === item.label
+                                  ? null
+                                  : item.label,
+                              )
+                            }
+                            className="w-full flex items-center justify-between px-4 py-3 bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-left transition-colors"
                           >
-                            <ChevronDown className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
-                          </motion.div>
-                        </button>
+                            <span className="font-medium text-neutral-900 dark:text-neutral-100">
+                              {item.label}
+                            </span>
+                            <motion.div
+                              animate={{
+                                rotate:
+                                  mobileExpandedItem === item.label ? 180 : 0,
+                              }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <ChevronDown className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+                            </motion.div>
+                          </button>
 
-                        <AnimatePresence>
-                          {mobileExpandedItem === item.label &&
-                            item.dropdown && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{
-                                  duration: 0.2,
-                                  ease: [0.4, 0, 0.2, 1],
-                                }}
-                                className="overflow-hidden"
-                              >
-                                {/* 2x2 cuando son cards de producto: apiladas
+                          <AnimatePresence>
+                            {mobileExpandedItem === item.label &&
+                              item.dropdown && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{
+                                    duration: 0.2,
+                                    ease: [0.4, 0, 0.2, 1],
+                                  }}
+                                  className="overflow-hidden"
+                                >
+                                  {/* 2x2 cuando son cards de producto: apiladas
                                     de a una, cuatro cards con plancha de 160px
                                     dan ~1400px de acordeon y el item siguiente
                                     del nav queda fuera de pantalla. La lista
                                     simple (sin panel de productos) sigue en
                                     una columna: son titulo + descripcion, no
                                     entran de a dos. */}
-                                <div
-                                  className={
-                                    productPanels[item.label]
-                                      ? "grid grid-cols-2 gap-2 px-2 pt-2 pb-3"
-                                      : "space-y-1 px-2 pt-2 pb-3"
-                                  }
-                                >
-                                  {productPanels[item.label]
-                                    ? productPanels[item.label].map(
-                                        (charger, idx) => (
-                                          <motion.div
-                                            key={charger.slug}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{
-                                              duration: 0.2,
-                                              delay: idx * 0.03,
-                                            }}
-                                            /* `h-full` para que el `h-full` de
+                                  <div
+                                    className={
+                                      productPanels[item.label]
+                                        ? "grid grid-cols-2 gap-2 px-2 pt-2 pb-3"
+                                        : "space-y-1 px-2 pt-2 pb-3"
+                                    }
+                                  >
+                                    {productPanels[item.label]
+                                      ? productPanels[item.label].map(
+                                          (charger, idx) => (
+                                            <motion.div
+                                              key={charger.slug}
+                                              initial={{ opacity: 0, x: -10 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{
+                                                duration: 0.2,
+                                                delay: idx * 0.03,
+                                              }}
+                                              /* `h-full` para que el `h-full` de
                                                la card resuelva contra el alto
                                                de la fila: sin esto cada card
                                                mide su contenido y las dos de
                                                una fila quedan desparejas. */
-                                            className="h-full"
-                                          >
-                                            <Link
-                                              href={charger.href}
-                                              onClick={() => {
-                                                setIsMobileMenuOpen(false);
-                                                setMobileExpandedItem(null);
-                                              }}
-                                              /* Apilada, no en fila: la card
+                                              className="h-full"
+                                            >
+                                              <Link
+                                                href={charger.href}
+                                                onClick={() => {
+                                                  setIsMobileMenuOpen(false);
+                                                  setMobileExpandedItem(null);
+                                                }}
+                                                /* Apilada, no en fila: la card
                                                  mide ~280px y el thumb de
                                                  96px le dejaba al titulo solo
                                                  ~160px, que es lo que lo
@@ -832,12 +832,12 @@ export function NavigationScroll() {
                                                  plancha. Arriba y a todo el
                                                  ancho, la foto respira y el
                                                  titulo entra en 2 lineas. */
-                                              className="flex h-full flex-col gap-3 p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
-                                              style={getHighlightBorderStyle(
-                                                charger.product,
-                                              )}
-                                            >
-                                              {/* Alto fijo en vez de
+                                                className="flex h-full flex-col gap-3 p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
+                                                style={getHighlightBorderStyle(
+                                                  charger.product,
+                                                )}
+                                              >
+                                                {/* Alto fijo en vez de
                                                   `aspect-square`: a todo el
                                                   ancho, cuadrada daria ~280px
                                                   de plancha para un item de
@@ -846,24 +846,24 @@ export function NavigationScroll() {
                                                   blurb y precio. 160px alcanza
                                                   para leer el producto sin
                                                   comerse la lista. */}
-                                              <div className="relative h-40 w-full shrink-0 rounded-lg overflow-hidden bg-white flex items-center justify-center">
-                                                <ProductHighlightRibbon
-                                                  product={charger.product}
-                                                  className="right-2 top-2 px-1.5 py-0.5 text-[8px]"
-                                                />
-                                                <Image
-                                                  src={charger.image}
-                                                  alt=""
-                                                  width={320}
-                                                  height={320}
-                                                  className="h-full w-full object-contain"
-                                                />
-                                              </div>
-                                              <div className="flex min-w-0 flex-col">
-                                                <span className="text-[10px] font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-                                                  {charger.modelCode}
-                                                </span>
-                                                {/* `normal-case` explicito: el
+                                                <div className="relative h-40 w-full shrink-0 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+                                                  <ProductHighlightRibbon
+                                                    product={charger.product}
+                                                    className="right-2 top-2 px-1.5 py-0.5 text-[8px]"
+                                                  />
+                                                  <Image
+                                                    src={charger.image}
+                                                    alt=""
+                                                    width={320}
+                                                    height={320}
+                                                    className="h-full w-full object-contain"
+                                                  />
+                                                </div>
+                                                <div className="flex min-w-0 flex-col">
+                                                  <span className="text-[10px] font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+                                                    {charger.modelCode}
+                                                  </span>
+                                                  {/* `normal-case` explicito: el
                                                     `h3` de `globals.css:153`
                                                     aplica `uppercase` a todos
                                                     los h3 del sitio. En
@@ -880,7 +880,7 @@ export function NavigationScroll() {
                                                     lee de un saque, asi que
                                                     entra a `text-xs` sin
                                                     perder legibilidad. */}
-                                                {/* La potencia cierra la misma
+                                                  {/* La potencia cierra la misma
                                                     linea en vez de ocupar su
                                                     propio bloque de 3xl. El
                                                     gradiente ya la despega de
@@ -891,25 +891,25 @@ export function NavigationScroll() {
                                                     y ademas repetia los kW que
                                                     el titulo ya traia pegados
                                                     (por eso `baseTitle`). */}
-                                                {/* `text-[13px]` + `leading-relaxed`
+                                                  {/* `text-[13px]` + `leading-relaxed`
                                                     + `py-1`: a `text-xs` justo
                                                     y con las lineas pegadas el
                                                     titulo se leia apretado.
                                                     Medio punto mas de cuerpo y
                                                     aire entre lineas alcanzan
                                                     sin sumar una linea mas. */}
-                                                <h3 className="mt-1 py-1 text-[13px] font-medium normal-case tracking-tight text-neutral-800 dark:text-neutral-200 leading-relaxed">
-                                                  {charger.baseTitle}{" "}
-                                                  <GradientText
-                                                    colors={
-                                                      charger.gradientColors
-                                                    }
-                                                    className="font-semibold whitespace-nowrap"
-                                                  >
-                                                    {charger.power}
-                                                  </GradientText>
-                                                </h3>
-                                                {/* Sin blurb: a 143px de
+                                                  <h3 className="pt-1 text-balance pb-2.5 text-[13px] font-medium normal-case tracking-tight text-neutral-800 dark:text-neutral-200 leading-relaxed">
+                                                    {charger.baseTitle}{" "}
+                                                    <GradientText
+                                                      colors={
+                                                        charger.gradientColors
+                                                      }
+                                                      className="font-semibold whitespace-nowrap"
+                                                    >
+                                                      {charger.power}
+                                                    </GradientText>
+                                                  </h3>
+                                                  {/* Sin blurb: a 143px de
                                                     contenido util son 5-6
                                                     lineas de texto chico por
                                                     card, que en un menu es mas
@@ -930,8 +930,8 @@ export function NavigationScroll() {
                                                     el titulo, un segundo
                                                     gradiente en la misma card
                                                     le saca fuerza al primero. */}
-                                                <div className="mt-auto flex items-end justify-between gap-2 border-t border-neutral-200 dark:border-neutral-800 pt-3">
-                                                  {/* El precio vuelve al
+                                                  <div className="mt-auto flex items-end justify-between gap-2 border-t border-neutral-200 dark:border-neutral-800 pt-3">
+                                                    {/* El precio vuelve al
                                                       gradiente y sube a `xl`:
                                                       es el dato que cierra la
                                                       decision. El "IVA Inc."
@@ -939,84 +939,84 @@ export function NavigationScroll() {
                                                       (`price.taxLabel`), no
                                                       hardcodeado — los siete
                                                       productos ya lo traen. */}
-                                                  <span className="flex min-w-0 flex-col">
-                                                    <GradientText
-                                                      colors={
-                                                        charger.gradientColors
-                                                      }
-                                                      className="text-xl font-light tracking-tight"
-                                                    >
-                                                      USD {charger.price}
-                                                    </GradientText>
-                                                    {charger.product.price
-                                                      .taxLabel && (
-                                                      <span className="text-[10px] font-medium tracking-wide text-neutral-500 dark:text-neutral-500">
-                                                        {
-                                                          charger.product.price
-                                                            .taxLabel
+                                                    <span className="flex min-w-0 flex-col">
+                                                      <GradientText
+                                                        colors={
+                                                          charger.gradientColors
                                                         }
-                                                      </span>
-                                                    )}
-                                                  </span>
-                                                  {/* `self-center`: con el IVA
+                                                        className="text-xl font-light tracking-tight"
+                                                      >
+                                                        USD {charger.price}
+                                                      </GradientText>
+                                                      {charger.product.price
+                                                        .taxLabel && (
+                                                        <span className="text-[10px] font-medium tracking-wide text-neutral-500 dark:text-neutral-500">
+                                                          {
+                                                            charger.product
+                                                              .price.taxLabel
+                                                          }
+                                                        </span>
+                                                      )}
+                                                    </span>
+                                                    {/* `self-center`: con el IVA
                                                       debajo del precio, el
                                                       `items-end` del contenedor
                                                       dejaba el chevron a la
                                                       altura de la letra chica
                                                       en vez de la del precio. */}
-                                                  <span
-                                                    className={`inline-flex size-6 shrink-0 self-center items-center justify-center rounded-full border border-current/20 ${charger.accentText}`}
-                                                    aria-hidden="true"
-                                                  >
-                                                    <ChevronRight size={14} />
-                                                  </span>
+                                                    <span
+                                                      className={`inline-flex size-6 shrink-0 self-center items-center justify-center rounded-full border border-current/20 ${charger.accentText}`}
+                                                      aria-hidden="true"
+                                                    >
+                                                      <ChevronRight size={14} />
+                                                    </span>
+                                                  </div>
                                                 </div>
+                                              </Link>
+                                            </motion.div>
+                                          ),
+                                        )
+                                      : item.dropdown.items.map(
+                                          (dropdownItem, idx) => (
+                                            <motion.a
+                                              key={idx}
+                                              href={dropdownItem.href}
+                                              initial={{ opacity: 0, x: -10 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{
+                                                duration: 0.2,
+                                                delay: idx * 0.03,
+                                              }}
+                                              onClick={() => {
+                                                setIsMobileMenuOpen(false);
+                                                setMobileExpandedItem(null);
+                                              }}
+                                              className="block p-3 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                                            >
+                                              <div className="flex items-center gap-2 mb-1">
+                                                <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                                                  {dropdownItem.title}
+                                                </h3>
+                                                {dropdownItem.badge && (
+                                                  <span className="text-[10px] font-semibold text-neutral-600 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 px-1.5 py-0.5 rounded">
+                                                    {dropdownItem.badge}
+                                                  </span>
+                                                )}
                                               </div>
-                                            </Link>
-                                          </motion.div>
-                                        ),
-                                      )
-                                    : item.dropdown.items.map(
-                                        (dropdownItem, idx) => (
-                                          <motion.a
-                                            key={idx}
-                                            href={dropdownItem.href}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{
-                                              duration: 0.2,
-                                              delay: idx * 0.03,
-                                            }}
-                                            onClick={() => {
-                                              setIsMobileMenuOpen(false);
-                                              setMobileExpandedItem(null);
-                                            }}
-                                            className="block p-3 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-                                          >
-                                            <div className="flex items-center gap-2 mb-1">
-                                              <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                                                {dropdownItem.title}
-                                              </h3>
-                                              {dropdownItem.badge && (
-                                                <span className="text-[10px] font-semibold text-neutral-600 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 px-1.5 py-0.5 rounded">
-                                                  {dropdownItem.badge}
-                                                </span>
-                                              )}
-                                            </div>
-                                            <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                                              {dropdownItem.description}
-                                            </p>
-                                          </motion.a>
-                                        ),
-                                      )}
-                                </div>
-                              </motion.div>
-                            )}
-                        </AnimatePresence>
-                      </>
-                    )}
-                  </motion.div>
-                ))}
+                                              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                                                {dropdownItem.description}
+                                              </p>
+                                            </motion.a>
+                                          ),
+                                        )}
+                                  </div>
+                                </motion.div>
+                              )}
+                          </AnimatePresence>
+                        </>
+                      )}
+                    </motion.div>
+                  ))}
 
                 {/* "Cotizar instalacion" como una fila mas del nav en vez de un
                     footer fijo: el footer se comia alto del area de scroll y
@@ -1046,7 +1046,6 @@ export function NavigationScroll() {
                 )}
               </nav>
             </div>
-
           </motion.div>
         )}
       </AnimatePresence>

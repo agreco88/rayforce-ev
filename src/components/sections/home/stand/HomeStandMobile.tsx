@@ -4,6 +4,8 @@ import { useTranslations } from "next-intl";
 import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
 import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
 import { CarouselCard } from "@/components/shared/carousel/CarouselCard";
+import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
+import { useTrack } from "@/lib/analytics";
 import { HoverPlayVideo } from "./HoverPlayVideo";
 import { StandPricingPanelMobile } from "./StandPricingPanelMobile";
 
@@ -40,6 +42,7 @@ const HIGHLIGHTS: {
  */
 export function HomeStandMobile() {
   const t = useTranslations("HomePage.HomeStandSection");
+  const track = useTrack();
 
   return (
     <section
@@ -48,9 +51,10 @@ export function HomeStandMobile() {
     >
       {/* Ritmo vertical de la sección, en dos pasos: `mt-8` entre piezas de un
           mismo bloque (texto → imagen → medidas → nota) y `mt-14` entre bloques
-          (header → video → destacados → precio → salidas). El `pb-16` cierra
-          contra la sección siguiente con el mismo aire que separa bloques. */}
-      <div className="flex flex-col px-6 pt-12 pb-16">
+          (header → video → destacados → precio → salidas). `pt-16`/`pb-20`
+          para que la sección respire contra sus bordes, en línea con el resto
+          de la home. */}
+      <div className="flex flex-col px-6 pt-16 pb-20">
         {/* HEADER — el 50/50 de desktop, apilado. */}
         <span className="text-[10px] tracking-[0.3em] uppercase text-green-400">
           {t("eyebrow")}
@@ -159,6 +163,16 @@ export function HomeStandMobile() {
             desktop (comparten `useStandPricing`), pero sin la caja externa,
             así no quedan dos contenedores anidados comiéndose el ancho. */}
         <StandPricingPanelMobile className="mt-14" />
+
+        {/* RESEÑAS — despues del panel, igual que desktop: respaldan la
+            decision que se acaba de tomar. */}
+        <GoogleReviewsBlock
+          compact
+          onReviewClick={(reviewId) =>
+            track.socialProofReviewClicked("home_stand", reviewId)
+          }
+          className="mt-16"
+        />
 
         {/* Acá iban dos salidas secundarias (consultar por WhatsApp / ver otros
             cargadores). Sacadas a propósito: el CTA del panel es el único que se

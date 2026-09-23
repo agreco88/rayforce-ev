@@ -49,12 +49,14 @@ export function StandPricingPanelMobile({ className }: { className?: string }) {
       {/* -------------------------------------------------------------- */}
       {/* `normal-case` porque el reset global pone los `h3` en uppercase
           (globals.css, capa base). Acá el título es una frase, no una
-          etiqueta, y tiene que leerse igual que el resto de los títulos de
-          la sección. */}
-      <h3 className="text-2xl font-light tracking-tight text-white normal-case">
+          etiqueta.
+
+          `font-medium` como en desktop: es el titulo de la ficha de compra y
+          pesa mas que los `font-light` del resto de la seccion. */}
+      <h3 className="text-2xl font-medium tracking-tight text-balance text-white normal-case">
         {t("title")}
       </h3>
-      <p className="mt-4 text-sm leading-relaxed text-neutral-400">
+      <p className="mt-4 text-sm leading-relaxed text-neutral-400 sm:mt-5">
         {t("description")}
       </p>
 

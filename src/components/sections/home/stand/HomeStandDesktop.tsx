@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
+import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
+import { useTrack } from "@/lib/analytics";
 import { HoverPlayVideo } from "./HoverPlayVideo";
 import { StandPricingPanel } from "./StandPricingPanel";
 
@@ -24,13 +26,14 @@ const HIGHLIGHTS: {
 
 export function HomeStandDesktop() {
   const t = useTranslations("HomePage.HomeStandSection");
+  const track = useTrack();
 
   return (
     <section
       aria-labelledby="stand-desktop-heading"
       className="relative isolate overflow-hidden"
     >
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 pt-20 pb-20 text-center">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 pt-28 pb-28 text-center">
         {/* HEADER — 50/50: el texto comparte fila con la foto de la columna
             instalada. Antes acá iba `charger-mobile.avif` (el comparativo
             columna vacía → columna con wallbox, que el mobile conserva) y la
@@ -58,6 +61,7 @@ export function HomeStandDesktop() {
                 leading-[1.08]
                 tracking-tight
                 font-light
+                text-balance
                 text-white
               "
             >
@@ -221,6 +225,20 @@ export function HomeStandDesktop() {
         {/* La descripción que iba acá abajo repetía lo que ya dicen los
             destacados y el propio panel, y las medidas subieron al principio. */}
         <StandPricingPanel className="mt-12 max-w-7xl" />
+
+        {/* RESEÑAS — despues del panel y no antes: son el respaldo de la
+            decision que se acaba de tomar, no un bloque mas que se interponga
+            entre los destacados y el precio.
+
+            `compact` por la misma razon que en el lineup: acá su h2 es un
+            bloque de la seccion, no su cabecera. */}
+        <GoogleReviewsBlock
+          compact
+          onReviewClick={(reviewId) =>
+            track.socialProofReviewClicked("home_stand", reviewId)
+          }
+          className="mt-20 w-full max-w-7xl"
+        />
 
         {/* Acá iban dos salidas secundarias (consultar por WhatsApp / ver otros
             cargadores). Sacadas a propósito: el CTA del panel es el único que se

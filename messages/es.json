@@ -105,6 +105,13 @@
       "label": "Certificaciones",
       "urseaAlt": "Aprobado por URSEA",
       "uteAlt": "Compatible con instalación certificada UTE"
+    },
+    "Reviews": {
+      "eyebrow": "Opiniones",
+      "title": "Lo que dicen nuestros clientes",
+      "subtitle": "Experiencias reales de personas que ya cargan su eléctrico con Rayforce.",
+      "source": "Reseña de Google",
+      "viewReview": "Ver reseña en Google"
     }
   },
   "LocaleSwitcher": {
@@ -386,8 +393,8 @@
       "comparisonSummary": "Desde 2016 la nafta subió {nafta}, mientras que la luz subió {ute}. Casi el doble, con la misma plata en el bolsillo."
     },
     "Lineup": {
-      "eyebrow": "Cargadores Wallbox Rayforce BS20",
-      "title": "Elegí el wallbox que te sirve",
+      "eyebrow": "Cargadores Wallbox Rayforce Besen BS20",
+      "title": "Consejos a la hora de elegir un cargador wallbox",
       "description": "Cuatro modelos de la línea BS20, de 7,2kW a 22kW, para cargar en casa o en la empresa. Cambian la potencia, el tipo de instalación que necesitan y si traen el cable puesto o una toma. Abajo te contamos cómo elegir entre ellos.",
       "guide": {
         "title": "Consejos a la hora de elegir un cargador wallbox",
@@ -398,14 +405,20 @@
           },
           {
             "title": "Cable integrado o toma Tipo 2",
-            "description": "Comprá uno con cable integrado si el cargador es para tu auto: cargar es colgar el cable y listo, siempre en su soporte y sin nada suelto en el garaje. Comprá uno con toma si lo van a usar varios autos, porque cada uno llega con su cable y no dependés de que el integrado le sirva a todos. Ojo: el cable no viene incluido."
+            "description": "Comprá cable integrado si el cargador es para tu auto: cargar es colgar el cable, sin nada suelto en el garaje. Comprá toma Tipo 2 si lo van a usar varios, porque cada uno llega con el suyo — pero el cable no viene incluido."
           },
           {
             "title": "Más kW, menos horas",
-            "description": "Un 7,2kW carga de noche sin problema para el uso diario. Los de 11 y 22kW rinden cuando el auto rota entre varios conductores o no podés esperar toda la noche."
+            "description": "Un 7,2kW carga de noche sin problema para el uso diario. Los de 11 y 22kW rinden cuando el auto rota entre varios conductores. IMPORTANTE: Un 22kW en una instalación monofásica no va a cargar más rápido que un 7,2kW."
           }
-        ],
-        "footnote": "Los cuatro modelos son Tipo 2, están aprobados por URSEA y los instala nuestro equipo. Si tenés dudas sobre tu instalación, la resolvemos en la visita técnica."
+        ]
+      },
+      "gridTitle": "Nuestros modelos",
+      "help": {
+        "title": "¿No sabés cuál elegir?",
+        "description": "Escribinos y te asesoramos.",
+        "cta": "Iniciar chat",
+        "whatsappMessage": "Hola! Quiero ayuda para elegir un cargador wallbox."
       }
     },
     "HomeChargersSection": {
@@ -524,8 +537,8 @@
       }
     },
     "PublicChargingCableSection": {
-      "eyebrow": "PARA QUIENES CARGAN EN LA CALLE",
-      "title": "¿Cargás en los tótems públicos de UTE? Llevá tu propio cable.",
+      "eyebrow": "Cables de carga Besen BS-CHC",
+      "title": "¿Cargás en los tótems públicos de UTE? Llevá tu propio cable Rayforce.",
       "description": "El cable que viene con el auto no está pensado para la vía pública. El nuestro sí: aguanta que le pase un auto por encima, tiene protección IP66 contra lluvia y polvo, y carga hasta 7 kW, más rápido que el cable de fábrica. Se recoge solo, así que no queda arrastrando por el piso ni molesta el paso mientras cargás.",
       "stats": {
         "durability": {
@@ -562,7 +575,7 @@
     },
     "HomeStandSection": {
       "eyebrow": "COLUMNA DE INSTALACIÓN",
-      "title": "Columna de instalación para cargadores Rayforce",
+      "title": "Consegui tu columna de instalación para cargadores Rayforce",
       "description": "Instalá tu cargador en exteriores, cocheras o espacios sin pared disponible. Compatible con toda la línea BS20.",
       "specs": "Altura: 150 cm · Base: 26 × 14.5 cm",
       "dimensions": {
@@ -743,6 +756,45 @@
     },
     "ChargerCard": {
       "cta": "Ver modelo"
+    },
+    "Faq": {
+      "eyebrow": "CARGADORES",
+      "title": "Preguntas frecuentes",
+      "description": "Lo que más nos preguntan sobre los cargadores Rayforce Besen BS20 antes de elegir modelo.",
+      "items": [
+        {
+          "title": "¿Qué potencia elijo, 7,2kW, 11kW o 22kW?",
+          "answer": "Depende de tu instalación. Con monofásica (lo más común en una casa) el tope es 7,2kW. Los de 11 y 22kW necesitan instalación trifásica: sin ella, no van a entregar esa potencia por más que el equipo la soporte."
+        },
+        {
+          "title": "¿Cable integrado o toma Tipo 2?",
+          "answer": "Cable integrado si el cargador es para tu auto: cargar es colgar el cable, sin nada suelto en el garaje. Toma Tipo 2 si lo va a usar más de un auto, porque cada uno llega con el suyo — pero ahí el cable no viene incluido."
+        },
+        {
+          "title": "¿Un cargador de más kW carga siempre más rápido?",
+          "answer": "No si tu instalación no lo acompaña. Un 22kW en una instalación monofásica carga a la misma velocidad que un 7,2kW: la potencia real la limita la instalación, no el cargador."
+        },
+        {
+          "title": "¿Los cargadores están homologados por URSEA?",
+          "answer": "Sí, toda la línea BS20 está registrada ante URSEA bajo la autorización VU-SE-17-000123. Es un registro público y podés consultarlo."
+        },
+        {
+          "title": "¿Qué diferencia hay entre el uso residencial y el comercial?",
+          "answer": "La potencia y la instalación. El 7,2kW cubre el uso diario de una casa; los de 11 y 22kW están pensados para donde el auto rota entre varios conductores, como una empresa o una flota, y requieren trifásica."
+        },
+        {
+          "title": "¿Vienen con app de control?",
+          "answer": "Sí, todos los modelos se manejan con la app Rayforce: arrancás y parás la carga, y controlás el consumo desde el celular."
+        },
+        {
+          "title": "¿Qué garantía tiene el cargador?",
+          "answer": "Un año de garantía, que atendemos directamente nosotros acá en Uruguay — no dependés de un service en el exterior."
+        },
+        {
+          "title": "¿La instalación está incluida en el precio?",
+          "answer": "Podés elegir: comprar solo el equipo, o sumar la instalación hecha por nuestros electricistas certificados UTE. La opción se marca en la misma compra."
+        }
+      ]
     }
   },
   "ChargerModelPage": {
@@ -861,14 +913,6 @@
         "chargerOnly": "Instalalo vos mismo o contratá la instalación certificada más adelante, cuando quieras.",
         "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
       }
-    },
-    "socialProofSection": {
-      "eyebrow": "Opiniones",
-      "title": "Lo que dicen nuestros clientes",
-      "subtitle": "Experiencias reales de personas que ya cargan su eléctrico con Rayforce.",
-      "source": "Reseña de Google",
-      "viewReview": "Ver reseña en Google",
-      "viewAll": "Ver todas las reseñas en Google"
     },
     "comparisonSection": {
       "bs20-bc-7kw": {
