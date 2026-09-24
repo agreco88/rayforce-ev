@@ -206,8 +206,8 @@
         "tag": "Bamibel S.A.",
         "label": "25 años de ingeniería en Uruguay"
       },
-      "title": "Cargadores de tipo wallbox y accesorios para vehículos eléctricos",
-      "description": "Vendemos cargadores wallbox y cables de carga de 7, 11 y 22 kW para residencias, edificios, comercios y estacionamientos, con instalación propia en todo el país.",
+      "title": "Cargadores para vehículos eléctricos con instalación propia certificada",
+      "description": "Wallbox Rayforce de 7, 11 y 22 kW para residencias, comercios y estacionamientos. Instalación certificada por UTE, equipos autorizados por URSEA y el respaldo de una empresa de ingeniería con más de 25 años en Uruguay.",
       "ctaPrimary": "Ver cargadores",
       "ctaSecondary": "Proyectos para edificios y empresas"
     },
@@ -1718,7 +1718,7 @@
       "description": "Wallbox trifásicos de 11 y 22 kW, dimensionados según la potencia disponible e instalados por nuestro equipo técnico. Para supermercados, hoteles, estacionamientos y flotas corporativas.",
       "items": {
         "power": {
-          "title": "Cargadores de 7, 11 y 22 kW",
+          "title": "Cargadores de 7, 11 y 22 kW con gestión desde aplicación móvil",
           "description": "Con gestión desde aplicación móvil para monitorear sesiones y consumos."
         },
         "project": {
@@ -1726,7 +1726,7 @@
           "description": "Dimensionado según la potencia disponible, ejecutado por nuestro equipo técnico."
         },
         "column": {
-          "title": "Instalación sobre columna",
+          "title": "Instalación sobre columna para exteriores y playas de estacionamiento",
           "description": "Para exteriores y playas de estacionamiento, sin necesidad de pared disponible."
         }
       }

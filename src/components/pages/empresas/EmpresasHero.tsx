@@ -22,14 +22,16 @@ export function EmpresasHero() {
         <div className="relative h-full w-full lg:w-[70%]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/images/banners/rayforce-charging.avif"
+            src="/assets/images/chargers/wallbox-shared-space-building-apartment-complex.webp"
             alt={t("imageAlt")}
             fetchPriority="high"
             decoding="sync"
-            className="h-full w-full object-cover object-center select-none pointer-events-none"
+            className="h-full w-full object-cover object-[62%_45%] select-none pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/80 to-neutral-950/30" />
-          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-neutral-950 to-transparent" />
+          {/* Lo justo para que el texto se lea: la foto del garaje se ve casi
+              entera y el velo solo agarra la franja de la izquierda */}
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/80 via-neutral-950/30 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-neutral-950/90 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-neutral-950 to-transparent" />
         </div>
       </div>

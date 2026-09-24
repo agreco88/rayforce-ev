@@ -207,7 +207,7 @@
         "label": "25 years of engineering in Uruguay"
       },
       "title": "Wallbox chargers for electric vehicles with our own certified installation",
-      "description": "Wallboxes of 7, 11 and 22 kW for homes, buildings, businesses and parking facilities, with our own installation nationwide.",
+      "description": "Rayforce wallboxes of 7, 11 and 22 kW for homes, businesses and parking facilities. Installation certified by UTE, equipment authorised by URSEA, and the backing of an engineering company with over 25 years in Uruguay.",
       "ctaPrimary": "View chargers",
       "ctaSecondary": "Projects for buildings and businesses"
     },
@@ -1718,7 +1718,7 @@
       "description": "Three-phase wallboxes of 11 and 22 kW, sized according to the available power and installed by our technical team. For supermarkets, hotels, parking facilities and corporate fleets.",
       "items": {
         "power": {
-          "title": "Chargers of 7, 11 and 22 kW",
+          "title": "Chargers of 7, 11 and 22 kW with mobile app management",
           "description": "Managed from a mobile app to monitor sessions and consumption."
         },
         "project": {
@@ -1726,7 +1726,7 @@
           "description": "Sized according to the available power and executed by our technical team."
         },
         "column": {
-          "title": "Pedestal installation",
+          "title": "Pedestal installation for outdoor areas and parking lots",
           "description": "For outdoor areas and parking lots, with no wall required."
         }
       }
