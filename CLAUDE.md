@@ -1,5 +1,17 @@
 # rayforce-ev
 
+## Git
+
+### NUNCA hacer push sin confirmacion explicita
+
+`git push` **solo** cuando el usuario lo pide con esa palabra o equivalente inequivoco ("pushea", "subilo al remoto", "mandalo a GitHub"). Ante cualquier duda, preguntar.
+
+**"Manda" / "mandale" / "dale" significa commitear, no pushear.** Ya paso: se interpreto "armate los commits y manda" como push, y se creo una rama en el remoto que nadie habia pedido.
+
+Esto vale tambien para todo lo que sale del repo local: `git push --force`, crear PRs, borrar ramas remotas, tags. Commitear en local no necesita confirmacion; cruzar al remoto si.
+
+El repo tiene deploy automatico: un push puede pisar **produccion**. Por eso la confirmacion no es burocracia.
+
 ## Dev server
 
 Antes de correr `pnpm dev` (o cualquier variante de `next dev`), **siempre chequear primero si ya hay un servidor de este proyecto corriendo** y reusar ese puerto en vez de levantar uno nuevo.
