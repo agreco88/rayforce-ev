@@ -37,12 +37,12 @@ export function EmpresasHero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 pt-40 pb-24 sm:px-8 lg:px-16 lg:pt-56 lg:pb-32 2xl:px-0">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] items-center px-6 pt-40 pb-24 sm:px-8 lg:pt-56 lg:pb-32">
         <motion.div
           initial="hidden"
           animate="show"
           variants={waterfallList}
-          className="flex max-w-3xl flex-col gap-8"
+          className="flex max-w-[46rem] flex-col gap-12"
         >
           <motion.span
             variants={waterfallItem}

@@ -15,24 +15,30 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
   const track = useTrack();
 
   return (
-    <section id={id} className="relative isolate w-full overflow-hidden bg-neutral-950">
+    <section
+      id={id}
+      className="relative isolate w-full overflow-hidden bg-neutral-950"
+    >
       <HomeHeroBackdrop />
 
-      {/* 50/50: el contenido vive en la mitad izquierda y nunca invade la
-          derecha, donde se ve la foto que corre por debajo de ambas */}
+      {/* Mismo max-w y padding que el header, para que el texto arranque en la
+          misma linea vertical que el logo y que el contenido de abajo */}
       <div
         className="
           relative z-10
-          mx-auto grid w-full max-w-[1440px] grid-cols-2
+          mx-auto flex w-full max-w-[1440px] items-center
           px-6 pt-40 pb-24
-          sm:px-8 lg:px-16 lg:pt-56 lg:pb-32 2xl:px-0
+          sm:px-8 lg:pt-56 lg:pb-32
         "
       >
+        {/* Ancho propio en vez de media pantalla: a 1440px la mitad sigue siendo
+            demasiado para un parrafo. Queda pegado a la izquierda y la foto
+            respira a la derecha */}
         <motion.div
           initial="hidden"
           animate="show"
           variants={waterfallList}
-          className="col-start-1 flex flex-col gap-12 pr-10"
+          className="flex max-w-[46rem] flex-col gap-12"
         >
           <motion.div variants={waterfallItem}>
             <DotExpandBadge
@@ -49,7 +55,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             className="
               max-w-[20ch]
               bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-              bg-clip-text text-4xl font-light leading-[1.15]
+              bg-clip-text text-4xl font-medium leading-[1.15]
               text-transparent
               sm:text-5xl lg:text-6xl
             "
