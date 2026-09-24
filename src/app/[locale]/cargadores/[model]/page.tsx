@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import RayforceComparison from "@/components/sections/home/RayforceComparison";
 import { ChargerModelHero } from "@/components/pages/shared/ChargerModelHero";
 import { ChargerModelHeroMobile } from "@/components/pages/shared/ChargerModelHeroMobile";
-import { ChargerModelStats } from "@/components/pages/shared/ChargerModelStats";
 import { ChargerPricingSection } from "@/components/pages/shared/ChargerPricingSection";
+import { ChargerUnboxingSection } from "@/components/pages/shared/ChargerUnboxingSection";
 import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
+import { ProductSpecsTable } from "@/components/pages/shared/ProductSpecsTable";
 
 import { getChargerProductBySlug, getChargerProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
@@ -97,7 +97,10 @@ export default async function ChargerDetailPage({ params }: Props) {
   /* ---------------- Render ---------------- */
 
   return (
-    <section className="relative w-full z-0  overflow-hidden border-b border-neutral-900">
+    // `overflow-x-clip` y no `overflow-hidden`: recorta el desborde lateral de
+    // los glows igual, pero sin volverse contenedor de scroll — `hidden` lo
+    // hace, y eso rompe cualquier `sticky` que cuelgue de adentro.
+    <section className="relative w-full z-0 overflow-x-clip border-b border-neutral-900">
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
       {/* Hero */}
@@ -107,40 +110,24 @@ export default async function ChargerDetailPage({ params }: Props) {
       <div className="block lg:hidden">
         <ChargerModelHeroMobile product={product} />
       </div>
-      {/* Stats strip */}
-      <div className="relative z-20 bg-neutral-950">
-        {/* Mobile: own section, normal flow (hero is too tall to straddle) */}
-        <div className="block lg:hidden mx-auto w-full max-w-[1440px] px-4 py-12 sm:px-6">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.06] px-4 py-6 shadow-2xl shadow-black/40 backdrop-blur-2xl">
-            <ChargerModelStats product={product} theme={product.theme} />
-          </div>
-        </div>
-
-        {/* Desktop: floats over the Hero/App Highlights seam, full hero width */}
-        <div className="hidden lg:block h-0 overflow-visible">
-          <div className="-translate-y-1/2">
-            <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-16 2xl:px-0">
-              <div className="rounded-3xl border border-white/10 bg-white/[0.06] px-10 py-10 shadow-2xl shadow-black/40 backdrop-blur-2xl">
-                <ChargerModelStats product={product} theme={product.theme} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Qué viene en la caja */}
+      <ChargerUnboxingSection product={product} id="unboxing" />
+      {/* Ficha tecnica */}
+      <ProductSpecsTable product={product} id="especificaciones" />
+      {/* Compatibilidad: despues de la ficha y antes del precio — se chequea
+          que el equipo sirva para el auto propio antes de mirar cuanto sale. */}
+      <CompatibilitySection theme={product.theme} id="compatibilidad" />
       {/* Pricing + social proof */}
       <ChargerPricingSection product={product} id="precios" />
-      {/* Compatibility */}
-      <CompatibilitySection theme={product.theme} id="compatibilidad" />
-      <RayforceComparison
+      {/* El FAQ es por variante: lo que se pregunta de un 22kW trifasico no es
+          lo que se pregunta de un 7,2kW con cable. Sin `compatibilityId`: la
+          compatibilidad ya va arriba, entre la ficha y el precio. */}
+      <Footer
+        faqNamespace={`ChargerModelPage.Faq.${product.slug}`}
+        faqId="faq"
+        ctaSource={`charger_${model}`}
         theme={product.theme}
-        powerKw={product.specs.maxPowerKw}
-        mercadopagoUrl={product.mercadopagoUrl}
-        productSlug={product.slug}
-        title={t(`comparisonSection.${product.slug}.title`)}
       />
-      {/* Sin `compatibilityId`: esta pagina ya la monta arriba, teñida con el
-          color del producto. */}
-      <Footer ctaSource={`charger_${model}`} />
       <ScrollDepthTracker page={`charger_${model}`} />
     </section>
   );

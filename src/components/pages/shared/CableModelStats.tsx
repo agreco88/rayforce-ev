@@ -3,26 +3,24 @@
 import { Plug, Ruler, DropletIcon, Thermometer } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";
+import { StatsGrid, type StatItem } from "@/components/pages/shared/StatsGrid";
 import type { CatalogTheme, CableProduct } from "@/lib/catalog/catalog.types";
 
 /* ------------------ Types ------------------ */
-type StatItem = {
-  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  isCustom?: boolean;
-  value: string;
-  label?: string;
-  sub?: string;
-};
 
 type Props = {
   product: CableProduct;
   theme: CatalogTheme;
+  className?: string;
+  /** Sin la card propia: la pone el consumidor. Lo usa el bento del "que
+   *  incluye", donde el strip cierra la grilla y toma el chrome de las
+   *  columnas de arriba en vez del borde de acento del hero. */
+  bare?: boolean;
 };
 
 /* ------------------ Component ------------------ */
 
-export function CableModelStats({ product, theme }: Props) {
+export function CableModelStats({ product, theme, className, bare }: Props) {
   const t = useTranslations("CableModelPage.stats");
   const tSpecs = useTranslations("Common.Specs");
   const { specs } = product;
@@ -57,8 +55,21 @@ export function CableModelStats({ product, theme }: Props) {
     },
   ];
 
+  // El mismo strip que el de cargadores — icono, tipografia y spacing salen de
+  // `StatsGrid`. Lo unico propio del cable es que son cinco columnas y no siete.
+  const grid = (
+    <StatsGrid
+      stats={stats}
+      accentText={theme.accentText}
+      divide={theme.divide}
+      columnsClassName="grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+    />
+  );
+
+  if (bare) return <div className={cn("w-full", className)}>{grid}</div>;
+
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 sm:-mt-20 sm:-mb-20 relative z-30">
+    <div className={cn("w-full", className)}>
       <div
         className={cn(
           "relative rounded-2xl border",
@@ -76,65 +87,7 @@ export function CableModelStats({ product, theme }: Props) {
           }}
         />
 
-        <div
-          className={cn(
-            "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 relative z-10",
-            theme.divide,
-          )}
-        >
-          {stats.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={index}
-                className="flex flex-col text-center items-center gap-4"
-              >
-                {/* Icon */}
-                <div className="border border-white/10 bg-white/[0.03] rounded-xl p-2.5 flex items-center justify-center">
-                  {item.isCustom ? (
-                    <div
-                      className={cn("w-8 h-8", theme.accentText)}
-                      style={{
-                        WebkitMaskImage: `url(${SocketTypeTwo.src})`,
-                        maskImage: `url(${SocketTypeTwo.src})`,
-                        WebkitMaskRepeat: "no-repeat",
-                        maskRepeat: "no-repeat",
-                        WebkitMaskSize: "contain",
-                        maskSize: "contain",
-                        WebkitMaskPosition: "center",
-                        maskPosition: "center",
-                        backgroundColor: "currentColor",
-                      }}
-                    />
-                  ) : Icon ? (
-                    <Icon
-                      className={cn("size-8", theme.accentText)}
-                      strokeWidth={2}
-                    />
-                  ) : null}
-                </div>
-
-                {/* Text */}
-                <div className="flex flex-col gap-0.5 leading-tight">
-                  <span className="text-white font-medium text-sm sm:text-lg">
-                    {item.value}
-                  </span>
-
-                  {item.label && (
-                    <span className="text-xs text-neutral-400">
-                      {item.label}
-                    </span>
-                  )}
-
-                  {item.sub && (
-                    <span className="text-xs text-neutral-400">{item.sub}</span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <div className="relative z-10">{grid}</div>
       </div>
     </div>
   );

@@ -34,6 +34,9 @@ export type AnalyticsEventMap = {
   /** Charger page hero — datasheet download CTA */
   charger_hero_datasheet_cta: { charger: string; location: "desktop" | "mobile"; locale: string }
 
+  /** Cable page hero — scrolls down to the pricing block */
+  cable_hero_price_cta: { cable: string; location: "desktop" | "mobile"; locale: string }
+
   /** User clicked a specific compatible model card */
   compatibility_model_selected: { brand: string; model: string; locale: string }
 

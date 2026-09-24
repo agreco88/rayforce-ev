@@ -2,15 +2,19 @@
 /* Rayforce – Cable Catalog                                           */
 /* ------------------------------------------------------------------ */
 /*
- * Temporary shared asset: all 3 cables use the BS-CHC003 photo as
- * their heroImage/images until the BS-CHC003-S and BS-CHC004 product
- * shots are available. mercadopagoUrl is "" for all 3 — the checkout
- * CTA renders disabled until a real MercadoPago link is provided.
+ * Los dos rectos (BS-CHC003 y BS-CHC004) comparten foto a proposito: es el
+ * mismo cable, cambia la potencia y no el aspecto. El espiralado tiene la suya
+ * porque se ve distinto.
+ *
+ * mercadopagoUrl es "" en los 3 — el CTA de checkout renderiza deshabilitado
+ * hasta que haya un link real de MercadoPago.
  */
 
 import type { CableProduct } from "./catalog.types";
 
-const THEME_AMBER: CableProduct["theme"] = {
+/** El ambar de la linea de cables. Exportado porque el listado tiñe con el
+ *  mismo color el glow del hero y el FAQ, sin tener un producto a mano. */
+export const CABLE_THEME: CableProduct["theme"] = {
   accentText: "text-amber-400",
   accentBg: "bg-amber-400",
   accentHover: "hover:bg-amber-300",
@@ -28,6 +32,14 @@ const THEME_AMBER: CableProduct["theme"] = {
   gradientColors: ["#fbbf24", "#f59e0b", "#fb923c"],
 };
 
+/** Los tres cables son Besen, igual que la linea BS20: el prefijo `BS-` es suyo. */
+const ORIGIN_BESEN: CableProduct["origin"] = {
+  manufacturer: "Besen",
+  countryCode: "CN",
+  manufacturerUrl: "https://www.besen-group.com",
+  manufacturerLogo: "/images/brand/besen-logo.png",
+};
+
 export const CABLE_PRODUCTS: CableProduct[] = [
   {
     category: "cable",
@@ -41,10 +53,13 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     badges: ["Monofásico", "Tipo 2", "IP66"],
 
     heroImage: "/assets/images/cables/BS-CHC003.png",
+    cardImage: "/assets/images/cables/BS-CHC003.png",
+    photoImage: "/assets/images/cables/BS-CHC003.png",
     images: ["/assets/images/cables/BS-CHC003.png"],
 
-    theme: THEME_AMBER,
+    theme: CABLE_THEME,
     mercadopagoUrl: "",
+    origin: ORIGIN_BESEN,
 
     specs: {
       connectorType: "type_2",
@@ -78,10 +93,13 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     badges: ["Trifásico", "Tipo 2", "IP66"],
 
     heroImage: "/assets/images/cables/BS-CHC003.png",
+    cardImage: "/assets/images/cables/BS-CHC003.png",
+    photoImage: "/assets/images/cables/BS-CHC003.png",
     images: ["/assets/images/cables/BS-CHC003.png"],
 
-    theme: THEME_AMBER,
+    theme: CABLE_THEME,
     mercadopagoUrl: "",
+    origin: ORIGIN_BESEN,
 
     specs: {
       connectorType: "type_2",
@@ -119,10 +137,17 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     badges: ["Monofásico", "Tipo 2", "Espiralado", "IP66"],
 
     heroImage: "/assets/images/cables/BS-CHC003-S.png",
+    cardImage: "/assets/images/cables/BS-CHC003-S.png",
+    photoImage: "/assets/images/cables/BS-CHC003-S.png",
     images: ["/assets/images/cables/BS-CHC003-S.png"],
+    /* Este PNG viene recortado al producto (1291x1218) y los otros dos son un
+       cuadrado de 2300 con aire alrededor: sin achicarlo llena la plancha de
+       punta a punta y al lado de sus vecinos se ve de otro tamaño. */
+    cardImageScale: 0.7,
 
-    theme: THEME_AMBER,
+    theme: CABLE_THEME,
     mercadopagoUrl: "",
+    origin: ORIGIN_BESEN,
 
     specs: {
       connectorType: "type_2",

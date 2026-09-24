@@ -8,38 +8,38 @@ import { cn } from "@/lib/utils";
 import { HomeCostSection } from "@/components/sections/home/cost/HomeCostSection";
 
 type Props = {
-  theme: {
+  theme?: {
     accentText: string;
     gradientColors?: [string, string, string];
   };
   id?: string;
 };
 
+const DEFAULT_THEME = { accentText: "text-green-400" };
+
 /**
  * Two stacked 50/50 blocks, meant to live inside a parent section (shares
  * its background/grid/glow rather than defining its own):
- *  1. Cost comparison chart (Rayforce vs. UTE grid vs. gasoline), moved here
- *     from the home page.
+ *  1. Cost comparison chart (Rayforce vs. UTE grid vs. gasoline).
  *  2. Regulatory reassurance — URSEA/UTE logos left, approval copy right.
- * Sits inside AppHighlightsInteractive's section, before its header, on
- * the model page.
+ * Sits inside AppHighlightsInteractive's section, before its header.
  */
-export function ChargerCertificationSection({ theme, id }: Props) {
+export function ChargerCertificationSection({
+  theme = DEFAULT_THEME,
+  id,
+}: Props) {
   const t = useTranslations("ChargerModelPage.certificationSection");
 
+  /* Sin ancho propio: el ancho y el padding los pone la seccion padre. El
+     `gap` parejo entre los dos bloques lo pone el flex, no paddings sueltos. */
   return (
-    <div id={id} className="mx-auto w-full max-w-7xl">
-      {/* ------------------------------------------------------------ */}
-      {/* Cost comparison chart                                         */}
-      {/* ------------------------------------------------------------ */}
-      <div className="w-full py-4">
-        <HomeCostSection theme={theme} />
-      </div>
+    <div id={id} className="flex w-full flex-col gap-24 lg:gap-32">
+      <HomeCostSection theme={theme} />
 
       {/* ------------------------------------------------------------ */}
       {/* Regulatory reassurance                                        */}
       {/* ------------------------------------------------------------ */}
-      <div className="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
+      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}

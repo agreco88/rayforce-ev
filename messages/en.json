@@ -99,6 +99,14 @@
       "cable": {
         "integrated": "Integrated charging cable",
         "socket": "DOES NOT INCLUDE CHARGING CABLE"
+      },
+      "mount": {
+        "wall": "Wall mounted",
+        "pole": "Pole mounted"
+      },
+      "cableStyle": {
+        "straight": "Straight",
+        "coiled": "Coiled"
       }
     },
     "RegulatoryBadges": {
@@ -112,6 +120,61 @@
       "subtitle": "Real experiences from people who already charge their EV with Rayforce.",
       "source": "Google review",
       "viewReview": "View review on Google"
+    },
+    "SpecsTable": {
+      "eyebrow": "Datasheet",
+      "title": "Specifications",
+      "model": "Model",
+      "datasheet": "Download datasheet for installers",
+      "origin": "Origin",
+      "manufacturer": "Manufacturer",
+      "countries": {
+        "CN": "China",
+        "DE": "Germany"
+      },
+      "groups": {
+        "power": "Power and supply",
+        "connector": "Connector and cable",
+        "protection": "Protections",
+        "interface": "Interface and connectivity",
+        "physical": "Dimensions",
+        "certifications": "Certifications"
+      },
+      "rows": {
+        "maxPower": "Maximum power",
+        "phaseType": "Phase type",
+        "voltage": "Voltage",
+        "nominalCurrent": "Nominal current",
+        "maxCurrent": "Maximum current",
+        "frequency": "Frequency",
+        "currentAdjustable": "Adjustable current",
+        "connectorStandard": "Connector standard",
+        "cableType": "Cable type",
+        "cableLength": "Cable length",
+        "cableStyle": "Cable format",
+        "conductorSection": "Conductor section",
+        "contactMaterial": "Contact material",
+        "mechanicalLatch": "Mechanical latch",
+        "proximityResistor": "Proximity resistor",
+        "ingressProtection": "Water and dust protection",
+        "impactProtection": "Impact resistance",
+        "rcdConfiguration": "Residual current protection",
+        "electricalProtection": "Electrical protections",
+        "operatingTemperature": "Operating temperature",
+        "temperatureSensor": "Temperature sensor",
+        "jacketMaterial": "Jacket material",
+        "display": "Display",
+        "ledIndicator": "LED indicator",
+        "connectivity": "Connectivity",
+        "appControl": "App control",
+        "dimensions": "Dimensions",
+        "weight": "Weight",
+        "mountType": "Mounting",
+        "certifications": "Certifications",
+        "standard": "Standard",
+        "ursea": "URSEA authorization",
+        "bagIncluded": "Carry bag included"
+      }
     }
   },
   "LocaleSwitcher": {
@@ -815,7 +878,7 @@
     "cta": {
       "whatsapp": "I want to buy this charger",
       "manual": "Download user manual",
-      "compatibility": "Does it work with my EV?",
+      "pricing": "See pricing",
       "whatsappMessage": "Hello! I want to buy the {model} charger",
       "mercadopago": "Buy now",
       "mercadopagoFull": "Buy via MercadoPago"
@@ -834,6 +897,33 @@
       "description": "Your charger and its installation meet current regulations: the unit holds URSEA approval and installation follows UTE requirements, so you can count on a safe, backed charging setup.",
       "urseaAlt": "URSEA approval",
       "uteAlt": "UTE certified installation"
+    },
+    "Unboxing": {
+      "contentsTitle": "What the box includes",
+      "contents": {
+        "noCable": "Charging cable not included",
+        "wallbox": "{model} wallbox charger, {power, number} kW",
+        "integratedCable": "6 m integrated Type 2 cable",
+        "mountingPlate": "Wall mounting plate",
+        "screwKit": "Screw and anchor kit",
+        "drillTemplate": "Drilling template",
+        "manual": "Installation and user manual",
+        "warrantyCard": "Warranty certificate"
+      },
+      "ba": {
+        "eyebrow": "What is in the box",
+        "title": "Ready to install, no surprises",
+        "description": "The wallbox ships with its Type 2 socket, the mounting template and the screws. The charging cable is sold separately, so you pick the length you need and swap it without touching the charger.",
+        "replay": "Play again",
+        "imageAlt": "Contents of the BS20 wallbox box"
+      },
+      "bc": {
+        "eyebrow": "What is in the box",
+        "title": "Everything inside, cable included",
+        "description": "The wallbox ships with its 6 metres of Type 2 cable already integrated, the mounting template and the screws. Take it out of the box, mount it and it is ready to charge.",
+        "replay": "Play again",
+        "imageAlt": "Contents of the BS20 wallbox box with the integrated cable unrolled"
+      }
     },
     "pricingSection": {
       "eyebrow": "Pricing",
@@ -917,22 +1007,191 @@
         "withInstallation": "The final price depends on the distance to your electrical panel, whether civil work is needed, or if your existing setup needs an upgrade. We'll confirm the exact quote at no cost before you commit."
       }
     },
-    "comparisonSection": {
+    "OtherModels": {
+      "eyebrow": "Other models",
+      "title": "See the other available models",
+      "description": "The whole BS20 line shares the same app, the same protection and the same warranty. What changes is the power output and how it connects."
+    },
+    "Faq": {
       "bs20-bc-7kw": {
-        "title": "Why charge with a Wallbox instead of a standard outlet?",
-        "intro": "For your daily charging at home, a 7.2kW wallbox cuts charging time and avoids the risks of leaving a standard outlet running all night."
+        "eyebrow": "7.2KW WITH CABLE",
+        "title": "Frequently asked questions",
+        "description": "What people ask us most about the single-phase 7.2kW wallbox with integrated cable.",
+        "items": [
+          {
+            "title": "Will it work with the wiring I already have?",
+            "answer": "In most homes, yes: the unit is single-phase 220V and draws 32A, which is what a standard house supplies. What it does need is a dedicated line from the panel with its own breaker, rather than sharing a circuit that already feeds something else. Our electrician checks this before installing."
+          },
+          {
+            "title": "How long does a charge take?",
+            "answer": "At 7.2kW, roughly 7 to 9 hours to take a mid-sized battery from 0 to 100%. In practice nobody starts from empty: you plug in when you get home and it's full by morning. Against a standard outlet, which gives about 2kW, it's three to four times faster."
+          },
+          {
+            "title": "Is 6 meters of cable enough?",
+            "answer": "For a garage or a covered carport, almost always. The 6 meters run from where the unit is mounted to the connector, so what matters is where the wall sits relative to your car's charging port. If you're unsure, send us a photo of the spot and we'll tell you."
+          },
+          {
+            "title": "Why this one instead of the Type 2 socket?",
+            "answer": "Because the cable is already attached: charging is unhooking it and plugging in, with nothing loose to store or lose. The socket version makes sense when different cars will use the charger, since each one arrives with its own cable."
+          },
+          {
+            "title": "Can I mount it outdoors?",
+            "answer": "Yes. It's IP66 and IK10: it stands up to water, dust and impact, and works between -25°C and +55°C. That said, under cover both the unit and the connector age better."
+          },
+          {
+            "title": "What can I do from the app?",
+            "answer": "Start and stop charging, see the consumption of each session, and schedule when it charges. It connects over wifi or Bluetooth, and the unit has its own display, so you can also operate it without your phone."
+          },
+          {
+            "title": "Is it URSEA approved?",
+            "answer": "Yes, the entire BS20 line is registered with URSEA under authorization VU-SE-17-000123. It's a public registry and you can look it up."
+          },
+          {
+            "title": "Is installation included?",
+            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. You pick the option in the same purchase, up in the pricing section."
+          },
+          {
+            "title": "What warranty does it come with?",
+            "answer": "One year, handled directly by us here in Uruguay — you're not waiting on a service center abroad."
+          }
+        ]
       },
       "bs20-ba-7kw": {
-        "title": "Why charge with a Wallbox instead of a standard outlet?",
-        "intro": "The wallbox with an interchangeable socket (cable not included, sold separately) adds to the safety of dedicated charging the advantage of replacing only the cable if it's damaged."
+        "eyebrow": "7.2KW WITH SOCKET",
+        "title": "Frequently asked questions",
+        "description": "What people ask us most about the single-phase 7.2kW wallbox with a Type 2 socket.",
+        "items": [
+          {
+            "title": "Why doesn't it include the cable?",
+            "answer": "Because this model is a socket: each car arrives with its own cable and plugs in. That makes it the sensible choice when different vehicles will use the charger, and it also means you can replace just the cable if it wears out over the years, instead of touching the unit."
+          },
+          {
+            "title": "Which cable should I buy?",
+            "answer": "A Type 2 to Type 2 at 32A, which is the standard in Uruguay and what the EVs sold here use. We carry them in the cables section, straight and coiled — you can add the coiled one to this same purchase, up in the pricing section."
+          },
+          {
+            "title": "Will it work with the wiring I already have?",
+            "answer": "In most homes, yes: the unit is single-phase 220V and draws 32A, which is what a standard house supplies. What it does need is a dedicated line from the panel with its own breaker. Our electrician checks this before installing."
+          },
+          {
+            "title": "How long does a charge take?",
+            "answer": "At 7.2kW, roughly 7 to 9 hours to take a mid-sized battery from 0 to 100%. In practice nobody starts from empty: you plug in when you get home and it's full by morning. Against a standard outlet, which gives about 2kW, it's three to four times faster."
+          },
+          {
+            "title": "Can I mount it outdoors?",
+            "answer": "Yes. It's IP66 and IK10: it stands up to water, dust and impact, and works between -25°C and +55°C. On this model in particular, keeping it under cover also keeps the socket cleaner between uses."
+          },
+          {
+            "title": "What can I do from the app?",
+            "answer": "Start and stop charging, see the consumption of each session, and schedule when it charges. It connects over wifi or Bluetooth, and the unit has its own display, so you can also operate it without your phone."
+          },
+          {
+            "title": "Is it URSEA approved?",
+            "answer": "Yes, the entire BS20 line is registered with URSEA under authorization VU-SE-17-000123. It's a public registry and you can look it up."
+          },
+          {
+            "title": "Is installation included?",
+            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. You pick the option in the same purchase, up in the pricing section."
+          },
+          {
+            "title": "What warranty does it come with?",
+            "answer": "One year, handled directly by us here in Uruguay — you're not waiting on a service center abroad."
+          }
+        ]
       },
       "bs20-bc-11kw": {
-        "title": "Why charge with a three-phase Wallbox instead of a standard outlet?",
-        "intro": "With three-phase power available, an 11kW wallbox charges considerably faster than a standard outlet, without requiring the contracted capacity a 22kW unit needs."
+        "eyebrow": "11KW THREE-PHASE",
+        "title": "Frequently asked questions",
+        "description": "What people ask us most about the three-phase 11kW wallbox with integrated cable.",
+        "items": [
+          {
+            "title": "Do I need a three-phase supply?",
+            "answer": "Yes. This unit runs at 380–400V across three phases, 16A per phase. Without three-phase power there's no way for it to deliver 11kW: if your home is single-phase, the right model is the 7.2kW."
+          },
+          {
+            "title": "How do I know if I have three-phase?",
+            "answer": "Check your UTE bill or your panel: on three-phase you'll see three live lines plus neutral, and the contracted capacity is listed in kW rather than amps on a single line. If you're not sure, send us a photo of the panel and we'll confirm it before you buy."
+          },
+          {
+            "title": "Why 11kW instead of 22kW?",
+            "answer": "Because 11kW is the point where the power is useful without demanding a large contract. A 22kW unit needs considerably more contracted capacity to actually perform, and in a house or a small business that contract costs more than it gives back. Outside of a fleet or a building garage, 11kW is the practical three-phase choice."
+          },
+          {
+            "title": "How long does a charge take?",
+            "answer": "At 11kW, around 4 to 6 hours to take a mid-sized battery from 0 to 100% — about half what a 7.2kW single-phase unit takes. The real ceiling is your car's onboard charger: if yours accepts up to 7.4kW, that's what it will draw no matter what the wallbox offers."
+          },
+          {
+            "title": "Is 6 meters of cable enough?",
+            "answer": "For a garage or a covered carport, almost always. The 6 meters run from where the unit is mounted to the connector, so what matters is where the wall sits relative to your car's charging port. If you're unsure, send us a photo of the spot and we'll tell you."
+          },
+          {
+            "title": "Can I mount it outdoors?",
+            "answer": "Yes. It's IP66 and IK10: it stands up to water, dust and impact, and works between -25°C and +55°C. That said, under cover both the unit and the connector age better."
+          },
+          {
+            "title": "What can I do from the app?",
+            "answer": "Start and stop charging, see the consumption of each session, and schedule when it charges. It connects over wifi or Bluetooth, and the unit has its own display, so you can also operate it without your phone."
+          },
+          {
+            "title": "Is it URSEA approved?",
+            "answer": "Yes, the entire BS20 line is registered with URSEA under authorization VU-SE-17-000123. It's a public registry and you can look it up."
+          },
+          {
+            "title": "Is installation included?",
+            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. On three-phase we recommend installing with us: wiring the three phases and their protection isn't a job to take on yourself."
+          },
+          {
+            "title": "What warranty does it come with?",
+            "answer": "One year, handled directly by us here in Uruguay — you're not waiting on a service center abroad."
+          }
+        ]
       },
       "bs20-bc-22kw": {
-        "title": "Why install a 22kW Wallbox at your business or fleet?",
-        "intro": "For building garages, businesses and fleets with higher-capacity three-phase contracts, a 22kW wallbox charges many vehicles faster and more safely than relying on standard outlets."
+        "eyebrow": "22KW THREE-PHASE",
+        "title": "Frequently asked questions",
+        "description": "What people ask us most about the three-phase 22kW wallbox for businesses, buildings and fleets.",
+        "items": [
+          {
+            "title": "Do I need a three-phase supply?",
+            "answer": "Yes, and a sizeable one. The unit runs at 380–400V across three phases, 32A per phase. Without three-phase power it won't deliver 22kW no matter what the unit supports, and neither will it on a small contract: before selling you one, we confirm your UTE contract actually makes use of it."
+          },
+          {
+            "title": "Does it make sense at home?",
+            "answer": "Usually not. The capacity a home typically contracts leaves real-world charging well below 22kW, so you'd be paying for power you won't use. For a house with three-phase, the 11kW performs nearly the same and costs less."
+          },
+          {
+            "title": "Who is this model for?",
+            "answer": "Building garages, businesses and fleets: places where the car rotates between several drivers and each one needs to leave charged quickly. That's where the full 22kW gets used."
+          },
+          {
+            "title": "How long does a charge take?",
+            "answer": "At 22kW, around 2 to 3 hours to take a mid-sized battery from 0 to 100%. The real ceiling is your car's onboard charger: many EVs accept up to 11kW on AC, so that's what they'll draw no matter what the wallbox offers."
+          },
+          {
+            "title": "Can I install several in the same place?",
+            "answer": "Yes, that's the typical case in a building or a fleet. What needs sizing is the panel and the contracted capacity, so that several units charging at once don't exceed it. Write to us and we'll work out the layout with your electrician."
+          },
+          {
+            "title": "Can I mount it outdoors?",
+            "answer": "Yes. It's IP66 and IK10: it stands up to water, dust and impact, and works between -25°C and +55°C, which is what an open garage or a parking lot asks of it."
+          },
+          {
+            "title": "What can I do from the app?",
+            "answer": "Start and stop charging, see the consumption of each session, and schedule when it charges. It connects over wifi or Bluetooth, and the unit has its own display, so you can also operate it without your phone."
+          },
+          {
+            "title": "Is it URSEA approved?",
+            "answer": "Yes, the entire BS20 line is registered with URSEA under authorization VU-SE-17-000123. It's a public registry and you can look it up."
+          },
+          {
+            "title": "Is installation included?",
+            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. On a 22kW unit we recommend installing with us: wiring the three phases and their protection isn't a job to take on yourself."
+          },
+          {
+            "title": "What warranty does it come with?",
+            "answer": "One year, handled directly by us here in Uruguay — you're not waiting on a service center abroad."
+          }
+        ]
       }
     },
     "variants": {
@@ -1093,6 +1352,56 @@
       "title": "Type 2 (Mennekes) Charging Cables",
       "description": "Type 2 to Type 2 (Mennekes) charging cables, male-to-male, to pair with your charger or charge from any compatible outlet. Straight or coiled, from 7kW to 22kW, with a temperature sensor and carrying bag included."
     },
+    "Included": {
+      "eyebrow": "What's included",
+      "title": "Everything that comes with your purchase",
+      "description": "The cable, its carry bag and the protections that let it take daily use. We ran a full-size EV over the connector — the same one across the whole line — and it went right back to charging.",
+      "itemsTitle": "What's included",
+      "bagPhoto": "Photo of the included carrying bag",
+      "items": [
+        "Type 2 connector cable, up to 32 A",
+        "Carrying bag included",
+        "IP66 rated: stands up to rain and dust",
+        "Flexible TPU jacket that won't crack underfoot",
+        "Temperature sensor in the connector"
+      ],
+      "replay": "Watch again"
+    },
+    "Faq": {
+      "eyebrow": "CABLES",
+      "title": "Frequently asked questions",
+      "description": "What we get asked most about charging cables before choosing length and connector.",
+      "items": [
+        {
+          "title": "What cable length do I need?",
+          "answer": "All three models are 5 metres, which covers most situations: it reaches from the charge point to a car parked beside it or facing the other way. If your setup needs more length, message us and we will see what we can source."
+        },
+        {
+          "title": "Straight or coiled?",
+          "answer": "The coiled one retracts on its own and stays gathered: it takes up less room and does not drag on the floor. The straight one is lighter and easier to coil up for the boot. If the cable lives in the garage, go coiled; if you carry it in the car, go straight."
+        },
+        {
+          "title": "Will it work with my car?",
+          "answer": "If your car is Type 2 — the European standard, which covers almost every EV sold in Uruguay — yes. Open any of the models above and you will find the compatibility check by make and model."
+        },
+        {
+          "title": "7kW or 22kW?",
+          "answer": "It depends on your installation, not on the cable. All three handle 32A: the 7kW is single-phase and the 22kW is three-phase. If your home is single-phase — the usual case — the 7kW is the one for you. The 22kW only pays off with a three-phase supply and a charger that uses it; on single-phase it will not charge any faster."
+        },
+        {
+          "title": "Can I use this cable at public chargers?",
+          "answer": "Yes, that is exactly what it is for. Public AC chargers in Uruguay have a Type 2 socket and no cable: you bring your own and plug one end into the post and the other into the car."
+        },
+        {
+          "title": "Is it safe to leave outdoors?",
+          "answer": "Yes. The connectors are IP66, which is rain and dust resistant, and they carry a temperature sensor that cuts off if anything overheats. Still, put it away when not in use: constant sun shortens the life of the sheath."
+        },
+        {
+          "title": "Does it have a warranty?",
+          "answer": "Yes, every cable comes with a warranty and local support. If anything fails, message us and we sort it out here, with no paperwork abroad."
+        }
+      ]
+    },
     "carouselLabel": "Cable navigation",
     "ProductCard": {
       "variants": {
@@ -1152,8 +1461,7 @@
         "straight": "Straight cable",
         "coiled": "Coiled cable",
         "current": "Up to {current}A",
-        "temperatureSensor": "Temperature sensor",
-        "bag": "Carrying bag included"
+        "temperatureSensor": "Temperature sensor"
       }
     }
   },
@@ -1169,17 +1477,13 @@
       "bs-chc003-s": "Single-Phase Coiled Cable"
     },
     "titlePrefix": {
-      "bs-chc003": "Straight Type 2-to-Type 2 cable",
-      "bs-chc004": "Straight Type 2-to-Type 2 cable",
-      "bs-chc003-s": "Coiled Type 2-to-Type 2 cable"
+      "bs-chc003": "Straight cable",
+      "bs-chc004": "Straight cable",
+      "bs-chc003-s": "Coiled cable"
     },
     "titlePowerConnector": "of",
     "cta": {
-      "mercadopago": "Buy now",
-      "mercadopagoFull": "Buy on MercadoPago",
       "viewPrice": "View price",
-      "whatsapp": "Ask on WhatsApp",
-      "whatsappHeadline": "Have questions? Chat with us on WhatsApp",
       "whatsappMessage": "Hi! I'd like to ask about the {model}."
     },
     "price": {
@@ -1251,6 +1555,11 @@
         "withInstallation": "We install the wallbox, not the cable. The final price depends on the distance to the electrical panel and whether civil work or an upgrade to the existing installation is needed."
       }
     },
+    "OtherModels": {
+      "eyebrow": "Other models",
+      "title": "See the other available cables",
+      "description": "They all share the same Type 2 connector and the same protection. What changes is the length, the format and the maximum current."
+    },
     "variants": {
       "bs-chc003": {
         "description": "5-meter straight Type 2 to Type 2 cable for single-phase charging up to 7kW. The simplest option to pair with your wallbox, with a temperature sensor and carrying bag included."
@@ -1280,10 +1589,19 @@
         "sub": "In the connector"
       }
     },
-    "proofVideo": {
-      "eyebrow": "Put to the test",
-      "title": "Yes, a car can drive over it",
-      "description": "We ran over the coiled cable with a full-size EV. No cracks, no exposed wires — it went right back to charging.",
+    "Durability": {
+      "eyebrow": "What's included",
+      "title": "Everything that comes with your purchase",
+      "description": "The cable, its carry bag and the protections that let it take daily use. We ran a full-size EV over the connector — the same one across the whole line — and it went right back to charging.",
+      "itemsTitle": "What's included",
+      "bagPhoto": "Photo of the included carrying bag",
+      "items": {
+        "cable": "{length} m cable for charging up to {power} kW",
+        "protection": "{protection} rated: stands up to rain and dust",
+        "jacket": "Flexible TPU jacket that won't crack underfoot",
+        "temperatureSensor": "Temperature sensor in the connector",
+        "bag": "Carrying bag included"
+      },
       "replay": "Watch again"
     }
   },

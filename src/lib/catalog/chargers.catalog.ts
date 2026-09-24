@@ -31,6 +31,79 @@ const URSEA: ChargerProduct["ursea"] = {
   holder: "BAMIBEL S.A.",
 };
 
+/** Toda la linea BS20 la fabrica Besen. */
+const ORIGIN_BESEN: ChargerProduct["origin"] = {
+  manufacturer: "Besen",
+  countryCode: "CN",
+  manufacturerUrl: "https://www.besen-group.com",
+  manufacturerLogo: "/images/brand/besen-logo.png",
+};
+
+/**
+ * Specs de la ficha tecnica del fabricante que son identicas en las cuatro
+ * variantes: lo que cambia entre modelos es potencia, fase y corriente, que
+ * van en cada producto.
+ */
+const SPECS_BS20_COMMON = {
+  frequencyHz: 50,
+  currentAdjustable: true,
+  connectorStandard: "SAE J1772 / IEC 62196-2 / GB/T",
+
+  dimensionsMm: "295×195×65",
+
+  ingressProtection: "IP66",
+  impactProtection: "IK10",
+  operatingTemperature: "-25°C to +55°C",
+  rcdConfiguration: "Tipo A o Tipo A 30mA AC + 6mA DC",
+  electricalProtection:
+    "Subtensión, sobrecarga, cortocircuito, fuga a tierra, sobretemperatura y descargas atmosféricas",
+
+  display: true,
+  displaySize: "4.3\" LCD color",
+  ledIndicator: true,
+  appControl: true,
+  bluetooth: true,
+  rcdProtection: true,
+
+  optionalFeatures: [
+    "app",
+    "rfid",
+    "loadBalancing",
+    "solar",
+    "ocpp",
+  ] as ChargerProduct["specs"]["optionalFeatures"],
+  connectivity: "Bluetooth / Wi-Fi / Ethernet / 4G",
+  certifications: ["CE", "FCC", "CSA", "RoHS", "REACH"],
+} satisfies Partial<ChargerProduct["specs"]>;
+
+/**
+ * Contenido de la caja. Lo unico que cambia entre familias es el cable: el BC
+ * lo trae integrado al equipo y el BA sale con toma, sin cable.
+ */
+const UNBOXING_CONTENTS_COMMON: ChargerProduct["unboxing"]["contents"] = [
+  { key: "wallbox", quantity: 1 },
+  { key: "mountingPlate", quantity: 1 },
+  { key: "screwKit", quantity: 1 },
+  { key: "drillTemplate", quantity: 1 },
+  { key: "manual", quantity: 1 },
+  { key: "warrantyCard", quantity: 1 },
+];
+
+/** El cable va primero: es lo que distingue la caja del BC. */
+const UNBOXING_CONTENTS_BC: ChargerProduct["unboxing"]["contents"] = [
+  { key: "integratedCable", quantity: 1 },
+  ...UNBOXING_CONTENTS_COMMON,
+];
+
+/**
+ * El BA sale con toma y sin cable. La exclusion abre la lista: es el dato que
+ * mas cambia la compra y el que se busca justamente aca.
+ */
+const UNBOXING_CONTENTS_BA: ChargerProduct["unboxing"]["contents"] = [
+  { key: "noCable", quantity: 0, excluded: true },
+  ...UNBOXING_CONTENTS_COMMON,
+];
+
 const THEME_SKY: ChargerProduct["theme"] = {
   accentText: "text-sky-400",
   accentBg: "bg-sky-400",
@@ -113,18 +186,23 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "7,2kW con toma",
     tier: "residential",
     familyName: "BS20",
+    family: "ba",
 
     price: { currency: "USD", amount: 549, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Toma Tipo 2", "App", "IP66"],
 
     heroImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
+    cardImage: "/assets/images/chargers/BS20-7KW-SOCKET.png",
+    photoImage: "/assets/images/chargers/bs20-ba-7kw.jpg",
 
     theme: THEME_CYAN,
     mercadopagoUrl: "",
     datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
+    origin: ORIGIN_BESEN,
 
     specs: {
+      ...SPECS_BS20_COMMON,
       maxPowerKw: 7.2,
       phaseType: "single",
       connectorType: "type_2",
@@ -133,18 +211,8 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
       nominalCurrentA: 32,
       voltage: "220–230V",
-      frequencyHz: 50,
 
       weightKg: 4.5,
-
-      ingressProtection: "IP66",
-      impactProtection: "IK10",
-      operatingTemperature: "-25°C to +55°C",
-
-      display: true,
-      appControl: true,
-      bluetooth: true,
-      rcdProtection: true,
     },
 
     visual: {
@@ -154,6 +222,14 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       cableType: "socket",
     },
     ursea: URSEA,
+    unboxing: {
+      videoSrc: "/assets/videos/chargers/bs20-ba-unboxing.mp4",
+      // PLACEHOLDER: es la foto del BC, que muestra el cable integrado en la
+      // caja — este modelo sale con toma y sin cable. Reemplazar cuando
+      // llegue la foto del BA desempacado.
+      photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
+      contents: UNBOXING_CONTENTS_BA,
+    },
   },
 
   {
@@ -165,6 +241,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "7,2kW",
     tier: "residential",
     familyName: "BS20",
+    family: "bc",
     featured: true,
     highlight: { labelKey: "bestSeller" },
 
@@ -173,12 +250,16 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     heroImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
+    cardImage: "/assets/images/chargers/BS20-7KW.png",
+    photoImage: "/assets/images/chargers/bs20-bc-hero.jpg",
 
     theme: THEME_SKY,
     mercadopagoUrl: "http://mpago.la/1notnYD",
     datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
+    origin: ORIGIN_BESEN,
 
     specs: {
+      ...SPECS_BS20_COMMON,
       maxPowerKw: 7.2,
       phaseType: "single",
       connectorType: "type_2",
@@ -187,20 +268,9 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
       nominalCurrentA: 32,
       voltage: "220–230V",
-      frequencyHz: 50,
 
       cableLengthM: 6,
-      dimensionsMm: "295×195×65",
       weightKg: 7,
-
-      ingressProtection: "IP66",
-      impactProtection: "IK10",
-      operatingTemperature: "-25°C to +55°C",
-
-      display: true,
-      appControl: true,
-      bluetooth: true,
-      rcdProtection: true,
     },
 
     visual: {
@@ -210,6 +280,11 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       cableType: "integrated",
     },
     ursea: URSEA,
+    unboxing: {
+      videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
+      photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
+      contents: UNBOXING_CONTENTS_BC,
+    },
   },
 
   {
@@ -221,18 +296,25 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "11kW",
     tier: "commercial",
     familyName: "BS20",
+    family: "bc",
 
     price: { currency: "USD", amount: 649, taxLabel: "IVA Inc." },
     badges: ["Trifásico", "Tipo 2", "App", "IP66"],
 
     heroImage: "/assets/images/chargers/bs20-bc-22kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-22kw-card.avif"],
+    // Sin foto propia todavia: reusa la del 7kW con cable, como ya hacian las
+    // grillas — el equipo es el mismo, cambia la instalacion detras.
+    cardImage: "/assets/images/chargers/BS20-7KW.png",
+    photoImage: "/assets/images/chargers/bs20-bc-hero.jpg",
 
     theme: THEME_LIME_DARK,
     mercadopagoUrl: "",
     datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
+    origin: ORIGIN_BESEN,
 
     specs: {
+      ...SPECS_BS20_COMMON,
       maxPowerKw: 11,
       phaseType: "three",
       connectorType: "type_2",
@@ -241,18 +323,8 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
       nominalCurrentA: 16,
       voltage: "380–400V",
-      frequencyHz: 50,
 
       cableLengthM: 6,
-
-      ingressProtection: "IP66",
-      impactProtection: "IK10",
-      operatingTemperature: "-25°C to +55°C",
-
-      display: true,
-      appControl: true,
-      bluetooth: true,
-      rcdProtection: true,
     },
 
     visual: {
@@ -263,6 +335,11 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       cableType: "integrated",
     },
     ursea: URSEA,
+    unboxing: {
+      videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
+      photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
+      contents: UNBOXING_CONTENTS_BC,
+    },
   },
 
   {
@@ -274,18 +351,23 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "22kW",
     tier: "industrial",
     familyName: "BS20",
+    family: "bc",
 
     price: { currency: "USD", amount: 728, taxLabel: "IVA Inc." },
     badges: ["Trifásico", "Tipo 2", "App", "IP66"],
 
     heroImage: "/assets/images/chargers/bs20-bc-22kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-22kw-card.avif"],
+    cardImage: "/assets/images/chargers/BS20-22KW.png",
+    photoImage: "/assets/images/chargers/bs20-bc-hero.jpg",
 
     theme: THEME_LIME_LIGHT,
     mercadopagoUrl: "https://mpago.la/2C6CFZe",
     datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
+    origin: ORIGIN_BESEN,
 
     specs: {
+      ...SPECS_BS20_COMMON,
       maxPowerKw: 22,
       phaseType: "three",
       connectorType: "type_2",
@@ -294,18 +376,8 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
       nominalCurrentA: 32,
       voltage: "380–400V",
-      frequencyHz: 50,
 
       cableLengthM: 6,
-
-      ingressProtection: "IP66",
-      impactProtection: "IK10",
-      operatingTemperature: "-25°C to +55°C",
-
-      display: true,
-      appControl: true,
-      bluetooth: true,
-      rcdProtection: true,
     },
 
     visual: {
@@ -316,5 +388,10 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       cableType: "integrated",
     },
     ursea: URSEA,
+    unboxing: {
+      videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
+      photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
+      contents: UNBOXING_CONTENTS_BC,
+    },
   },
 ];

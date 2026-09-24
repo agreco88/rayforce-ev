@@ -2,43 +2,21 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { ChevronDown, ExternalLink } from "lucide-react";
 import { CableModelHeroStats } from "./CableModelHeroStats";
+import { ProductHeroPriceCard } from "./ProductHeroPriceCard";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
-import { getCableProducts } from "@/lib/catalog/catalog.helpers";
+import { GradientText } from "@/components/animated/GradientText";
+import {
+  getCableProducts,
+  getProductImageScaleStyle,
+} from "@/lib/catalog/catalog.helpers";
 import { useTrack } from "@/lib/analytics";
 import type { CableProduct } from "@/lib/catalog/catalog.types";
 
 type Props = {
   product: CableProduct;
 };
-
-/**
- * Per-model photo transform overrides. The coiled BS-CHC003-S photo is shot
- * flat and left-right symmetric, which looks static under the shared
- * diagonal perspective tilt — mirrored and rotated to echo the dynamic
- * framing of the straight-cable photos instead.
- */
-const PHOTO_TRANSFORM: Record<string, string> = {
-  "bs-chc003-s":
-    "perspective(1200px) rotateY(14deg) rotateX(2deg) rotate(-6deg) scaleX(-1)",
-};
-const DEFAULT_PHOTO_TRANSFORM =
-  "perspective(1200px) rotateY(-14deg) rotateX(2deg)";
-
-/** Per-model photo box size override — BS-CHC003-S renders at a reduced scale. */
-const PHOTO_SIZE: Record<string, string> = {
-  "bs-chc003-s": "min(740px,62vw)",
-};
-const DEFAULT_PHOTO_SIZE = "min(1140px,95vw)";
-
-/** Per-model horizontal offset of the photo box — shifts it toward the text column. */
-const PHOTO_OFFSET_X: Record<string, string> = {
-  "bs-chc003-s": "-8%",
-};
-const DEFAULT_PHOTO_OFFSET_X = "12%";
 
 /* ------------------------------------------------------------------ */
 /* Component                                                          */
@@ -48,10 +26,9 @@ export function CableModelHero({ product }: Props) {
   const t = useTranslations("CableModelPage");
   const track = useTrack();
   const { theme } = product;
-  const mpUrl = product.mercadopagoUrl || "#";
 
   return (
-    <section className="relative w-full flex items-center overflow-hidden border-b border-neutral-900">
+    <section className="relative w-full flex items-center">
       {/* ------------------------------------------------------------------ */}
       {/* Background                                                         */}
       {/* ------------------------------------------------------------------ */}
@@ -84,111 +61,94 @@ export function CableModelHero({ product }: Props) {
             "radial-gradient(ellipse 80% 80% at 100% 0%, #000 20%, transparent 80%)",
         }}
       />
-      {/* ------------------------------------------------------------------ */}
-      {/* Product photo — absolute backdrop behind the hero content          */}
-      {/* ------------------------------------------------------------------ */}
-      <div className="absolute inset-0 z-[15] pointer-events-none flex items-center justify-end overflow-hidden">
-        <div
-          className="relative [transform-style:preserve-3d]"
-          style={{
-            width: PHOTO_SIZE[product.slug] ?? DEFAULT_PHOTO_SIZE,
-            height: PHOTO_SIZE[product.slug] ?? DEFAULT_PHOTO_SIZE,
-            transform: `translateX(${PHOTO_OFFSET_X[product.slug] ?? DEFAULT_PHOTO_OFFSET_X})`,
-          }}
-        >
-          {/* Glow */}
-          <div
-            className="
-              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              w-[60%] h-[120px]
-              blur-3xl rounded-full animate-pulse
-            "
-            style={{ backgroundColor: theme.glowStrong }}
-          />
-          <Image
-            src={product.heroImage}
-            alt={product.publicName}
-            fill
-            priority
-            className="object-contain"
-            style={{
-              transform:
-                PHOTO_TRANSFORM[product.slug] ?? DEFAULT_PHOTO_TRANSFORM,
-            }}
-          />
-        </div>
-      </div>
-
 
       {/* ------------------------------------------------------------------ */}
       {/* Content                                                            */}
       {/* ------------------------------------------------------------------ */}
+      {/* Fade solo: sin `y` ni stagger. El contenido esta en su posicion final
+          desde el primer frame — la opacidad no genera layout shift, y el
+          breadcrumb sigue anclado igual que en los listados. */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="flex flex-col gap-12 relative min-h-screen z-20 flex-1 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 h-[1000px] justify-center items-start"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
+        className="page-shell flex flex-col gap-12 relative z-20 flex-1 pb-24 lg:pb-32 justify-center items-start"
       >
-        <div className="flex w-full items-center gap-12 lg:gap-20">
-          {/* LEFT */}
-          <div className="flex flex-col gap-6 sm:gap-10 justify-center flex-1 shrink-0">
-            {/* Breadcrumb */}
-            <AppBreadcrumb
-              items={[
-                { label: t("breadcrumb.home"), href: "/" },
+        {/* El breadcrumb va afuera de la fila y no dentro de la columna
+            izquierda: asi las dos columnas arrancan a la misma altura y la
+            foto queda anclada al eyebrow, sin compensar su alto a mano. */}
+        <AppBreadcrumb
+          items={[
+            { label: t("breadcrumb.home"), href: "/" },
+            {
+              label: t("breadcrumb.cables"),
+              dropdown: [
                 {
+                  href: "/cables",
                   label: t("breadcrumb.cables"),
-                  dropdown: [
-                    {
-                      href: "/cables",
-                      label: t("breadcrumb.cables"),
-                      current: true,
-                    },
-                    {
-                      href: "/cargadores",
-                      label: t("breadcrumb.chargers"),
-                    },
-                  ],
+                  current: true,
                 },
                 {
-                  label: (
-                    <p
-                      className={`text-sm uppercase tracking-widest ${theme.accentText}`}
-                    >
-                      {product.slug.toUpperCase()}
-                    </p>
-                  ),
-                  dropdown: getCableProducts().map((p) => ({
-                    href: `/cables/${p.slug}`,
-                    current: p.slug === product.slug,
-                    label: (
-                      <span
-                        className={`text-sm uppercase tracking-widest ${p.theme.accentText}`}
-                      >
-                        {p.slug.toUpperCase()}
-                      </span>
-                    ),
-                  })),
+                  href: "/cargadores",
+                  label: t("breadcrumb.chargers"),
                 },
-              ]}
-            />
+              ],
+            },
+            {
+              label: (
+                <p
+                  className={`text-sm uppercase tracking-widest ${theme.accentText}`}
+                >
+                  {product.slug.toUpperCase()}
+                </p>
+              ),
+              dropdown: getCableProducts().map((p) => ({
+                href: `/cables/${p.slug}`,
+                current: p.slug === product.slug,
+                label: (
+                  <span
+                    className={`text-sm uppercase tracking-widest ${p.theme.accentText}`}
+                  >
+                    {p.slug.toUpperCase()}
+                  </span>
+                ),
+              })),
+            },
+          ]}
+        />
 
+        {/* 60/40: la foto va sobre fondo blanco, asi que no puede llevarse la
+            mitad del ancho. Dos quintos la acercan al texto sin que le gane.
+            `items-start` y no `items-center`: la foto colapsa hacia arriba y
+            arranca en la misma linea que el eyebrow. */}
+        <div className="flex w-full items-start gap-12 lg:gap-16">
+          {/* LEFT */}
+          <div className="flex flex-col gap-12 justify-center basis-3/5 min-w-0">
             {/* Title */}
-            <div className="my-8">
+            <div className="flex flex-col gap-5">
               <p
                 className={`text-sm uppercase tracking-widest ${theme.accentText}`}
               >
                 {t(`eyebrow.${product.slug}`)}
               </p>
 
-              <h1 className="flex text-7xl gap-2">
+              {/* Solo la potencia y no el `shortName`: el largo y el formato
+                  ya estan en el eyebrow y en el strip, y repetirlos aca hacia
+                  wrappear el h1 y empujaba el precio fuera del fold. */}
+              <h1 className="flex flex-wrap items-baseline text-7xl gap-x-3 leading-[1.1]">
                 {t(`titlePrefix.${product.slug}`)}
-                <span className={`font-thin ${theme.accentText}`}>
-                  {product.shortName}
-                </span>
+                <GradientText
+                  colors={theme.gradientColors}
+                  className="font-thin"
+                >
+                  {product.specs.maxPowerKw}kW
+                </GradientText>
               </h1>
 
-              <span className="mt-3 block text-neutral-400 text-base leading-relaxed max-w-lg">
+              {/* Tres lineas reservadas: a este ancho las descripciones van de
+                  dos a tres segun el modelo, y sin altura fija cambiar de cable
+                  desplaza todo lo de abajo. */}
+              <span className="block text-neutral-400 text-base leading-relaxed max-w-2xl min-h-[4.5rem]">
                 {t(`variants.${product.slug}.description`)}
               </span>
             </div>
@@ -196,78 +156,43 @@ export function CableModelHero({ product }: Props) {
             {/* Stats */}
             <CableModelHeroStats theme={theme} slug={product.slug} />
 
-            {/* Price */}
+            <ProductHeroPriceCard
+              amount={product.price.amount}
+              currency={product.price.currency}
+              taxLabel={t("price.taxLabel")}
+              theme={theme}
+              href="#precio"
+              ctaLabel={t("cta.viewPrice")}
+              onCtaClick={() => track.cableHeroPrice(product.slug, "desktop")}
+            />
+          </div>
+
+          {/* RIGHT */}
+          <div className="relative basis-2/5 min-w-0">
+            {/* Glow por fuera del container: adentro se perderia contra el
+                fondo blanco de la foto. */}
             <div
-              className="flex items-baseline"
-              aria-label={`${product.price.amount} ${product.price.currency}`}
-            >
-              <div aria-hidden="true">
-                <AnimateNumber
-                  locales="en-US"
-                  format={{ maximumFractionDigits: 0 }}
-                  suffix={` ${product.price.currency}`}
-                  style={{
-                    // @ts-expect-error -- CSS custom property consumed by the [&_.number-section-integer] rule below
-                    "--price-gradient": `linear-gradient(to right, ${theme.gradientColors.join(", ")})`,
-                  }}
-                  className={`
-                    text-5xl font-thin tabular-nums text-neutral-400
-                    [&_.number-section-integer]:bg-[image:var(--price-gradient)] [&_.number-section-integer]:bg-clip-text [&_.number-section-integer]:text-transparent
-                    [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1.5! [&_.number-section-post]:text-sm [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide
-                  `}
-                  transition={{
-                    visualDuration: 0.6,
-                    type: "spring",
-                    bounce: 0.25,
-                    opacity: { duration: 0.3, ease: "linear" },
-                  }}
-                >
-                  {product.price.amount}
-                </AnimateNumber>
-              </div>
-            </div>
+              className="
+                absolute inset-8
+                blur-3xl rounded-full pointer-events-none
+              "
+              style={{ backgroundColor: theme.glowStrong }}
+            />
 
-            {/* CTAs */}
-            <div className="flex items-center gap-6">
-              <motion.a
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                href={mpUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  track.mercadopagoClick({
-                    source: "cable_hero",
-                    charger: product.slug,
-                    location: "desktop",
-                  })
-                }
-                className={`
-                    inline-flex min-h-[48px] w-fit items-center justify-center gap-2 rounded-xl px-6 py-3
-                    border ${theme.accentBorder} ${theme.accentText}
-                    text-sm font-semibold transition-colors
-                    hover:bg-white/5
-                  `}
-              >
-                {t("cta.mercadopago")}
-                <ExternalLink size={16} />
-              </motion.a>
-
-              <motion.a
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.25 }}
-                href="#precio"
-                className={`
-                    inline-flex min-h-[48px] w-fit items-center justify-center gap-2 rounded-xl px-6 py-3
-                    text-sm font-semibold text-neutral-300 transition-colors
-                    hover:text-white
-                  `}
-              >
-                {t("cta.viewPrice")}
-                <ChevronDown size={16} />
-              </motion.a>
+            {/* La foto viene sobre fondo blanco, asi que el container es claro
+                y el recorte lo da el `rounded-3xl` + `overflow-hidden`. */}
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl shadow-black/40">
+              <Image
+                src={product.photoImage}
+                alt={product.publicName}
+                width={1200}
+                height={1200}
+                // El hero es el LCP de la pagina: sin lazy y con prioridad.
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                style={getProductImageScaleStyle(product)}
+                className="w-full h-auto object-contain scale-[var(--product-image-scale)]"
+              />
             </div>
           </div>
         </div>

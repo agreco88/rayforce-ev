@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type Props = {
   children: React.ReactNode;
@@ -40,7 +40,9 @@ export function AppButton({
     </span>
   );
 
-  const baseStyles = clsx(
+  // `cn` y no `clsx`: los colores de abajo son el default de marca, y quien
+  // pasa `className` con los suyos tiene que poder pisarlos sin `!`.
+  const baseStyles = cn(
     "rounded-lg transition-all py-6 duration-300",
     "border-green-400/30 text-green-500 hover:text-green-400",
     "hover:bg-green-400/10",

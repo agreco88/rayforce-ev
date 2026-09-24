@@ -96,7 +96,7 @@ export function ChargerModelHeroStats({ theme, product }: Props) {
 
   return (
     <div
-      className={`grid grid-cols-1 sm:grid-cols-3 my-16 sm:my-5 lg:my-0 gap-16 sm:gap-8 lg:gap-12 w-full sm:w-fit ${theme.divide}`}
+      className={`grid grid-cols-1 sm:grid-cols-3 my-16 sm:my-5 lg:my-0 gap-16 sm:gap-8 lg:gap-10 w-full sm:w-fit ${theme.divide}`}
     >
       {stats.map((item) => {
         const Icon = item.icon;
@@ -126,8 +126,10 @@ export function ChargerModelHeroStats({ theme, product }: Props) {
               />
             </div>
 
-            {/* Description */}
-            <p className="text-base sm:text-sm w-full flex items-center  text-neutral-400 leading-relaxed text-pretty text-center  sm:text-start sm:items-start max-w-[30ch]">
+            {/* Tres lineas reservadas: las descripciones van de una a tres
+                segun el modelo (el override del 11kW es el mas largo), y sin
+                altura fija cambiar de cargador desplaza el bloque entero. */}
+            <p className="text-base sm:text-sm w-full flex items-center  text-neutral-400 leading-relaxed text-pretty text-center  sm:text-start sm:items-start max-w-[30ch] sm:min-h-[3.75rem]">
               {item.description}
             </p>
           </div>

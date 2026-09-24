@@ -19,23 +19,15 @@ import {
 } from "@/components/catalog/ProductHighlightRibbon";
 import HeaderLogo from "./header-logo";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
-import { CHIP_WHATSAPP_CLASS } from "./nav-chip";
 import { Link } from "@/i18n/navigation";
 import {
   getCableProducts,
   getCatalogPowerLabel,
   getChargerProducts,
   getPowerLabel,
+  getProductImageScaleStyle,
 } from "@/lib/catalog/catalog.helpers";
 import type { CatalogProduct } from "@/lib/catalog/catalog.types";
-
-/** Mirrors ChargersCardGrid's map — the catalog's heroImage is not the card photo. */
-const PRODUCT_IMAGES: Record<string, string> = {
-  "bs20-bc-7kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-ba-7kw": "/assets/images/chargers/BS20-7KW-SOCKET.png",
-  "bs20-bc-11kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-bc-22kw": "/assets/images/chargers/BS20-22KW.png",
-};
 
 interface DropdownItem {
   title: string;
@@ -209,7 +201,7 @@ export function NavigationScroll() {
 
     return {
       slug: product.slug,
-      image: PRODUCT_IMAGES[product.slug],
+      image: product.cardImage,
       // La potencia se agrega acá y no en los mensajes: el mismo `title` lo
       // comparten la grilla, el carrusel y las tablas de comparación, donde
       // el kW ya aparece por separado. Acá es el texto del link, así que
@@ -358,11 +350,11 @@ export function NavigationScroll() {
         ref={navRef}
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed inset-x-0 top-0 z-[100] w-full py-5 px-4 sm:px-6 lg:px-16 2xl:px-0 bg-linear-to-b from-black via-black/50 to-transparent"
+        className="fixed inset-x-0 top-0 z-[100] w-full py-5 px-6 sm:px-8 bg-linear-to-b from-black via-black/50 to-transparent"
       >
         <div
           ref={panelAnchorRef}
-          className="relative max-w-[1600px] mx-auto w-full flex items-center justify-between gap-8"
+          className="relative max-w-[1440px] mx-auto w-full flex items-center justify-between gap-8"
         >
           {/* Tres bloques: logo | nav centrado | contacto. El del medio toma
               el espacio sobrante para quedar centrado respecto del header. */}
@@ -558,7 +550,10 @@ export function NavigationScroll() {
                                       alt=""
                                       width={352}
                                       height={352}
-                                      className="h-full w-full object-contain"
+                                      style={getProductImageScaleStyle(
+                                        charger.product,
+                                      )}
+                                      className="h-full w-full object-contain scale-[var(--product-image-scale)]"
                                     />
                                   </div>
 
@@ -646,19 +641,9 @@ export function NavigationScroll() {
               </motion.div>
             )}
           </AnimatePresence>
-          {/* Tercer bloque: la unica accion destacada de la fila. */}
+          {/* Tercer bloque: en desktop no lleva accion — el CTA de contacto es
+              el del cierre de pagina. Aca solo queda el menu mobile. */}
           <div className="flex items-center gap-3 shrink-0">
-            <a
-              href={buildWhatsAppHref(tNav("quoteCtaMessage"))}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeDropdown}
-              className={`hidden md:flex ${CHIP_WHATSAPP_CLASS}`}
-            >
-              <FaWhatsapp className="size-4" />
-              {tNav("quoteCta")}
-            </a>
-
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="md:hidden px-4 h-10 text-neutral-200 hover:text-white transition-colors flex items-center gap-2"
@@ -856,7 +841,10 @@ export function NavigationScroll() {
                                                     alt=""
                                                     width={320}
                                                     height={320}
-                                                    className="h-full w-full object-contain"
+                                                    style={getProductImageScaleStyle(
+                                                      charger.product,
+                                                    )}
+                                                    className="h-full w-full object-contain scale-[var(--product-image-scale)]"
                                                   />
                                                 </div>
                                                 <div className="flex min-w-0 flex-col">

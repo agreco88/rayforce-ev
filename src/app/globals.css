@@ -188,3 +188,11 @@ html {
     @apply border-neutral-800 my-8;
   }
 }
+
+/* El contenedor que abre una pagina de producto o de listado. Fija el ancho,
+   el padding lateral y el offset superior para que el breadcrumb caiga en el
+   mismo pixel en /cargadores, /cables y los dos detalles: sin esto cada hero
+   repetia los valores y se desalineaban de a uno. */
+@utility page-shell {
+  @apply w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 pt-28 sm:pt-58;
+}

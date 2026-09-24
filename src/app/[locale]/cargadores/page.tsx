@@ -70,7 +70,7 @@ export default async function ChargersPage({ params }: Props) {
 
         {/* Mismo ancho y padding que el header (`navigation-scroll.tsx`): el
             h1 y el logo tienen que caer en la misma linea. */}
-        <div className="relative z-10 mt-28 sm:mt-58 flex flex-col w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 pb-24 lg:pb-32">
+        <div className="page-shell relative z-10 flex flex-col pb-24 lg:pb-32">
           <ChargersHero />
 
           <ChargersCardGrid className="mt-16 lg:mt-0 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" />

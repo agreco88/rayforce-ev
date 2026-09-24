@@ -37,13 +37,16 @@ export function ChargersCommonStats() {
     },
   ];
 
+  /* Sin ancho ni padding propios: los pone el contenedor de la pagina. */
   return (
-    <div className="mx-auto mt-16 w-full max-w-[1600px] px-6 sm:px-8 lg:px-16 2xl:px-0">
-      <p className="mb-6 text-center text-sm font-medium text-neutral-300 sm:mb-8">
+    <div className="w-full">
+      {/* `normal-case`: el h2 global lo pasaria a mayusculas, y entra como
+          encabezado de seccion — mismo estilo que el de los consejos. */}
+      <h2 className="text-3xl font-light normal-case tracking-tight text-balance text-white sm:text-4xl">
         {t("title")}
-      </p>
+      </h2>
 
-      <div className="rounded-3xl border border-white/10 bg-white/[0.06] px-6 py-8 shadow-2xl shadow-black/40 backdrop-blur-2xl sm:px-10 sm:py-10">
+      <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.06] px-6 py-8 shadow-2xl shadow-black/40 backdrop-blur-2xl sm:px-10 sm:py-10">
         <StatsGrid
           stats={stats}
           accentText="text-green-400"

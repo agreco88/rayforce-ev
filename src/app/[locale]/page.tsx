@@ -88,7 +88,13 @@ const HomeStandSection = dynamic(() =>
   })),
 );
 
-// FAQ + compatibilidad + CTA + navegacion: el cierre entero.
+const CompatibilitySection = dynamic(() =>
+  import("@/components/pages/shared/CompatibilitySection").then((m) => ({
+    default: m.CompatibilitySection,
+  })),
+);
+
+// FAQ + CTA + navegacion: el cierre entero.
 const Footer = dynamic(() =>
   import("@/components/sections/contact-footer/Footer").then((m) => ({
     default: m.Footer,
@@ -150,12 +156,11 @@ export default async function HomePage({ params }: Props) {
         <HomeLineupSection id="cargadores" />
 
         <HomeStandSection id="columna" />
+        {/* Despues del lineup y antes de los cables: se elige equipo, se
+            chequea que sirva para el auto propio y recien ahi sigue. */}
+        <CompatibilitySection id="compatibilidad" />
         <PublicChargingCableSection id="cables-carga-publica" />
-        <Footer
-          faqNamespace="HomePage.Faq"
-          faqId="faq"
-          compatibilityId="compatibilidad"
-        />
+        <Footer faqNamespace="HomePage.Faq" faqId="faq" />
       </Suspense>
       <ScrollDepthTracker page="home" />
     </main>

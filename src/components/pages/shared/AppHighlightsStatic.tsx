@@ -34,6 +34,19 @@ type Theme = {
   gradientColors?: [string, string, string];
 };
 
+/**
+ * El verde del sitio, para cuando la seccion no cuelga de un producto — en
+ * /cargadores no hay un modelo que preste su acento.
+ */
+const DEFAULT_THEME: Theme = {
+  accentText: "text-green-400",
+  accentBg: "bg-green-400",
+  accentSoft: "bg-green-400/10",
+  accentBorder: "border-green-400/30",
+  glowStrong: "rgba(34,197,94,0.35)",
+  gradientColors: ["#4ade80", "#4ade80", "#a3e635"],
+};
+
 type Feature = {
   icon: React.ElementType;
   title: string;
@@ -134,7 +147,13 @@ function withAlpha(hex: string, alpha: number) {
 /* Section                                                                    */
 /* -------------------------------------------------------------------------- */
 
-export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
+export function AppHighlightsInteractive({
+  theme = DEFAULT_THEME,
+  id,
+}: {
+  theme?: Theme;
+  id?: string;
+}) {
   const accent = theme.gradientColors?.[0] ?? ICON_FALLBACK_ACCENT;
   const accentSoft = withAlpha(accent, 0.12);
 
@@ -258,6 +277,7 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
   return (
     <section
       ref={sectionRef}
+      id={id}
       className="
         relative overflow-hidden
 
@@ -305,18 +325,23 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
       {/* Content                                                            */}
       {/* ------------------------------------------------------------------ */}
 
+      {/* Mismo ancho y padding que el resto de las secciones de /cargadores,
+          para que los bordes del contenido caigan en la misma linea al
+          scrollear. El `gap` separa la certificacion del bloque de la app. */}
       <div
         className="
           relative z-10
 
           mx-auto
-          flex max-w-7xl flex-col
+          flex w-full max-w-[1600px] flex-col gap-24 lg:gap-32
 
-          px-6 pt-24 pb-24
+          px-4 py-24
 
-          sm:px-0
+          sm:px-6
 
-          lg:pt-32
+          lg:px-16 lg:py-32
+
+          2xl:px-0
         "
       >
         {/* ---------------------------------------------------------------- */}
@@ -329,14 +354,14 @@ export function AppHighlightsInteractive({ theme }: { theme: Theme }) {
         {/* Features + Device                                                */}
         {/* ---------------------------------------------------------------- */}
 
+        {/* `gap-8` es la separacion entre la lista y el telefono, no entre
+            bloques: el aire contra la certificacion lo da el `gap` del padre. */}
         <div
           className="
             relative
-            mt-8
 
             flex flex-col sm:flex-row w-full items-center gap-8
 
-            sm:my-32
             sm:justify-around
           "
         >

@@ -2,20 +2,14 @@
 
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { Zap, Plug, Clock, type LucideIcon } from "lucide-react";
 
 import { ChargersCardGrid } from "@/components/sections/home/chargers/ChargersCardGrid";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { HomeLineupHelpCta } from "./HomeLineupHelpCta";
-
-const GUIDE_INTRO_ICONS: LucideIcon[] = [Zap, Plug, Clock];
+import { LineupGuideCards } from "./LineupGuideCards";
 
 export function HomeLineupDesktop() {
   const t = useTranslations("HomePage.Lineup");
-  const guideIntroItems = t.raw("guide.items") as {
-    title: string;
-    description: string;
-  }[];
 
   return (
     /* `max-w-[1600px]`, el mismo ancho que la grilla de /cargadores: cuatro
@@ -62,48 +56,10 @@ export function HomeLineupDesktop() {
           </motion.p>
         </motion.div>
 
-        {/* GUIA RAPIDA — mismo lenguaje que los destacados de la columna
-            (HomeStandDesktop): tarjeta con borde, icono verde suelto,
-            titulo `font-light` con divider. Va antes de la grilla: la
-            eleccion real es una secuencia (instalacion → cable → potencia),
-            conviene saberla antes de ver las 4 fichas. */}
-        <motion.div
-          variants={waterfallList}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          <motion.ul
-            variants={waterfallItem}
-            className="grid list-none grid-cols-3 items-stretch gap-6"
-          >
-            {guideIntroItems.map((item, index) => {
-              const Icon = GUIDE_INTRO_ICONS[index];
-              return (
-                <li
-                  key={item.title}
-                  className="flex h-full flex-col rounded-2xl border border-neutral-900 bg-neutral-950/60 p-6 backdrop-blur-sm"
-                >
-                  <Icon
-                    className="size-10 text-green-400"
-                    strokeWidth={1}
-                    aria-hidden="true"
-                  />
-
-                  <p className="mt-5 text-2xl font-light text-white">
-                    {index + 1}. {item.title}
-                  </p>
-
-                  <div className="mt-4 h-px w-full bg-green-400/10" />
-
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-400">
-                    {item.description}
-                  </p>
-                </li>
-              );
-            })}
-          </motion.ul>
-        </motion.div>
+        {/* GUIA RAPIDA — va antes de la grilla: la eleccion real es una
+            secuencia (instalacion → cable → potencia), conviene saberla antes
+            de ver las 4 fichas. */}
+        <LineupGuideCards />
 
         {/* NUESTROS MODELOS — la misma tarjeta que /cargadores: cada una
             linkea a su modelo. Solo cambia el contenedor — cuatro columnas

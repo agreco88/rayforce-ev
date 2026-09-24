@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { ExternalLink } from "lucide-react";
 import { useTrack } from "@/lib/analytics";
 
 import { CableModelHeroStats } from "./CableModelHeroStats";
+import { ProductHeroPriceCardMobile } from "./ProductHeroPriceCard";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
-import { getCableProducts } from "@/lib/catalog/catalog.helpers";
+import {
+  getCableProducts,
+  getProductImageScaleStyle,
+} from "@/lib/catalog/catalog.helpers";
 import type { CableProduct } from "@/lib/catalog/catalog.types";
 
 type Props = {
@@ -24,7 +26,6 @@ export function CableModelHeroMobile({ product }: Props) {
   const t = useTranslations("CableModelPage");
   const track = useTrack();
   const { theme } = product;
-  const mpUrl = product.mercadopagoUrl || "#";
 
   return (
     <section
@@ -54,36 +55,14 @@ export function CableModelHeroMobile({ product }: Props) {
       </div>
 
       {/* -------------------------------------------------------------- */}
-      {/* Product photo — absolute backdrop behind the hero content       */}
-      {/* -------------------------------------------------------------- */}
-      <div className="absolute inset-0 z-[5] pointer-events-none flex items-center justify-center overflow-hidden">
-        <div className="relative w-[min(780px,150vw)] h-[min(780px,150vw)]">
-          {/* Glow */}
-          <div
-            className="
-              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              w-[60%] h-[100px]
-              blur-3xl rounded-full animate-pulse
-            "
-            style={{ backgroundColor: theme.glowStrong }}
-          />
-          <Image
-            src={product.heroImage}
-            alt={product.publicName}
-            fill
-            priority
-            className="object-contain"
-          />
-        </div>
-      </div>
-
-      {/* -------------------------------------------------------------- */}
       {/* Content                                                        */}
       {/* -------------------------------------------------------------- */}
+      {/* Fade solo: sin `y` ni stagger. El contenido esta en su posicion final
+          desde el primer frame y la opacidad no genera layout shift. */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
         className="
           relative z-20
           flex flex-col
@@ -138,7 +117,7 @@ export function CableModelHeroMobile({ product }: Props) {
         {/* -------------------------------------------------------------- */}
         {/* Content Block                                                 */}
         {/* -------------------------------------------------------------- */}
-        <div className="flex flex-col gap-2.5 items-center">
+        <div className="flex flex-col gap-4 items-center">
           {/* Eyebrow */}
           <p
             className={`text-xs uppercase tracking-[0.3em] ${theme.accentText}`}
@@ -165,64 +144,56 @@ export function CableModelHeroMobile({ product }: Props) {
               {t(`variants.${product.slug}.description`)}
             </p>
           </div>
+
+          {/* -------------------------------------------------------------- */}
+          {/* Cable                                                          */}
+          {/* -------------------------------------------------------------- */}
+          <div className="relative w-full pt-4">
+            {/* Glow por fuera del container: adentro se perderia contra el
+                fondo blanco de la foto. */}
+            <div
+              className="absolute inset-6 blur-3xl rounded-full pointer-events-none"
+              style={{ backgroundColor: theme.glowStrong }}
+            />
+
+            {/* La foto viene sobre fondo blanco, asi que el container es claro
+                y el recorte lo da el `rounded-3xl` + `overflow-hidden`. */}
+            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl shadow-black/40">
+              <Image
+                src={product.photoImage}
+                alt={product.publicName}
+                width={720}
+                height={720}
+                // El hero es el LCP de la pagina: sin lazy y con prioridad.
+                priority
+                sizes="(max-width: 640px) 100vw, 360px"
+                style={getProductImageScaleStyle(product)}
+                className="w-full h-auto object-contain scale-[var(--product-image-scale)]"
+              />
+            </div>
+          </div>
+
           {/* Stats */}
           <CableModelHeroStats theme={theme} slug={product.slug} />
 
-          {/* Price */}
-          <div className="mt-2 flex flex-col items-center gap-1">
-            <div className="flex items-baseline">
-              <AnimateNumber
-                locales="en-US"
-                format={{ maximumFractionDigits: 0 }}
-                suffix={` ${product.price.currency}`}
-                className={`
-                  text-3xl font-thin tabular-nums ${theme.accentText}
-                  [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1! [&_.number-section-post]:text-xs [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide [&_.number-section-post]:text-neutral-400
-                `}
-                transition={{
-                  visualDuration: 0.6,
-                  type: "spring",
-                  bounce: 0.25,
-                  opacity: { duration: 0.3, ease: "linear" },
-                }}
-              >
-                {product.price.amount}
-              </AnimateNumber>
-            </div>
-            <span className="text-[11px] text-neutral-500">
-              {t("price.taxLabel")}
-            </span>
-          </div>
-
-          {/* CTAs */}
+          {/* Precio + CTA como una sola tarjeta, igual que en desktop pero
+              apilada: a este ancho el precio y el boton lado a lado no entran. */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row items-center gap-6 pt-10 w-full"
+            className="mt-6 w-full"
           >
-            <motion.a
-              href={mpUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                track.mercadopagoClick({
-                  source: "cable_hero",
-                  charger: product.slug,
-                  location: "mobile",
-                })
-              }
-              className={`
-                inline-flex min-h-[48px] w-full sm:w-fit items-center justify-center gap-2 rounded-xl px-6 py-3
-                border ${theme.accentBorder} ${theme.accentText}
-                text-sm font-semibold transition-colors
-                hover:bg-white/5
-              `}
-            >
-              {t("cta.mercadopago")}
-              <ExternalLink size={16} />
-            </motion.a>
+            <ProductHeroPriceCardMobile
+              amount={product.price.amount}
+              currency={product.price.currency}
+              taxLabel={t("price.taxLabel")}
+              theme={theme}
+              href="#precio"
+              ctaLabel={t("cta.viewPrice")}
+              onCtaClick={() => track.cableHeroPrice(product.slug, "mobile")}
+            />
           </motion.div>
         </div>
       </motion.div>

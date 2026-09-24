@@ -1,18 +1,29 @@
-import { HomeLineupGuide } from "@/components/sections/home/lineup/HomeLineupGuide";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { LineupGuideCards } from "@/components/sections/home/lineup/LineupGuideCards";
 
 /**
- * La guia de 3 pasos del lineup, sin su header ni la grilla de productos: el
- * hero de /cargadores ya cubre titulo y descripcion, y la grilla ya esta ahi
- * arriba. Desktop en fila, mobile apilada — mismo `HomeLineupGuide`.
+ * La guia de 3 pasos del lineup, sin la grilla de productos: ya esta ahi
+ * arriba. Mismas tarjetas que el lineup del home (`LineupGuideCards`), que
+ * apilan solas en mobile.
+ *
+ * Sin ancho ni padding propios: los pone el contenedor de la pagina, que la
+ * monta junto al hero y la grilla sobre el mismo fondo.
  */
 export function ChargersLineupGuideSection() {
+  const t = useTranslations("HomePage.Lineup.guide");
+
   return (
-    <section className="w-full max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 2xl:px-0 py-16 lg:py-20">
-      <div className="hidden lg:block">
-        <HomeLineupGuide columns={3} />
-      </div>
-      <div className="lg:hidden">
-        <HomeLineupGuide columns={1} />
+    <section className="w-full">
+      {/* `normal-case`: el h2 global no lo toca, pero el titulo entra aca como
+          encabezado de bloque y no como el de la pagina — ese lo da el hero. */}
+      <h2 className="text-3xl font-light normal-case tracking-tight text-balance text-white sm:text-4xl">
+        {t("title")}
+      </h2>
+
+      <div className="mt-10">
+        <LineupGuideCards />
       </div>
     </section>
   );

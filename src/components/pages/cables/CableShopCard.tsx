@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 import { useTrack } from "@/lib/analytics/use-track";
+import { getProductImageScaleStyle } from "@/lib/catalog/catalog.helpers";
 import type { CableProduct } from "@/lib/catalog/catalog.types";
 import {
   ProductHighlightRibbon,
@@ -39,77 +40,80 @@ export function CableShopCard({ product }: Props) {
     t("specs.length", { length: product.specs.lengthM }),
     t("specs.current", { current: product.specs.maxCurrentA ?? 32 }),
     product.specs.temperatureSensor ? t("specs.temperatureSensor") : null,
-    product.specs.bagIncluded ? t("specs.bag") : null,
     t("delivery", { power: powerKw }),
   ].filter(Boolean) as string[];
 
   return (
-    <article
-      className="
-        group flex h-full flex-col overflow-hidden
-        rounded-2xl border border-white/10 bg-neutral-950
-        transition-colors duration-300 hover:border-amber-400/30
-      "
+    // Toda la tarjeta es el link, igual que la de cargadores: el CTA de abajo
+    // es texto y no un boton propio, asi que el area clickeable tiene que ser
+    // la tarjeta entera y no solo la foto y la flecha.
+    <Link
+      href={href}
+      onClick={() => track.chargerCardClicked(product.slug)}
+      aria-label={`${copy?.label ?? product.publicName} — ${t("cta")}`}
+      className={`
+        group flex h-full flex-col items-start
+        overflow-hidden rounded-2xl border border-white/10
+        bg-neutral-950
+        transition-colors duration-300
+        ${product.theme.accentBorderHover}
+      `}
       style={getHighlightBorderStyle(product)}
     >
       {/* ── Photo plate ─────────────────────────────────────── */}
-      <Link
-        href={href}
-        onClick={() => track.chargerCardClicked(product.slug)}
-        aria-label={copy?.label ?? product.publicName}
-        className="relative block aspect-[4/3] w-full overflow-hidden bg-white"
+      {/* Misma plancha que los cargadores — el destacado sobre blanco puro y
+          el resto sobre `neutral-100`. */}
+      <div
+        className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden sm:h-[480px] ${
+          product.highlight ? "bg-white" : "bg-neutral-100"
+        }`}
       >
         <ProductHighlightRibbon product={product} className="right-4 top-4" />
 
-        {/* Model code chip */}
-        <span className="absolute left-4 top-4 z-10 rounded-full bg-neutral-900/90 px-2.5 py-1 text-[11px] font-medium uppercase tracking-widest text-neutral-300">
+        {/* La escala base sale del catalogo y el hover la multiplica, asi el
+            zoom arranca del tamaño ya corregido. */}
+        <Image
+          src={product.heroImage}
+          alt=""
+          width={500}
+          height={500}
+          sizes="(max-width: 640px) 90vw, 45vw"
+          style={getProductImageScaleStyle(product)}
+          className="
+            relative h-full w-full object-contain p-6
+            scale-[var(--product-image-scale)]
+            transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
+            group-hover:scale-[calc(var(--product-image-scale)*1.05)]
+          "
+        />
+      </div>
+
+      {/* ── Body ────────────────────────────────────────────── */}
+      <div className="flex w-full flex-1 flex-col border-t border-t-neutral-800 px-6 pb-7 pt-6">
+        <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
           {product.modelCode}
         </span>
 
-        <Image
-          src={product.heroImage}
-          alt={product.publicName}
-          fill
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-          className="
-            object-contain p-6
-            opacity-90 transition-opacity duration-300
-            group-hover:opacity-100
-          "
-        />
-      </Link>
-
-      {/* ── Body ────────────────────────────────────────────── */}
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-semibold tracking-tight text-amber-400">
+        <h3 className="mt-1.5 text-base font-semibold tracking-tight text-white normal-case">
           {typeLabel}
         </h3>
 
-        <p className="mt-2 line-clamp-3 min-h-[3.75rem] w-xs text-sm leading-relaxed text-neutral-400">
+        <p className="mt-3 text-sm leading-relaxed text-neutral-400">
           {copy?.description ?? ""}
         </p>
 
-        {/* Badges */}
-        {product.badges && product.badges.length > 0 && (
-          <ul className="mt-4 flex list-none flex-wrap gap-1.5">
-            {product.badges.map((badge) => (
-              <li
-                key={badge}
-                className="rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-0.5 text-[11px] text-amber-300"
-              >
-                {badge}
-              </li>
-            ))}
-          </ul>
-        )}
-
         {/* Highlights */}
-        <ul className="mt-5 flex list-none flex-col gap-2 border-t border-neutral-800 pt-5 text-sm text-neutral-400">
+        <ul
+          className="flex list-none flex-col gap-2 border-t border-neutral-800 py-6 mt-6 text-left text-sm text-neutral-400"
+          aria-label={`${copy?.label ?? product.publicName} highlights`}
+        >
           {highlights.map((item) => (
-            <li key={item} className="flex items-center gap-2">
-              <Check
-                className="size-3.5 shrink-0 text-amber-400"
-                strokeWidth={2.5}
+            <li
+              key={item}
+              className="flex items-start gap-2.5 first:text-neutral-200!"
+            >
+              <span
+                className={`mt-[0.4375rem] size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
                 aria-hidden="true"
               />
               {item}
@@ -118,36 +122,30 @@ export function CableShopCard({ product }: Props) {
         </ul>
 
         {/* Price + CTA */}
-        <div className="mt-6 flex items-end justify-between gap-4 border-t border-neutral-800 pt-5">
-          <div className="flex flex-col">
-            <span className="text-3xl font-thin tracking-tighter text-amber-400">
-              {product.price.currency} {product.price.amount}
-            </span>
-            {product.price.taxLabel && (
-              <span className="mt-1 text-[11px] text-neutral-500">
-                {product.price.taxLabel}
-              </span>
-            )}
-          </div>
+        <div className="mt-auto flex flex-col items-start gap-3 border-t border-neutral-800 pt-6">
+          <span
+            className={`text-3xl font-thin tracking-tighter whitespace-nowrap ${product.theme.accentText}`}
+          >
+            {product.price.currency} {product.price.amount}
+          </span>
 
-          <Link
-            href={href}
-            onClick={() => track.chargerCardClicked(product.slug)}
-            className="
-              inline-flex items-center gap-2 rounded-full
-              bg-amber-400 px-4 py-2
-              text-sm font-medium text-neutral-950
-              transition-colors duration-300 hover:bg-amber-300
-            "
+          <span
+            className={`
+              inline-flex items-center gap-2 whitespace-nowrap
+              text-sm font-medium
+              transition-all duration-300
+              ${product.theme.accentText}
+            `}
+            aria-hidden="true"
           >
             {t("cta")}
             <ArrowRight
               size={16}
               className="transition-transform duration-300 group-hover:translate-x-0.5"
             />
-          </Link>
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -1,6 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+// `type-2-socket` y no `socket-type-2`: el otro archivo es stroke-only
+// (`fill:none` en sus 17 paths y sin viewBox), y bajo una mascara CSS —que solo
+// lee el alpha del relleno— no dibujaba casi nada.
 import SocketTypeTwo from "../../../../public/images/icons/type-2-socket.svg";
 
 export type StatItem = {

@@ -17,23 +17,20 @@ import {
   getHighlightBorderStyle,
 } from "@/components/catalog/ProductHighlightRibbon";
 
-const PRODUCT_IMAGES: Record<string, string> = {
-  "bs20-bc-7kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-ba-7kw": "/assets/images/chargers/BS20-7KW-SOCKET.png",
-  "bs20-bc-11kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-bc-22kw": "/assets/images/chargers/BS20-22KW.png",
-};
-
 type Props = {
   className?: string;
+  /** Slug a dejar afuera — la pagina de modelo no se lista a si misma. */
+  excludeSlug?: string;
 };
 
 /** Product card grid shared by the home section and the /cargadores route. */
-export function ChargersCardGrid({ className }: Props) {
+export function ChargersCardGrid({ className, excludeSlug }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection");
   const tSpecs = useTranslations("Common.Specs");
   const locale = useLocale();
-  const products = getChargerProducts();
+  const products = getChargerProducts().filter(
+    (product) => product.slug !== excludeSlug,
+  );
 
   return (
     <motion.div
@@ -97,7 +94,7 @@ export function ChargersCardGrid({ className }: Props) {
                 />
 
                 <Image
-                  src={PRODUCT_IMAGES[product.slug]}
+                  src={product.cardImage}
                   alt=""
                   width={500}
                   height={500}

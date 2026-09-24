@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "motion/react";
-import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import { ArrowDownToLine, Zap } from "lucide-react";
+import { ArrowDownToLine } from "lucide-react";
 
-import { ChargerEV } from "@/components/animated/charger-ev/ChargerEv";
+import Image from "next/image";
 import { GradientText } from "@/components/animated/GradientText";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
+import { ProductHeroPriceCardMobile } from "./ProductHeroPriceCard";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
 import { useTrack } from "@/lib/analytics";
@@ -23,7 +23,6 @@ type Props = {
 
 export function ChargerModelHeroMobile({ product }: Props) {
   const t = useTranslations("ChargerModelPage");
-  const tPricing = useTranslations("ChargerModelPage.pricingSection");
   const track = useTrack();
   const { theme } = product;
 
@@ -56,10 +55,12 @@ export function ChargerModelHeroMobile({ product }: Props) {
       {/* -------------------------------------------------------------- */}
       {/* Content                                                        */}
       {/* -------------------------------------------------------------- */}
+      {/* Fade solo: sin `y` ni stagger. El contenido esta en su posicion final
+          desde el primer frame y la opacidad no genera layout shift. */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
         className="
           relative z-20
           flex flex-col
@@ -74,20 +75,9 @@ export function ChargerModelHeroMobile({ product }: Props) {
           className="mt-16 mb-8 flex justify-center z-[999]"
           items={[
             { label: t("breadcrumb.home"), href: "/" },
-            {
-              label: t("breadcrumb.chargers"),
-              dropdown: [
-                {
-                  href: "/cargadores",
-                  label: t("breadcrumb.chargers"),
-                  current: true,
-                },
-                {
-                  href: "/cables",
-                  label: t("breadcrumb.cables"),
-                },
-              ],
-            },
+            // Sin dropdown: desde un cargador solo se navega a otro cargador,
+            // asi que el nivel de linea es un link y nada mas.
+            { label: t("breadcrumb.chargers"), href: "/cargadores" },
             {
               label: (
                 <p
@@ -124,7 +114,10 @@ export function ChargerModelHeroMobile({ product }: Props) {
 
           {/* Title */}
           <div className="flex flex-col items-center gap-2">
-            <h1 className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 leading-none text-center">
+            {/* Alturas reservadas: el shortName mas largo ("7,2kW con toma")
+                wrappea a dos lineas y las descripciones varian, asi que sin
+                `min-h` cambiar de modelo mueve todo lo de abajo. */}
+            <h1 className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 leading-none text-center min-h-[4.5rem]">
               <span className="text-6xl font-semibold text-white">BS20</span>
 
               <GradientText
@@ -135,99 +128,75 @@ export function ChargerModelHeroMobile({ product }: Props) {
               </GradientText>
             </h1>
 
-            <p className="text-neutral-400 pt-2 leading-snug text-base  text-center max-w-[35ch]">
+            <p className="text-neutral-400 pt-2 leading-snug text-base  text-center max-w-[35ch] min-h-[4rem]">
               {t(`variants.${product.slug}.description`)}
             </p>
 
-            <div className="mt-2 flex items-baseline">
-              <AnimateNumber
-                locales="en-US"
-                format={{ maximumFractionDigits: 0 }}
-                prefix={tPricing("toggle.fromPrefix")}
-                suffix={` ${product.price.currency}`}
-                className={`
-                  text-3xl font-thin tabular-nums ${theme.accentText}
-                  [&_.number-section-pre]:mr-2 [&_.number-section-pre]:self-end [&_.number-section-pre]:pb-1! [&_.number-section-pre]:text-xs [&_.number-section-pre]:font-medium [&_.number-section-pre]:text-neutral-500
-                  [&_.number-section-post]:ml-1 [&_.number-section-post]:self-end [&_.number-section-post]:pb-1! [&_.number-section-post]:text-xs [&_.number-section-post]:font-semibold [&_.number-section-post]:tracking-wide [&_.number-section-post]:text-neutral-400
-                `}
-                transition={{
-                  visualDuration: 0.6,
-                  type: "spring",
-                  bounce: 0.25,
-                  opacity: { duration: 0.3, ease: "linear" },
-                }}
-              >
-                {product.price.amount}
-              </AnimateNumber>
-            </div>
           </div>
           {/* -------------------------------------------------------------- */}
           {/* Charger                                                       */}
           {/* -------------------------------------------------------------- */}
-          <div
-            className={`
-            relative
-            flex justify-center items-center
-            pt-4
-            ${product.visual.cableType === "socket" ? "mb-[175px]" : "mb-0"}
-          `}
-          >
-            {/* Bottom Glow */}
+          <div className="relative w-full pt-4">
+            {/* Glow por fuera del container: adentro se perderia contra el
+                fondo blanco de la foto. */}
             <div
-              className="
-              absolute bottom-12 left-1/2 -translate-x-1/2
-              w-[220px] h-[80px]
-              blur-3xl rounded-full
-              animate-pulse
-            "
-              style={{
-                backgroundColor: theme.glowStrong,
-              }}
+              className="absolute inset-6 blur-3xl rounded-full pointer-events-none"
+              style={{ backgroundColor: theme.glowStrong }}
             />
 
-            {/* Charger */}
-            <div className="scale-[0.85] sm:scale-[1] origin-top">
-              <ChargerEV {...product.visual} />
+            {/* La foto viene sobre fondo blanco, asi que el container es claro
+                y el recorte lo da el `rounded-3xl` + `overflow-hidden`. */}
+            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl shadow-black/40">
+              <Image
+                src={product.photoImage}
+                alt={t(`variants.${product.slug}.fullName`)}
+                width={720}
+                height={720}
+                // El hero es el LCP de la pagina: sin lazy y con prioridad.
+                priority
+                sizes="(max-width: 640px) 100vw, 360px"
+                className="w-full h-auto object-contain"
+              />
             </div>
           </div>
           {/* Stats */}
           <ChargerModelHeroStats theme={theme} product={product} />
 
-          {/* CTAs */}
+          {/* Precio + CTA como una sola tarjeta, igual que en desktop pero
+              apilada. El precio vivia arriba, pegado a la descripcion, lejos
+              del boton que lleva a comprarlo. */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row items-center gap-6 pt-10 w-full"
+            className="flex w-full flex-col items-center gap-5 pt-10"
           >
+            <ProductHeroPriceCardMobile
+              amount={product.price.amount}
+              currency={product.price.currency}
+              taxLabel={t("price.taxLabel")}
+              theme={theme}
+              href="#precios"
+              ctaLabel={t("cta.pricing")}
+            />
+
+            {/* El manual como link y no como boton: es secundario, y al lado
+                del CTA de precio le competia el peso visual. */}
             {product.datasheetUrl && (
-              <motion.a
+              <a
                 href={product.datasheetUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>
                   track.chargerHeroDatasheet(product.slug, "mobile")
                 }
-                className={`
-                  inline-flex items-center justify-center h-16 sm:h-14 gap-2 w-full sm:w-fit px-5 rounded-xl
-                  border ${theme.accentBorder} ${theme.accentText}
-                  text-sm font-semibold
-                  hover:bg-white/5 transition-colors
-                `}
+                className="inline-flex min-h-[44px] items-center gap-2 text-sm text-neutral-400 underline-offset-4 hover:text-white hover:underline transition-colors"
               >
-                <ArrowDownToLine size={16} />
+                <ArrowDownToLine size={15} />
                 {t("cta.manual")}
-              </motion.a>
+              </a>
             )}
-
-            <motion.a
-              href="#compatibilidad"
-              className="inline-flex items-center justify-center h-16 sm:h-14 gap-2 w-full sm:w-fit px-5 rounded-xl border border-white/30 text-white/80 text-sm font-semibold hover:bg-white/5 transition-colors"
-            >
-              <Zap size={16} />
-              {t("cta.compatibility")}
-            </motion.a>
           </motion.div>
         </div>
       </motion.div>

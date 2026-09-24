@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { CableModelHero } from "@/components/pages/shared/CableModelHero";
 import { CableModelHeroMobile } from "@/components/pages/shared/CableModelHeroMobile";
-import { CableModelStats } from "@/components/pages/shared/CableModelStats";
+import { CableDurabilitySection } from "@/components/pages/shared/CableDurabilitySection";
 import { CablePricingSection } from "@/components/pages/shared/CablePricingSection";
-import { CableProofVideoSection } from "@/components/pages/shared/CableProofVideoSection";
-import { CableWhatsAppCtaSection } from "@/components/pages/shared/CableWhatsAppCtaSection";
-import { CablesComparisonTable } from "@/components/sections/home/chargers/charger-comparison/CablesComparisonTable";
+import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
+import { ProductSpecsTable } from "@/components/pages/shared/ProductSpecsTable";
 
 import { getCableProductBySlug, getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
@@ -98,7 +97,10 @@ export default async function CableDetailPage({ params }: Props) {
   /* ---------------- Render ---------------- */
 
   return (
-    <section className="relative w-full z-0 overflow-hidden border-b border-neutral-900 bg-[#0a0a0a]">
+    // `overflow-x-clip` y no `overflow-hidden`: recorta el desborde lateral de
+    // los glows igual, pero sin volverse contenedor de scroll — `hidden` lo
+    // hace, y eso rompe cualquier `sticky` que cuelgue de adentro.
+    <section className="relative w-full z-0 overflow-x-clip border-b border-neutral-900 bg-[#0a0a0a]">
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
       {/* Hero */}
@@ -108,24 +110,25 @@ export default async function CableDetailPage({ params }: Props) {
       <div className="block lg:hidden">
         <CableModelHeroMobile product={product} />
       </div>
-      {/* Stats */}
-      <CableModelStats product={product} theme={product.theme} />
-      {/* Proof video — car driving over the coiled cable */}
-      {product.slug === "bs-chc003-s" && (
-        <CableProofVideoSection theme={product.theme} />
-      )}
-      {/* Pricing — cable, or bundled with wallbox + installation */}
+      {/* Durabilidad: va en los tres modelos. El ensayo es sobre el conector,
+          que es el mismo en toda la linea, asi que el video aplica igual al
+          recto y al espiralado. */}
+      <CableDurabilitySection product={product} id="durabilidad" />
+      {/* Ficha tecnica */}
+      <ProductSpecsTable product={product} id="especificaciones" />
+      {/* Compatibilidad: despues de la ficha y antes del precio — se chequea
+          que el cable sirva para el auto propio antes de mirar cuanto sale. */}
+      <CompatibilitySection theme={product.theme} id="compatibilidad" />
+      {/* Pricing + otros modelos */}
       <CablePricingSection product={product} id="precio" />
-      {/* Comparison table — highlights the currently viewed model */}
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0">
-        <CablesComparisonTable
-          products={getCableProducts()}
-          selectedSlug={product.slug}
-        />
-      </div>
-      {/* WhatsApp CTA */}
-      <CableWhatsAppCtaSection product={product} />
-      <Footer ctaSource={`cable_${model}`} />
+      {/* El FAQ es el general de cables: lo que se pregunta antes de elegir
+          largo y conector aplica igual a los tres modelos. */}
+      <Footer
+        faqNamespace="CablesPage.Faq"
+        faqId="faq"
+        ctaSource={`cable_${model}`}
+        theme={product.theme}
+      />
       <ScrollDepthTracker page={`cable_${model}`} />
     </section>
   );

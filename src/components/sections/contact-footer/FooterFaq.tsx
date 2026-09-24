@@ -12,6 +12,8 @@ import {
 type Props = {
   /** Namespace con `eyebrow`, `title`, `description` e `items`. */
   namespace: string;
+  /** Color del eyebrow. Sin esto va el verde de marca. */
+  accentText?: string;
 };
 
 /**
@@ -21,7 +23,10 @@ type Props = {
  *
  * La salida a WhatsApp no va aca: es el CTA que sigue abajo.
  */
-export function FooterFaq({ namespace }: Props) {
+export function FooterFaq({
+  namespace,
+  accentText = "text-green-400",
+}: Props) {
   const t = useTranslations(namespace);
   const items = t.raw("items") as FaqItem[];
 
@@ -37,16 +42,19 @@ export function FooterFaq({ namespace }: Props) {
     >
       {/* Encabezado centrado como el del CTA: ahora son el mismo bloque de
           cierre y alineados distinto se leian como dos secciones sueltas. */}
-      <motion.div variants={waterfallItem} className="text-center">
-        <span className="text-[10px] tracking-[0.3em] uppercase text-green-400 sm:text-xs sm:tracking-[0.25em]">
+      <motion.div
+        variants={waterfallItem}
+        className="mx-auto max-w-3xl text-center"
+      >
+        <p className={`text-sm uppercase tracking-[0.35em] ${accentText}`}>
           {t("eyebrow")}
-        </span>
+        </p>
 
-        <h2 className="mt-4 text-3xl leading-[1.1] font-light tracking-tight text-white sm:mt-5 sm:text-4xl lg:text-5xl">
+        <h2 className="mt-4 text-4xl font-medium text-white sm:text-5xl">
           {t("title")}
         </h2>
 
-        <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-neutral-400 sm:mt-6">
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-400">
           {t("description")}
         </p>
       </motion.div>

@@ -13,14 +13,6 @@ import {
   getHighlightBorderStyle,
 } from "@/components/catalog/ProductHighlightRibbon";
 
-/** Mirrors ChargersCardGrid's map — the catalog's heroImage is not the card photo. */
-const PRODUCT_IMAGES: Record<string, string> = {
-  "bs20-bc-7kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-ba-7kw": "/assets/images/chargers/BS20-7KW-SOCKET.png",
-  "bs20-bc-11kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-bc-22kw": "/assets/images/chargers/BS20-22KW.png",
-};
-
 /**
  * La tarjeta chica de dos columnas, extraida del acordeon mobile del header
  * (`NavigationScroll`): plancha de foto, modelo, titulo + kW en gradiente,
@@ -44,7 +36,7 @@ export function ChargerCompactCard({ product }: { product: ChargerProduct }) {
           className="right-2 top-2 px-1.5 py-0.5 text-[8px]"
         />
         <Image
-          src={PRODUCT_IMAGES[product.slug]}
+          src={product.cardImage}
           alt=""
           width={320}
           height={320}

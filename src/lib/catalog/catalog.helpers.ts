@@ -20,6 +20,23 @@ export function getAllProducts(): CatalogProduct[] {
  * /cables, el panel del header y el acordeón mobile. Poniéndolo en los getters
  * queda en un solo lugar, y los catálogos siguen leyéndose como fichas.
  */
+/**
+ * El `style` que corrige el encuadre de la foto de un producto. Va acá y no en
+ * cada componente porque el desajuste es del PNG y se ve en toda superficie
+ * donde el producto aparece al lado de sus hermanos: grillas, panel del
+ * header, hero y ficha.
+ *
+ * Sale como CSS variable y no como clase porque Tailwind solo descubre las
+ * clases literales, y la escala es un dato del catalogo.
+ */
+export function getProductImageScaleStyle(
+  product: CatalogProduct,
+): React.CSSProperties {
+  return {
+    "--product-image-scale": product.cardImageScale ?? 1,
+  } as React.CSSProperties;
+}
+
 function highlightedFirst<T extends CatalogProduct>(products: T[]): T[] {
   return [
     ...products.filter((product) => product.highlight),

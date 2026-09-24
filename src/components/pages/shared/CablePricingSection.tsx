@@ -10,6 +10,7 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
 import { AppSwitch } from "@/components/ui/wrappers/AppSwitch";
+import { CableOtherModelsBlock } from "@/components/pages/shared/CableOtherModelsBlock";
 import {
   CHARGER_PRODUCTS,
   CHARGER_INSTALLATION_PRICE_USD,
@@ -432,6 +433,8 @@ export function CablePricingSection({ product, id }: Props) {
             </div>
           </div>
         </motion.div>
+
+        <CableOtherModelsBlock product={product} className="mt-20 sm:mt-28" />
       </div>
     </section>
   );

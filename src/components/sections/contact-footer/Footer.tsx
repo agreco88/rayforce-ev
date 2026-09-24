@@ -1,6 +1,5 @@
 "use client";
 
-import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 
 import { FooterCTA } from "./FooterCTA";
@@ -13,6 +12,7 @@ import {
 } from "./FooterNavColumn";
 import { FooterContactColumn } from "./FooterContactColumn";
 import { FooterMeta } from "./FooterMeta";
+import type { CatalogTheme } from "@/lib/catalog/catalog.types";
 
 type Props = {
   /**
@@ -27,14 +27,15 @@ type Props = {
   /** De que ruta salio el click a WhatsApp, para analytics. */
   ctaSource?: string;
   /**
-   * Monta la compatibilidad arriba del CTA, con este id de ancla. Solo la home:
-   * las páginas de cargador ya la montan en el medio, teñida con su color.
+   * Tiñe glow, eyebrow del FAQ y boton del CTA con el color del producto. Las
+   * rutas sin producto (home, listados) no lo pasan y quedan con el verde de
+   * marca, que es el default.
    */
-  compatibilityId?: string;
+  theme?: CatalogTheme;
 };
 
 /**
- * El cierre de toda pagina: FAQ → compatibilidad → CTA → navegacion. La
+ * El cierre de toda pagina: FAQ → CTA → navegacion. La
  * `<section>` de afuera hace de orquestador — pone el fondo y lo estira a todo
  * el ancho; adentro, el `<footer>` solo lleva el contenido.
  *
@@ -46,7 +47,7 @@ export function Footer({
   faqId,
   ctaNamespace = "Footer.cta",
   ctaSource = "footer",
-  compatibilityId,
+  theme,
 }: Props = {}) {
   return (
     <section className="relative overflow-hidden border-t border-white/5 bg-neutral-900">
@@ -57,12 +58,21 @@ export function Footer({
         maskImage="radial-gradient(ellipse 80% 55% at 50% 22%, #000 30%, transparent 85%)"
       />
 
-      {/* Mismo degrade verde que el hero, pero centrado y detras del CTA: el
-          foco es el logo del medio, no una esquina. El `top` lo corre al alto
-          del CTA — anclado arriba se apagaba antes de llegar. */}
+      {/* Mismo degrade que el hero, pero centrado y detras del CTA: el foco es
+          el logo del medio, no una esquina. El `top` lo corre al alto del CTA —
+          anclado arriba se apagaba antes de llegar. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[900px] bg-[radial-gradient(ellipse_45%_38%_at_50%_30%,rgba(34,197,94,0.16),rgba(34,197,94,0.05)_45%,transparent_70%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[900px]"
+        // Dos stops del mismo color y no uno: con el corte directo a
+        // transparente el degrade se apaga de golpe y se le ve el borde de la
+        // elipse. `glowStrong` no sirve de centro — en varios themes es otro
+        // tono, y mezclados se ve sucio.
+        style={{
+          background: `radial-gradient(ellipse 45% 38% at 50% 30%, ${
+            theme?.glow ?? "rgba(34,197,94,0.16)"
+          }, transparent 70%)`,
+        }}
       />
 
       <footer id="footer" className="relative z-10 text-neutral-200">
@@ -71,14 +81,13 @@ export function Footer({
         <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-16 2xl:px-0">
           {faqNamespace && (
             <div id={faqId} className="scroll-mt-24">
-              <FooterFaq namespace={faqNamespace} />
+              <FooterFaq
+                namespace={faqNamespace}
+                accentText={theme?.accentText}
+              />
             </div>
           )}
         </div>
-
-        {/* Fuera del contenedor: su fondo y su grilla van a todo el ancho, y el
-            contenido ya se centra solo. */}
-        {compatibilityId && <CompatibilitySection id={compatibilityId} />}
 
         <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-16 2xl:px-0">
           {/*
@@ -86,7 +95,13 @@ export function Footer({
             del header. Hasta ahora el componente existia pero no se montaba en
             ningun lado, asi que ese link no llevaba a nada.
           */}
-          <FooterCTA namespace={ctaNamespace} source={ctaSource} />
+          <FooterCTA
+            namespace={ctaNamespace}
+            source={ctaSource}
+            accentText={theme?.accentText}
+            accentBg={theme?.accentBg}
+            accentHover={theme?.accentHover}
+          />
 
           {/*
             Cinco columnas: marca, las tres familias de producto y contacto. La

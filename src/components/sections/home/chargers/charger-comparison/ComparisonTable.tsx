@@ -11,13 +11,6 @@ type Props = {
   products: ChargerProduct[];
 };
 
-const PRODUCT_IMAGES: Record<string, string> = {
-  "bs20-bc-7kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-ba-7kw": "/assets/images/chargers/BS20-7KW-SOCKET.png",
-  "bs20-bc-11kw": "/assets/images/chargers/BS20-7KW.png",
-  "bs20-bc-22kw": "/assets/images/chargers/BS20-22KW.png",
-};
-
 const FEATURE_KEYS = [
   "power",
   "phase",
@@ -89,7 +82,7 @@ export function ComparisonTable({ products }: Props) {
               }`}
             >
               <Image
-                src={PRODUCT_IMAGES[product.slug]}
+                src={product.cardImage}
                 alt=""
                 width={400}
                 height={400}

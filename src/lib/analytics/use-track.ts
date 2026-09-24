@@ -44,6 +44,12 @@ export function useTrack() {
       trackEvent("charger_hero_datasheet_cta", { charger, location, locale });
     },
 
+    /** El CTA del hero de cables baja al bloque de precio: no es una compra
+     *  todavia, la salida a MercadoPago o WhatsApp se decide alla. */
+    cableHeroPrice(cable: string, location: "desktop" | "mobile") {
+      trackEvent("cable_hero_price_cta", { cable, location, locale });
+    },
+
     compatibilityModelSelected(brand: string, model: string) {
       trackEvent("compatibility_model_selected", { brand, model, locale });
     },

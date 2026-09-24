@@ -10,6 +10,7 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { AppSwitch } from "@/components/ui/wrappers/AppSwitch";
 import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
+import { ChargerOtherModelsBlock } from "@/components/pages/shared/ChargerOtherModelsBlock";
 import {
   CHARGER_INSTALLATION_PRICE_USD,
   CHARGER_COILED_CABLE_PRICE_USD,
@@ -120,11 +121,10 @@ export function ChargerPricingSection({ product, id }: Props) {
     track.pricingColumnToggled(product.slug, next);
   }
 
-  // lg:pt-64 clears the stats strip, which floats up over this section's seam.
   return (
     <section
       id={id}
-      className="relative overflow-hidden border-y border-neutral-900 bg-neutral-950 py-24 sm:py-32 lg:pt-64"
+      className="relative overflow-hidden border-y border-neutral-900 bg-neutral-950 pt-24 pb-32 sm:pt-28 sm:pb-40"
     >
       {/* Grid */}
       <div
@@ -470,6 +470,11 @@ export function ChargerPricingSection({ product, id }: Props) {
             </div>
           </div>
         </motion.div>
+
+        <ChargerOtherModelsBlock
+          product={product}
+          className="mt-20 sm:mt-28"
+        />
 
         <GoogleReviewsBlock
           accentText={theme.accentText}

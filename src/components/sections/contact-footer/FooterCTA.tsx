@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 
-import { AppButton } from "@/components/ui/wrappers/AppButton";
+import { cn } from "@/lib/utils";
+import { CHIP_CTA_CLASS } from "@/components/layout/header/nav-chip";
 import { useTranslations } from "next-intl";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useTrack } from "@/lib/analytics";
@@ -13,9 +14,19 @@ type Props = {
   namespace: string;
   /** Para distinguir en analytics desde que ruta salio el click. */
   source: string;
+  /** Color del eyebrow y del boton. Sin esto va el verde de marca. */
+  accentText?: string;
+  accentBg?: string;
+  accentHover?: string;
 };
 
-export function FooterCTA({ namespace, source }: Props) {
+export function FooterCTA({
+  namespace,
+  source,
+  accentText,
+  accentBg = "bg-[#25D366]",
+  accentHover = "hover:bg-[#1EBE5B]",
+}: Props) {
   const t = useTranslations(namespace);
   const track = useTrack();
 
@@ -24,7 +35,8 @@ export function FooterCTA({ namespace, source }: Props) {
       id="contacto"
       className="relative mx-auto max-w-2xl py-24 text-center lg:py-36"
     >
-      <h3>{t("eyebrow")}</h3>
+      {/* Sin `accentText` se queda con el verde que le da el reset global. */}
+      <h3 className={accentText}>{t("eyebrow")}</h3>
 
       {/* La marca reemplaza al titulo en todas las rutas: sigue siendo el h2 de
           la seccion, con el texto de `title` como `alt` para que el screen
@@ -48,17 +60,19 @@ export function FooterCTA({ namespace, source }: Props) {
       </p>
 
       <div className="mt-8 flex justify-center">
-        {/* El verde sólido del CTA principal (mismo que `ChargerModelHeroCTA`).
-            Los `!` pisan el outline verde que `AppButton` trae por defecto. */}
-        <AppButton
+        {/* El chip del navbar, que era el unico CTA solido del sitio: ahora que
+            el header no lo lleva, este es el que cierra toda pagina. Va con el
+            color de la ruta en vez del verde fijo. */}
+        <a
           href={buildWhatsAppHref(t("whatsappMessage"))}
-          external
-          className="group border-transparent! bg-green-500! px-6 py-6 font-medium text-black! shadow-lg shadow-green-500/20 hover:bg-green-400! hover:text-black! hover:shadow-green-500/30"
-          icon={<FaWhatsapp className="ml-1 size-4" />}
-          track={() => track.whatsappClick({ source })}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track.whatsappClick({ source })}
+          className={cn(CHIP_CTA_CLASS, accentBg, accentHover)}
         >
+          <FaWhatsapp className="size-4" />
           {t("button")}
-        </AppButton>
+        </a>
       </div>
     </div>
   );
