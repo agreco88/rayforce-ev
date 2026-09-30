@@ -11,16 +11,6 @@ export function getAllProducts(): CatalogProduct[] {
 }
 
 /**
- * Ordena dejando los productos con `highlight` ("Más vendido") primero, sin
- * alterar el orden relativo del resto.
- *
- * Va acá y no reordenando el array del catálogo porque el orden es una regla
- * de presentación, no un dato del producto: el destacado va primero en toda
- * superficie que liste su categoría — la grilla de la home, /cargadores,
- * /cables, el panel del header y el acordeón mobile. Poniéndolo en los getters
- * queda en un solo lugar, y los catálogos siguen leyéndose como fichas.
- */
-/**
  * El `style` que corrige el encuadre de la foto de un producto. Va acá y no en
  * cada componente porque el desajuste es del PNG y se ve en toda superficie
  * donde el producto aparece al lado de sus hermanos: grillas, panel del
@@ -37,15 +27,24 @@ export function getProductImageScaleStyle(
   } as React.CSSProperties;
 }
 
-function highlightedFirst<T extends CatalogProduct>(products: T[]): T[] {
-  return [
-    ...products.filter((product) => product.highlight),
-    ...products.filter((product) => !product.highlight),
-  ];
+/**
+ * Ordena por precio ascendente: es el orden con el que el cliente quiere que se
+ * lea la linea, entrando por el modelo mas accesible.
+ *
+ * Va aca y no reordenando el array del catalogo porque el orden es una regla de
+ * presentacion, no un dato del producto: vale para toda superficie que liste la
+ * categoria — la grilla de la home, /cargadores, /cables, el panel del header y
+ * el acordeon mobile. En los getters queda en un solo lugar, y los catalogos
+ * siguen leyendose como fichas.
+ *
+ * El destacado ya no va primero: lo distingue su badge, sin romper la escala.
+ */
+function byPriceAsc<T extends CatalogProduct>(products: T[]): T[] {
+  return [...products].sort((a, b) => a.price.amount - b.price.amount);
 }
 
 export function getChargerProducts(): ChargerProduct[] {
-  return highlightedFirst(CHARGER_PRODUCTS);
+  return byPriceAsc(CHARGER_PRODUCTS);
 }
 
 export function getFeaturedChargerProducts(): ChargerProduct[] {
@@ -53,7 +52,7 @@ export function getFeaturedChargerProducts(): ChargerProduct[] {
 }
 
 export function getCableProducts(): CableProduct[] {
-  return highlightedFirst(CABLE_PRODUCTS);
+  return byPriceAsc(CABLE_PRODUCTS);
 }
 
 export function getProductBySlug(slug: string): CatalogProduct | undefined {

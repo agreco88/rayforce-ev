@@ -72,8 +72,13 @@ export function CableModelHero({ product }: Props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
-        className="page-shell flex flex-col gap-12 relative z-20 flex-1 pb-24 lg:pb-32 justify-center items-start"
+        /* El padding va aca y el ancho en el hijo, igual que el header: el
+           `px` afuera del `max-w` hace que el carril mida 1440 reales y el
+           contenido arranque donde el logo. Con los dos en el mismo div, el
+           padding come 32px de adentro y todo queda corrido. */
+        className="w-full px-6 sm:px-8 pt-28 sm:pt-58 relative z-20 flex-1 pb-24 lg:pb-32 flex justify-center"
       >
+        <div className="mx-auto w-full max-w-[1440px] flex flex-col gap-12 justify-center items-start">
         {/* El breadcrumb va afuera de la fila y no dentro de la columna
             izquierda: asi las dos columnas arrancan a la misma altura y la
             foto queda anclada al eyebrow, sin compensar su alto a mano. */}
@@ -169,8 +174,8 @@ export function CableModelHero({ product }: Props) {
 
           {/* RIGHT */}
           <div className="relative basis-2/5 min-w-0">
-            {/* Glow por fuera del container: adentro se perderia contra el
-                fondo blanco de la foto. */}
+            {/* Glow del tema por fuera del container, donde el recorte no lo
+                corta. */}
             <div
               className="
                 absolute inset-8
@@ -179,9 +184,10 @@ export function CableModelHero({ product }: Props) {
               style={{ backgroundColor: theme.glowStrong }}
             />
 
-            {/* La foto viene sobre fondo blanco, asi que el container es claro
-                y el recorte lo da el `rounded-3xl` + `overflow-hidden`. */}
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl shadow-black/40">
+            {/* Mismo gradiente de neutrales que el hero de cargadores y las
+                tarjetas. El PNG de cable ya viene recortado sobre
+                transparente, asi que aca no hace falta cambiar de imagen. */}
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 shadow-2xl shadow-black/40">
               <Image
                 src={product.photoImage}
                 alt={product.publicName}
@@ -191,10 +197,14 @@ export function CableModelHero({ product }: Props) {
                 priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 style={getProductImageScaleStyle(product)}
-                className="w-full h-auto object-contain scale-[var(--product-image-scale)]"
+                // `p-10` + `aspect-square`: el PNG viene recortado al producto,
+                // sin el aire que traia la foto, y pegado al borde se ve
+                // apretado contra el `rounded-3xl`.
+                className="aspect-square w-full object-contain p-10 scale-[var(--product-image-scale)]"
               />
             </div>
           </div>
+        </div>
         </div>
       </motion.div>
     </section>

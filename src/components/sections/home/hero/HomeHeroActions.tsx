@@ -7,7 +7,7 @@ import { AppButton } from "@/components/ui/wrappers/AppButton";
 import { useTrack } from "@/lib/analytics";
 
 /**
- * Par de CTA del hero desktop. Los dos comparten el mismo gradiente en su
+ * Trío de CTA del hero desktop. Los tres comparten el mismo gradiente en su
  * estado activo: lo que marca la jerarquía es el color del texto (verde vs.
  * neutral), no la forma. Sólidos y no traslúcidos porque van sobre la foto,
  * donde el fondo cambia píxel a píxel.
@@ -48,6 +48,22 @@ export function HomeHeroActions() {
         track={() => track.homeHeroEmpresas("desktop")}
       >
         {t("ctaSecondary")}
+      </AppButton>
+
+      {/* Todavía sin destino: el trámite de aumento de potencia no tiene página
+          propia, así que el botón existe pero no navega a ningún lado. */}
+      <AppButton
+        href="#"
+        variant="ghost"
+        className="
+          border-transparent
+          text-neutral-200
+          [text-shadow:0_1px_12px_rgba(0,0,0,0.65)]
+          hover:bg-gradient-to-b hover:from-neutral-800
+          hover:to-neutral-900 hover:text-white
+        "
+      >
+        {t("ctaTertiary")}
       </AppButton>
     </div>
   );

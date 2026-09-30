@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { ArrowDownToLine } from "lucide-react";
 
 import Image from "next/image";
 import { GradientText } from "@/components/animated/GradientText";
@@ -10,7 +9,6 @@ import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
 import { ProductHeroPriceCardMobile } from "./ProductHeroPriceCard";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
-import { useTrack } from "@/lib/analytics";
 import type { ChargerProduct } from "@/lib/catalog/catalog.types";
 
 type Props = {
@@ -23,7 +21,6 @@ type Props = {
 
 export function ChargerModelHeroMobile({ product }: Props) {
   const t = useTranslations("ChargerModelPage");
-  const track = useTrack();
   const { theme } = product;
 
   return (
@@ -137,25 +134,29 @@ export function ChargerModelHeroMobile({ product }: Props) {
           {/* Charger                                                       */}
           {/* -------------------------------------------------------------- */}
           <div className="relative w-full pt-4">
-            {/* Glow por fuera del container: adentro se perderia contra el
-                fondo blanco de la foto. */}
+            {/* Glow del tema por fuera del container, donde el recorte no lo
+                corta. */}
             <div
               className="absolute inset-6 blur-3xl rounded-full pointer-events-none"
               style={{ backgroundColor: theme.glowStrong }}
             />
 
-            {/* La foto viene sobre fondo blanco, asi que el container es claro
-                y el recorte lo da el `rounded-3xl` + `overflow-hidden`. */}
-            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl shadow-black/40">
+            {/* Mismo gradiente de neutrales que las tarjetas de la grilla.
+                Va con `cardImage` (PNG recortado) y no con `photoImage`: ese
+                es un JPG con el blanco horneado y taparia el gradiente. */}
+            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 shadow-2xl shadow-black/40">
               <Image
-                src={product.photoImage}
+                src={product.cardImage}
                 alt={t(`variants.${product.slug}.fullName`)}
                 width={720}
                 height={720}
                 // El hero es el LCP de la pagina: sin lazy y con prioridad.
                 priority
                 sizes="(max-width: 640px) 100vw, 360px"
-                className="w-full h-auto object-contain"
+                // `p-8` + `aspect-square`: el PNG viene recortado al producto,
+                // sin el aire que traia la foto, y pegado al borde se ve
+                // apretado contra el `rounded-3xl`.
+                className="aspect-square w-full object-contain p-8"
               />
             </div>
           </div>
@@ -180,23 +181,6 @@ export function ChargerModelHeroMobile({ product }: Props) {
               href="#precios"
               ctaLabel={t("cta.pricing")}
             />
-
-            {/* El manual como link y no como boton: es secundario, y al lado
-                del CTA de precio le competia el peso visual. */}
-            {product.datasheetUrl && (
-              <a
-                href={product.datasheetUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  track.chargerHeroDatasheet(product.slug, "mobile")
-                }
-                className="inline-flex min-h-[44px] items-center gap-2 text-sm text-neutral-400 underline-offset-4 hover:text-white hover:underline transition-colors"
-              >
-                <ArrowDownToLine size={15} />
-                {t("cta.manual")}
-              </a>
-            )}
           </motion.div>
         </div>
       </motion.div>

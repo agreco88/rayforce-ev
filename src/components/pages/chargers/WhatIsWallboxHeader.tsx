@@ -53,7 +53,7 @@ export function WhatIsWallboxHeader() {
             largo de linea es el parrafo, que es el unico que lo necesita. */}
         <motion.p
           variants={waterfallItem}
-          className="mt-6 max-w-2xl leading-relaxed text-neutral-400"
+          className="mt-6 max-w-lg leading-relaxed text-neutral-400"
         >
           {t("whatIsIt.description")}
         </motion.p>

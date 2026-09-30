@@ -11,7 +11,6 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef } from "react";
-import { useTranslations } from "next-intl";
 import type { LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -228,8 +227,8 @@ function StatLogo({
 }
 
 type ChargeSpeedStatCardProps = {
-  /** Texto principal. Por defecto, el stat de `whyBetter` (uso en /cargadores). */
-  headline?: string;
+  /** Texto principal de la tarjeta. */
+  headline: string;
   /** Linea chica debajo del headline. Se omite si no se pasa. */
   footnote?: string;
   /**
@@ -265,14 +264,12 @@ export function ChargeSpeedStatCard({
   logoAlt,
   maskSrc,
   maskAlt,
-}: ChargeSpeedStatCardProps = {}) {
-  const t = useTranslations("HomePage.WallboxIntro.whyBetter");
+}: ChargeSpeedStatCardProps) {
   const isCompact = variant === "compact";
   const visualSize = isCompact ? "sm" : "lg";
 
-  const resolvedHeadline = headline ?? t("stat.headline");
-  const resolvedFootnote =
-    footnote ?? (headline === undefined ? t("stat.footnote") : undefined);
+  const resolvedHeadline = headline;
+  const resolvedFootnote = footnote;
 
   return (
     <div

@@ -11,7 +11,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getProductImageScaleStyle } from "@/lib/catalog/catalog.helpers";
 import type {
   CatalogProduct,
   CatalogTheme,
@@ -96,75 +95,16 @@ export function ProductSpecsTable({ product, id }: Props) {
             misma fila. */}
         <div className="mx-auto mt-12 max-w-4xl">
           <div className="overflow-hidden rounded-2xl border border-white/10">
-            {/* La cabecera de la ficha: la foto del equipo y, al lado, quien es
-                y quien lo hace. Van juntas y fuera de los grupos porque no son
-                specs sino la identidad — es lo primero que se mira al comparar
-                contra un generico sin marca. */}
-            <div className="grid grid-cols-1 border-b border-white/10 bg-white/[0.04] sm:grid-cols-2">
-              {/* La foto sobre fondo blanco pide su propio container claro, y
-                  por eso lleva padding propio en vez del de la celda. */}
-              <div className="flex items-center justify-center border-b border-white/10 bg-white p-8 sm:border-b-0 sm:border-r">
-                <Image
-                  src={product.photoImage}
-                  alt={product.publicName}
-                  width={800}
-                  height={800}
-                  style={getProductImageScaleStyle(product)}
-                  className="h-48 w-auto object-contain scale-[var(--product-image-scale)] sm:h-56"
-                />
-              </div>
-
-              <div className="flex flex-col divide-y divide-white/10">
-                <div className="flex flex-1 flex-col justify-center gap-1.5 px-5 py-4 sm:px-7">
-                  <span className="text-xs uppercase tracking-widest text-neutral-500">
-                    {t("model")}
-                  </span>
-                  <span className="text-base font-medium text-white">
-                    {product.modelCode}
-                  </span>
-                </div>
-
-                <div className="flex flex-1 flex-col justify-center gap-1.5 px-5 py-4 sm:px-7">
-                  <span className="text-xs uppercase tracking-widest text-neutral-500">
-                    {t("origin")}
-                  </span>
-                  <span className="flex items-center gap-3">
-                    {/* `height` y no `width`: las banderas no comparten proporcion
-                        (CN es 3:2, DE 5:3) y fijando el alto quedan parejas. */}
-                    <Flag
-                      code={product.origin.countryCode}
-                      height={18}
-                      className="h-[18px] w-auto rounded-[2px] shadow-sm shadow-black/40"
-                    />
-                    <span className="text-base font-medium text-white">
-                      {t(`countries.${product.origin.countryCode}`)}
-                    </span>
-                  </span>
-                </div>
-
-                <div className="flex flex-1 flex-col justify-center gap-1.5 px-5 py-4 sm:px-7">
-                  <span className="text-xs uppercase tracking-widest text-neutral-500">
-                    {t("manufacturer")}
-                  </span>
-                  <a
-                    href={product.origin.manufacturerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex w-fit items-center gap-3 text-base font-medium text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
-                  >
-                    {/* El logo viene negro sobre transparente: `invert` lo pasa a
-                        blanco para que exista sobre el fondo oscuro. */}
-                    <Image
-                      src={product.origin.manufacturerLogo}
-                      alt=""
-                      width={192}
-                      height={192}
-                      className="h-5 w-auto brightness-0 invert"
-                    />
-                    {product.origin.manufacturer}
-                  </a>
-                </div>
-              </div>
+            {/* La cabecera de la ficha: solo el modelo. La foto del equipo la
+                muestra el hero arriba, y el origen y el fabricante bajaron a su
+                propio grupo del acordeon. */}
+            <div className="flex flex-col justify-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-5 py-4 sm:px-7">
+              <span className="text-xs uppercase tracking-widest text-neutral-500">
+                {t("model")}
+              </span>
+              <span className="text-base font-medium text-white">
+                {product.modelCode}
+              </span>
             </div>
 
             {/* Los grupos van colapsados: enteros son ~25 filas y casi dos
@@ -205,6 +145,63 @@ export function ProductSpecsTable({ product, id }: Props) {
                   </AccordionContentAnimated>
                 </AccordionItem>
               ))}
+
+              {/* El origen va ultimo y como grupo propio: es identidad, no una
+                  spec, pero en la cabecera le competia el lugar al modelo. */}
+              <AccordionItem
+                value="origin"
+                className="border-b border-white/10 last:border-b-0"
+              >
+                <AccordionTrigger
+                  className={`items-center px-5 py-5 text-xs font-semibold uppercase tracking-widest hover:no-underline sm:px-7 ${theme.accentText}`}
+                >
+                  {t("origin")}
+                </AccordionTrigger>
+
+                <AccordionContentAnimated className="pb-0 pt-0">
+                  <div className="flex items-start justify-between gap-6 border-t border-white/5 px-5 py-4 sm:px-7">
+                    <span className="text-sm text-neutral-400">
+                      {t("countryOfOrigin")}
+                    </span>
+                    <span className="flex items-center gap-3">
+                      {/* `height` y no `width`: las banderas no comparten
+                          proporcion (CN es 3:2, DE 5:3) y fijando el alto
+                          quedan parejas. */}
+                      <Flag
+                        code={product.origin.countryCode}
+                        height={18}
+                        className="h-[18px] w-auto rounded-[2px] shadow-sm shadow-black/40"
+                      />
+                      <span className="text-sm text-neutral-100">
+                        {t(`countries.${product.origin.countryCode}`)}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-start justify-between gap-6 border-t border-white/5 px-5 py-4 sm:px-7">
+                    <span className="text-sm text-neutral-400">
+                      {t("manufacturer")}
+                    </span>
+                    <a
+                      href={product.origin.manufacturerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex w-fit items-center gap-3 text-sm text-neutral-100 underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+                    >
+                      {/* El logo viene negro sobre transparente: `invert` lo
+                          pasa a blanco para que exista sobre el fondo oscuro. */}
+                      <Image
+                        src={product.origin.manufacturerLogo}
+                        alt=""
+                        width={192}
+                        height={192}
+                        className="h-5 w-auto brightness-0 invert"
+                      />
+                      {product.origin.manufacturer}
+                    </a>
+                  </div>
+                </AccordionContentAnimated>
+              </AccordionItem>
             </Accordion>
           </div>
 

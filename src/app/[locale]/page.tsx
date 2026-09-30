@@ -12,13 +12,11 @@ import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 // Oculto — ver el comentario en el JSX. El componente vive en disco como
 // HomeWallboxSectionVariant. NO BORRAR.
 // import { HomeWallboxSectionVariant } from "@/components/sections/home/wallbox/HomeWallboxSectionVariant";
-import { WallboxIntroSection } from "@/components/sections/home/wallbox-intro/WallboxIntroSection";
 import { WhatIsWallboxSection } from "@/components/pages/chargers/WhatIsWallboxSection";
 
 /*
-  Ocultos: todo el bloque de wallbox de la home (bento nuevo, la comparativa
-  extraída y el explainer original). Se saca mientras se rearma la sección.
-  Los componentes y sus traducciones quedan en disco. NO BORRAR.
+  Oculto: el bento nuevo de wallbox. Se saca mientras se rearma la sección.
+  El componente y sus traducciones quedan en disco. NO BORRAR.
 
 const HomeWallboxSectionVariant = dynamic(() =>
   import(
@@ -26,18 +24,6 @@ const HomeWallboxSectionVariant = dynamic(() =>
   ).then((m) => ({
     default: m.HomeWallboxSectionVariant,
   })),
-);
-
-const HomeComparisonSection = dynamic(() =>
-  import("@/components/sections/home/comparison/HomeComparisonSection").then(
-    (m) => ({ default: m.HomeComparisonSection }),
-  ),
-);
-
-const WallboxIntroSection = dynamic(() =>
-  import("@/components/sections/home/wallbox-intro/WallboxIntroSection").then(
-    (m) => ({ default: m.WallboxIntroSection }),
-  ),
 );
 */
 
@@ -70,10 +56,9 @@ const PublicChargingCableSection = dynamic(() =>
   ),
 );
 
-// HomeBenefitsSection ya no se monta acá: sus tres cards pasaron a ser el
-// bloque de cierre de WallboxIntroSection, que heredó el ancla #beneficios.
-// Con esa sección ahora oculta, #beneficios no existe en la home y el enlace
-// del footer (FooterNavColumn) se queda sin destino hasta que se rearme.
+// HomeBenefitsSection ya no se monta acá, y con ella se fue el ancla
+// #beneficios: el enlace del footer (FooterNavColumn) apunta a una sección que
+// la home no tiene.
 
 // El lineup de wallboxes, solo desktop: la seccion no se monta en mobile.
 const HomeLineupSection = dynamic(() =>
@@ -130,17 +115,11 @@ export default async function HomePage({ params }: Props) {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
-        {/* Ocultas: la home va del hero directo al banner de cables mientras se
-            rearma el bloque de wallbox. Los componentes quedan en disco. NO BORRAR.
-
-            OJO: #beneficios vivía dentro de WallboxIntroSection, así que
-            mientras esté oculta ese enlace del footer no tiene destino. */}
         <WhatIsWallboxSection id="que-es-un-wallbox" />
 
         {/* Oculto: el bento no va en la home. Se guardo como
             HomeWallboxSectionVariant para reusarlo en otra pagina. NO BORRAR. */}
         {/* <HomeWallboxSectionVariant id="wallbox-bento" /> */}
-        {/* <HomeComparisonSection id="por-que-un-wallbox" /> */}
 
         {/* Oculto — ver el comentario del import. NO BORRAR. */}
         {/* <EnergyCostAndTrendSection id="ahorro" /> */}

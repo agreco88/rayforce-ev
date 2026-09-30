@@ -127,6 +127,7 @@
       "model": "Model",
       "datasheet": "Download datasheet for installers",
       "origin": "Origin",
+      "countryOfOrigin": "Country of origin",
       "manufacturer": "Manufacturer",
       "countries": {
         "CN": "China",
@@ -206,10 +207,11 @@
         "tag": "Bamibel S.A.",
         "label": "25 years of engineering in Uruguay"
       },
-      "title": "Wallbox chargers for electric vehicles with our own certified installation",
-      "description": "Rayforce wallboxes of 7, 11 and 22 kW for homes, businesses and parking facilities. Installation certified by UTE, equipment authorised by URSEA, and the backing of an engineering company with over 25 years in Uruguay.",
+      "title": "Garage retrofit projects and installations in buildings, residential installation and sales of Wallbox chargers for electric and hybrid cars in Uruguay.",
+      "description": "Rayforce Wallbox chargers of 7, 11 and 22 kW for homes, businesses and parking facilities. UTE-certified installation, URSEA-authorised equipment and the backing of an engineering company with over 25 years in Uruguay.",
       "ctaPrimary": "View chargers",
-      "ctaSecondary": "Projects for buildings and businesses"
+      "ctaSecondary": "Projects for buildings and businesses",
+      "ctaTertiary": "Power increase with UTE"
     },
     "HomeWallboxSection": {
       "eyebrow": "Rayforce wallbox",
@@ -238,7 +240,7 @@
       "whatIsIt": {
         "eyebrow": "Rayforce wallbox",
         "title": "What is a wallbox?",
-        "description": "A wall-mounted charger built for fast, everyday charging. It's a fixed charger installed in your garage that delivers far more power than the cable that comes with your car: instead of waiting all night, you charge in a couple of hours.",
+        "description": "A wall-mounted charger built to charge fast and safely, every day. It is installed in your garage or carport and delivers far more power than the emergency Schuko charger that comes with the car.",
         "imageAlt": "Rayforce wallbox installed in an apartment building garage, with a car plugged in",
         "video": {
           "cta": "See the wallbox in use",
@@ -294,83 +296,28 @@
         }
       },
       "whyBetter": {
-        "eyebrow": "The question everyone asks",
-        "title": "Why get a wallbox if the cable that came with my car works fine?",
-        "description": "Because \"it works\" isn't the same as being built for daily use. The cable that comes with your car is an emergency accessory: it charges slowly, lacks the protection of a fixed installation, and wears out much faster under everyday use.",
-        "imageAlt": "Detail of a Rayforce charger with coiled cable",
-        "items": {
-          "protection": {
-            "title": "No fixed-installation protection",
-            "description": "The cable plugs straight into a regular outlet, with no dedicated protection against overload, short circuits or current leaks. A wallbox is installed with its own certified electrical protection."
-          },
-          "app": {
-            "title": "Wears out with daily use",
-            "description": "It's built for occasional charging, not to be plugged and unplugged every day for years. That speeds up wear on the plug and cable."
-          },
-          "power": {
-            "title": "Keeps your car charging for hours longer",
-            "description": "It charges at 2.3 kW versus up to 22 kW on a wallbox: the same charge takes several times longer, every single day."
-          }
-        },
-        "stat": {
-          "headline": "Charge from 0 to 100 in under 4 hours",
-          "footnote": "*Compared to a conventional schuko cable/outlet"
-        },
         "cards": {
           "safety": {
-            "headline": "The safest model on the market",
-            "footnote": "Electrical protections are built in: overload, short circuit, overvoltage and earth leakage. IP66-certified, so it mounts outdoors and charges in the rain.",
-            "short": "Built-in electrical protections and IP66 certification: it charges in the rain."
+            "headline": "The BS-20, one of the safest models",
+            "footnote": "Electrical protections are built in: overload, short circuit, overvoltage and earth leakage. IP66 certified for outdoor use and charging in the rain, and IK10 to withstand the knocks a garage sees.",
+            "short": "Built-in electrical protections, IP66 against rain and IK10 against impacts."
           },
           "speed": {
-            "headline": "Charge from 0 to 100 in under 4 hours",
-            "footnote": "Your car's cable delivers 2.3 kW; the wallbox goes up to 22 kW. You can also cap the range so it stops at 80% instead of overcharging.",
-            "short": "Up to 22 kW against the 2.3 kW of your car cable. You can cap the range."
+            "headline": "Charge from 0 to 100 in less time",
+            "footnote": "The car's cable delivers 2.3 kW; the wallbox reaches up to 22 kW*. You can also protect the battery by setting the range, so it stops at 80% and does not overcharge. *Depending on the car's onboard charger.",
+            "short": "Up to 22 kW against the 2.3 kW of the car's cable. You can set the range."
           },
           "app": {
-            "headline": "Run it from the comfort of your phone",
-            "footnote": "Start, stop and schedule charging remotely. Lock it for shared garages, cap the charging range and leave it running during UTE's flat-rate window.",
-            "short": "Start, stop and schedule charging remotely, on UTE flat-rate hours."
+            "headline": "Control it from your phone over Bluetooth or WiFi",
+            "footnote": "Start, stop and schedule charging remotely. You can lock it for shared garages with a 6-digit code, set the schedule and leave it charging during UTE's off-peak valley rate.",
+            "short": "Start, stop and schedule charging remotely, on UTE's off-peak valley rate."
           },
           "compatible": {
-            "headline": "Works with the whole Uruguayan market",
-            "footnote": "Type 2 connector, the standard on every EV and plug-in hybrid sold here. Change cars and the charger still works just the same.",
-            "short": "Type 2 connector, the standard on every EV and plug-in hybrid sold here."
+            "headline": "Compatible with the Uruguayan market",
+            "footnote": "Type 2 connector, the standard for every electric and plug-in hybrid. If you change cars, the charger still works.",
+            "short": "Type 2 connector, the standard for every electric and plug-in hybrid here."
           },
           "socketAlt": "Type 2 connector"
-        },
-        "table": {
-          "title": "Schuko cable vs Rayforce Wallbox",
-          "columns": {
-            "schuko": "Schuko cable",
-            "wallbox": "Rayforce Wallbox"
-          },
-          "rows": {
-            "chargeTime": {
-              "label": "Charging time",
-              "schuko": "10-20 hours",
-              "wallbox": "4-8 hours"
-            },
-            "power": {
-              "label": "Power output",
-              "schuko": "Up to 3.7 kW",
-              "wallbox": "Up to 7.2 kW"
-            },
-            "recommendedUse": {
-              "label": "Recommended use",
-              "schuko": "Occasional",
-              "wallbox": "Daily"
-            },
-            "communication": {
-              "label": "Vehicle communication"
-            },
-            "protection": {
-              "label": "Electrical protections"
-            },
-            "dedicatedInstall": {
-              "label": "Dedicated installation"
-            }
-          }
         }
       }
     },
@@ -466,16 +413,16 @@
         "title": "Tips for choosing a wallbox charger",
         "items": [
           {
-            "title": "Start with your electrical supply",
-            "description": "If your home is single-phase — the most common setup in Uruguay — a 7.2kW is your model. The 11 and 22kW need a three-phase supply: without one, the charger will not deliver that power."
+            "title": "Ask your dealership",
+            "description": "Ask what the maximum AC charging capacity of your car's onboard charger is. It ranges from 3 kW to 22 kW depending on the model, and it sets the power you will actually be able to use."
           },
           {
-            "title": "Integrated cable or Type 2 socket",
-            "description": "Get an integrated cable if the charger is for your own car: charging is unhooking the cable, nothing loose in the garage. Get a Type 2 socket if several cars will use it, since each arrives with its own — but the cable is not included."
+            "title": "Contracted power at home",
+            "description": "Check how much power you have contracted with UTE. On single-phase supplies the maximum is 7.5 kW, so an 11 or 22 kW charger will not deliver any more than a 7.2 kW one."
           },
           {
-            "title": "More kW, fewer hours",
-            "description": "A 7.2kW charges overnight comfortably for everyday use. The 11 and 22kW pay off when the car is shared between drivers or you cannot wait all night. Keep in mind: those kW depend on your supply — a 22kW on a single-phase supply will not charge any faster than a 7.2kW."
+            "title": "UTE's Triple Horario tariff",
+            "description": "With the Triple Horario tariff the price of energy changes by time band: Valle, Llano and Punta. Charging during Valle, energy can be up to 5 times cheaper than during Punta."
           }
         ]
       },
@@ -605,25 +552,7 @@
     "PublicChargingCableSection": {
       "eyebrow": "FOR DRIVERS WHO CHARGE ON THE GO",
       "title": "Charging at UTE public stations? Bring your own cable.",
-      "description": "The cable that came with your car was not built for public streets. Ours was: it holds up when a car drives over it, carries IP66 protection against rain and dust, and charges at up to 7 kW, faster than the factory cable. It coils itself back up, so it never drags along the ground or blocks the way while you charge.",
-      "stats": {
-        "durability": {
-          "value": "Withstands a car driving over it",
-          "label": "Proven on video"
-        },
-        "speed": {
-          "value": "Up to 7 kW",
-          "label": "Faster than the factory cable"
-        },
-        "protection": {
-          "value": "IP66",
-          "label": "Rain, dust and public streets"
-        },
-        "comfort": {
-          "value": "Self-coiling",
-          "label": "Never tangles or blocks the way"
-        }
-      },
+      "description": "Bring your own cable to charge at stations and chargers with no tethered cable, from 7 kW up to 22 kW. It holds the weight of a car, carries IP66 protection against rain and is dust-tight.",
       "video": {
         "cta": "Watch durability test",
         "title": "Durability test: a car drives over the coiled cable",
@@ -631,9 +560,9 @@
         "loading": "Loading video…"
       },
       "pricing": {
-        "price": "USD 235",
+        "price": "USD 220",
         "taxLabel": "VAT Incl.",
-        "cta": "See the coiled cable",
+        "cta": "See the 7kW straight cable",
         "secondaryCta": "See all cables"
       },
       "imageAlt": "Coiled Rayforce Type 2 charging cable, ready to use at a public charging station",
@@ -733,8 +662,8 @@
           "whatsappMessage": "Hi! I'd like a quote for the stand with the BS20-BC-7KW charger and installation"
         },
         "footnote": {
-          "columnOnly": "The stand on its own. If you already own a BS20 wallbox, this is all you need to mount it.",
-          "withCharger": "Stand and charger together, ready to install. Mount it yourself or add certified installation.",
+          "columnOnly": "The stand on its own, to add to a BS20 wallbox you already own.",
+          "withCharger": "Stand and charger together, ready to install. Add certified installation whenever you want.",
           "withInstallation": "The final price depends on the distance to the electrical panel, and whether civil works or an upgrade to the existing installation are required."
         }
       }
@@ -768,7 +697,8 @@
         "title": "Didn't find your model?",
         "description": "Send us a WhatsApp message and we'll help confirm compatibility.",
         "note": "*Replies within minutes"
-      }
+      },
+      "disclaimer": "Check each vehicle model's AC charging capacity with the dealership."
     },
     "Faq": {
       "eyebrow": "ABOUT US",
@@ -877,7 +807,6 @@
     },
     "cta": {
       "whatsapp": "I want to buy this charger",
-      "manual": "Download user manual",
       "pricing": "See pricing",
       "whatsappMessage": "Hello! I want to buy the {model} charger",
       "mercadopago": "Buy now",
@@ -905,10 +834,10 @@
         "wallbox": "{model} wallbox charger, {power, number} kW",
         "integratedCable": "6 m integrated Type 2 cable",
         "mountingPlate": "Wall mounting plate",
-        "screwKit": "Screw and anchor kit",
+        "screwKit": "Screw and wall plug kit",
         "drillTemplate": "Drilling template",
         "manual": "Installation and user manual",
-        "warrantyCard": "Warranty certificate"
+        "warrantyCard": "Warranty certificate (UTE Authorized Installer required)"
       },
       "ba": {
         "eyebrow": "What is in the box",
@@ -920,7 +849,7 @@
       "bc": {
         "eyebrow": "What is in the box",
         "title": "Everything inside, cable included",
-        "description": "The wallbox ships with its 6 metres of Type 2 cable already integrated, the mounting template and the screws. Take it out of the box, mount it and it is ready to charge.",
+        "description": "The wallbox ships with its 6 metres of integrated Type 2 cable, the wall mounting plate and the screws.",
         "replay": "Play again",
         "imageAlt": "Contents of the BS20 wallbox box with the integrated cable unrolled"
       }
@@ -928,9 +857,9 @@
     "pricingSection": {
       "eyebrow": "Pricing",
       "title": "Simple pricing, no surprises",
-      "subtitle": "Choose how you want to get your charger: buy the unit and install it yourself, or add certified professional installation.",
+      "subtitle": "Choose how you want to get your charger: buy the unit and have it installed by your trusted authorized technician, or add Rayforce's certified professional installation.",
       "descriptions": {
-        "bs20-bc-7kw": "Includes the 7.2kW single-phase wallbox with integrated cable, official warranty, and access to the Rayforce app to monitor your charging from your phone.",
+        "bs20-bc-7kw": "Includes the 7.2kW single-phase wallbox with a 6m integrated Type 2 cable, a 1-year warranty, and access to the Rayforce app to monitor your charging from your phone.",
         "bs20-ba-7kw": "Includes the 7.2kW single-phase wallbox with an interchangeable Type 2 socket, official warranty, and access to the Rayforce app. Charging cable not included — sold separately, and if it wears out over time, only the cable needs replacing.",
         "bs20-bc-11kw": "Includes the 11kW three-phase wallbox, official warranty, and access to the Rayforce app. The balance between power and contracted capacity for homes and businesses with three-phase power already available.",
         "bs20-bc-22kw": "Includes the 22kW three-phase wallbox, official warranty, and access to the Rayforce app. Built for fleets, industrial sites and building garages — we'll help confirm your electrical contract can use the full power before you buy."
@@ -942,10 +871,10 @@
         "charger": {
           "bs20-bc-7kw": [
             "BS20-BC-7KW Wallbox charger",
-            "6m integrated charging cable included",
+            "6m integrated Type 2 cable",
             "Remote control and monitoring via mobile app",
-            "Local warranty",
-            "URSEA certification included",
+            "1-year local warranty",
+            "URSEA certified",
             "Up to 12 interest-free installments"
           ],
           "bs20-ba-7kw": [
@@ -1003,7 +932,7 @@
         "whatsappMessage": "Hi! I'd like an installation quote for my {model} charger"
       },
       "footnote": {
-        "chargerOnly": "Install it yourself, or add certified installation later — whenever you're ready.",
+        "chargerOnly": "The unit on its own. Add certified installation later — whenever you're ready.",
         "withInstallation": "The final price depends on the distance to your electrical panel, whether civil work is needed, or if your existing setup needs an upgrade. We'll confirm the exact quote at no cost before you commit."
       }
     },
@@ -1138,7 +1067,7 @@
           },
           {
             "title": "Is installation included?",
-            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. On three-phase we recommend installing with us: wiring the three phases and their protection isn't a job to take on yourself."
+            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. On three-phase we recommend installing with us: wiring the three phases and their protection isn't a job to take on without a certified electrician."
           },
           {
             "title": "What warranty does it come with?",
@@ -1185,7 +1114,7 @@
           },
           {
             "title": "Is installation included?",
-            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. On a 22kW unit we recommend installing with us: wiring the three phases and their protection isn't a job to take on yourself."
+            "answer": "You choose: buy the unit on its own, or add installation by our UTE-certified electricians. On a 22kW unit we recommend installing with us: wiring the three phases and their protection isn't a job to take on without a certified electrician."
           },
           {
             "title": "What warranty does it come with?",
@@ -1492,7 +1421,7 @@
     "pricingSection": {
       "eyebrow": "Pricing",
       "title": "Simple pricing, no surprises",
-      "subtitle": "Start with the cable and add what you need: the wallbox to charge faster at home, and certified installation if you'd rather not do it yourself.",
+      "subtitle": "Start with the cable and add what you need: the wallbox to charge faster at home, and Rayforce's certified installation.",
       "includes": {
         "title": "Includes"
       },
@@ -1549,7 +1478,7 @@
         "whatsappMessage": "Hi! I'd like to request a wallbox installation quote for my {model}"
       },
       "footnote": {
-        "default": "Add the wallbox whenever you want: install it yourself or hire certified installation later.",
+        "default": "The cable on its own. Add the wallbox whenever you want, and certified installation later.",
         "withWallbox": "Includes the charging cable plus a BS20-BA-7KW Wallbox with Type 2 socket to connect it.",
         "withWallboxNote": "* installation not included",
         "withInstallation": "We install the wallbox, not the cable. The final price depends on the distance to the electrical panel and whether civil work or an upgrade to the existing installation is needed."
@@ -1568,7 +1497,7 @@
         "description": "5-meter straight Type 2 to Type 2 cable for three-phase charging up to 22kW. Includes a temperature sensor and carrying bag."
       },
       "bs-chc003-s": {
-        "description": "5-meter coiled Type 2 to Type 2 cable (stretched length) for single-phase charging up to 7kW. Same usable reach as the straight cable, but self-retracts and won't trail across the garage floor. Includes a temperature sensor and carrying bag."
+        "description": "5-meter coiled Type 2 to Type 2 cable (stretched length) for single-phase charging up to 7kW. Same usable reach as the straight cable. Includes a temperature sensor and carrying bag."
       }
     },
     "stats": {
@@ -1627,8 +1556,8 @@
       "stat1Description": "The connector cuts power if it overheats.",
       "stat2Title": "IP66 certified",
       "stat2Description": "Resists rain and dust, tested and renewed in 2025.",
-      "stat3Title": "Coiled design",
-      "stat3Description": "Retracts on its own instead of dragging on the ground."
+      "stat3Title": "Self-coiling",
+      "stat3Description": "Never trails across the garage floor."
     }
   },
   "EmpresasPage": {

@@ -30,7 +30,15 @@ export function ChargerCompactCard({ product }: { product: ChargerProduct }) {
       className="flex h-full flex-col gap-3 rounded-xl border border-neutral-800 p-3 transition-colors hover:bg-neutral-800/60"
       style={getHighlightBorderStyle(product)}
     >
-      <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-lg bg-white flex items-center justify-center">
+      {/* Mismo gradiente de neutrales que la tarjeta grande, un stop mas claro
+          para el destacado. */}
+      <div
+        className={`relative flex h-40 w-full shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br ${
+          product.highlight
+            ? "from-neutral-600 via-neutral-700 to-neutral-900"
+            : "from-neutral-700 via-neutral-800 to-neutral-900"
+        }`}
+      >
         <ProductHighlightRibbon
           product={product}
           className="right-2 top-2 px-1.5 py-0.5 text-[8px]"

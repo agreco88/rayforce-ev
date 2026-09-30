@@ -127,6 +127,7 @@
       "model": "Modelo",
       "datasheet": "Descargar ficha técnica para instaladores",
       "origin": "Origen",
+      "countryOfOrigin": "País de origen",
       "manufacturer": "Fabricante",
       "countries": {
         "CN": "China",
@@ -206,10 +207,11 @@
         "tag": "Bamibel S.A.",
         "label": "25 años de ingeniería en Uruguay"
       },
-      "title": "Cargadores para vehículos eléctricos con instalación propia certificada",
+      "title": "Instalación y venta de cargadores wallbox residenciales y comerciales para vehículos eléctricos e híbridos.",
       "description": "Wallbox Rayforce de 7, 11 y 22 kW para residencias, comercios y estacionamientos. Instalación certificada por UTE, equipos autorizados por URSEA y el respaldo de una empresa de ingeniería con más de 25 años en Uruguay.",
       "ctaPrimary": "Ver cargadores",
-      "ctaSecondary": "Proyectos para edificios y empresas"
+      "ctaSecondary": "Proyectos para edificios y empresas",
+      "ctaTertiary": "Aumento de Potencia en UTE"
     },
     "HomeWallboxSection": {
       "eyebrow": "Wallbox Rayforce",
@@ -238,7 +240,7 @@
       "whatIsIt": {
         "eyebrow": "Wallbox Rayforce",
         "title": "¿Qué es un cargador wallbox?",
-        "description": "Es un cargador de pared pensado para cargar rápido, todos los días. Es un cargador fijo que se instala en tu garaje o cochera y entrega mucha más potencia que el cable que viene con el auto: en vez de esperar toda la noche, cargás en horas.",
+        "description": "Es un cargador de pared pensado para cargar rápido y seguro, todos los días. Se instala en tu garaje o cochera y entrega mucha más potencia que el cargador Schuko de emergencia que viene con el auto.",
         "imageAlt": "Wallbox Rayforce instalado en la cochera de un edificio, con un auto enchufado",
         "video": {
           "cta": "Ver el wallbox en uso",
@@ -294,83 +296,28 @@
         }
       },
       "whyBetter": {
-        "eyebrow": "La pregunta que te hacés",
-        "title": "¿Para qué quiero un wallbox si el cable que me dieron con el auto anda bien?",
-        "description": "Porque una cosa es que \"ande\" y otra que aguante el uso de todos los días. Ese cable es un accesorio de emergencia, pensado para salir del paso alguna vez: carga lentísimo, no tiene protección eléctrica propia y enchufarlo y desenchufarlo a diario lo termina rompiendo antes de lo que pensás.",
-        "imageAlt": "Detalle de cargador Rayforce con cable enrulado",
-        "stat": {
-          "headline": "Carga de 0 a 100 en menos de 4 horas",
-          "footnote": "*Respecto a cable/entrada schuko convencional"
-        },
         "cards": {
           "safety": {
-            "headline": "El modelo mas seguro del mercado",
-            "footnote": "Trae las protecciones eléctricas incorporadas: sobrecarga, cortocircuito, sobretensión y fuga a tierra. Con certificación IP66 va a la intemperie y carga bajo la lluvia.",
-            "short": "Protecciones eléctricas incorporadas y certificación IP66: carga bajo la lluvia."
+            "headline": "El BS20, uno de los modelos más seguros",
+            "footnote": "Trae las protecciones eléctricas incorporadas: sobrecarga, cortocircuito, sobretensión y fuga a tierra. Con certificación IP66 va a la intemperie y carga bajo la lluvia, e IK10 para soportar los golpes habituales en un garaje.",
+            "short": "Protecciones eléctricas incorporadas, IP66 contra la lluvia e IK10 contra golpes."
           },
           "speed": {
-            "headline": "Carga de 0 a 100 en menos de 4 horas",
-            "footnote": "El cable del auto entrega 2,3 kW; el wallbox llega hasta 22 kW. Además podés fijarle el rango, para que corte al 80 % y no cargue de más.",
+            "headline": "Carga de 0 a 100 en menos tiempo",
+            "footnote": "El cable del auto entrega 2,3 kW; el wallbox llega hasta 22 kW*. Además podés proteger la batería del auto fijando el rango, para que corte al 80 % y no cargue de más. *Dependiendo del cargador interno del auto.",
             "short": "Hasta 22 kW contra los 2,3 kW del cable del auto. Podés fijarle el rango."
           },
           "app": {
             "headline": "Manejalo desde la comodidad de tu celular",
-            "footnote": "Arrancás, parás y programás la carga a distancia. Podés anularlo para garajes compartidos, fijarle el rango y dejarlo cargando en el horario de tarifa llana de UTE.",
-            "short": "Arrancá, pará y programá la carga a distancia, con la tarifa llana de UTE."
+            "footnote": "Arrancás, parás y programás la carga a distancia por WiFi y Bluetooth. Podés anularlo para garajes compartidos con clave de 6 dígitos, fijar el horario y dejarlo cargando en el horario de tarifa valle de UTE.",
+            "short": "Arrancá, pará y programá la carga a distancia, con la tarifa valle de UTE."
           },
           "compatible": {
-            "headline": "Compatible con todo el mercado uruguayo",
-            "footnote": "Conector Tipo 2, el estándar de todos los eléctricos e híbridos enchufables que se venden acá. Si cambiás de auto, el cargador te sigue sirviendo igual.",
+            "headline": "Compatible con el mercado uruguayo",
+            "footnote": "Conector Tipo 2, el estándar de todos los eléctricos e híbridos enchufables. Si cambiás de auto, el cargador te sigue sirviendo igual.",
             "short": "Conector Tipo 2, el estándar de todos los eléctricos e híbridos de acá."
           },
           "socketAlt": "Conector Tipo 2"
-        },
-        "table": {
-          "title": "Cable Schuko vs Wallbox Rayforce",
-          "columns": {
-            "schuko": "Cable Schuko",
-            "wallbox": "Wallbox Rayforce"
-          },
-          "rows": {
-            "chargeTime": {
-              "label": "Tiempo de carga",
-              "schuko": "10-20 horas",
-              "wallbox": "4-8 horas"
-            },
-            "power": {
-              "label": "Potencia",
-              "schuko": "Hasta 3,7 kW",
-              "wallbox": "Hasta 7,2 kW"
-            },
-            "recommendedUse": {
-              "label": "Uso recomendado",
-              "schuko": "Ocasional",
-              "wallbox": "Diario"
-            },
-            "communication": {
-              "label": "Comunicación con el vehículo"
-            },
-            "protection": {
-              "label": "Protecciones eléctricas"
-            },
-            "dedicatedInstall": {
-              "label": "Instalación dedicada"
-            }
-          }
-        },
-        "items": {
-          "protection": {
-            "title": "No tiene protección eléctrica propia",
-            "description": "El cable va directo a un tomacorriente común, sin protección dedicada contra sobrecarga, cortocircuito o fugas de corriente. El wallbox se instala con su propia protección certificada."
-          },
-          "app": {
-            "title": "Se rompe de tanto uso",
-            "description": "Está pensado para usarlo de vez en cuando, no para enchufarlo y desenchufarlo todos los días durante años. A la corta, la ficha y el cable terminan sufriendo."
-          },
-          "power": {
-            "title": "Te deja horas y horas cargando",
-            "description": "Carga a 2,3 kW contra los hasta 22 kW de un wallbox: la misma carga te lleva varias veces más tiempo, todos los días."
-          }
         }
       }
     },
@@ -466,16 +413,16 @@
         "title": "Consejos a la hora de elegir un cargador wallbox",
         "items": [
           {
-            "title": "Primero mirá tu instalación",
-            "description": "Si tu casa es monofásica (lo más común en Uruguay), tu opción es un 7,2kW. Los de 11 y 22kW necesitan instalación trifásica: si no la tenés, el cargador no va a entregar esa potencia."
+            "title": "Consultar en el Concesionario",
+            "description": "Preguntá cuál es la capacidad máxima de carga en corriente alterna del cargador interno de tu auto. Va de 3 kW a 22 kW según el modelo, y es la que define la potencia que vas a poder aprovechar."
           },
           {
-            "title": "Cable integrado o toma Tipo 2",
-            "description": "Comprá cable integrado si el cargador es para tu auto: cargar es colgar el cable, sin nada suelto en el garaje. Comprá toma Tipo 2 si lo van a usar varios, porque cada uno llega con el suyo — pero el cable no viene incluido."
+            "title": "Potencia contratada en el hogar",
+            "description": "Revisá cuánta potencia tenés contratada con UTE. En instalaciones monofásicas el máximo es 7,5 kW, así que un cargador de 11 o 22 kW no va a entregar más que uno de 7,2 kW."
           },
           {
-            "title": "Más kW, menos horas",
-            "description": "Un 7,2kW carga de noche sin problema para el uso diario. Los de 11 y 22kW rinden cuando el auto rota entre varios conductores. IMPORTANTE: Un 22kW en una instalación monofásica no va a cargar más rápido que un 7,2kW."
+            "title": "Tarifa Triple Horario de UTE",
+            "description": "Con la tarifa Triple Horario el precio de la energía cambia según la franja: Valle, Llano y Punta. Cargando en Valle la energía llega a ser hasta 5 veces más barata que en Punta."
           }
         ]
       },
@@ -604,26 +551,8 @@
     },
     "PublicChargingCableSection": {
       "eyebrow": "Cables de carga Besen BS-CHC",
-      "title": "¿Cargás en los tótems públicos de UTE? Llevá tu propio cable Rayforce.",
-      "description": "El cable que viene con el auto no está pensado para la vía pública. El nuestro sí: aguanta que le pase un auto por encima, tiene protección IP66 contra lluvia y polvo, y carga hasta 7 kW, más rápido que el cable de fábrica. Se recoge solo, así que no queda arrastrando por el piso ni molesta el paso mientras cargás.",
-      "stats": {
-        "durability": {
-          "value": "Resiste el paso de un auto",
-          "label": "Probado en video"
-        },
-        "speed": {
-          "value": "Hasta 7 kW",
-          "label": "Más rápido que el cable de fábrica"
-        },
-        "protection": {
-          "value": "IP66",
-          "label": "Lluvia, polvo y vía pública"
-        },
-        "comfort": {
-          "value": "Se recoge solo",
-          "label": "No se enreda ni molesta el paso"
-        }
-      },
+      "title": "¿Cargás en tótems y cargadores que no tienen cable ingegrado? Llevá tu propio cable Rayforce.",
+      "description": "Consegui tu cable Rayforce desde 7 kW hasta 22 kW. Resiste el peso de un auto, tiene protección IP66 contra la lluvia y es estanco al polvo.",
       "video": {
         "cta": "Ver prueba de durabilidad",
         "title": "Prueba de resistencia: un auto pasa por encima del cable espiralado",
@@ -631,9 +560,9 @@
         "loading": "Cargando video…"
       },
       "pricing": {
-        "price": "USD 235",
+        "price": "USD 220",
         "taxLabel": "IVA Inc.",
-        "cta": "Ver el cable espiralado",
+        "cta": "Ver el cable recto 7kW",
         "secondaryCta": "Ver todos los cables"
       },
       "imageAlt": "Cable de carga espiralado Rayforce Tipo 2 enrollado, listo para usar en un tótem de carga público",
@@ -733,8 +662,8 @@
           "whatsappMessage": "Hola! Quiero cotizar la columna con el cargador BS20-BC-7KW y la instalación"
         },
         "footnote": {
-          "columnOnly": "Solo la columna. Si ya tenés un wallbox BS20, esto es todo lo que te falta para montarlo.",
-          "withCharger": "Columna y cargador juntos, listos para instalar. Podés montarlo vos o sumar la instalación certificada.",
+          "columnOnly": "Solo la columna, para sumar a un wallbox BS20 que ya tengas.",
+          "withCharger": "Columna y cargador juntos, listos para instalar. Sumá la instalación certificada cuando quieras.",
           "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
         }
       }
@@ -768,7 +697,8 @@
         "title": "¿No encontraste tu modelo?",
         "description": "Escribinos por WhatsApp y te ayudamos a confirmar la compatibilidad.",
         "note": "*Respuesta en minutos"
-      }
+      },
+      "disclaimer": "Verificá la capacidad de carga alterna de cada modelo de vehículo con el concesionario."
     },
     "Faq": {
       "eyebrow": "SOBRE NOSOTROS",
@@ -833,8 +763,8 @@
           "answer": "Depende de tu instalación. Con monofásica (lo más común en una casa) el tope es 7,2kW. Los de 11 y 22kW necesitan instalación trifásica: sin ella, no van a entregar esa potencia por más que el equipo la soporte."
         },
         {
-          "title": "¿Cable integrado o toma Tipo 2?",
-          "answer": "Cable integrado si el cargador es para tu auto: cargar es colgar el cable, sin nada suelto en el garaje. Toma Tipo 2 si lo va a usar más de un auto, porque cada uno llega con el suyo — pero ahí el cable no viene incluido."
+          "title": "¿Cual conviene mas? ¿Cable integrado o toma Tipo 2?",
+          "answer": "Cable integrado si el cargador es para tu auto: cargar es colgar el cable y listo. Sin nada suelto en el garaje. Elegí el cargador con toma Tipo 2 si es un uso compartido como en una cooperativa, cochera o edificio, o si simplemente preferís tener un cable externo."
         },
         {
           "title": "¿Un cargador de más kW carga siempre más rápido?",
@@ -850,7 +780,7 @@
         },
         {
           "title": "¿Vienen con app de control?",
-          "answer": "Sí, todos los modelos se manejan con la app Rayforce: arrancás y parás la carga, y controlás el consumo desde el celular."
+          "answer": "Sí, todos los modelos se manejan con la app EVSEMaster: arrancás y parás la carga, y controlás el consumo desde el celular."
         },
         {
           "title": "¿Qué garantía tiene el cargador?",
@@ -877,7 +807,6 @@
     },
     "cta": {
       "whatsapp": "Quiero comprar este cargador",
-      "manual": "Descargar manual de usuario",
       "pricing": "Ver precios",
       "whatsappMessage": "Hola! Quiero comprar mi cargador {model}",
       "mercadopago": "Comprar",
@@ -904,11 +833,11 @@
         "noCable": "No incluye cable de carga",
         "wallbox": "Cargador wallbox {model} de {power, number} kW",
         "integratedCable": "Cable Tipo 2 integrado de 6 m",
-        "mountingPlate": "Placa de anclaje a pared",
-        "screwKit": "Kit de tornillos y tarugos",
+        "mountingPlate": "Placa de fijación para pared",
+        "screwKit": "Kit de tornillos y tacos",
         "drillTemplate": "Plantilla de perforación",
         "manual": "Manual de instalación y uso",
-        "warrantyCard": "Certificado de garantía"
+        "warrantyCard": "Certificado de garantía (Instalador Autorizado por UTE obligatorio)"
       },
       "ba": {
         "eyebrow": "Qué viene en la caja",
@@ -920,7 +849,7 @@
       "bc": {
         "eyebrow": "Qué viene en la caja",
         "title": "Todo adentro, cable incluido",
-        "description": "El wallbox llega con sus 6 metros de cable Tipo 2 ya integrados, la plantilla de montaje y los tornillos. Lo sacás de la caja, lo colgás y queda listo para cargar.",
+        "description": "El wallbox llega con sus 6 metros de cable Tipo 2 integrados, la placa de fijación en pared y los tornillos.",
         "replay": "Ver de nuevo",
         "imageAlt": "Contenido de la caja del wallbox BS20 con el cable integrado desplegado"
       }
@@ -928,9 +857,9 @@
     "pricingSection": {
       "eyebrow": "Precios",
       "title": "Precio simple, sin sorpresas",
-      "subtitle": "Elegí cómo querés recibir tu cargador: comprá el equipo para instalarlo vos mismo, o sumá la instalación profesional certificada.",
+      "subtitle": "Elegí cómo querés recibir tu cargador: comprá el equipo para instalarlo con tu técnico autorizado de confianza, o sumá la instalación profesional certificada de Rayforce.",
       "descriptions": {
-        "bs20-bc-7kw": "Incluye el wallbox 7,2kW monofásico con cable integrado, garantía oficial y acceso a la app Rayforce para monitorear tu carga desde el celular.",
+        "bs20-bc-7kw": "Incluye el wallbox 7,2kW monofásico con cable Tipo 2 integrado de 6 metros, garantía de 1 año y acceso a la app Rayforce para monitorear tu carga desde el celular.",
         "bs20-ba-7kw": "Incluye el wallbox 7,2kW monofásico con toma Tipo 2 intercambiable, garantía oficial y acceso a la app Rayforce. No incluye cable de carga — se compra por separado, y si se daña con el tiempo, se repone solo el cable.",
         "bs20-bc-11kw": "Incluye el wallbox trifásico de 11kW, garantía oficial y acceso a la app Rayforce. El equilibrio entre potencia y consumo contratado para hogares y comercios con trifásica disponible.",
         "bs20-bc-22kw": "Incluye el wallbox trifásico de 22kW, garantía oficial y acceso a la app Rayforce. Pensado para flotas, industrias y cocheras de edificios — te ayudamos a confirmar si tu contrato eléctrico aprovecha toda la potencia antes de comprar."
@@ -942,10 +871,10 @@
         "charger": {
           "bs20-bc-7kw": [
             "Cargador Wallbox BS20-BC-7KW",
-            "Cable de carga incluido",
+            "Cable Tipo 2 integrado de 6 metros",
             "Control remoto vía app móvil",
-            "Garantía local",
-            "Homologación URSEA incluida",
+            "Garantía local de 1 año",
+            "Homologado por URSEA",
             "Hasta 12 cuotas sin interés"
           ],
           "bs20-ba-7kw": [
@@ -1003,7 +932,7 @@
         "whatsappMessage": "Hola! Quiero pedir un presupuesto de instalación para mi cargador {model}"
       },
       "footnote": {
-        "chargerOnly": "Instalalo vos mismo o contratá la instalación certificada más adelante, cuando quieras.",
+        "chargerOnly": "Solo el equipo. Contratá la instalación certificada más adelante, cuando quieras.",
         "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
       }
     },
@@ -1492,7 +1421,7 @@
     "pricingSection": {
       "eyebrow": "Precios",
       "title": "Precio simple, sin sorpresas",
-      "subtitle": "Empezá por el cable y sumá lo que te haga falta: el wallbox para cargar más rápido en casa, y la instalación certificada si no querés ocuparte vos.",
+      "subtitle": "Empezá por el cable y sumá lo que te haga falta: el wallbox para cargar más rápido en casa, y la instalación certificada de Rayforce.",
       "includes": {
         "title": "Incluye"
       },
@@ -1549,7 +1478,7 @@
         "whatsappMessage": "Hola! Quiero pedir un presupuesto de instalación del wallbox para mi {model}"
       },
       "footnote": {
-        "default": "Solo el cable. Sumá tu wallbox cuando quieras: lo instalás vos mismo o contratás la instalación certificada más adelante.",
+        "default": "Solo el cable. Sumá tu wallbox cuando quieras y contratá la instalación certificada más adelante.",
         "withWallbox": "Incluye el cable de carga más un Wallbox BS20-BA-7KW con toma Tipo 2 para conectarlo.",
         "withWallboxNote": "* no incluye instalación",
         "withInstallation": "Instalamos el wallbox, no el cable. El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
@@ -1562,13 +1491,13 @@
     },
     "variants": {
       "bs-chc003": {
-        "description": "Cable recto Type 2 a Type 2 de 5 metros para carga monofásica de hasta 7 kW. La opción más simple para complementar tu wallbox, con sensor de temperatura y bolso incluido."
+        "description": "Cable recto Tipo 2 a Tipo 2 de 5 metros para carga monofásica de hasta 7 kW. La opción más simple para complementar tu wallbox, con sensor de temperatura y bolso incluido."
       },
       "bs-chc004": {
-        "description": "Cable recto Type 2 a Type 2 de 5 metros para carga trifásica de hasta 22 kW. Con sensor de temperatura y bolso incluido."
+        "description": "Cable recto Tipo 2 a Tipo 2 de 5 metros para carga trifásica de hasta 22 kW. Con sensor de temperatura y bolso incluido."
       },
       "bs-chc003-s": {
-        "description": "Cable espiralado Type 2 a Type 2 de 5 metros estirado, para carga monofásica de hasta 7 kW. Mismo alcance útil que el cable recto, pero se recoge solo y no queda arrastrando por el piso del garage. Con sensor de temperatura y bolso incluido."
+        "description": "Cable espiralado Tipo 2 a Tipo 2 de 5 metros estirado, para carga monofásica de hasta 7 kW. Mismo alcance útil que el cable recto. Con sensor de temperatura y bolso de transporte incluido."
       }
     },
     "stats": {
@@ -1627,8 +1556,8 @@
       "stat1Description": "El conector corta la carga si se recalienta.",
       "stat2Title": "IP66 certificado",
       "stat2Description": "Resiste lluvia y polvo, con ensayo renovado en 2025.",
-      "stat3Title": "Espiralado",
-      "stat3Description": "Se recoge solo y no queda arrastrando por el piso."
+      "stat3Title": "Se recoge solo",
+      "stat3Description": "No queda arrastrando por el piso del garage."
     }
   },
   "EmpresasPage": {

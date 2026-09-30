@@ -61,11 +61,13 @@ export function CableShopCard({ product }: Props) {
       style={getHighlightBorderStyle(product)}
     >
       {/* ── Photo plate ─────────────────────────────────────── */}
-      {/* Misma plancha que los cargadores — el destacado sobre blanco puro y
-          el resto sobre `neutral-100`. */}
+      {/* Misma plancha que los cargadores: gradiente de neutrales, con el
+          destacado un stop mas claro. */}
       <div
-        className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden sm:h-[480px] ${
-          product.highlight ? "bg-white" : "bg-neutral-100"
+        className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-gradient-to-br sm:h-[480px] ${
+          product.highlight
+            ? "from-neutral-600 via-neutral-700 to-neutral-900"
+            : "from-neutral-700 via-neutral-800 to-neutral-900"
         }`}
       >
         <ProductHighlightRibbon product={product} className="right-4 top-4" />

@@ -3,13 +3,11 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { ArrowDownToLine } from "lucide-react";
 import { ChargerModelHeroStats } from "./ChargerModelHeroStats";
 import { ProductHeroPriceCard } from "./ProductHeroPriceCard";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import { GradientText } from "@/components/animated/GradientText";
 import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
-import { useTrack } from "@/lib/analytics";
 import type { ChargerProduct } from "@/lib/catalog/catalog.types";
 
 type Props = {
@@ -22,7 +20,6 @@ type Props = {
 
 export function ChargerModelHero({ product }: Props) {
   const t = useTranslations("ChargerModelPage");
-  const track = useTrack();
   const { theme } = product;
 
   return (
@@ -70,8 +67,13 @@ export function ChargerModelHero({ product }: Props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
-        className="page-shell flex flex-col gap-12 relative z-20 flex-1 pb-24 lg:pb-32 justify-center items-start"
+        /* El padding va aca y el ancho en el hijo, igual que el header: el
+           `px` afuera del `max-w` hace que el carril mida 1440 reales y el
+           contenido arranque donde el logo. Con los dos en el mismo div, el
+           padding come 32px de adentro y todo queda corrido. */
+        className="w-full px-6 sm:px-8 pt-28 sm:pt-58 relative z-20 flex-1 pb-24 lg:pb-32 flex justify-center"
       >
+        <div className="mx-auto w-full max-w-[1440px] flex flex-col gap-12 justify-center items-start">
         {/* El breadcrumb va afuera de la fila y no dentro de la columna
             izquierda: asi las dos columnas arrancan a la misma altura y la
             foto queda anclada al eyebrow, sin compensar su alto a mano. */}
@@ -150,32 +152,13 @@ export function ChargerModelHero({ product }: Props) {
               theme={theme}
               href="#precios"
               ctaLabel={t("cta.pricing")}
-              secondary={
-                /* El manual baja a link y sale de la tarjeta: nadie descarga
-                   la ficha tecnica antes de comprar, y como boton al lado le
-                   competia el peso visual al CTA de precio. */
-                product.datasheetUrl ? (
-                  <a
-                    href={product.datasheetUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() =>
-                      track.chargerHeroDatasheet(product.slug, "desktop")
-                    }
-                    className="inline-flex items-center gap-2 pl-1 text-sm text-neutral-400 underline-offset-4 hover:text-white hover:underline transition-colors"
-                  >
-                    <ArrowDownToLine size={15} />
-                    {t("cta.manual")}
-                  </a>
-                ) : null
-              }
             />
           </div>
 
           {/* RIGHT */}
           <div className="relative basis-2/5 min-w-0">
-            {/* Glow por fuera del container: adentro se perderia contra el
-                fondo blanco de la foto. */}
+            {/* Glow del tema por fuera del container, donde el recorte no lo
+                corta. */}
             <div
               className="
                 absolute inset-8
@@ -184,21 +167,26 @@ export function ChargerModelHero({ product }: Props) {
               style={{ backgroundColor: theme.glowStrong }}
             />
 
-            {/* La foto viene sobre fondo blanco, asi que el container es claro
-                y el recorte lo da el `rounded-3xl` + `overflow-hidden`. */}
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white shadow-2xl shadow-black/40">
+            {/* Mismo gradiente de neutrales que las tarjetas de la grilla.
+                Va con `cardImage` (PNG recortado) y no con `photoImage`: ese
+                es un JPG con el blanco horneado y taparia el gradiente. */}
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 shadow-2xl shadow-black/40">
               <Image
-                src={product.photoImage}
+                src={product.cardImage}
                 alt={t(`variants.${product.slug}.fullName`)}
                 width={1200}
                 height={1200}
                 // El hero es el LCP de la pagina: sin lazy y con prioridad.
                 priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="w-full h-auto object-contain"
+                // `p-10` + `aspect-square`: el PNG viene recortado al producto,
+                // sin el aire que traia la foto, y pegado al borde se ve
+                // apretado contra el `rounded-3xl`.
+                className="aspect-square w-full object-contain p-10"
               />
             </div>
           </div>
+        </div>
         </div>
       </motion.div>
     </section>

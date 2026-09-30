@@ -26,7 +26,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
       {/* El contenido es la parte rigida: `shrink-0` y sin flex-1, mide
           exactamente lo suyo. Apilado bajo la foto, sobre fondo solido, asi
           que no necesita overlays ni sombras de contraste como el desktop */}
-      <div className="relative z-10 flex shrink-0 flex-col px-6 pt-6 pb-10">
+      <div className="relative z-10 flex shrink-0 flex-col px-6 pt-5 pb-8">
         <motion.div
           initial="hidden"
           animate="show"
@@ -38,9 +38,9 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           <h1
             className="
               bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-              bg-clip-text text-[2rem] font-medium leading-[1.15]
+              bg-clip-text text-[1.35rem] font-medium leading-[1.2]
               text-transparent
-              md:text-6xl md:leading-[1.4]
+              md:text-4xl md:leading-[1.25]
             "
           >
             {t("title")}
@@ -50,12 +50,12 @@ export function HomeHeroMobile({ id }: { id?: string }) {
               sobre 3 lineas es lo que comia el alto */}
           <motion.p
             variants={waterfallItem}
-            className="mt-4 text-sm leading-snug text-neutral-300"
+            className="mt-3 line-clamp-4 text-xs leading-snug text-neutral-300"
           >
             {t("description")}
           </motion.p>
 
-          <motion.div variants={waterfallItem} className="mt-6">
+          <motion.div variants={waterfallItem} className="mt-5">
             <HomeHeroMobileActions />
           </motion.div>
         </motion.div>
