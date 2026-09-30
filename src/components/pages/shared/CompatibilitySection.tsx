@@ -51,56 +51,58 @@ export function CompatibilitySection({ theme, id }: Props) {
         maskImage="radial-gradient(ellipse 80% 80% at 50% 0%, #000 20%, transparent 80%)"
       />
 
-      {/* Carril del header (`max-w-7xl px-6 sm:px-8`), como el resto de
-          la home. El `container` de Tailwind v4 no trae padding propio, asi
-          que el gutter va explicito. */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className={cn("text-sm tracking-[0.25em] uppercase", ui.accentText)}>
-            {t("header.eyebrow")}
-          </p>
+      {/* Carril del header: el padding afuera del `max-w`, asi el contenido
+          mide 1440 limpios. El `container` de Tailwind v4 no trae padding
+          propio, asi que el gutter va explicito. */}
+      <div className="relative z-10 px-6 sm:px-8">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className={cn("text-sm tracking-[0.25em] uppercase", ui.accentText)}>
+              {t("header.eyebrow")}
+            </p>
 
-          <h2 className="mt-4 text-4xl tracking-tight sm:text-6xl">
-            {t("header.title")}
-          </h2>
+            <h2 className="mt-4 text-4xl tracking-tight sm:text-6xl">
+              {t("header.title")}
+            </h2>
 
-          <p className="mt-6 text-lg text-neutral-400">
-            {t("header.description")}
-          </p>
+            <p className="mt-6 text-lg text-neutral-400">
+              {t("header.description")}
+            </p>
 
-          <div className="mx-auto mt-10 max-w-[13rem]">
-            <BrandSelect
-              value={selectedBrand}
-              onValueChange={handleBrandChange}
-              ui={ui}
-            />
+            <div className="mx-auto mt-10 max-w-[13rem]">
+              <BrandSelect
+                value={selectedBrand}
+                onValueChange={handleBrandChange}
+                ui={ui}
+              />
+            </div>
           </div>
-        </div>
 
-        <div
-          className={cn(
-            "mx-auto mt-14 mb-10 h-[2px] max-w-3xl bg-gradient-to-r opacity-50",
-            ui.gradientLine,
-          )}
-        />
-
-        {/* `text-center` acá y no en la grilla: es el layout centrado el que
-            quiere el label y las pills al medio, no la grilla en sí. */}
-        <div className="mx-auto max-w-3xl text-center">
-          <ModelGrid brand={brand} ui={ui} />
-        </div>
-
-        {/* La tabla lista los modelos compatibles, pero la potencia real la fija
-            el cargador interno de cada auto: el aviso va debajo de la grilla
-            para que se lea despues de haber visto el modelo propio. */}
-        <div className="mx-auto mt-10 flex max-w-3xl items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/5 px-5 py-4 text-left">
-          <TriangleAlert
-            className="mt-0.5 size-4 shrink-0 text-amber-400"
-            aria-hidden="true"
+          <div
+            className={cn(
+              "mx-auto mt-14 mb-10 h-[2px] max-w-3xl bg-gradient-to-r opacity-50",
+              ui.gradientLine,
+            )}
           />
-          <p className="text-sm leading-relaxed text-neutral-400">
-            {t("disclaimer")}
-          </p>
+
+          {/* `text-center` acá y no en la grilla: es el layout centrado el que
+              quiere el label y las pills al medio, no la grilla en sí. */}
+          <div className="mx-auto max-w-3xl text-center">
+            <ModelGrid brand={brand} ui={ui} />
+          </div>
+
+          {/* La tabla lista los modelos compatibles, pero la potencia real la fija
+              el cargador interno de cada auto: el aviso va debajo de la grilla
+              para que se lea despues de haber visto el modelo propio. */}
+          <div className="mx-auto mt-10 flex max-w-3xl items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/5 px-5 py-4 text-left">
+            <TriangleAlert
+              className="mt-0.5 size-4 shrink-0 text-amber-400"
+              aria-hidden="true"
+            />
+            <p className="text-sm leading-relaxed text-neutral-400">
+              {t("disclaimer")}
+            </p>
+          </div>
         </div>
       </div>
     </section>

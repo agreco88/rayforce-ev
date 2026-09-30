@@ -75,10 +75,11 @@ export function Footer({
         }}
       />
 
-      <footer id="footer" className="relative z-10 text-neutral-200">
-        {/* Mismo contenedor que el header (`navigation-scroll.tsx`): ancho y
-            padding tienen que coincidir para que logo y marca queden a plomo. */}
-        <div className="mx-auto w-full max-w-7xl px-6 sm:px-8">
+      <footer id="footer" className="relative z-10 px-6 text-neutral-200 sm:px-8">
+        {/* Mismo contenedor que el header (`navigation-scroll.tsx`): el padding
+            va en el `<footer>` y el `max-w` aca, para que la marca quede a plomo
+            con el logo. */}
+        <div className="mx-auto w-full max-w-[1440px]">
           {faqNamespace && (
             <div id={faqId} className="scroll-mt-24">
               <FooterFaq
@@ -89,7 +90,7 @@ export function Footer({
           )}
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-6 sm:px-8">
+        <div className="mx-auto w-full max-w-[1440px]">
           {/*
             El CTA lleva el id="contacto", que es el destino del link "Contacto"
             del header. Hasta ahora el componente existia pero no se montaba en

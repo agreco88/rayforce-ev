@@ -39,11 +39,11 @@ export function PublicChargingCableDesktop() {
         aria-hidden="true"
       />
 
-      {/* Carril de 1280 con el padding adentro, el mismo que el resto de la
-          home. El `lg:px-16` que habia antes se comia 128px de esos 1280 y
-          dejaba el banner mas angosto que la columna que va arriba. */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl justify-center px-6 sm:px-8 py-20 lg:py-28 xl:py-32">
-        <div className="w-full">
+      {/* Padding afuera del `max-w`, como el header: 1440 limpios de
+          contenido. El `lg:px-16` que habia antes se los comia y dejaba el
+          banner mas angosto que la columna que va arriba. */}
+      <div className="relative z-10 flex w-full justify-center px-6 py-20 sm:px-8 lg:py-28 xl:py-32">
+        <div className="w-full max-w-[1440px]">
           {/* Reparto 2fr/3fr y no 50/50: la foto es un retrato 2:3, y a media
             fila se estira tanto de alto que empuja la sección. En dos quintos
             queda a una altura pareja con el bloque de texto.

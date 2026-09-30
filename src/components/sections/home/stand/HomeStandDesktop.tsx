@@ -33,7 +33,7 @@ export function HomeStandDesktop() {
       aria-labelledby="stand-desktop-heading"
       className="relative isolate overflow-hidden"
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center px-6 sm:px-8 pt-28 pb-28 text-center">
+      <div className="flex w-full flex-col items-center px-6 pt-28 pb-28 text-center sm:px-8">
         {/* HEADER — 50/50: el texto comparte fila con la foto de la columna
             instalada. Antes acá iba `charger-mobile.avif` (el comparativo
             columna vacía → columna con wallbox, que el mobile conserva) y la
@@ -44,7 +44,7 @@ export function HomeStandDesktop() {
 
             `items-center` porque la foto es 16:9 y el bloque de texto más
             alto: alinear por el pie la dejaba colgando. */}
-        <div className="grid w-full max-w-7xl grid-cols-2 items-center gap-12 text-left">
+        <div className="grid w-full max-w-[1440px] grid-cols-2 items-center gap-12 text-left">
           <div>
             {/* EYEBROW */}
             <span className="text-xs tracking-[0.25em] uppercase text-green-400">
@@ -116,7 +116,7 @@ export function HomeStandDesktop() {
         </div>
 
         {/* VIDEOS — referencia de uso real. Heredan el lugar que tenía la foto
-            instalada, que subió al header, pero conservan el `max-w-7xl` que
+            instalada, que subió al header, pero conservan el `max-w-[1440px]` que
             comparten el header, los destacados y el panel de precio: a ancho
             completo eran el único bloque que rompía esa caja y la sección
             perdía su borde izquierdo y derecho recto.
@@ -127,7 +127,7 @@ export function HomeStandDesktop() {
             Sin epígrafes: cortaban la grilla contra los bloques de abajo y no
             agregaban nada que la imagen no diga. El texto sobrevive como
             aria-label del <video> para lectores de pantalla. */}
-        <div className="mt-12 grid w-full max-w-7xl grid-cols-2 gap-6">
+        <div className="mt-12 grid w-full max-w-[1440px] grid-cols-2 gap-6">
           <HoverPlayVideo
             src="/assets/videos/column/bs20-column-clip-1.mp4"
             poster="/assets/images/column/bs20-column-clip-1-poster.webp"
@@ -154,8 +154,8 @@ export function HomeStandDesktop() {
         {/* Sin wrapper con padding: el `p-6` que tenía metía las tarjetas 24px
             para adentro, así que ni los bordes ni las canaletas coincidían con
             la grilla de videos de arriba. Ahora comparte con ella el mismo
-            `max-w-7xl` y el mismo `gap-6`, y las columnas quedan alineadas. */}
-        <div className="mt-12 w-full max-w-7xl">
+            `max-w-[1440px]` y el mismo `gap-6`, y las columnas quedan alineadas. */}
+        <div className="mt-12 w-full max-w-[1440px]">
           <ul className="grid grid-cols-3 items-stretch gap-6 text-left">
             {HIGHLIGHTS.map(({ key, icon: Icon, maskSrc }) => (
               <li
@@ -219,12 +219,12 @@ export function HomeStandDesktop() {
             es el resultado de los toggles (columna → + cargador → + instalación)
             y el CTA cambia de destino según la elección.
 
-            Comparte el `max-w-7xl` con el resto de los bloques de la sección
+            Comparte el `max-w-[1440px]` con el resto de los bloques de la sección
             (header, foto, videos, destacados), así toda la columna de contenido
             tiene un solo borde izquierdo y derecho. */}
         {/* La descripción que iba acá abajo repetía lo que ya dicen los
             destacados y el propio panel, y las medidas subieron al principio. */}
-        <StandPricingPanel className="mt-12 max-w-7xl" />
+        <StandPricingPanel className="mt-12 max-w-[1440px]" />
 
         {/* RESEÑAS — despues del panel y no antes: son el respaldo de la
             decision que se acaba de tomar, no un bloque mas que se interponga
@@ -237,7 +237,7 @@ export function HomeStandDesktop() {
           onReviewClick={(reviewId) =>
             track.socialProofReviewClicked("home_stand", reviewId)
           }
-          className="mt-20 w-full max-w-7xl"
+          className="mt-20 w-full max-w-[1440px]"
         />
 
         {/* Acá iban dos salidas secundarias (consultar por WhatsApp / ver otros
