@@ -21,24 +21,25 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
     >
       <HomeHeroBackdrop />
 
-      {/* Mismo max-w y padding que el header, para que el texto arranque en la
-          misma linea vertical que el logo y que el contenido de abajo */}
+      {/* `max-w-7xl` + padding adentro: el carril de 1280 de las secciones de
+          contenido, y el mismo al que esta alineado el logo del header. El
+          unico que sobresale a proposito es el lineup. */}
       <div
         className="
           relative z-10
-          mx-auto flex w-full max-w-[1440px] items-center
+          mx-auto flex w-full max-w-7xl items-center
           px-6 pt-40 pb-24
           sm:px-8 lg:pt-56 lg:pb-32
         "
       >
-        {/* Ancho propio en vez de media pantalla: a 1440px la mitad sigue siendo
-            demasiado para un parrafo. Queda pegado a la izquierda y la foto
-            respira a la derecha */}
+        {/* Ancho propio en vez de media pantalla: la mitad del carril sigue
+            siendo demasiado para un parrafo. Queda pegado a la izquierda y la
+            foto respira a la derecha */}
         <motion.div
           initial="hidden"
           animate="show"
           variants={waterfallList}
-          className="flex max-w-[46rem] flex-col gap-12"
+          className="flex max-w-[54rem] flex-col gap-10"
         >
           <motion.div variants={waterfallItem}>
             <DotExpandBadge
@@ -53,11 +54,11 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
           {/* Sin animación a propósito: es el LCP y tiene que pintar de una */}
           <h1
             className="
-              max-w-[20ch]
+              max-w-[32ch]
               bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-              bg-clip-text text-4xl font-medium leading-[1.15]
+              bg-clip-text text-3xl font-medium leading-[1.15]
               text-transparent
-              sm:text-5xl lg:text-6xl
+              sm:text-4xl lg:text-5xl
             "
           >
             {t("title")}

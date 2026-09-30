@@ -27,26 +27,23 @@ export function WhatIsWallboxSection({ id }: { id?: string }) {
           salto entre ellos es el mismo `gap-6 lg:gap-8` que separa las filas de
           tarjetas, y no un gap propio del contenedor.
 
-          `max-w-7xl` dentro del `max-w-[1440px] px-6`: es la misma caja de 1280px
-          que usan los bloques de la seccion Columna, que va pegada abajo. Antes
-          el `lg:px-16 2xl:px-0` dejaba que esto estirara a 1440 y las dos
-          secciones no compartian borde. */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col px-6 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 lg:gap-8">
-          <WhatIsWallboxHeader />
+          `max-w-7xl` con el padding adentro: es el carril de la home entera
+          (hero, header, columna, footer). Un solo nivel y no dos, para que el
+          contenido mida lo mismo que el de las secciones vecinas. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-24 sm:px-8 lg:gap-8 lg:py-32">
+        <WhatIsWallboxHeader />
 
-          {/* Las mismas cuatro tarjetas: grilla desde `sm`, carousel abajo de eso. */}
-          <motion.div
-            variants={cardContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-6 lg:gap-8"
-          >
-            <WhatIsWallboxGrid />
-            <WhatIsWallboxMobileCards />
-          </motion.div>
-        </div>
+        {/* Las mismas cuatro tarjetas: grilla desde `sm`, carousel abajo de eso. */}
+        <motion.div
+          variants={cardContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="flex flex-col gap-6 lg:gap-8"
+        >
+          <WhatIsWallboxGrid />
+          <WhatIsWallboxMobileCards />
+        </motion.div>
       </div>
     </section>
   );

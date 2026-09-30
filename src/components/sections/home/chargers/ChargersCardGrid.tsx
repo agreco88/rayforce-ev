@@ -78,19 +78,31 @@ export function ChargersCardGrid({ className, excludeSlug }: Props) {
             >
               {/* ── Photo plate ─────────────────────────────────── */}
               {/* 480px es la plancha de desktop; en una tarjeta de ~300px de
-                  ancho esa altura deja el producto flotando en un mar blanco,
-                  asi que en mobile baja a 320. */}
-              {/* El destacado va sobre blanco puro y el resto sobre
-                  `neutral-100`: la plancha mas clara lo adelanta sin agregarle
-                  otro adorno encima del riel y el borde de color. */}
+                  ancho esa altura deja el producto flotando, asi que en mobile
+                  baja a 320. */}
+              {/* Gradiente de neutrales medios en vez de plancha blanca:
+                  `cardImage` es el PNG recortado sobre transparente, hecho para
+                  fondo oscuro. Diagonal para que el claro caiga arriba a la
+                  izquierda, donde ya viene la luz de las fotos, y el extremo
+                  cierre en el `neutral-950` de la card. El destacado arranca un
+                  stop mas claro y ahi se lo lleva. */}
               <div
-                className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden sm:h-[480px] ${
-                  product.highlight ? "bg-white" : "bg-neutral-100"
+                className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-gradient-to-br sm:h-[480px] ${
+                  product.highlight
+                    ? "from-neutral-600 via-neutral-700 to-neutral-900"
+                    : "from-neutral-700 via-neutral-800 to-neutral-900"
                 }`}
               >
                 <ProductHighlightRibbon
                   product={product}
                   className="right-4 top-4"
+                />
+
+                {/* Halo difuso detras del producto: `backdrop-blur` no hace
+                    nada sobre el gradiente plano, asi que la luz se pinta. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15),transparent_65%)] blur-2xl"
                 />
 
                 <Image
@@ -107,7 +119,7 @@ export function ChargersCardGrid({ className, excludeSlug }: Props) {
               </div>
 
               {/* ── Body ────────────────────────────────────────── */}
-              <div className="flex w-full flex-1 flex-col border-t border-t-neutral-800 px-6 pb-7 pt-6">
+              <div className="flex w-full flex-1 flex-col border-t border-t-white/10 px-6 pb-7 pt-6">
                 <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
                   {product.modelCode}
                 </span>
@@ -127,9 +139,11 @@ export function ChargersCardGrid({ className, excludeSlug }: Props) {
 
                 {/* `min-h`: a cuatro columnas cada blurb ocupa distinta
                     cantidad de lineas y sin esto la lista de bullets arranca a
-                    distinta altura en cada tarjeta. En la franja angosta el mas
-                    largo necesita 4 lineas; de `2xl` para arriba, 3. */}
-                <p className="mt-3 text-sm leading-relaxed text-neutral-400 xl:min-h-[5.7rem] 2xl:min-h-[4.275rem]">
+                    distinta altura en cada tarjeta. Con la seccion a 1504 la
+                    tarjeta mide 342px y al mas largo le alcanzan 3 lineas — a
+                    1440 necesitaba 4, y esa cuarta quedaba como aire muerto
+                    arriba de los bullets. */}
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400 xl:min-h-[4.275rem]">
                   {t(`chargers.${product.slug}.blurb`)}
                 </p>
 

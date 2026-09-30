@@ -1,7 +1,8 @@
 /**
- * Foto de fondo del hero desktop, capeada al mismo ancho que el header y el
- * texto (1440px) en vez de estirarse a todo el viewport, que en un 4K obligaba
- * a escalar la foto por encima de su resolucion y se veia pixelada.
+ * Foto de fondo del hero desktop, capeada a 1440px en vez de estirarse a todo
+ * el viewport, que en un 4K obligaba a escalar la foto por encima de su
+ * resolucion y se veia pixelada. Va mas ancha que el carril de 1280 del texto
+ * a proposito: el titulo tiene que caer sobre la foto, no contra su borde.
  *
  * Lo que queda a los costados es el negro de la seccion, disimulado con un fade
  * en cada borde para que no se lea como barras.

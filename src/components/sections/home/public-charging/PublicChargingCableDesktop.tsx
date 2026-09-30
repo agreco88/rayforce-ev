@@ -10,8 +10,8 @@ import { useTrack } from "@/lib/analytics";
 /** Foto vertical (2:3): alguien cargando en un tótem público de UTE. */
 const PHOTO_SRC = "/assets/images/cables/man-charging-ute.jpg";
 
-/** Cable recto: el otro modelo del catálogo, de fondo en la caja "ver todos". */
-const STRAIGHT_CABLE_SRC = "/assets/images/cables/BS-CHC003.png";
+/** Cable espiralado: el otro modelo del catálogo, de fondo en la caja "ver todos". */
+const COILED_CABLE_SRC = "/assets/images/cables/BS-CHC003-S.png";
 
 const PROOF_VIDEO_SRC = "/assets/videos/cables/chc-cable-run-over-test.mp4";
 const PROOF_POSTER_SRC =
@@ -39,16 +39,11 @@ export function PublicChargingCableDesktop() {
         aria-hidden="true"
       />
 
-      {/* Misma estructura de ancho que la sección de la columna: el contenedor
-          va a `max-w-[1440px] px-6` y el contenido adentro a `max-w-7xl`, así
-          los dos bloques terminan con 1280px reales de contenido y sus bordes
-          coinciden.
-
-          Antes era `max-w-7xl` con `px-6 sm:px-8 lg:px-16`: el padding se
-          comía 128px de esos 1280 y el banner quedaba más angosto que la
-          columna, aunque las dos clases dijeran `max-w-7xl`. */}
-      <div className="relative z-10 flex w-full max-w-[1440px] justify-center px-6 py-20 lg:py-28 xl:py-32">
-        <div className="w-full max-w-7xl">
+      {/* Carril de 1280 con el padding adentro, el mismo que el resto de la
+          home. El `lg:px-16` que habia antes se comia 128px de esos 1280 y
+          dejaba el banner mas angosto que la columna que va arriba. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl justify-center px-6 sm:px-8 py-20 lg:py-28 xl:py-32">
+        <div className="w-full">
           {/* Reparto 2fr/3fr y no 50/50: la foto es un retrato 2:3, y a media
             fila se estira tanto de alto que empuja la sección. En dos quintos
             queda a una altura pareja con el bloque de texto.
@@ -84,7 +79,7 @@ export function PublicChargingCableDesktop() {
                 {t("title")}
               </h2>
 
-              <p className="mt-6 max-w-lg text-base leading-relaxed text-neutral-300 lg:text-lg">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-300 lg:text-lg">
                 {t("description")}
               </p>
 
@@ -124,7 +119,7 @@ export function PublicChargingCableDesktop() {
                 de los dos botones — así ambas cajas pesan igual en la grilla. */}
               <div className="mt-10 grid grid-cols-2 gap-4">
                 <Link
-                  href="/cables/bs-chc003-s"
+                  href="/cables/bs-chc003"
                   onClick={() =>
                     track.publicChargingCableCta({
                       cta: "product",
@@ -161,11 +156,11 @@ export function PublicChargingCableDesktop() {
                   }
                   className="group relative flex flex-col items-start justify-end gap-2 overflow-hidden rounded-2xl border border-white/15 p-6 text-neutral-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
                 >
-                  {/* El cable recto: el otro modelo del catálogo, de fondo y
+                  {/* El cable espiralado: el otro modelo del catálogo, de fondo y
                       oscurecido para que compita menos que la caja ámbar. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={STRAIGHT_CABLE_SRC}
+                    src={COILED_CABLE_SRC}
                     alt=""
                     aria-hidden="true"
                     loading="lazy"

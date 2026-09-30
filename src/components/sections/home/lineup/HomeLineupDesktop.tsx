@@ -12,9 +12,13 @@ export function HomeLineupDesktop() {
   const t = useTranslations("HomePage.Lineup");
 
   return (
-    /* `max-w-[1600px]`, el mismo ancho que la grilla de /cargadores: cuatro
-        fichas de producto no entran comodas en la caja de 1280 que usan las
-        secciones de texto.
+    /* 1600 y no el 1440 del resto de la home: a cuatro columnas el titulo del
+        BC-7KW ("Wallbox Residencial Monofasico con cable integrado") se parte
+        en tres lineas y desbalancea la fila, porque los otros tres entran en
+        dos. Medido en el navegador, la grilla necesita 1568 para que los cuatro
+        entren en dos lineas; 1600 deja margen para el ingles.
+
+        Por eso esta seccion sobresale del carril del header — es a proposito.
 
         El `pb` va mas bajo que el `pt`: abajo cierra un CTA centrado, que deja
         aire propio a los costados — con el padding parejo la seccion terminaba
@@ -50,7 +54,7 @@ export function HomeLineupDesktop() {
               del h2; a tres se lee como una columna angosta al costado. */}
           <motion.p
             variants={waterfallItem}
-            className="mt-5 max-w-3xl leading-relaxed text-neutral-400"
+            className="mt-5 max-w-3xl sr-only leading-relaxed text-neutral-400"
           >
             {t("description")}
           </motion.p>

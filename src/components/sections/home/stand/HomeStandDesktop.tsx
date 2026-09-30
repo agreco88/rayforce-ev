@@ -33,7 +33,7 @@ export function HomeStandDesktop() {
       aria-labelledby="stand-desktop-heading"
       className="relative isolate overflow-hidden"
     >
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 pt-28 pb-28 text-center">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center px-6 sm:px-8 pt-28 pb-28 text-center">
         {/* HEADER — 50/50: el texto comparte fila con la foto de la columna
             instalada. Antes acá iba `charger-mobile.avif` (el comparativo
             columna vacía → columna con wallbox, que el mobile conserva) y la

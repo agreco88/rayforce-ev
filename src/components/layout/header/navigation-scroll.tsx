@@ -274,7 +274,7 @@ export function NavigationScroll() {
       },
     },
     {
-      label: "Empresas",
+      label: "Edificios y Empresas",
       href: "/empresas",
     },
     {
@@ -350,11 +350,11 @@ export function NavigationScroll() {
         ref={navRef}
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed inset-x-0 top-0 z-[100] w-full py-5 px-6 sm:px-8 bg-linear-to-b from-black via-black/50 to-transparent"
+        className="fixed inset-x-0 top-0 z-[100] w-full py-5 bg-linear-to-b from-black via-black/50 to-transparent"
       >
         <div
           ref={panelAnchorRef}
-          className="relative max-w-[1440px] mx-auto w-full flex items-center justify-between gap-8"
+          className="relative max-w-7xl mx-auto w-full flex items-center justify-between gap-8 px-6 sm:px-8"
         >
           {/* Tres bloques: logo | nav centrado | contacto. El del medio toma
               el espacio sobrante para quedar centrado respecto del header. */}
@@ -470,8 +470,13 @@ export function NavigationScroll() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                // El `inset-x` repite el gutter del carril: el panel es
+                // `absolute` contra el padding box, asi que con `left-0` se
+                // salia 32px por lado y a 1280 tocaba el borde de la pantalla.
                 className={`absolute top-full pt-2 z-50 ${
-                  productPanels[activeItem.label] ? "left-0 right-0" : ""
+                  productPanels[activeItem.label]
+                    ? "left-6 right-6 sm:left-8 sm:right-8"
+                    : ""
                 }`}
                 // El panel angosto se corre hasta su trigger. Va en `left` y
                 // no en `transform` para no pisar el `y` de la animacion.
@@ -540,7 +545,10 @@ export function NavigationScroll() {
                                   )}
                                 >
                                   {/* Thumb — square plate */}
-                                  <div className="relative shrink-0 w-44 2xl:w-full aspect-square rounded-lg overflow-hidden bg-white flex items-center justify-center">
+                                  {/* Mismo gradiente de neutrales que las
+                                      tarjetas de la grilla: los PNG vienen
+                                      recortados sobre transparente. */}
+                                  <div className="relative shrink-0 w-44 2xl:w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 flex items-center justify-center">
                                     <ProductHighlightRibbon
                                       product={charger.product}
                                       className="right-2 top-2"
@@ -831,7 +839,7 @@ export function NavigationScroll() {
                                                   blurb y precio. 160px alcanza
                                                   para leer el producto sin
                                                   comerse la lista. */}
-                                                <div className="relative h-40 w-full shrink-0 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+                                                <div className="relative h-40 w-full shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 flex items-center justify-center">
                                                   <ProductHighlightRibbon
                                                     product={charger.product}
                                                     className="right-2 top-2 px-1.5 py-0.5 text-[8px]"
