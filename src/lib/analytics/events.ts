@@ -3,7 +3,7 @@
  *
  * Naming rules:
  * - snake_case, verb-noun format describing business intent
- * - Good: whatsapp_click, compatibility_search, datasheet_requested
+ * - Good: whatsapp_click, compatibility_search
  * - Bad:  button_click, click_event, green_button_pressed
  *
  * Add a new entry here before instrumenting any new touchpoint.
@@ -31,15 +31,6 @@ export type AnalyticsEventMap = {
   /** Charger page hero — primary CTA (WhatsApp buy button) */
   charger_hero_primary_cta: { charger: string; location: "desktop" | "mobile"; locale: string }
 
-  /** Charger page hero — datasheet download CTA */
-  charger_hero_datasheet_cta: { charger: string; location: "desktop" | "mobile"; locale: string }
-
-  /** Cable page hero — scrolls down to the pricing block */
-  cable_hero_price_cta: { cable: string; location: "desktop" | "mobile"; locale: string }
-
-  /** User clicked a specific compatible model card */
-  compatibility_model_selected: { brand: string; model: string; locale: string }
-
   /** User performed a compatibility search that returned results (debounced) */
   compatibility_search: {
     query: string
@@ -60,12 +51,6 @@ export type AnalyticsEventMap = {
 
   /** User collapsed the full brand/model compatibility list */
   compatibility_list_collapsed: {
-    locale: string
-  }
-
-  /** User requested a charger technical datasheet */
-  datasheet_requested: {
-    model: string
     locale: string
   }
 
@@ -99,8 +84,10 @@ export type AnalyticsEventMap = {
   /** User expanded a FAQ accordion item */
   faq_item_expanded: { category: string; question: string; question_index: number; locale: string }
 
-  /** User expanded a brand accordion in the mobile compatibility list */
-  compatibility_brand_expanded: { brand: string; locale: string }
+  /** User picked a brand in the compatibility dropdown. Breaks the snake_case
+   *  rule on purpose: one event per brand, so Vercel lists the counts directly
+   *  ("Dropdown: BYD 50") instead of behind a property filter. */
+  [name: `Dropdown: ${string}`]: { locale: string }
 
   /** User clicked a footer navigation link */
   footer_nav_clicked: { label: string; destination: string; locale: string }
@@ -113,7 +100,7 @@ export type AnalyticsEventMap = {
 
   /** User clicked a MercadoPago buy button */
   mercadopago_click: {
-    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section" | "cable_pricing_section"
+    source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section"
     charger: string
     location: "desktop" | "mobile"
     locale: string
@@ -137,26 +124,6 @@ export type AnalyticsEventMap = {
   pricing_column_toggled: {
     charger: string
     included: boolean
-    locale: string
-  }
-
-  /** User toggled the "include wallbox" switch on the cable pricing section */
-  pricing_wallbox_toggled: {
-    charger: string
-    included: boolean
-    locale: string
-  }
-
-  /** User clicked an individual review card in the social proof section */
-  social_proof_review_clicked: {
-    charger: string
-    review_id: string
-    locale: string
-  }
-
-  /** User clicked the "view all reviews" link in the social proof section */
-  social_proof_view_all_clicked: {
-    charger: string
     locale: string
   }
 

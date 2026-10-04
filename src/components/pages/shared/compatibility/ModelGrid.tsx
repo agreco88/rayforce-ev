@@ -7,16 +7,9 @@ import { useTranslations } from "next-intl";
 import { CheckIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useTrack } from "@/lib/analytics";
 
 import type { Brand } from "./compatibility.data";
 import type { Theme } from "./compatibility.theme";
-
-// OJO: no es el `WHATSAPP_NUMBER` de `lib/whatsapp.ts`, que tiene un 0 de más
-// (598092041709). Éste es el que ya usaba esta sección y el que coincide con el
-// `telephone` del schema en `layout.tsx`. Los dos conviven en el repo: unificar
-// es su propia tarea, acá se conserva el que estaba para no romper los links.
-const WHATSAPP_NUMBER = "59892041709";
 
 type Props = {
   brand: Brand | undefined;
@@ -48,15 +41,14 @@ function staggerFor(count: number) {
 }
 
 /**
- * Los modelos de la marca elegida, cada uno como un link a WhatsApp con el
- * modelo ya escrito en el mensaje.
+ * Los modelos de la marca elegida. Son informativos, no links: lo que se mide
+ * es la marca elegida en el dropdown.
  *
  * El contenedor anima su alto al cambiar de marca para que la sección no pegue
  * un salto: marcas con 11 modelos y marcas con 1 conviven en el mismo lugar.
  */
 export function ModelGrid({ brand, ui }: Props) {
   const t = useTranslations("HomePage.CompatibilitySection");
-  const track = useTrack();
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
@@ -75,15 +67,6 @@ export function ModelGrid({ brand, ui }: Props) {
 
     return () => observer.disconnect();
   }, [brand]);
-
-  function handleModelClick(brandName: string, model: string) {
-    track.compatibilityModelSelected(brandName, model);
-    track.whatsappClick({
-      source: "compatibility_model",
-      vehicle_brand: brandName,
-      vehicle_model: model,
-    });
-  }
 
   return (
     <motion.div
@@ -108,26 +91,20 @@ export function ModelGrid({ brand, ui }: Props) {
             className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3"
           >
             {brand.models.map((model) => (
-              <motion.a
+              <motion.div
                 key={model}
                 variants={pillVariants}
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                  t("whatsapp.message", { model }),
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleModelClick(brand.name, model)}
                 className="
-                  flex items-center justify-center gap-1.5
+                  flex items-center gap-1.5
                   rounded-lg border border-white/10 bg-white/[0.03]
-                  px-4 py-2 text-sm text-neutral-300
-                  transition-colors duration-200
-                  hover:border-white/20 hover:bg-white/5 hover:text-white
+                  px-3 py-2 text-sm leading-tight text-neutral-300
                 "
               >
-                <CheckIcon className={cn("size-3.5 shrink-0", ui.accentText)} />
-                <span className="truncate">{model}</span>
-              </motion.a>
+                <CheckIcon className={cn("size-3 shrink-0", ui.accentText)} />
+                {/* Sin `truncate`: un nombre largo baja de renglon antes que
+                    cortarse. */}
+                <span className="min-w-0">{model}</span>
+              </motion.div>
             ))}
           </motion.div>
         </div>

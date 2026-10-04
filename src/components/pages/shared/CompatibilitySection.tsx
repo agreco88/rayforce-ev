@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { TriangleAlert } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { cn } from "@/lib/utils";
 import { useTrack } from "@/lib/analytics";
 
+import { BrandLogo } from "./compatibility/BrandLogo";
 import { BrandSelect } from "./compatibility/BrandSelect";
 import { ModelGrid } from "./compatibility/ModelGrid";
 import { COMPATIBILITY_DATA } from "./compatibility/compatibility.data";
@@ -19,8 +20,8 @@ type Props = {
 };
 
 /**
- * Compatibilidad centrada: el título, el selector de marca y los modelos de la
- * marca elegida. La montan las páginas de cargador —teñida con el color de su
+ * Compatibilidad: el título, el selector de marca y los modelos de la marca
+ * elegida, lado a lado en desktop. La montan las páginas de cargador —teñida con el color de su
  * producto (`theme`)— y el footer de la home, arriba de su CTA.
  */
 export function CompatibilitySection({ theme, id }: Props) {
@@ -33,14 +34,16 @@ export function CompatibilitySection({ theme, id }: Props) {
 
   function handleBrandChange(name: string | null) {
     setSelectedBrand(name);
-    if (name) track.compatibilityBrandExpanded(name);
+    if (name) track.compatibilityBrandSelected(name);
   }
 
   return (
     <section
       id={id}
-      className="relative scroll-mt-24 overflow-hidden bg-neutral-950 px-6 pt-24 pb-24 sm:px-8 sm:pt-32 sm:pb-32"
+      className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-[#0f0f0f] pt-24 pb-24 sm:border-y-0 sm:bg-neutral-950 sm:px-8 sm:pt-32 sm:pb-32"
     >
+      {/* En mobile la seccion ES la caja: #0f0f0f es el neutral-950 con el
+          white/[0.02] de la caja encima, ya resuelto. */}
       {/* El mismo fondo que el resto de las secciones. `lineThickness` 2 y no
           el 1 por defecto: es el grosor que ya tenía esta sección. */}
       <GridBackground
@@ -54,54 +57,69 @@ export function CompatibilitySection({ theme, id }: Props) {
       {/* Carril del header: el padding afuera del `max-w`, asi el contenido
           mide 1440 limpios. El `container` de Tailwind v4 no trae padding
           propio, asi que el gutter va explicito. */}
-      <div className="relative z-10 px-6 sm:px-8">
-        <div className="mx-auto w-full max-w-[1440px]">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className={cn("text-sm tracking-[0.25em] uppercase", ui.accentText)}>
+      <div className="relative z-10 sm:px-8">
+        {/* Todo en una caja: separados, el dropdown y los modelos no se leian
+            como parte de lo mismo. 50/50 en desktop, apilado en mobile, donde
+            la caja se disuelve en la seccion y queda el gutter de la ficha. */}
+        <div className="relative mx-auto grid w-full max-w-[1440px] gap-8 overflow-hidden px-6 sm:rounded-2xl sm:border sm:border-white/10 sm:bg-white/[0.02] sm:p-8 lg:grid-cols-2 lg:gap-0 lg:p-12">
+          {/* La marca elegida de marca de agua, cortada por la esquina de la
+              caja. `popLayout`: la que sale no empuja a la que entra. Solo desktop:
+              en mobile no queda lugar libre y se perdia atras del texto. */}
+          <AnimatePresence mode="popLayout" initial={false}>
+            {selectedBrand && (
+              <motion.div
+                key={selectedBrand}
+                aria-hidden="true"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 0.06, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="pointer-events-none absolute -top-10 -right-16 hidden text-white lg:block"
+              >
+                <BrandLogo name={selectedBrand} className="block h-56 w-96" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Centrada en alto: los modelos cambian de largo segun la marca y
+              el titulo acompaña en vez de quedar arriba solo. */}
+          <div className="relative lg:self-center lg:pr-16">
+            <p className={cn("section-eyebrow", ui.accentText)}>
               {t("header.eyebrow")}
             </p>
 
-            <h2 className="mt-4 text-4xl tracking-tight sm:text-6xl">
+            <h2 className="section-title mt-4">
               {t("header.title")}
             </h2>
 
-            <p className="mt-6 text-lg text-neutral-400">
+            <p className="mt-6 section-subtitle">
               {t("header.description")}
             </p>
+          </div>
 
-            <div className="mx-auto mt-10 max-w-[13rem]">
-              <BrandSelect
-                value={selectedBrand}
-                onValueChange={handleBrandChange}
-                ui={ui}
-              />
+          {/* El dropdown encabeza los modelos que filtra: asi se ve que
+              cambiarlo cambia la lista. El separador es horizontal en mobile y
+              vertical en desktop. */}
+          <div className="relative flex flex-col gap-8 border-t border-white/10 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">
+            <div className="flex flex-col gap-3">
+              <span
+                id="compatibility-brand-label"
+                className="text-sm font-medium text-white"
+              >
+                {t("selectLabel")}
+              </span>
+              {/* Ancho completo en mobile: es el unico control de la seccion y
+                  va a dedo. */}
+              <div className="w-full lg:max-w-[16rem]">
+                <BrandSelect
+                  value={selectedBrand}
+                  onValueChange={handleBrandChange}
+                  ui={ui}
+                  labelId="compatibility-brand-label"
+                />
+              </div>
             </div>
-          </div>
-
-          <div
-            className={cn(
-              "mx-auto mt-14 mb-10 h-[2px] max-w-3xl bg-gradient-to-r opacity-50",
-              ui.gradientLine,
-            )}
-          />
-
-          {/* `text-center` acá y no en la grilla: es el layout centrado el que
-              quiere el label y las pills al medio, no la grilla en sí. */}
-          <div className="mx-auto max-w-3xl text-center">
             <ModelGrid brand={brand} ui={ui} />
-          </div>
-
-          {/* La tabla lista los modelos compatibles, pero la potencia real la fija
-              el cargador interno de cada auto: el aviso va debajo de la grilla
-              para que se lea despues de haber visto el modelo propio. */}
-          <div className="mx-auto mt-10 flex max-w-3xl items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/5 px-5 py-4 text-left">
-            <TriangleAlert
-              className="mt-0.5 size-4 shrink-0 text-amber-400"
-              aria-hidden="true"
-            />
-            <p className="text-sm leading-relaxed text-neutral-400">
-              {t("disclaimer")}
-            </p>
           </div>
         </div>
       </div>

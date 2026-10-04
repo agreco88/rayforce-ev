@@ -40,20 +40,6 @@ export function useTrack() {
       trackEvent("charger_hero_primary_cta", { charger, location, locale });
     },
 
-    chargerHeroDatasheet(charger: string, location: "desktop" | "mobile") {
-      trackEvent("charger_hero_datasheet_cta", { charger, location, locale });
-    },
-
-    /** El CTA del hero de cables baja al bloque de precio: no es una compra
-     *  todavia, la salida a MercadoPago o WhatsApp se decide alla. */
-    cableHeroPrice(cable: string, location: "desktop" | "mobile") {
-      trackEvent("cable_hero_price_cta", { cable, location, locale });
-    },
-
-    compatibilityModelSelected(brand: string, model: string) {
-      trackEvent("compatibility_model_selected", { brand, model, locale });
-    },
-
     compatibilitySearch(query: string, results_count: number) {
       trackEvent("compatibility_search", { query, results_count, locale });
     },
@@ -68,10 +54,6 @@ export function useTrack() {
 
     compatibilityListCollapsed() {
       trackEvent("compatibility_list_collapsed", { locale });
-    },
-
-    datasheetRequested(model: string) {
-      trackEvent("datasheet_requested", { model, locale });
     },
 
     navLinkClicked(label: string, destination: string) {
@@ -114,8 +96,8 @@ export function useTrack() {
       trackEvent("faq_item_expanded", { category, question, question_index, locale });
     },
 
-    compatibilityBrandExpanded(brand: string) {
-      trackEvent("compatibility_brand_expanded", { brand, locale });
+    compatibilityBrandSelected(brand: string) {
+      trackEvent(`Dropdown: ${brand}`, { locale });
     },
 
     footerNavClicked(label: string, destination: string) {
@@ -131,7 +113,7 @@ export function useTrack() {
     },
 
     mercadopagoClick(params: {
-      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section" | "cable_pricing_section";
+      source: "comparison_table" | "charger_hero" | "charger_comparison" | "stand" | "cable_hero" | "charger_pricing_section";
       charger: string;
       location: "desktop" | "mobile";
     }) {
@@ -148,14 +130,6 @@ export function useTrack() {
 
     pricingColumnToggled(charger: string, included: boolean) {
       trackEvent("pricing_column_toggled", { charger, included, locale });
-    },
-
-    pricingWallboxToggled(cable: string, included: boolean) {
-      trackEvent("pricing_wallbox_toggled", { charger: cable, included, locale });
-    },
-
-    socialProofReviewClicked(charger: string, review_id: string) {
-      trackEvent("social_proof_review_clicked", { charger, review_id, locale });
     },
 
     publicChargingCableCta(params: {
