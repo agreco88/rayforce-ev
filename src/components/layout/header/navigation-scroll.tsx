@@ -1,55 +1,33 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import { ArrowRight, ChevronDown, ChevronRight, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
-import { GradientText } from "@/components/animated/GradientText";
-import {
-  ProductHighlightRibbon,
-  getHighlightBorderStyle,
-} from "@/components/catalog/ProductHighlightRibbon";
+import { ProductCard } from "@/components/catalog/product-card/ProductCard";
+import type { ProductCardData } from "@/components/catalog/product-card/types";
+import { useCableCardData } from "@/components/catalog/product-card/adapters/useCableCardData";
+import { useStandCardData } from "@/components/catalog/product-card/adapters/useStandCardData";
+import { useChargerCardData } from "@/components/catalog/product-card/adapters/useChargerCardData";
 import HeaderLogo from "./header-logo";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { Link } from "@/i18n/navigation";
 import {
   getCableProducts,
-  getCatalogPowerLabel,
   getChargerProducts,
-  getPowerLabel,
-  getProductImageScaleStyle,
 } from "@/lib/catalog/catalog.helpers";
-import type { CatalogProduct } from "@/lib/catalog/catalog.types";
 
 interface DropdownItem {
   title: string;
   description: string;
   badge?: string;
-  href: string;
-}
-
-/** Card de producto del panel ancho: sirve tanto para cargadores como para cables. */
-interface ProductPanelItem {
-  slug: string;
-  image: string;
-  title: string;
-  /** El titulo sin la potencia concatenada; el acordeon mobile la pinta aparte. */
-  baseTitle: string;
-  description: string;
-  power: string;
-  modelCode: string;
-  price: number;
-  accentText: string;
-  gradientColors: readonly [string, string, string];
-  product: CatalogProduct;
   href: string;
 }
 
@@ -187,73 +165,15 @@ export function NavigationScroll() {
     setHidden(current > previous && current > 150);
   });
 
-  const t = useTranslations("HomePage.HomeChargersSection");
-  const tCables = useTranslations("CablesPage.ProductCard");
-  const tCableShop = useTranslations("CablesPage.ShopCard");
   const tNav = useTranslations("Layout.Header.nav");
-  const locale = useLocale();
-  const chargers = getChargerProducts();
-  const cables = getCableProducts();
-
-  /** Real catalog products, rendered as thumb + title + blurb cards. */
-  const chargerItems = chargers.map((product) => {
-    const power = getPowerLabel(product, locale);
-
-    return {
-      slug: product.slug,
-      image: product.cardImage,
-      // La potencia se agrega acá y no en los mensajes: el mismo `title` lo
-      // comparten la grilla, el carrusel y las tablas de comparación, donde
-      // el kW ya aparece por separado. Acá es el texto del link, así que
-      // suma para SEO y desambigua los dos modelos de 7kW.
-      title: `${t(`chargers.${product.slug}.title`)} de ${power}`,
-      // El mismo titulo sin la potencia pegada. El acordeon mobile la pinta
-      // aparte, al final de la linea: concatenada quedaba dos veces en la
-      // misma card (una en el titulo, otra en el bloque de kW).
-      baseTitle: t(`chargers.${product.slug}.title`),
-      description: t(`chargers.${product.slug}.blurb`),
-      power,
-      modelCode: product.modelCode,
-      price: product.price.amount,
-      accentText: product.theme.accentText,
-      gradientColors: product.theme.gradientColors,
-      // El producto entero viaja con el item para que la card lea `highlight`.
-      product,
-      href: `/cargadores/${product.slug}`,
-    };
-  });
-
-  /** Cables del catalogo, con la misma forma de card que los cargadores. */
-  const cableItems = cables.map((product) => ({
-    slug: product.slug,
-    // A diferencia de los cargadores, el heroImage del catalogo si es la foto.
-    image: product.heroImage,
-    // Mismo titulo largo que el <h3> de las cards de /cables, en vez del label
-    // corto ("Cable 7kW"): el panel muestra tipo + potencia + fase completos.
-    title: tCableShop(
-      `type.${product.specs.cableStyle}.${product.specs.phaseType ?? "single"}`,
-      { power: product.specs.maxPowerKw ?? 7 },
-    ),
-    // Los cables no concatenan la potencia, asi que el titulo del acordeon es
-    // el mismo — el campo existe para que las dos listas compartan forma.
-    baseTitle: tCableShop(
-      `type.${product.specs.cableStyle}.${product.specs.phaseType ?? "single"}`,
-      { power: product.specs.maxPowerKw ?? 7 },
-    ),
-    description: tCables(`variants.${product.slug}.description`),
-    power: getCatalogPowerLabel(product, locale),
-    modelCode: product.modelCode,
-    price: product.price.amount,
-    accentText: product.theme.accentText,
-    gradientColors: product.theme.gradientColors,
-    product,
-    href: `/cables/${product.slug}`,
-  }));
+  const toChargerCard = useChargerCardData();
+  const toCableCard = useCableCardData();
+  const column = useStandCardData();
 
   /** Items del nav que renderizan la grilla de productos en vez de la lista simple. */
-  const productPanels: Record<string, ProductPanelItem[]> = {
-    "Cargadores Wallbox": chargerItems,
-    Accesorios: cableItems,
+  const productPanels: Record<string, ProductCardData[]> = {
+    "Cargadores Wallbox": getChargerProducts().map(toChargerCard),
+    Accesorios: [...getCableProducts().map(toCableCard), column],
   };
 
   const navItems: NavItem[] = [
@@ -268,7 +188,7 @@ export function NavigationScroll() {
     {
       label: "Accesorios",
       dropdown: {
-        title: "CABLES DE CARGA RAYFORCE",
+        title: "ACCESORIOS PARA TU CARGADOR",
         // Rendered from `cableItems` instead of this list — see the panel below.
         items: [],
       },
@@ -526,86 +446,27 @@ export function NavigationScroll() {
                           // cortaria la propagacion del stagger y las cards
                           // no lo heredarian.
                           <motion.div className="grid grid-cols-2 2xl:grid-cols-4 gap-4 px-5 pb-4 w-full">
-                            {productPanels[activeItem.label].map((charger) => (
+                            {productPanels[activeItem.label].map((card) => (
                               <motion.div
-                                key={charger.slug}
+                                key={card.id}
                                 variants={panelChildVariants}
                               >
-                                <Link
-                                  href={charger.href}
+                                <ProductCard
+                                  {...card}
+                                  // En los cargadores el kW va pegado al
+                                  // titulo: es el texto del link, suma para
+                                  // SEO y desambigua los dos de 7kW.
+                                  fullTitle={
+                                    activeItem.label === "Cargadores Wallbox"
+                                      ? `${card.fullTitle} de ${card.titleAccent}`
+                                      : card.fullTitle
+                                  }
+                                  variant={{
+                                    base: "horizontal-4",
+                                    "2xl": "vertical-3",
+                                  }}
                                   onClick={closeDropdown}
-                                  className="group flex 2xl:flex-col gap-5 rounded-xl border border-neutral-200 dark:border-neutral-800 p-5 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors h-full"
-                                  style={getHighlightBorderStyle(
-                                    charger.product,
-                                  )}
-                                >
-                                  {/* Thumb — square plate */}
-                                  {/* Mismo gradiente de neutrales que las
-                                      tarjetas de la grilla: los PNG vienen
-                                      recortados sobre transparente. */}
-                                  <div className="relative shrink-0 w-44 2xl:w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 flex items-center justify-center">
-                                    <ProductHighlightRibbon
-                                      product={charger.product}
-                                      className="right-2 top-2"
-                                    />
-                                    <Image
-                                      src={charger.image}
-                                      alt=""
-                                      width={352}
-                                      height={352}
-                                      style={getProductImageScaleStyle(
-                                        charger.product,
-                                      )}
-                                      className="h-full w-full object-contain scale-[var(--product-image-scale)]"
-                                    />
-                                  </div>
-
-                                  {/* Info */}
-                                  <div className="min-w-0 flex-1 flex flex-col">
-                                    <span className="text-xs font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-                                      {charger.modelCode}
-                                    </span>
-
-                                    {/* Alto mínimo en líneas para que los kW arranquen a la
-                                        misma altura en todas las tarjetas */}
-                                    <h3 className="mt-2 min-h-[2.5rem] 2xl:min-h-[3.25rem] text-sm font-medium tracking-tight text-neutral-900 dark:text-neutral-100 leading-snug">
-                                      {charger.title}
-                                    </h3>
-
-                                    {/* Power — big, under the title */}
-                                    <GradientText
-                                      colors={charger.gradientColors}
-                                      className="text-4xl font-thin tracking-tight"
-                                    >
-                                      {charger.power}
-                                    </GradientText>
-
-                                    <p className="mt-2 mb-2 min-h-[2.5rem] 2xl:min-h-[3.75rem] max-w-xs text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                                      {charger.description}
-                                    </p>
-
-                                    {/* Price + CTA */}
-                                    <div className="mt-auto pt-3 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between gap-4">
-                                      <GradientText
-                                        colors={charger.gradientColors}
-                                        className="text-2xl font-thin tracking-tighter"
-                                      >
-                                        USD {charger.price}
-                                      </GradientText>
-
-                                      <span
-                                        className={`inline-flex items-center gap-1.5 text-xs font-medium ${charger.accentText}`}
-                                        aria-hidden="true"
-                                      >
-                                        Más información
-                                        <ArrowRight
-                                          size={14}
-                                          className="transition-transform duration-300 group-hover:translate-x-0.5"
-                                        />
-                                      </span>
-                                    </div>
-                                  </div>
-                                </Link>
+                                />
                               </motion.div>
                             ))}
                           </motion.div>
@@ -789,9 +650,9 @@ export function NavigationScroll() {
                                   >
                                     {productPanels[item.label]
                                       ? productPanels[item.label].map(
-                                          (charger, idx) => (
+                                          (card, idx) => (
                                             <motion.div
-                                              key={charger.slug}
+                                              key={card.id}
                                               initial={{ opacity: 0, x: -10 }}
                                               animate={{ opacity: 1, x: 0 }}
                                               transition={{
@@ -805,165 +666,14 @@ export function NavigationScroll() {
                                                una fila quedan desparejas. */
                                               className="h-full"
                                             >
-                                              <Link
-                                                href={charger.href}
+                                              <ProductCard
+                                                {...card}
+                                                variant="vertical-1"
                                                 onClick={() => {
                                                   setIsMobileMenuOpen(false);
                                                   setMobileExpandedItem(null);
                                                 }}
-                                                /* Apilada, no en fila: la card
-                                                 mide ~280px y el thumb de
-                                                 96px le dejaba al titulo solo
-                                                 ~160px, que es lo que lo
-                                                 empujaba a 4 lineas — y ese
-                                                 alto era el que estiraba la
-                                                 plancha. Arriba y a todo el
-                                                 ancho, la foto respira y el
-                                                 titulo entra en 2 lineas. */
-                                                className="flex h-full flex-col gap-3 p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
-                                                style={getHighlightBorderStyle(
-                                                  charger.product,
-                                                )}
-                                              >
-                                                {/* Alto fijo en vez de
-                                                  `aspect-square`: a todo el
-                                                  ancho, cuadrada daria ~280px
-                                                  de plancha para un item de
-                                                  acordeon que ya viene
-                                                  acompaniado de titulo, kW,
-                                                  blurb y precio. 160px alcanza
-                                                  para leer el producto sin
-                                                  comerse la lista. */}
-                                                <div className="relative h-40 w-full shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 flex items-center justify-center">
-                                                  <ProductHighlightRibbon
-                                                    product={charger.product}
-                                                    className="right-2 top-2 px-1.5 py-0.5 text-[8px]"
-                                                  />
-                                                  <Image
-                                                    src={charger.image}
-                                                    alt=""
-                                                    width={320}
-                                                    height={320}
-                                                    style={getProductImageScaleStyle(
-                                                      charger.product,
-                                                    )}
-                                                    className="h-full w-full object-contain scale-[var(--product-image-scale)]"
-                                                  />
-                                                </div>
-                                                <div className="flex min-w-0 flex-col">
-                                                  <span className="text-[10px] font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-                                                    {charger.modelCode}
-                                                  </span>
-                                                  {/* `normal-case` explicito: el
-                                                    `h3` de `globals.css:153`
-                                                    aplica `uppercase` a todos
-                                                    los h3 del sitio. En
-                                                    versalitas y a 175px de
-                                                    ancho, "WALLBOX RESIDENCIAL
-                                                    MONOFASICO CON CABLE
-                                                    INTEGRADO" son 4 lineas de
-                                                    bloque solido: el ojo
-                                                    pierde la forma de cada
-                                                    palabra y no hay donde
-                                                    engancharse.
-
-                                                    Sin versalitas el texto se
-                                                    lee de un saque, asi que
-                                                    entra a `text-xs` sin
-                                                    perder legibilidad. */}
-                                                  {/* La potencia cierra la misma
-                                                    linea en vez de ocupar su
-                                                    propio bloque de 3xl. El
-                                                    gradiente ya la despega de
-                                                    todo lo demas; el tamaño
-                                                    grande encima la hacia
-                                                    pelear con el titulo por
-                                                    ser lo primero que se mira,
-                                                    y ademas repetia los kW que
-                                                    el titulo ya traia pegados
-                                                    (por eso `baseTitle`). */}
-                                                  {/* `text-[13px]` + `leading-relaxed`
-                                                    + `py-1`: a `text-xs` justo
-                                                    y con las lineas pegadas el
-                                                    titulo se leia apretado.
-                                                    Medio punto mas de cuerpo y
-                                                    aire entre lineas alcanzan
-                                                    sin sumar una linea mas. */}
-                                                  <h3 className="pt-1 text-balance pb-2.5 text-[13px] font-medium normal-case tracking-tight text-neutral-800 dark:text-neutral-200 leading-relaxed">
-                                                    {charger.baseTitle}{" "}
-                                                    <GradientText
-                                                      colors={
-                                                        charger.gradientColors
-                                                      }
-                                                      className="font-semibold whitespace-nowrap"
-                                                    >
-                                                      {charger.power}
-                                                    </GradientText>
-                                                  </h3>
-                                                  {/* Sin blurb: a 143px de
-                                                    contenido util son 5-6
-                                                    lineas de texto chico por
-                                                    card, que en un menu es mas
-                                                    de lo que nadie lee. El
-                                                    detalle esta en la pagina
-                                                    del producto.
-
-                                                    Precio y chevron vuelven a
-                                                    una fila: sin el texto
-                                                    "Mas informacion" entran
-                                                    holgados. El chevron dice
-                                                    lo mismo — la card entera
-                                                    ya es un link — y no se
-                                                    come el ancho.
-
-                                                    Precio en color plano: con
-                                                    la potencia ya pintada en
-                                                    el titulo, un segundo
-                                                    gradiente en la misma card
-                                                    le saca fuerza al primero. */}
-                                                  <div className="mt-auto flex items-end justify-between gap-2 border-t border-neutral-200 dark:border-neutral-800 pt-3">
-                                                    {/* El precio vuelve al
-                                                      gradiente y sube a `xl`:
-                                                      es el dato que cierra la
-                                                      decision. El "IVA Inc."
-                                                      sale del catalogo
-                                                      (`price.taxLabel`), no
-                                                      hardcodeado — los siete
-                                                      productos ya lo traen. */}
-                                                    <span className="flex min-w-0 flex-col">
-                                                      <GradientText
-                                                        colors={
-                                                          charger.gradientColors
-                                                        }
-                                                        className="text-xl font-light tracking-tight"
-                                                      >
-                                                        USD {charger.price}
-                                                      </GradientText>
-                                                      {charger.product.price
-                                                        .taxLabel && (
-                                                        <span className="text-[10px] font-medium tracking-wide text-neutral-500 dark:text-neutral-500">
-                                                          {
-                                                            charger.product
-                                                              .price.taxLabel
-                                                          }
-                                                        </span>
-                                                      )}
-                                                    </span>
-                                                    {/* `self-center`: con el IVA
-                                                      debajo del precio, el
-                                                      `items-end` del contenedor
-                                                      dejaba el chevron a la
-                                                      altura de la letra chica
-                                                      en vez de la del precio. */}
-                                                    <span
-                                                      className={`inline-flex size-6 shrink-0 self-center items-center justify-center rounded-full border border-current/20 ${charger.accentText}`}
-                                                      aria-hidden="true"
-                                                    >
-                                                      <ChevronRight size={14} />
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              </Link>
+                                              />
                                             </motion.div>
                                           ),
                                         )

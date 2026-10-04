@@ -54,6 +54,21 @@ No comentar lo que el código ya dice (`{/* Description */}` arriba de un `<p>`)
 
 Variantes que ya no se usan, bloques comentados "por si vuelve", constantes de features desactivadas: se borran. Está todo en git. Un switch con dos opciones donde una nunca se eligió es una sola opción más un ternario que hay que leer al pedo.
 
+**Excepción:** las variantes de los componentes de librería (`src/components/catalog/product-card/variants/`) se conservan aunque este proyecto no las use — se reusan en otros proyectos.
+
+## Productos — no reinventar la card
+
+Para mostrar productos (lista, grilla, carousel, una sola card) se usa **`ProductCollection`** o **`ProductCard`** de `src/components/catalog/product-card/`, con un adaptador que arma los datos (`useChargerCardData` para cargadores). **No crear cards de producto nuevas.** Si ninguna variante sirve, se agrega una variante ahí. Todo está en su [README](src/components/catalog/product-card/README.md).
+
+```tsx
+const toCard = useChargerCardData();
+<ProductCollection items={getChargerProducts().map(toCard)} variant="row-3" />
+```
+
+- Variantes por familia: `row-1`, `row-2`, `row-3`, `grid-1`. **Este proyecto usa `row-3`.**
+- `display`: `"list"` | `"grid"` | `"carousel"`. Por defecto sale de la familia.
+- Otro tipo de producto (cables, accesorios): un adaptador nuevo que devuelva `ProductCardData`.
+
 ## Traducciones
 
 `messages/es.json` y `messages/en.json` tienen que poder leerse de corrido. Referencia de cómo queda: `HomePage.Hero`.

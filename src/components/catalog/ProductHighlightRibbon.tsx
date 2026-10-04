@@ -5,8 +5,12 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { CatalogProduct } from "@/lib/catalog/catalog.types";
 
+/** Lo unico que usan el badge y el borde, asi sirven tambien para productos
+ * que no estan en el catalogo (armados a mano). */
+type HighlightSource = Pick<CatalogProduct, "highlight" | "theme">;
+
 type Props = {
-  product: CatalogProduct;
+  product: HighlightSource;
   className?: string;
 };
 
@@ -57,7 +61,7 @@ export function ProductHighlightRibbon({ product, className }: Props) {
  * the two-layer clip trick would fight that.
  */
 export function getHighlightBorderStyle(
-  product: CatalogProduct,
+  product: HighlightSource,
 ): React.CSSProperties | undefined {
   if (!product.highlight) return undefined;
 

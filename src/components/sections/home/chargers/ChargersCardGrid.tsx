@@ -1,21 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
-import { GradientText } from "@/components/animated/GradientText";
-import { Link } from "@/i18n/navigation";
+import { ProductCard } from "@/components/catalog/product-card/ProductCard";
+import { useChargerCardData } from "@/components/catalog/product-card/adapters/useChargerCardData";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-import {
-  getChargerProducts,
-  getPowerLabel,
-} from "@/lib/catalog/catalog.helpers";
-import {
-  ProductHighlightRibbon,
-  getHighlightBorderStyle,
-} from "@/components/catalog/ProductHighlightRibbon";
+import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
 
 type Props = {
   className?: string;
@@ -23,14 +14,14 @@ type Props = {
   excludeSlug?: string;
 };
 
-/** Product card grid shared by the home section and the /cargadores route. */
+/** Grilla de cargadores en `vertical-2`, de la home y /cargadores. Mapea a
+ * mano y no con `ProductCollection` porque cada card entra en cascada. */
 export function ChargersCardGrid({ className, excludeSlug }: Props) {
-  const t = useTranslations("HomePage.HomeChargersSection");
-  const tSpecs = useTranslations("Common.Specs");
-  const locale = useLocale();
-  const products = getChargerProducts().filter(
-    (product) => product.slug !== excludeSlug,
-  );
+  const t = useTranslations("Common.ProductCard");
+  const toCard = useChargerCardData();
+  const cards = getChargerProducts()
+    .filter((product) => product.slug !== excludeSlug)
+    .map(toCard);
 
   return (
     <motion.div
@@ -42,161 +33,17 @@ export function ChargersCardGrid({ className, excludeSlug }: Props) {
         className ?? "mx-auto grid max-w-[1600px] grid-cols-4 gap-6 px-4"
       }
     >
-      {products.map((product) => {
-        const highlights = [
-          product.specs.cableType === "socket"
-            ? tSpecs("cable.socket")
-            : tSpecs("cable.integrated"),
-          product.specs.phaseType === "single"
-            ? tSpecs("phase.single")
-            : tSpecs("phase.three"),
-          tSpecs("connector.type2"),
-          product.specs.voltage,
-          tSpecs(`tier.${product.tier}`),
-        ];
-
-        // h-full on the wrapper so it stretches to the row, letting the card's
-        // own h-full resolve — otherwise it shrinks to its content and the
-        // highlighted card's ring/glow sits lower than its neighbours.
-        return (
-          <motion.div
-            key={product.slug}
-            variants={waterfallItem}
-            className="h-full"
-          >
-            <Link
-              href={`/cargadores/${product.slug}`}
-              aria-label={`${t(`chargers.${product.slug}.title`)} ${getPowerLabel(product, locale)} — ${t("cta.moreInfo")}`}
-              className={`
-                group flex h-full flex-col items-start
-                overflow-hidden rounded-2xl border border-white/10
-                bg-neutral-950
-                transition-colors duration-300
-                ${product.theme.accentBorderHover}
-              `}
-              style={getHighlightBorderStyle(product)}
-            >
-              {/* ── Photo plate ─────────────────────────────────── */}
-              {/* 480px es la plancha de desktop; en una tarjeta de ~300px de
-                  ancho esa altura deja el producto flotando, asi que en mobile
-                  baja a 320. */}
-              {/* Gradiente de neutrales medios en vez de plancha blanca:
-                  `cardImage` es el PNG recortado sobre transparente, hecho para
-                  fondo oscuro. Diagonal para que el claro caiga arriba a la
-                  izquierda, donde ya viene la luz de las fotos, y el extremo
-                  cierre en el `neutral-950` de la card. El destacado arranca un
-                  stop mas claro y ahi se lo lleva. */}
-              <div
-                className={`relative flex h-[320px] w-full items-center justify-center overflow-hidden bg-gradient-to-br sm:h-[480px] ${
-                  product.highlight
-                    ? "from-neutral-600 via-neutral-700 to-neutral-900"
-                    : "from-neutral-700 via-neutral-800 to-neutral-900"
-                }`}
-              >
-                <ProductHighlightRibbon
-                  product={product}
-                  className="right-4 top-4"
-                />
-
-                {/* Halo difuso detras del producto: `backdrop-blur` no hace
-                    nada sobre el gradiente plano, asi que la luz se pinta. */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15),transparent_65%)] blur-2xl"
-                />
-
-                <Image
-                  src={product.cardImage}
-                  alt=""
-                  width={500}
-                  height={500}
-                  className="
-                    relative h-full w-full scale-110 object-contain
-                    transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
-                    group-hover:scale-[1.15]
-                  "
-                />
-              </div>
-
-              {/* ── Body ────────────────────────────────────────── */}
-              <div className="flex w-full flex-1 flex-col border-t border-t-white/10 px-6 pb-7 pt-6">
-                <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
-                  {product.modelCode}
-                </span>
-
-                {/* `min-h` de tres lineas, misma razon que el blurb: los
-                    titulos ocupan 2 o 3 lineas segun el modelo. */}
-                <h3 className="mt-1.5 text-base font-semibold tracking-tight text-white">
-                  {t(`chargers.${product.slug}.title`)}
-                </h3>
-
-                <GradientText
-                  colors={product.theme.gradientColors}
-                  className="mt-3 text-4xl font-thin tracking-tight"
-                >
-                  {getPowerLabel(product, locale)}
-                </GradientText>
-
-                {/* `min-h`: a cuatro columnas cada blurb ocupa distinta
-                    cantidad de lineas y sin esto la lista de bullets arranca a
-                    distinta altura en cada tarjeta. Con la seccion a 1504 la
-                    tarjeta mide 342px y al mas largo le alcanzan 3 lineas — a
-                    1440 necesitaba 4, y esa cuarta quedaba como aire muerto
-                    arriba de los bullets. */}
-                <p className="mt-3 text-sm leading-relaxed text-neutral-400 xl:min-h-[4.275rem]">
-                  {t(`chargers.${product.slug}.blurb`)}
-                </p>
-
-                <ul
-                  className="flex list-none flex-col gap-2 border-t border-neutral-800 py-6 text-left text-sm text-neutral-400"
-                  aria-label={`${t(`chargers.${product.slug}.title`)} highlights`}
-                >
-                  {highlights.map((highlight, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-2.5 first:text-neutral-200!"
-                    >
-                      <span
-                        className={`mt-[0.4375rem] size-1 shrink-0 rounded-full ${product.theme.accentBg}`}
-                        aria-hidden="true"
-                      />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Price + CTA */}
-                {/* Precio y CTA apilados: a cuatro columnas los dos en una
-                    fila no entran en la tarjeta — el precio se partia en
-                    "USD" / "597" y la flecha quedaba cortada contra el borde. */}
-                <div className="mt-auto flex flex-col items-start gap-3 border-t border-neutral-800 pt-6">
-                  <span
-                    className={`text-3xl font-thin tracking-tighter whitespace-nowrap ${product.theme.accentText}`}
-                  >
-                    USD {product.price.amount}
-                  </span>
-
-                  <span
-                    className={`
-                      inline-flex items-center gap-2 whitespace-nowrap
-                      text-sm font-medium
-                      transition-all duration-300
-                      ${product.theme.accentText}
-                    `}
-                    aria-hidden="true"
-                  >
-                    {t("cta.moreInfo")}
-                    <ArrowRight
-                      size={16}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5"
-                    />
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        );
-      })}
+      {cards.map((card) => (
+        // `h-full` para que el `h-full` de la card resuelva contra la fila:
+        // sin esto el borde del destacado queda mas abajo que los vecinos.
+        <motion.div key={card.id} variants={waterfallItem} className="h-full">
+          <ProductCard
+            {...card}
+            variant="vertical-2"
+            ariaLabel={`${card.fullTitle} ${card.titleAccent} — ${t("cta")}`}
+          />
+        </motion.div>
+      ))}
     </motion.div>
   );
 }
