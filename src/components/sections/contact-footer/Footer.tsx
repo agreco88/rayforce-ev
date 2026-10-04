@@ -1,18 +1,18 @@
 "use client";
 
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
+import { GridBeams } from "@/components/shared/backgrounds/GridBeams";
 
 import { FooterCTA } from "./FooterCTA";
 import { FooterFaq } from "./FooterFaq";
 import { FooterBrand } from "./FooterBrand";
-import {
-  FooterChargersColumn,
-  FooterCablesColumn,
-  FooterStandColumn,
-} from "./FooterNavColumn";
+import { FooterAccessoriesColumn, FooterChargersColumn } from "./FooterNavColumn";
 import { FooterContactColumn } from "./FooterContactColumn";
 import { FooterMeta } from "./FooterMeta";
 import type { CatalogTheme } from "@/lib/catalog/catalog.types";
+
+const FOOTER_GRID_MASK =
+  "radial-gradient(ellipse 80% 55% at 50% 22%, #000 30%, transparent 85%)";
 
 type Props = {
   /**
@@ -27,9 +27,9 @@ type Props = {
   /** De que ruta salio el click a WhatsApp, para analytics. */
   ctaSource?: string;
   /**
-   * Tiñe glow, eyebrow del FAQ y boton del CTA con el color del producto. Las
-   * rutas sin producto (home, listados) no lo pasan y quedan con el verde de
-   * marca, que es el default.
+   * Tiñe los trazos de la grilla, el eyebrow del FAQ y el boton del CTA con el
+   * color del producto. Las rutas sin producto (home, listados) no lo pasan y
+   * quedan con el verde de marca, que es el default.
    */
   theme?: CatalogTheme;
 };
@@ -55,24 +55,14 @@ export function Footer({
         cellSize={64}
         lineOpacity={0.3}
         className="opacity-30"
-        maskImage="radial-gradient(ellipse 80% 55% at 50% 22%, #000 30%, transparent 85%)"
+        maskImage={FOOTER_GRID_MASK}
       />
-
-      {/* Mismo degrade que el hero, pero centrado y detras del CTA: el foco es
-          el logo del medio, no una esquina. El `top` lo corre al alto del CTA —
-          anclado arriba se apagaba antes de llegar. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[900px]"
-        // Dos stops del mismo color y no uno: con el corte directo a
-        // transparente el degrade se apaga de golpe y se le ve el borde de la
-        // elipse. `glowStrong` no sirve de centro — en varios themes es otro
-        // tono, y mezclados se ve sucio.
-        style={{
-          background: `radial-gradient(ellipse 45% 38% at 50% 30%, ${
-            theme?.glow ?? "rgba(34,197,94,0.16)"
-          }, transparent 70%)`,
-        }}
+      {/* Sin glow detras del FAQ: le quedaba detras de las preguntas. La vida
+          la dan las lineas que se iluminan, con la misma grilla y mascara. */}
+      <GridBeams
+        cellSize={64}
+        color={theme?.gradientColors[1]}
+        maskImage={FOOTER_GRID_MASK}
       />
 
       <footer id="footer" className="relative z-10 px-6 text-neutral-200 sm:px-8">
@@ -105,9 +95,8 @@ export function Footer({
           />
 
           {/*
-            Cinco columnas: marca, las tres familias de producto y contacto. La
-            marca lleva el doble de ancho porque abajo del logo va el parrafo;
-            las otras cuatro son listas de links y entran parejas.
+            Cuatro columnas: marca, cargadores, accesorios y contacto. La marca
+            lleva mas ancho porque abajo del logo va el parrafo.
           */}
           <div
             className="
@@ -118,23 +107,19 @@ export function Footer({
               lg:grid-cols-12 lg:gap-8
             "
           >
-            <div className="col-span-2 md:col-span-6 lg:col-span-3">
+            <div className="col-span-2 md:col-span-6 lg:col-span-4">
               <FooterBrand />
             </div>
 
-            <div className="md:col-span-2 lg:col-span-2">
+            <div className="md:col-span-2 lg:col-span-3">
               <FooterChargersColumn />
             </div>
 
-            <div className="md:col-span-2 lg:col-span-2">
-              <FooterCablesColumn />
+            <div className="md:col-span-2 lg:col-span-3">
+              <FooterAccessoriesColumn />
             </div>
 
-            <div className="md:col-span-2 lg:col-span-2">
-              <FooterStandColumn />
-            </div>
-
-            <div className="col-span-2 md:col-span-6 lg:col-span-3">
+            <div className="col-span-2 md:col-span-2 lg:col-span-2">
               <FooterContactColumn />
             </div>
           </div>

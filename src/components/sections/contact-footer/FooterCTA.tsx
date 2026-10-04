@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
-import { CHIP_CTA_CLASS } from "@/components/layout/header/nav-chip";
 import { useTranslations } from "next-intl";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useTrack } from "@/lib/analytics";
@@ -23,7 +22,7 @@ type Props = {
 export function FooterCTA({
   namespace,
   source,
-  accentText,
+  accentText = "text-green-400",
   accentBg = "bg-[#25D366]",
   accentHover = "hover:bg-[#1EBE5B]",
 }: Props) {
@@ -35,13 +34,12 @@ export function FooterCTA({
       id="contacto"
       className="relative mx-auto max-w-2xl py-24 text-center lg:py-36"
     >
-      {/* Sin `accentText` se queda con el verde que le da el reset global. */}
-      <h3 className={accentText}>{t("eyebrow")}</h3>
+      <p className={cn("section-eyebrow", accentText)}>{t("eyebrow")}</p>
 
       {/* La marca reemplaza al titulo en todas las rutas: sigue siendo el h2 de
           la seccion, con el texto de `title` como `alt` para que el screen
           reader lea el mensaje propio de cada pagina. */}
-      <h2 className="my-8!">
+      <h2 className="mt-6 mb-0">
         {/* `invert saturate-0`: el archivo es negro, como en el header.
             El fuente es de 500x80: mostrarlo a 320px deja margen para
             pantallas 2x sin que se vea blando. Con un SVG esto no haria falta. */}
@@ -51,24 +49,27 @@ export function FooterCTA({
           width={500}
           height={80}
           quality={100}
-          className="mx-auto h-auto w-full max-w-[320px] invert saturate-0"
+          className="mx-auto h-auto w-full max-w-[240px] invert saturate-0 sm:max-w-[320px]"
         />
       </h2>
 
-      <p className="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-neutral-400">
+      <p className="mx-auto mt-6 max-w-xl section-subtitle">
         {t("description")}
       </p>
 
       <div className="mt-8 flex justify-center">
-        {/* El chip del navbar, que era el unico CTA solido del sitio: ahora que
-            el header no lo lleva, este es el que cierra toda pagina. Va con el
-            color de la ruta en vez del verde fijo. */}
+        {/* El mismo boton que el de compra del hero (`HeroCta`), con el color
+            de la ruta en vez del verde fijo. */}
         <a
           href={buildWhatsAppHref(t("whatsappMessage"))}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track.whatsappClick({ source })}
-          className={cn(CHIP_CTA_CLASS, accentBg, accentHover)}
+          className={cn(
+            "flex min-h-14 w-full max-w-xs items-center justify-center gap-2 rounded-xl text-sm font-semibold text-black transition-colors",
+            accentBg,
+            accentHover,
+          )}
         >
           <FaWhatsapp className="size-4" />
           {t("button")}

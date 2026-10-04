@@ -26,7 +26,7 @@ export function HomeLineupHelpCta({ className }: { className?: string }) {
         {t("title")}
       </p>
 
-      <p className="text-sm leading-relaxed text-neutral-400 mt-2.5">
+      <p className="mt-3 max-w-md text-base leading-relaxed text-balance text-neutral-400 sm:text-lg">
         {t("description")}
       </p>
 
@@ -35,7 +35,7 @@ export function HomeLineupHelpCta({ className }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => track.whatsappClick({ source: "home_lineup_help" })}
-        className="mt-4 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-green-400 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300"
+        className="mt-8 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-green-400 px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300"
       >
         <FaWhatsapp size={18} />
         {t("cta")}

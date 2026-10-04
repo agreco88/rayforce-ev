@@ -49,9 +49,9 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             {/* Sin animación a propósito: es el LCP y tiene que pintar de una */}
             <h1
               className="
-                max-w-[32ch]
+                max-w-[20ch]
                 bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-                bg-clip-text text-3xl font-medium leading-[1.15]
+                bg-clip-text text-3xl font-semibold leading-[1.25]
                 text-transparent
                 sm:text-4xl lg:text-5xl
               "

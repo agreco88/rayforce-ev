@@ -1,66 +1,85 @@
 import type { Review } from "./GoogleReviewCard";
 
-export const GOOGLE_REVIEWS_URL =
-  "https://www.google.com/search?q=Rayforce+Uruguay#lrd=reviews";
-
-/**
- * TODO(reviews): placeholder names/quotes/avatars until the real Google
- * Business reviews (and their individual review permalinks) are supplied.
- * Do not ship to production as-is.
- */
+/** Reseñas reales del perfil de Google, copiadas tal cual se publicaron. */
 export const REVIEWS: Review[] = [
   {
-    id: "review-1",
-    name: "Martín Ferreira",
-    initials: "MF",
+    id: "maria-paz-garay",
+    name: "María Paz Garay",
+    initials: "MG",
     rating: 5,
     quote:
-      "Instalación rápida y la app funciona diez puntos. El soporte respondió todas mis dudas antes de comprar.",
+      "quedo todo pronto en una mañana, recomendable. compatible con mi geely ex2",
     color: "bg-sky-500/15 text-sky-300",
   },
   {
-    id: "review-2",
-    name: "Lucía Gómez",
-    initials: "LG",
+    id: "juan-andres-tenaglia",
+    name: "Juan Andres Tenaglia",
+    initials: "JT",
     rating: 5,
     quote:
-      "Excelente atención de principio a fin. El cargador quedó impecable y la certificación URSEA me dio mucha tranquilidad.",
+      "Instale en el taller para mi camión de 22kw y todo perfecto por ahora gracias",
     color: "bg-cyan-500/15 text-cyan-300",
   },
   {
-    id: "review-3",
-    name: "Diego Bentancor",
-    initials: "DB",
+    id: "juan-diego-mendez",
+    name: "Juan Diego Mendez",
+    initials: "JM",
     rating: 5,
     quote:
-      "Comparé varias opciones y esta fue la mejor relación precio-calidad. Recomendado para quien recién arranca con un eléctrico.",
+      "Instalamos el cargador Rayforce en casa hace poco y la verdad que anduvo todo bien. Vinieron, revisaron el tablero, y quedó prolijo.",
     color: "bg-lime-500/15 text-lime-300",
   },
   {
-    id: "review-4",
-    name: "Valentina Rocha",
-    initials: "VR",
-    rating: 4,
+    id: "rodrigo-diaz",
+    name: "Rodrigo Diaz",
+    initials: "RD",
+    rating: 5,
     quote:
-      "Muy conformes con la instalación trifásica. Coordinaron todo por WhatsApp y cumplieron los tiempos acordados.",
+      "Instalación rápida y prolija. Nos explicaron todo el proceso antes de empezar, incluyendo el tema de la potencia contratada con UTE. Recomendado para quien tiene auto eléctrico",
     color: "bg-green-500/15 text-green-300",
   },
   {
-    id: "review-5",
-    name: "Nicolás Suárez",
-    initials: "NS",
+    id: "agustin-chicurel",
+    name: "Agustín Chicurel",
+    initials: "AC",
     rating: 5,
     quote:
-      "El monitoreo desde el celular es un golazo. Se nota que es un equipo pensado para uso real, no solo de vidriera.",
+      "Muy buena experiencia con la instalación del cargador Rayforce. Desde el primer contacto fueron claros con el presupuesto y los tiempos. La instalación quedó prolija y funcionando perfectamente desde el mismo día. Se nota que conocen el trabajo",
     color: "bg-sky-500/15 text-sky-300",
   },
   {
-    id: "review-6",
-    name: "Camila Etchart",
-    initials: "CE",
+    id: "alvaro-sanchez",
+    name: "Alvaro Sanchez",
+    initials: "AS",
+    rating: 5,
+    quote: "Lo instalaron en el garage de Punta del Este, muy prolijos. Recomendable.",
+    color: "bg-cyan-500/15 text-cyan-300",
+  },
+  {
+    id: "gabriela-delgado",
+    name: "Gabriela Delgado",
+    initials: "GD",
     rating: 5,
     quote:
-      "Desde la consulta inicial hasta el service post-venta, todo con respuestas claras y sin vueltas. Lo recomiendo sin dudar.",
-    color: "bg-cyan-500/15 text-cyan-300",
+      "Excelente atención y asesoramiento. Respuesta rápida, y ante cualquier duda que tuve siempre súper amables y rápida respuesta. Muchas gracias!",
+    color: "bg-lime-500/15 text-lime-300",
+  },
+  {
+    id: "gonzalo-pascual",
+    name: "Gonzalo Pascual",
+    initials: "GP",
+    rating: 5,
+    quote:
+      "Excelente experiencia con Rayforce. Compré un cargador para mi auto eléctrico y quedé muy conforme, tanto con el producto como con el servicio.",
+    color: "bg-green-500/15 text-green-300",
+  },
+  {
+    id: "armando-manuel-acosta-y-lara",
+    name: "Armando Manuel Acosta y Lara",
+    initials: "AA",
+    rating: 5,
+    quote:
+      "Muy prolija instalación y servicio. El muchacho estaba dispuesto a resolver todas las dudas que tuvimos. Funciona de maravilla",
+    color: "bg-sky-500/15 text-sky-300",
   },
 ];

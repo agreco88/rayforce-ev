@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 
 html {
+  /* Todo el sitio está en rem: 90% achica la escala entera sin mover los breakpoints */
+  font-size: 100%;
   scroll-behavior: smooth;
   color-scheme: dark;
 }
@@ -189,10 +191,40 @@ html {
   }
 }
 
-/* El contenedor que abre una pagina de producto o de listado. Fija el ancho,
-   el padding lateral y el offset superior para que el breadcrumb caiga en el
-   mismo pixel en /cargadores, /cables y los dos detalles: sin esto cada hero
-   repetia los valores y se desalineaban de a uno. */
+/* El carril del header (`navigation-scroll.tsx`) en un solo elemento: el
+   header pone el padding afuera y el `max-w-[1440px]` adentro, asi que aca el
+   max-w suma el padding para que el contenido mida lo mismo y arranque donde
+   el logo. */
+@utility header-rail {
+  @apply w-full mx-auto px-6 max-w-[calc(1440px+3rem)] sm:px-8 sm:max-w-[calc(1440px+4rem)];
+}
+
+/* El header de seccion: eyebrow → titulo (`mt-4`) → bajada (`mt-6 section-subtitle`).
+   `section-title` es el h2 de cada seccion; `block-title`, un escalon abajo,
+   el de un bloque adentro de una seccion (h3, o h2 si va en el hero). Pisan el
+   `mb-6` del reset de h2 y el uppercase verde del de h3. */
+@utility section-eyebrow {
+  @apply block text-sm tracking-[0.25em] uppercase;
+}
+
+@utility section-title {
+  @apply mb-0 text-3xl font-light tracking-tight text-balance text-white normal-case sm:text-4xl;
+}
+
+@utility block-title {
+  @apply mb-0 text-2xl font-light tracking-tight text-balance text-white normal-case sm:text-3xl;
+}
+
+/* `text-base` en mobile: con `text-lg` la bajada quedaba mas grande que la
+   descripcion del hero. */
+@utility section-subtitle {
+  @apply text-base leading-relaxed text-pretty text-neutral-400 sm:text-lg;
+}
+
+/* El contenedor que abre una pagina de producto o de listado: el carril del
+   header mas el offset superior, para que el breadcrumb caiga en el mismo
+   pixel en /cargadores, /accesorios y los dos detalles. Los heroes de detalle
+   repiten el `pt-28 sm:pt-38` a mano: si cambia aca, cambia alla. */
 @utility page-shell {
-  @apply w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-16 2xl:px-0 pt-28 sm:pt-58;
+  @apply header-rail pt-28 sm:pt-38;
 }

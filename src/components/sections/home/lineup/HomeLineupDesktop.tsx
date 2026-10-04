@@ -83,10 +83,10 @@ export function HomeLineupDesktop() {
           <ChargersCardGrid className="mt-8 grid grid-cols-4 gap-6" />
         </div>
 
-        {/* `mt-4` sobre el `gap-12` del contenedor: el CTA cierra la seccion y
+        {/* `mt-12` sobre el `gap-12` del contenedor: el CTA cierra la seccion y
             no es un bloque mas de la lista, necesita despegarse de la grilla
             mas que lo que se separan los bloques entre si. */}
-        <HomeLineupHelpCta className="mt-4" />
+        <HomeLineupHelpCta className="mt-12" />
       </div>
     </div>
   );

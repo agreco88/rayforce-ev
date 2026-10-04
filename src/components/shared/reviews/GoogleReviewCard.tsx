@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { ExternalLink, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -18,62 +18,31 @@ export type Review = {
 
 type Props = {
   review: Review;
-  href: string;
-  /** Clase de acento para el overlay de hover. */
-  accentText: string;
   /** Escalona la entrada de la grilla. */
   delay?: number;
-  onClick?: () => void;
 };
 
-/**
- * Una reseña de Google. La tarjeta entera es el link a la reseña en Google,
- * con un overlay que aparece en hover — sin CTA propio, para no repetir seis
- * veces el mismo boton dentro de la grilla.
- */
-export function GoogleReviewCard({
-  review,
-  href,
-  accentText,
-  delay = 0,
-  onClick,
-}: Props) {
+/** Una reseña de Google. */
+export function GoogleReviewCard({ review, delay = 0 }: Props) {
   const t = useTranslations("Common.Reviews");
 
   return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={onClick}
+    <motion.article
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ delay }}
-      whileHover={{ y: -4 }}
-      className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left transition-colors duration-300",
-        "hover:border-white/20 hover:bg-white/[0.05]",
-      )}
+      className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left"
     >
       <div
-        className={cn(
-          "pointer-events-none absolute inset-0 z-10 flex items-center justify-center gap-2 bg-black/70 opacity-0 backdrop-blur-sm transition-opacity duration-300",
-          "group-hover:opacity-100 group-focus-visible:opacity-100",
-        )}
+        className="flex items-center gap-0.5"
+        role="img"
+        aria-label={`${review.rating}/5`}
       >
-        <span
-          className={cn("flex items-center gap-2 text-sm font-medium", accentText)}
-        >
-          {t("viewReview")}
-          <ExternalLink className="h-4 w-4" />
-        </span>
-      </div>
-
-      <div className="flex items-center gap-0.5">
         {Array.from({ length: 5 }).map((_, starIndex) => (
           <Star
             key={starIndex}
+            aria-hidden="true"
             className={cn(
               "h-4 w-4",
               starIndex < review.rating
@@ -105,6 +74,6 @@ export function GoogleReviewCard({
           <p className="text-xs text-neutral-500">{t("source")}</p>
         </div>
       </div>
-    </motion.a>
+    </motion.article>
   );
 }

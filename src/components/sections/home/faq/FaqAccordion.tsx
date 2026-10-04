@@ -41,7 +41,9 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
         collapsible
         value={openValue}
         onValueChange={handleValueChange}
-        className="flex flex-col"
+        // Caja opaca: sin fondo, los divisores se cruzaban con las lineas de la
+        // grilla del footer. En mobile, a sangre como la ficha del hero.
+        className="flex flex-col overflow-hidden border-y border-white/10 bg-neutral-900 sm:rounded-2xl sm:border"
       >
         {items.map((item, i) => (
           <FaqRow
@@ -92,8 +94,8 @@ function FaqRow({
         <Accordion.Trigger
           className="
             group flex w-full cursor-pointer items-start justify-between gap-6
-            py-5 text-left outline-none
-            focus-visible:ring-2 focus-visible:ring-green-400/40
+            px-6 py-5 text-left outline-none sm:px-7
+            focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-400/40
           "
         >
           <span
@@ -129,7 +131,7 @@ function FaqRow({
               opacity: isOpen ? 1 : 0,
               filter: isOpen ? "blur(0px)" : "blur(2px)",
             }}
-            className="max-w-[60ch] pr-10 pb-6 text-sm leading-relaxed text-neutral-400"
+            className="max-w-[60ch] pb-6 pl-6 pr-16 text-sm leading-relaxed text-neutral-400 sm:pl-7"
           >
             {item.answer}
           </motion.p>

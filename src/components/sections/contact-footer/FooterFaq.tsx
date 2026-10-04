@@ -40,26 +40,29 @@ export function FooterFaq({
       // casi 300px de aire entre los dos.
       className="mx-auto w-full max-w-3xl pt-24 lg:pt-36"
     >
-      {/* Encabezado centrado como el del CTA: ahora son el mismo bloque de
-          cierre y alineados distinto se leian como dos secciones sueltas. */}
+      {/* Centrado desde `sm`, como el CTA: son el mismo bloque de cierre. En
+          mobile, a la izquierda como el resto de las secciones. */}
       <motion.div
         variants={waterfallItem}
-        className="mx-auto max-w-3xl text-center"
+        className="mx-auto max-w-3xl sm:text-center"
       >
-        <p className={`text-sm uppercase tracking-[0.35em] ${accentText}`}>
+        <p className={`section-eyebrow ${accentText}`}>
           {t("eyebrow")}
         </p>
 
-        <h2 className="mt-4 text-4xl font-medium text-white sm:text-5xl">
+        <h2 className="section-title mt-4">
           {t("title")}
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-400">
+        <p className="mx-auto mt-6 max-w-2xl section-subtitle">
           {t("description")}
         </p>
       </motion.div>
 
-      <motion.div variants={waterfallItem} className="mt-10 lg:mt-14">
+      <motion.div
+        variants={waterfallItem}
+        className="-mx-6 mt-12 sm:mx-0 lg:mt-14"
+      >
         <FaqAccordion items={items} />
       </motion.div>
     </motion.div>

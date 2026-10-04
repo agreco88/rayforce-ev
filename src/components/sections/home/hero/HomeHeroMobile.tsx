@@ -38,7 +38,7 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           <h1
             className="
               bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-              bg-clip-text text-[1.35rem] font-medium leading-[1.2]
+              bg-clip-text text-[1.35rem] font-semibold leading-[1.2]
               text-transparent
               md:text-4xl md:leading-[1.25]
             "

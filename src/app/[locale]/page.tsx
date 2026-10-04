@@ -133,12 +133,11 @@ export default async function HomePage({ params }: Props) {
         {/* <HomeChargersSection id="cargadores" /> */}
 
         <HomeLineupSection id="cargadores" />
-
-        <HomeStandSection id="columna" />
-        {/* Despues del lineup y antes de los cables: se elige equipo, se
-            chequea que sirva para el auto propio y recien ahi sigue. */}
-        <CompatibilitySection id="compatibilidad" />
         <PublicChargingCableSection id="cables-carga-publica" />
+        <HomeStandSection id="columna" />
+        {/* Justo antes del cierre: se chequea que sirva para el auto propio
+            y ahi ya aparecen el FAQ y el CTA. */}
+        <CompatibilitySection id="compatibilidad" />
         <Footer faqNamespace="HomePage.Faq" faqId="faq" />
       </Suspense>
       <ScrollDepthTracker page="home" />

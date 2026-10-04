@@ -5,17 +5,17 @@ import { Zap, Plug, Clock, type LucideIcon } from "lucide-react";
 
 import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
 import { CarouselCard } from "@/components/shared/carousel/CarouselCard";
-import { ChargerCompactCard } from "@/components/catalog/ChargerCompactCard";
+import { ProductCollection } from "@/components/catalog/product-card/ProductCollection";
+import { useChargerCardData } from "@/components/catalog/product-card/adapters/useChargerCardData";
 import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
 import { HomeLineupHelpCta } from "./HomeLineupHelpCta";
 
 const GUIDE_ICONS: LucideIcon[] = [Zap, Plug, Clock];
 
 /**
- * Version mobile del lineup: header apilado, la grilla de productos en
- * 2 columnas con la tarjeta chica del header (`ChargerCompactCard`), y los
- * tres tips de la guia en carousel — a un tercio de ancho no entran en fila
- * como en desktop.
+ * Version mobile del lineup: header apilado, los modelos en filas
+ * (`ProductCollection` en `horizontal-3`) y los tres tips de la guia en carousel — a
+ * un tercio de ancho no entran en fila como en desktop.
  */
 export function HomeLineupMobile() {
   const t = useTranslations("HomePage.Lineup");
@@ -23,7 +23,7 @@ export function HomeLineupMobile() {
     title: string;
     description: string;
   }[];
-  const products = getChargerProducts();
+  const toCard = useChargerCardData();
 
   return (
     /* `pb` mas bajo que el `pt` por la misma razon que en desktop: abajo
@@ -61,22 +61,23 @@ export function HomeLineupMobile() {
         />
       </div>
 
-      {/* NUESTROS MODELOS — 2 columnas con la card chica del header. */}
+      {/* NUESTROS MODELOS — una fila por modelo: son cuatro y se comparan
+          mejor en columna que en una grilla de 2 a medio ancho. */}
       <div className="mt-10">
         <h3 className="text-2xl font-light normal-case tracking-tight text-white">
           {t("gridTitle")}
         </h3>
 
-        <div className="mt-6 grid grid-cols-2 gap-4">
-          {products.map((product) => (
-            <ChargerCompactCard key={product.slug} product={product} />
-          ))}
-        </div>
+        <ProductCollection
+          items={getChargerProducts().map(toCard)}
+          variant="horizontal-3"
+          className="mt-6"
+        />
       </div>
 
       {/* Un escalon mas que el `mt-10` entre bloques: el CTA cierra la seccion
           y tiene que despegarse de la grilla. */}
-      <HomeLineupHelpCta className="mt-14" />
+      <HomeLineupHelpCta className="mt-20" />
     </div>
   );
 }
