@@ -160,16 +160,16 @@ export function ChargerPricingSection({ product, id }: Props) {
         >
           <p
             className={cn(
-              "text-sm uppercase tracking-[0.35em]",
+              "section-eyebrow",
               theme.accentText,
             )}
           >
             {t("eyebrow")}
           </p>
-          <h2 className="mt-4 text-4xl font-medium text-white sm:text-5xl">
+          <h2 className="section-title mt-4">
             {t("title")}
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-400">
+          <p className="mx-auto mt-6 max-w-2xl section-subtitle">
             {t("subtitle")}
           </p>
         </motion.div>
@@ -477,10 +477,8 @@ export function ChargerPricingSection({ product, id }: Props) {
         />
 
         <GoogleReviewsBlock
+          compact
           accentText={theme.accentText}
-          onReviewClick={(reviewId) =>
-            track.socialProofReviewClicked(product.slug, reviewId)
-          }
           className="mt-20 sm:mt-28"
         />
       </div>

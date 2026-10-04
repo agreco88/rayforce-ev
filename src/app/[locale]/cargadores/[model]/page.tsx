@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { ChargerModelHero } from "@/components/pages/shared/ChargerModelHero";
-import { ChargerModelHeroMobile } from "@/components/pages/shared/ChargerModelHeroMobile";
-import { ChargerPricingSection } from "@/components/pages/shared/ChargerPricingSection";
-import { ChargerUnboxingSection } from "@/components/pages/shared/ChargerUnboxingSection";
+// TODO(cleanup): PROMOVER — ver el comentario en el JSX.
+// import { ChargerPricingSection } from "@/components/pages/shared/ChargerPricingSection";
 import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
-import { ProductSpecsTable } from "@/components/pages/shared/ProductSpecsTable";
+import { InstallationsSection } from "@/components/pages/shared/InstallationsSection";
+import { ChargerModelHeroWithCarousel } from "@/components/pages/shared/hero-with-carousel/ChargerModelHeroWithCarousel";
+import { galleryFor } from "@/components/pages/shared/hero-with-carousel/gallery-media";
+import { BackToTopButton } from "@/components/shared/BackToTopButton";
+import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
 
 import { getChargerProductBySlug, getChargerProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
@@ -63,14 +65,57 @@ export default async function ChargerDetailPage({ params }: Props) {
     sku: product.modelCode,
     mpn: product.modelCode,
     brand: { "@type": "Brand", name: "Rayforce" },
+    // La homologacion URSEA, con su numero: es lo que habilita venderlo en
+    // Uruguay y la señal de confianza mas fuerte que tiene la pagina.
+    hasCertification: {
+      "@type": "Certification",
+      name: "Homologación URSEA",
+      certificationIdentification: product.ursea.authNumber,
+      certificationStatus: "https://schema.org/CertificationActive",
+      issuedBy: {
+        "@type": "Organization",
+        name: "URSEA",
+        url: "https://www.ursea.gub.uy",
+      },
+    },
     description: t(`variants.${product.slug}.description`),
-    image: `${SITE.baseUrl}${product.heroImage}`,
+    // La del hero primero (la que Google toma de portada) y despues las fotos
+    // de la galeria; los videos no van. `Set`: el BA repite su placeholder.
+    image: [
+      ...new Set([
+        product.heroImage,
+        ...galleryFor(product).flatMap((m) => (m.type === "image" ? [m.src] : [])),
+      ]),
+    ].map((src) => `${SITE.baseUrl}${src}`),
     offers: {
       "@type": "Offer",
       price: String(product.price.amount),
       priceCurrency: product.price.currency,
       availability: "https://schema.org/InStock",
+      url: `${SITE.baseUrl}/cargadores/${model}`,
       seller: { "@type": "Organization", name: "Rayforce" },
+      // Lo mismo que promete la caja de envios del hero: gratis a todo el
+      // pais, sale en el dia o al siguiente habil y llega en 1 a 3 dias.
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: 0,
+          currency: product.price.currency,
+        },
+        shippingDestination: { "@type": "DefinedRegion", addressCountry: "UY" },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 1, unitCode: "DAY" },
+          transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 3, unitCode: "DAY" },
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "UY",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 30,
+      },
     },
   };
 
@@ -103,25 +148,30 @@ export default async function ChargerDetailPage({ params }: Props) {
     <section className="relative w-full z-0 overflow-x-clip border-b border-neutral-900">
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
-      {/* Hero */}
-      <div className="hidden lg:block" id="inicio">
-        <ChargerModelHero product={product} />
+      {/* El mismo hero en los dos tamaños: trae el precio y la ficha. */}
+      <div id="inicio">
+        <ChargerModelHeroWithCarousel product={product} />
       </div>
-      <div className="block lg:hidden">
-        <ChargerModelHeroMobile product={product} />
-      </div>
-      {/* Qué viene en la caja */}
-      <ChargerUnboxingSection product={product} id="unboxing" />
-      {/* Ficha tecnica */}
-      <ProductSpecsTable product={product} id="especificaciones" />
-      {/* Compatibilidad: despues de la ficha y antes del precio — se chequea
-          que el equipo sirva para el auto propio antes de mirar cuanto sale. */}
       <CompatibilitySection theme={product.theme} id="compatibilidad" />
-      {/* Pricing + social proof */}
-      <ChargerPricingSection product={product} id="precios" />
+      {/* Gutter de 64px en desktop, el mismo riel que la caja de
+          compatibilidad. En mobile lleva su propio `pt-24`: compatibilidad
+          cierra con borde y fondo propios, y sin el quedaba pegada. */}
+      <section className="bg-neutral-950 px-6 py-24 lg:px-16 lg:pt-0 lg:pb-32">
+        <GoogleReviewsBlock
+          accentText={product.theme.accentText}
+          className="mx-auto max-w-[1440px]"
+        />
+      </section>
+      {/* Las fotos son todas de BC: el BA, que viene con toma, no las lleva. */}
+      {product.specs.cableType !== "socket" && (
+        <InstallationsSection theme={product.theme} />
+      )}
+      {/* TODO(cleanup): PROMOVER ChargerPricingSection. Salio de mobile para
+          igualar las secciones de desktop, pero el toggle de instalacion /
+          columna / cable con el precio animado vale la pena rescatarlo. */}
+      {/* <ChargerPricingSection product={product} id="precios" /> */}
       {/* El FAQ es por variante: lo que se pregunta de un 22kW trifasico no es
-          lo que se pregunta de un 7,2kW con cable. Sin `compatibilityId`: la
-          compatibilidad ya va arriba, entre la ficha y el precio. */}
+          lo que se pregunta de un 7,2kW con cable. */}
       <Footer
         faqNamespace={`ChargerModelPage.Faq.${product.slug}`}
         faqId="faq"
@@ -129,6 +179,7 @@ export default async function ChargerDetailPage({ params }: Props) {
         theme={product.theme}
       />
       <ScrollDepthTracker page={`charger_${model}`} />
+      <BackToTopButton />
     </section>
   );
 }

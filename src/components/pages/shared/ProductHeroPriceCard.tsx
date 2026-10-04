@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimateNumber } from "motion-plus/react";
-import { ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import type { ReactNode } from "react";
 import type { CatalogTheme } from "@/lib/catalog/catalog.types";
 
@@ -10,12 +11,21 @@ type Props = {
   currency: string;
   taxLabel: string;
   theme: CatalogTheme;
-  /** Ancla del bloque de precios de la pagina (`#precio` / `#precios`). */
+  /** Ancla del bloque de precios (`#precios`), o el checkout si `checkout`. */
   href: string;
   ctaLabel: string;
   onCtaClick?: () => void;
+  /** El CTA es el boton de MercadoPago y no un link a la seccion de precios:
+   *  los cables no tienen seccion de precios y se compran desde el hero. */
+  checkout?: boolean;
   /** Link secundario debajo de la tarjeta (el manual, donde exista). */
   secondary?: ReactNode;
+  /** Ancho fijo para el precio y el CTA, donde cambian con las variantes: si
+   *  no, el ancho que anima AnimateNumber y el cambio de etiqueta corren la
+   *  tarjeta. */
+  stableWidth?: boolean;
+  /** La tarjeta toma el ancho de la columna y reparte sus partes en el. */
+  fullWidth?: boolean;
 };
 
 /**
@@ -25,9 +35,8 @@ type Props = {
  * otra altura y sin relacion visual entre si. Metiendo el CTA adentro del mismo
  * borde el bloque se lee como una sola unidad: cuanto sale y donde se compra.
  *
- * El CTA baja al bloque de precios en vez de ir al checkout: la salida final
- * (MercadoPago o WhatsApp) depende de los toggles de esa seccion y no se puede
- * resolver desde el hero.
+ * En cargadores el CTA baja al bloque de precios en vez de ir al checkout: la
+ * salida final (MercadoPago o WhatsApp) depende de los toggles de esa seccion.
  */
 export function ProductHeroPriceCard({
   amount,
@@ -37,12 +46,19 @@ export function ProductHeroPriceCard({
   href,
   ctaLabel,
   onCtaClick,
+  checkout,
   secondary,
+  stableWidth,
+  fullWidth,
 }: Props) {
   return (
     <div className="flex flex-col items-start gap-4">
       <div
-        className="flex w-fit items-stretch rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm"
+        // `justify-around` y no hijos con `flex-1`: la tarjeta llena la
+        // columna pero precio, separador y CTA conservan su ancho.
+        className={`flex items-stretch rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm ${
+          fullWidth ? "w-full justify-around" : "w-fit"
+        }`}
         aria-label={`${amount} ${currency} ${taxLabel}`}
       >
         {/* El `USD` va como span aparte y no como `suffix` de AnimateNumber:
@@ -54,7 +70,10 @@ export function ProductHeroPriceCard({
         >
           {/* `items-baseline`: el `USD` apoya en la misma linea de base que el
               numero, no en el borde de su caja. */}
-          <div className="flex items-baseline gap-3">
+          {/* `w-64`: entra "1,093 USD", el combo mas caro (BA + cable + columna). */}
+          <div
+            className={`flex items-baseline gap-3 ${stableWidth ? "w-64 justify-center" : ""}`}
+          >
             <AnimateNumber
               locales="en-US"
               format={{ maximumFractionDigits: 0 }}
@@ -92,23 +111,59 @@ export function ProductHeroPriceCard({
             abajo y se lee como division interna, no como dos cajas pegadas. */}
         <div className="my-5 w-px bg-white/10" />
 
-        {/* `self-stretch` y no una altura fija: el CTA toma el alto del precio,
-            que es quien manda en la tarjeta. */}
-        <a
-          href={href}
-          onClick={onCtaClick}
-          className={`
-            group inline-flex items-center gap-2 self-stretch px-7
-            ${theme.accentText} text-sm font-semibold
-            rounded-r-2xl hover:bg-white/5 transition-colors
-          `}
-        >
-          {ctaLabel}
-          <ChevronDown
-            size={16}
-            className="transition-transform group-hover:translate-y-0.5"
-          />
-        </a>
+        {checkout ? (
+          <div className="flex items-center px-6">
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onCtaClick}
+              // `w-64`: entra "Comprar por MercadoPago", la etiqueta mas larga.
+              className={`
+                inline-flex min-h-[48px] items-center justify-center rounded-xl px-5
+                ${stableWidth ? "w-64" : ""}
+                ${theme.accentBg} ${theme.accentHover}
+                text-sm font-semibold text-black transition-colors
+              `}
+            >
+              {/* Si la etiqueta cambia (MercadoPago ↔ WhatsApp) se cruzan con
+                  un fade, apiladas en la misma celda. */}
+              <span className="grid">
+                <AnimatePresence initial={false}>
+                  <motion.span
+                    key={ctaLabel}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="inline-flex items-center justify-center gap-2 [grid-area:1/1]"
+                  >
+                    {ctaLabel}
+                    <ExternalLink size={16} />
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </a>
+          </div>
+        ) : (
+          /* `self-stretch` y no una altura fija: el CTA toma el alto del
+             precio, que es quien manda en la tarjeta. */
+          <a
+            href={href}
+            onClick={onCtaClick}
+            className={`
+              group inline-flex items-center gap-2 self-stretch px-7
+              ${theme.accentText} text-sm font-semibold
+              rounded-r-2xl hover:bg-white/5 transition-colors
+            `}
+          >
+            {ctaLabel}
+            <ChevronDown
+              size={16}
+              className="transition-transform group-hover:translate-y-0.5"
+            />
+          </a>
+        )}
       </div>
 
       {secondary}
@@ -129,6 +184,7 @@ export function ProductHeroPriceCardMobile({
   href,
   ctaLabel,
   onCtaClick,
+  checkout,
 }: Omit<Props, "secondary">) {
   return (
     <div
@@ -168,19 +224,38 @@ export function ProductHeroPriceCardMobile({
 
       <div className="h-px bg-white/10" />
 
-      {/* `min-h-[52px]`: target tactil comodo sin depender del padding. */}
-      <a
-        href={href}
-        onClick={onCtaClick}
-        className={`
-          inline-flex min-h-[52px] items-center justify-center gap-2
-          ${theme.accentText} text-sm font-semibold
-          hover:bg-white/5 transition-colors
-        `}
-      >
-        {ctaLabel}
-        <ChevronDown size={16} />
-      </a>
+      {checkout ? (
+        <div className="p-3">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onCtaClick}
+            className={`
+              flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl
+              ${theme.accentBg} ${theme.accentHover}
+              text-sm font-semibold text-black transition-colors
+            `}
+          >
+            {ctaLabel}
+            <ExternalLink size={16} />
+          </a>
+        </div>
+      ) : (
+        /* `min-h-[52px]`: target tactil comodo sin depender del padding. */
+        <a
+          href={href}
+          onClick={onCtaClick}
+          className={`
+            inline-flex min-h-[52px] items-center justify-center gap-2
+            ${theme.accentText} text-sm font-semibold
+            hover:bg-white/5 transition-colors
+          `}
+        >
+          {ctaLabel}
+          <ChevronDown size={16} />
+        </a>
+      )}
     </div>
   );
 }

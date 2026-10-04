@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 
 import { Activity, Bell, Clock, RefreshCw, Settings2 } from "lucide-react";
 
-import { SiApple, SiGoogleplay } from "react-icons/si";
 
 import Device from "./Device";
+import { AppStoreButtons } from "./AppStoreButtons";
 
 import { ChargerCertificationSection } from "./ChargerCertificationSection";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
@@ -325,25 +325,9 @@ export function AppHighlightsInteractive({
       {/* Content                                                            */}
       {/* ------------------------------------------------------------------ */}
 
-      {/* Mismo ancho y padding que el resto de las secciones de /cargadores,
-          para que los bordes del contenido caigan en la misma linea al
-          scrollear. El `gap` separa la certificacion del bloque de la app. */}
-      <div
-        className="
-          relative z-10
-
-          mx-auto
-          flex w-full max-w-[1600px] flex-col gap-24 lg:gap-32
-
-          px-4 py-24
-
-          sm:px-6
-
-          lg:px-16 lg:py-32
-
-          2xl:px-0
-        "
-      >
+      {/* Mismo carril que el header y el hero de /cargadores. El `gap` separa
+          la certificacion del bloque de la app. */}
+      <div className="header-rail relative z-10 flex flex-col gap-24 py-24 lg:gap-32 lg:py-32">
         {/* ---------------------------------------------------------------- */}
         {/* Wallbox intro + regulatory certification                        */}
         {/* ---------------------------------------------------------------- */}
@@ -802,7 +786,7 @@ export function AppHighlightsInteractive({
 
             {/* Store buttons sit directly under the device frame */}
             <div className="mt-12 flex w-[336px] flex-col gap-4">
-              <StoreButtons theme={theme} />
+              <AppStoreButtons theme={theme} />
             </div>
           </div>
 
@@ -862,49 +846,12 @@ export function AppHighlightsInteractive({
             {/* Store buttons sit under the frame, matching the device's width so
                 the two stay centred on the same axis */}
             <div className="mt-16 flex w-[336px] flex-col gap-4">
-              <StoreButtons theme={theme} />
+              <AppStoreButtons theme={theme} />
             </div>
           </motion.div>
         </div>
 
       </div>
     </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* Store buttons                                                              */
-/* -------------------------------------------------------------------------- */
-
-/** Rendered under each device frame (one mobile copy, one desktop). */
-function StoreButtons({ theme }: { theme: Theme }) {
-  return (
-    <>
-      <a
-        href="https://apps.apple.com/us/app/evsemaster/id1474532183"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Descargar EVSEMaster en el App Store"
-        className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl border border-white/30 px-5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5"
-      >
-        <SiApple size={18} />
-        Descargar EVSEMaster en App Store
-      </a>
-
-      <a
-        href="https://play.google.com/store/apps/details?id=com.evsemaster.dev"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Descargar EVSEMaster en Google Play"
-        className={cn(
-          "inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition-colors hover:bg-white/5",
-          theme.accentBorder ?? "border-white/30",
-          theme.accentText ?? "text-white/80",
-        )}
-      >
-        <SiGoogleplay size={18} />
-        Descargar EVSEMaster en Play Store
-      </a>
-    </>
   );
 }

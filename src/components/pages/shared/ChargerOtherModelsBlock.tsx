@@ -33,18 +33,15 @@ export function ChargerOtherModelsBlock({ product, className }: Props) {
         className="mx-auto max-w-3xl text-center"
       >
         <p
-          className={`text-sm uppercase tracking-[0.35em] ${product.theme.accentText}`}
+          className={`section-eyebrow ${product.theme.accentText}`}
         >
           {t("eyebrow")}
         </p>
-        {/* `h3` por jerarquia — la seccion de precios ya tiene el `h2` — pero
-            con el estilo de los demas encabezados de seccion. El reset global
-            de `h3` es el eyebrow verde en mayusculas (`globals.css`), asi que
-            hay que pisarle tamaño, tracking, caja y color. */}
-        <h3 className="mt-4 text-4xl font-medium tracking-tighter normal-case text-white sm:text-5xl">
+        {/* `h3`: la seccion de precios ya tiene el `h2`. */}
+        <h3 className="block-title mt-4">
           {t("title")}
         </h3>
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-400">
+        <p className="mx-auto mt-6 max-w-2xl section-subtitle">
           {t("description")}
         </p>
       </motion.div>

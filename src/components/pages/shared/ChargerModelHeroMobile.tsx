@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import { useChargerCrumbLabel } from "./useChargerCrumbLabel";
 
 import Image from "next/image";
 import { GradientText } from "@/components/animated/GradientText";
@@ -21,6 +22,7 @@ type Props = {
 
 export function ChargerModelHeroMobile({ product }: Props) {
   const t = useTranslations("ChargerModelPage");
+  const crumbLabel = useChargerCrumbLabel();
   const { theme } = product;
 
   return (
@@ -78,9 +80,9 @@ export function ChargerModelHeroMobile({ product }: Props) {
             {
               label: (
                 <p
-                  className={`text-xs uppercase tracking-widest ${theme.accentText}`}
+                  className={`text-xs ${theme.accentText}`}
                 >
-                  {product.slug.toUpperCase()}
+                  {crumbLabel(product)}
                 </p>
               ),
               dropdown: getChargerProducts().map((p) => ({
@@ -88,9 +90,9 @@ export function ChargerModelHeroMobile({ product }: Props) {
                 current: p.slug === product.slug,
                 label: (
                   <span
-                    className={`text-xs uppercase tracking-widest ${p.theme.accentText}`}
+                    className={`text-xs ${p.theme.accentText}`}
                   >
-                    {p.slug.toUpperCase()}
+                    {crumbLabel(p)}
                   </span>
                 ),
               })),
@@ -114,16 +116,22 @@ export function ChargerModelHeroMobile({ product }: Props) {
             {/* Alturas reservadas: el shortName mas largo ("7,2kW con toma")
                 wrappea a dos lineas y las descripciones varian, asi que sin
                 `min-h` cambiar de modelo mueve todo lo de abajo. */}
-            <h1 className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 leading-none text-center min-h-[4.5rem]">
-              <span className="text-6xl font-semibold text-white">BS20</span>
-
+            {/* `div` con rol de heading y no `h1`: desktop y mobile se montan los
+                dos, y el h1 de la pagina es el de `ChargerModelHero`. */}
+            <div
+              role="heading"
+              aria-level={1}
+              // `tracking-tight`: lo ponia el reset global de h1.
+              className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 leading-none tracking-tight text-center min-h-[4.5rem]"
+            >
+              <span className="text-6xl font-semibold text-white">BS20</span>{" "}
               <GradientText
                 colors={theme.gradientColors}
                 className="text-6xl font-thin"
               >
                 {product.shortName}
               </GradientText>
-            </h1>
+            </div>
 
             <p className="text-neutral-400 pt-2 leading-snug text-base  text-center max-w-[35ch] min-h-[4rem]">
               {t(`variants.${product.slug}.description`)}
@@ -144,7 +152,7 @@ export function ChargerModelHeroMobile({ product }: Props) {
             {/* Mismo gradiente de neutrales que las tarjetas de la grilla.
                 Va con `cardImage` (PNG recortado) y no con `photoImage`: ese
                 es un JPG con el blanco horneado y taparia el gradiente. */}
-            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 shadow-2xl shadow-black/40">
+            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-600 via-neutral-700 to-neutral-900 shadow-2xl shadow-black/40">
               <Image
                 src={product.cardImage}
                 alt={t(`variants.${product.slug}.fullName`)}

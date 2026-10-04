@@ -14,7 +14,7 @@ import type { ChargerProduct } from "./catalog.types";
 export const CHARGER_INSTALLATION_PRICE_USD = 1699;
 
 /**
- * Add-on price for the coiled cable (mirrors CABLE_PRODUCTS' bs-chc003-s),
+ * Add-on price for the coiled cable (mirrors CABLE_PRODUCTS' cable-tipo-2-espiral-7kw),
  * shown by the "Sin cable / Con cable enrulado" toggle on bs20-ba-7kw
  * (the only charger sold with a bare socket, no cable included).
  */
@@ -86,7 +86,6 @@ const UNBOXING_CONTENTS_COMMON: ChargerProduct["unboxing"]["contents"] = [
   { key: "screwKit", quantity: 1 },
   { key: "drillTemplate", quantity: 1 },
   { key: "manual", quantity: 1 },
-  { key: "warrantyCard", quantity: 1 },
 ];
 
 /** El cable va primero: es lo que distingue la caja del BC. */
@@ -198,7 +197,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_CYAN,
     mercadopagoUrl: "",
-    datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
     origin: ORIGIN_BESEN,
 
     specs: {
@@ -224,12 +222,19 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     ursea: URSEA,
     unboxing: {
       videoSrc: "/assets/videos/chargers/bs20-ba-unboxing.mp4",
+      videoPoster: "/assets/images/chargers/bs20-ba-unboxing-poster.webp",
       // PLACEHOLDER: es la foto del BC, que muestra el cable integrado en la
       // caja — este modelo sale con toma y sin cable. Reemplazar cuando
       // llegue la foto del BA desempacado.
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
       contents: UNBOXING_CONTENTS_BA,
     },
+    // Los dos cables monofasicos de 7kW. Sin preferencia de MercadoPago
+    // todavia: el hero cae a WhatsApp hasta que existan.
+    cableOptions: [
+      { cableSlug: "cable-tipo-2-7kw", mercadopagoUrl: "" },
+      { cableSlug: "cable-tipo-2-espiral-7kw", mercadopagoUrl: "" },
+    ],
   },
 
   {
@@ -255,7 +260,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_SKY,
     mercadopagoUrl: "http://mpago.la/1notnYD",
-    datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
     origin: ORIGIN_BESEN,
 
     specs: {
@@ -282,6 +286,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     ursea: URSEA,
     unboxing: {
       videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
+      videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
       contents: UNBOXING_CONTENTS_BC,
     },
@@ -310,7 +315,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_LIME_DARK,
     mercadopagoUrl: "",
-    datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
     origin: ORIGIN_BESEN,
 
     specs: {
@@ -337,6 +341,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     ursea: URSEA,
     unboxing: {
       videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
+      videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
       contents: UNBOXING_CONTENTS_BC,
     },
@@ -363,7 +368,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_LIME_LIGHT,
     mercadopagoUrl: "https://mpago.la/2C6CFZe",
-    datasheetUrl: "/assets/docs/bs20-ficha-tecnica.pdf",
     origin: ORIGIN_BESEN,
 
     specs: {
@@ -390,6 +394,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     ursea: URSEA,
     unboxing: {
       videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
+      videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
       contents: UNBOXING_CONTENTS_BC,
     },

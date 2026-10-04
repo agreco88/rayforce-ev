@@ -3,30 +3,39 @@
 import {
   BadgeCheck,
   Building2,
-  Cable,
+  EvCharger,
   Factory,
+  HardHat,
   Home,
   Scale,
-  Unplug,
+  Smartphone,
   Zap,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { GradientIcon } from "@/components/animated/GradientIcon";
+import { formatPowerKw } from "@/lib/catalog/catalog.helpers";
 import type {
   CatalogTheme,
   ChargerProduct,
   ChargerTier,
 } from "@/lib/catalog/catalog.types";
+import {
+  HeroStatList,
+  powerIcon,
+  Type2SocketIcon,
+  type IconComponent,
+} from "./HeroStatList";
 
 /* ------------------------------------------------------------------ */
 /* Types                                                              */
 /* ------------------------------------------------------------------ */
 
-type IconComponent = React.ComponentType<{ className?: string }>;
-
 type Props = {
   theme: CatalogTheme;
   product: ChargerProduct;
+  /** Suma potencia, instalacion y app: seis stats en dos columnas de
+   *  filas. Lo usa el hero con galeria. */
+  extended?: boolean;
 };
 
 /* ------------------------------------------------------------------ */
@@ -54,15 +63,18 @@ const STAT_ICON_OVERRIDES: Record<
 /* Component                                                          */
 /* ------------------------------------------------------------------ */
 
-export function ChargerModelHeroStats({ theme, product }: Props) {
+export function ChargerModelHeroStats({ theme, product, extended }: Props) {
   const t = useTranslations("ChargerModelHeroStats");
+  const locale = useLocale();
   const { slug, tier, specs } = product;
   const iconOverrides = STAT_ICON_OVERRIDES[slug];
   const overrideBase = `overrides.${slug}`;
-  const hasStat2Override = t.has(`${overrideBase}.stat2.title`);
-  const hasStat3Override = t.has(`${overrideBase}.stat3.title`);
+  // Con los seis stats cada posicion es el mismo stat en todos los modelos, asi
+  // que los overrides (que reemplazan uso y cable en el 11kW) no aplican.
+  const hasStat2Override = !extended && t.has(`${overrideBase}.stat2.title`);
+  const hasStat3Override = !extended && t.has(`${overrideBase}.stat3.title`);
   const cableKey = specs.cableType === "socket" ? "socket" : "integrated";
-  const CableIcon = specs.cableType === "socket" ? Unplug : Cable;
+  const CableIcon = specs.cableType === "socket" ? Type2SocketIcon : EvCharger;
 
   const stats = [
     {
@@ -92,7 +104,31 @@ export function ChargerModelHeroStats({ theme, product }: Props) {
           title: t(`cable.${cableKey}.title`),
           description: t(`cable.${cableKey}.description`),
         },
+    ...(extended
+      ? [
+          {
+            icon: powerIcon(formatPowerKw(specs.maxPowerKw, locale)),
+            title: t(`power.${specs.phaseType}.title`, {
+              power: formatPowerKw(specs.maxPowerKw, locale),
+            }),
+            description: t(`power.${specs.phaseType}.description`),
+          },
+          {
+            icon: HardHat,
+            title: t("installation.title"),
+            description: t("installation.description"),
+          },
+          {
+            icon: Smartphone,
+            title: t("app.title"),
+            description: t("app.description"),
+          },
+        ]
+      : []),
   ];
+
+  // Seis stats no entran en la tira de tres columnas: van en filas.
+  if (extended) return <HeroStatList stats={stats} theme={theme} />;
 
   return (
     <div

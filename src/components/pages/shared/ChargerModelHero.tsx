@@ -71,7 +71,7 @@ export function ChargerModelHero({ product }: Props) {
            `px` afuera del `max-w` hace que el carril mida 1440 reales y el
            contenido arranque donde el logo. Con los dos en el mismo div, el
            padding come 32px de adentro y todo queda corrido. */
-        className="w-full px-6 sm:px-8 pt-28 sm:pt-58 relative z-20 flex-1 pb-24 lg:pb-32 flex justify-center"
+        className="w-full px-6 sm:px-8 pt-28 sm:pt-38 relative z-20 flex-1 pb-24 lg:pb-32 flex justify-center"
       >
         <div className="mx-auto w-full max-w-[1440px] flex flex-col gap-12 justify-center items-start">
         {/* El breadcrumb va afuera de la fila y no dentro de la columna
@@ -115,23 +115,26 @@ export function ChargerModelHero({ product }: Props) {
           <div className="flex flex-col gap-12 justify-center basis-3/5 min-w-0">
             {/* Title */}
             <div className="flex flex-col gap-5">
-              <p
-                className={`text-sm uppercase tracking-widest ${theme.accentText}`}
-              >
-                {t(`eyebrow.${product.slug}`)}
-              </p>
-
-              {/* `min-h` de dos lineas: el shortName mas largo ("7,2kW con
-                  toma") wrappea y el mas corto ("22kW") no, y sin altura
-                  reservada cambiar de modelo desplaza todo lo de abajo. */}
-              <h1 className="flex flex-wrap items-baseline text-7xl gap-x-3 leading-[1.1]">
-                BS20
-                <GradientText
-                  colors={theme.gradientColors}
-                  className="font-thin"
+              {/* El eyebrow va adentro del h1: se ve igual, y el h1 lleva
+                  "cargador de auto electrico" y no solo el codigo de modelo. */}
+              <h1 className="flex flex-col gap-5">
+                <span
+                  className={`text-sm font-normal uppercase tracking-widest ${theme.accentText}`}
                 >
-                  {product.shortName}
-                </GradientText>
+                  {t(`eyebrow.${product.slug}`)}
+                </span>{" "}
+
+                {/* Los `{" "}`: el `gap` separa solo en pantalla, y sin espacio
+                    real el texto del h1 queda "tomaBS207,2kW". */}
+                <span className="flex flex-wrap items-baseline text-7xl gap-x-3 leading-[1.1]">
+                  BS20{" "}
+                  <GradientText
+                    colors={theme.gradientColors}
+                    className="font-thin"
+                  >
+                    {product.shortName}
+                  </GradientText>
+                </span>
               </h1>
 
               {/* Cuatro lineas reservadas: a este ancho la descripcion mas
@@ -170,7 +173,7 @@ export function ChargerModelHero({ product }: Props) {
             {/* Mismo gradiente de neutrales que las tarjetas de la grilla.
                 Va con `cardImage` (PNG recortado) y no con `photoImage`: ese
                 es un JPG con el blanco horneado y taparia el gradiente. */}
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 shadow-2xl shadow-black/40">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-600 via-neutral-700 to-neutral-900 shadow-2xl shadow-black/40">
               <Image
                 src={product.cardImage}
                 alt={t(`variants.${product.slug}.fullName`)}

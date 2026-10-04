@@ -42,26 +42,25 @@ export function ChargerUnboxingSection({ product, id }: Props) {
   return (
     <section
       id={id}
-      className="relative w-full border-b border-neutral-900 bg-[#0a0a0a] py-20 sm:py-28"
+      className="relative w-full border-b border-neutral-900 bg-[#0a0a0a] px-6 py-20 sm:px-8 sm:py-28"
     >
-      <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-12 px-4 sm:px-6 lg:px-16 2xl:px-0">
+      {/* El mismo riel que el hero: 1440px con el gutter del hero. */}
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex max-w-2xl flex-col gap-4"
+          className="max-w-2xl"
         >
-          <span
-            className={`text-xs uppercase tracking-[0.25em] ${theme.accentText}`}
-          >
+          <span className={`section-eyebrow ${theme.accentText}`}>
             {t("eyebrow")}
           </span>
-          <h2 className="text-3xl font-light tracking-tight text-white sm:text-4xl">
+          <h2 className="section-title mt-4">
             {t("title")}
           </h2>
-          <p className="text-base leading-relaxed text-neutral-400">
+          <p className="mt-6 section-subtitle">
             {t("description")}
           </p>
         </motion.div>

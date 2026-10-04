@@ -75,6 +75,10 @@ export type CableSpecs = {
   phaseType?: PhaseType;
   ingressProtection?: string;
   impactProtection?: string;
+  /** Clase de inflamabilidad del material, e.g. "UL94". */
+  fireRating?: string;
+  /** e.g. "-40°C to +100°C" */
+  operatingTemperature?: string;
   temperatureSensor?: boolean;
   bagIncluded?: boolean;
 
@@ -190,7 +194,6 @@ type ProductBase = {
 
   theme: CatalogTheme;
   mercadopagoUrl: string;
-  datasheetUrl?: string;
 
   /** Va en `ProductBase` y no en cada categoria: cables y cargadores lo muestran igual. */
   origin: ProductOrigin;
@@ -219,8 +222,20 @@ export type UnboxingItem = {
  */
 export type UnboxingAssets = {
   videoSrc: string;
+  /** El frame que hace de portada del video en la galeria del hero. */
+  videoPoster: string;
   photoSrc?: string;
   contents: UnboxingItem[];
+};
+
+/**
+ * Un combo cargador + cable que se vende desde el hero. Lleva su propio link de
+ * MercadoPago porque cada combo es una preferencia distinta; el precio sale
+ * del cable en el catalogo.
+ */
+export type ChargerCableOption = {
+  cableSlug: string;
+  mercadopagoUrl: string;
 };
 
 export type ChargerProduct = ProductBase & {
@@ -233,6 +248,8 @@ export type ChargerProduct = ProductBase & {
   visual: ChargerVisualProps;
   ursea: UrseaRegistration;
   unboxing: UnboxingAssets;
+  /** Solo los que salen con toma: los cables que se pueden sumar a la compra. */
+  cableOptions?: ChargerCableOption[];
 };
 
 export type CableProduct = ProductBase & {

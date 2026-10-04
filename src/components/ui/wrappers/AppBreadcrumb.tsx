@@ -76,9 +76,13 @@ export function AppBreadcrumb({ items, className }: Props) {
   }, []);
 
   return (
-    <div ref={containerRef}>
+    // En mobile el desplegable se ancla aca, no en el item. `w-full`: los
+    // heroes son `items-start`, y sin el mediria lo que el texto del breadcrumb.
+    <div ref={containerRef} className="relative w-full">
       <Breadcrumb className={className}>
-        <BreadcrumbList>
+        {/* Mobile en `text-xs` y con menos aire: en `text-sm` el modelo mas
+            largo bajaba de linea y los cortos no, y el hero saltaba de alto. */}
+        <BreadcrumbList className="gap-1 text-xs sm:gap-2.5 sm:text-sm">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             const hasDropdown = !!item.dropdown?.length;
@@ -89,14 +93,14 @@ export function AppBreadcrumb({ items, className }: Props) {
                 <BreadcrumbItem>
                   {hasDropdown ? (
                     <div
-                      className="relative"
+                      className="sm:relative"
                       onMouseEnter={() => handleEnter(index)}
                       onMouseLeave={handleLeave}
                     >
                       <BreadcrumbPage>
                         <button
                           onClick={() => handleToggle(index)}
-                          className="flex items-center gap-2 cursor-pointer select-none"
+                          className="flex items-center gap-1 cursor-pointer select-none sm:gap-2"
                         >
                           {item.label}
                           <motion.span
@@ -116,11 +120,13 @@ export function AppBreadcrumb({ items, className }: Props) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -2.5 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="absolute top-full left-0 mt-2 z-50"
+                            // Mobile: a todo el ancho del breadcrumb. Colgado
+                            // del item arrancaba en el y se salia de la pantalla.
+                            className="absolute inset-x-0 top-full mt-2 z-50 sm:inset-x-auto sm:left-0"
                             onMouseEnter={() => handleEnter(index)}
                             onMouseLeave={handleLeave}
                           >
-                            <div className="w-max rounded-xl border border-white/10 bg-neutral-950/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.6)] p-1">
+                            <div className="w-full sm:w-max rounded-xl border border-white/10 bg-neutral-950/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.6)] p-1 flex flex-col gap-1">
                               {item.dropdown!.map((d, di) =>
                                 d.current ? (
                                   <span
@@ -155,7 +161,9 @@ export function AppBreadcrumb({ items, className }: Props) {
                   )}
                 </BreadcrumbItem>
 
-                {!isLast && <BreadcrumbSeparator />}
+                {!isLast && (
+                  <BreadcrumbSeparator className="[&>svg]:size-3 sm:[&>svg]:size-3.5" />
+                )}
               </span>
             );
           })}
