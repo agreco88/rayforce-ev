@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
 import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
-import { useTrack } from "@/lib/analytics";
 import { HoverPlayVideo } from "./HoverPlayVideo";
 import { StandPricingPanel } from "./StandPricingPanel";
 
@@ -24,16 +23,29 @@ const HIGHLIGHTS: {
   { key: "install", icon: Wrench },
 ];
 
-export function HomeStandDesktop() {
+export function HomeStandDesktop({
+  titleAs: Title,
+  header,
+}: {
+  titleAs: "h1" | "h2";
+  header?: React.ReactNode;
+}) {
   const t = useTranslations("HomePage.HomeStandSection");
-  const track = useTrack();
 
   return (
     <section
       aria-labelledby="stand-desktop-heading"
       className="relative isolate overflow-hidden"
     >
-      <div className="flex w-full flex-col items-center px-6 pt-28 pb-28 text-center sm:px-8">
+      {/* Con breadcrumb la seccion es la pagina: arranca debajo del nav fijo,
+          con el mismo offset que `page-shell`. */}
+      <div
+        className={`flex w-full flex-col items-center px-6 pb-28 text-center sm:px-8 ${header ? "pt-38" : "pt-28"}`}
+      >
+        {header && (
+          <div className="mb-10 w-full max-w-[1440px] text-left">{header}</div>
+        )}
+
         {/* HEADER — 50/50: el texto comparte fila con la foto de la columna
             instalada. Antes acá iba `charger-mobile.avif` (el comparativo
             columna vacía → columna con wallbox, que el mobile conserva) y la
@@ -52,7 +64,7 @@ export function HomeStandDesktop() {
             </span>
 
             {/* TITLE */}
-            <h2
+            <Title
               id="stand-desktop-heading"
               className="
                 m-0 mt-5
@@ -66,7 +78,7 @@ export function HomeStandDesktop() {
               "
             >
               {t("title")}
-            </h2>
+            </Title>
 
             {/* MEDIDAS — separadas por un divider vertical en vez de apiladas,
                 para que las dos se lean como un mismo dato de tamaño. */}
@@ -234,9 +246,6 @@ export function HomeStandDesktop() {
             bloque de la seccion, no su cabecera. */}
         <GoogleReviewsBlock
           compact
-          onReviewClick={(reviewId) =>
-            track.socialProofReviewClicked("home_stand", reviewId)
-          }
           className="mt-20 w-full max-w-[1440px]"
         />
 

@@ -20,7 +20,8 @@ function buildEntry(
 ): MetadataRoute.Sitemap[number] {
   return {
     url: localeUrl(DEFAULT_LOCALE, path),
-    lastModified: new Date(),
+    // Sin `lastModified`: con `new Date()` cada pedido decia "cambio hoy", y
+    // Google aprende a ignorar un lastmod que nunca es cierto.
     changeFrequency,
     priority,
     alternates: {
@@ -41,15 +42,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const cableEntries = getCableProducts().map((product) =>
-    buildEntry(`/cables/${product.slug}`, 0.8, "monthly"),
+    buildEntry(`/accesorios/${product.slug}`, 0.8, "monthly"),
   );
 
   return [
     buildEntry("/", 1.0, "weekly"),
     buildEntry("/cargadores", 0.9, "monthly"),
     ...chargerEntries,
-    buildEntry("/cables", 0.9, "monthly"),
+    buildEntry("/accesorios", 0.9, "monthly"),
     ...cableEntries,
+    buildEntry("/accesorios/columna-para-cargador", 0.8, "monthly"),
     buildEntry("/empresas", 0.8, "monthly"),
   ];
 }

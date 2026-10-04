@@ -67,7 +67,7 @@ export function PublicChargingCableMobile() {
               celdas quedan igual de altas si eso pasa. */}
           <div className="grid w-full grid-cols-2 gap-3">
             <Link
-              href="/cables/bs-chc003"
+              href="/accesorios/cable-tipo-2-7kw"
               onClick={() =>
                 track.publicChargingCableCta({
                   cta: "product",
@@ -80,7 +80,7 @@ export function PublicChargingCableMobile() {
             </Link>
 
             <Link
-              href="/cables"
+              href="/accesorios"
               onClick={() =>
                 track.publicChargingCableCta({
                   cta: "all_cables",

@@ -81,7 +81,7 @@ function getFeatureValue(
 
 export function CablesComparisonTable({ products, selectedSlug }: Props) {
   const t = useTranslations("HomePage.HomeChargersSection.ComparisonTable");
-  const tCables = useTranslations("CablesPage.ComparisonTable");
+  const tCables = useTranslations("AccessoriesPage.ComparisonTable");
   const tSpecs = useTranslations("Common.Specs");
 
   const gridTemplateColumns = `220px repeat(${products.length}, minmax(170px, 1fr))`;
@@ -267,7 +267,7 @@ export function CablesComparisonTable({ products, selectedSlug }: Props) {
                   </span>
                 ) : (
                   <a
-                    href={`/cables/${product.slug}`}
+                    href={`/accesorios/${product.slug}`}
                     className={`inline-flex items-center justify-center rounded-lg border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-white/5 ${product.theme.accentBorder} ${product.theme.accentText}`}
                   >
                     {tCables("moreInfo")}

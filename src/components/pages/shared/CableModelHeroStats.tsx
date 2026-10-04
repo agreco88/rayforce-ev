@@ -1,19 +1,33 @@
 "use client";
 
-import { Thermometer, ShieldCheck, Briefcase, RefreshCcw } from "lucide-react";
-import { useTranslations } from "next-intl";
+import {
+  Briefcase,
+  RefreshCcw,
+  Ruler,
+  ShieldCheck,
+  Thermometer,
+} from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { GradientIcon } from "@/components/animated/GradientIcon";
-import type { CatalogTheme } from "@/lib/catalog/catalog.types";
+import { formatPowerKw } from "@/lib/catalog/catalog.helpers";
+import type { CableProduct, CatalogTheme } from "@/lib/catalog/catalog.types";
+import {
+  HeroStatList,
+  powerIcon,
+  Type2SocketIcon,
+  type IconComponent,
+} from "./HeroStatList";
 
 /* ------------------------------------------------------------------ */
 /* Types                                                              */
 /* ------------------------------------------------------------------ */
 
-type IconComponent = React.ComponentType<{ className?: string }>;
-
 type Props = {
   theme: CatalogTheme;
-  slug: string;
+  product: CableProduct;
+  /** Suma potencia, largo y conector: seis stats en dos columnas de filas,
+   *  como `ChargerModelHeroStats`. Lo usa el hero con galeria. */
+  extended?: boolean;
 };
 
 /* ------------------------------------------------------------------ */
@@ -21,25 +35,60 @@ type Props = {
 /* ------------------------------------------------------------------ */
 
 const ICONS: Record<string, [IconComponent, IconComponent, IconComponent]> = {
-  "bs-chc003": [Thermometer, ShieldCheck, Briefcase],
-  "bs-chc004": [Thermometer, ShieldCheck, Briefcase],
-  "bs-chc003-s": [Thermometer, ShieldCheck, RefreshCcw],
+  "cable-tipo-2-7kw": [Thermometer, ShieldCheck, Briefcase],
+  "cable-tipo-2-22kw": [Thermometer, ShieldCheck, Briefcase],
+  "cable-tipo-2-espiral-7kw": [Thermometer, ShieldCheck, RefreshCcw],
 };
 
 /* ------------------------------------------------------------------ */
 /* Component                                                          */
 /* ------------------------------------------------------------------ */
 
-export function CableModelHeroStats({ theme, slug }: Props) {
+export function CableModelHeroStats({ theme, product, extended }: Props) {
   const t = useTranslations("CableModelHeroStats");
+  const locale = useLocale();
+  const { slug, specs } = product;
 
-  const icons = ICONS[slug] ?? ICONS["bs-chc003"];
+  const icons = ICONS[slug] ?? ICONS["cable-tipo-2-7kw"];
 
   const stats = [1, 2, 3].map((n, i) => ({
     icon: icons[i],
     title: t(`${slug}.stat${n}Title`),
     description: t(`${slug}.stat${n}Description`),
   }));
+
+  if (extended) {
+    const power = formatPowerKw(specs.maxPowerKw ?? 7, locale);
+
+    return (
+      <HeroStatList
+        theme={theme}
+        stats={[
+          ...stats,
+          {
+            icon: powerIcon(power),
+            title: t(`power.${specs.phaseType ?? "single"}.title`, { power }),
+            description: t(`power.${specs.phaseType ?? "single"}.description`, {
+              current: specs.maxCurrentA ?? 32,
+            }),
+          },
+          {
+            icon: Ruler,
+            title: t("length.title", {
+              length: specs.lengthM,
+              style: specs.cableStyle,
+            }),
+            description: t("length.description"),
+          },
+          {
+            icon: Type2SocketIcon,
+            title: t("connector.title"),
+            description: t("connector.description"),
+          },
+        ]}
+      />
+    );
+  }
 
   return (
     <div

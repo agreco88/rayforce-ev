@@ -182,6 +182,8 @@ function cableGroups(
       rows: [
         { key: "ingressProtection", value: specs.ingressProtection },
         { key: "impactProtection", value: specs.impactProtection },
+        { key: "fireRating", value: specs.fireRating },
+        { key: "operatingTemperature", value: specs.operatingTemperature },
         { key: "temperatureSensor", value: specs.temperatureSensor },
         { key: "jacketMaterial", value: specs.jacketMaterial },
       ],

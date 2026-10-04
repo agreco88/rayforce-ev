@@ -119,7 +119,7 @@ export function PublicChargingCableDesktop() {
                 de los dos botones — así ambas cajas pesan igual en la grilla. */}
               <div className="mt-10 grid grid-cols-2 gap-4">
                 <Link
-                  href="/cables/bs-chc003"
+                  href="/accesorios/cable-tipo-2-7kw"
                   onClick={() =>
                     track.publicChargingCableCta({
                       cta: "product",
@@ -147,7 +147,7 @@ export function PublicChargingCableDesktop() {
                 </Link>
 
                 <Link
-                  href="/cables"
+                  href="/accesorios"
                   onClick={() =>
                     track.publicChargingCableCta({
                       cta: "all_cables",

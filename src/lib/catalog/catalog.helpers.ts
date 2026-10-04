@@ -33,7 +33,7 @@ export function getProductImageScaleStyle(
  *
  * Va aca y no reordenando el array del catalogo porque el orden es una regla de
  * presentacion, no un dato del producto: vale para toda superficie que liste la
- * categoria — la grilla de la home, /cargadores, /cables, el panel del header y
+ * categoria — la grilla de la home, /cargadores, /accesorios, el panel del header y
  * el acordeon mobile. En los getters queda en un solo lugar, y los catalogos
  * siguen leyendose como fichas.
  *
@@ -82,6 +82,12 @@ export function isThreePhase(product: ChargerProduct): boolean {
 export function formatPowerKw(powerKw: number, locale?: string): string {
   const value = String(powerKw);
   return locale?.startsWith("es") ? value.replace(".", ",") : value;
+}
+
+/** El slug legible para el breadcrumb: `cable-tipo-2-7kw` → "Cable tipo 2 7 kW". */
+export function slugLabel(slug: string): string {
+  const words = slug.replaceAll("-", " ").replace(/(\d)kw\b/g, "$1 kW");
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
 export function getPowerLabel(product: ChargerProduct, locale?: string): string {

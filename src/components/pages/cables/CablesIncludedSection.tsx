@@ -15,13 +15,12 @@ const PROOF_POSTER_SRC =
 const BAG_IMAGE_SRC = "/assets/images/cables/cable-bag.png";
 
 /**
- * El "que incluye" del listado de cables. Es la version de linea de
- * `CableDurabilitySection`: misma fila de lista + video, pero los renglones
- * salen de los mensajes y no del catalogo, porque aca no hay un modelo — lo
- * que se lista es lo que comparten los tres (Tipo 2, 32 A, IP66, TPU, sensor).
+ * El "que incluye" del listado de cables. Los renglones salen de los mensajes
+ * y no del catalogo, porque aca no hay un modelo — lo que se lista es lo que
+ * comparten los tres (Tipo 2, 32 A, IP66, TPU, sensor).
  */
 export function CablesIncludedSection({ id }: { id?: string }) {
-  const t = useTranslations("CablesPage.Included");
+  const t = useTranslations("AccessoriesPage.Included");
   const items = t.raw("items") as string[];
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -40,7 +39,7 @@ export function CablesIncludedSection({ id }: { id?: string }) {
       id={id}
       className="relative w-full border-t border-neutral-900 bg-[#0a0a0a] py-20 sm:py-28"
     >
-      <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-12 px-4 sm:px-6 lg:px-16 2xl:px-0">
+      <div className="header-rail flex flex-col gap-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

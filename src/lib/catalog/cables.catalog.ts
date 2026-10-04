@@ -43,11 +43,12 @@ const ORIGIN_BESEN: CableProduct["origin"] = {
 export const CABLE_PRODUCTS: CableProduct[] = [
   {
     category: "cable",
-    slug: "bs-chc003",
+    slug: "cable-tipo-2-7kw",
     metadataKey: "chc003",
     modelCode: "BS-CHC003",
     publicName: "Cable recto Tipo 2 a Tipo 2, 7kW",
     shortName: "7kW · 5 m",
+    highlight: { labelKey: "bestSeller" },
 
     price: { currency: "USD", amount: 220, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Tipo 2", "IP66"],
@@ -69,6 +70,9 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       maxPowerKw: 7,
       phaseType: "single",
       ingressProtection: "IP66",
+      impactProtection: "IK10",
+      fireRating: "UL94",
+      operatingTemperature: "-40°C to +100°C",
       temperatureSensor: true,
       bagIncluded: true,
       conductorSection: "3 x 6.0 mm² + 1 x 0.75 mm²",
@@ -83,7 +87,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
 
   {
     category: "cable",
-    slug: "bs-chc004",
+    slug: "cable-tipo-2-22kw",
     metadataKey: "chc004",
     modelCode: "BS-CHC004",
     publicName: "Cable recto Tipo 2 a Tipo 2, 22kW",
@@ -109,6 +113,9 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       maxPowerKw: 22,
       phaseType: "three",
       ingressProtection: "IP66",
+      impactProtection: "IK10",
+      fireRating: "UL94",
+      operatingTemperature: "-40°C to +100°C",
       temperatureSensor: true,
       bagIncluded: true,
       conductorSection: "5 x 6.0 mm² + 1 x 0.75 mm²",
@@ -123,7 +130,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
 
   {
     category: "cable",
-    slug: "bs-chc003-s",
+    slug: "cable-tipo-2-espiral-7kw",
     metadataKey: "chc003-s",
     modelCode: "BS-CHC003-S",
     publicName: "Cable espiral Tipo 2 a Tipo 2, 7kW",
@@ -131,7 +138,6 @@ export const CABLE_PRODUCTS: CableProduct[] = [
        que tambien es 7kW · 5 m. Sin eso los dos se leen igual en el footer, en
        la comparativa y en el mensaje de WhatsApp. */
     shortName: "7kW · 5 m espiral",
-    highlight: { labelKey: "bestSeller" },
 
     price: { currency: "USD", amount: 235, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Tipo 2", "Espiralado", "IP66"],
@@ -157,6 +163,9 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       maxPowerKw: 7,
       phaseType: "single",
       ingressProtection: "IP66",
+      impactProtection: "IK10",
+      fireRating: "UL94",
+      operatingTemperature: "-40°C to +100°C",
       temperatureSensor: true,
       bagIncluded: true,
       conductorSection: "3 x 6.0 mm² + 1 x 0.75 mm²",

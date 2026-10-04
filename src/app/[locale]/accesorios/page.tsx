@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { CablesShopGrid } from "@/components/pages/cables/CablesShopGrid";
+import { AccessoriesCardGrid } from "@/components/pages/cables/AccessoriesCardGrid";
 import { CablesHero } from "@/components/pages/cables/CablesHero";
 import { CablesIncludedSection } from "@/components/pages/cables/CablesIncludedSection";
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
@@ -15,16 +15,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return generateLocaleMetadata({
     locale,
-    route: "cables",
-    path: "/cables",
+    route: "accesorios",
+    path: "/accesorios",
   });
 }
 
-export default async function CablesPage({ params }: Props) {
+export default async function AccessoriesPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({
     locale,
-    namespace: "CablesPage.Hero.breadcrumb",
+    namespace: "AccessoriesPage.Hero.breadcrumb",
   });
 
   const breadcrumbSchema = {
@@ -35,8 +35,8 @@ export default async function CablesPage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: t("cables"),
-        item: `${SITE.baseUrl}/cables`,
+        name: t("accessories"),
+        item: `${SITE.baseUrl}/accesorios`,
       },
     ],
   };
@@ -64,8 +64,8 @@ export default async function CablesPage({ params }: Props) {
         <div className="page-shell relative z-10 flex flex-col pb-24 lg:pb-32">
           <CablesHero />
 
-          {/* Tres columnas: son tres modelos y entran en una fila. */}
-          <CablesShopGrid className="mt-16 grid-cols-1 sm:grid-cols-2 lg:mt-0 lg:grid-cols-3" />
+          {/* Cuatro columnas, como /cargadores: tres cables y la columna. */}
+          <AccessoriesCardGrid className="mt-16 sm:grid-cols-2 lg:mt-0 lg:grid-cols-4" />
         </div>
       </section>
 
@@ -73,7 +73,7 @@ export default async function CablesPage({ params }: Props) {
       <CablesIncludedSection id="incluye" />
 
       <Footer
-        faqNamespace="CablesPage.Faq"
+        faqNamespace="AccessoriesPage.Faq"
         faqId="faq"
         ctaSource="cables"
         theme={CABLE_THEME}

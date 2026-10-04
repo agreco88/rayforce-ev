@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { CableModelHero } from "@/components/pages/shared/CableModelHero";
-import { CableModelHeroMobile } from "@/components/pages/shared/CableModelHeroMobile";
-import { CableDurabilitySection } from "@/components/pages/shared/CableDurabilitySection";
-import { CablePricingSection } from "@/components/pages/shared/CablePricingSection";
-import { CompatibilitySection } from "@/components/pages/shared/CompatibilitySection";
-import { ProductSpecsTable } from "@/components/pages/shared/ProductSpecsTable";
+import { CableOtherModelsBlock } from "@/components/pages/shared/CableOtherModelsBlock";
+import { CableModelHeroWithCarousel } from "@/components/pages/shared/hero-with-carousel/CableModelHeroWithCarousel";
+import { cableGalleryFor } from "@/components/pages/shared/hero-with-carousel/gallery-media";
 
 import { getCableProductBySlug, getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
@@ -38,8 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return {};
   return generateLocaleMetadata({
     locale,
-    route: `cables-${product.metadataKey}`,
-    path: `/cables/${model}`,
+    route: `accesorios-${product.metadataKey}`,
+    path: `/accesorios/${model}`,
   });
 }
 
@@ -64,7 +61,10 @@ export default async function CableDetailPage({ params }: Props) {
     mpn: product.modelCode,
     brand: { "@type": "Brand", name: "Rayforce" },
     description: t(`variants.${product.slug}.description`),
-    image: `${SITE.baseUrl}${product.heroImage}`,
+    // Las fotos de la galeria; los videos no van.
+    image: cableGalleryFor(product).flatMap((m) =>
+      m.type === "image" ? [`${SITE.baseUrl}${m.src}`] : [],
+    ),
     offers: {
       "@type": "Offer",
       price: String(product.price.amount),
@@ -82,14 +82,14 @@ export default async function CableDetailPage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: t("breadcrumb.cables"),
-        item: `${SITE.baseUrl}/cables`,
+        name: t("breadcrumb.accessories"),
+        item: `${SITE.baseUrl}/accesorios`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: product.publicName,
-        item: `${SITE.baseUrl}/cables/${model}`,
+        item: `${SITE.baseUrl}/accesorios/${model}`,
       },
     ],
   };
@@ -103,28 +103,20 @@ export default async function CableDetailPage({ params }: Props) {
     <section className="relative w-full z-0 overflow-x-clip border-b border-neutral-900 bg-[#0a0a0a]">
       <JsonLd schema={productSchema} />
       <JsonLd schema={breadcrumbSchema} />
-      {/* Hero */}
-      <div className="hidden lg:block" id="inicio">
-        <CableModelHero product={product} />
+      {/* El mismo hero en los dos tamaños: trae el precio y la ficha. */}
+      <div id="inicio">
+        <CableModelHeroWithCarousel product={product} />
       </div>
-      <div className="block lg:hidden">
-        <CableModelHeroMobile product={product} />
-      </div>
-      {/* Durabilidad: va en los tres modelos. El ensayo es sobre el conector,
-          que es el mismo en toda la linea, asi que el video aplica igual al
-          recto y al espiralado. */}
-      <CableDurabilitySection product={product} id="durabilidad" />
-      {/* Ficha tecnica */}
-      <ProductSpecsTable product={product} id="especificaciones" />
-      {/* Compatibilidad: despues de la ficha y antes del precio — se chequea
-          que el cable sirva para el auto propio antes de mirar cuanto sale. */}
-      <CompatibilitySection theme={product.theme} id="compatibilidad" />
-      {/* Pricing + otros modelos */}
-      <CablePricingSection product={product} id="precio" />
+      <section className="border-y border-neutral-900 bg-neutral-950 py-24 sm:py-32">
+        <CableOtherModelsBlock
+          product={product}
+          className="mx-auto max-w-7xl px-6 lg:px-8"
+        />
+      </section>
       {/* El FAQ es el general de cables: lo que se pregunta antes de elegir
           largo y conector aplica igual a los tres modelos. */}
       <Footer
-        faqNamespace="CablesPage.Faq"
+        faqNamespace="AccessoriesPage.Faq"
         faqId="faq"
         ctaSource={`cable_${model}`}
         theme={product.theme}

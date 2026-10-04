@@ -10,6 +10,7 @@ import { ProductHeroPriceCardMobile } from "./ProductHeroPriceCard";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
 import {
   getCableProducts,
+  slugLabel,
   getProductImageScaleStyle,
 } from "@/lib/catalog/catalog.helpers";
 import type { CableProduct } from "@/lib/catalog/catalog.types";
@@ -77,36 +78,23 @@ export function CableModelHeroMobile({ product }: Props) {
           className="mt-16 mb-8 flex justify-center z-[999]"
           items={[
             { label: t("breadcrumb.home"), href: "/" },
-            {
-              label: t("breadcrumb.cables"),
-              dropdown: [
-                {
-                  href: "/cables",
-                  label: t("breadcrumb.cables"),
-                  current: true,
-                },
-                {
-                  href: "/cargadores",
-                  label: t("breadcrumb.chargers"),
-                },
-              ],
-            },
+            { label: t("breadcrumb.accessories"), href: "/accesorios" },
             {
               label: (
                 <p
-                  className={`text-xs uppercase tracking-widest ${theme.accentText}`}
+                  className={`text-xs ${theme.accentText}`}
                 >
-                  {product.slug.toUpperCase()}
+                  {slugLabel(product.slug)}
                 </p>
               ),
               dropdown: getCableProducts().map((p) => ({
-                href: `/cables/${p.slug}`,
+                href: `/accesorios/${p.slug}`,
                 current: p.slug === product.slug,
                 label: (
                   <span
-                    className={`text-xs uppercase tracking-widest ${p.theme.accentText}`}
+                    className={`text-xs ${p.theme.accentText}`}
                   >
-                    {p.slug.toUpperCase()}
+                    {slugLabel(p.slug)}
                   </span>
                 ),
               })),
@@ -159,7 +147,7 @@ export function CableModelHeroMobile({ product }: Props) {
             {/* Mismo gradiente de neutrales que el hero de cargadores y las
                 tarjetas. El PNG de cable ya viene recortado sobre
                 transparente, asi que aca no hace falta cambiar de imagen. */}
-            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900 shadow-2xl shadow-black/40">
+            <div className="relative mx-auto max-w-[360px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-600 via-neutral-700 to-neutral-900 shadow-2xl shadow-black/40">
               <Image
                 src={product.photoImage}
                 alt={product.publicName}
@@ -178,7 +166,7 @@ export function CableModelHeroMobile({ product }: Props) {
           </div>
 
           {/* Stats */}
-          <CableModelHeroStats theme={theme} slug={product.slug} />
+          <CableModelHeroStats theme={theme} product={product} />
 
           {/* Precio + CTA como una sola tarjeta, igual que en desktop pero
               apilada: a este ancho el precio y el boton lado a lado no entran. */}
@@ -194,9 +182,16 @@ export function CableModelHeroMobile({ product }: Props) {
               currency={product.price.currency}
               taxLabel={t("price.taxLabel")}
               theme={theme}
-              href="#precio"
-              ctaLabel={t("cta.viewPrice")}
-              onCtaClick={() => track.cableHeroPrice(product.slug, "mobile")}
+              href={product.mercadopagoUrl || "#"}
+              ctaLabel={t("cta.buy")}
+              checkout
+              onCtaClick={() =>
+                track.mercadopagoClick({
+                  source: "cable_hero",
+                  charger: product.slug,
+                  location: "mobile",
+                })
+              }
             />
           </motion.div>
         </div>

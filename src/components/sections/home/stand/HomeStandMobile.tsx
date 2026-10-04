@@ -5,7 +5,6 @@ import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
 import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
 import { CarouselCard } from "@/components/shared/carousel/CarouselCard";
 import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
-import { useTrack } from "@/lib/analytics";
 import { HoverPlayVideo } from "./HoverPlayVideo";
 import { StandPricingPanelMobile } from "./StandPricingPanelMobile";
 
@@ -40,9 +39,14 @@ const HIGHLIGHTS: {
  * - El panel de precio tiene su propia variante (`StandPricingPanelMobile`),
  *   que comparte la lógica con desktop pero va sin la caja externa.
  */
-export function HomeStandMobile() {
+export function HomeStandMobile({
+  titleAs: Title,
+  header,
+}: {
+  titleAs: "h1" | "h2";
+  header?: React.ReactNode;
+}) {
   const t = useTranslations("HomePage.HomeStandSection");
-  const track = useTrack();
 
   return (
     <section
@@ -54,18 +58,20 @@ export function HomeStandMobile() {
           (header → video → destacados → precio → salidas). `pt-16`/`pb-20`
           para que la sección respire contra sus bordes, en línea con el resto
           de la home. */}
-      <div className="flex flex-col px-6 pt-16 pb-20">
+      <div className={`flex flex-col px-6 pb-20 ${header ? "pt-28" : "pt-16"}`}>
+        {header && <div className="mb-8">{header}</div>}
+
         {/* HEADER — el 50/50 de desktop, apilado. */}
         <span className="text-[10px] tracking-[0.3em] uppercase text-green-400">
           {t("eyebrow")}
         </span>
 
-        <h2
+        <Title
           id="stand-mobile-heading"
           className="m-0 mt-4 text-3xl leading-[1.1] font-light tracking-tight text-white"
         >
           {t("title")}
-        </h2>
+        </Title>
 
         <p className="mt-5 text-sm leading-relaxed text-neutral-400">
           {t("dimensions.description")}
@@ -168,9 +174,6 @@ export function HomeStandMobile() {
             decision que se acaba de tomar. */}
         <GoogleReviewsBlock
           compact
-          onReviewClick={(reviewId) =>
-            track.socialProofReviewClicked("home_stand", reviewId)
-          }
           className="mt-16"
         />
 
