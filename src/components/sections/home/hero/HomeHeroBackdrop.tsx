@@ -12,6 +12,8 @@
  */
 import { useTranslations } from "next-intl";
 
+import { EMPTY_IMAGE } from "@/lib/utils";
+
 export function HomeHeroBackdrop() {
   const t = useTranslations("HomePage.Hero");
 
@@ -24,6 +26,9 @@ export function HomeHeroBackdrop() {
             browser suma el DPR y un laptop retina de 1440px se bajaria igual la
             version grande, que es lo que queremos evitar en conexiones moviles */}
         <picture>
+          {/* Bajo `lg` el hero desktop esta oculto: sin esto el mobile bajaba
+              esta foto y le peleaba el ancho de banda a la suya, que es el LCP */}
+          <source media="(max-width: 1023px)" srcSet={EMPTY_IMAGE} />
           <source media="(min-width: 1536px)" srcSet="/images/brand/rayforce-hero-3-2x.webp" />
           <img
             src="/images/brand/rayforce-hero-3.webp"
