@@ -17,21 +17,21 @@ export function HomeLineupMobile() {
   const toCard = useChargerCardData();
 
   return (
-    /* Mismo gutter que el resto de las secciones y `mt-14` entre bloques, como
+    /* Mismo gutter que el resto de las secciones y `mt-8 sm:mt-14` entre bloques, como
        la columna en mobile. El `pb` es el aire hasta el bloque de UTE. */
     <div className="flex flex-col px-6 pt-14 pb-14 sm:px-8 sm:pt-20 sm:pb-16">
-      <span className="text-[12px] sm:text-sm uppercase tracking-[0.3em] text-green-400">
+      <span className="text-xs sm:text-sm uppercase tracking-[0.3em] text-green-400">
         {t("eyebrow")}
       </span>
 
       <h2
         id="home-lineup-heading"
-        className="mt-4 max-w-2xl text-3xl leading-[1.1] font-light tracking-tight text-balance text-white"
+        className="mt-5 max-w-2xl text-4xl leading-[1.1] font-light tracking-tight text-balance text-white"
       >
         {t("title")}
       </h2>
 
-      <p className="mt-5 text-sm leading-relaxed text-neutral-400">
+      <p className="sm:mt-5 text-sm leading-relaxed text-neutral-400">
         {t("description")}
       </p>
 
@@ -40,11 +40,11 @@ export function HomeLineupMobile() {
       <ProductCollection
         items={getChargerProducts().map(toCard)}
         variant="horizontal-3"
-        className="mt-14"
+        className="mt-8 sm:mt-14"
       />
 
       {/* CONSEJOS — carousel en vez de la fila de 3 de desktop. */}
-      <div className="mt-14">
+      <div className="mt-8 sm:mt-14">
         <h3 className="text-2xl font-light normal-case tracking-tight text-white">
           {t("guide.title")}
         </h3>

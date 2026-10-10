@@ -441,9 +441,9 @@
       "comparisonSummary": "Desde 2016 la nafta subió {nafta}, mientras que la luz subió {ute}. Casi el doble, con la misma plata en el bolsillo."
     },
     "Lineup": {
-      "eyebrow": "Cargadores Wallbox Rayforce Besen BS20",
-      "title": "Nuestros cargadores wallbox",
-      "description": "Dos modelos de la línea BS20, de 7,2kW y 22kW, para cargar en casa o en la empresa. Cambian la potencia y el tipo de instalación que necesitan. Abajo te contamos cómo elegir entre ellos.",
+      "eyebrow": "Cargadores wallbox Rayforce",
+      "title": "Nuestra línea de cargadores eléctricos",
+      "description": "El de 7,2\u00a0kW es monofásico y está pensado para cargar en casa. El de 22\u00a0kW es trifásico, para industrias, flotas y estacionamientos.",
       "guide": {
         "title": "Consejos a la hora de elegir un cargador wallbox",
         "items": [

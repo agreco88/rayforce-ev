@@ -48,11 +48,11 @@ export function HomeLineupDesktop() {
             {t("title")}
           </motion.h2>
 
-          {/* `max-w-3xl` y no `2xl`: a dos lineas la bajada acompaña el ancho
-              del h2; a tres se lee como una columna angosta al costado. */}
+          {/* Centrado, con renglones de largos distintos el bloque se leia como
+              un embudo: `text-balance` y el ancho del h2 los emparejan */}
           <motion.p
             variants={waterfallItem}
-            className="mt-5 max-w-3xl sr-only leading-relaxed text-neutral-400"
+            className="mt-5 max-w-2xl leading-relaxed text-balance text-neutral-400"
           >
             {t("description")}
           </motion.p>
@@ -68,10 +68,10 @@ export function HomeLineupDesktop() {
         <ChargersCardGrid className="grid grid-cols-[repeat(auto-fit,calc((100%_-_3rem)_/_3))] justify-center gap-6" />
 
         {/* CONSEJOS — despues de los modelos: primero se ve que hay, y los
-            consejos ayudan a elegir entre las fichas de arriba. `mt-20` sobre
-            el `gap-12`: con dos fichas centradas la grilla deja aire a los
-            costados, y pegado a ella el titulo se leia como su pie. */}
-        <div className="mt-20 flex flex-col">
+            consejos ayudan a elegir entre las fichas de arriba. Doble aire
+            arriba (`mt-12` + el `gap-12`) que hacia sus cards: con menos, el
+            titulo se leia como pie de las fichas. */}
+        <div className="mt-12 flex flex-col">
           {/* `text-center` en el h3 y no `items-center` en el padre: eso
               encogeria las cards de abajo al ancho de su contenido. */}
           <motion.h3
@@ -83,7 +83,8 @@ export function HomeLineupDesktop() {
             {t("guide.title")}
           </motion.h3>
 
-          <div className="mt-8">
+          {/* Mismo `12` que separa el header de la seccion de las fichas */}
+          <div className="mt-12">
             <LineupGuideCards />
           </div>
         </div>
