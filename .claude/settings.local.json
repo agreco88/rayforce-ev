@@ -642,7 +642,17 @@
       "Bash(node \"C:/Users/agrep/AppData/Local/Temp/claude/c--Users-agrep-Desktop-Old-Code-rayforce-ev/622a118e-230f-432d-9fe4-40b3e1532569/scratchpad/en-drift-args.cjs\" messages/es.json messages/en.json)",
       "Bash(node \"C:/Users/agrep/AppData/Local/Temp/claude/c--Users-agrep-Desktop-Old-Code-rayforce-ev/622a118e-230f-432d-9fe4-40b3e1532569/scratchpad/en-drift-args.cjs\" messages/metadata/es.json messages/metadata/en.json)",
       "Bash(node \"C:/Users/agrep/AppData/Local/Temp/claude/c--Users-agrep-Desktop-Old-Code-rayforce-ev/622a118e-230f-432d-9fe4-40b3e1532569/scratchpad/en-sync.cjs\")",
-      "Bash(curl -s -o /dev/null -w \"/en %{http_code}\\\\n\" http://localhost:3000/en)"
+      "Bash(curl -s -o /dev/null -w \"/en %{http_code}\\\\n\" http://localhost:3000/en)",
+      "Bash(curl -s --max-time 170 \"https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https%3A%2F%2Frayforce.uy%2F&strategy=mobile&category=performance&category=accessibility\" -o psi-mobile.json)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Linux; Android 11; moto g power \\(2022\\)\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/130.0 Mobile Safari/537.36\" https://rayforce.uy/ -o home.html)",
+      "Bash(curl -sIL https://rayforce.uy/)",
+      "Bash(curl -s -w \"\\\\nTTFB=%{time_starttransfer} total=%{time_total}\\\\n\" -A \"Mozilla/5.0 \\(Linux; Android 11; moto g power \\(2022\\)\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/130.0 Mobile Safari/537.36\" https://www.rayforce.uy/ -o home.html)",
+      "PowerShell($pids = netstat -ano | Select-String \"LISTENING\" | ForEach-Object { \\($_ -split '\\\\s+'\\)[-1] } | Sort-Object -Unique; foreach \\($p in $pids\\) { $proc = Get-CimInstance Win32_Process -Filter \"ProcessId=$p\" -ErrorAction SilentlyContinue; if \\($proc -and $proc.Name -eq 'node.exe' -and $proc.CommandLine -match 'rayforce-ev'\\) { $ports = netstat -ano | Select-String \"LISTENING\\\\s+$p$\" | ForEach-Object { \\($_ -split '\\\\s+'\\)[2] }; \"$p | $\\($ports -join ','\\) | $\\($proc.CommandLine\\)\" } })",
+      "Bash(curl -s -D dev-headers.txt --max-time 120 http://localhost:3000/ -o dev.html)",
+      "Bash(grep -o '<picture>.\\\\{0,700\\\\}</picture>' dev.html)",
+      "Bash(timeout 170 node check-hero.cjs \"C:/Users/agrep/Desktop/Old/Code/rayforce-ev/node_modules/playwright\")",
+      "Bash(timeout 170 node check-carousel.cjs \"C:/Users/agrep/Desktop/Old/Code/rayforce-ev/node_modules/playwright\")",
+      "Bash(git rev-list *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\agrep\\AppData\\Local\\Temp\\claude\\c--Users-agrep-Desktop-Old-Code-rayforce-ev\\d1b227d1-9c97-4dab-a031-1892c983b80e\\scratchpad",
