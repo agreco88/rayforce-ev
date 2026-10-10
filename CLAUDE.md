@@ -73,6 +73,15 @@ const toCard = useChargerCardData();
 
 `messages/es.json` y `messages/en.json` tienen que poder leerse de corrido. Referencia de cómo queda: `HomePage.Hero`.
 
+### El español es la versión principal
+
+Es un sitio en español para Uruguay. **El inglés está para sumar** (quien busca en inglés), no para competir con el español, robarle autoridad ni quedar como canonical. Es una decisión fija, no se reabre en cada tarea.
+
+- **Contenido:** el copy se escribe primero en español y el inglés es su traducción. Si dicen cosas distintas, el que está bien es el español y se corrige el inglés, nunca al revés.
+- **URLs:** `es` es el `defaultLocale` y va sin prefijo (`/cargadores`); el inglés vive en `/en/...` (`localePrefix: "as-needed"` en `src/i18n/routing.ts`).
+- **SEO:** `x-default` apunta al español, tanto en la head (`src/lib/generate-locale-metadata.ts`) como en `src/app/sitemap.ts`: es lo que ve quien no pide un idioma. El hreflang es/en hace que no compitan: Google muestra cada versión a quien busca en ese idioma.
+- **Lo que no se hace:** apuntar la canonical de `/en` al español, o poner `/en` en `noindex`. Parece "darle prioridad al español", pero Google descarta la versión en inglés (y con ella el hreflang) sin sumarle nada al español. Cada página es su propia canonical.
+
 ### Estructura
 
 ```
