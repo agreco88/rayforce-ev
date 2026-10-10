@@ -595,7 +595,7 @@
         "bs20-bc-22kw": {
           "title": "Wallbox Industrial Trifásico con cable integrado",
           "shortTitle": "Wallbox Industrial con cable integrado",
-          "blurb": "Máxima potencia disponible, pensado para flotas, comercios y cocheras de edificios.",
+          "blurb": "Máxima potencia disponible, pensado para industrias, flotas y cocheras de edificios.",
           "highlights": [
             "Carga hasta 5 veces más rápido respecto a cargadores convencionales",
             "Máxima potencia disponible"
@@ -775,7 +775,7 @@
         },
         {
           "title": "¿Qué diferencia hay entre el uso residencial y el comercial?",
-          "answer": "La potencia y la instalación. El 7,2kW cubre el uso diario de una casa; el de 22kW está pensado para donde el auto rota entre varios conductores, como una empresa o una flota, y requiere trifásica."
+          "answer": "La potencia y la instalación. El 7,2kW cubre el uso diario de una casa; el de 22kW está pensado para donde el auto rota entre varios conductores, como una industria o una flota, y requiere trifásica."
         },
         {
           "title": "¿Vienen con app de control?",
@@ -1166,7 +1166,7 @@
       "bs20-bc-22kw": {
         "eyebrow": "22KW TRIFÁSICO",
         "title": "Preguntas frecuentes",
-        "description": "Lo que más nos preguntan sobre el wallbox trifásico de 22kW para comercios, edificios y flotas.",
+        "description": "Lo que más nos preguntan sobre el wallbox trifásico de 22kW para industrias, flotas y edificios.",
         "items": [
           {
             "title": "¿Necesito instalación trifásica?",
@@ -1178,7 +1178,7 @@
           },
           {
             "title": "¿Para quién es este modelo?",
-            "answer": "Para cocheras de edificios, comercios y flotas: lugares donde el auto rota entre varios conductores y cada uno necesita salir cargado rápido. Ahí sí los 22kW se aprovechan enteros."
+            "answer": "Para industrias, flotas y cocheras de edificios: lugares donde el auto rota entre varios conductores y cada uno necesita salir cargado rápido. Ahí sí los 22kW se aprovechan enteros."
           },
           {
             "title": "¿Cuánto tarda en cargar el auto?",

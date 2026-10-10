@@ -595,7 +595,7 @@
         "bs20-bc-22kw": {
           "title": "Industrial Three-Phase Wallbox with integrated cable",
           "shortTitle": "Industrial Wallbox with integrated cable",
-          "blurb": "Maximum available power, built for fleets, businesses and building garages.",
+          "blurb": "Maximum available power, built for industry, fleets and building garages.",
           "highlights": [
             "Charges up to 5× faster than conventional chargers",
             "Maximum available power"
@@ -775,7 +775,7 @@
         },
         {
           "title": "What's the difference between residential and commercial use?",
-          "answer": "Power and the supply it needs. The 7.2kW covers a home's daily use; the 22kW is built for where the car rotates between several drivers, like a business or a fleet, and it needs a three-phase supply."
+          "answer": "Power and the supply it needs. The 7.2kW covers a home's daily use; the 22kW is built for where the car rotates between several drivers, like an industrial site or a fleet, and it needs a three-phase supply."
         },
         {
           "title": "Do they come with an app?",
@@ -1166,7 +1166,7 @@
       "bs20-bc-22kw": {
         "eyebrow": "22KW THREE-PHASE",
         "title": "Frequently asked questions",
-        "description": "What people ask us most about the three-phase 22kW wallbox for businesses, buildings and fleets.",
+        "description": "What people ask us most about the three-phase 22kW wallbox for industry, fleets and buildings.",
         "items": [
           {
             "title": "Do I need a three-phase supply?",
@@ -1178,7 +1178,7 @@
           },
           {
             "title": "Who is this model for?",
-            "answer": "Building garages, businesses and fleets: places where the car rotates between several drivers and each one needs to leave charged quickly. That's where the full 22kW gets used."
+            "answer": "Industrial sites, fleets and building garages: places where the car rotates between several drivers and each one needs to leave charged quickly. That's where the full 22kW gets used."
           },
           {
             "title": "How long does a charge take?",
