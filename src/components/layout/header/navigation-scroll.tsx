@@ -17,6 +17,7 @@ import { useCableCardData } from "@/components/catalog/product-card/adapters/use
 import { useStandCardData } from "@/components/catalog/product-card/adapters/useStandCardData";
 import { useChargerCardData } from "@/components/catalog/product-card/adapters/useChargerCardData";
 import HeaderLogo from "./header-logo";
+import { MobileMenuContact } from "./MobileMenuContact";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { Link } from "@/i18n/navigation";
 import {
@@ -34,6 +35,8 @@ interface DropdownItem {
 interface NavItem {
   label: string;
   href?: string;
+  /** Solo en el menu mobile: la barra de desktop sigue con sus cuatro items. */
+  mobileOnly?: boolean;
   dropdown?: {
     title: string;
     items: DropdownItem[];
@@ -165,41 +168,53 @@ export function NavigationScroll() {
     setHidden(current > previous && current > 150);
   });
 
+  const t = useTranslations("Layout.Header");
   const tNav = useTranslations("Layout.Header.nav");
   const toChargerCard = useChargerCardData();
   const toCableCard = useCableCardData();
   const column = useStandCardData();
 
+  // El label traducido hace de id en todo el estado del nav (dropdown activo,
+  // pin, acordeon mobile): es unico dentro de cada idioma.
+  const chargersLabel = tNav("wallboxChargers");
+  const accessoriesLabel = tNav("cables");
+
   /** Items del nav que renderizan la grilla de productos en vez de la lista simple. */
   const productPanels: Record<string, ProductCardData[]> = {
-    "Cargadores Wallbox": getChargerProducts().map(toChargerCard),
-    Accesorios: [...getCableProducts().map(toCableCard), column],
+    [chargersLabel]: getChargerProducts().map(toChargerCard),
+    [accessoriesLabel]: [...getCableProducts().map(toCableCard), column],
   };
 
   const navItems: NavItem[] = [
     {
-      label: "Cargadores Wallbox",
+      label: chargersLabel,
       dropdown: {
-        title: "LINEA DE CARGADORES WALLBOX BESEN BS20",
-        // Rendered from `chargerItems` instead of this list — see the panel below.
+        title: t("panels.chargers.title"),
+        // Rendered from `productPanels` instead of this list — see the panel below.
         items: [],
       },
     },
     {
-      label: "Accesorios",
+      label: accessoriesLabel,
       dropdown: {
-        title: "ACCESORIOS PARA TU CARGADOR",
-        // Rendered from `cableItems` instead of this list — see the panel below.
+        title: t("panels.accessories.title"),
+        // Rendered from `productPanels` instead of this list — see the panel below.
         items: [],
       },
     },
     {
-      label: "Edificios y Empresas",
+      // Con `/` adelante, a diferencia del contacto: solo existe en la home.
+      label: tNav("utePower"),
+      href: "/#aumento-de-potencia",
+      mobileOnly: true,
+    },
+    {
+      label: tNav("companies"),
       href: "/empresas",
     },
     {
       // El contacto no es una ruta: vive como seccion del footer en todas las paginas.
-      label: "Contacto",
+      label: tNav("contact"),
       href: "#contacto",
     },
   ];
@@ -284,13 +299,13 @@ export function NavigationScroll() {
 
           <div className="hidden md:flex flex-1 justify-center">
             <div className="flex items-center gap-1">
-              {navItems.map((item) =>
+              {navItems.filter((item) => !item.mobileOnly).map((item) =>
                 // Items sin dropdown (Empresas, Contacto) son links directos:
                 // mismo chip que los triggers, sin chevron ni panel.
                 item.href ? (
-                  // Links internos: sin fondo. El afford de link lo da el
-                  // chevron `>` y un subrayado que crece en hover — animado
-                  // con scaleX, que corre en el compositor.
+                  // Links internos: sin fondo. El afford de link lo dan el
+                  // chevron y un subrayado que crece en hover — animado con
+                  // scaleX, que corre en el compositor.
                   <Link
                     key={item.label}
                     href={item.href}
@@ -300,20 +315,33 @@ export function NavigationScroll() {
                     }}
                     onMouseLeave={() => setHoveredLink(null)}
                     onClick={closeDropdown}
-                    className="group relative flex items-center gap-1 px-3 h-10 text-sm tracking-tight font-medium text-neutral-300 hover:text-white transition-colors"
+                    className="group flex items-center gap-1 px-3 h-10 text-sm tracking-tight font-medium text-neutral-300 hover:text-white transition-colors"
                   >
-                    {item.label}
-                    <ChevronRight
-                      size={14}
-                      className="transition-transform duration-200 group-hover:translate-x-0.5"
-                    />
-                    <motion.span
-                      aria-hidden="true"
-                      className="absolute bottom-2 left-3 right-3 h-px origin-left bg-current"
-                      initial={false}
-                      animate={{ scaleX: hoveredLink === item.label ? 1 : 0 }}
-                      transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                    />
+                    {/* El subrayado se mide contra el texto y no contra el
+                        link: si no, cruzaba tambien el chevron. */}
+                    <span className="relative">
+                      {item.label}
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute inset-x-0 -bottom-0.5 h-px origin-left bg-current"
+                        initial={false}
+                        animate={{ scaleX: hoveredLink === item.label ? 1 : 0 }}
+                        transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                      />
+                    </span>
+                    {/* Contacto apunta abajo: baja al footer de esta misma
+                        pagina, no navega a otra ruta. */}
+                    {item.href.startsWith("#") ? (
+                      <ChevronDown
+                        size={14}
+                        className="transition-transform duration-200 group-hover:translate-y-0.5"
+                      />
+                    ) : (
+                      <ChevronRight
+                        size={14}
+                        className="transition-transform duration-200 group-hover:translate-x-0.5"
+                      />
+                    )}
                   </Link>
                 ) : (
                   <div
@@ -434,7 +462,7 @@ export function NavigationScroll() {
                                 la secuencia arranca por el titulo. */}
                         <motion.div
                           variants={panelChildVariants}
-                          className={`text-xs font-medium tracking-widest text-neutral-400 dark:text-neutral-500 my-4 ${
+                          className={`text-xs font-medium uppercase tracking-widest text-neutral-400 dark:text-neutral-500 my-4 ${
                             productPanels[activeItem.label] ? "px-5" : "px-4"
                           }`}
                         >
@@ -444,7 +472,8 @@ export function NavigationScroll() {
                         {productPanels[activeItem.label] ? (
                           // `motion.div` sin variants propias: un div comun
                           // cortaria la propagacion del stagger y las cards
-                          // no lo heredarian.
+                          // no lo heredarian. Cuatro columnas en 2xl aunque
+                          // haya menos productos: a 50/50 se estiran.
                           <motion.div className="grid grid-cols-2 2xl:grid-cols-4 gap-4 px-5 pb-4 w-full">
                             {productPanels[activeItem.label].map((card) => (
                               <motion.div
@@ -457,8 +486,11 @@ export function NavigationScroll() {
                                   // titulo: es el texto del link, suma para
                                   // SEO y desambigua los dos de 7kW.
                                   fullTitle={
-                                    activeItem.label === "Cargadores Wallbox"
-                                      ? `${card.fullTitle} de ${card.titleAccent}`
+                                    activeItem.label === chargersLabel
+                                      ? t("panels.chargers.cardTitle", {
+                                          title: card.fullTitle ?? card.title,
+                                          power: card.titleAccent ?? "",
+                                        })
                                       : card.fullTitle
                                   }
                                   variant={{
@@ -511,7 +543,7 @@ export function NavigationScroll() {
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="md:hidden px-4 h-10 text-neutral-200 hover:text-white transition-colors flex items-center gap-2"
-              aria-label="Open menu"
+              aria-label={t("openMenu")}
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -542,7 +574,7 @@ export function NavigationScroll() {
                   setMobileExpandedItem(null);
                 }}
                 className="flex items-center gap-2 px-4 h-10 bg-neutral-200 dark:bg-neutral-900 hover:bg-neutral-300 dark:hover:bg-neutral-800 rounded-md text-sm font-medium text-neutral-900 dark:text-neutral-100 transition-colors"
-                aria-label="Close menu"
+                aria-label={t("closeMenu")}
               >
                 <X className="w-4 h-4" />
               </button>
@@ -553,7 +585,7 @@ export function NavigationScroll() {
                 el area de scroll terminaba antes de tiempo y debajo quedaba una
                 franja del fondo del panel tapando las cards. Con el panel como
                 columna flex, esta fila toma exactamente lo que sobra. */}
-            <div className="min-h-0 flex-1 overflow-y-auto py-4 sm:py-6">
+            <div className="flex min-h-0 flex-1 flex-col overflow-y-auto py-4 sm:py-6">
               <nav className="space-y-2">
                 {/* Con un acordeon abierto quedan los items ANTERIORES (cerrados)
                     mas el activo, y se ocultan los posteriores.
@@ -644,7 +676,7 @@ export function NavigationScroll() {
                                   <div
                                     className={
                                       productPanels[item.label]
-                                        ? "grid grid-cols-2 gap-2 px-2 pt-2 pb-3"
+                                        ? "grid grid-cols-2 gap-3 px-4 pt-3 pb-4"
                                         : "space-y-1 px-2 pt-2 pb-3"
                                     }
                                   >
@@ -746,6 +778,23 @@ export function NavigationScroll() {
                   </motion.div>
                 )}
               </nav>
+
+              {/* `mt-auto`: con el menu corto el contacto baja al pie de la
+                  pantalla. Misma regla que la fila de arriba con un acordeon. */}
+              {mobileExpandedItem === null && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: (navItems.length + 1) * 0.05,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                  className="mt-auto pt-10"
+                >
+                  <MobileMenuContact />
+                </motion.div>
+              )}
             </div>
           </motion.div>
         )}

@@ -1,71 +1,48 @@
 {
   "Layout": {
     "Header": {
+      "logo": "Ir al inicio",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
       "nav": {
-        "home": "Inicio",
         "chargers": "Cargadores",
-        "benefits": "Beneficios",
-        "stand": "Columna",
-        "faq": "FAQ",
-        "compatibility": "Compatibilidad",
-        "contactCta": "Contactar ventas por WhatsApp",
-        "quoteCta": "Cotizar instalación",
-        "quoteCtaMessage": "Hola! Quiero cotizar la instalación de un cargador Rayforce.",
+        "wallboxChargers": "Cargadores Wallbox",
         "cables": "Accesorios",
-        "companies": "Empresas",
-        "viewAllChargers": "Ver todos los cargadores",
-        "viewAllCables": "Ver todos los cables"
+        "utePower": "Aumento de potencia en UTE",
+        "companies": "Edificios y Empresas",
+        "contact": "Contacto",
+        "quoteCta": "Cotizar instalación",
+        "quoteCtaMessage": "Hola! Quiero cotizar la instalación de un cargador Rayforce."
       },
-      "products": {
-        "bs20-bc-7kw": {
-          "title": "Wallbox Residencial Monofásico con cable integrado",
-          "cableNote": "Cable integrado"
+      "panels": {
+        "chargers": {
+          "title": "Línea de cargadores Wallbox Besen BS20",
+          "cardTitle": "{title} de {power}"
         },
-        "bs20-ba-7kw": {
-          "title": "Wallbox Residencial Monofásico con toma Tipo 2",
-          "cableNote": "No incluye cable"
-        },
-        "bs20-bc-11kw": {
-          "title": "Wallbox Comercial Trifásico con cable integrado",
-          "cableNote": "Cable integrado"
-        },
-        "bs20-bc-22kw": {
-          "title": "Wallbox Industrial Trifásico con cable integrado",
-          "cableNote": "Cable integrado"
+        "accessories": {
+          "title": "Accesorios para tu cargador"
         }
       },
-      "cableProducts": {
-        "cable-tipo-2-7kw": {
-          "title": "Recto",
-          "note": "Monofásico · 5 m"
+      "menu": {
+        "phone": {
+          "label": "Teléfono",
+          "cta": "Llamar"
         },
-        "cable-tipo-2-22kw": {
-          "title": "Recto",
-          "note": "Trifásico · 5 m"
+        "email": {
+          "label": "Email de ventas",
+          "cta": "Escribir"
         },
-        "cable-tipo-2-espiral-7kw": {
-          "title": "Espiralado",
-          "note": "Monofásico · 5 m"
-        }
-      }
-    },
-    "Aside": {
-      "language": "Idioma"
-    },
-    "Footer": {
-      "meta": {
-        "copyright": "© 2025 Rayforce EV. Todos los derechos reservados."
-      },
-      "links": {
-        "privacy": "Política de privacidad",
-        "terms": "Términos del servicio",
-        "contact": "Contacto"
+        "copy": "Copiar",
+        "copied": "Copiado"
       }
     }
   },
   "Common": {
     "BackToTop": {
       "cta": "Volver al inicio"
+    },
+    "Breadcrumb": {
+      "label": "Ruta de navegación"
     },
     "Carousel": {
       "prev": "Anterior",
@@ -207,29 +184,6 @@
       "ariaLabel": "Descargar EVSEMaster en {store}",
       "manual": "Manual de la app (PDF)"
     }
-  },
-  "LocaleSwitcher": {
-    "label": "Cambiar idioma",
-    "languages": {
-      "en": "Inglés",
-      "es": "Español"
-    }
-  },
-  "AriaLabels": {
-    "logo": "Ir a la página principal",
-    "mobileMenu": "Abrir menú móvil",
-    "mobileMenuHeader": "Encabezado del menú móvil",
-    "mobileNavigation": "Navegación móvil",
-    "languageSwitcher": "Cambiar idioma",
-    "socialLinks": "Enlaces a redes sociales",
-    "themeToggle": "Cambiar tema",
-    "closeMenu": "Cerrar menú",
-    "followUs": "Seguinos",
-    "language": "Idioma"
-  },
-  "Languages": {
-    "en": "Inglés",
-    "es": "Español"
   },
   "HomePage": {
     "Hero": {
@@ -1426,10 +1380,12 @@
       "title": "Contacto",
       "phone": "+598 92 041 709",
       "email": "comercial@rayforce.uy",
-      "location": "Montevideo, Uruguay"
+      "location": "Montevideo, Uruguay",
+      "address": "Av. Italia 4520, Montevideo"
     },
     "meta": {
-      "rights": "Todos los derechos reservados."
+      "rights": "Todos los derechos reservados.",
+      "socialLinks": "Redes sociales"
     }
   },
   "AccessoriesPage": {

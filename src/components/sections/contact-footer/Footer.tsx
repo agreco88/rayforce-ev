@@ -15,10 +15,7 @@ const FOOTER_GRID_MASK =
   "radial-gradient(ellipse 80% 55% at 50% 22%, #000 30%, transparent 85%)";
 
 type Props = {
-  /**
-   * Namespace del FAQ de esta ruta. Sin esto no se monta: hoy solo la home y
-   * /cargadores tienen preguntas escritas.
-   */
+  /** Namespace del FAQ de esta ruta. Sin esto no se monta. */
   faqNamespace?: string;
   /** Ancla del FAQ, para el link del header. */
   faqId?: string;

@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 
 export function FooterMeta() {
   const t = useTranslations("Footer.meta");
-  const tAria = useTranslations("AriaLabels");
 
   return (
     <div className="mt-16 border-t border-white/10 py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -15,7 +14,8 @@ export function FooterMeta() {
 
       <div
         className="flex justify-center gap-5"
-        aria-label={tAria("socialLinks")}
+        role="group"
+        aria-label={t("socialLinks")}
       >
         {socialLinks.map(({ href, label, icon }) => (
           <a

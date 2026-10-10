@@ -1,71 +1,48 @@
 {
   "Layout": {
     "Header": {
+      "logo": "Go to homepage",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
       "nav": {
-        "home": "Home",
         "chargers": "Chargers",
-        "benefits": "Benefits",
-        "stand": "Stand",
-        "faq": "FAQ",
-        "compatibility": "Compatibility",
-        "contactCta": "Contact sales via WhatsApp",
-        "quoteCta": "Quote installation",
-        "quoteCtaMessage": "Hi! I'd like a quote for installing a Rayforce charger.",
+        "wallboxChargers": "Wallbox Chargers",
         "cables": "Accessories",
-        "companies": "Business",
-        "viewAllChargers": "View all chargers",
-        "viewAllCables": "View all cables"
+        "utePower": "Power increase with UTE",
+        "companies": "Buildings & Business",
+        "contact": "Contact",
+        "quoteCta": "Quote installation",
+        "quoteCtaMessage": "Hi! I'd like a quote for installing a Rayforce charger."
       },
-      "products": {
-        "bs20-bc-7kw": {
-          "title": "Residential Single-Phase Wallbox with integrated cable",
-          "cableNote": "Integrated cable"
+      "panels": {
+        "chargers": {
+          "title": "Besen BS20 Wallbox charger lineup",
+          "cardTitle": "{power} {title}"
         },
-        "bs20-ba-7kw": {
-          "title": "Residential Single-Phase Wallbox with Type 2 socket",
-          "cableNote": "Cable not included"
-        },
-        "bs20-bc-11kw": {
-          "title": "Commercial Three-Phase Wallbox with integrated cable",
-          "cableNote": "Integrated cable"
-        },
-        "bs20-bc-22kw": {
-          "title": "Industrial Three-Phase Wallbox with integrated cable",
-          "cableNote": "Integrated cable"
+        "accessories": {
+          "title": "Accessories for your charger"
         }
       },
-      "cableProducts": {
-        "cable-tipo-2-7kw": {
-          "title": "Straight",
-          "note": "Single-phase · 5 m"
+      "menu": {
+        "phone": {
+          "label": "Phone",
+          "cta": "Call"
         },
-        "cable-tipo-2-22kw": {
-          "title": "Straight",
-          "note": "Three-phase · 5 m"
+        "email": {
+          "label": "Sales email",
+          "cta": "Write"
         },
-        "cable-tipo-2-espiral-7kw": {
-          "title": "Coiled",
-          "note": "Single-phase · 5 m"
-        }
-      }
-    },
-    "Aside": {
-      "language": "Language"
-    },
-    "Footer": {
-      "meta": {
-        "copyright": "© 2025 Rayforce EV. All rights reserved."
-      },
-      "links": {
-        "privacy": "Privacy policy",
-        "terms": "Terms of service",
-        "contact": "Contact"
+        "copy": "Copy",
+        "copied": "Copied"
       }
     }
   },
   "Common": {
     "BackToTop": {
       "cta": "Back to top"
+    },
+    "Breadcrumb": {
+      "label": "Breadcrumb"
     },
     "Carousel": {
       "prev": "Previous",
@@ -207,29 +184,6 @@
       "ariaLabel": "Download EVSEMaster on {store}",
       "manual": "App manual (PDF, Spanish)"
     }
-  },
-  "LocaleSwitcher": {
-    "label": "Change language",
-    "languages": {
-      "en": "English",
-      "es": "Spanish"
-    }
-  },
-  "AriaLabels": {
-    "logo": "Go to homepage",
-    "mobileMenu": "Open mobile menu",
-    "mobileMenuHeader": "Mobile menu header",
-    "mobileNavigation": "Mobile navigation",
-    "languageSwitcher": "Change language",
-    "socialLinks": "Social media links",
-    "themeToggle": "Toggle theme",
-    "closeMenu": "Close menu",
-    "followUs": "Follow us",
-    "language": "Language"
-  },
-  "Languages": {
-    "en": "English",
-    "es": "Spanish"
   },
   "HomePage": {
     "Hero": {
@@ -1426,10 +1380,12 @@
       "title": "Contact",
       "phone": "+598 92 041 709",
       "email": "comercial@rayforce.uy",
-      "location": "Montevideo, Uruguay"
+      "location": "Montevideo, Uruguay",
+      "address": "Av. Italia 4520, Montevideo"
     },
     "meta": {
-      "rights": "All rights reserved."
+      "rights": "All rights reserved.",
+      "socialLinks": "Social media"
     }
   },
   "AccessoriesPage": {

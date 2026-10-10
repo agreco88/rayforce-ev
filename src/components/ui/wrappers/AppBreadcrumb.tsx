@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import {
   Breadcrumb,
@@ -39,6 +40,7 @@ type Props = {
 /* ------------------------------------------------------------------ */
 
 export function AppBreadcrumb({ items, className }: Props) {
+  const t = useTranslations("Common.Breadcrumb");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -79,7 +81,7 @@ export function AppBreadcrumb({ items, className }: Props) {
     // En mobile el desplegable se ancla aca, no en el item. `w-full`: los
     // heroes son `items-start`, y sin el mediria lo que el texto del breadcrumb.
     <div ref={containerRef} className="relative w-full">
-      <Breadcrumb className={className}>
+      <Breadcrumb className={className} aria-label={t("label")}>
         {/* Mobile en `text-xs` y con menos aire: en `text-sm` el modelo mas
             largo bajaba de linea y los cortos no, y el hero saltaba de alto. */}
         <BreadcrumbList className="gap-1 text-xs sm:gap-2.5 sm:text-sm">

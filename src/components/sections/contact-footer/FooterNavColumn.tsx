@@ -3,9 +3,11 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useTrack } from "@/lib/analytics/use-track";
-import { CHARGER_PRODUCTS } from "@/lib/catalog/chargers.catalog";
-import { CABLE_PRODUCTS } from "@/lib/catalog/cables.catalog";
-import { slugLabel } from "@/lib/catalog/catalog.helpers";
+import {
+  getCableProducts,
+  getChargerProducts,
+  slugLabel,
+} from "@/lib/catalog/catalog.helpers";
 import { useChargerCrumbLabel } from "@/components/pages/shared/useChargerCrumbLabel";
 
 type Props = {
@@ -66,7 +68,7 @@ export function FooterChargersColumn() {
     <NavColumn
       title={t("nav.chargers")}
       href="/cargadores"
-      items={CHARGER_PRODUCTS.map((product) => ({
+      items={getChargerProducts().map((product) => ({
         href: `/cargadores/${product.slug}`,
         label: crumbLabel(product),
       }))}
@@ -84,7 +86,7 @@ export function FooterAccessoriesColumn() {
       title={t("nav.cables")}
       href="/accesorios"
       items={[
-        ...CABLE_PRODUCTS.map(({ slug }) => ({
+        ...getCableProducts().map(({ slug }) => ({
           href: `/accesorios/${slug}`,
           label: slugLabel(slug),
         })),
