@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 import { HomeStandSection } from "@/components/sections/home/stand/HomeStandSection";
 import { AppBreadcrumb } from "@/components/ui/wrappers/AppBreadcrumb";
+import { getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -26,24 +27,24 @@ export default async function ColumnPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "ColumnPage.breadcrumb" });
 
+  // Sin cables a la venta /accesorios redirige aca: el camino lo saltea.
+  const trail = [
+    { label: t("home"), href: "/" },
+    ...(getCableProducts().length > 0
+      ? [{ label: t("accessories"), href: "/accesorios" }]
+      : []),
+    { label: t("column"), href: PATH },
+  ];
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: t("home"), item: SITE.baseUrl },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: t("accessories"),
-        item: `${SITE.baseUrl}/accesorios`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: t("column"),
-        item: `${SITE.baseUrl}${PATH}`,
-      },
-    ],
+    itemListElement: trail.map(({ label, href }, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: label,
+      item: href === "/" ? SITE.baseUrl : `${SITE.baseUrl}${href}`,
+    })),
   };
 
   return (
@@ -53,15 +54,7 @@ export default async function ColumnPage({ params }: Props) {
       <HomeStandSection
         id="columna"
         titleAs="h1"
-        header={
-          <AppBreadcrumb
-            items={[
-              { label: t("home"), href: "/" },
-              { label: t("accessories"), href: "/accesorios" },
-              { label: t("column") },
-            ]}
-          />
-        }
+        header={<AppBreadcrumb items={trail} />}
       />
 
       <Footer faqNamespace="AccessoriesPage.Faq" faqId="faq" ctaSource="column" />
