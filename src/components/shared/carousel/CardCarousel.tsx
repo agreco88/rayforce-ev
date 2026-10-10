@@ -37,13 +37,14 @@ function ProgressBars({ autoplay, accent }: { autoplay?: Autoplay; accent: Accen
   const t = useTranslations("Common.Carousel");
 
   return (
-    <div
-      aria-label={t("progress", {
-        current: currentPage + 1,
-        total: totalPages,
-      })}
-      className="flex flex-1 items-center justify-center gap-4"
-    >
+    <div className="flex flex-1 items-center justify-center gap-4">
+      {/* Texto oculto y no `aria-label`, que en un div sin rol esta prohibido.
+          Hasta medirse el carousel tiene 0 paginas, y leia "1 de 0" */}
+      {totalPages > 0 && (
+        <span className="sr-only">
+          {t("progress", { current: currentPage + 1, total: totalPages })}
+        </span>
+      )}
       {Array.from({ length: totalPages }, (_, index) => {
         const active = index === currentPage;
         if (autoplay) {
