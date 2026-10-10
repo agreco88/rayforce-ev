@@ -217,8 +217,8 @@
         "tag": "Bamibel S.A.",
         "label": "25 years of engineering in Uruguay"
       },
-      "title": "Garage retrofit projects and installations in buildings, residential installation and sales of Wallbox chargers for electric and hybrid cars in Uruguay.",
-      "description": "Rayforce Wallbox chargers of 7, 11 and 22 kW for homes, businesses and parking facilities. UTE-certified installation, URSEA-authorised equipment and the backing of an engineering company with over 25 years in Uruguay.",
+      "title": "Wallbox charger installation and sales for electric and hybrid cars in Uruguay",
+      "description": "We upgrade the electrical installation of your home, building or business and fit the wallbox charger ourselves, with no subcontractors. UTE-licensed technicians and URSEA-certified equipment.",
       "ctaPrimary": "View chargers",
       "ctaSecondary": "Projects for buildings and businesses",
       "ctaTertiary": "Power increase with UTE"
@@ -584,7 +584,7 @@
     },
     "HomeStandSection": {
       "eyebrow": "INSTALLATION STAND",
-      "title": "Installation stand for Rayforce chargers",
+      "title": "Get the floor pedestal for your wallbox charger",
       "description": "Install your charger outdoors, in garages, or wherever a wall isn't available. Compatible with the full BS20 lineup.",
       "specs": "Height: 150 cm · Base: 26 × 14.5 cm",
       "dimensions": {
@@ -596,7 +596,7 @@
           "label": "Base",
           "value": "26 × 14.5 cm"
         },
-        "description": "It anchors to the floor on a compact base, so you need no wall and no drilling into the building. The height keeps the connector within easy reach, with no bending down."
+        "description": "It anchors to the floor on a compact base, so it needs no wall and no drilling. It keeps the connector at just the right height to use it without bending down."
       },
       "contactCta": "Contact us",
       "contactMessage": "Hi! I have a question about the installation stand",
@@ -741,7 +741,7 @@
         "chargers": "Chargers",
         "accessories": "Accessories"
       },
-      "title": "Wallbox electric vehicle chargers",
+      "title": "7 kW and 22 kW wallbox chargers for electric and hybrid cars",
       "description": "Charging solutions for electric cars, SUVs and trucks in Uruguay. Choose the power level that best fits your needs, with the BS20 model family in 4 variants from 7.2kW to 22kW."
     },
     "ChargerCard": {
@@ -795,7 +795,7 @@
       "model": "{power} kW {phase, select, three {three-phase} other {single-phase}}{cable, select, socket { with socket} other {}}"
     },
     "Hero": {
-      "title": "<l>Rayforce <accent>{power} kW</accent> {phase, select, three {three-phase} other {single-phase}}</l><l>wallbox charger {cable, select, socket {with Type 2 socket} other {for your {tier, select, residential {home} commercial {business} other {industry}}}}</l>",
+      "title": "<l>Rayforce <accent>{power} kW</accent> {phase, select, three {three-phase} other {single-phase}}</l><l>wallbox charger {cable, select, socket {with Type 2 socket} other {{tier, select, residential {for your home} commercial {for your business} other {for industrial use}}}}</l>",
       "descriptions": {
         "bs20-ba-7kw": "Single-phase wallbox with a Type 2 socket for overnight home charging. Sold without a cable: pick straight or coiled and add it on.",
         "bs20-bc-7kw": "Single-phase wallbox with a built-in 6 m Type 2 cable for overnight home charging. No loose parts: there is no cable to lose.",
@@ -1262,7 +1262,7 @@
       },
       "bs20-bc-22kw": {
         "fullName": "Industrial Three-Phase 22kW Wallbox with integrated cable",
-        "description": "For businesses, buildings and fleets of electric cars and vans. Needs a strong three-phase supply: for a home, the 11 kW is usually enough."
+        "description": "For industry, fleets, parking facilities and garages. Needs a strong three-phase supply: for charging at home, the 7.2 kW is more than enough."
       },
       "bs20-ba-7kw": {
         "fullName": "Residential Single-Phase 7.2kW Wallbox with Type 2 socket",
@@ -1657,7 +1657,7 @@
       },
       "eyebrow": "Turnkey projects",
       "title": "Charging infrastructure for buildings, businesses and parking facilities",
-      "description": "Rayforce wallboxes of 7, 11 and 22 kW for homes, businesses and parking facilities. Installation certified by UTE, equipment authorised by URSEA, and the backing of an engineering company with more than 25 years in Uruguay.",
+      "description": "We prepare the electrical installation of your building or business so every parking space can add its charger, with no new works. Design, works and in-house installation.",
       "ctaPrimary": "Request a site visit",
       "ctaSecondary": "See our methodology",
       "imageAlt": "Building parking garage with Rayforce chargers installed"

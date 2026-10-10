@@ -217,8 +217,8 @@
         "tag": "Bamibel S.A.",
         "label": "25 años de ingeniería en Uruguay"
       },
-      "title": "Instalación y venta de cargadores wallbox para autos eléctricos e híbridos en Uruguay.",
-      "description": "Wallbox Rayforce de 7, 11 y 22 kW para residencias, comercios y estacionamientos. Instalación certificada por UTE, equipos autorizados por URSEA y el respaldo de una empresa de ingeniería con más de 25 años en Uruguay.",
+      "title": "Instalación y venta de cargadores wallbox para autos eléctricos e híbridos en Uruguay",
+      "description": "Adecuamos la instalación eléctrica de tu casa, edificio o empresa y colocamos el cargador wallbox nosotros, sin tercerizar. Técnicos habilitados por UTE y equipos certificados por URSEA.",
       "ctaPrimary": "Ver cargadores",
       "ctaSecondary": "Proyectos para edificios y empresas",
       "ctaTertiary": "Aumento de Potencia en UTE"
@@ -584,7 +584,7 @@
     },
     "HomeStandSection": {
       "eyebrow": "COLUMNA DE INSTALACIÓN",
-      "title": "Consegui tu columna de instalación para cargadores Rayforce",
+      "title": "Conseguí la columna de piso para tu cargador wallbox",
       "description": "Instalá tu cargador en exteriores, cocheras o espacios sin pared disponible. Compatible con toda la línea BS20.",
       "specs": "Altura: 150 cm · Base: 26 × 14.5 cm",
       "dimensions": {
@@ -596,7 +596,7 @@
           "label": "Base",
           "value": "26 × 14,5 cm"
         },
-        "description": "La columna se ancla al piso sobre una base compacta, así que no necesitás perforar ninguna pared. La altura deja el conector a la altura ideal, sin tener que hacer ningun tipo de esfuero para usarlo."
+        "description": "Se ancla al piso sobre una base compacta, así que no hace falta una pared ni perforar nada. Deja el conector a la altura justa para usarlo sin agacharte."
       },
       "contactCta": "Contactanos",
       "contactMessage": "Hola! Tengo una consulta sobre la columna de instalación",
@@ -741,7 +741,7 @@
         "chargers": "Cargadores",
         "accessories": "Accesorios"
       },
-      "title": "Cargadores eléctricos de tipo Wallbox",
+      "title": "Cargadores wallbox de 7 kW y 22 kW para autos eléctricos e híbridos",
       "description": "Soluciones de carga para autos, SUV y camionetas eléctricas/híbridos en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos BS20 en sus 4 variantes de 7,2kW a 22kW."
     },
     "ChargerCard": {
@@ -795,7 +795,7 @@
       "model": "{power} kW {phase, select, three {trifásico} other {monofásico}}{cable, select, socket { con toma} other {}}"
     },
     "Hero": {
-      "title": "<l>Cargador wallbox Rayforce {phase, select, three {trifásico} other {monofásico}}</l><l>de <accent>{power} kW</accent> {cable, select, socket {con toma Tipo 2} other {para tu {tier, select, residential {casa} commercial {comercio} other {industria}}}}</l>",
+      "title": "<l>Cargador wallbox Rayforce {phase, select, three {trifásico} other {monofásico}}</l><l>de <accent>{power} kW</accent> {cable, select, socket {con toma Tipo 2} other {{tier, select, residential {para tu casa} commercial {para tu comercio} other {para uso industrial}}}}</l>",
       "descriptions": {
         "bs20-ba-7kw": "Wallbox monofásico con toma Tipo 2 para cargar en casa de noche. Viene sin cable: elegí el recto o el espiral y sumalo a tu compra.",
         "bs20-bc-7kw": "Wallbox monofásico con cable Tipo 2 integrado de 6 m para cargar en casa de noche. Sin piezas sueltas: no hay cable que se pierda.",
@@ -1262,7 +1262,7 @@
       },
       "bs20-bc-22kw": {
         "fullName": "Wallbox Industrial Trifásico 22kW con cable integrado",
-        "description": "Para comercios, edificios y flotas de autos y utilitarios eléctricos. Pide una conexión trifásica potente: para una casa, el de 11 kW suele alcanzar."
+        "description": "Para industrias, flotas, parkings y garajes. Pide una conexión trifásica potente: para cargar en casa, el de 7,2 kW alcanza y sobra."
       },
       "bs20-ba-7kw": {
         "fullName": "Wallbox Residencial Monofásico 7,2kW con toma Tipo 2",
@@ -1657,7 +1657,7 @@
       },
       "eyebrow": "Proyectos llave en mano",
       "title": "Infraestructura de carga para edificios, empresas y estacionamientos",
-      "description": "Wallbox Rayforce de 7, 11 y 22 kW para residencias, comercios y estacionamientos. Instalación certificada por UTE, equipos autorizados por URSEA y el respaldo de una empresa de ingeniería con más de 25 años en Uruguay.",
+      "description": "Preparamos la instalación eléctrica de tu edificio o empresa para que cada cochera sume su cargador, sin obras nuevas. Proyecto, obra e instalación propia.",
       "ctaPrimary": "Solicitar una visita técnica",
       "ctaSecondary": "Ver la metodología",
       "imageAlt": "Estacionamiento de edificio con cargadores Rayforce instalados"
