@@ -655,8 +655,6 @@
         "features": {
           "column": [
             "150 cm floor stand",
-            "Built-in Type 2 dummy socket",
-            "Internal wiring, no exposed conduit",
             "Compatible with the full BS20 lineup"
           ],
           "charger": [
@@ -677,22 +675,22 @@
             "installation": "Installation by UTE-certified technicians"
           }
         },
-        "toggle": {
-          "label": "Include charger",
-          "columnOnly": "Stand only",
-          "withCharger": "Stand + charger"
+        "charger": {
+          "label": "Charger",
+          "base": "No charger",
+          "add": "+ {power} kW charger"
         },
-        "installationToggle": {
-          "label": "Include installation",
-          "without": "No installation",
-          "with": "With installation"
+        "installation": {
+          "label": "Installation",
+          "base": "No installation",
+          "add": "+ Installation",
+          "from": "from"
         },
         "fromPrefix": "From",
         "taxLabel": "VAT included",
         "cta": {
-          "columnOnly": "Buy the stand",
-          "withCharger": "Buy stand + charger",
-          "quote": "Get an installation quote",
+          "mercadopago": "Pay with MercadoPago",
+          "whatsapp": "Get a quote on WhatsApp",
           "whatsappMessage": "Hi! I'd like a quote for the stand with the BS20-BC-7KW charger and installation"
         },
         "footnote": {

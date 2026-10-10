@@ -1,29 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
   CHARGER_COLUMN_PRICE_USD,
   CHARGER_INSTALLATION_PRICE_USD,
-  CHARGER_PRODUCTS,
 } from "@/lib/catalog/chargers.catalog";
+import {
+  formatPowerKw,
+  getChargerProductBySlug,
+} from "@/lib/catalog/catalog.helpers";
 import { useTrack } from "@/lib/analytics";
 
 /**
- * El cargador que se ofrece junto a la columna: el único de la línea con
- * checkout de MercadoPago propio y el más vendido, así que es el default
- * razonable para "columna + cargador". Si mañana se ofrece otro, se cambia
- * el slug acá.
+ * El cargador que se ofrece junto a la columna: el más vendido, así que es el
+ * default razonable para "columna + cargador". Si mañana se ofrece otro, se
+ * cambia el slug acá.
  */
 export const BUNDLED_CHARGER_SLUG = "bs20-bc-7kw";
 
-const COLUMN_MERCADOPAGO_URL = "https://mpago.la/1VArJbv";
+/** Lo que `HeroPrice` necesita de la columna, que no es del catalogo. Verde y
+ * no el ambar de su card: es el acento de esta seccion. */
+export const STAND_PRICE = {
+  price: { currency: "USD", amount: CHARGER_COLUMN_PRICE_USD },
+  theme: { accentText: "text-green-400", accentBorder: "border-green-400" },
+} as const;
+
+const COLUMN_MERCADOPAGO_URL = "https://mpago.la/2DGeJLX";
 
 const WHATSAPP_NUMBER = "59892041709";
 
 /**
- * Toda la lógica del panel de precio de la columna: estado de los toggles,
+ * Toda la lógica del panel de precio de la columna: las opciones elegidas,
  * cálculo del total, cascada entre cargador e instalación, tracking y los
  * destinos de los CTA.
  *
@@ -34,29 +43,27 @@ const WHATSAPP_NUMBER = "59892041709";
  */
 export function useStandPricing() {
   const t = useTranslations("HomePage.HomeStandSection.pricingPanel");
+  const locale = useLocale();
   const track = useTrack();
   const [includeCharger, setIncludeCharger] = useState(false);
   const [includeInstallation, setIncludeInstallation] = useState(false);
 
-  const charger = CHARGER_PRODUCTS.find(
-    (product) => product.slug === BUNDLED_CHARGER_SLUG,
-  );
+  const charger = getChargerProductBySlug(BUNDLED_CHARGER_SLUG);
 
   const columnFeatures = t.raw("features.column") as string[];
   const chargerFeatures = t.raw("features.charger") as string[];
   const installationFeatures = t.raw("features.installation") as string[];
 
   const chargerPrice = charger?.price.amount ?? 0;
+  const chargerPower = formatPowerKw(charger?.specs.maxPowerKw ?? 0, locale);
+  const installationPrice = CHARGER_INSTALLATION_PRICE_USD;
 
-  /**
-   * Con instalación el precio deja de ser una suma de partes: el bundle
-   * "cargador + instalación" tiene precio propio (el mismo que en las páginas
-   * de modelo), y la columna se suma encima. Sin instalación sí es una suma
-   * simple de columna + cargador.
-   */
-  const total = includeInstallation
-    ? CHARGER_COLUMN_PRICE_USD + CHARGER_INSTALLATION_PRICE_USD
-    : CHARGER_COLUMN_PRICE_USD + (includeCharger ? chargerPrice : 0);
+  // La instalación arrastra al cargador (ver `selectInstallation`), así que
+  // nunca se suma sola.
+  const total =
+    CHARGER_COLUMN_PRICE_USD +
+    (includeCharger ? chargerPrice : 0) +
+    (includeInstallation ? installationPrice : 0);
 
   const items = [
     ...columnFeatures.map((text) => ({
@@ -85,11 +92,11 @@ export function useStandPricing() {
   ];
 
   /**
-   * Versión corta de la lista para mobile: una línea por toggle en vez de las
+   * Versión corta de la lista para mobile: una línea por opción en vez de las
    * doce de desktop. A ancho de celular esa lista es una pared de ticks que
    * tapa el bloque de precio, y encima cada item envuelve en dos líneas.
    *
-   * Con una línea por grupo se lee de un vistazo qué suma cada switch, que es
+   * Con una línea por grupo se lee de un vistazo qué suma cada opción, que es
    * para lo que está la lista. El detalle fino queda en desktop.
    *
    * Sin link a la página del cargador, a diferencia de desktop: acá la persona
@@ -103,11 +110,12 @@ export function useStandPricing() {
   ];
 
   /**
-   * La instalación solo tiene sentido sobre un cargador: si se apaga el
-   * cargador, se apaga también la instalación (mismo criterio que en
-   * CablePricingSection con el wallbox).
+   * La instalación solo existe sobre un cargador, así que las dos opciones se
+   * arrastran: "Sin cargador" saca la instalación y "+ Instalación" suma el
+   * cargador. Así los cuatro chips se pueden tocar siempre, sin uno muerto.
    */
-  function handleChargerToggle(next: boolean) {
+  function selectCharger(next: boolean) {
+    if (next === includeCharger) return;
     setIncludeCharger(next);
     track.pricingColumnToggled("stand", next);
     if (!next && includeInstallation) {
@@ -116,32 +124,34 @@ export function useStandPricing() {
     }
   }
 
-  function handleInstallationToggle(next: boolean) {
+  function selectInstallation(next: boolean) {
+    if (next === includeInstallation) return;
     setIncludeInstallation(next);
     track.pricingInstallationToggled("stand", next);
+    if (next && !includeCharger) {
+      setIncludeCharger(true);
+      track.pricingColumnToggled("stand", true);
+    }
   }
 
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     t("cta.whatsappMessage"),
   )}`;
 
-  /**
-   * TODO(precio): con el cargador prendido el panel muestra 756 (159 de la
-   * columna + 597 del BS20-BC-7KW) pero manda al checkout del cargador solo,
-   * que cobra 597. Faltan los 159 de la columna.
-   *
-   * No hay preferencia de MercadoPago para el combo: hace falta crearla por
-   * 756 y ponerla acá. Hasta entonces esta rama cobra de menos.
-   */
+  // Con el cargador, el combo cargador + columna: la misma preferencia que
+  // abre el hero del cargador cuando se le suma la columna.
   const checkoutHref = includeCharger
-    ? charger?.mercadopagoUrl || COLUMN_MERCADOPAGO_URL
+    ? charger?.columnMercadopagoUrl || COLUMN_MERCADOPAGO_URL
     : COLUMN_MERCADOPAGO_URL;
 
   return {
     includeCharger,
     includeInstallation,
-    handleChargerToggle,
-    handleInstallationToggle,
+    selectCharger,
+    selectInstallation,
+    chargerPrice,
+    chargerPower,
+    installationPrice,
     total,
     items,
     mobileItems,
@@ -149,3 +159,5 @@ export function useStandPricing() {
     checkoutHref,
   };
 }
+
+export type StandPricing = ReturnType<typeof useStandPricing>;

@@ -649,14 +649,12 @@
       },
       "pricingPanel": {
         "title": "Precio simple. Sin sorpresas",
-        "description": "La columna se vende sola o junto al cargador. Sumá el wallbox y la instalacion, y mirá cómo queda el precio final antes de comprar.",
+        "description": "La columna se vende sola o junto al cargador. Sumá el wallbox y la instalación, y mirá cómo queda el precio final antes de comprar.",
         "includes": "Incluye",
         "detailLink": "Ver detalles",
         "features": {
           "column": [
             "Columna de piso de 150 cm",
-            "Dummy socket Tipo 2 integrado",
-            "Cableado interno, sin caños a la vista",
             "Compatible con toda la línea BS20"
           ],
           "charger": [
@@ -677,27 +675,27 @@
             "installation": "Instalación con técnicos certificados por UTE"
           }
         },
-        "toggle": {
-          "label": "Incluir cargador",
-          "columnOnly": "Solo columna",
-          "withCharger": "Columna + cargador"
+        "charger": {
+          "label": "Cargador",
+          "base": "Sin cargador",
+          "add": "+ Cargador {power} kW"
         },
-        "installationToggle": {
-          "label": "Incluir instalación",
-          "without": "Sin instalación",
-          "with": "Con instalación"
+        "installation": {
+          "label": "Instalación",
+          "base": "Sin instalación",
+          "add": "+ Instalación",
+          "from": "desde"
         },
         "fromPrefix": "Desde",
         "taxLabel": "IVA incluido",
         "cta": {
-          "columnOnly": "Comprar columna",
-          "withCharger": "Comprar columna + cargador",
-          "quote": "Cotizar instalación",
+          "mercadopago": "Pagar con MercadoPago",
+          "whatsapp": "Cotizar por WhatsApp",
           "whatsappMessage": "Hola! Quiero cotizar la columna con el cargador BS20-BC-7KW y la instalación"
         },
         "footnote": {
-          "columnOnly": "Solo la columna, para sumar a un wallbox BS20 que ya tengas.",
-          "withCharger": "Columna y cargador. No incluye la instalación.",
+          "columnOnly": "Solo la columna. No incluye cargador",
+          "withCharger": "Columna y cargador. No incluye la instalación del cargador.",
           "withInstallation": "El precio final depende de la distancia al tablero eléctrico, si se requiere obra civil o actualizar la instalación existente."
         }
       }

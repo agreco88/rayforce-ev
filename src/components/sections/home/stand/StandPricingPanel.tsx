@@ -8,8 +8,8 @@ import { FaWhatsapp } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
-import { AppSwitch } from "@/components/ui/wrappers/AppSwitch";
 import { useTrack } from "@/lib/analytics";
+import { StandOptions } from "./StandOptions";
 import { BUNDLED_CHARGER_SLUG, useStandPricing } from "./useStandPricing";
 
 /**
@@ -18,40 +18,40 @@ import { BUNDLED_CHARGER_SLUG, useStandPricing } from "./useStandPricing";
  * columna y el cargador es el add-on, no al revés. Por eso no se reusa ese
  * componente — recibe un ChargerProduct, trae su propio <section> con fondo y
  * grilla, su header y el bloque de reseñas. Lo que sí se comparte es la
- * anatomía y el tratamiento visual: contenedor glass, toggles arriba,
- * AnimateNumber en el medio, CTA y footnote abajo, con la lista de items a la
- * izquierda.
+ * anatomía: opciones arriba (los chips del hero), AnimateNumber en el medio,
+ * CTA y footnote abajo, con la lista de items a la izquierda.
  *
  * Mobile tiene su propio componente (`StandPricingPanelMobile`): ahí el panel
  * va sin la caja externa, para no anidar dos contenedores con borde y padding
  * en un ancho de celular. Los dos comparten la lógica vía `useStandPricing`,
- * así que el precio y los toggles se comportan igual en ambos.
+ * así que el precio y las opciones se comportan igual en ambos.
  *
  * El recorrido es progresivo, igual que en cargadores y cables: se entra
  * viendo cuánto sale la columna sola y se termina viendo cuánto sale con
  * cargador e instalación.
  *
  * Los items quedan siempre montados y solo cambian de estado activo/inactivo,
- * así el alto del panel no se mueve al togglear (cero CLS).
+ * así el alto del panel no se mueve al elegir (cero CLS).
  */
 export function StandPricingPanel({ className }: { className?: string }) {
   const t = useTranslations("HomePage.HomeStandSection.pricingPanel");
   const track = useTrack();
+  const pricing = useStandPricing();
   const {
     includeCharger,
     includeInstallation,
-    handleChargerToggle,
-    handleInstallationToggle,
     total,
     items,
     whatsappHref,
     checkoutHref,
-  } = useStandPricing();
+  } = pricing;
 
   return (
+    // Negro desde el título: la lista y el precio son una misma ficha. Con la
+    // caja de la derecha más oscura que el resto, se leía como otro bloque.
     <div
       className={cn(
-        "flex w-full rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm",
+        "flex w-full rounded-3xl border border-white/10 bg-neutral-950/60 backdrop-blur-sm",
         className,
       )}
     >
@@ -135,79 +135,19 @@ export function StandPricingPanel({ className }: { className?: string }) {
       </div>
 
       {/* -------------------------------------------------------------- */}
-      {/* Derecha: toggles + precio + CTA                                 */}
+      {/* Derecha: opciones + precio + CTA                                */}
       {/* -------------------------------------------------------------- */}
-      <div className="w-full max-w-md shrink-0 p-2">
-        <div className="flex h-full flex-col justify-center rounded-2xl border border-white/10 bg-neutral-950/60 px-8 py-10 text-center backdrop-blur-sm">
-          {/* Los dos toggles comparten una sola grilla de 3 columnas, así
-              ambos switches caen en la misma columna central y las etiquetas
-              quedan fijadas a los lados sin importar su largo. */}
-          <div className="mx-auto grid w-full max-w-sm grid-cols-[1fr_auto_1fr] items-center gap-x-3 gap-y-4">
-            <span
-              className={cn(
-                "text-xs font-medium transition-colors duration-300",
-                !includeCharger ? "text-green-400" : "text-neutral-600",
-              )}
-            >
-              {t("toggle.columnOnly")}
-            </span>
-            <AppSwitch
-              checked={includeCharger}
-              onChange={handleChargerToggle}
-              activeClassName="bg-green-400"
-              aria-label={t("toggle.label")}
-            />
-            <span
-              className={cn(
-                "text-xs font-medium transition-colors duration-300",
-                includeCharger ? "text-green-400" : "text-neutral-600",
-              )}
-            >
-              {t("toggle.withCharger")}
-            </span>
-
-            {/* Instalación: solo tiene sentido sobre un cargador, así que va
-                deshabilitado (no desmontado) mientras el cargador esté en
-                off. Mantenerlo montado evita el salto de alto que provocaba
-                montar/desmontar. */}
-            <span
-              className={cn(
-                "text-xs font-medium transition-colors duration-300",
-                !includeCharger
-                  ? "text-neutral-700"
-                  : !includeInstallation
-                    ? "text-green-400"
-                    : "text-neutral-600",
-              )}
-            >
-              {t("installationToggle.without")}
-            </span>
-            <AppSwitch
-              checked={includeInstallation}
-              onChange={handleInstallationToggle}
-              disabled={!includeCharger}
-              activeClassName="bg-green-400"
-              aria-label={t("installationToggle.label")}
-            />
-            <span
-              className={cn(
-                "text-xs font-medium transition-colors duration-300",
-                !includeCharger
-                  ? "text-neutral-700"
-                  : includeInstallation
-                    ? "text-green-400"
-                    : "text-neutral-600",
-              )}
-            >
-              {t("installationToggle.with")}
-            </span>
-          </div>
+      {/* `max-w-lg`: con `max-w-md` el par de chips de instalación
+          ("+ Instalación desde USD …") no entraba en una fila y partía. */}
+      <div className="w-full max-w-lg shrink-0 p-2">
+        <div className="flex h-full flex-col justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-10 text-center">
+          <StandOptions pricing={pricing} />
 
           {/* "Desde" y "USD" van como prefix/suffix de AnimateNumber (y no
               como hermanos) para que entren en su grupo de layout animation y
               acompañen el cambio de ancho de los dígitos en vez de saltar.
               Con instalación el precio es "desde": el final depende del sitio. */}
-          <div className="mt-8 flex items-baseline justify-center">
+          <div className="mt-10 flex items-baseline justify-center">
             <AnimateNumber
               locales="en-US"
               format={{ maximumFractionDigits: 0 }}
@@ -231,7 +171,8 @@ export function StandPricingPanel({ className }: { className?: string }) {
           <p className="mt-1 text-xs text-neutral-500">{t("taxLabel")}</p>
 
           {/* Con instalación el cierre no es un checkout sino una cotización
-              por WhatsApp: el precio final depende del sitio. */}
+              por WhatsApp: el precio final depende del sitio. El botón nombra
+              el medio de pago, no lo que se compra: eso lo dicen las opciones. */}
           <a
             href={includeInstallation ? whatsappHref : checkoutHref}
             target="_blank"
@@ -248,17 +189,11 @@ export function StandPricingPanel({ className }: { className?: string }) {
                     location: "desktop",
                   })
             }
-            className="mx-auto mt-8 flex min-h-[48px] w-full max-w-sm items-center justify-center gap-2 rounded-xl bg-green-400 px-3 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300"
+            className="mt-8 flex min-h-[48px] w-full items-center justify-center rounded-xl bg-green-400 px-3 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300"
           >
             <AnimatePresence mode="wait">
               <motion.span
-                key={
-                  includeInstallation
-                    ? "install"
-                    : includeCharger
-                      ? "charger"
-                      : "column"
-                }
+                key={includeInstallation ? "whatsapp" : "mercadopago"}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -267,14 +202,12 @@ export function StandPricingPanel({ className }: { className?: string }) {
               >
                 {includeInstallation ? (
                   <>
-                    {t("cta.quote")}
+                    {t("cta.whatsapp")}
                     <FaWhatsapp size={16} />
                   </>
                 ) : (
                   <>
-                    {includeCharger
-                      ? t("cta.withCharger")
-                      : t("cta.columnOnly")}
+                    {t("cta.mercadopago")}
                     <ExternalLink size={16} />
                   </>
                 )}
@@ -283,7 +216,7 @@ export function StandPricingPanel({ className }: { className?: string }) {
           </a>
 
           {/* Alto mínimo reservado para la más larga de las tres variantes,
-              así las más cortas no encogen el panel al togglear. */}
+              así las más cortas no encogen el panel al elegir. */}
           <AnimatePresence mode="wait">
             <motion.p
               key={

@@ -2,8 +2,11 @@
 
 import { useTranslations } from "next-intl";
 import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
+import { HeroPrice } from "@/components/pages/shared/hero-with-carousel/HeroPrice";
 import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
+import { CHARGER_COLUMN_PRICE_USD } from "@/lib/catalog/chargers.catalog";
 import { HoverPlayVideo } from "./HoverPlayVideo";
+import { STAND_PRICE } from "./useStandPricing";
 import { StandPricingPanel } from "./StandPricingPanel";
 
 const SOCKET_TYPE_2_SRC = "/images/icons/socket-type-2.svg";
@@ -80,9 +83,14 @@ export function HomeStandDesktop({
               {t("title")}
             </Title>
 
+            {/* PRECIO — la misma caja que en la ficha de cada cargador. */}
+            <div className="mt-8">
+              <HeroPrice product={STAND_PRICE} price={CHARGER_COLUMN_PRICE_USD} />
+            </div>
+
             {/* MEDIDAS — separadas por un divider vertical en vez de apiladas,
                 para que las dos se lean como un mismo dato de tamaño. */}
-            <dl className="mt-12 flex items-stretch gap-8">
+            <dl className="mt-10 flex items-stretch gap-8">
               {(["height", "base"] as const).map((key, index) => (
                 <div key={key} className="flex items-stretch gap-8">
                   {index > 0 && <div className="w-px bg-white/10" />}
@@ -228,7 +236,7 @@ export function HomeStandDesktop({
         </div>
 
         {/* PRECIO — el panel reemplaza al precio suelto y su botón: el precio
-            es el resultado de los toggles (columna → + cargador → + instalación)
+            es el resultado de las opciones (columna → + cargador → + instalación)
             y el CTA cambia de destino según la elección.
 
             Comparte el `max-w-[1440px]` con el resto de los bloques de la sección

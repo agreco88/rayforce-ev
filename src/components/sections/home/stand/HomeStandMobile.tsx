@@ -4,8 +4,11 @@ import { useTranslations } from "next-intl";
 import { ParkingCircle, Wrench, type LucideIcon } from "lucide-react";
 import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
 import { CarouselCard } from "@/components/shared/carousel/CarouselCard";
+import { HeroPrice } from "@/components/pages/shared/hero-with-carousel/HeroPrice";
 import { GoogleReviewsBlock } from "@/components/shared/reviews/GoogleReviewsBlock";
+import { CHARGER_COLUMN_PRICE_USD } from "@/lib/catalog/chargers.catalog";
 import { HoverPlayVideo } from "./HoverPlayVideo";
+import { STAND_PRICE } from "./useStandPricing";
 import { StandPricingPanelMobile } from "./StandPricingPanelMobile";
 
 const SOCKET_TYPE_2_SRC = "/images/icons/socket-type-2.svg";
@@ -101,7 +104,12 @@ export function HomeStandMobile({
 
             `justify-center` centra el par y `text-center` cada columna; el
             `w-fit` de cada una evita que el divider quede pegado a un lado. */}
-        <dl className="mt-8 flex items-stretch justify-center gap-6 text-center">
+        {/* PRECIO — centrado como las medidas, que van justo abajo. */}
+        <div className="mt-8 flex justify-center">
+          <HeroPrice product={STAND_PRICE} price={CHARGER_COLUMN_PRICE_USD} />
+        </div>
+
+        <dl className="mt-6 flex items-stretch justify-center gap-6 text-center">
           {(["height", "base"] as const).map((key, index) => (
             <div key={key} className="flex items-stretch gap-6">
               {index > 0 && <div className="w-px bg-white/10" />}
