@@ -104,7 +104,8 @@
       "eyebrow": "Reviews",
       "title": "What our customers say",
       "subtitle": "Real experiences from people who already charge their EV with Rayforce.",
-      "source": "Google review"
+      "source": "Google review",
+      "ratingLabel": "{rating} out of 5 stars"
     },
     "SpecsTable": {
       "eyebrow": "Datasheet",

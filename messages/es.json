@@ -104,7 +104,8 @@
       "eyebrow": "Opiniones",
       "title": "Lo que dicen nuestros clientes",
       "subtitle": "Experiencias reales de personas que ya cargan su eléctrico con Rayforce.",
-      "source": "Reseña de Google"
+      "source": "Reseña de Google",
+      "ratingLabel": "{rating} de 5 estrellas"
     },
     "SpecsTable": {
       "eyebrow": "Ficha técnica",

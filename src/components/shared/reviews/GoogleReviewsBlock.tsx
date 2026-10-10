@@ -3,29 +3,28 @@
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
+import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
+import type { CatalogTheme } from "@/lib/catalog/catalog.types";
 import { cn } from "@/lib/utils";
 import { GoogleReviewCard } from "./GoogleReviewCard";
 import { REVIEWS } from "./reviews.data";
 
 type Props = {
-  /** Clase de acento para el eyebrow. */
-  accentText?: string;
+  /** Eyebrow, flechas y barras del carousel. Verde si no se pasa. */
+  theme?: Pick<CatalogTheme, "accentText" | "accentBg">;
   /** El h2 baja a la escala del resto de la seccion cuando se monta adentro de una. */
   compact?: boolean;
   className?: string;
 };
 
 /**
- * Las reseñas de Google, compartidas entre la seccion de la columna y las
- * paginas de modelo. El accent lo pone quien la monta: verde en el home, el
- * color del producto en su ficha.
+ * Las reseñas de Google, compartidas entre la home, la pagina de la columna y
+ * las de modelo. El accent lo pone quien la monta: verde por defecto, el color
+ * del producto en su ficha.
  */
-export function GoogleReviewsBlock({
-  accentText = "text-green-400",
-  compact = false,
-  className,
-}: Props) {
+export function GoogleReviewsBlock({ theme, compact = false, className }: Props) {
   const t = useTranslations("Common.Reviews");
+  const spacing = compact ? "mt-10 sm:mt-12" : "mt-12 sm:mt-20";
 
   return (
     <div className={className}>
@@ -35,7 +34,9 @@ export function GoogleReviewsBlock({
         viewport={{ once: true, margin: "-80px" }}
         className="mx-auto max-w-3xl sm:text-center"
       >
-        <span className={cn("section-eyebrow", accentText)}>
+        <span
+          className={cn("section-eyebrow", theme?.accentText ?? "text-green-400")}
+        >
           {t("eyebrow")}
         </span>
 
@@ -50,18 +51,37 @@ export function GoogleReviewsBlock({
         </p>
       </motion.div>
 
-      <div
-        className={cn(
-          "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3",
-          compact ? "mt-10 sm:mt-12" : "mt-12 sm:mt-20",
-        )}
+      {/* `-mx-6` cancela el `px-6` de quien la monta: el carousel va a sangre
+          para que asome la reseña siguiente. */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        className={cn("-mx-6 lg:hidden", spacing)}
       >
+        <CardCarousel
+          theme={theme}
+          items={REVIEWS.map((review) => (
+            <GoogleReviewCard
+              key={review.id}
+              review={review}
+              className="h-full w-[calc(90vw-2.5rem)] max-w-sm"
+            />
+          ))}
+        />
+      </motion.div>
+
+      <div className={cn("hidden gap-6 lg:grid lg:grid-cols-3", spacing)}>
         {REVIEWS.map((review, index) => (
-          <GoogleReviewCard
+          <motion.div
             key={review.id}
-            review={review}
-            delay={index * 0.06}
-          />
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: index * 0.06 }}
+          >
+            <GoogleReviewCard review={review} className="h-full" />
+          </motion.div>
         ))}
       </div>
     </div>

@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
  * `items`.
  */
 
-type Autoplay = { duration: number; paused: boolean };
+type Autoplay = { duration: number; paused: boolean; hovered: boolean };
 type Accent = Pick<CatalogTheme, "accentText" | "accentBg">;
 
 const GREEN: Accent = { accentText: "text-green-400", accentBg: "bg-green-400" };
@@ -81,6 +81,7 @@ function ProgressBars({ autoplay, accent }: { autoplay?: Autoplay; accent: Accen
 function AutoplayFill({
   duration,
   paused,
+  hovered,
   className,
 }: Autoplay & { className: string }) {
   const { currentPage, nextPage, gotoPage, isNextActive } = useCarousel();
@@ -98,10 +99,21 @@ function AutoplayFill({
   }, [duration, paused, progress, currentPage, isNextActive, nextPage, gotoPage]);
 
   return (
-    <motion.span
-      className={cn("absolute inset-0 origin-left", className)}
-      style={{ scaleX: progress, willChange: "transform" }}
-    />
+    <>
+      <motion.span
+        className={cn("absolute inset-0 origin-left", className)}
+        style={{ scaleX: progress, willChange: "transform" }}
+      />
+      {/* Con el mouse encima se prende entera: al llegar con las flechas el
+          progreso esta en 0, y la activa quedaba apagada. */}
+      <span
+        className={cn(
+          "absolute inset-0 transition-opacity duration-300",
+          className,
+          hovered ? "opacity-100" : "opacity-0",
+        )}
+      />
+    </>
   );
 }
 
@@ -169,9 +181,14 @@ export function CardCarousel({ items, autoplay, theme = GREEN }: Props) {
       onPointerLeave={() => setHovered(false)}
       className="relative box-border px-5"
     >
+      {/* `stretch`: todas miden lo que la mas alta. Con el `center` por defecto
+          cada item mide su contenido y el `h-full` de la tarjeta no resuelve.
+          `!h-auto`: Motion+ le pone `height: 100%` a cada item, que sin alto
+          fijo en el carousel no resuelve y anulaba el `stretch`. */}
       <Carousel
-        className="relative"
+        className="relative [&_.ticker-item]:!h-auto"
         items={items}
+        align="stretch"
         overflow
         gap={20}
         snap="page"
@@ -181,7 +198,7 @@ export function CardCarousel({ items, autoplay, theme = GREEN }: Props) {
           accent={theme}
           autoplay={
             autoplay && !reducedMotion
-              ? { duration: autoplay, paused: hovered || !inView }
+              ? { duration: autoplay, paused: hovered || !inView, hovered }
               : undefined
           }
         />

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Star } from "lucide-react";
 
@@ -18,26 +17,24 @@ export type Review = {
 
 type Props = {
   review: Review;
-  /** Escalona la entrada de la grilla. */
-  delay?: number;
+  className?: string;
 };
 
-/** Una reseña de Google. */
-export function GoogleReviewCard({ review, delay = 0 }: Props) {
+/** Una reseña de Google. La entrada la anima `GoogleReviewsBlock`. */
+export function GoogleReviewCard({ review, className }: Props) {
   const t = useTranslations("Common.Reviews");
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ delay }}
-      className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left"
+    <article
+      className={cn(
+        "flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left",
+        className,
+      )}
     >
       <div
         className="flex items-center gap-0.5"
         role="img"
-        aria-label={`${review.rating}/5`}
+        aria-label={t("ratingLabel", { rating: review.rating })}
       >
         {Array.from({ length: 5 }).map((_, starIndex) => (
           <Star
@@ -53,11 +50,11 @@ export function GoogleReviewCard({ review, delay = 0 }: Props) {
         ))}
       </div>
 
-      <p className="mt-4 flex-1 text-sm leading-relaxed text-neutral-300">
+      <p className="my-6 text-sm leading-relaxed text-neutral-300">
         &ldquo;{review.quote}&rdquo;
       </p>
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="flex items-center gap-3">
         <div
           className={cn(
             "flex h-10 w-10 flex-none items-center justify-center rounded-full text-sm font-semibold",
@@ -74,6 +71,6 @@ export function GoogleReviewCard({ review, delay = 0 }: Props) {
           <p className="text-xs text-neutral-500">{t("source")}</p>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
