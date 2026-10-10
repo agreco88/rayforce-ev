@@ -1,35 +1,26 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Zap, Plug, Clock, type LucideIcon } from "lucide-react";
 
-import { CardCarousel } from "@/components/shared/carousel/CardCarousel";
-import { CarouselCard } from "@/components/shared/carousel/CarouselCard";
 import { ProductCollection } from "@/components/catalog/product-card/ProductCollection";
 import { useChargerCardData } from "@/components/catalog/product-card/adapters/useChargerCardData";
 import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
-import { HomeLineupHelpCta } from "./HomeLineupHelpCta";
-
-const GUIDE_ICONS: LucideIcon[] = [Zap, Plug, Clock];
+import { LineupGuideCarousel } from "./LineupGuideCarousel";
 
 /**
  * Version mobile del lineup: header apilado, los modelos en filas
- * (`ProductCollection` en `horizontal-3`) y los tres tips de la guia en carousel — a
- * un tercio de ancho no entran en fila como en desktop.
+ * (`ProductCollection` en `horizontal-3`) y despues los tres consejos en
+ * carousel — a un tercio de ancho no entran en fila como en desktop.
  */
 export function HomeLineupMobile() {
   const t = useTranslations("HomePage.Lineup");
-  const guideItems = t.raw("guide.items") as {
-    title: string;
-    description: string;
-  }[];
   const toCard = useChargerCardData();
 
   return (
-    /* `pb` mas bajo que el `pt` por la misma razon que en desktop: abajo
-        cierra el CTA centrado. */
-    <div className="flex flex-col px-6 pt-20 pb-14">
-      <span className="text-[10px] uppercase tracking-[0.3em] text-green-400">
+    /* Mismo gutter que el resto de las secciones y `mt-14` entre bloques, como
+       la columna en mobile. El `pb` es el aire hasta el bloque de UTE. */
+    <div className="flex flex-col px-6 pt-14 pb-14 sm:px-8 sm:pt-20 sm:pb-16">
+      <span className="text-[12px] sm:text-sm uppercase tracking-[0.3em] text-green-400">
         {t("eyebrow")}
       </span>
 
@@ -44,40 +35,25 @@ export function HomeLineupMobile() {
         {t("description")}
       </p>
 
-      {/* GUIA RAPIDA — carousel en vez de la fila de 3 de desktop. */}
-      <div className="-mx-6 mt-10">
-        <CardCarousel
-          items={guideItems.map((item, index) => (
-            <CarouselCard
-              key={item.title}
-              card={{
-                key: item.title,
-                icon: GUIDE_ICONS[index],
-                title: `${index + 1}. ${item.title}`,
-                description: item.description,
-              }}
-            />
-          ))}
-        />
-      </div>
+      {/* NUESTROS MODELOS — una fila por modelo: se comparan mejor en columna
+          que en una grilla de 2 a medio ancho. */}
+      <ProductCollection
+        items={getChargerProducts().map(toCard)}
+        variant="horizontal-3"
+        className="mt-14"
+      />
 
-      {/* NUESTROS MODELOS — una fila por modelo: son cuatro y se comparan
-          mejor en columna que en una grilla de 2 a medio ancho. */}
-      <div className="mt-10">
+      {/* CONSEJOS — carousel en vez de la fila de 3 de desktop. */}
+      <div className="mt-14">
         <h3 className="text-2xl font-light normal-case tracking-tight text-white">
-          {t("gridTitle")}
+          {t("guide.title")}
         </h3>
 
-        <ProductCollection
-          items={getChargerProducts().map(toCard)}
-          variant="horizontal-3"
-          className="mt-6"
-        />
+        {/* El `-mx` cancela el gutter: a sangre asoma la tarjeta siguiente. */}
+        <div className="-mx-6 mt-8 sm:-mx-8">
+          <LineupGuideCarousel />
+        </div>
       </div>
-
-      {/* Un escalon mas que el `mt-10` entre bloques: el CTA cierra la seccion
-          y tiene que despegarse de la grilla. */}
-      <HomeLineupHelpCta className="mt-20" />
     </div>
   );
 }

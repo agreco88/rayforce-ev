@@ -10,6 +10,7 @@ import { Horizontal1 } from "./variants/horizontal/Horizontal1";
 import { Horizontal2 } from "./variants/horizontal/Horizontal2";
 import { Horizontal3 } from "./variants/horizontal/Horizontal3";
 import { Horizontal4 } from "./variants/horizontal/Horizontal4";
+import { Horizontal5 } from "./variants/horizontal/Horizontal5";
 import { Vertical1 } from "./variants/vertical/Vertical1";
 import { Vertical2 } from "./variants/vertical/Vertical2";
 import { Vertical3 } from "./variants/vertical/Vertical3";
@@ -56,6 +57,13 @@ const VARIANTS = {
     Component: Horizontal3,
     // Sin padding: la foto va al ras y el texto lleva el suyo.
     card: CARD,
+    hover: HOVER_BG,
+    ribbon: RIBBON_ON_BORDER,
+  },
+  "horizontal-5": {
+    Component: Horizontal5,
+    // `h-full`: en la grilla las cards de una fila miden lo mismo.
+    card: "h-full rounded-2xl border border-neutral-800",
     hover: HOVER_BG,
     ribbon: RIBBON_ON_BORDER,
   },

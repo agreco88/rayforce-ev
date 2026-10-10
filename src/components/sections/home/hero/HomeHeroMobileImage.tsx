@@ -3,7 +3,11 @@
  * de por debajo. Al no haber texto encima no hacen falta overlays de
  * contraste — solo el fade que cierra el borde inferior.
  */
+import { useTranslations } from "next-intl";
+
 export function HomeHeroMobileImage() {
+  const t = useTranslations("HomePage.Hero");
+
   return (
     <div className="relative w-full flex-1 basis-0 min-h-[12rem] overflow-hidden">
       {/* Mismo asset que el desktop. El encuadre en 65% horizontal es donde
@@ -11,7 +15,7 @@ export function HomeHeroMobileImage() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/brand/rayforce-hero-3.webp"
-        alt="Cargador EV Rayforce"
+        alt={t("imageAlt")}
         fetchPriority="high"
         decoding="sync"
         className="h-full w-full object-cover object-[65%_42%]"

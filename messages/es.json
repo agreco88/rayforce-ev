@@ -241,7 +241,8 @@
       "description": "Adecuamos la instalación eléctrica de tu casa, edificio o empresa y colocamos el cargador wallbox nosotros, sin tercerizar. Técnicos habilitados por UTE y equipos certificados por URSEA.",
       "ctaPrimary": "Ver cargadores",
       "ctaSecondary": "Proyectos para edificios y empresas",
-      "ctaTertiary": "Aumento de Potencia en UTE"
+      "ctaTertiary": "Aumento de Potencia en UTE",
+      "imageAlt": "Cargador EV Rayforce"
     },
     "HomeWallboxSection": {
       "eyebrow": "Wallbox Rayforce",
@@ -269,7 +270,7 @@
     "WallboxIntro": {
       "whatIsIt": {
         "eyebrow": "Wallbox Rayforce",
-        "title": "¿Qué es un cargador wallbox?",
+        "title": "¿Por qué comprar un cargador wallbox?",
         "description": "Es un cargador de pared pensado para cargar rápido y seguro, todos los días. Se instala en tu garaje o cochera y entrega mucha más potencia que el cargador Schuko de emergencia que viene con el auto.",
         "imageAlt": "Wallbox Rayforce instalado en la cochera de un edificio, con un auto enchufado",
         "video": {
@@ -329,8 +330,8 @@
         "cards": {
           "safety": {
             "headline": "El BS20, uno de los modelos más seguros",
-            "footnote": "Trae las protecciones eléctricas incorporadas: sobrecarga, cortocircuito, sobretensión y fuga a tierra. Con certificación IP66 va a la intemperie y carga bajo la lluvia, e IK10 para soportar los golpes habituales en un garaje.",
-            "short": "Protecciones eléctricas incorporadas, IP66 contra la lluvia e IK10 contra golpes."
+            "footnote": "Trae las protecciones eléctricas incorporadas: sobrecarga, cortocircuito, sobretensión y fuga a tierra. Con certificación IP66 va a la intemperie y carga bajo la lluvia, y trabaja entre -25°C y +55°C.",
+            "short": "Protecciones eléctricas incorporadas e IP66 contra la lluvia y el polvo."
           },
           "speed": {
             "headline": "Carga de 0 a 100 en menos tiempo",
@@ -339,7 +340,7 @@
           },
           "app": {
             "headline": "Manejalo desde la comodidad de tu celular",
-            "footnote": "Arrancás, parás y programás la carga a distancia por WiFi y Bluetooth. Podés anularlo para garajes compartidos con clave de 6 dígitos, fijar el horario y dejarlo cargando en el horario de tarifa valle de UTE.",
+            "footnote": "Arrancás, parás y programás la carga desde el celular, por Bluetooth. Podés anularlo para garajes compartidos con clave de 6 dígitos, fijar el horario y dejarlo cargando en el horario de tarifa valle de UTE.",
             "short": "Arrancá, pará y programá la carga a distancia, con la tarifa valle de UTE."
           },
           "compatible": {
@@ -437,8 +438,8 @@
     },
     "Lineup": {
       "eyebrow": "Cargadores Wallbox Rayforce Besen BS20",
-      "title": "Consejos a la hora de elegir un cargador wallbox",
-      "description": "Cuatro modelos de la línea BS20, de 7,2kW a 22kW, para cargar en casa o en la empresa. Cambian la potencia, el tipo de instalación que necesitan y si traen el cable puesto o una toma. Abajo te contamos cómo elegir entre ellos.",
+      "title": "Nuestros cargadores wallbox",
+      "description": "Dos modelos de la línea BS20, de 7,2kW y 22kW, para cargar en casa o en la empresa. Cambian la potencia y el tipo de instalación que necesitan. Abajo te contamos cómo elegir entre ellos.",
       "guide": {
         "title": "Consejos a la hora de elegir un cargador wallbox",
         "items": [
@@ -456,12 +457,50 @@
           }
         ]
       },
-      "gridTitle": "Nuestros modelos",
-      "help": {
-        "title": "¿No sabés cuál elegir?",
-        "description": "No compres mal ni con dudas. Escribinos y te asesoramos.",
-        "cta": "Iniciar chat",
-        "whatsappMessage": "Hola! Quiero ayuda para elegir un cargador wallbox."
+      "utePower": {
+        "title": "Aumento de potencia en UTE",
+        "subtitle": "Cómo funciona, qué conviene saber y dónde solicitarlo",
+        "howItWorks": {
+          "title": "Cómo funciona",
+          "description": [
+            "La velocidad de carga de tu vehículo depende de tres cosas: <strong>la potencia del cargador</strong>, <strong>la potencia que tenés contratada con UTE</strong> y <strong>la capacidad de carga del propio auto</strong>. Se carga a la menor de las tres.",
+            "Muchos hogares tienen contratada una potencia menor a 5 kW. En ese caso el cargador funciona con normalidad, pero carga más lento. Aumentar la potencia permite aprovechar mejor el equipo, siempre que tu vehículo también lo admita. Si cargás de noche, una potencia menor puede alcanzar para el uso diario."
+          ]
+        },
+        "request": {
+          "title": "Cómo se solicita",
+          "description": [
+            "El aumento lo pide el titular del servicio, o un apoderado, a UTE. En los demás casos depende de la potencia solicitada y de si hace falta una obra.",
+            "Al pasar a trifásica, o al aumentar la potencia trifásica, UTE puede pedir adecuar la instalación, por ejemplo cambiar el cable de acometida de la entrada. En esos casos la solicitud la presenta una empresa instaladora con su técnico habilitado como Rayforce."
+          ]
+        },
+        "channels": {
+          "title": "Dónde solicitarlo",
+          "items": {
+            "phone": {
+              "title": "Por teléfono",
+              "description": "<landline>0800 1930</landline> desde fijo o <mobile>*1930</mobile> desde celular"
+            },
+            "online": {
+              "title": "En línea",
+              "description": "<link>portal.ute.com.uy</link>, trámite Cambio de potencia contratada"
+            },
+            "whatsapp": {
+              "title": "Por WhatsApp",
+              "description": "<link>098 1930 00</link>"
+            },
+            "email": {
+              "title": "Por correo",
+              "description": "<link>comercial@ute.com.uy</link>"
+            },
+            "offices": {
+              "title": "En las Oficinas Comerciales de UTE",
+              "description": "Agendando día y hora en su sitio web"
+            }
+          },
+          "note": "Tené a mano el número de cuenta o la cédula del titular, y la dirección del suministro."
+        },
+        "footnote": "Esta información es orientativa: las condiciones y los costos los define UTE y pueden variar según cada caso."
       }
     },
     "HomeChargersSection": {
@@ -583,24 +622,11 @@
         }
       }
     },
-    "PublicChargingCableSection": {
-      "eyebrow": "Cables de carga Besen BS-CHC",
-      "title": "¿Cargás en tótems y cargadores que no tienen cable integrado?",
-      "description": "Consegui tu cable Rayforce desde 7 kW hasta 22 kW. Resiste el peso de un auto, tiene protección IP66 contra la lluvia y es estanco al polvo.",
-      "video": {
-        "cta": "Ver prueba de durabilidad",
-        "title": "Prueba de resistencia: un auto pasa por encima del cable espiralado",
-        "replay": "Ver de nuevo",
-        "loading": "Cargando video…"
-      },
-      "pricing": {
-        "price": "USD 220",
-        "taxLabel": "IVA Inc.",
-        "cta": "Ver el cable recto 7kW",
-        "secondaryCta": "Ver todos los cables"
-      },
-      "imageAlt": "Cable de carga espiralado Rayforce Tipo 2 enrollado, listo para usar en un tótem de carga público",
-      "photoAlt": "Persona cargando su auto eléctrico en un tótem público de UTE con un cable Tipo 2"
+    "Accessories": {
+      "eyebrow": "Accesorios",
+      "title": "Accesorios para tu cargador",
+      "description": "Cables de carga y columna de piso para sacarle más a tu wallbox: un cable Tipo 2 para cargar en cualquier toma compatible, o la columna para instalarlo donde no hay pared.",
+      "imageAlt": "Persona cargando su auto eléctrico en un tótem público de UTE con un cable Tipo 2"
     },
     "HomeStandSection": {
       "eyebrow": "COLUMNA DE INSTALACIÓN",
@@ -704,52 +730,13 @@
       "header": {
         "eyebrow": "Compatibilidad",
         "title": "¿Sirve para tu eléctrico?",
-        "description": "Lo rápido que carga lo define el cargador interno de tu eléctrico: confirmá su capacidad de carga en alterna con el concesionario. Tocá tu marca y fijate qué modelos son compatibles."
+        "description": "Consulta en tu concesionario la capacidad máxima de carga en kW. Por ejemplo: Un vehiculo que admite hasta 7,2kW en alterna, no va cargar a 22kW por mas que el wallbox sea de 22kW."
       },
       "search": {
         "placeholder": "Elegí tu marca para ver eléctricos compatibles..."
       },
       "modelsLabel": "Modelos compatibles {brand}:",
       "selectLabel": "Elegí la marca de tu eléctrico"
-    },
-    "Faq": {
-      "eyebrow": "SOBRE NOSOTROS",
-      "title": "Preguntas frecuentes",
-      "description": "Lo que más nos preguntan sobre quiénes somos, cómo instalamos y qué pasa después de la compra.",
-      "items": [
-        {
-          "title": "¿Quiénes son Rayforce?",
-          "answer": "Somos la línea de carga para vehículos eléctricos de Bamibel S.A., empresa uruguaya de ingeniería con más de 25 años de trayectoria. Ese respaldo es el que está detrás de cada equipo y de cada instalación."
-        },
-        {
-          "title": "¿Los equipos están autorizados por URSEA?",
-          "answer": "Sí. Nuestra línea completa de cargadores para autos y camiones está registrada ante URSEA bajo la autorización VU-SE-17-000123. El registro es público y podés consultarlo."
-        },
-        {
-          "title": "¿Quién hace la instalación?",
-          "answer": "La hacemos nosotros: no tercerizamos. Instalamos con ingenieros y técnicos electricistas certificados por UTE, siguiendo la normativa eléctrica uruguaya."
-        },
-        {
-          "title": "¿Qué garantía tienen los equipos?",
-          "answer": "Un año de garantía, que atendemos directamente nosotros acá en Uruguay. No dependés de un service en el exterior ni de un importador intermedio."
-        },
-        {
-          "title": "¿En qué zonas trabajan?",
-          "answer": "Instalamos en Montevideo y en el resto del país. Si estás fuera del área metropolitana, escribinos y coordinamos la visita técnica y los tiempos."
-        },
-        {
-          "title": "¿Cómo puedo pagar?",
-          "answer": "Podés comprar directo por MercadoPago desde el sitio, o escribirnos por WhatsApp para coordinar otras formas de pago y armar el presupuesto con instalación incluida."
-        },
-        {
-          "title": "¿Trabajan con empresas, edificios y flotas?",
-          "answer": "Sí. Hacemos proyectos para comercios, estacionamientos, edificios y flotas, con equipos de 7, 11 y 22 kW. Escribinos y lo vemos según la instalación que tengas."
-        },
-        {
-          "title": "¿Qué pasa después de la compra?",
-          "answer": "Te acompañamos con soporte técnico local: puesta en marcha, configuración de la app Rayforce y consultas posteriores. Nos escribís y te atendemos nosotros."
-        }
-      ]
     }
   },
   "ChargersPage": {

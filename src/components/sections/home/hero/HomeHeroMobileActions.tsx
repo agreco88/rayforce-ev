@@ -49,8 +49,7 @@ export function HomeHeroMobileActions() {
         </Link>
       </Button>
 
-      {/* Todavía sin destino: el trámite de aumento de potencia no tiene página
-          propia, así que el botón existe pero no navega a ningún lado. */}
+      {/* Baja al bloque de UTE que cierra el lineup, en esta misma página. */}
       <Button
         asChild
         variant="ghost"
@@ -62,7 +61,7 @@ export function HomeHeroMobileActions() {
           hover:text-white
         "
       >
-        <a href="#">{t("ctaTertiary")}</a>
+        <a href="#aumento-de-potencia">{t("ctaTertiary")}</a>
       </Button>
     </div>
   );

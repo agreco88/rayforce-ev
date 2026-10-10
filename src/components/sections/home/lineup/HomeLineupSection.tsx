@@ -1,10 +1,11 @@
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
 import { HomeLineupDesktop } from "./HomeLineupDesktop";
 import { HomeLineupMobile } from "./HomeLineupMobile";
+import { HomeLineupUtePower } from "./HomeLineupUtePower";
 
 /**
- * El lineup de wallboxes, entre "que es un wallbox" y la columna: la seccion
- * anterior explica por que conviene uno, esta muestra cuales hay.
+ * El lineup de wallboxes, primero despues del hero: los modelos, los consejos
+ * para elegir y el aumento de potencia con UTE. "Por que un wallbox" viene despues.
  *
  * El corte desktop/mobile es `xl` y no `lg`: en `HomeLineupDesktop` las cuatro
  * columnas son fijas, y abajo de 1280 la tarjeta queda en ~220px con el copy
@@ -42,6 +43,15 @@ export function HomeLineupSection({ id }: { id?: string }) {
       </div>
       <div className="relative z-10 xl:hidden">
         <HomeLineupMobile />
+      </div>
+
+      {/* Una sola vez y fuera del corte desktop/mobile: el CTA del hero apunta
+          a su ancla, y duplicado el navegador elige la copia oculta. El `px`
+          sigue al de cada layout (en celular la tarjeta va a sangre); el ancho
+          es el de compatibilidad, porque a 1600 las lineas de texto quedaban
+          demasiado largas. */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl pb-14 sm:px-8 xl:pb-20">
+        <HomeLineupUtePower id="aumento-de-potencia" />
       </div>
     </section>
   );

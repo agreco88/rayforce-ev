@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { getTranslations } from "next-intl/server";
 import { generateLocaleMetadata } from "@/lib/generate-locale-metadata";
+import { getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { HomeHeroSection } from "@/components/sections/home/hero/HomeHeroSection";
 import HashScrollOnMount from "@/components/HashScrollOnMount";
@@ -50,10 +51,16 @@ const HomeChargersSection = dynamic(() =>
 );
 */
 
-const PublicChargingCableSection = dynamic(() =>
-  import("@/components/sections/home/public-charging/PublicChargingCableSection").then(
-    (m) => ({ default: m.PublicChargingCableSection }),
+const HomeAccessoriesSection = dynamic(() =>
+  import("@/components/sections/home/accessories/HomeAccessoriesSection").then(
+    (m) => ({ default: m.HomeAccessoriesSection }),
   ),
+);
+
+const GoogleReviewsBlock = dynamic(() =>
+  import("@/components/shared/reviews/GoogleReviewsBlock").then((m) => ({
+    default: m.GoogleReviewsBlock,
+  })),
 );
 
 // HomeBenefitsSection ya no se monta acá, y con ella se fue el ancla
@@ -64,12 +71,6 @@ const PublicChargingCableSection = dynamic(() =>
 const HomeLineupSection = dynamic(() =>
   import("@/components/sections/home/lineup/HomeLineupSection").then((m) => ({
     default: m.HomeLineupSection,
-  })),
-);
-
-const HomeStandSection = dynamic(() =>
-  import("@/components/sections/home/stand/HomeStandSection").then((m) => ({
-    default: m.HomeStandSection,
   })),
 );
 
@@ -95,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "HomePage.Faq" });
+  const t = await getTranslations({ locale, namespace: "Common.Faq" });
   // El FAQ pasó de 6 categorías a una lista plana de preguntas de empresa, así
   // que el schema lee `items` directo (antes aplanaba `groups`).
   const faqItems = t.raw("items") as { title: string; answer: string }[];
@@ -115,6 +116,7 @@ export default async function HomePage({ params }: Props) {
       <HashScrollOnMount />
       <HomeHeroSection id="inicio" />
       <Suspense fallback={null}>
+        <HomeLineupSection id="cargadores" />
         <WhatIsWallboxSection id="que-es-un-wallbox" />
 
         {/* Oculto: el bento no va en la home. Se guardo como
@@ -129,16 +131,22 @@ export default async function HomePage({ params }: Props) {
             header y por /cargadores, donde esta misma grilla sigue montada.
             El componente y sus traducciones quedan en disco. NO BORRAR.
 
-            El ancla #cargadores la toma HomeLineupSection, acá abajo. */}
+            El ancla #cargadores la toma HomeLineupSection, arriba. */}
         {/* <HomeChargersSection id="cargadores" /> */}
 
-        <HomeLineupSection id="cargadores" />
-        <PublicChargingCableSection id="cables-carga-publica" />
-        <HomeStandSection id="columna" />
+        {/* Es la seccion de los cables: sin ninguno a la venta, no va. */}
+        {getCableProducts().length > 0 && (
+          <HomeAccessoriesSection id="accesorios" />
+        )}
         {/* Justo antes del cierre: se chequea que sirva para el auto propio
-            y ahi ya aparecen el FAQ y el CTA. */}
+            y ahi ya aparecen las reseñas, el FAQ y el CTA. */}
         <CompatibilitySection id="compatibilidad" />
-        <Footer faqNamespace="HomePage.Faq" faqId="faq" />
+        {/* Mismo riel que en la pagina de modelo: compatibilidad ya cierra
+            con su `pb-32`, por eso `lg:pt-0`. */}
+        <section className="overflow-hidden bg-neutral-950 px-6 py-24 lg:px-16 lg:pt-0 lg:pb-32">
+          <GoogleReviewsBlock className="mx-auto max-w-[1440px]" />
+        </section>
+        <Footer faqNamespace="Common.Faq" faqId="faq" />
       </Suspense>
       <ScrollDepthTracker page="home" />
     </main>

@@ -126,17 +126,4 @@ export type AnalyticsEventMap = {
     included: boolean
     locale: string
   }
-
-  /** User clicked a CTA in the public-charging (UTE totem) cable section */
-  public_charging_cable_cta: {
-    cta: "product" | "all_cables"
-    location: "desktop" | "mobile"
-    locale: string
-  }
-
-  /** User opened the durability proof video in the public-charging cable section */
-  public_charging_video_opened: {
-    location: "desktop" | "mobile"
-    locale: string
-  }
 }

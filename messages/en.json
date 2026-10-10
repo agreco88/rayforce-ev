@@ -241,7 +241,8 @@
       "description": "We upgrade the electrical installation of your home, building or business and fit the wallbox charger ourselves, with no subcontractors. UTE-licensed technicians and URSEA-certified equipment.",
       "ctaPrimary": "View chargers",
       "ctaSecondary": "Projects for buildings and businesses",
-      "ctaTertiary": "Power increase with UTE"
+      "ctaTertiary": "Power increase with UTE",
+      "imageAlt": "Rayforce EV charger"
     },
     "HomeWallboxSection": {
       "eyebrow": "Rayforce wallbox",
@@ -329,8 +330,8 @@
         "cards": {
           "safety": {
             "headline": "The BS-20, one of the safest models",
-            "footnote": "Electrical protections are built in: overload, short circuit, overvoltage and earth leakage. IP66 certified for outdoor use and charging in the rain, and IK10 to withstand the knocks a garage sees.",
-            "short": "Built-in electrical protections, IP66 against rain and IK10 against impacts."
+            "footnote": "Electrical protections are built in: overload, short circuit, overvoltage and earth leakage. IP66 certified for outdoor use and charging in the rain, and it works between -25°C and +55°C.",
+            "short": "Built-in electrical protections and IP66 against rain and dust."
           },
           "speed": {
             "headline": "Charge from 0 to 100 in less time",
@@ -338,7 +339,7 @@
             "short": "Up to 22 kW against the 2.3 kW of the car's cable. You can set the range."
           },
           "app": {
-            "headline": "Control it from your phone over Bluetooth or WiFi",
+            "headline": "Control it from your phone over Bluetooth",
             "footnote": "Start, stop and schedule charging remotely. You can lock it for shared garages with a 6-digit code, set the schedule and leave it charging during UTE's off-peak valley rate.",
             "short": "Start, stop and schedule charging remotely, on UTE's off-peak valley rate."
           },
@@ -437,8 +438,8 @@
     },
     "Lineup": {
       "eyebrow": "Rayforce BS20 Wallbox Chargers",
-      "title": "Find the wallbox that fits",
-      "description": "Four models in the BS20 line, from 7.2kW to 22kW, for charging at home or at work. They differ in power, in the supply they need, and in whether they come with a cable attached or a socket. Here is how to choose between them.",
+      "title": "Our wallbox chargers",
+      "description": "Two models in the BS20 line, 7.2kW and 22kW, for charging at home or at work. They differ in power and in the supply they need. Here is how to choose between them.",
       "guide": {
         "title": "Tips for choosing a wallbox charger",
         "items": [
@@ -456,12 +457,50 @@
           }
         ]
       },
-      "gridTitle": "Our models",
-      "help": {
-        "title": "Not sure which one to pick?",
-        "description": "Don’t buy the wrong one or buy with doubts. Message us and we’ll help you choose.",
-        "cta": "Start chat",
-        "whatsappMessage": "Hi! I would like help choosing a wallbox charger."
+      "utePower": {
+        "title": "Power increase with UTE",
+        "subtitle": "How it works, what to know and where to apply",
+        "howItWorks": {
+          "title": "How it works",
+          "description": [
+            "Your vehicle's charging speed depends on three things: <strong>the charger's power</strong>, <strong>the power you have contracted with UTE</strong> and <strong>the car's own charging capacity</strong>. It charges at the lowest of the three.",
+            "Many homes have less than 5 kW contracted. In that case the charger works normally, but charges more slowly. Increasing your power lets you get more out of the charger, as long as your vehicle supports it too. If you charge overnight, a lower power may be enough for daily use."
+          ]
+        },
+        "request": {
+          "title": "How to apply",
+          "description": [
+            "The increase is requested from UTE by the account holder or an authorised representative. In other cases it depends on the power requested and on whether any works are needed.",
+            "When switching to three-phase, or increasing three-phase power, UTE may ask for the installation to be upgraded, for example by replacing the service cable at the entrance. In those cases the application is submitted by an installation company with a licensed technician, such as Rayforce."
+          ]
+        },
+        "channels": {
+          "title": "Where to apply",
+          "items": {
+            "phone": {
+              "title": "By phone",
+              "description": "<landline>0800 1930</landline> from a landline or <mobile>*1930</mobile> from a mobile"
+            },
+            "online": {
+              "title": "Online",
+              "description": "<link>portal.ute.com.uy</link>, under the Cambio de potencia contratada procedure"
+            },
+            "whatsapp": {
+              "title": "On WhatsApp",
+              "description": "<link>098 1930 00</link>"
+            },
+            "email": {
+              "title": "By email",
+              "description": "<link>comercial@ute.com.uy</link>"
+            },
+            "offices": {
+              "title": "At UTE's customer service offices",
+              "description": "Booking a day and time on their website"
+            }
+          },
+          "note": "Have the account number or the account holder's ID number to hand, along with the supply address."
+        },
+        "footnote": "This information is for guidance only: conditions and costs are set by UTE and may vary from case to case."
       }
     },
     "HomeChargersSection": {
@@ -583,24 +622,11 @@
         }
       }
     },
-    "PublicChargingCableSection": {
-      "eyebrow": "FOR DRIVERS WHO CHARGE ON THE GO",
-      "title": "Charging at UTE public stations? Bring your own cable.",
-      "description": "Bring your own cable to charge at stations and chargers with no tethered cable, from 7 kW up to 22 kW. It holds the weight of a car, carries IP66 protection against rain and is dust-tight.",
-      "video": {
-        "cta": "Watch durability test",
-        "title": "Durability test: a car drives over the coiled cable",
-        "replay": "Watch again",
-        "loading": "Loading video…"
-      },
-      "pricing": {
-        "price": "USD 220",
-        "taxLabel": "VAT Incl.",
-        "cta": "See the 7kW straight cable",
-        "secondaryCta": "See all cables"
-      },
-      "imageAlt": "Coiled Rayforce Type 2 charging cable, ready to use at a public charging station",
-      "photoAlt": "Person charging their electric car at a public UTE station with a Type 2 cable"
+    "Accessories": {
+      "eyebrow": "Accessories",
+      "title": "Accessories for your charger",
+      "description": "Charging cables and a floor stand to get more out of your wallbox: a Type 2 cable to charge at any compatible station, or the stand to install it where there's no wall.",
+      "imageAlt": "Person charging their electric car at a public UTE station with a Type 2 cable"
     },
     "HomeStandSection": {
       "eyebrow": "INSTALLATION STAND",
@@ -704,52 +730,13 @@
       "header": {
         "eyebrow": "Compatibility",
         "title": "Will it work with your EV?",
-        "description": "How fast it charges depends on your EV's onboard charger: check its AC charging capacity with the dealership. Pick your brand and see which models are compatible."
+        "description": "Ask your dealership for your car's maximum AC charging power, because it varies by model. For example, a car that accepts up to 7.2 kW won't charge at 22 kW, even if the wallbox is rated at 22 kW."
       },
       "search": {
         "placeholder": "Choose your brand to see compatible vehicles..."
       },
       "modelsLabel": "Compatible {brand} models:",
       "selectLabel": "Choose your EV's brand"
-    },
-    "Faq": {
-      "eyebrow": "ABOUT US",
-      "title": "Frequently asked questions",
-      "description": "The questions we get most often: who we are, how we install and what happens after the purchase.",
-      "items": [
-        {
-          "title": "Who is Rayforce?",
-          "answer": "We are the EV charging line of Bamibel S.A., a Uruguayan engineering company with over 25 years of experience. That track record stands behind every unit and every installation."
-        },
-        {
-          "title": "Are your units authorized by URSEA?",
-          "answer": "Yes. Our full line of chargers for cars and trucks is registered with URSEA under authorization VU-SE-17-000123. The registry is public and you can look it up."
-        },
-        {
-          "title": "Who does the installation?",
-          "answer": "We do, in house. We never subcontract: our engineers and UTE-certified electricians install every unit following Uruguayan electrical code."
-        },
-        {
-          "title": "What warranty do the units carry?",
-          "answer": "One year of warranty, handled directly by us here in Uruguay. You do not depend on overseas service or a middleman importer."
-        },
-        {
-          "title": "What areas do you cover?",
-          "answer": "We install in Montevideo and across the country. If you are outside the metro area, get in touch and we will arrange the site visit and timeline."
-        },
-        {
-          "title": "How can I pay?",
-          "answer": "You can buy directly through MercadoPago on this site, or message us on WhatsApp to arrange other payment methods and get a quote with installation included."
-        },
-        {
-          "title": "Do you work with businesses, buildings and fleets?",
-          "answer": "Yes. We handle projects for businesses, parking facilities, buildings and fleets, with 7, 11 and 22 kW units. Get in touch and we will scope it against your existing installation."
-        },
-        {
-          "title": "What happens after the purchase?",
-          "answer": "You get local technical support: commissioning, Rayforce app setup and any questions afterwards. You message us and we handle it ourselves."
-        }
-      ]
     }
   },
   "ChargersPage": {

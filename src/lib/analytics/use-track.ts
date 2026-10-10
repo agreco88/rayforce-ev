@@ -131,16 +131,5 @@ export function useTrack() {
     pricingColumnToggled(charger: string, included: boolean) {
       trackEvent("pricing_column_toggled", { charger, included, locale });
     },
-
-    publicChargingCableCta(params: {
-      cta: "product" | "all_cables";
-      location: "desktop" | "mobile";
-    }) {
-      trackEvent("public_charging_cable_cta", { ...params, locale });
-    },
-
-    publicChargingVideoOpened(params: { location: "desktop" | "mobile" }) {
-      trackEvent("public_charging_video_opened", { ...params, locale });
-    },
   };
 }

@@ -10,7 +10,11 @@
  * Dos versiones de la misma foto: la normal (~1980px) alcanza hasta 1440px de
  * contenedor, y la -2x (3200px) entra recien en 2xl, donde suele haber cable.
  */
+import { useTranslations } from "next-intl";
+
 export function HomeHeroBackdrop() {
+  const t = useTranslations("HomePage.Hero");
+
   return (
     <div className="pointer-events-none absolute inset-0">
       {/* La foto y sus overlays comparten este contenedor, asi los gradientes
@@ -23,7 +27,7 @@ export function HomeHeroBackdrop() {
           <source media="(min-width: 1536px)" srcSet="/images/brand/rayforce-hero-3-2x.webp" />
           <img
             src="/images/brand/rayforce-hero-3.webp"
-            alt="Cargador EV Rayforce"
+            alt={t("imageAlt")}
             fetchPriority="high"
             decoding="sync"
             className="absolute inset-0 h-full w-full select-none object-cover object-center"

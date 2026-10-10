@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 
 import { ChargersCardGrid } from "@/components/sections/home/chargers/ChargersCardGrid";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-import { HomeLineupHelpCta } from "./HomeLineupHelpCta";
 import { LineupGuideCards } from "./LineupGuideCards";
 
 export function HomeLineupDesktop() {
@@ -20,10 +19,9 @@ export function HomeLineupDesktop() {
 
         Por eso esta seccion sobresale del carril del header — es a proposito.
 
-        El `pb` va mas bajo que el `pt`: abajo cierra un CTA centrado, que deja
-        aire propio a los costados — con el padding parejo la seccion terminaba
-        en un hueco muy largo antes del borde. */
-    <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col px-6 pt-24 pb-16 sm:px-8 lg:pt-32 lg:pb-20">
+        El `pb` es el aire hasta el bloque de UTE, que se monta afuera, en
+        `HomeLineupSection`. */
+    <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col px-8 pt-32 pb-24">
       {/* `gap-12`: el header tiene que quedar mas lejos de la grilla que la
           descripcion de su titulo, si no el parrafo se lee como pie de las
           tarjetas en vez de bajada del h2. */}
@@ -33,7 +31,7 @@ export function HomeLineupDesktop() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          className="flex flex-col"
+          className="flex flex-col items-center text-center"
         >
           <motion.span
             variants={waterfallItem}
@@ -45,7 +43,7 @@ export function HomeLineupDesktop() {
           <motion.h2
             id="home-lineup-heading"
             variants={waterfallItem}
-            className="mt-4 text-4xl max-w-2xl font-light tracking-tight text-balance text-white sm:text-5xl"
+            className="mt-4 mb-0 text-4xl max-w-2xl font-light tracking-tight text-balance text-white sm:text-5xl"
           >
             {t("title")}
           </motion.h2>
@@ -60,33 +58,35 @@ export function HomeLineupDesktop() {
           </motion.p>
         </motion.div>
 
-        {/* GUIA RAPIDA — va antes de la grilla: la eleccion real es una
-            secuencia (instalacion → cable → potencia), conviene saberla antes
-            de ver las 4 fichas. */}
-        <LineupGuideCards />
-
         {/* NUESTROS MODELOS — la misma tarjeta que /cargadores: cada una
-            linkea a su modelo. Solo cambia el contenedor — cuatro columnas
-            fijas, porque la seccion entera ya esta detras de `xl`.
+            linkea a su modelo. Columnas de un tercio (el 3rem son los dos
+            `gap-6`) centradas aunque haya dos modelos: a 50/50 las fichas se
+            estiran. `auto-fit` colapsa las vacias y `justify-center` centra
+            las que quedan.
 
             Sin CTA al catalogo: /cargadores muestra esta misma grilla. */}
-        <div className="flex flex-col">
+        <ChargersCardGrid className="grid grid-cols-[repeat(auto-fit,calc((100%_-_3rem)_/_3))] justify-center gap-6" />
+
+        {/* CONSEJOS — despues de los modelos: primero se ve que hay, y los
+            consejos ayudan a elegir entre las fichas de arriba. `mt-20` sobre
+            el `gap-12`: con dos fichas centradas la grilla deja aire a los
+            costados, y pegado a ella el titulo se leia como su pie. */}
+        <div className="mt-20 flex flex-col">
+          {/* `text-center` en el h3 y no `items-center` en el padre: eso
+              encogeria las cards de abajo al ancho de su contenido. */}
           <motion.h3
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            className="text-3xl font-light normal-case tracking-tight text-white"
+            className="text-center text-3xl font-light normal-case tracking-tight text-white"
           >
-            {t("gridTitle")}
+            {t("guide.title")}
           </motion.h3>
 
-          <ChargersCardGrid className="mt-8 grid grid-cols-4 gap-6" />
+          <div className="mt-8">
+            <LineupGuideCards />
+          </div>
         </div>
-
-        {/* `mt-12` sobre el `gap-12` del contenedor: el CTA cierra la seccion y
-            no es un bloque mas de la lista, necesita despegarse de la grilla
-            mas que lo que se separan los bloques entre si. */}
-        <HomeLineupHelpCta className="mt-12" />
       </div>
     </div>
   );
