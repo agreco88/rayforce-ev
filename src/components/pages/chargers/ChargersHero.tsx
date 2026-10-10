@@ -25,8 +25,10 @@ export async function ChargersHero() {
           },
         ]}
       />
-      <div className="flex flex-col pb-5">
-        <h1 className="text-3xl sm:text-6xl font-semibold">{t("title")}</h1>
+      <div className="flex flex-col sm:pb-5 gap-2.5">
+        <h1 className="text-2xl sm:text-5xl sm:max-w-5xl font-semibold">
+          {t("title")}
+        </h1>
         <p className="text-neutral-400 max-w-2xl sm:max-w-4xl sm:py-4">
           {t("description")}
         </p>

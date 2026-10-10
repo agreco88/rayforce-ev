@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   image: string;
+  alt: string;
   className?: string;
   scale?: number;
   direction?: number;
@@ -17,6 +18,7 @@ const DEVICE_HEIGHT = (DEVICE_WIDTH * 19) / 9;
 
 export default function Device({
   image,
+  alt,
   className,
   scale = 1,
   direction = 1,
@@ -56,7 +58,7 @@ export default function Device({
             <motion.img
               key={image}
               src={image}
-              alt="App preview"
+              alt={alt}
               custom={direction}
               initial={{
                 opacity: 0,

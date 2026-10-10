@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     route: "cargadores",
     path: "/cargadores",
+    image: "/images/og/que-es-un-wallbox.jpg",
   });
 }
 
@@ -73,21 +74,27 @@ export default async function ChargersPage({ params }: Props) {
         <div className="page-shell relative z-10 flex flex-col pb-24 lg:pb-32">
           <ChargersHero />
 
-          <ChargersCardGrid className="mt-16 lg:mt-0 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" />
-          <hr className="mt-22 border-white/10 " />
+          {/* Con 2 cargadores, a todo el ancho la card se estira: entre las dos
+              ocupan 3/4, como 3 columnas de 4. Alineadas a la izquierda, bajo el h1.
+              En celular, en filas como el lineup de la home. */}
+          <ChargersCardGrid
+            variant={{ base: "horizontal-3", sm: "vertical-2" }}
+            className="mt-8 sm:mt-16 lg:mt-0 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:w-3/4"
+          />
+          <hr className="sm:mt-22 border-white/10 " />
 
           {/* Los consejos van pegados a la grilla: primero ves los modelos, y
               recien cuando no sabes cual elegir bajas a la guia. */}
-          <div className="mt-22 ">
+          <div className="sm:mt-22 ">
             <ChargersLineupGuideSection />
           </div>
 
           {/* El divider corta el bloque de eleccion y abre el de la linea
               entera; sin el, el panel de stats quedaba pegado al borde
               superior de la seccion de la app. */}
-          <hr className="mt-22 border-white/10 " />
+          <hr className="sm:mt-22 border-white/10 " />
 
-          <div className="mt-22 ">
+          <div className="sm:mt-22 ">
             <ChargersCommonStats />
           </div>
         </div>

@@ -10,10 +10,11 @@ import {
   type PanInfo,
 } from "motion/react";
 
+import { useTranslations } from "next-intl";
+
 import { cn } from "@/lib/utils";
 
 import { Activity, Bell, Clock, RefreshCw, Settings2 } from "lucide-react";
-
 
 import Device from "./Device";
 import { AppStoreButtons } from "./AppStoreButtons";
@@ -47,58 +48,18 @@ const DEFAULT_THEME: Theme = {
   gradientColors: ["#4ade80", "#4ade80", "#a3e635"],
 };
 
-type Feature = {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  image: string;
-};
-
 /* -------------------------------------------------------------------------- */
 /* Features                                                                   */
 /* -------------------------------------------------------------------------- */
 
-const FEATURES: Feature[] = [
-  {
-    icon: Activity,
-    title: "Monitoreo en tiempo real",
-    description:
-      "Visualizá potencia, corriente y estado de carga en vivo desde tu celular.",
-    image: "/images/app/screenshots/01.jpeg",
-  },
-
-  {
-    icon: Clock,
-    title: "Historial de carga",
-    description:
-      "Accedé al consumo, duración y registros completos de cada sesión.",
-    image: "/images/app/screenshots/02.jpeg",
-  },
-
-  {
-    icon: Bell,
-    title: "Notificaciones inteligentes",
-    description:
-      "Recibí alertas automáticas sobre inicio, finalización o fallas de carga.",
-    image: "/images/app/screenshots/03.jpeg",
-  },
-
-  {
-    icon: RefreshCw,
-    title: "Actualizaciones remotas",
-    description:
-      "Mantené tu cargador actualizado con nuevas funciones y mejoras.",
-    image: "/images/app/screenshots/05.jpeg",
-  },
-
-  {
-    icon: Settings2,
-    title: "Configuración avanzada",
-    description:
-      "Gestioná parámetros, modos y preferencias directamente desde la app.",
-    image: "/images/app/screenshots/06.jpeg",
-  },
-];
+/** El copy de cada item sale de `ChargersPage.App.items.<key>`. */
+const FEATURES = [
+  { key: "realtime", icon: Activity, image: "/images/app/screenshots/01.jpeg" },
+  { key: "history", icon: Clock, image: "/images/app/screenshots/02.jpeg" },
+  { key: "notifications", icon: Bell, image: "/images/app/screenshots/03.jpeg" },
+  { key: "updates", icon: RefreshCw, image: "/images/app/screenshots/05.jpeg" },
+  { key: "settings", icon: Settings2, image: "/images/app/screenshots/06.jpeg" },
+] as const;
 
 /* -------------------------------------------------------------------------- */
 /* Mobile carousel geometry                                                   */
@@ -154,6 +115,7 @@ export function AppHighlightsInteractive({
   theme?: Theme;
   id?: string;
 }) {
+  const t = useTranslations("ChargersPage.App");
   const accent = theme.gradientColors?.[0] ?? ICON_FALLBACK_ACCENT;
   const accentSoft = withAlpha(accent, 0.12);
 
@@ -162,6 +124,9 @@ export function AppHighlightsInteractive({
   const [previousIndex, setPreviousIndex] = useState(0);
 
   const activeFeature = FEATURES[activeIndex];
+  const deviceAlt = t("imageAlt", {
+    title: t(`items.${activeFeature.key}.title`),
+  });
 
   const direction = useMemo(() => {
     if (activeIndex === previousIndex) return 1;
@@ -332,7 +297,10 @@ export function AppHighlightsInteractive({
         {/* Wallbox intro + regulatory certification                        */}
         {/* ---------------------------------------------------------------- */}
 
-        <ChargerCertificationSection theme={theme} />
+        <ChargerCertificationSection
+          namespace="ChargersPage.Certification"
+          theme={theme}
+        />
 
         {/* ---------------------------------------------------------------- */}
         {/* Features + Device                                                */}
@@ -381,7 +349,7 @@ export function AppHighlightsInteractive({
                 theme.accentText,
               )}
             >
-              App EVSEMaster
+              {t("eyebrow")}
             </p>
 
             <h2
@@ -395,7 +363,7 @@ export function AppHighlightsInteractive({
                 sm:text-5xl
               "
             >
-              Controlá tu carga desde tu celular
+              {t("title")}
             </h2>
 
             <p
@@ -409,8 +377,7 @@ export function AppHighlightsInteractive({
                 text-neutral-400
               "
             >
-              Monitoreá sesiones, revisá consumos, recibí alertas y mantené el
-              cargador actualizado desde una app simple y práctica.
+              {t("description")}
             </p>
           </motion.div>
 
@@ -435,7 +402,7 @@ export function AppHighlightsInteractive({
                   theme.accentText,
                 )}
               >
-                App EVSEMaster
+                {t("eyebrow")}
               </p>
 
               <h2
@@ -449,7 +416,7 @@ export function AppHighlightsInteractive({
                   sm:text-5xl
                 "
               >
-                Controlá tu carga desde tu celular
+                {t("title")}
               </h2>
 
               <p
@@ -462,8 +429,7 @@ export function AppHighlightsInteractive({
                   text-neutral-400
                 "
               >
-                Monitoreá sesiones, revisá consumos, recibí alertas y mantené el
-                cargador actualizado desde una app simple y práctica.
+                {t("description")}
               </p>
             </motion.div>
 
@@ -474,23 +440,23 @@ export function AppHighlightsInteractive({
               viewport={{ once: true }}
               className="flex flex-col gap-4"
             >
-            {FEATURES.map((feature, index) => {
-              const Icon = feature.icon;
+              {FEATURES.map((feature, index) => {
+                const Icon = feature.icon;
 
-              const isActive = activeIndex === index;
+                const isActive = activeIndex === index;
 
-              /* Stays true once autoplay has reached this item, so the icon
+                /* Stays true once autoplay has reached this item, so the icon
                  lights up and stays lit like the divider fill beside it. */
-              const isLit = index <= activeIndex;
+                const isLit = index <= activeIndex;
 
-              return (
-                <motion.li key={feature.title} variants={waterfallItem}>
-                  <button
-                    type="button"
-                    onMouseEnter={() => previewFeature(index)}
-                    onFocus={() => previewFeature(index)}
-                    className={cn(
-                      `
+                return (
+                  <motion.li key={feature.key} variants={waterfallItem}>
+                    <button
+                      type="button"
+                      onMouseEnter={() => previewFeature(index)}
+                      onFocus={() => previewFeature(index)}
+                      className={cn(
+                        `
                         group
                         relative
                         w-full
@@ -510,11 +476,11 @@ export function AppHighlightsInteractive({
 
                         focus:outline-none
                       `,
-                      isActive && (theme.accentSoft ?? "bg-white/[0.06]"),
-                    )}
-                  >
-                    <div
-                      className="
+                        isActive && (theme.accentSoft ?? "bg-white/[0.06]"),
+                      )}
+                    >
+                      <div
+                        className="
                         relative z-10
 
                         flex flex-col
@@ -526,36 +492,36 @@ export function AppHighlightsInteractive({
                         sm:gap-6
                         sm:p-2
                       "
-                    >
-                      {/* Icon — lights up as autoplay reaches it and stays lit,
+                      >
+                        {/* Icon — lights up as autoplay reaches it and stays lit,
                           mirroring the divider's progress fill below */}
-                      <motion.div
-                        className="
+                        <motion.div
+                          className="
                           shrink-0
 
                           rounded-xl
 
                           p-2
                         "
-                        initial={false}
-                        animate={{
-                          backgroundColor: isLit ? accentSoft : ICON_DIM_BG,
-                        }}
-                        transition={ICON_LIT_TRANSITION}
-                      >
-                        <motion.span
-                          className="block"
                           initial={false}
-                          animate={{ color: isLit ? accent : ICON_DIM_COLOR }}
+                          animate={{
+                            backgroundColor: isLit ? accentSoft : ICON_DIM_BG,
+                          }}
                           transition={ICON_LIT_TRANSITION}
                         >
-                          <Icon className="h-5 w-5" strokeWidth={1.6} />
-                        </motion.span>
-                      </motion.div>
+                          <motion.span
+                            className="block"
+                            initial={false}
+                            animate={{ color: isLit ? accent : ICON_DIM_COLOR }}
+                            transition={ICON_LIT_TRANSITION}
+                          >
+                            <Icon className="h-5 w-5" strokeWidth={1.6} />
+                          </motion.span>
+                        </motion.div>
 
-                      {/* Divider (doubles as autoplay progress) */}
-                      <div
-                        className="
+                        {/* Divider (doubles as autoplay progress) */}
+                        <div
+                          className="
                           relative hidden md:block
 
                           h-[30px]
@@ -565,43 +531,43 @@ export function AppHighlightsInteractive({
 
                           bg-neutral-500/20
                         "
-                      >
-                        {index < activeIndex && (
-                          <div
-                            className={cn(
-                              "absolute inset-0 rounded-full",
-                              theme.accentBg ?? "bg-white",
-                            )}
-                          />
-                        )}
+                        >
+                          {index < activeIndex && (
+                            <div
+                              className={cn(
+                                "absolute inset-0 rounded-full",
+                                theme.accentBg ?? "bg-white",
+                              )}
+                            />
+                          )}
 
-                        {isActive && (
-                          <motion.div
-                            key={activeIndex}
-                            className={cn(
-                              "absolute inset-x-0 top-0 h-full w-full origin-top rounded-full",
-                              theme.accentBg ?? "bg-white",
-                            )}
-                            initial={{ scaleY: 0 }}
-                            animate={{
-                              scaleY: isDragging || !isInView ? 0 : 1,
-                            }}
-                            transition={
-                              isDragging || !isInView
-                                ? { duration: 0 }
-                                : {
-                                    duration: AUTOPLAY_INTERVAL_MS / 1000,
-                                    ease: "linear",
-                                  }
-                            }
-                          />
-                        )}
-                      </div>
+                          {isActive && (
+                            <motion.div
+                              key={activeIndex}
+                              className={cn(
+                                "absolute inset-x-0 top-0 h-full w-full origin-top rounded-full",
+                                theme.accentBg ?? "bg-white",
+                              )}
+                              initial={{ scaleY: 0 }}
+                              animate={{
+                                scaleY: isDragging || !isInView ? 0 : 1,
+                              }}
+                              transition={
+                                isDragging || !isInView
+                                  ? { duration: 0 }
+                                  : {
+                                      duration: AUTOPLAY_INTERVAL_MS / 1000,
+                                      ease: "linear",
+                                    }
+                              }
+                            />
+                          )}
+                        </div>
 
-                      {/* Text */}
-                      <div className="min-w-0">
-                        <h3
-                          className="
+                        {/* Text */}
+                        <div className="min-w-0">
+                          <h3
+                            className="
                             text-sm
                             font-medium
                             text-white
@@ -609,12 +575,12 @@ export function AppHighlightsInteractive({
                             normal-case
                             sm:text-xl
                           "
-                        >
-                          {feature.title}
-                        </h3>
+                          >
+                            {t(`items.${feature.key}.title`)}
+                          </h3>
 
-                        <p
-                          className="
+                          <p
+                            className="
                             mt-1
 
                             text-xs
@@ -625,15 +591,15 @@ export function AppHighlightsInteractive({
 
                             sm:text-sm
                           "
-                        >
-                          {feature.description}
-                        </p>
+                          >
+                            {t(`items.${feature.key}.description`)}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                </motion.li>
-              );
-            })}
+                    </button>
+                  </motion.li>
+                );
+              })}
             </motion.ul>
           </div>
 
@@ -660,7 +626,7 @@ export function AppHighlightsInteractive({
 
                 return (
                   <button
-                    key={feature.title}
+                    key={feature.key}
                     type="button"
                     onClick={() => handleCardClick(index)}
                     style={{ width: CARD_WIDTH }}
@@ -691,11 +657,11 @@ export function AppHighlightsInteractive({
                       {/* Text */}
                       <div className="min-w-0">
                         <h3 className="text-xl font-medium normal-case tracking-tight text-white">
-                          {feature.title}
+                          {t(`items.${feature.key}.title`)}
                         </h3>
 
                         <p className="mt-1 text-sm leading-relaxed tracking-tighter text-neutral-400">
-                          {feature.description}
+                          {t(`items.${feature.key}.description`)}
                         </p>
                       </div>
                     </div>
@@ -708,10 +674,12 @@ export function AppHighlightsInteractive({
             <div className="mt-6 flex w-full gap-1.5">
               {FEATURES.map((feature, index) => (
                 <button
-                  key={feature.title}
+                  key={feature.key}
                   type="button"
                   onClick={() => handleCardClick(index)}
-                  aria-label={`Ir a ${feature.title}`}
+                  aria-label={t("goTo", {
+                    title: t(`items.${feature.key}.title`),
+                  })}
                   className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/10"
                 >
                   {index < activeIndex && (
@@ -753,7 +721,7 @@ export function AppHighlightsInteractive({
 
           <div
             className="
-              mt-20
+              mt-20 
               flex flex-col items-center
               sm:hidden
             "
@@ -779,6 +747,7 @@ export function AppHighlightsInteractive({
               />
               <Device
                 image={activeFeature.image}
+                alt={deviceAlt}
                 direction={direction}
                 scale={1.2}
               />
@@ -838,6 +807,7 @@ export function AppHighlightsInteractive({
               />
               <Device
                 image={activeFeature.image}
+                alt={deviceAlt}
                 direction={direction}
                 scale={1.2}
               />
@@ -850,7 +820,6 @@ export function AppHighlightsInteractive({
             </div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );

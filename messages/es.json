@@ -184,6 +184,12 @@
       "downloadOn": "Descargar en",
       "ariaLabel": "Descargar EVSEMaster en {store}",
       "manual": "Manual de la app (PDF)"
+    },
+    "Certification": {
+      "eyebrow": "Certificaciones",
+      "title": "Aprobado y certificado en Uruguay",
+      "urseaAlt": "Homologación URSEA",
+      "uteAlt": "Instalación certificada UTE"
     }
   },
   "HomePage": {
@@ -462,17 +468,17 @@
           "value": "IP66",
           "label": "Resistencia al agua y al polvo"
         },
-        "impact": {
-          "value": "IK10",
-          "label": "Resistencia a golpes"
-        },
         "app": {
           "value": "App",
           "label": "Control y monitoreo remoto"
         },
         "warranty": {
-          "value": "1 año",
-          "label": "Garantía de equipo local"
+          "value": "Garantía de 1 año",
+          "label": "Por equipo defectuoso"
+        },
+        "shipping": {
+          "value": "Envío gratis",
+          "label": "A todo el país"
         }
       },
       "carouselLabel": "Navegación de cargadores",
@@ -717,7 +723,7 @@
         "accessories": "Accesorios"
       },
       "title": "Cargadores wallbox de 7 kW y 22 kW para autos eléctricos e híbridos",
-      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas/híbridos en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos BS20 en sus 4 variantes de 7,2kW a 22kW."
+      "description": "Soluciones de carga para autos, SUV y camionetas eléctricas/híbridos en Uruguay. Elegí la potencia que mejor se adapte a tu uso, con la familia de modelos BS20 de 7,2kW y 22kW."
     },
     "ChargerCard": {
       "cta": "Ver modelo"
@@ -728,12 +734,8 @@
       "description": "Lo que más nos preguntan sobre los cargadores Rayforce Besen BS20 antes de elegir modelo.",
       "items": [
         {
-          "title": "¿Qué potencia elijo, 7,2kW, 11kW o 22kW?",
-          "answer": "Depende de tu instalación. Con monofásica (lo más común en una casa) el tope es 7,2kW. Los de 11 y 22kW necesitan instalación trifásica: sin ella, no van a entregar esa potencia por más que el equipo la soporte."
-        },
-        {
-          "title": "¿Cual conviene mas? ¿Cable integrado o toma Tipo 2?",
-          "answer": "Cable integrado si el cargador es para tu auto: cargar es colgar el cable y listo. Sin nada suelto en el garaje. Elegí el cargador con toma Tipo 2 si es un uso compartido como en una cooperativa, cochera o edificio, o si simplemente preferís tener un cable externo."
+          "title": "¿Qué potencia elijo, 7,2kW o 22kW?",
+          "answer": "Depende de tu instalación. Con monofásica (lo más común en una casa) el tope es 7,2kW. El de 22kW necesita instalación trifásica: sin ella, no va a entregar esa potencia por más que el equipo la soporte."
         },
         {
           "title": "¿Un cargador de más kW carga siempre más rápido?",
@@ -745,7 +747,7 @@
         },
         {
           "title": "¿Qué diferencia hay entre el uso residencial y el comercial?",
-          "answer": "La potencia y la instalación. El 7,2kW cubre el uso diario de una casa; los de 11 y 22kW están pensados para donde el auto rota entre varios conductores, como una empresa o una flota, y requieren trifásica."
+          "answer": "La potencia y la instalación. El 7,2kW cubre el uso diario de una casa; el de 22kW está pensado para donde el auto rota entre varios conductores, como una empresa o una flota, y requiere trifásica."
         },
         {
           "title": "¿Vienen con app de control?",
@@ -760,6 +762,38 @@
           "answer": "Podés elegir: comprar solo el equipo, o sumar la instalación hecha por nuestros electricistas certificados UTE. La opción se marca en la misma compra."
         }
       ]
+    },
+    "Certification": {
+      "description": "Tu cargador y su instalación cumplen con la normativa vigente: el equipo cuenta con homologación URSEA y la instalación se realiza según las exigencias de UTE, para que tengas la tranquilidad de una carga segura y respaldada."
+    },
+    "App": {
+      "eyebrow": "App EVSEMaster",
+      "title": "Controlá tu carga desde tu celular",
+      "description": "Monitoreá sesiones, revisá consumos, recibí alertas y mantené el cargador actualizado desde una app simple y práctica.",
+      "imageAlt": "Pantalla de la app EVSEMaster: {title}",
+      "goTo": "Ir a {title}",
+      "items": {
+        "realtime": {
+          "title": "Monitoreo en tiempo real",
+          "description": "Visualizá potencia, corriente y estado de carga en vivo desde tu celular."
+        },
+        "history": {
+          "title": "Historial de carga",
+          "description": "Accedé al consumo, duración y registros completos de cada sesión."
+        },
+        "notifications": {
+          "title": "Notificaciones inteligentes",
+          "description": "Recibí alertas automáticas sobre inicio, finalización o fallas de carga."
+        },
+        "updates": {
+          "title": "Actualizaciones remotas",
+          "description": "Mantené tu cargador actualizado con nuevas funciones y mejoras."
+        },
+        "settings": {
+          "title": "Configuración avanzada",
+          "description": "Gestioná parámetros, modos y preferencias directamente desde la app."
+        }
+      }
     }
   },
   "ChargerModelPage": {
@@ -870,13 +904,6 @@
       "total": "Total",
       "totalFrom": "Total desde",
       "estimateInfo": "Por qué es un estimado"
-    },
-    "certificationSection": {
-      "eyebrow": "Certificaciones",
-      "title": "Aprobado y certificado en Uruguay",
-      "description": "Tu cargador y su instalación cumplen con la normativa vigente: el equipo cuenta con homologación URSEA y la instalación se realiza según las exigencias de UTE, para que tengas la tranquilidad de una carga segura y respaldada.",
-      "urseaAlt": "Homologación URSEA",
-      "uteAlt": "Instalación certificada UTE"
     },
     "pricingSection": {
       "eyebrow": "Precios",

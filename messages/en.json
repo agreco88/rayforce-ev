@@ -184,6 +184,12 @@
       "downloadOn": "Download on",
       "ariaLabel": "Download EVSEMaster on {store}",
       "manual": "App manual (PDF, Spanish)"
+    },
+    "Certification": {
+      "eyebrow": "Certifications",
+      "title": "Approved and certified in Uruguay",
+      "urseaAlt": "URSEA approval",
+      "uteAlt": "UTE certified installation"
     }
   },
   "HomePage": {
@@ -462,17 +468,17 @@
           "value": "IP66",
           "label": "Water and dust resistant"
         },
-        "impact": {
-          "value": "IK10",
-          "label": "Impact resistant"
-        },
         "app": {
           "value": "App",
           "label": "Remote control and monitoring"
         },
         "warranty": {
-          "value": "1 year",
-          "label": "Local equipment warranty"
+          "value": "1-year warranty",
+          "label": "On defective equipment"
+        },
+        "shipping": {
+          "value": "Free shipping",
+          "label": "Nationwide"
         }
       },
       "carouselLabel": "Charger navigation",
@@ -717,7 +723,7 @@
         "accessories": "Accessories"
       },
       "title": "7 kW and 22 kW wallbox chargers for electric and hybrid cars",
-      "description": "Charging solutions for electric cars, SUVs and trucks in Uruguay. Choose the power level that best fits your needs, with the BS20 model family in 4 variants from 7.2kW to 22kW."
+      "description": "Charging solutions for electric cars, SUVs and trucks in Uruguay. Choose the power level that best fits your needs, with the BS20 model family in 7.2kW and 22kW."
     },
     "ChargerCard": {
       "cta": "View model"
@@ -728,12 +734,8 @@
       "description": "What people ask us most about the Rayforce Besen BS20 chargers before choosing a model.",
       "items": [
         {
-          "title": "Which power level should I choose, 7.2kW, 11kW or 22kW?",
-          "answer": "It depends on your electrical supply. With single-phase — the most common setup in a home — the cap is 7.2kW. The 11 and 22kW need a three-phase supply: without one, they won't deliver that power no matter what the unit supports."
-        },
-        {
-          "title": "Integrated cable or Type 2 socket?",
-          "answer": "Integrated cable if the charger is for your own car: charging is unhooking the cable, nothing loose in the garage. Type 2 socket if more than one car will use it, since each arrives with its own — but the cable isn't included there."
+          "title": "Which power level should I choose, 7.2kW or 22kW?",
+          "answer": "It depends on your electrical supply. With single-phase — the most common setup in a home — the cap is 7.2kW. The 22kW needs a three-phase supply: without one, it won't deliver that power no matter what the unit supports."
         },
         {
           "title": "Does a higher-kW charger always charge faster?",
@@ -745,7 +747,7 @@
         },
         {
           "title": "What's the difference between residential and commercial use?",
-          "answer": "Power and the supply it needs. The 7.2kW covers a home's daily use; the 11 and 22kW are built for where the car rotates between several drivers, like a business or a fleet, and they need a three-phase supply."
+          "answer": "Power and the supply it needs. The 7.2kW covers a home's daily use; the 22kW is built for where the car rotates between several drivers, like a business or a fleet, and it needs a three-phase supply."
         },
         {
           "title": "Do they come with an app?",
@@ -760,6 +762,38 @@
           "answer": "You can choose: buy just the unit, or add installation by our UTE-certified electricians. That option is set at checkout."
         }
       ]
+    },
+    "Certification": {
+      "description": "Your charger and its installation meet current regulations: the unit holds URSEA approval and installation follows UTE requirements, so you can count on a safe, backed charging setup."
+    },
+    "App": {
+      "eyebrow": "EVSEMaster app",
+      "title": "Control charging from your phone",
+      "description": "Track sessions, check consumption, get alerts and keep your charger up to date from a simple, practical app.",
+      "imageAlt": "EVSEMaster app screen: {title}",
+      "goTo": "Go to {title}",
+      "items": {
+        "realtime": {
+          "title": "Real-time monitoring",
+          "description": "See power, current and charging status live on your phone."
+        },
+        "history": {
+          "title": "Charging history",
+          "description": "Access the consumption, duration and full log of every session."
+        },
+        "notifications": {
+          "title": "Smart notifications",
+          "description": "Get automatic alerts when charging starts, finishes or fails."
+        },
+        "updates": {
+          "title": "Remote updates",
+          "description": "Keep your charger up to date with new features and improvements."
+        },
+        "settings": {
+          "title": "Advanced settings",
+          "description": "Manage parameters, modes and preferences right from the app."
+        }
+      }
     }
   },
   "ChargerModelPage": {
@@ -870,13 +904,6 @@
       "total": "Total",
       "totalFrom": "Total from",
       "estimateInfo": "Why it is an estimate"
-    },
-    "certificationSection": {
-      "eyebrow": "Certifications",
-      "title": "Approved and certified in Uruguay",
-      "description": "Your charger and its installation meet current regulations: the unit holds URSEA approval and installation follows UTE requirements, so you can count on a safe, backed charging setup.",
-      "urseaAlt": "URSEA approval",
-      "uteAlt": "UTE certified installation"
     },
     "pricingSection": {
       "eyebrow": "Pricing",

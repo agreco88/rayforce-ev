@@ -1,41 +1,32 @@
 "use client";
 
-import { Award, BadgeCheck, DropletIcon, ShieldCheck, Smartphone } from "lucide-react";
+import {
+  Award,
+  BadgeCheck,
+  DropletIcon,
+  Smartphone,
+  Truck,
+  type LucideIcon,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { StatsGrid, type StatItem } from "@/components/pages/shared/StatsGrid";
+import { StatsGrid } from "@/components/pages/shared/StatsGrid";
+// La misma mascara que usa `StatsGrid`: `socket-type-2.svg` es solo trazo.
+import SocketTypeTwo from "../../../../../public/images/icons/type-2-socket.svg";
+
+/** Sin `icon`, el conector Tipo 2: va con su mascara, lucide no lo tiene.
+ * Garantia y envio con el texto de la compra (`ChargerModelPage.Hero`). */
+const STATS: { key: string; icon?: LucideIcon }[] = [
+  { key: "ursea", icon: BadgeCheck },
+  { key: "connector" },
+  { key: "protection", icon: DropletIcon },
+  { key: "app", icon: Smartphone },
+  { key: "warranty", icon: Award },
+  { key: "shipping", icon: Truck },
+];
 
 export function ChargersCommonStats() {
   const t = useTranslations("HomePage.HomeChargersSection.commonStats");
-
-  const stats: StatItem[] = [
-    {
-      icon: BadgeCheck,
-      value: t("ursea.value"),
-      label: t("ursea.label"),
-    },
-    {
-      isCustom: true,
-      value: t("connector.value"),
-      label: t("connector.label"),
-    },
-    {
-      icon: DropletIcon,
-      value: t("protection.value"),
-      label: t("protection.label"),
-    },
-    {
-      icon: ShieldCheck,
-      value: t("impact.value"),
-      label: t("impact.label"),
-    },
-    { icon: Smartphone, value: t("app.value"), label: t("app.label") },
-    {
-      icon: Award,
-      value: t("warranty.value"),
-      label: t("warranty.label"),
-    },
-  ];
 
   /* Sin ancho ni padding propios: los pone el contenedor de la pagina. */
   return (
@@ -46,13 +37,57 @@ export function ChargersCommonStats() {
         {t("title")}
       </h2>
 
-      <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.06] px-6 py-8 shadow-2xl shadow-black/40 backdrop-blur-2xl sm:px-10 sm:py-10">
+      <div className="mt-10 hidden rounded-3xl border border-white/10 bg-white/[0.06] p-10 shadow-2xl shadow-black/40 backdrop-blur-2xl sm:block">
         <StatsGrid
-          stats={stats}
+          stats={STATS.map(({ key, icon }) => ({
+            icon,
+            isCustom: !icon,
+            value: t(`${key}.value`),
+            label: t(`${key}.label`),
+          }))}
           accentText="text-green-400"
-          columnsClassName="grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+          columnsClassName="grid-cols-3 lg:grid-cols-6"
         />
       </div>
+
+      {/* En celular, cajitas de a dos: el panel de `StatsGrid` a ese ancho
+          dejaba los iconos enormes y el texto en 11px. */}
+      <ul className="mt-8 grid grid-cols-2 gap-3 sm:hidden">
+        {STATS.map(({ key, icon: Icon }) => (
+          <li
+            key={key}
+            className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4"
+          >
+            {Icon ? (
+              <Icon className="size-5 text-green-400" strokeWidth={1.75} />
+            ) : (
+              <span
+                aria-hidden="true"
+                className="size-5 bg-green-400"
+                style={{
+                  WebkitMaskImage: `url(${SocketTypeTwo.src})`,
+                  maskImage: `url(${SocketTypeTwo.src})`,
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
+              />
+            )}
+            {/* `span` y no `p`: el `p` global pisa tamaño y color. */}
+            <span className="flex flex-col gap-1 leading-snug">
+              <span className="text-sm font-medium text-white">
+                {t(`${key}.value`)}
+              </span>
+              <span className="text-xs text-neutral-400">
+                {t(`${key}.label`)}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

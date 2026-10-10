@@ -4,10 +4,8 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
 import { ProductCard } from "@/components/catalog/product-card/ProductCard";
-import { useCableCardData } from "@/components/catalog/product-card/adapters/useCableCardData";
-import { useStandCardData } from "@/components/catalog/product-card/adapters/useStandCardData";
+import { useAccessoryCards } from "@/components/catalog/product-card/adapters/useAccessoryCards";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
-import { getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -16,15 +14,11 @@ type Props = {
   excludeSlug?: string;
 };
 
-/** Grilla de accesorios (los cables y la columna) en `vertical-2`, igual que
+/** Grilla de accesorios (los cables y la columna), igual que
  * `ChargersCardGrid`: mapea a mano porque cada card entra en cascada. */
 export function AccessoriesCardGrid({ className, excludeSlug }: Props) {
   const t = useTranslations("Common.ProductCard");
-  const toCableCard = useCableCardData();
-  const column = useStandCardData();
-  const cards = [...getCableProducts().map(toCableCard), column].filter(
-    (card) => card.id !== excludeSlug,
-  );
+  const cards = useAccessoryCards().filter((card) => card.id !== excludeSlug);
 
   return (
     <motion.div
@@ -37,9 +31,11 @@ export function AccessoriesCardGrid({ className, excludeSlug }: Props) {
       {cards.map((card) => (
         // `h-full`, como en cargadores: alinea el borde del destacado con la fila.
         <motion.div key={card.id} variants={waterfallItem} className="h-full">
+          {/* En mobile, la fila del lineup de la home; desde `sm` hay ancho
+              para la card vertical. */}
           <ProductCard
             {...card}
-            variant="vertical-2"
+            variant={{ base: "horizontal-3", sm: "vertical-2" }}
             ariaLabel={`${card.fullTitle} ${card.titleAccent} — ${t("cta")}`}
           />
         </motion.div>

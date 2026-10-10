@@ -25,7 +25,7 @@ export function StatsGrid({
   stats,
   accentText,
   divide,
-  columnsClassName = "grid-cols-3 sm:grid-cols-4 lg:grid-cols-7",
+  columnsClassName = "grid-cols-3 lg:grid-cols-6",
 }: Props) {
   return (
     <div className={cn("grid gap-4 sm:gap-8 lg:gap-6", columnsClassName, divide)}>

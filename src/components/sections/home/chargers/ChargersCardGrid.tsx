@@ -3,7 +3,11 @@
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
-import { ProductCard } from "@/components/catalog/product-card/ProductCard";
+import {
+  ProductCard,
+  type ProductCardVariant,
+  type ResponsiveVariant,
+} from "@/components/catalog/product-card/ProductCard";
 import { useChargerCardData } from "@/components/catalog/product-card/adapters/useChargerCardData";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import { getChargerProducts } from "@/lib/catalog/catalog.helpers";
@@ -12,11 +16,16 @@ type Props = {
   className?: string;
   /** Slug a dejar afuera — la pagina de modelo no se lista a si misma. */
   excludeSlug?: string;
+  variant?: ProductCardVariant | ResponsiveVariant;
 };
 
-/** Grilla de cargadores en `vertical-2`, de la home y /cargadores. Mapea a
- * mano y no con `ProductCollection` porque cada card entra en cascada. */
-export function ChargersCardGrid({ className, excludeSlug }: Props) {
+/** Grilla de cargadores, `vertical-2` por defecto, de la home y /cargadores.
+ * Mapea a mano y no con `ProductCollection` porque cada card entra en cascada. */
+export function ChargersCardGrid({
+  className,
+  excludeSlug,
+  variant = "vertical-2",
+}: Props) {
   const t = useTranslations("Common.ProductCard");
   const toCard = useChargerCardData();
   const cards = getChargerProducts()
@@ -39,7 +48,7 @@ export function ChargersCardGrid({ className, excludeSlug }: Props) {
         <motion.div key={card.id} variants={waterfallItem} className="h-full">
           <ProductCard
             {...card}
-            variant="vertical-2"
+            variant={variant}
             ariaLabel={`${card.fullTitle} ${card.titleAccent} — ${t("cta")}`}
           />
         </motion.div>

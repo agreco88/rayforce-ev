@@ -12,7 +12,7 @@ const PROOF_VIDEO_SRC = "/assets/videos/cables/chc-cable-run-over-test.mp4";
 const PROOF_POSTER_SRC =
   "/assets/images/cables/chc-cable-run-over-test-poster.jpg";
 
-const BAG_IMAGE_SRC = "/assets/images/cables/cable-bag.png";
+const BAG_IMAGE_SRC = "/assets/images/cables/cable-bag.webp";
 
 /**
  * El "que incluye" del listado de cables. Los renglones salen de los mensajes

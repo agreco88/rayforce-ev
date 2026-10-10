@@ -6,11 +6,12 @@ import { Zap, Plug, Clock, type LucideIcon } from "lucide-react";
 
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 
-const GUIDE_ICONS: LucideIcon[] = [Zap, Plug, Clock];
+/** Compartidos con `LineupGuideCarousel`, la version mobile. */
+export const GUIDE_ICONS: LucideIcon[] = [Zap, Plug, Clock];
 
 /**
  * Los 3 consejos para elegir modelo, en fila de tarjetas: lo usan el lineup
- * del home (desktop) y /cargadores. La eleccion real es una secuencia — te la
+ * del home y /cargadores en desktop. La eleccion real es una secuencia — te la
  * define la instalacion que ya tenes (monofasica o trifasica), recien despues
  * elegis cable o toma, y al final potencia; por eso van numerados.
  */

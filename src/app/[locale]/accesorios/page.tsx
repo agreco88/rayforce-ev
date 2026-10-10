@@ -6,7 +6,9 @@ import { CablesIncludedSection } from "@/components/pages/cables/CablesIncludedS
 import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 import { Footer } from "@/components/sections/contact-footer/Footer";
 import { GridBackground } from "@/components/shared/backgrounds/GridBackground";
+import { redirect } from "@/i18n/navigation";
 import { CABLE_THEME } from "@/lib/catalog/cables.catalog";
+import { getCableProducts } from "@/lib/catalog/catalog.helpers";
 import { generateLocaleMetadata, SITE } from "@/lib/generate-locale-metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 type Props = { params: Promise<{ locale: string }> };
@@ -22,6 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AccessoriesPage({ params }: Props) {
   const { locale } = await params;
+  // Sin cables a la venta solo queda la columna: el listado manda a ella, y
+  // vuelve solo cuando un cable deja de estar `hidden`.
+  if (getCableProducts().length === 0) {
+    redirect({ href: "/accesorios/columna-para-cargador", locale });
+  }
+
   const t = await getTranslations({
     locale,
     namespace: "AccessoriesPage.Hero.breadcrumb",

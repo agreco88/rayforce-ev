@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 type Props = {
+  /** Namespace con la `description`, lo unico que cambia entre paginas. */
+  namespace: string;
   theme?: {
     accentText: string;
     gradientColors?: [string, string, string];
@@ -17,15 +19,17 @@ type Props = {
 const DEFAULT_THEME = { accentText: "text-green-400" };
 
 /**
- * Regulatory reassurance — URSEA/UTE logos left, approval copy right. Lives
- * inside AppHighlightsInteractive's section, before its header, and shares its
- * background/grid/glow rather than defining its own.
+ * Regulatory reassurance — URSEA/UTE logos left, approval copy right. In
+ * /cargadores it lives inside AppHighlightsInteractive's section and shares its
+ * background; /empresas wraps it in `EmpresasCertification`.
  */
 export function ChargerCertificationSection({
+  namespace,
   theme = DEFAULT_THEME,
   id,
 }: Props) {
-  const t = useTranslations("ChargerModelPage.certificationSection");
+  const t = useTranslations("Common.Certification");
+  const tPage = useTranslations(namespace);
 
   /* Sin ancho propio: el ancho y el padding los pone la seccion padre. */
   return (
@@ -37,9 +41,9 @@ export function ChargerCertificationSection({
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        className="order-2 flex items-center justify-center gap-6 lg:order-1 lg:gap-8"
+        className="order-2 flex items-center justify-center gap-4 sm:gap-6 lg:order-1 lg:gap-8"
       >
-        <div className="relative flex h-40 w-1/2 max-w-xs items-center justify-center rounded-2xl bg-white p-4 sm:h-56 lg:h-64">
+        <div className="relative flex h-28 w-1/2 max-w-xs items-center justify-center rounded-2xl bg-white p-4 sm:h-56 lg:h-64">
           <Image
             src="/images/partners/logo-ursea.webp"
             alt={t("urseaAlt")}
@@ -47,7 +51,7 @@ export function ChargerCertificationSection({
             className="object-contain p-5 sm:p-6"
           />
         </div>
-        <div className="relative flex h-40 w-1/2 max-w-xs items-center justify-center rounded-2xl bg-white p-4 sm:h-56 lg:h-64">
+        <div className="relative flex h-28 w-1/2 max-w-xs items-center justify-center rounded-2xl bg-white p-4 sm:h-56 lg:h-64">
           <Image
             src="/images/partners/logo-ute.webp"
             alt={t("uteAlt")}
@@ -76,7 +80,7 @@ export function ChargerCertificationSection({
           {t("title")}
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-neutral-400 lg:mx-0">
-          {t("description")}
+          {tPage("description")}
         </p>
       </motion.div>
     </div>
