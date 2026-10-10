@@ -9,20 +9,7 @@ export async function ChargersHero() {
       <AppBreadcrumb
         items={[
           { label: t("breadcrumb.home"), href: "/" },
-          {
-            label: t("breadcrumb.chargers"),
-            dropdown: [
-              {
-                href: "/cargadores",
-                label: t("breadcrumb.chargers"),
-                current: true,
-              },
-              {
-                href: "/accesorios",
-                label: t("breadcrumb.accessories"),
-              },
-            ],
-          },
+          { label: t("breadcrumb.chargers") },
         ]}
       />
       <div className="flex flex-col sm:pb-5 gap-2.5">
