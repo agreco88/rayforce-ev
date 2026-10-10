@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     route: "accesorios-columna",
     path: PATH,
+    image: "/images/og/columna.jpg",
   });
 }
 

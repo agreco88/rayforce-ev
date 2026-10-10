@@ -49,8 +49,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     buildEntry("/", 1.0, "weekly"),
     buildEntry("/cargadores", 0.9, "monthly"),
     ...chargerEntries,
-    buildEntry("/accesorios", 0.9, "monthly"),
-    ...cableEntries,
+    // Sin cables, /accesorios redirige a la columna.
+    ...(cableEntries.length > 0
+      ? [buildEntry("/accesorios", 0.9, "monthly"), ...cableEntries]
+      : []),
     buildEntry("/accesorios/columna-para-cargador", 0.8, "monthly"),
     buildEntry("/empresas", 0.8, "monthly"),
   ];

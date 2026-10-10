@@ -15,12 +15,16 @@ export const SITE = {
   name: "Rayforce",
   baseUrl,
   localeMap: {
-    es: "es_ES",
+    es: "es_UY",
     en: "en_US",
   },
   country: "UY",
   city: "Montevideo",
 };
+
+/** El `@id` de la Organization del layout, para que los schemas de cada pagina
+ *  la referencien. Fijo y no `baseUrl`: es un nombre, igual en preview y en prod. */
+export const ORGANIZATION_ID = "https://www.rayforce.uy/#organization";
 
 /* ------------------ Helpers ------------------ */
 
@@ -34,10 +38,15 @@ export async function generateLocaleMetadata({
   locale,
   route,
   path = "/",
+  image,
 }: {
   locale: string;
   route: string;
   path?: string;
+  /** Foto de 1200x630 para compartir, con `${route}.imageAlt` de alt. El
+   * `openGraph` de abajo pisa la imagen de `[locale]/opengraph-image` en toda
+   * ruta que no sea la home: sin esto, el link sale sin imagen. */
+  image?: string;
 }): Promise<Metadata> {
   const t = await getTranslations({
     locale,
@@ -75,6 +84,11 @@ export async function generateLocaleMetadata({
       siteName: SITE.name,
       locale: SITE.localeMap[locale as keyof typeof SITE.localeMap],
       type: "website",
+      ...(image && {
+        images: [
+          { url: image, width: 1200, height: 630, alt: t(`${route}.imageAlt`) },
+        ],
+      }),
     },
 
     twitter: {
