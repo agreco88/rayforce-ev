@@ -242,7 +242,7 @@
         "label": "25 years of engineering in Uruguay"
       },
       "title": "Wallbox charger installation and sales for electric and hybrid cars in Uruguay",
-      "description": "We upgrade the electrical installation of your home, building or business and fit the wallbox charger ourselves, with no subcontractors. UTE-licensed technicians and URSEA-certified equipment.",
+      "description": "We prepare the electrical installation of shared garages, businesses and homes for electric car chargers. UTE-licensed technicians and URSEA-certified equipment.",
       "ctaPrimary": "View chargers",
       "ctaSecondary": "Buildings and businesses",
       "ctaTertiary": "Power increase with UTE",
@@ -274,7 +274,7 @@
     "WallboxIntro": {
       "whatIsIt": {
         "eyebrow": "Rayforce wallbox",
-        "title": "What is a wallbox?",
+        "title": "Why buy a wallbox charger?",
         "description": "A wall-mounted charger built to charge fast and safely, every day. It is installed in your garage or carport and delivers far more power than the emergency Schuko charger that comes with the car.",
         "imageAlt": "Rayforce wallbox installed in an apartment building garage, with a car plugged in",
         "video": {
@@ -344,7 +344,7 @@
           },
           "app": {
             "headline": "Control it from your phone over Bluetooth",
-            "footnote": "Start, stop and schedule charging remotely. You can lock it for shared garages with a 6-digit code, set the schedule and leave it charging during UTE's off-peak valley rate.",
+            "footnote": "Start, stop and schedule charging from your phone, over Bluetooth. You can lock it with a 6-digit code for shared garages, set the schedule and leave it charging during UTE's off-peak valley rate.",
             "short": "Start, stop and schedule charging remotely, on UTE's off-peak valley rate."
           },
           "compatible": {
@@ -358,7 +358,7 @@
     },
     "HomeCostSection": {
       "eyebrow": "Cost comparison",
-      "title": "Benefits of charging at home",
+      "title": "Benefits of charging at home with a Rayforce wallbox",
       "subheading": "Charging at home costs less than a third of filling the tank",
       "chartTitle": "Cost per 350 km traveled",
       "footnote": "* Uruguayan pesos, VAT included. Estimate for 350 km with an EV at 17 kWh/100 km (59.5 kWh) against a petrol car at 7.5 L/100 km. At home, UTE's simple residential rate (101-600 kWh tier). On the public network, fast charging with its per-session base fee.",
@@ -441,8 +441,8 @@
       "comparisonSummary": "Since 2016 petrol went up {nafta}, while electricity went up {ute}. Almost twice as much, out of the same pocket."
     },
     "Lineup": {
-      "eyebrow": "Rayforce BS20 Wallbox Chargers",
-      "title": "Our wallbox chargers",
+      "eyebrow": "Rayforce wallbox chargers",
+      "title": "Our EV charger lineup",
       "description": "The 7.2\u00a0kW model is single-phase and built for charging at home. The 22\u00a0kW model is three-phase, for industry, fleets and parking facilities.",
       "guide": {
         "title": "Tips for choosing a wallbox charger",
@@ -568,7 +568,7 @@
         "bs20-bc-7kw": {
           "title": "Residential Single-Phase Wallbox with integrated cable",
           "shortTitle": "Residential Wallbox with integrated cable",
-          "blurb": "With an integrated cable — plug in and charge, no extra steps.",
+          "blurb": "Comes with the cable built in and ready to use: plug it in and it charges, no extra accessories.",
           "highlights": [
             "Charges up to 3× faster than conventional chargers",
             "Maximum energy savings"
@@ -679,7 +679,7 @@
       },
       "pricingPanel": {
         "title": "Build your setup",
-        "description": "The stand is sold on its own or together with the charger. Add the wallbox and see the final price before you buy.",
+        "description": "The stand is sold on its own or together with the charger. Add the wallbox and the installation, and see the final price before you buy.",
         "includes": "Includes",
         "detailLink": "See details",
         "features": {
@@ -724,8 +724,8 @@
           "whatsappMessage": "Hi! I'd like a quote for the stand with the BS20-BC-7KW charger and installation"
         },
         "footnote": {
-          "columnOnly": "The stand on its own, to add to a BS20 wallbox you already own.",
-          "withCharger": "Stand and charger together, ready to install. Add certified installation whenever you want.",
+          "columnOnly": "Stand only. Charger not included",
+          "withCharger": "Stand and charger. Charger installation not included.",
           "withInstallation": "The final price depends on the distance to the electrical panel, and whether civil works or an upgrade to the existing installation are required."
         }
       }
@@ -882,7 +882,7 @@
         "quoteMessage": "Hi! I would like a quote for my {model} charger with installation"
       },
       "trust": {
-        "pickup": "Ready for pickup in under 24 hours",
+        "pickup": "Immediate delivery",
         "shipping": "Free shipping nationwide"
       },
       "shipping": {
@@ -1021,7 +1021,7 @@
     },
     "Installations": {
       "eyebrow": "Real installations",
-      "title": "This is how it looks installed",
+      "title": "Our installations",
       "subtitle": "Wallboxes with an integrated cable that we installed in homes and building garages. No filters, no retouching: this is how they look on the wall.",
       "imageAlt": {
         "edificio-cochera-con-auto": "Rayforce wallbox installed on a column in a building garage, with its panel and the cable on its holder",
@@ -1241,7 +1241,7 @@
       },
       "socket": {
         "title": "Type 2 socket",
-        "description": "Cable not included. The connector used by most public chargers."
+        "description": "Cable not included."
       }
     },
     "tier": {
