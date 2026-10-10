@@ -203,6 +203,10 @@
           "answer": "La hacemos nosotros: no tercerizamos. Instalamos con ingenieros y técnicos electricistas certificados por UTE, siguiendo la normativa eléctrica uruguaya."
         },
         {
+          "title": "¿Qué autos son compatibles?",
+          "answer": "Cualquier eléctrico o híbrido enchufable con conector Tipo 2, el estándar de los que se venden en Uruguay. Eso incluye los modelos enchufables de {brands}. La velocidad la pone el auto: si acepta hasta 7,2kW, carga a eso aunque el wallbox sea de 22kW."
+        },
+        {
           "title": "¿Qué garantía tienen los equipos?",
           "answer": "Un año de garantía, que atendemos directamente nosotros acá en Uruguay. No dependés de un service en el exterior ni de un importador intermedio."
         },

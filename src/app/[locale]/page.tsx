@@ -14,6 +14,7 @@ import { ScrollDepthTracker } from "@/components/analytics/ScrollDepthTracker";
 // HomeWallboxSectionVariant. NO BORRAR.
 // import { HomeWallboxSectionVariant } from "@/components/sections/home/wallbox/HomeWallboxSectionVariant";
 import { WhatIsWallboxSection } from "@/components/pages/chargers/WhatIsWallboxSection";
+import { brandList } from "@/components/pages/shared/compatibility/compatibility.data";
 
 /*
   Oculto: el bento nuevo de wallbox. Se saca mientras se rearma la sección.
@@ -97,9 +98,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Common.Faq" });
-  // El FAQ pasó de 6 categorías a una lista plana de preguntas de empresa, así
-  // que el schema lee `items` directo (antes aplanaba `groups`).
-  const faqItems = t.raw("items") as { title: string; answer: string }[];
+  // Mismas respuestas que muestra FooterFaq: pasan por `t` para que la de
+  // compatibilidad reciba las marcas en `{brands}`.
+  const brands = brandList(locale);
+  const faqItems = (t.raw("items") as { title: string }[]).map((item, i) => ({
+    title: item.title,
+    answer: t(`items.${i}.answer`, { brands }),
+  }));
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

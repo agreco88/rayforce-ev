@@ -203,6 +203,10 @@
           "answer": "We do, in house. We never subcontract: our engineers and UTE-certified electricians install every unit following Uruguayan electrical code."
         },
         {
+          "title": "Which cars are compatible?",
+          "answer": "Any electric or plug-in hybrid car with a Type 2 connector, the standard for the ones sold in Uruguay. That includes the plug-in models from {brands}. The car sets the speed: if it accepts up to 7.2kW, it charges at that even on a 22kW wallbox."
+        },
+        {
           "title": "What warranty do the units carry?",
           "answer": "One year of warranty, handled directly by us here in Uruguay. You do not depend on overseas service or a middleman importer."
         },

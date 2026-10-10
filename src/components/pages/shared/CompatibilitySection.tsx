@@ -61,7 +61,7 @@ export function CompatibilitySection({ theme, id }: Props) {
         {/* Todo en una caja: separados, el dropdown y los modelos no se leian
             como parte de lo mismo. 50/50 en desktop, apilado en mobile, donde
             la caja se disuelve en la seccion y queda el gutter de la ficha. */}
-        <div className="relative mx-auto grid w-full max-w-[1440px] gap-8 overflow-hidden px-6 sm:rounded-2xl sm:border sm:border-white/10 sm:bg-white/[0.02] sm:p-8 lg:grid-cols-2 lg:gap-0 lg:p-12">
+        <div className="relative mx-auto grid w-full max-w-[1440px] gap-8 overflow-hidden px-4 sm:px-6 sm:rounded-2xl sm:border sm:border-white/10 sm:bg-white/[0.02] sm:p-8 lg:grid-cols-2 lg:gap-0 lg:p-12">
           {/* La marca elegida de marca de agua, cortada por la esquina de la
               caja. `popLayout`: la que sale no empuja a la que entra. Solo desktop:
               en mobile no queda lugar libre y se perdia atras del texto. */}
@@ -88,13 +88,9 @@ export function CompatibilitySection({ theme, id }: Props) {
               {t("header.eyebrow")}
             </p>
 
-            <h2 className="section-title mt-4">
-              {t("header.title")}
-            </h2>
+            <h2 className="section-title mt-4">{t("header.title")}</h2>
 
-            <p className="mt-6 section-subtitle">
-              {t("header.description")}
-            </p>
+            <p className="mt-6 section-subtitle">{t("header.description")}</p>
           </div>
 
           {/* El dropdown encabeza los modelos que filtra: asi se ve que

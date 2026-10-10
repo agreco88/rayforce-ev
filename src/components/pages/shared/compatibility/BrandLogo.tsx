@@ -3,7 +3,8 @@ import { cn } from "@/lib/utils";
 import { BRAND_LOGOS } from "./brand-logos";
 
 /** El logo de la marca en el color del texto, encajado en la caja que le den
- *  (`className` con alto y ancho). Sin logo, nada. */
+ *  (`className` con alto y ancho). Sin logo, la caja vacia: asi los nombres
+ *  de la lista siguen encolumnados. */
 export function BrandLogo({
   name,
   className,
@@ -12,7 +13,7 @@ export function BrandLogo({
   className?: string;
 }) {
   const Logo = BRAND_LOGOS[name];
-  if (!Logo) return null;
+  if (!Logo) return <span className={className} aria-hidden="true" />;
 
   if (typeof Logo === "string") {
     return (

@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
+import { brandList } from "@/components/pages/shared/compatibility/compatibility.data";
 import { waterfallItem, waterfallList } from "@/lib/animation-variants";
 import {
   FaqAccordion,
@@ -28,7 +29,13 @@ export function FooterFaq({
   accentText = "text-green-400",
 }: Props) {
   const t = useTranslations(namespace);
-  const items = t.raw("items") as FaqItem[];
+  const locale = useLocale();
+  // Las respuestas pasan por `t` y no salen crudas: la de compatibilidad
+  // recibe las marcas en `{brands}`. El schema de la home hace lo mismo.
+  const items = (t.raw("items") as FaqItem[]).map((item, i) => ({
+    title: item.title,
+    answer: t(`items.${i}.answer`, { brands: brandList(locale) }),
+  }));
 
   return (
     <motion.div

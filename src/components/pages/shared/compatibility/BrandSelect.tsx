@@ -3,9 +3,10 @@
 import { Select } from "@base-ui/react/select";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { cn } from "@/lib/utils";
 
 import { BrandLogo } from "./BrandLogo";
@@ -31,6 +32,23 @@ export function BrandSelect({
 }: Props) {
   const t = useTranslations("HomePage.CompatibilitySection");
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // En mobile la lista abre siempre abajo (dada vuelta saltaba de lado al
+  // scrollear). Si el boton esta en la mitad de abajo, se lo sube para darle lugar.
+  function handleOpenChange(next: boolean) {
+    setOpen(next);
+    const trigger = triggerRef.current;
+    if (
+      next &&
+      isMobile &&
+      trigger &&
+      trigger.getBoundingClientRect().bottom > window.innerHeight / 2
+    ) {
+      trigger.scrollIntoView({ block: "start" });
+    }
+  }
 
   return (
     <Select.Root
@@ -38,13 +56,14 @@ export function BrandSelect({
       value={value}
       onValueChange={onValueChange}
       open={open}
-      onOpenChange={setOpen}
+      onOpenChange={handleOpenChange}
       modal={false}
     >
       <Select.Trigger
+        ref={triggerRef}
         aria-labelledby={labelId}
         className={cn(
-          "relative flex h-16 w-full items-center rounded-2xl lg:h-14",
+          "relative flex h-16 w-full scroll-mt-24 items-center rounded-2xl lg:h-14",
           "border border-white/10 bg-neutral-950",
           "pr-10 pl-6 text-neutral-200",
           "transition-colors duration-200",
@@ -73,6 +92,7 @@ export function BrandSelect({
               sideOffset={8}
               align="start"
               alignItemWithTrigger={false}
+              collisionAvoidance={isMobile ? { side: "none" } : undefined}
             >
               <Select.Popup
                 render={
@@ -83,7 +103,9 @@ export function BrandSelect({
                     transition={{ duration: 0.15, ease: "easeOut" }}
                     style={{ willChange: "transform, opacity" }}
                     className={cn(
-                      "max-h-[min(28rem,var(--available-height))] w-max min-w-[var(--anchor-width)] overflow-x-hidden overflow-y-auto rounded-2xl",
+                      // `overscroll-contain`: llegar al final de la lista no
+                      // arrastra la pagina, y con ella el popup.
+                      "max-h-[min(28rem,var(--available-height))] w-max min-w-[var(--anchor-width)] overflow-x-hidden overflow-y-auto overscroll-contain rounded-2xl",
                       "flex flex-col gap-1",
                       "border bg-neutral-950 p-1.5",
                       "shadow-xl shadow-black/40",
