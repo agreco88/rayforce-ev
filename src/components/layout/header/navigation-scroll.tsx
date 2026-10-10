@@ -285,8 +285,14 @@ export function NavigationScroll() {
         ref={navRef}
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed inset-x-0 top-0 z-[100] w-full py-5 px-6 sm:px-8 bg-linear-to-b from-black via-black/50 to-transparent"
+        className="fixed inset-x-0 top-0 z-[100] w-full py-5 px-6 sm:px-8"
       >
+        {/* El degradé va en capa propia para poder estirarlo debajo del header
+            en mobile, donde la foto del hero llega hasta arriba y es clara */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-linear-to-b from-black via-black/60 to-transparent md:h-full md:via-black/50"
+        />
         <div
           ref={panelAnchorRef}
           className="relative max-w-[1440px] mx-auto w-full flex items-center justify-between gap-8"
@@ -540,12 +546,22 @@ export function NavigationScroll() {
           {/* Tercer bloque: en desktop no lleva accion — el CTA de contacto es
               el del cierre de pagina. Aca solo queda el menu mobile. */}
           <div className="flex items-center gap-3 shrink-0">
+            {/* Un solo boton abre y cierra, y el header queda arriba del panel:
+                el logo y el toggle son los mismos y no se mueven al abrir */}
             <button
-              onClick={() => setIsMobileMenuOpen(true)}
+              onClick={() => {
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+                setMobileExpandedItem(null);
+              }}
               className="md:hidden px-4 h-10 text-neutral-200 hover:text-white transition-colors flex items-center gap-2"
-              aria-label={t("openMenu")}
+              aria-label={isMobileMenuOpen ? t("closeMenu") : t("openMenu")}
+              aria-expanded={isMobileMenuOpen}
             >
-              <Menu className="w-5 h-5" />
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -558,28 +574,10 @@ export function NavigationScroll() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            /* `z-[110]`, por encima del header (`z-[100]`). Con `z-50` el
-               header quedaba arriba del panel abierto: su caja fija ocupa la
-               misma franja superior que la X, asi que el tap de cerrar lo
-               interceptaba el boton de abrir que hay debajo — que llama a
-               `setIsMobileMenuOpen(true)` sobre un menu ya abierto. De ahi que
-               el menu "no cerrara". */
-            className="fixed inset-0 z-[110] flex flex-col bg-white dark:bg-neutral-950 md:hidden"
+            /* `z-[90]`, debajo del header (`z-[100]`): el logo y el toggle
+               son los del header. `pt-20` es el alto del header (py-5 + h-10) */
+            className="fixed inset-0 z-[90] flex flex-col bg-white pt-20 dark:bg-neutral-950 md:hidden"
           >
-            <div className="flex shrink-0 items-center justify-between py-6 px-4">
-              <HeaderLogo />
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setMobileExpandedItem(null);
-                }}
-                className="flex items-center gap-2 px-4 h-10 bg-neutral-200 dark:bg-neutral-900 hover:bg-neutral-300 dark:hover:bg-neutral-800 rounded-md text-sm font-medium text-neutral-900 dark:text-neutral-100 transition-colors"
-                aria-label={t("closeMenu")}
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
             {/* `flex-1 min-h-0` en vez de `h-[calc(100vh-240px)]`: el alto
                 fijo no coincidia con el header ni con el footer reales, asi que
                 el area de scroll terminaba antes de tiempo y debajo quedaba una

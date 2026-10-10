@@ -4,14 +4,14 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Copy, Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
+import { FaWhatsapp } from "react-icons/fa6";
 
 import { useTrack } from "@/lib/analytics/use-track";
 import { INSTAGRAM } from "@/lib/social-links";
 import { buildWhatsAppHref, WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 /** El pie del menu mobile: el telefono para llamar o abrir WhatsApp, el mail
- *  de ventas para escribir o copiar, y abajo Instagram, el dominio y la
+ *  de ventas para escribir o copiar, y abajo el dominio, Instagram y la
  *  direccion. Los datos son los del footer. */
 export function MobileMenuContact() {
   const t = useTranslations("Layout.Header.menu");
@@ -51,21 +51,16 @@ export function MobileMenuContact() {
         secondary={<CopyButton value={tContact("email")} />}
       />
 
-      <div className="mt-6 flex flex-col items-center gap-4 text-center">
-        <a
-          href={INSTAGRAM.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex h-10 items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
-        >
-          <FaInstagram className="size-5" aria-hidden="true" />
-          {INSTAGRAM.handle}
+      <div className="mt-6 flex flex-col items-center gap-1 text-center text-[11px] text-neutral-500">
+        <span className="font-medium uppercase tracking-widest">rayforce.uy</span>
+        {/* El handle mas claro que el resto marca que es el link */}
+        <a href={INSTAGRAM.href} target="_blank" rel="noopener noreferrer" className="py-1">
+          Instagram:{" "}
+          <span className="text-neutral-700 transition-colors hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">
+            {INSTAGRAM.handle}
+          </span>
         </a>
-
-        <div className="flex flex-col gap-1 text-[11px] text-neutral-500">
-          <span className="font-medium uppercase tracking-widest">rayforce.uy</span>
-          <span>{tContact("address")}</span>
-        </div>
+        <span>{tContact("address")}</span>
       </div>
     </div>
   );
