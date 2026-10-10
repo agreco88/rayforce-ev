@@ -17,6 +17,10 @@ const STORES = [
   },
 ] as const;
 
+/** La ficha lo reusa para el boton del manual, que va al lado de las tiendas. */
+export const STORE_BUTTON =
+  "inline-flex h-14 w-full items-center justify-center gap-3 rounded-xl border px-5 transition-colors hover:bg-white/5";
+
 /**
  * Los dos botones de descarga de EVSEMaster. Devuelve un fragmento: el layout
  * (columna en la seccion de la app, 50/50 en la ficha desde `sm`) lo pone
@@ -39,7 +43,7 @@ export function AppStoreButtons({
           rel="noopener noreferrer"
           aria-label={t("ariaLabel", { store: name })}
           className={cn(
-            "inline-flex h-14 w-full items-center justify-center gap-3 rounded-xl border px-5 transition-colors hover:bg-white/5",
+            STORE_BUTTON,
             accent
               ? [theme.accentBorder ?? "border-white/30", theme.accentText ?? "text-white/80"]
               : "border-white/30 text-white/80",

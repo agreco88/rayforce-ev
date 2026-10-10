@@ -18,6 +18,7 @@ export function useStandCardData(): ProductCardData {
   // La descripcion, la altura y la lista son las de la seccion de la columna:
   // la card resume esa pagina y no tiene que decir otra cosa.
   const tStand = useTranslations("HomePage.HomeStandSection");
+  const tCard = useTranslations("Common.ProductCard");
 
   return {
     id: "columna-para-cargador",
@@ -37,7 +38,11 @@ export function useStandCardData(): ProductCardData {
     ],
     description: tStand("description"),
     features: tStand.raw("pricingPanel.features.column") as string[],
-    price: { currency: "USD", amount: CHARGER_COLUMN_PRICE_USD, taxLabel: "IVA Inc." },
+    price: {
+      currency: "USD",
+      amount: CHARGER_COLUMN_PRICE_USD,
+      taxLabel: tCard("taxLabel"),
+    },
     // El ambar de los accesorios: en el listado y en el panel del header va
     // al lado de los cables, y un color propio la haria parecer de otra linea.
     theme: CABLE_THEME,

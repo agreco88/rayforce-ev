@@ -50,8 +50,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     shortName: "7kW · 5 m",
     highlight: { labelKey: "bestSeller" },
 
-    price: { currency: "USD", amount: 220, taxLabel: "IVA Inc." },
-    badges: ["Monofásico", "Tipo 2", "IP66"],
+    price: { currency: "USD", amount: 220 },
 
     heroImage: "/assets/images/cables/BS-CHC003.png",
     cardImage: "/assets/images/cables/BS-CHC003.png",
@@ -61,6 +60,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     theme: CABLE_THEME,
     mercadopagoUrl: "",
     origin: ORIGIN_BESEN,
+    hidden: true,
 
     specs: {
       connectorType: "type_2",
@@ -72,7 +72,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       ingressProtection: "IP66",
       impactProtection: "IK10",
       fireRating: "UL94",
-      operatingTemperature: "-40°C to +100°C",
+      operatingTemperatureC: [-40, 100],
       temperatureSensor: true,
       bagIncluded: true,
       conductorSection: "3 x 6.0 mm² + 1 x 0.75 mm²",
@@ -93,8 +93,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     publicName: "Cable recto Tipo 2 a Tipo 2, 22kW",
     shortName: "22kW · 5 m",
 
-    price: { currency: "USD", amount: 285, taxLabel: "IVA Inc." },
-    badges: ["Trifásico", "Tipo 2", "IP66"],
+    price: { currency: "USD", amount: 285 },
 
     heroImage: "/assets/images/cables/BS-CHC003.png",
     cardImage: "/assets/images/cables/BS-CHC003.png",
@@ -104,6 +103,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     theme: CABLE_THEME,
     mercadopagoUrl: "",
     origin: ORIGIN_BESEN,
+    hidden: true,
 
     specs: {
       connectorType: "type_2",
@@ -115,7 +115,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       ingressProtection: "IP66",
       impactProtection: "IK10",
       fireRating: "UL94",
-      operatingTemperature: "-40°C to +100°C",
+      operatingTemperatureC: [-40, 100],
       temperatureSensor: true,
       bagIncluded: true,
       conductorSection: "5 x 6.0 mm² + 1 x 0.75 mm²",
@@ -139,8 +139,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
        la comparativa y en el mensaje de WhatsApp. */
     shortName: "7kW · 5 m espiral",
 
-    price: { currency: "USD", amount: 235, taxLabel: "IVA Inc." },
-    badges: ["Monofásico", "Tipo 2", "Espiralado", "IP66"],
+    price: { currency: "USD", amount: 235 },
 
     heroImage: "/assets/images/cables/BS-CHC003-S.png",
     cardImage: "/assets/images/cables/BS-CHC003-S.png",
@@ -154,6 +153,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
     theme: CABLE_THEME,
     mercadopagoUrl: "",
     origin: ORIGIN_BESEN,
+    hidden: true,
 
     specs: {
       connectorType: "type_2",
@@ -165,7 +165,7 @@ export const CABLE_PRODUCTS: CableProduct[] = [
       ingressProtection: "IP66",
       impactProtection: "IK10",
       fireRating: "UL94",
-      operatingTemperature: "-40°C to +100°C",
+      operatingTemperatureC: [-40, 100],
       temperatureSensor: true,
       bagIncluded: true,
       conductorSection: "3 x 6.0 mm² + 1 x 0.75 mm²",

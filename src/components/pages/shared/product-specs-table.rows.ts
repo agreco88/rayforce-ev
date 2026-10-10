@@ -1,3 +1,4 @@
+import { formatPowerKw } from "@/lib/catalog/catalog.helpers";
 import type {
   CableProduct,
   CatalogProduct,
@@ -17,7 +18,7 @@ export type SpecGroup = {
 };
 
 /** Lo que devuelve `useTranslations("Common.Specs")`. */
-type Translate = (key: string) => string;
+type Translate = (key: string, values?: Record<string, string>) => string;
 
 /** Una fila antes de descartar las que no tienen dato. */
 type MaybeRow = { key: string; value: string | number | boolean | undefined };
@@ -34,6 +35,22 @@ function unit(
   return value === undefined ? undefined : `${value} ${suffix}`;
 }
 
+/** "Sobretensión, subtensión y sobrecarga", con la conjuncion de cada idioma. */
+function sentenceList(items: string[], locale: string): string {
+  const list = new Intl.ListFormat(locale, { type: "conjunction" }).format(items);
+  return list.charAt(0).toLocaleUpperCase(locale) + list.slice(1);
+}
+
+/** "-25°C a +55°C": con el `+` de la ficha del fabricante en la maxima. */
+export function temperatureRange(
+  range: [min: number, max: number] | undefined,
+  t: Translate,
+): string | undefined {
+  if (!range) return undefined;
+  const [min, max] = range.map((c) => (c > 0 ? `+${c}` : String(c)));
+  return t("temperatureRange", { min, max });
+}
+
 /**
  * Traduce el catalogo a filas de tabla. Vive aparte del componente porque es
  * la unica parte que sabe si el producto es cable o cargador: asi la tabla se
@@ -45,10 +62,11 @@ function unit(
 export function buildSpecGroups(
   product: CatalogProduct,
   t: Translate,
+  locale: string,
 ): SpecGroup[] {
   const groups =
     product.category === "charger"
-      ? chargerGroups(product, t)
+      ? chargerGroups(product, t, locale)
       : cableGroups(product, t);
 
   return groups
@@ -68,6 +86,7 @@ function isPresent(row: MaybeRow): row is SpecRow {
 function chargerGroups(
   product: ChargerProduct,
   t: Translate,
+  locale: string,
 ): { key: string; rows: MaybeRow[] }[] {
   const { specs } = product;
 
@@ -75,11 +94,14 @@ function chargerGroups(
     {
       key: "power",
       rows: [
-        { key: "maxPower", value: `${specs.maxPowerKw} kW` },
+        { key: "maxPower", value: `${formatPowerKw(specs.maxPowerKw, locale)} kW` },
         { key: "phaseType", value: t(`phase.${specs.phaseType}`) },
         { key: "voltage", value: specs.voltage },
         { key: "nominalCurrent", value: unit(specs.nominalCurrentA, "A") },
-        { key: "frequency", value: unit(specs.frequencyHz, "Hz") },
+        {
+          key: "frequency",
+          value: specs.frequencyHz && `${specs.frequencyHz} Hz`,
+        },
         { key: "currentAdjustable", value: specs.currentAdjustable },
       ],
     },
@@ -100,20 +122,48 @@ function chargerGroups(
     {
       key: "protection",
       rows: [
+        {
+          key: "rcdConfiguration",
+          value: specs.rcdConfiguration && t(`rcd.${specs.rcdConfiguration}`),
+        },
+        {
+          key: "electricalProtection",
+          value:
+            specs.electricalProtection &&
+            sentenceList(
+              specs.electricalProtection.map((p) => t(`electricalProtection.${p}`)),
+              locale,
+            ),
+        },
+      ],
+    },
+    {
+      key: "environment",
+      rows: [
         { key: "ingressProtection", value: specs.ingressProtection },
         { key: "impactProtection", value: specs.impactProtection },
-        { key: "rcdConfiguration", value: specs.rcdConfiguration },
-        { key: "electricalProtection", value: specs.electricalProtection },
         {
           key: "operatingTemperature",
-          value: specs.operatingTemperature,
+          value: temperatureRange(specs.operatingTemperatureC, t),
         },
+        { key: "relativeHumidity", value: specs.relativeHumidity },
+        { key: "maxAltitude", value: unit(specs.maxAltitudeM, "m") },
+        { key: "naturalCooling", value: specs.naturalCooling },
+        { key: "standbyPower", value: unit(specs.standbyPowerW, "W") },
       ],
     },
     {
       key: "interface",
       rows: [
-        { key: "display", value: specs.displaySize ?? specs.display },
+        {
+          key: "display",
+          value:
+            specs.displaySizeIn === undefined
+              ? specs.display
+              : t("displaySize", {
+                  size: new Intl.NumberFormat(locale).format(specs.displaySizeIn),
+                }),
+        },
         { key: "ledIndicator", value: specs.ledIndicator },
         { key: "connectivity", value: specs.connectivity },
         { key: "appControl", value: specs.appControl },
@@ -126,16 +176,13 @@ function chargerGroups(
           key: "dimensions",
           value: specs.dimensionsMm && `${specs.dimensionsMm} mm`,
         },
-        { key: "weight", value: unit(specs.weightKg, "kg") },
+        { key: "weight", value: specs.weightKg && `${specs.weightKg} kg` },
         { key: "mountType", value: t(`mount.${specs.mountType}`) },
       ],
     },
     {
       key: "certifications",
-      rows: [
-        { key: "certifications", value: specs.certifications?.join(" · ") },
-        { key: "ursea", value: product.ursea.authNumber },
-      ],
+      rows: [{ key: "ursea", value: product.ursea.authNumber }],
     },
   ];
 }
@@ -183,7 +230,10 @@ function cableGroups(
         { key: "ingressProtection", value: specs.ingressProtection },
         { key: "impactProtection", value: specs.impactProtection },
         { key: "fireRating", value: specs.fireRating },
-        { key: "operatingTemperature", value: specs.operatingTemperature },
+        {
+          key: "operatingTemperature",
+          value: temperatureRange(specs.operatingTemperatureC, t),
+        },
         { key: "temperatureSensor", value: specs.temperatureSensor },
         { key: "jacketMaterial", value: specs.jacketMaterial },
       ],

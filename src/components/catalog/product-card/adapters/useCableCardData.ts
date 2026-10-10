@@ -19,6 +19,7 @@ import type { ProductCardData } from "../types";
 export function useCableCardData() {
   const t = useTranslations("AccessoriesPage.ProductCard");
   const tSpecs = useTranslations("Common.Specs");
+  const tCard = useTranslations("Common.ProductCard");
   const locale = useLocale();
 
   return (product: CableProduct): ProductCardData => {
@@ -38,8 +39,9 @@ export function useCableCardData() {
       // En los cables el `heroImage` ya es la foto recortada.
       image: product.heroImage,
       // Los cables llenan la plancha de lado a lado; con aire se leen al
-      // tamaño de los cargadores.
-      imageClassName: "object-contain p-10",
+      // tamaño de los cargadores. En % y no fijo: el `p-10` de la plancha
+      // grande dejaba el cable diminuto en la foto de 128px de las filas.
+      imageClassName: "object-contain p-[12%]",
       imageStyle: getProductImageScaleStyle(product),
       specs: [{ label: tSpecs("power"), value: power }],
       description: t(`variants.${product.slug}.description`),
@@ -51,7 +53,7 @@ export function useCableCardData() {
           : []),
         t("features.delivery", { power: powerKw }),
       ],
-      price: product.price,
+      price: { ...product.price, taxLabel: tCard("taxLabel") },
       theme: product.theme,
       highlight: product.highlight,
     };

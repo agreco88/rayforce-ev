@@ -2,16 +2,16 @@
 /* Rayforce – Charger Catalog                                         */
 /* ------------------------------------------------------------------ */
 /*
- * Placeholder assets: bs20-ba-7kw and bs20-bc-11kw reuse the closest
- * sibling's product photo (heroImage/images) until real photography is
- * supplied. mercadopagoUrl is "" for both — the checkout CTA renders
- * disabled until a real MercadoPago link is provided.
+ * bs20-ba-7kw and bs20-bc-11kw are `hidden` until stock arrives. They reuse
+ * the closest sibling's product photo and have no MercadoPago links yet (with
+ * "", the checkout CTA falls back to WhatsApp).
  */
 
 import type { ChargerProduct } from "./catalog.types";
 
-/** Flat "charger + installation" bundle price shown by the installation toggle on model pages. */
-export const CHARGER_INSTALLATION_PRICE_USD = 1699;
+/** Standard installation, the same for every charger. It's a from-price: the
+ * final cost depends on the site, so it's quoted over WhatsApp. */
+export const CHARGER_INSTALLATION_PRICE_USD = 991;
 
 /**
  * Add-on price for the coiled cable (mirrors CABLE_PRODUCTS' cable-tipo-2-espiral-7kw),
@@ -40,40 +40,46 @@ const ORIGIN_BESEN: ChargerProduct["origin"] = {
 };
 
 /**
- * Specs de la ficha tecnica del fabricante que son identicas en las cuatro
- * variantes: lo que cambia entre modelos es potencia, fase y corriente, que
- * van en cada producto.
+ * Specs de la ficha tecnica BS20-APP del fabricante que son identicas en las
+ * cuatro variantes: lo que cambia entre modelos es potencia, fase y corriente,
+ * que van en cada producto.
  */
 const SPECS_BS20_COMMON = {
-  frequencyHz: 50,
+  frequencyHz: "47–63",
   currentAdjustable: true,
-  connectorStandard: "SAE J1772 / IEC 62196-2 / GB/T",
+  connectorStandard: "IEC 62196-2 / SAE J1772",
 
   dimensionsMm: "295×195×65",
+  weightKg: "6–8",
 
   ingressProtection: "IP66",
+  // No figura en la ficha BS20-APP: es el que el sitio ya publicaba.
   impactProtection: "IK10",
-  operatingTemperature: "-25°C to +55°C",
-  rcdConfiguration: "Tipo A o Tipo A 30mA AC + 6mA DC",
-  electricalProtection:
-    "Subtensión, sobrecarga, cortocircuito, fuga a tierra, sobretemperatura y descargas atmosféricas",
+  operatingTemperatureC: [-25, 55],
+  relativeHumidity: "5–95%",
+  maxAltitudeM: 2000,
+  naturalCooling: true,
+  standbyPowerW: 8,
+  rcdConfiguration: "typeA6mA",
+  electricalProtection: [
+    "overvoltage",
+    "undervoltage",
+    "overload",
+    "shortCircuit",
+    "groundFault",
+    "overtemperature",
+    "lightning",
+  ],
 
   display: true,
-  displaySize: "4.3\" LCD color",
+  displaySizeIn: 3.5,
   ledIndicator: true,
   appControl: true,
   bluetooth: true,
   rcdProtection: true,
 
-  optionalFeatures: [
-    "app",
-    "rfid",
-    "loadBalancing",
-    "solar",
-    "ocpp",
-  ] as ChargerProduct["specs"]["optionalFeatures"],
-  connectivity: "Bluetooth / Wi-Fi / Ethernet / 4G",
-  certifications: ["CE", "FCC", "CSA", "RoHS", "REACH"],
+  // La ficha BS20-APP no trae Wi-Fi: la app va por Bluetooth.
+  connectivity: "Bluetooth",
 } satisfies Partial<ChargerProduct["specs"]>;
 
 const THEME_SKY: ChargerProduct["theme"] = {
@@ -148,6 +154,8 @@ const THEME_LIME_LIGHT: ChargerProduct["theme"] = {
   gradientColors: ["#a3e635", "#a3e635", "#4ade80"],
 };
 
+// Precios: el monto en pesos de cada link de MercadoPago a 40 $/USD, el mismo
+// cambio que da la columna ($ 6.360 / USD 159).
 export const CHARGER_PRODUCTS: ChargerProduct[] = [
   {
     category: "charger",
@@ -159,8 +167,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     tier: "residential",
     familyName: "BS20",
 
-    price: { currency: "USD", amount: 549, taxLabel: "IVA Inc." },
-    badges: ["Monofásico", "Toma Tipo 2", "App", "IP66"],
+    price: { currency: "USD", amount: 549 },
 
     heroImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
@@ -169,7 +176,9 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_CYAN,
     mercadopagoUrl: "",
+    columnMercadopagoUrl: "",
     origin: ORIGIN_BESEN,
+    hidden: true,
 
     specs: {
       ...SPECS_BS20_COMMON,
@@ -180,9 +189,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       mountType: "wall",
 
       nominalCurrentA: 32,
-      voltage: "220–230V",
-
-      weightKg: 4.5,
+      voltage: "220V",
     },
 
     visual: {
@@ -193,8 +200,10 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     },
     ursea: URSEA,
     unboxing: {
-      videoSrc: "/assets/videos/chargers/bs20-ba-unboxing.mp4",
-      videoPoster: "/assets/images/chargers/bs20-ba-unboxing-poster.webp",
+      video: {
+        src: "/assets/videos/chargers/bs20-ba-unboxing.mp4",
+        poster: "/assets/images/chargers/bs20-ba-unboxing-poster.webp",
+      },
       // PLACEHOLDER: es la foto del BC, que muestra el cable integrado en la
       // caja — este modelo sale con toma y sin cable. Reemplazar cuando
       // llegue la foto del BA desempacado.
@@ -220,8 +229,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     featured: true,
     highlight: { labelKey: "bestSeller" },
 
-    price: { currency: "USD", amount: 597, taxLabel: "IVA Inc." },
-    badges: ["Monofásico", "Tipo 2", "App", "IP66"],
+    price: { currency: "USD", amount: 698 },
 
     heroImage: "/assets/images/chargers/bs20-bc-7kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-7kw-card.avif"],
@@ -230,10 +238,13 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_SKY,
     mercadopagoUrl: "http://mpago.la/1notnYD",
+    columnMercadopagoUrl: "https://mpago.la/1Kahq3A",
     origin: ORIGIN_BESEN,
 
     specs: {
       ...SPECS_BS20_COMMON,
+      // La ficha BS20-APP dice 7,6kW, que es a 240V. Se publica 7,2kW, como
+      // el catalogo BS20.
       maxPowerKw: 7.2,
       phaseType: "single",
       connectorType: "type_2",
@@ -241,10 +252,9 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       mountType: "wall",
 
       nominalCurrentA: 32,
-      voltage: "220–230V",
+      voltage: "220V",
 
       cableLengthM: 6,
-      weightKg: 7,
     },
 
     visual: {
@@ -255,8 +265,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     },
     ursea: URSEA,
     unboxing: {
-      videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
-      videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
     },
   },
@@ -271,8 +279,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     tier: "commercial",
     familyName: "BS20",
 
-    price: { currency: "USD", amount: 649, taxLabel: "IVA Inc." },
-    badges: ["Trifásico", "Tipo 2", "App", "IP66"],
+    price: { currency: "USD", amount: 649 },
 
     heroImage: "/assets/images/chargers/bs20-bc-22kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-22kw-card.avif"],
@@ -283,7 +290,9 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_LIME_DARK,
     mercadopagoUrl: "",
+    columnMercadopagoUrl: "",
     origin: ORIGIN_BESEN,
+    hidden: true,
 
     specs: {
       ...SPECS_BS20_COMMON,
@@ -294,7 +303,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       mountType: "wall",
 
       nominalCurrentA: 16,
-      voltage: "380–400V",
+      voltage: "400V",
 
       cableLengthM: 6,
     },
@@ -308,8 +317,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     },
     ursea: URSEA,
     unboxing: {
-      videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
-      videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
     },
   },
@@ -324,8 +331,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     tier: "industrial",
     familyName: "BS20",
 
-    price: { currency: "USD", amount: 728, taxLabel: "IVA Inc." },
-    badges: ["Trifásico", "Tipo 2", "App", "IP66"],
+    price: { currency: "USD", amount: 898 },
 
     heroImage: "/assets/images/chargers/bs20-bc-22kw-card.avif",
     images: ["/assets/images/chargers/bs20-bc-22kw-card.avif"],
@@ -334,6 +340,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
 
     theme: THEME_LIME_LIGHT,
     mercadopagoUrl: "https://mpago.la/2C6CFZe",
+    columnMercadopagoUrl: "https://mpago.la/2ZrmSR6",
     origin: ORIGIN_BESEN,
 
     specs: {
@@ -345,7 +352,7 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       mountType: "wall",
 
       nominalCurrentA: 32,
-      voltage: "380–400V",
+      voltage: "400V",
 
       cableLengthM: 6,
     },
@@ -359,8 +366,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     },
     ursea: URSEA,
     unboxing: {
-      videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
-      videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
     },
   },

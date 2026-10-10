@@ -13,6 +13,15 @@ export type MountType = "wall" | "pole";
 export type CableType = "integrated" | "socket";
 export type ConnectorType = "type_2";
 export type ChargerTier = "residential" | "commercial" | "industrial";
+/** Resuelven bajo `Common.Specs.electricalProtection`. */
+export type ElectricalProtection =
+  | "overvoltage"
+  | "undervoltage"
+  | "overload"
+  | "shortCircuit"
+  | "groundFault"
+  | "overtemperature"
+  | "lightning";
 
 export type ChargerSpecs = {
   maxPowerKw: number;
@@ -23,15 +32,24 @@ export type ChargerSpecs = {
 
   nominalCurrentA?: number;
   voltage?: string;
-  frequencyHz?: number;
+  /** Rango, e.g. "47–63". */
+  frequencyHz?: string;
 
   cableLengthM?: number;
   dimensionsMm?: string;
-  weightKg?: number;
+  /** Rango, e.g. "6–8": la ficha no da un peso por variante. */
+  weightKg?: string;
 
   ingressProtection?: string;
   impactProtection?: string;
-  operatingTemperature?: string;
+  /** Minima y maxima en °C: el texto lo arma `Common.Specs.temperatureRange`. */
+  operatingTemperatureC?: [min: number, max: number];
+  /** Sin condensacion, e.g. "0–95%". */
+  relativeHumidity?: string;
+  maxAltitudeM?: number;
+  naturalCooling?: boolean;
+  /** Tope, no consumo medio: la ficha dice "<8W". */
+  standbyPowerW?: number;
 
   display?: boolean;
   appControl?: boolean;
@@ -41,28 +59,14 @@ export type ChargerSpecs = {
   /** Ficha tecnica: lo que la tabla de specs muestra y el strip no. */
   currentAdjustable?: boolean;
   connectorStandard?: string;
-  /** Texto largo: lista las protecciones electricas separadas por coma. */
-  electricalProtection?: string;
-  rcdConfiguration?: string;
-  displaySize?: string;
+  electricalProtection?: ElectricalProtection[];
+  /** Resuelve bajo `Common.Specs.rcd`. */
+  rcdConfiguration?: "typeA6mA";
+  /** Diagonal en pulgadas: el texto lo arma `Common.Specs.displaySize`. */
+  displaySizeIn?: number;
   ledIndicator?: boolean;
-  /** Las que son "configuracion opcional" en la ficha del fabricante. */
-  optionalFeatures?: ChargerOptionalFeature[];
   connectivity?: string;
-  certifications?: string[];
 };
-
-/**
- * Funciones que el equipo soporta pero que no vienen de fabrica: la ficha del
- * fabricante las lista como "Optional Configuration". Se muestran aparte de
- * las specs fijas para no prometer algo que la unidad enviada no trae.
- */
-export type ChargerOptionalFeature =
-  | "app"
-  | "rfid"
-  | "loadBalancing"
-  | "solar"
-  | "ocpp";
 
 export type CableStyle = "straight" | "coiled";
 
@@ -77,8 +81,8 @@ export type CableSpecs = {
   impactProtection?: string;
   /** Clase de inflamabilidad del material, e.g. "UL94". */
   fireRating?: string;
-  /** e.g. "-40°C to +100°C" */
-  operatingTemperature?: string;
+  /** Minima y maxima en °C: el texto lo arma `Common.Specs.temperatureRange`. */
+  operatingTemperatureC?: [min: number, max: number];
   temperatureSensor?: boolean;
   bagIncluded?: boolean;
 
@@ -168,7 +172,6 @@ type ProductBase = {
   highlight?: ProductHighlight;
 
   price: PriceDefinition;
-  badges?: string[];
 
   heroImage: string;
   images: string[];
@@ -197,17 +200,23 @@ type ProductBase = {
 
   /** Va en `ProductBase` y no en cada categoria: cables y cargadores lo muestran igual. */
   origin: ProductOrigin;
+
+  /**
+   * Fuera de venta hasta que llegue el stock: los getters de `catalog.helpers`
+   * lo filtran, asi que no se lista en ningun lado y su ruta da 404. Para
+   * volver a venderlo, se borra la linea.
+   */
+  hidden?: boolean;
 };
 
 /**
- * La caja abierta, para la galeria del hero. El video existe para los dos
- * modelos; la foto solo para los BC, porque lo que muestra es el cable
- * integrado enrollado en la caja y el BA no lo trae.
+ * La caja abierta, para la galeria del hero. La foto es de los BC: muestra el
+ * cable integrado enrollado en la caja. El video del fabricante va solo en el
+ * BA, que no tiene fotos propias; en los BC repetia lo que ya dice la foto.
  */
 export type UnboxingAssets = {
-  videoSrc: string;
-  /** El frame que hace de portada del video en la galeria del hero. */
-  videoPoster: string;
+  /** `poster` es el frame que hace de portada del video en la galeria del hero. */
+  video?: { src: string; poster: string };
   photoSrc?: string;
 };
 
@@ -229,6 +238,8 @@ export type ChargerProduct = ProductBase & {
   visual: ChargerVisualProps;
   ursea: UrseaRegistration;
   unboxing: UnboxingAssets;
+  /** El combo cargador + columna, que es otra preferencia de MercadoPago. "" si no hay. */
+  columnMercadopagoUrl: string;
   /** Solo los que salen con toma: los cables que se pueden sumar a la compra. */
   cableOptions?: ChargerCableOption[];
 };

@@ -77,7 +77,9 @@
       "title": "Rayforce EV – Demo"
     },
     "ProductCard": {
-      "cta": "Learn more"
+      "cta": "Learn more",
+      "taxLabel": "VAT Incl.",
+      "highlightsLabel": "{title} features"
     },
     "Specs": {
       "power": "Power",
@@ -86,17 +88,7 @@
         "three": "Three-phase"
       },
       "connector": {
-        "type2": "Type 2",
-        "integratedLabel": "{length}m integrated cable",
-        "socketLabel": "Interchangeable socket — cable not included"
-      },
-      "ursea": {
-        "value": "URSEA",
-        "label": "Approved"
-      },
-      "protection": {
-        "water": "Water resistance",
-        "impact": "Impact resistance"
+        "type2": "Type 2"
       },
       "tier": {
         "residential": "Residential use",
@@ -115,7 +107,21 @@
       "cableStyle": {
         "straight": "Straight",
         "coiled": "Coiled"
-      }
+      },
+      "temperatureRange": "{min}°C to {max}°C",
+      "rcd": {
+        "typeA6mA": "Type A / Type A + 6mA DC"
+      },
+      "electricalProtection": {
+        "overvoltage": "overvoltage",
+        "undervoltage": "undervoltage",
+        "overload": "overload",
+        "shortCircuit": "short circuit",
+        "groundFault": "ground fault",
+        "overtemperature": "overtemperature",
+        "lightning": "lightning surges"
+      },
+      "displaySize": "{size}\" color LCD"
     },
     "Reviews": {
       "eyebrow": "Reviews",
@@ -127,6 +133,8 @@
       "eyebrow": "Datasheet",
       "title": "Specifications",
       "model": "Model",
+      "yes": "Yes",
+      "no": "No",
       "origin": "Origin",
       "countryOfOrigin": "Country of origin",
       "manufacturer": "Manufacturer",
@@ -138,6 +146,7 @@
         "power": "Power and supply",
         "connector": "Connector and cable",
         "protection": "Protections",
+        "environment": "Operating conditions",
         "interface": "Interface and connectivity",
         "physical": "Dimensions",
         "certifications": "Certifications"
@@ -164,6 +173,10 @@
         "rcdConfiguration": "Residual current protection",
         "electricalProtection": "Electrical protections",
         "operatingTemperature": "Operating temperature",
+        "relativeHumidity": "Relative humidity (non-condensing)",
+        "maxAltitude": "Maximum altitude",
+        "naturalCooling": "Natural air cooling, fanless",
+        "standbyPower": "Maximum standby consumption",
         "temperatureSensor": "Temperature sensor",
         "jacketMaterial": "Jacket material",
         "display": "Display",
@@ -177,6 +190,12 @@
         "standard": "Standard",
         "ursea": "URSEA authorization",
         "bagIncluded": "Carry bag included"
+      },
+      "installation": {
+        "group": "Installation",
+        "guide": "Installation guide",
+        "audience": "For certified installers (English)",
+        "download": "Download PDF"
       }
     },
     "AppStores": {
@@ -185,7 +204,8 @@
       "features": "Features",
       "description": "Schedule charging, track consumption and update the charger from your phone",
       "downloadOn": "Download on",
-      "ariaLabel": "Download EVSEMaster on {store}"
+      "ariaLabel": "Download EVSEMaster on {store}",
+      "manual": "App manual (PDF, Spanish)"
     }
   },
   "LocaleSwitcher": {

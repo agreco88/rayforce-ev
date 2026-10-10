@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Flag from "react-world-flags";
-import { useTranslations } from "next-intl";
-import { CheckIcon, XIcon } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { CheckIcon, FileDownIcon, XIcon } from "lucide-react";
 import {
   Accordion,
   AccordionContentAnimated,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import type { CatalogProduct, CatalogTheme } from "@/lib/catalog/catalog.types";
 import { cn } from "@/lib/utils";
-import { AppStoreButtons } from "./AppStoreButtons";
+import { AppStoreButtons, STORE_BUTTON } from "./AppStoreButtons";
 import { buildSpecGroups, type SpecRow } from "./product-specs-table.rows";
 
 type Props = {
@@ -24,6 +24,12 @@ type Props = {
 // segun el largo de sus textos y cada una cortaba las lineas en otro lado.
 const SPEC_ROW =
   "grid grid-cols-[2fr_3fr] items-start gap-x-4 [&>*:last-child]:justify-self-end border-t border-white/5 px-6 py-3.5 text-[13px] leading-snug sm:flex sm:justify-between sm:gap-6 sm:px-7 sm:py-4 sm:text-sm sm:leading-normal";
+
+// Los dos manuales son de toda la linea BS20: van fijos y no por producto.
+const DOCS = {
+  appManual: "/assets/docs/bs20-manual-app.pdf",
+  installGuide: "/assets/docs/bs20-guia-instalacion.pdf",
+};
 
 /* ------------------------------------------------------------------ */
 /* Component                                                          */
@@ -37,7 +43,13 @@ const SPEC_ROW =
  */
 export function ProductSpecsTable({ product, id }: Props) {
   const t = useTranslations("Common.SpecsTable");
+  const tVariants = useTranslations("ChargerModelPage.Hero.variants");
   const { theme } = product;
+  // Los cables todavia no tienen el nombre en messages.
+  const name =
+    product.category === "charger"
+      ? tVariants(`${product.slug}.fullName`)
+      : product.publicName;
 
   return (
     <section
@@ -82,7 +94,7 @@ export function ProductSpecsTable({ product, id }: Props) {
           {/* El modelo, explicito: la ficha se comparte y se llega por buscador,
               asi que tiene que decir de que equipo habla sin el hero arriba. */}
           <p className="mx-auto mt-6 max-w-2xl section-subtitle">
-            {product.publicName}
+            {name}
           </p>
         </div>
 
@@ -117,9 +129,11 @@ export function ProductSpecsCard({
   const t = useTranslations("Common.SpecsTable");
   const tSpecs = useTranslations("Common.Specs");
   const tApp = useTranslations("Common.AppStores");
+  const tInstall = useTranslations("Common.SpecsTable.installation");
+  const locale = useLocale();
   const { theme } = product;
 
-  const groups = buildSpecGroups(product, tSpecs);
+  const groups = buildSpecGroups(product, tSpecs, locale);
 
   return (
     <div>
@@ -270,6 +284,57 @@ export function ProductSpecsCard({
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 border-t border-white/5 px-6 py-4 sm:px-7">
                   <AppStoreButtons theme={theme} />
+                  <a
+                    href={DOCS.appManual}
+                    download
+                    className={cn(
+                      STORE_BUTTON,
+                      "border-white/30 text-white/80 sm:col-span-2",
+                    )}
+                  >
+                    <FileDownIcon size={18} className="shrink-0" />
+                    <span className="text-sm font-semibold">
+                      {tApp("manual")}
+                    </span>
+                  </a>
+                </div>
+              </AccordionContentAnimated>
+            </AccordionItem>
+          )}
+
+          {/* La guia es para el electricista, no para el cliente: la
+              instalacion la hace Rayforce. Por eso la aclaracion en mayusculas. */}
+          {product.category === "charger" && (
+            <AccordionItem
+              value="installation"
+              className="border-b border-white/10 last:border-b-0"
+            >
+              <AccordionTrigger
+                className={`items-center px-6 py-5 text-xs font-semibold uppercase tracking-widest hover:no-underline sm:px-7 ${theme.accentText}`}
+              >
+                {tInstall("group")}
+              </AccordionTrigger>
+
+              <AccordionContentAnimated className="pb-0 pt-0">
+                {/* `1fr_auto` en mobile: la aclaracion es larga y en el 2/5 de
+                    SPEC_ROW quedaba en cuatro lineas. */}
+                <div
+                  className={cn(SPEC_ROW, "grid-cols-[1fr_auto] items-center")}
+                >
+                  <span className="flex flex-col gap-1">
+                    <span className="text-neutral-400">{tInstall("guide")}</span>
+                    <span className="text-[11px] font-medium uppercase tracking-widest text-neutral-500">
+                      {tInstall("audience")}
+                    </span>
+                  </span>
+                  <a
+                    href={DOCS.installGuide}
+                    download
+                    className="flex w-fit items-center gap-2 text-neutral-100 underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+                  >
+                    <FileDownIcon className="h-4 w-4 shrink-0" />
+                    {tInstall("download")}
+                  </a>
                 </div>
               </AccordionContentAnimated>
             </AccordionItem>
@@ -292,11 +357,23 @@ function SpecValue({
   value: SpecRow["value"];
   theme: CatalogTheme;
 }) {
+  const t = useTranslations("Common.SpecsTable");
+
+  // El label va en el icono y no en un `sr-only` aparte: la fila alinea su
+  // ultimo hijo a la derecha, y el span pasaria a ser ese hijo.
   if (typeof value === "boolean") {
     return value ? (
-      <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${theme.check}`} />
+      <CheckIcon
+        role="img"
+        aria-label={t("yes")}
+        className={`mt-0.5 h-4 w-4 shrink-0 ${theme.check}`}
+      />
     ) : (
-      <XIcon className="mt-0.5 h-4 w-4 shrink-0 text-neutral-700" />
+      <XIcon
+        role="img"
+        aria-label={t("no")}
+        className="mt-0.5 h-4 w-4 shrink-0 text-neutral-700"
+      />
     );
   }
 

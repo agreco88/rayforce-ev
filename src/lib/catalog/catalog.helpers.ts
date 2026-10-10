@@ -6,8 +6,12 @@ import { CABLE_PRODUCTS } from "./cables.catalog";
 import { CHARGER_PRODUCTS } from "./chargers.catalog";
 import type { CableProduct, CatalogProduct, ChargerProduct } from "./catalog.types";
 
+/** Lo que esta a la venta. Todo el sitio lee de estos dos: lo `hidden` no existe. */
+const CHARGERS = CHARGER_PRODUCTS.filter((product) => !product.hidden);
+const CABLES = CABLE_PRODUCTS.filter((product) => !product.hidden);
+
 export function getAllProducts(): CatalogProduct[] {
-  return [...CHARGER_PRODUCTS, ...CABLE_PRODUCTS];
+  return [...CHARGERS, ...CABLES];
 }
 
 /**
@@ -44,15 +48,15 @@ function byPriceAsc<T extends CatalogProduct>(products: T[]): T[] {
 }
 
 export function getChargerProducts(): ChargerProduct[] {
-  return byPriceAsc(CHARGER_PRODUCTS);
+  return byPriceAsc(CHARGERS);
 }
 
 export function getFeaturedChargerProducts(): ChargerProduct[] {
-  return CHARGER_PRODUCTS.filter((product) => product.featured);
+  return CHARGERS.filter((product) => product.featured);
 }
 
 export function getCableProducts(): CableProduct[] {
-  return byPriceAsc(CABLE_PRODUCTS);
+  return byPriceAsc(CABLES);
 }
 
 export function getProductBySlug(slug: string): CatalogProduct | undefined {
@@ -60,11 +64,11 @@ export function getProductBySlug(slug: string): CatalogProduct | undefined {
 }
 
 export function getChargerProductBySlug(slug: string): ChargerProduct | undefined {
-  return CHARGER_PRODUCTS.find((product) => product.slug === slug);
+  return CHARGERS.find((product) => product.slug === slug);
 }
 
 export function getCableProductBySlug(slug: string): CableProduct | undefined {
-  return CABLE_PRODUCTS.find((product) => product.slug === slug);
+  return CABLES.find((product) => product.slug === slug);
 }
 
 export function isHomeCharger(product: ChargerProduct): boolean {

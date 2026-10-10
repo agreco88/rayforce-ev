@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import HeaderLogo from "@/components/layout/header/header-logo";
+import { temperatureRange } from "@/components/pages/shared/product-specs-table.rows";
 import { renderFeatureValue } from "@/lib/formatFeatureValue";
 import type { ChargerProduct } from "@/lib/catalog/catalog.types";
 
@@ -28,7 +29,7 @@ type FeatureKey = (typeof FEATURE_KEYS)[number];
 function getFeatureValue(
   product: ChargerProduct,
   key: FeatureKey,
-  tSpecs: (key: string) => string,
+  tSpecs: (key: string, values?: Record<string, string>) => string,
 ) {
   const { specs } = product;
   switch (key) {
@@ -49,7 +50,7 @@ function getFeatureValue(
     case "ip":
       return specs.ingressProtection;
     case "temperature":
-      return specs.operatingTemperature;
+      return temperatureRange(specs.operatingTemperatureC, tSpecs);
   }
 }
 

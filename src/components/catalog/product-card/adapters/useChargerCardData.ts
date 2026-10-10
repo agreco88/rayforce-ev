@@ -19,6 +19,7 @@ import type { ProductCardData } from "../types";
 export function useChargerCardData() {
   const t = useTranslations("HomePage.HomeChargersSection");
   const tSpecs = useTranslations("Common.Specs");
+  const tCard = useTranslations("Common.ProductCard");
   const locale = useLocale();
 
   return (product: ChargerProduct): ProductCardData => {
@@ -53,7 +54,7 @@ export function useChargerCardData() {
         ...(product.specs.voltage ? [product.specs.voltage] : []),
         tSpecs(`tier.${product.tier}`),
       ],
-      price: product.price,
+      price: { ...product.price, taxLabel: tCard("taxLabel") },
       theme: product.theme,
       highlight: product.highlight,
     };

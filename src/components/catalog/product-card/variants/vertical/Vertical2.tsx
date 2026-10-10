@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { AccentText, Divider, MoreInfo, Photo, Price } from "../../parts";
 import type { VariantProps } from "../../types";
 
@@ -19,6 +21,7 @@ export function Vertical2(props: VariantProps) {
     theme,
     gradient,
   } = props;
+  const t = useTranslations("Common.ProductCard");
 
   return (
     <>
@@ -41,10 +44,10 @@ export function Vertical2(props: VariantProps) {
         />
       </Photo>
 
-      <div className="flex w-full flex-1 flex-col border-t border-t-white/10 p-5">
+      <div className="flex w-full flex-1 flex-col border-t border-t-white/10 p-6">
         {/* `min-h`: los titulos ocupan 2 o 3 lineas segun el modelo, y sin
             esto los kW arrancan a distinta altura en cada card. */}
-        <h3 className="text-sm font-medium leading-snug tracking-tight text-neutral-100 lg:min-h-[3.25rem]">
+        <h3 className="text-sm sm:text-2xl sm:tracking-normal sm:max-w-sm sm:mb-3 sm:normal-case font-medium sm:font-normal leading-snug tracking-tight text-neutral-100 lg:min-h-[3.25rem]">
           {fullTitle ?? title}
         </h3>
 
@@ -60,7 +63,7 @@ export function Vertical2(props: VariantProps) {
 
         {/* `min-h`, misma razon: la lista arranca a la misma altura. */}
         {description && (
-          <p className="mt-2 mb-2 text-xs leading-relaxed text-neutral-400 lg:min-h-[3.75rem]">
+          <p className="mt-4 mb-6 text-xs lg:text-sm leading-relaxed text-neutral-400 max-w-md lg:min-h-[3.75rem]">
             {description}
           </p>
         )}
@@ -69,8 +72,8 @@ export function Vertical2(props: VariantProps) {
           <>
             <Divider {...props} />
             <ul
-              className="flex list-none flex-col gap-2 py-6 text-left text-sm text-neutral-400"
-              aria-label={`${fullTitle ?? title} highlights`}
+              className="flex list-none flex-col gap-3 py-7 text-left text-sm text-neutral-400"
+              aria-label={t("highlightsLabel", { title: fullTitle ?? title })}
             >
               {features.map((feature, index) => (
                 <li
@@ -89,10 +92,12 @@ export function Vertical2(props: VariantProps) {
         )}
 
         <Divider {...props} className="mt-auto" />
-        <div className="flex items-center justify-between gap-4 pt-3">
+        {/* El precio va al tamaño de los kW. `flex-wrap`: en columnas angostas
+            no entra al lado de "Más información", que baja de renglon. */}
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pt-5">
           <Price
             {...props}
-            className="text-2xl font-thin tracking-tighter"
+            className="text-4xl font-thin tracking-tighter"
             tax="hidden"
           />
           {href && <MoreInfo theme={theme} className="whitespace-nowrap" />}
