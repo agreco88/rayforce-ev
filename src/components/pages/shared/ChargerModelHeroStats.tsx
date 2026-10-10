@@ -5,10 +5,10 @@ import {
   Building2,
   EvCharger,
   Factory,
-  HardHat,
   Home,
   Scale,
   Smartphone,
+  Wrench,
   Zap,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -75,60 +75,72 @@ export function ChargerModelHeroStats({ theme, product, extended }: Props) {
   const hasStat3Override = !extended && t.has(`${overrideBase}.stat3.title`);
   const cableKey = specs.cableType === "socket" ? "socket" : "integrated";
   const CableIcon = specs.cableType === "socket" ? Type2SocketIcon : EvCharger;
+  // Los dos residenciales solo se distinguen por el cable, asi que su
+  // descripcion de uso lo nombra; el resto de los tiers tiene una sola.
+  const tierDescription = t.has(`tier.${tier}.description.${cableKey}`)
+    ? t(`tier.${tier}.description.${cableKey}`)
+    : t(`tier.${tier}.description`);
 
-  const stats = [
-    {
-      icon: BadgeCheck,
-      title: t("ursea.title"),
-      description: t("ursea.description"),
-    },
-    hasStat2Override
-      ? {
-          icon: iconOverrides?.stat2 ?? TIER_ICONS[tier],
-          title: t(`${overrideBase}.stat2.title`),
-          description: t(`${overrideBase}.stat2.description`),
-        }
-      : {
-          icon: TIER_ICONS[tier],
-          title: t(`tier.${tier}.title`),
-          description: t(`tier.${tier}.description`),
-        },
-    hasStat3Override
-      ? {
-          icon: iconOverrides?.stat3 ?? CableIcon,
-          title: t(`${overrideBase}.stat3.title`),
-          description: t(`${overrideBase}.stat3.description`),
-        }
-      : {
-          icon: CableIcon,
-          title: t(`cable.${cableKey}.title`),
-          description: t(`cable.${cableKey}.description`),
-        },
-    ...(extended
-      ? [
+  const ursea = {
+    icon: BadgeCheck,
+    title: t("ursea.title"),
+    description: t("ursea.description"),
+  };
+  const usage = hasStat2Override
+    ? {
+        icon: iconOverrides?.stat2 ?? TIER_ICONS[tier],
+        title: t(`${overrideBase}.stat2.title`),
+        description: t(`${overrideBase}.stat2.description`),
+      }
+    : {
+        icon: TIER_ICONS[tier],
+        title: t(`tier.${tier}.title`),
+        description: tierDescription,
+      };
+  const cable = hasStat3Override
+    ? {
+        icon: iconOverrides?.stat3 ?? CableIcon,
+        title: t(`${overrideBase}.stat3.title`),
+        description: t(`${overrideBase}.stat3.description`),
+      }
+    : {
+        icon: CableIcon,
+        title: t(`cable.${cableKey}.title`),
+        description: t(`cable.${cableKey}.description`),
+      };
+
+  if (extended) {
+    const power = formatPowerKw(specs.maxPowerKw, locale);
+    // Seis stats no entran en la tira de tres columnas: van en filas.
+    // `HeroStatList` llena por columna: los tres primeros van a la izquierda.
+    return (
+      <HeroStatList
+        theme={theme}
+        stats={[
           {
-            icon: powerIcon(formatPowerKw(specs.maxPowerKw, locale)),
-            title: t(`power.${specs.phaseType}.title`, {
-              power: formatPowerKw(specs.maxPowerKw, locale),
-            }),
+            icon: powerIcon(power),
+            title: t(`power.${specs.phaseType}.title`, { power }),
             description: t(`power.${specs.phaseType}.description`),
           },
-          {
-            icon: HardHat,
-            title: t("installation.title"),
-            description: t("installation.description"),
-          },
+          usage,
+          ursea,
           {
             icon: Smartphone,
             title: t("app.title"),
             description: t("app.description"),
           },
-        ]
-      : []),
-  ];
+          cable,
+          {
+            icon: Wrench,
+            title: t("installation.title"),
+            description: t("installation.description"),
+          },
+        ]}
+      />
+    );
+  }
 
-  // Seis stats no entran en la tira de tres columnas: van en filas.
-  if (extended) return <HeroStatList stats={stats} theme={theme} />;
+  const stats = [ursea, usage, cable];
 
   return (
     <div

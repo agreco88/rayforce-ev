@@ -1,12 +1,15 @@
 "use client";
 
 import {
+  Award,
   Bike,
   Check,
   CircleDollarSign,
   Clock,
   ExternalLink,
+  RotateCcw,
   Truck,
+  type LucideIcon,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
@@ -15,25 +18,18 @@ import type { CatalogTheme } from "@/lib/catalog/catalog.types";
 import type { HeroPurchase } from "./use-hero-purchase";
 
 /** El boton de compra: MercadoPago si lo elegido tiene link, si no WhatsApp
- *  (con instalacion, a cotizar). */
+ *  (con instalacion, siempre). */
 export function HeroCta({
   purchase,
   theme,
 }: {
   /** Solo lo que el boton necesita: los cables no tienen el resto. */
-  purchase: Pick<
-    HeroPurchase,
-    "checkoutUrl" | "whatsappHref" | "withInstallation" | "trackCheckout"
-  >;
+  purchase: Pick<HeroPurchase, "checkoutUrl" | "whatsappHref" | "trackCheckout">;
   theme: CatalogTheme;
 }) {
   const t = useTranslations("ChargerModelPage.Hero.cta");
   const { checkoutUrl, whatsappHref } = purchase;
-  const label = checkoutUrl
-    ? "buy"
-    : purchase.withInstallation
-      ? "quote"
-      : "whatsapp";
+  const label = checkoutUrl ? "buy" : "whatsapp";
 
   return (
     <a
@@ -70,54 +66,69 @@ export function HeroCta({
 
 // En el orden de `Hero.shipping.items`: procesamiento, interior, costo, cadeteria.
 const SHIPPING_ICONS = [Clock, Truck, CircleDollarSign, Bike];
+// En el orden de `Hero.policies.items`: garantia, devolucion. `Award` como en
+// los stats de la ficha.
+const POLICY_ICONS = [Award, RotateCcw];
 
-/** Retiro, envio, garantia y devolucion bajo el boton, donde se duda antes del
- *  click; abajo, el detalle de los envios. En mobile va a sangre y pegada a
- *  la ficha, que pone el borde de abajo. */
+type TrustItem = { title: string; description: string };
+
+/** Bajo el boton, donde se duda antes del click: entrega y envio arriba, y
+ *  abajo el detalle de los envios y el de garantia y devolucion. En mobile va
+ *  a sangre y pegada a la ficha, que pone el borde de abajo. */
 export function HeroTrust({ theme }: { theme: CatalogTheme }) {
   const t = useTranslations("ChargerModelPage.Hero");
-  const promises = [
-    t("trust.pickup"),
-    t("trust.shipping"),
-    t("trust.warranty"),
-    t("trust.returns"),
-  ];
-  const shipping = t.raw("shipping.items") as {
-    title: string;
-    description: string;
-  }[];
 
   return (
     <div className="flex flex-col gap-5 border-t border-white/10 bg-white/[0.04] px-6 py-6 text-sm sm:rounded-xl sm:border sm:p-8">
       <ul className="grid grid-cols-2 gap-x-6 gap-y-6 text-neutral-300 sm:gap-x-12">
-        {promises.map((item) => (
+        {[t("trust.pickup"), t("trust.shipping")].map((item) => (
           <li key={item} className="flex items-start gap-3">
             <Check size={18} className={`shrink-0 ${theme.accentText}`} />
             {item}
           </li>
         ))}
       </ul>
-      {/* `dl` y no `p`: el `p` global de `globals.css` pisa tamaño y color. */}
-      <dl className="flex flex-col gap-8 border-t border-white/10 pt-6">
-        {shipping.map(({ title, description }, index) => {
-          const Icon = SHIPPING_ICONS[index];
-
-          return (
-            <div key={title} className="flex items-start gap-3">
-              <Icon
-                size={18}
-                className={`mt-0.5 shrink-0 ${theme.accentText}`}
-              />
-              <div className="flex flex-col gap-1">
-                <dt className="font-medium text-white">{title}</dt>
-                <dd className="leading-relaxed text-neutral-400 max-w-lg">
-                  {description}
-                </dd>
-              </div>
-            </div>
-          );
-        })}
-      </dl>
+      <TrustDetails
+        items={t.raw("shipping.items") as TrustItem[]}
+        icons={SHIPPING_ICONS}
+        theme={theme}
+      />
+      <TrustDetails
+        items={t.raw("policies.items") as TrustItem[]}
+        icons={POLICY_ICONS}
+        theme={theme}
+      />
     </div>
+  );
+}
+
+function TrustDetails({
+  items,
+  icons,
+  theme,
+}: {
+  items: TrustItem[];
+  icons: LucideIcon[];
+  theme: CatalogTheme;
+}) {
+  return (
+    // `dl` y no `p`: el `p` global de `globals.css` pisa tamaño y color.
+    <dl className="flex flex-col gap-8 border-t border-white/10 pt-6">
+      {items.map(({ title, description }, index) => {
+        const Icon = icons[index];
+
+        return (
+          <div key={title} className="flex items-start gap-3">
+            <Icon size={18} className={`mt-0.5 shrink-0 ${theme.accentText}`} />
+            <div className="flex flex-col gap-1">
+              <dt className="font-medium text-white">{title}</dt>
+              <dd className="leading-relaxed text-neutral-400 max-w-lg">
+                {description}
+              </dd>
+            </div>
+          </div>
+        );
+      })}
+    </dl>
   );
 }

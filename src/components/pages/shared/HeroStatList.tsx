@@ -124,7 +124,6 @@ export function HeroStatList({
   stats: HeroStat[];
   theme: CatalogTheme;
 }) {
-  // Arriba y abajo de la grilla.
   const separator = (
     <div className={`h-px w-full bg-gradient-to-r ${theme.gradientLine}`} />
   );

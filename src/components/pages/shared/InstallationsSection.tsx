@@ -31,9 +31,9 @@ export function InstallationsSection({ theme }: Props) {
   const t = useTranslations("ChargerModelPage.Installations");
 
   return (
-    // Sin `pt` en mobile: viene despues de las reseñas, con el mismo fondo, y
-    // su `pb` ya separa.
-    <section className="bg-neutral-950 px-6 pb-24 lg:px-16 lg:pb-32">
+    // Va despues de compatibilidad, que en mobile cierra con borde y fondo
+    // propios: de ahi el `pt-24`. Sin `pb` en mobile: las reseñas traen `pt`.
+    <section className="bg-neutral-950 px-6 pt-24 lg:px-16 lg:pt-0 lg:pb-32">
       <div className="mx-auto max-w-[1440px]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

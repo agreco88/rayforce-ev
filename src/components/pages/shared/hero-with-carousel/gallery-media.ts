@@ -5,13 +5,15 @@ import type { GalleryMedia } from "./HeroGallery";
 const CABLES = "/assets/images/cables";
 const CHARGERS = "/assets/images/chargers";
 const COLUMN = "/assets/images/column";
-const COLUMN_VIDEOS = "/assets/videos/column";
 
-// Por ahora las fotos del BC 7 kW van en todos los BC; el 22 kW suma su
-// comparativo. Fondo blanco a sangre: `object-cover`, no el `contain` de los recortes.
-const BC_PHOTOS: GalleryMedia[] = ["4", "5", "11"].map((name) => ({
+const BC_7KW_PHOTOS = ["4", "5", "11"].map((name) => `${CHARGERS}/${name}.webp`);
+const BC_22KW_STUDIO = `${CHARGERS}/bs20-bc-22kw-studio.webp`;
+
+// Por ahora las fotos del BC 7 kW van en todos los BC. Fondo blanco a sangre:
+// `object-cover`, no el `contain` de los recortes.
+const BC_PHOTOS: GalleryMedia[] = BC_7KW_PHOTOS.map((src) => ({
   type: "image",
-  src: `${CHARGERS}/${name}.webp`,
+  src,
   className: "object-cover",
 }));
 
@@ -22,22 +24,10 @@ const COLUMN_MEDIA: GalleryMedia[] = [
     className: "object-cover object-[25%_50%]",
   },
   { type: "image", src: `${COLUMN}/wallbox-on-column.webp` },
-  ...["bs20-column-clip-1", "bs20-column-clip-2", "bs20-with-column-video"].map(
-    (name): GalleryMedia => ({
-      type: "video",
-      src: `${COLUMN_VIDEOS}/${name}.mp4`,
-      poster: `${COLUMN}/${name}-poster.webp`,
-    }),
-  ),
 ];
 
 export function galleryFor(product: ChargerProduct): GalleryMedia[] {
   const { unboxing } = product;
-  const unboxingVideo: GalleryMedia = {
-    type: "video",
-    src: unboxing.videoSrc,
-    poster: unboxing.videoPoster,
-  };
 
   // El BA (sin cable) va a tener fotos propias; hasta entonces, el placeholder.
   // Su foto de unboxing tambien es la del BC, asi que de la caja va solo el video.
@@ -47,31 +37,38 @@ export function galleryFor(product: ChargerProduct): GalleryMedia[] {
         type: "image",
         src: product.cardImage,
       })),
-      unboxingVideo,
+      ...(unboxing.video
+        ? [{ type: "video" as const, src: unboxing.video.src, poster: unboxing.video.poster }]
+        : []),
     ];
   }
   // El 22 kW abre con su foto propia (marca 22 kW en pantalla) y no con las del
-  // 7 kW; atras de las comunes, el comparativo y la pieza promocional.
+  // 7 kW, y va sin la foto de la caja.
   const is22 = product.specs.maxPowerKw === 22;
   const own22: GalleryMedia[] = is22
-    ? [{ type: "image", src: `${CHARGERS}/bs20-bc-22kw-studio.webp`, className: "object-cover" }]
-    : [];
-  const comparison: GalleryMedia[] = is22
-    ? ["14", "bs20-bc-22kw-promo"].map((name) => ({
-        type: "image",
-        src: `${CHARGERS}/${name}.webp`,
-        className: "object-cover",
-      }))
+    ? [{ type: "image", src: BC_22KW_STUDIO, className: "object-cover" }]
     : [];
   // La caja va despues de las fotos del equipo y antes de la columna, que es
   // un accesorio aparte.
-  const box: GalleryMedia[] = [
-    ...(unboxing.photoSrc
-      ? [{ type: "image" as const, src: unboxing.photoSrc, className: "object-cover" }]
-      : []),
-    unboxingVideo,
-  ];
-  return [...own22, ...BC_PHOTOS, ...comparison, ...box, ...COLUMN_MEDIA];
+  const box: GalleryMedia[] =
+    unboxing.photoSrc && !is22
+      ? [{ type: "image", src: unboxing.photoSrc, className: "object-cover" }]
+      : [];
+  return [...own22, ...BC_PHOTOS, ...box, ...COLUMN_MEDIA];
+}
+
+/** Las fotos del JSON-LD: solo las de este modelo exacto. Quedan afuera las del
+ *  7 kW que toma prestadas el 22, la columna (otro producto) y el AVIF del
+ *  hero, que Merchant Center no lee. El recorte va ultimo: es el de menos detalle. */
+export function schemaImagesFor(product: ChargerProduct): string[] {
+  const { cableType, maxPowerKw } = product.specs;
+  if (cableType === "socket") return [product.cardImage];
+  if (maxPowerKw === 22) return [BC_22KW_STUDIO, product.cardImage];
+  if (maxPowerKw === 7.2) {
+    const { photoSrc } = product.unboxing;
+    return [...BC_7KW_PHOTOS, ...(photoSrc ? [photoSrc] : []), product.cardImage];
+  }
+  return [product.cardImage];
 }
 
 /** El cable, sus fotos de producto, el bolso que trae y el ensayo de pisada.
@@ -97,7 +94,7 @@ export function cableGalleryFor(product: CableProduct): GalleryMedia[] {
       }),
     ),
     ...(product.specs.bagIncluded
-      ? [{ type: "image" as const, src: `${CABLES}/cable-bag.png` }]
+      ? [{ type: "image" as const, src: `${CABLES}/cable-bag.webp` }]
       : []),
     {
       type: "video",

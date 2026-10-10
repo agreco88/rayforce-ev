@@ -3,11 +3,14 @@
 import { AnimatePresence, motion } from "motion/react";
 import { AnimateNumber } from "motion-plus/react";
 import { useTranslations } from "next-intl";
-import type { CatalogProduct } from "@/lib/catalog/catalog.types";
+import type { CatalogProduct, CatalogTheme } from "@/lib/catalog/catalog.types";
 import { OptionInfo } from "./OptionInfo";
 
 type Props = {
-  product: CatalogProduct;
+  /** Solo moneda y acento: la columna no es del catalogo y lo arma a mano. */
+  product: Pick<CatalogProduct, "price"> & {
+    theme: Pick<CatalogTheme, "accentText">;
+  };
   price: number;
   /** Con instalacion el precio es un estimado: va con "Desde". */
   from?: boolean;
@@ -101,10 +104,10 @@ export function HeroPrice({ product, price, from, total }: Props) {
   }
 
   return (
-    <p
-      className="flex w-fit items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2"
-      aria-label={label}
-    >
+    <p className="flex w-fit items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2">
+      {/* Lo visible va todo `aria-hidden`, y un `aria-label` en un <p> los
+          lectores lo ignoran: el precio entero se lee de aca. */}
+      <span className="sr-only">{label}</span>
       {/* Misma base que el IVA. */}
       {prefix && (
         <span

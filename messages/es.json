@@ -769,52 +769,16 @@
       "accessories": "Accesorios",
       "model": "{power} kW {phase, select, three {trifásico} other {monofásico}}{cable, select, socket { con toma} other {}}"
     },
+    "schema": {
+      "category": "Cargadores para vehículos eléctricos",
+      "installation": "Instalación del wallbox"
+    },
     "Hero": {
       "title": "<l>Cargador wallbox Rayforce {phase, select, three {trifásico} other {monofásico}}</l><l>de <accent>{power} kW</accent> {cable, select, socket {con toma Tipo 2} other {{tier, select, residential {para tu casa} commercial {para tu comercio} other {para uso industrial}}}}</l>",
-      "descriptions": {
-        "bs20-ba-7kw": "Wallbox monofásico con toma Tipo 2 para cargar en casa de noche. Viene sin cable: elegí el recto o el espiral y sumalo a tu compra.",
-        "bs20-bc-7kw": "Wallbox monofásico con cable Tipo 2 integrado de 6 m para cargar en casa de noche. Sin piezas sueltas: no hay cable que se pierda.",
-        "bs20-bc-11kw": "Wallbox trifásico con cable integrado de 6 m. Más potencia que un monofásico, sin la potencia contratada que exige un equipo de 22kW.",
-        "bs20-bc-22kw": "Wallbox trifásico para comercios, edificios y flotas. En una casa, la potencia contratada suele limitar la carga: ahí conviene el 11kW."
-      },
       "gallery": {
         "imageAlt": "{name}, foto {index} de {total}",
         "videoAlt": "{name}, video {index} de {total}",
         "thumbnail": "Ver foto {index}"
-      },
-      "features": {
-        "ursea": {
-          "title": "Homologado para Uruguay",
-          "description": "Registro URSEA {authNumber}. Seguro para tu instalación fija."
-        },
-        "power": {
-          "single": {
-            "title": "Carga monofásica <accent>hasta {power} kW</accent>",
-            "description": "La potencia justa para cargar en casa durante la noche."
-          },
-          "three": {
-            "title": "Carga trifásica <accent>hasta {power} kW</accent>",
-            "description": "La AC más rápida para autos que aceptan carga trifásica."
-          }
-        },
-        "cable": {
-          "socket": {
-            "title": "Elegí tu cable: <accent>recto o espiral</accent>",
-            "description": "Toma Tipo 2 estándar: el cable se cambia fácil y te sirve también en la calle."
-          },
-          "integrated": {
-            "title": "Cable Tipo 2 <accent>integrado de {length} m</accent>",
-            "description": "Siempre conectado al equipo: llegás, enchufás y cargás."
-          }
-        },
-        "schedule": {
-          "title": "Programá la carga en <accent>horario económico</accent>",
-          "description": "Cargá de noche con la tarifa triple de UTE."
-        },
-        "app": {
-          "title": "Control total <accent>desde la app</accent>",
-          "description": "Encendé, apagá y monitoreá la carga desde el celular, por Bluetooth o Wi-Fi."
-        }
       },
       "power": {
         "label": "Potencia",
@@ -852,16 +816,13 @@
       },
       "cta": {
         "buy": "Comprar por MercadoPago",
-        "whatsapp": "Comprar por WhatsApp",
+        "whatsapp": "Contactar por WhatsApp",
         "whatsappMessage": "Hola! Quiero comprar mi cargador {model}",
-        "quote": "Cotizar con instalación",
         "quoteMessage": "Hola! Quiero cotizar mi cargador {model} con instalación"
       },
       "trust": {
-        "pickup": "Pronto para retirar en menos de 24 hs",
-        "shipping": "Envío gratis a todo el país",
-        "warranty": "1 año de garantía en Uruguay",
-        "returns": "30 días para devolverlo"
+        "pickup": "Entrega inmediata",
+        "shipping": "Envío gratis a todo el país"
       },
       "shipping": {
         "items": [
@@ -876,29 +837,24 @@
           {
             "title": "Costos de envío",
             "description": "El envío es gratis a todo el país."
-          },
-          {
-            "title": "Servicio de cadetería",
-            "description": "Trabajamos con UES y DePunta, mensajerías de confianza, para que tu paquete llegue rápido y seguro."
           }
         ]
       },
-      "pickup": {
-        "title": "Retiro disponible en {address}",
-        "description": "Normalmente está listo en 24 horas",
-        "address": "Av. Italia 4520, Montevideo",
-        "map": "Ver en el mapa"
+      "policies": {
+        "items": [
+          {
+            "title": "Garantía de 1 año",
+            "description": "Por equipo defectuoso. Las instalaciones deben ser realizadas por un tecnico autorizado por UTE."
+          },
+          {
+            "title": "Devolución en 30 días",
+            "description": "Luego de efectuada la compra."
+          }
+        ]
       }
-    },
-    "eyebrow": {
-      "bs20-bc-7kw": "Wallbox Cargador De Auto Eléctrico monofásico Rayforce 7,2 kW",
-      "bs20-ba-7kw": "Wallbox Cargador De Auto Eléctrico monofásico Rayforce 7,2 kW con toma",
-      "bs20-bc-11kw": "Wallbox Cargador De Auto Eléctrico Trifásico Rayforce 11 kW",
-      "bs20-bc-22kw": "Wallbox Cargador De Auto Eléctrico Trifásico Rayforce 22 kW"
     },
     "cta": {
       "whatsapp": "Quiero comprar este cargador",
-      "pricing": "Ver precios",
       "whatsappMessage": "Hola! Quiero comprar mi cargador {model}",
       "mercadopago": "Comprar",
       "mercadopagoFull": "Comprar por MercadoPago"
@@ -921,32 +877,6 @@
       "description": "Tu cargador y su instalación cumplen con la normativa vigente: el equipo cuenta con homologación URSEA y la instalación se realiza según las exigencias de UTE, para que tengas la tranquilidad de una carga segura y respaldada.",
       "urseaAlt": "Homologación URSEA",
       "uteAlt": "Instalación certificada UTE"
-    },
-    "Unboxing": {
-      "contentsTitle": "Qué incluye la caja",
-      "contents": {
-        "noCable": "No incluye cable de carga",
-        "wallbox": "Cargador wallbox {model} de {power, number} kW",
-        "integratedCable": "Cable Tipo 2 integrado de 6 m",
-        "mountingPlate": "Placa de fijación para pared",
-        "screwKit": "Kit de tornillos y tacos",
-        "drillTemplate": "Plantilla de perforación",
-        "manual": "Manual de instalación y uso"
-      },
-      "ba": {
-        "eyebrow": "Qué viene en la caja",
-        "title": "Listo para instalar, sin sorpresas",
-        "description": "El wallbox llega con su toma Tipo 2, la plantilla de montaje y los tornillos. El cable de carga va aparte, así elegís el largo que te sirve y lo cambiás sin tocar el cargador.",
-        "replay": "Ver de nuevo",
-        "imageAlt": "Contenido de la caja del wallbox BS20"
-      },
-      "bc": {
-        "eyebrow": "Qué viene en la caja",
-        "title": "Todo adentro, cable incluido",
-        "description": "El wallbox llega con sus 6 metros de cable Tipo 2 integrados, la placa de fijación en pared y los tornillos.",
-        "replay": "Ver de nuevo",
-        "imageAlt": "Contenido de la caja del wallbox BS20 con el cable integrado desplegado"
-      }
     },
     "pricingSection": {
       "eyebrow": "Precios",
@@ -1037,7 +967,7 @@
     },
     "Installations": {
       "eyebrow": "Instalaciones reales",
-      "title": "Así queda instalado",
+      "title": "Nuestras instalaciones",
       "subtitle": "Wallbox con cable integrado que instalamos en casas y cocheras de edificio. Sin filtros ni retoques: así quedan en la pared.",
       "imageAlt": {
         "edificio-cochera-con-auto": "Wallbox Rayforce instalado en la columna de una cochera de edificio, con su tablero y el cable en el soporte",
@@ -1067,16 +997,12 @@
             "answer": "Para un garaje o una cochera techada, casi siempre. Los 6 metros se miden desde donde va montado el equipo hasta el conector, así que lo que define es dónde queda la pared respecto del puerto de carga del auto. Si tenés dudas, mandanos una foto del lugar y te decimos."
           },
           {
-            "title": "¿Por qué este y no el de toma Tipo 2?",
-            "answer": "Porque el cable ya viene puesto: cargar es descolgarlo y enchufar, sin nada suelto que guardar ni que se pueda perder. El de toma conviene cuando el cargador lo van a usar autos distintos, porque cada uno llega con su propio cable."
-          },
-          {
             "title": "¿Puedo dejarlo afuera, a la intemperie?",
-            "answer": "Sí. Es IP66 e IK10: resiste agua, polvo y golpes, y trabaja entre -25°C y +55°C. De todos modos, bajo techo el equipo y el conector se mantienen mejor con los años."
+            "answer": "Sí. Es IP66: resiste agua y polvo, y trabaja entre -25°C y +55°C. De todos modos, bajo techo el equipo y el conector se mantienen mejor con los años."
           },
           {
             "title": "¿Qué hago desde la app?",
-            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por wifi o Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
+            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
           },
           {
             "title": "¿Está homologado por URSEA?",
@@ -1115,11 +1041,11 @@
           },
           {
             "title": "¿Puedo dejarlo afuera, a la intemperie?",
-            "answer": "Sí. Es IP66 e IK10: resiste agua, polvo y golpes, y trabaja entre -25°C y +55°C. En este modelo, además, bajo techo la toma se mantiene más limpia entre usos."
+            "answer": "Sí. Es IP66: resiste agua y polvo, y trabaja entre -25°C y +55°C. En este modelo, además, bajo techo la toma se mantiene más limpia entre usos."
           },
           {
             "title": "¿Qué hago desde la app?",
-            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por wifi o Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
+            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
           },
           {
             "title": "¿Está homologado por URSEA?",
@@ -1142,7 +1068,7 @@
         "items": [
           {
             "title": "¿Necesito instalación trifásica?",
-            "answer": "Sí. Este equipo trabaja a 380–400V en tres fases, 16A por fase. Sin trifásica no hay forma de que entregue los 11kW: si en tu casa hay monofásica, el modelo que corresponde es el de 7,2kW."
+            "answer": "Sí. Este equipo trabaja a 400V en tres fases, 16A por fase. Sin trifásica no hay forma de que entregue los 11kW: si en tu casa hay monofásica, el modelo que corresponde es el de 7,2kW."
           },
           {
             "title": "¿Cómo sé si tengo trifásica?",
@@ -1162,11 +1088,11 @@
           },
           {
             "title": "¿Puedo dejarlo afuera, a la intemperie?",
-            "answer": "Sí. Es IP66 e IK10: resiste agua, polvo y golpes, y trabaja entre -25°C y +55°C. De todos modos, bajo techo el equipo y el conector se mantienen mejor con los años."
+            "answer": "Sí. Es IP66: resiste agua y polvo, y trabaja entre -25°C y +55°C. De todos modos, bajo techo el equipo y el conector se mantienen mejor con los años."
           },
           {
             "title": "¿Qué hago desde la app?",
-            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por wifi o Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
+            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
           },
           {
             "title": "¿Está homologado por URSEA?",
@@ -1189,11 +1115,11 @@
         "items": [
           {
             "title": "¿Necesito instalación trifásica?",
-            "answer": "Sí, y de buena potencia. El equipo trabaja a 380–400V en tres fases, 32A por fase. Sin trifásica no entrega 22kW por más que el equipo los soporte, y con una contratación chica tampoco: antes de venderte uno confirmamos que tu contrato con UTE lo aproveche."
+            "answer": "Sí, y de buena potencia. El equipo trabaja a 400V en tres fases, 32A por fase. Sin trifásica no entrega 22kW por más que el equipo los soporte, y con una contratación chica tampoco: antes de venderte uno confirmamos que tu contrato con UTE lo aproveche."
           },
           {
             "title": "¿Me conviene en una casa?",
-            "answer": "Normalmente no. La potencia contratada habitual en una vivienda deja la carga real bastante por debajo de los 22kW, así que pagás por potencia que no vas a usar. Para una casa con trifásica, el 11kW rinde casi igual y sale menos."
+            "answer": "Normalmente no. La potencia contratada habitual en una vivienda deja la carga real bastante por debajo de los 22kW, así que pagás por potencia que no vas a usar. Para una casa, el 7,2kW cubre la carga de cada noche y sale menos."
           },
           {
             "title": "¿Para quién es este modelo?",
@@ -1209,11 +1135,11 @@
           },
           {
             "title": "¿Puedo dejarlo afuera, a la intemperie?",
-            "answer": "Sí. Es IP66 e IK10: resiste agua, polvo y golpes, y trabaja entre -25°C y +55°C, que es lo que se le pide en una cochera abierta o un playón."
+            "answer": "Sí. Es IP66: resiste agua y polvo, y trabaja entre -25°C y +55°C, que es lo que se le pide en una cochera abierta o un playón."
           },
           {
             "title": "¿Qué hago desde la app?",
-            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por wifi o Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
+            "answer": "Arrancás y parás la carga, ves el consumo de cada sesión y programás a qué hora cargar. Se conecta por Bluetooth y el equipo tiene display propio, así que también podés operarlo sin el celular."
           },
           {
             "title": "¿Está homologado por URSEA?",
@@ -1247,63 +1173,6 @@
         "fullName": "Wallbox Comercial Trifásico 11kW con cable integrado",
         "description": "Para autos y camionetas eléctricas en casas y comercios con conexión trifásica. Carga más rápido que un monofásico y viene con cable de 6 metros incluido."
       }
-    },
-    "stats": {
-      "bs20-bc-7kw": {
-        "power": {
-          "label": "Potencia máxima"
-        },
-        "protection": {
-          "label": "Protección",
-          "sub": "Apto uso exterior"
-        },
-        "warranty": {
-          "value": "1 año",
-          "label": "Garantía"
-        }
-      },
-      "bs20-ba-7kw": {
-        "power": {
-          "label": "Potencia máxima"
-        },
-        "protection": {
-          "label": "Protección",
-          "sub": "Apto uso exterior"
-        },
-        "warranty": {
-          "value": "1 año",
-          "label": "Garantía"
-        },
-        "connector": {
-          "title": "Toma Tipo 2",
-          "description": "No incluye cable"
-        }
-      },
-      "bs20-bc-22kw": {
-        "power": {
-          "label": "Potencia máxima"
-        },
-        "protection": {
-          "label": "Protección",
-          "sub": "Apto uso exterior"
-        },
-        "warranty": {
-          "value": "1 año",
-          "label": "Garantía"
-        }
-      },
-      "bs20-bc-11kw": {
-        "power": {
-          "label": "Potencia nominal"
-        },
-        "protection": {
-          "label": "Uso interior y exterior"
-        },
-        "warranty": {
-          "value": "1 año",
-          "label": "Con técnicos certificados"
-        }
-      }
     }
   },
   "ChargerModelHeroStats": {
@@ -1317,14 +1186,17 @@
         "description": "El mismo conector de la mayoría de los cargadores públicos."
       },
       "socket": {
-        "title": "Toma Tipo 2",
-        "description": "Cable no incluido. El conector de la mayoría de los cargadores públicos."
+        "title": "Toma de Tipo 2",
+        "description": "Cable no incluido."
       }
     },
     "tier": {
       "residential": {
         "title": "Uso residencial",
-        "description": "Ideal para cooperativas o lugares compartidos."
+        "description": {
+          "integrated": "Ideal para cargar durante la noche. Con cable integrado.",
+          "socket": "Ideal para cargar durante la noche. Con cable removible (Se compra aparte)."
+        }
       },
       "commercial": {
         "title": "Uso comercial",
@@ -1347,7 +1219,7 @@
     },
     "app": {
       "title": "Control por app",
-      "description": "Encendé, apagá y monitoreá la carga por Bluetooth o Wi-Fi."
+      "description": "Prende, arranca, pausa, apagá y monitoreá la carga por Bluetooth."
     },
     "overrides": {
       "bs20-bc-11kw": {
@@ -1362,8 +1234,8 @@
       }
     },
     "installation": {
-      "title": "Instalación propia",
-      "description": "Contamos con técnicos certificados por UTE."
+      "title": "Te lo instalamos",
+      "description": "Opcional, con técnicos autorizados por UTE."
     }
   },
   "Footer": {
@@ -1529,23 +1401,8 @@
         "option": "{style, select, coiled {Espiral} other {Recto}} {power} kW"
       }
     },
-    "eyebrow": {
-      "cable-tipo-2-7kw": "Cable de Carga Monofásico",
-      "cable-tipo-2-22kw": "Cable de Carga Trifásico",
-      "cable-tipo-2-espiral-7kw": "Cable Espiralado Monofásico"
-    },
-    "titlePrefix": {
-      "cable-tipo-2-7kw": "Cable recto",
-      "cable-tipo-2-22kw": "Cable recto",
-      "cable-tipo-2-espiral-7kw": "Cable espiral"
-    },
-    "titlePowerConnector": "de",
     "cta": {
-      "buy": "Comprar por MercadoPago",
       "whatsappMessage": "Hola! Quiero consultar por el {model}."
-    },
-    "price": {
-      "taxLabel": "IVA Inc."
     },
     "OtherModels": {
       "eyebrow": "Otros accesorios",
@@ -1561,24 +1418,6 @@
       },
       "cable-tipo-2-espiral-7kw": {
         "description": "Cable espiralado Tipo 2 a Tipo 2 de 5 metros estirado, para carga monofásica de hasta 7 kW. Mismo alcance útil que el cable recto. Con sensor de temperatura y bolso de transporte incluido."
-      }
-    },
-    "stats": {
-      "connector": {
-        "value": "Type 2 – Type 2",
-        "label": "Ambos extremos"
-      },
-      "length": {
-        "total": "Largo total",
-        "stretched": "Largo estirado"
-      },
-      "protection": {
-        "label": "Protección"
-      },
-      "sensor": {
-        "value": "Incluido",
-        "label": "Sensor de temperatura",
-        "sub": "En el conector"
       }
     }
   },

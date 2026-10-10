@@ -43,7 +43,6 @@ export function CableModelHeroWithCarousel({ product }: Props) {
     whatsappHref: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       t("cta.whatsappMessage", { model: product.publicName }),
     )}`,
-    withInstallation: false,
     trackCheckout(location: "desktop" | "mobile") {
       if (product.mercadopagoUrl) {
         track.mercadopagoClick({ source: "cable_hero", charger: product.slug, location });

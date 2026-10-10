@@ -14,6 +14,9 @@ export type GalleryMedia =
   /** `poster`: el thumbnail y lo que se ve antes de que cargue. */
   | { type: "video"; src: string; poster: string };
 
+/** Alto de la barra de controles nativa de los videos, con margen. */
+const CONTROLS_HEIGHT = 56;
+
 type Props = {
   media: GalleryMedia[];
   name: string;
@@ -68,7 +71,7 @@ export function HeroGallery({ media, name, theme }: Props) {
         loop
       >
         <Arrows />
-        <Dots theme={theme} />
+        <Dots media={media} theme={theme} />
         <Thumbnails media={media} theme={theme} />
       </Carousel>
     </div>
@@ -99,7 +102,20 @@ function GalleryVideo({
       { threshold: 0.6 },
     );
     observer.observe(video);
-    return () => observer.disconnect();
+
+    // La barra nativa ocupa el pie del video: ahi el `pointerdown` no sube al
+    // carousel, si no arrastrar la barra de tiempo arrastraba tambien el slide.
+    const holdControls = (event: PointerEvent) => {
+      if (video.getBoundingClientRect().bottom - event.clientY < CONTROLS_HEIGHT) {
+        event.stopPropagation();
+      }
+    };
+    video.addEventListener("pointerdown", holdControls);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("pointerdown", holdControls);
+    };
   }, []);
 
   return (
@@ -108,6 +124,7 @@ function GalleryVideo({
       src={src}
       poster={poster}
       aria-label={alt}
+      controls
       muted
       loop
       playsInline
@@ -146,15 +163,21 @@ function Arrows() {
 /** En mobile, en lugar de los thumbnails: el alto que ahorran sube titulo y
  *  precio a la primera pantalla. Es el ejemplo de Motion+
  *  `carousel-pagination-arrows`. */
-function Dots({ theme }: { theme: CatalogTheme }) {
+function Dots({ media, theme }: { media: GalleryMedia[]; theme: CatalogTheme }) {
   const { currentPage, totalPages, gotoPage } = useCarousel();
   const t = useTranslations("ChargerModelPage.Hero.gallery");
+  const overVideo = media[currentPage]?.type === "video";
 
   return (
     // Sobre el borde de abajo de la foto, que mide `100cqw`. La pastilla
-    // oscura los separa de las fotos de fondo claro.
-    <div className="absolute inset-x-0 top-[calc(100cqw-2.75rem)] flex justify-center sm:hidden">
-      <div className="flex gap-2 rounded-full bg-neutral-950/60 px-3 py-2 backdrop-blur-sm">
+    // oscura los separa de las fotos de fondo claro. En los videos sube por
+    // encima de la barra de controles, y solo ella toma clics.
+    <motion.div
+      initial={false}
+      animate={{ y: overVideo ? -CONTROLS_HEIGHT : 0 }}
+      className="pointer-events-none absolute inset-x-0 top-[calc(100cqw-2.75rem)] flex justify-center sm:hidden"
+    >
+      <div className="pointer-events-auto flex gap-2 rounded-full bg-neutral-950/60 px-3 py-2 backdrop-blur-sm">
         {Array.from({ length: totalPages }).map((_, index) => {
           const active = index === currentPage;
 
@@ -174,7 +197,7 @@ function Dots({ theme }: { theme: CatalogTheme }) {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

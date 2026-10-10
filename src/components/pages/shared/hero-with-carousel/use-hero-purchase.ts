@@ -39,21 +39,18 @@ export function useHeroPurchase(product: ChargerProduct) {
   const addons =
     (selected?.cable.price.amount ?? 0) +
     (withColumn ? CHARGER_COLUMN_PRICE_USD : 0);
-  // Con instalacion el precio es el paquete "desde" de la seccion de precios
-  // (cargador + instalacion, el mismo para todos), mas los agregados.
+  const installationPrice = CHARGER_INSTALLATION_PRICE_USD;
   const price =
-    (withInstallation ? CHARGER_INSTALLATION_PRICE_USD : product.price.amount) +
-    addons;
-  const installationPrice = CHARGER_INSTALLATION_PRICE_USD - product.price.amount;
-  // Los links de MercadoPago son de monto fijo y ninguno incluye la columna,
-  // y la instalacion es un estimado que no se puede cobrar: las dos van por
-  // WhatsApp hasta que haya checkout dinamico.
-  const checkoutUrl =
-    withColumn || withInstallation
+    product.price.amount + addons + (withInstallation ? installationPrice : 0);
+  // Cada link de MercadoPago es un combo de monto fijo: el cargador solo, con
+  // un cable o con la columna (cable + columna no tiene). La instalacion es un
+  // estimado que no se puede cobrar: va siempre por WhatsApp.
+  const comboUrl = withColumn
+    ? selected
       ? ""
-      : selected
-        ? selected.mercadopagoUrl
-        : product.mercadopagoUrl;
+      : product.columnMercadopagoUrl
+    : (selected ?? product).mercadopagoUrl;
+  const checkoutUrl = withInstallation ? "" : comboUrl;
 
   // Sin preferencia de MercadoPago para lo elegido, la compra va por WhatsApp
   // en vez de dejar un boton muerto.

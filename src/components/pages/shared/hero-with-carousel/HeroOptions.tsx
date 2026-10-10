@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
 import {
   formatPowerKw,
   getCableProducts,
@@ -20,23 +21,34 @@ import type { HeroPurchase } from "./use-hero-purchase";
 /** El chip de opcion: la elegida lleva el accent solo en borde y texto; de
  * relleno encandilaba. El peso es el mismo en los dos estados: el bold ensancha
  * el chip y corre la fila. En mobile, el detalle va abajo y todos miden lo
- * mismo; desde `sm`, al lado, como el precio de los agregados. */
-function chipClass(active: boolean, theme: CatalogTheme) {
-  return `flex min-h-12 flex-col items-center justify-center rounded-xl border px-3 py-1.5 text-center text-sm leading-tight font-medium text-balance transition-colors sm:min-h-11 sm:flex-row sm:gap-2 sm:px-4 sm:py-0 ${
+ * mismo; desde `sm`, al lado, como el precio de los agregados. `stacked`
+ * (ver `OptionGroup`) lo pone al lado tambien en mobile. */
+export function chipClass(
+  active: boolean,
+  theme: Pick<CatalogTheme, "accentBorder" | "accentText">,
+  stacked = false,
+) {
+  return cn(
+    "flex min-h-12 flex-col items-center justify-center rounded-xl border px-3 py-1.5 text-center text-sm leading-tight font-medium text-balance transition-colors sm:min-h-11 sm:flex-row sm:gap-2 sm:px-4 sm:py-0",
+    stacked && "flex-row gap-2 px-4 py-0",
     active
       ? `${theme.accentBorder} ${theme.accentText} bg-white/5`
-      : "border-white/10 text-neutral-300 hover:border-white/30 hover:text-white"
-  }`;
+      : "border-white/10 text-neutral-300 hover:border-white/30 hover:text-white",
+  );
 }
 
-function OptionGroup({
+export function OptionGroup({
   label,
   info,
+  stacked,
   children,
 }: {
   label: string;
   /** Al lado de la etiqueta, para explicar la opcion sin sumar texto. */
   info?: ReactNode;
+  /** En mobile, un chip por fila a todo el ancho en vez de dos por fila:
+   *  para chips con texto largo, que en dos columnas quedan apretados. */
+  stacked?: boolean;
   children: ReactNode;
 }) {
   return (
@@ -45,7 +57,12 @@ function OptionGroup({
         <span className="text-sm font-medium text-white">{label}</span>
         {info}
       </div>
-      <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
+      <div
+        className={cn(
+          "grid gap-2 sm:flex sm:flex-wrap",
+          stacked ? "grid-cols-1" : "grid-cols-2",
+        )}
+      >
         {children}
       </div>
     </div>
@@ -61,7 +78,7 @@ function OptionDetail({ children }: { children: ReactNode }) {
 }
 
 /** Lo que suma un agregado. */
-function OptionPrice({ amount, prefix }: { amount: number; prefix?: string }) {
+export function OptionPrice({ amount, prefix }: { amount: number; prefix?: string }) {
   return (
     <OptionDetail>
       {prefix && `${prefix} `}USD {amount}

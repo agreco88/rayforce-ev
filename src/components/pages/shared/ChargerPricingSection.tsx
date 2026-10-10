@@ -100,7 +100,7 @@ export function ChargerPricingSection({ product, id }: Props) {
     (includeCoiledCable ? CHARGER_COILED_CABLE_PRICE_USD : 0) +
     (includeColumn ? CHARGER_COLUMN_PRICE_USD : 0);
   const basePrice = product.price.amount + addonsPrice;
-  const bundlePrice = CHARGER_INSTALLATION_PRICE_USD + addonsPrice;
+  const bundlePrice = basePrice + CHARGER_INSTALLATION_PRICE_USD;
 
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     t("cta.whatsappMessage", { model: product.shortName }),
@@ -478,7 +478,7 @@ export function ChargerPricingSection({ product, id }: Props) {
 
         <GoogleReviewsBlock
           compact
-          accentText={theme.accentText}
+          theme={theme}
           className="mt-20 sm:mt-28"
         />
       </div>
