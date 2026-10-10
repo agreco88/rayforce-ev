@@ -33,10 +33,11 @@ export function EmpresasHeroDesktop() {
               {t("eyebrow")}
             </motion.span>
 
-            {/* Sin animación a propósito: es el LCP. Peso normal y no el
-                semibold de la home, a propósito */}
+            {/* Sin animación a propósito: es el LCP. El `pb` es para los
+                descendentes, que con leading 1.15 `bg-clip-text` corta */}
             <h1
               className="
+                pb-[0.15em]
                 bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
                 bg-clip-text text-5xl font-normal leading-[1.15]
                 text-balance text-transparent

@@ -29,12 +29,14 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
         <div className="mx-auto flex w-full max-w-[1440px] items-center">
           {/* Ancho propio en vez de media pantalla: a 1440px la mitad sigue
               siendo demasiado para un parrafo. Queda pegado a la izquierda y la
-              foto respira a la derecha */}
+              foto respira a la derecha.
+              Panel translucido como el de la columna y las guias del lineup:
+              el contraste lo da la caja y no overlays sobre la foto */}
           <motion.div
             initial="hidden"
             animate="show"
             variants={waterfallList}
-            className="flex max-w-[54rem] flex-col gap-10"
+            className="flex  flex-col gap-10 rounded-3xl border border-white/10 bg-neutral-950/60 p-10 backdrop-blur-sm"
           >
             <motion.div variants={waterfallItem}>
               <DotExpandBadge
@@ -46,14 +48,16 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
               </DotExpandBadge>
             </motion.div>
 
-            {/* Sin animación a propósito: es el LCP y tiene que pintar de una */}
+            {/* Sin animación a propósito: es el LCP y tiene que pintar de una.
+                El `pb` es para los descendentes: con leading 1.15 la "g" sale de
+                la caja y `bg-clip-text` no pinta fuera de ella */}
             <h1
               className="
-                max-w-[20ch]
+                max-w-[20ch] pb-[0.15em]
                 bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-                bg-clip-text text-3xl font-semibold leading-[1.25]
-                text-transparent
-                sm:text-4xl lg:text-5xl
+                bg-clip-text text-5xl font-normal leading-[1.15]
+                text-balance text-transparent
+                xl:text-5xl
               "
             >
               {t("title")}
@@ -63,7 +67,7 @@ export function HomeHeroDesktop({ id }: { id?: string }) {
             <motion.p
               variants={waterfallItem}
               className="
-                max-w-[52ch] text-md leading-relaxed text-neutral-200
+                max-w-[58ch] text-md leading-relaxed text-neutral-200
                 [text-shadow:0_1px_12px_rgba(0,0,0,0.65)]
               "
             >

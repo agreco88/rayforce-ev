@@ -12,21 +12,17 @@ export function HomeHeroMobile({ id }: { id?: string }) {
   const t = useTranslations("HomePage.Hero");
 
   return (
-    /* `h-[100dvh]` y no `min-h-screen`: con alto fijo hay un total contra el
-       cual repartir, y en pantallas altas no queda hueco negro abajo.
-       `overflow-hidden` para que si el texto crece ceda la foto, no el fold */
+    /* Alto natural, sin encajar todo en el primer viewport: la foto manda y el
+       resto queda debajo, aunque el ultimo CTA caiga bajo el fold */
     <section
       id={id}
-      className="relative isolate flex h-[100dvh] flex-col overflow-hidden bg-neutral-950"
+      className="relative isolate flex flex-col bg-neutral-950"
     >
-      {/* La foto es la parte elastica: se queda con el alto que sobra despues
-          del texto, y por eso el layout aguanta pantallas distintas */}
       <HomeHeroMobileImage />
 
-      {/* El contenido es la parte rigida: `shrink-0` y sin flex-1, mide
-          exactamente lo suyo. Apilado bajo la foto, sobre fondo solido, asi
-          que no necesita overlays ni sombras de contraste como el desktop */}
-      <div className="relative z-10 flex shrink-0 flex-col px-6 pt-5 pb-8">
+      {/* Apilado bajo la foto, sobre fondo solido, asi que no necesita
+          overlays ni sombras de contraste como el desktop */}
+      <div className="relative z-10 flex flex-col px-6 pt-5 pb-8">
         <motion.div
           initial="hidden"
           animate="show"
@@ -38,19 +34,17 @@ export function HomeHeroMobile({ id }: { id?: string }) {
           <h1
             className="
               bg-gradient-to-b from-gray-50 via-neutral-50 to-stone-50
-              bg-clip-text text-[1.35rem] font-semibold leading-[1.2]
-              text-transparent
+              bg-clip-text text-2xl font-semibold leading-[1.35] tracking-tighter
+              text-transparent text-start text-balance
               md:text-4xl md:leading-[1.25]
             "
           >
             {t("title")}
           </h1>
 
-          {/* `leading-snug` y no `relaxed`: en text-sm el interlineado de 1.625
-              sobre 3 lineas es lo que comia el alto */}
           <motion.p
             variants={waterfallItem}
-            className="mt-3 line-clamp-4 text-xs leading-snug text-neutral-300"
+            className="mt-4 text-xs  text-neutral-300"
           >
             {t("description")}
           </motion.p>
