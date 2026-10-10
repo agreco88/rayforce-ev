@@ -72,8 +72,8 @@ export function HeroCta({
 const SHIPPING_ICONS = [Clock, Truck, CircleDollarSign, Bike];
 
 /** Retiro, envio, garantia y devolucion bajo el boton, donde se duda antes del
- *  click; abajo, el detalle de los envios. Con el check de `HeroPickup`. En
- *  mobile va a sangre y pegada a la ficha, que pone el borde de abajo. */
+ *  click; abajo, el detalle de los envios. En mobile va a sangre y pegada a
+ *  la ficha, que pone el borde de abajo. */
 export function HeroTrust({ theme }: { theme: CatalogTheme }) {
   const t = useTranslations("ChargerModelPage.Hero");
   const promises = [
@@ -118,31 +118,6 @@ export function HeroTrust({ theme }: { theme: CatalogTheme }) {
           );
         })}
       </dl>
-    </div>
-  );
-}
-
-export function HeroPickup({ theme }: { theme: CatalogTheme }) {
-  const t = useTranslations("ChargerModelPage.Hero.pickup");
-  const address = t("address");
-
-  return (
-    <div className="flex items-start gap-3 text-sm">
-      <Check size={18} className={`mt-0.5 shrink-0 ${theme.accentText}`} />
-      <div className="flex flex-col gap-1">
-        <span className="font-medium text-white">
-          {t("title", { address })}
-        </span>
-        <span className="text-neutral-400">{t("description")}</span>
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`w-fit underline-offset-4 hover:underline ${theme.accentText}`}
-        >
-          {t("map")}
-        </a>
-      </div>
     </div>
   );
 }

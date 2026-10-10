@@ -76,33 +76,6 @@ const SPECS_BS20_COMMON = {
   certifications: ["CE", "FCC", "CSA", "RoHS", "REACH"],
 } satisfies Partial<ChargerProduct["specs"]>;
 
-/**
- * Contenido de la caja. Lo unico que cambia entre familias es el cable: el BC
- * lo trae integrado al equipo y el BA sale con toma, sin cable.
- */
-const UNBOXING_CONTENTS_COMMON: ChargerProduct["unboxing"]["contents"] = [
-  { key: "wallbox", quantity: 1 },
-  { key: "mountingPlate", quantity: 1 },
-  { key: "screwKit", quantity: 1 },
-  { key: "drillTemplate", quantity: 1 },
-  { key: "manual", quantity: 1 },
-];
-
-/** El cable va primero: es lo que distingue la caja del BC. */
-const UNBOXING_CONTENTS_BC: ChargerProduct["unboxing"]["contents"] = [
-  { key: "integratedCable", quantity: 1 },
-  ...UNBOXING_CONTENTS_COMMON,
-];
-
-/**
- * El BA sale con toma y sin cable. La exclusion abre la lista: es el dato que
- * mas cambia la compra y el que se busca justamente aca.
- */
-const UNBOXING_CONTENTS_BA: ChargerProduct["unboxing"]["contents"] = [
-  { key: "noCable", quantity: 0, excluded: true },
-  ...UNBOXING_CONTENTS_COMMON,
-];
-
 const THEME_SKY: ChargerProduct["theme"] = {
   accentText: "text-sky-400",
   accentBg: "bg-sky-400",
@@ -185,7 +158,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "7,2kW con toma",
     tier: "residential",
     familyName: "BS20",
-    family: "ba",
 
     price: { currency: "USD", amount: 549, taxLabel: "IVA Inc." },
     badges: ["Monofásico", "Toma Tipo 2", "App", "IP66"],
@@ -227,7 +199,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       // caja — este modelo sale con toma y sin cable. Reemplazar cuando
       // llegue la foto del BA desempacado.
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
-      contents: UNBOXING_CONTENTS_BA,
     },
     // Los dos cables monofasicos de 7kW. Sin preferencia de MercadoPago
     // todavia: el hero cae a WhatsApp hasta que existan.
@@ -246,7 +217,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "7,2kW",
     tier: "residential",
     familyName: "BS20",
-    family: "bc",
     featured: true,
     highlight: { labelKey: "bestSeller" },
 
@@ -288,7 +258,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
       videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
-      contents: UNBOXING_CONTENTS_BC,
     },
   },
 
@@ -301,7 +270,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "11kW",
     tier: "commercial",
     familyName: "BS20",
-    family: "bc",
 
     price: { currency: "USD", amount: 649, taxLabel: "IVA Inc." },
     badges: ["Trifásico", "Tipo 2", "App", "IP66"],
@@ -343,7 +311,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
       videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
-      contents: UNBOXING_CONTENTS_BC,
     },
   },
 
@@ -356,7 +323,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
     shortName: "22kW",
     tier: "industrial",
     familyName: "BS20",
-    family: "bc",
 
     price: { currency: "USD", amount: 728, taxLabel: "IVA Inc." },
     badges: ["Trifásico", "Tipo 2", "App", "IP66"],
@@ -396,7 +362,6 @@ export const CHARGER_PRODUCTS: ChargerProduct[] = [
       videoSrc: "/assets/videos/chargers/bs20-bc-unboxing.mp4",
       videoPoster: "/assets/images/chargers/bs20-bc-unboxing-poster.webp",
       photoSrc: "/assets/images/chargers/bs20-bc-7kw-unboxed.jpg",
-      contents: UNBOXING_CONTENTS_BC,
     },
   },
 ];

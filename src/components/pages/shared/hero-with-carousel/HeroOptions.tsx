@@ -69,53 +69,11 @@ function OptionPrice({ amount, prefix }: { amount: number; prefix?: string }) {
   );
 }
 
-/** Los grupos juntos: potencia, cable (solo el BA, que viene sin), columna e
- *  instalacion. */
-export function HeroOptions({
-  product,
-  purchase,
-  linkSuffix,
-}: {
-  product: ChargerProduct;
-  purchase: HeroPurchase;
-  linkSuffix?: string;
-}) {
-  return (
-    <div className="flex flex-col gap-6">
-      <PowerOptions product={product} linkSuffix={linkSuffix} />
-
-      {purchase.cables.length > 0 && (
-        <CableOptions
-          cables={purchase.cables}
-          selected={purchase.cableSlug}
-          onSelect={purchase.setCableSlug}
-          theme={product.theme}
-        />
-      )}
-
-      <ColumnOptions
-        selected={purchase.withColumn}
-        onSelect={purchase.setWithColumn}
-        theme={product.theme}
-      />
-
-      <InstallationOptions purchase={purchase} theme={product.theme} />
-    </div>
-  );
-}
-
 /**
  * Un chip por cargador. Son modelos distintos, asi que cada uno es un link a
  * su pagina (navegacion del cliente, sin recargar).
  */
-export function PowerOptions({
-  product,
-  linkSuffix = "",
-}: {
-  product: ChargerProduct;
-  /** La ruta de prueba lo pasa para que los links no salgan de ella. */
-  linkSuffix?: string;
-}) {
+export function PowerOptions({ product }: { product: ChargerProduct }) {
   const t = useTranslations("ChargerModelPage.Hero");
   const locale = useLocale();
   const chargers = getChargerProducts();
@@ -133,7 +91,7 @@ export function PowerOptions({
       {chargers.map((charger) => (
         <Link
           key={charger.slug}
-          href={`/cargadores/${charger.slug}${linkSuffix}`}
+          href={`/cargadores/${charger.slug}`}
           // Cambiar de potencia es elegir una opcion, no ir a otra pagina: sin
           // `scroll`, la pantalla queda en los chips. Lo de arriba tiene alto
           // reservado, asi que no salta.

@@ -200,24 +200,8 @@ type ProductBase = {
 };
 
 /**
- * Un renglon del contenido de la caja. `key` resuelve bajo
- * `ChargerModelPage.Unboxing.contents` en messages/{locale}.json — aca solo
- * va la cantidad, para que la lista se traduzca sin tocar el catalogo.
- */
-export type UnboxingItem = {
-  key: string;
-  quantity: number;
-  /**
-   * Renglon de exclusion: lo que la caja NO trae. Va en la misma lista y no
-   * en un aviso aparte, porque el dato se busca aca — separarlo hace que se
-   * lea la lista entera sin enterarse.
-   */
-  excluded?: boolean;
-};
-
-/**
- * Assets y contenido de la seccion de unboxing. El video existe para las dos
- * familias; la foto solo para los BC, porque lo que muestra es el cable
+ * La caja abierta, para la galeria del hero. El video existe para los dos
+ * modelos; la foto solo para los BC, porque lo que muestra es el cable
  * integrado enrollado en la caja y el BA no lo trae.
  */
 export type UnboxingAssets = {
@@ -225,7 +209,6 @@ export type UnboxingAssets = {
   /** El frame que hace de portada del video en la galeria del hero. */
   videoPoster: string;
   photoSrc?: string;
-  contents: UnboxingItem[];
 };
 
 /**
@@ -242,8 +225,6 @@ export type ChargerProduct = ProductBase & {
   category: "charger";
   tier: ChargerTier;
   familyName: string;
-  /** Agrupa las variantes que comparten caja y copy de unboxing. */
-  family: "ba" | "bc";
   specs: ChargerSpecs;
   visual: ChargerVisualProps;
   ursea: UrseaRegistration;

@@ -26,8 +26,6 @@ import { useHeroPurchase } from "./use-hero-purchase";
 
 type Props = {
   product: ChargerProduct;
-  /** La ruta de prueba lo pasa para que el dropdown no salga de ella. */
-  linkSuffix?: string;
 };
 
 // Los cables del modelo anterior, fuera de React: cambiar de potencia remonta
@@ -40,10 +38,7 @@ let lastCables: CableProduct[] | null = null;
  * boton de compra. A la derecha, la galeria. En mobile, apilado con la galeria
  * arriba.
  */
-export function ChargerModelHeroWithCarousel({
-  product,
-  linkSuffix = "",
-}: Props) {
+export function ChargerModelHeroWithCarousel({ product }: Props) {
   const t = useTranslations("ChargerModelPage");
   const crumbLabel = useChargerCrumbLabel();
   const tSpecs = useTranslations("Common.SpecsTable");
@@ -108,7 +103,7 @@ export function ChargerModelHeroWithCarousel({
                   </span>
                 ),
                 dropdown: getChargerProducts().map((p) => ({
-                  href: `/cargadores/${p.slug}${linkSuffix}`,
+                  href: `/cargadores/${p.slug}`,
                   current: p.slug === product.slug,
                   label: (
                     <span className={p.theme.accentText}>{crumbLabel(p)}</span>
@@ -164,7 +159,7 @@ export function ChargerModelHeroWithCarousel({
 
               {/* El cable solo en el BA, que viene sin; columna e instalacion en todos. */}
               <div className="flex flex-col">
-                <PowerOptions product={product} linkSuffix={linkSuffix} />
+                <PowerOptions product={product} />
                 {/* Entra y sale abriendo el alto. El espacio va de padding
                     adentro y no de `gap`: un gap saltaria al terminar. */}
                 <AnimatePresence initial={false}>
