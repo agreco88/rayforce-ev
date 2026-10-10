@@ -99,9 +99,10 @@ export async function generateLocaleMetadata({
 
     alternates: {
       canonical: fullUrl,
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [l, localizedPath(l)]),
-      ),
+      languages: {
+        ...Object.fromEntries(routing.locales.map((l) => [l, localizedPath(l)])),
+        "x-default": localizedPath(routing.defaultLocale),
+      },
     },
 
     robots: {
