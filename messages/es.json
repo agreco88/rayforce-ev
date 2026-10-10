@@ -185,6 +185,45 @@
       "ariaLabel": "Descargar EVSEMaster en {store}",
       "manual": "Manual de la app (PDF)"
     },
+    "Faq": {
+      "eyebrow": "SOBRE NOSOTROS",
+      "title": "Preguntas frecuentes",
+      "description": "Lo que más nos preguntan sobre quiénes somos, cómo instalamos y qué pasa después de la compra.",
+      "items": [
+        {
+          "title": "¿Quiénes son Rayforce?",
+          "answer": "Somos la línea de carga para vehículos eléctricos de Bamibel S.A., empresa uruguaya de ingeniería con más de 25 años de trayectoria. Ese respaldo es el que está detrás de cada equipo y de cada instalación."
+        },
+        {
+          "title": "¿Los equipos están autorizados por URSEA?",
+          "answer": "Sí. Nuestra línea completa de cargadores para autos y camiones está registrada ante URSEA bajo la autorización VU-SE-17-000123. El registro es público y podés consultarlo."
+        },
+        {
+          "title": "¿Quién hace la instalación?",
+          "answer": "La hacemos nosotros: no tercerizamos. Instalamos con ingenieros y técnicos electricistas certificados por UTE, siguiendo la normativa eléctrica uruguaya."
+        },
+        {
+          "title": "¿Qué garantía tienen los equipos?",
+          "answer": "Un año de garantía, que atendemos directamente nosotros acá en Uruguay. No dependés de un service en el exterior ni de un importador intermedio."
+        },
+        {
+          "title": "¿En qué zonas trabajan?",
+          "answer": "Instalamos en Montevideo y en el resto del país. Si estás fuera del área metropolitana, escribinos y coordinamos la visita técnica y los tiempos."
+        },
+        {
+          "title": "¿Cómo puedo pagar?",
+          "answer": "Podés comprar directo por MercadoPago desde el sitio, o escribirnos por WhatsApp para coordinar otras formas de pago y armar el presupuesto con instalación incluida."
+        },
+        {
+          "title": "¿Trabajan con empresas, edificios y flotas?",
+          "answer": "Sí. Hacemos proyectos para comercios, estacionamientos, edificios y flotas, con equipos de 7,2 y 22 kW. Escribinos y lo vemos según la instalación que tengas."
+        },
+        {
+          "title": "¿Qué pasa después de la compra?",
+          "answer": "Te acompañamos con soporte técnico local: puesta en marcha, configuración de la app Rayforce y consultas posteriores. Nos escribís y te atendemos nosotros."
+        }
+      ]
+    },
     "Certification": {
       "eyebrow": "Certificaciones",
       "title": "Aprobado y certificado en Uruguay",
@@ -1498,59 +1537,49 @@
         "home": "Inicio",
         "empresas": "Empresas"
       },
-      "eyebrow": "Proyectos llave en mano",
-      "title": "Infraestructura de carga para edificios, empresas y estacionamientos",
+      "eyebrow": "Carga de vehículos eléctricos",
+      "title": "Cargadores para edificios y empresas",
       "description": "Más de 25 años de ingeniería de Bamibel S.A. detrás de cada obra. Preparamos tu edificio o empresa para que cada cochera sume su cargador, con proyecto, obra e instalación propia.",
       "ctaPrimary": "Solicitar una visita técnica",
-      "ctaSecondary": "Ver la metodología",
+      "ctaSecondary": "Ver cargadores",
       "imageAlt": "Estacionamiento de edificio con cargadores Rayforce instalados"
     },
-    "Why": {
-      "eyebrow": "Por qué Rayforce",
-      "title": "Instalación propia.",
-      "description": "No tercerizamos la instalación. El mismo equipo que vende el cargador es el que lo instala, lo pone en marcha y responde por su funcionamiento.",
+    "Solutions": {
       "items": {
-        "ownInstall": {
-          "title": "Vendemos, instalamos y garantizamos",
-          "description": "Cada equipo lo instala nuestro propio personal técnico, que responde por la instalación y su funcionamiento."
+        "buildings": {
+          "title": "Edificios y garajes compartidos",
+          "description": [
+            "Adecuamos el garaje de tu edificio para que varios vehículos puedan cargar de forma segura y sin cableados individuales entre vecinos. Los cables viajan por una bandeja ordenada que llega a todos los puntos de carga, y el resultado es una instalación prolija, con los cables protegidos y alineados. Además, puede ampliarse a medida que se sumen nuevos usuarios.",
+            "Para evitar usos no autorizados, disponemos de equipos con cable removible: cada usuario conecta su propio cable al cargador, de modo que no quede al alcance de terceros. También pueden programarse para funcionar solo con código, que se configura desde la aplicación."
+          ]
         },
-        "engineering": {
-          "title": "Ingeniería detrás de la marca",
-          "description": "Somos la línea de carga para vehículos eléctricos de Bamibel S.A., empresa uruguaya de ingeniería con más de 25 años de trayectoria."
+        "business": {
+          "title": "Empresas y comercios",
+          "description": [
+            "Instalamos cargadores para uso propio de empresas o como servicio de cortesía para clientes, visitantes y empleados."
+          ]
         },
-        "team": {
-          "title": "Equipo propio",
-          "description": "Ingenieros, arquitectos y técnicos electricistas certificados por UTE."
-        },
-        "ursea": {
-          "title": "Autorización URSEA",
-          "description": "Nuestra línea completa de cargadores para autos y camiones está registrada ante URSEA bajo la autorización VU-SE-17-000123. El registro es público y puede consultarse."
-        },
-        "warranty": {
-          "title": "Garantía con respaldo local",
-          "description": "Un año de garantía, que atendemos directamente."
+        "safety": {
+          "title": "Seguridad y respaldo",
+          "description": [
+            "La instalación la realizan técnicos habilitados por UTE, con equipos autorizados por URSEA. Rayforce es parte de Bamibel S.A., empresa uruguaya de ingeniería con más de 25 años de experiencia, y ese respaldo está detrás de cada obra."
+          ]
         }
-      }
-    },
-    "Installation": {
-      "eyebrow": "Instalación",
-      "title": "La instalación define el resultado.",
-      "description": "La mayor parte de los inconvenientes con cargadores no proviene del equipo sino de la instalación. Por esa razón no la delegamos: nuestro personal técnico evalúa el tablero, dimensiona la línea y entrega el cargador en funcionamiento y verificado.",
-      "scopeTitle": "Alcance del servicio",
-      "items": {
-        "survey": "Visita técnica: evaluación de tablero, potencia contratada y recorrido del cableado",
-        "line": "Línea dedicada con las protecciones que corresponden a la instalación",
-        "mounting": "Montaje del wallbox y puesta en marcha con el vehículo del cliente",
-        "certification": "Certificación de la instalación ante UTE",
-        "app": "Configuración de la aplicación y explicación de uso"
+      },
+      "mobile": {
+        "items": {
+          "buildings": {
+            "description": "Una bandeja ordenada lleva los cables a cada punto de carga, sin cableados individuales entre vecinos, y se amplía a medida que se suman usuarios. Con cable removible o acceso por código, se evitan usos no autorizados."
+          }
+        }
       }
     },
     "Buildings": {
       "eyebrow": "Edificios y garajes",
       "title": "Infraestructura de carga para el edificio completo",
       "description": "Diseñamos y ejecutamos la infraestructura necesaria para que cada cochera pueda incorporar su cargador: adecuación del tendido, reorganización de la distribución y preparación de los puntos de conexión, de modo que sumar un cargador en el futuro sea únicamente conectarlo.",
-      "methodologyTitle": "Metodología",
-      "steps": {
+      "itemsTitle": "Metodología",
+      "items": {
         "survey": {
           "title": "Relevamiento",
           "description": "Análisis de los planos y de la instalación existente, de la potencia disponible y del número de cocheras a preparar."
@@ -1573,30 +1602,14 @@
         "description": "Una única obra planificada evita intervenciones sucesivas. Cada nuevo propietario de un vehículo eléctrico se conecta sin obras adicionales ni nuevas asambleas."
       }
     },
-    "Business": {
-      "eyebrow": "Empresas, comercios y hotelería",
-      "title": "Carga para clientes, flotas y personal, con proyecto eléctrico",
-      "description": "Wallbox trifásicos de 11 y 22 kW, dimensionados según la potencia disponible e instalados por nuestro equipo técnico. Para supermercados, hoteles, estacionamientos y flotas corporativas.",
-      "items": {
-        "power": {
-          "title": "Cargadores de 7, 11 y 22 kW con gestión desde aplicación móvil",
-          "description": "Con gestión desde aplicación móvil para monitorear sesiones y consumos."
-        },
-        "project": {
-          "title": "Proyecto eléctrico y obra a nuestro cargo",
-          "description": "Dimensionado según la potencia disponible, ejecutado por nuestro equipo técnico."
-        },
-        "column": {
-          "title": "Instalación sobre columna para exteriores y playas de estacionamiento",
-          "description": "Para exteriores y playas de estacionamiento, sin necesidad de pared disponible."
-        }
-      }
+    "Certification": {
+      "description": "Los cargadores Rayforce cuentan con autorización de URSEA para su venta en Uruguay y grado de protección IP66 e IK10 para uso exterior. Trabajamos con arquitectos, equipo de ingeniería y técnicos autorizados por UTE."
     },
     "Contact": {
       "eyebrow": "Contacto",
       "title": "Conversemos sobre tu proyecto",
-      "description": "Contanos de qué se trata y coordinamos una visita técnica para evaluar la instalación existente y la potencia disponible.",
-      "ctaWhatsapp": "Consultar por WhatsApp",
+      "description": "Contanos cómo es tu edificio o tu negocio y te orientamos sin compromiso. La solución final depende de cada caso.",
+      "button": "Consultar por WhatsApp",
       "whatsappMessage": "Hola, quería consultar por infraestructura de carga para un proyecto."
     }
   },

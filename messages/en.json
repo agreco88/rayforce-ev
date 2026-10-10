@@ -185,6 +185,45 @@
       "ariaLabel": "Download EVSEMaster on {store}",
       "manual": "App manual (PDF, Spanish)"
     },
+    "Faq": {
+      "eyebrow": "ABOUT US",
+      "title": "Frequently asked questions",
+      "description": "The questions we get most often: who we are, how we install and what happens after the purchase.",
+      "items": [
+        {
+          "title": "Who is Rayforce?",
+          "answer": "We are the EV charging line of Bamibel S.A., a Uruguayan engineering company with over 25 years of experience. That track record stands behind every unit and every installation."
+        },
+        {
+          "title": "Are your units authorized by URSEA?",
+          "answer": "Yes. Our full line of chargers for cars and trucks is registered with URSEA under authorization VU-SE-17-000123. The registry is public and you can look it up."
+        },
+        {
+          "title": "Who does the installation?",
+          "answer": "We do, in house. We never subcontract: our engineers and UTE-certified electricians install every unit following Uruguayan electrical code."
+        },
+        {
+          "title": "What warranty do the units carry?",
+          "answer": "One year of warranty, handled directly by us here in Uruguay. You do not depend on overseas service or a middleman importer."
+        },
+        {
+          "title": "What areas do you cover?",
+          "answer": "We install in Montevideo and across the country. If you are outside the metro area, get in touch and we will arrange the site visit and timeline."
+        },
+        {
+          "title": "How can I pay?",
+          "answer": "You can buy directly through MercadoPago on this site, or message us on WhatsApp to arrange other payment methods and get a quote with installation included."
+        },
+        {
+          "title": "Do you work with businesses, buildings and fleets?",
+          "answer": "Yes. We handle projects for businesses, parking facilities, buildings and fleets, with 7.2 and 22 kW units. Get in touch and we will scope it against your existing installation."
+        },
+        {
+          "title": "What happens after the purchase?",
+          "answer": "You get local technical support: commissioning, Rayforce app setup and any questions afterwards. You message us and we handle it ourselves."
+        }
+      ]
+    },
     "Certification": {
       "eyebrow": "Certifications",
       "title": "Approved and certified in Uruguay",
@@ -1498,59 +1537,49 @@
         "home": "Home",
         "empresas": "Business"
       },
-      "eyebrow": "Turnkey projects",
-      "title": "Charging infrastructure for buildings, businesses and parking facilities",
+      "eyebrow": "EV charging",
+      "title": "Chargers for buildings and businesses",
       "description": "Over 25 years of Bamibel S.A. engineering behind every project. We prepare your building or business so every parking space can add its charger, with in-house design, works and installation.",
       "ctaPrimary": "Request a site visit",
-      "ctaSecondary": "See our methodology",
+      "ctaSecondary": "View chargers",
       "imageAlt": "Building parking garage with Rayforce chargers installed"
     },
-    "Why": {
-      "eyebrow": "Why Rayforce",
-      "title": "Our own installation team.",
-      "description": "We don't outsource installation. The same team that sells the charger installs it, commissions it and answers for how it works.",
+    "Solutions": {
       "items": {
-        "ownInstall": {
-          "title": "We sell, install and guarantee",
-          "description": "Every unit is installed by our own technical staff, who take responsibility for the installation and its operation."
+        "buildings": {
+          "title": "Shared buildings and garages",
+          "description": [
+            "We adapt your building's garage so several vehicles can charge safely, without individual cable runs between neighbours. The cables run along a tidy tray that reaches every charging point, and the result is a neat installation, with the cables protected and aligned. It can also be extended as new users join.",
+            "To prevent unauthorised use, we offer units with a removable cable: each user plugs their own cable into the charger, so it is never left within reach of others. They can also be set to work only with a code, configured from the app."
+          ]
         },
-        "engineering": {
-          "title": "Engineering behind the brand",
-          "description": "We are the EV charging line of Bamibel S.A., a Uruguayan engineering company with more than 25 years of experience."
+        "business": {
+          "title": "Businesses and shops",
+          "description": [
+            "We install chargers for a company's own use or as a courtesy service for customers, visitors and employees."
+          ]
         },
-        "team": {
-          "title": "In-house team",
-          "description": "Engineers, architects and electrical technicians certified by UTE."
-        },
-        "ursea": {
-          "title": "URSEA authorisation",
-          "description": "Our complete line of chargers for cars and trucks is registered with URSEA under authorisation VU-SE-17-000123. The registry is public and can be consulted."
-        },
-        "warranty": {
-          "title": "Warranty with local backing",
-          "description": "One year of warranty, handled directly by us."
+        "safety": {
+          "title": "Safety and backing",
+          "description": [
+            "Installation is carried out by UTE-licensed technicians, with equipment authorised by URSEA. Rayforce is part of Bamibel S.A., a Uruguayan engineering company with more than 25 years of experience, and that backing stands behind every project."
+          ]
         }
-      }
-    },
-    "Installation": {
-      "eyebrow": "Installation",
-      "title": "The installation defines the result.",
-      "description": "Most problems with chargers come not from the equipment but from the installation. That is why we don't delegate it: our technical staff assess the panel, size the circuit and hand over the charger working and verified.",
-      "scopeTitle": "Scope of service",
-      "items": {
-        "survey": "Site visit: assessment of the panel, contracted power and cable routing",
-        "line": "Dedicated circuit with the protections the installation requires",
-        "mounting": "Wallbox mounting and commissioning with the client's vehicle",
-        "certification": "Certification of the installation with UTE",
-        "app": "App setup and a walkthrough of how to use it"
+      },
+      "mobile": {
+        "items": {
+          "buildings": {
+            "description": "A tidy tray carries the cables to every charging point, with no individual cable runs between neighbours, and it can be extended as new users join. A removable cable or code access prevents unauthorised use."
+          }
+        }
       }
     },
     "Buildings": {
       "eyebrow": "Buildings and garages",
       "title": "Charging infrastructure for the entire building",
       "description": "We design and execute the infrastructure so every parking space can add its own charger: adapting the cabling, reorganising the distribution and preparing the connection points, so that adding a charger later is simply a matter of plugging it in.",
-      "methodologyTitle": "Methodology",
-      "steps": {
+      "itemsTitle": "Methodology",
+      "items": {
         "survey": {
           "title": "Survey",
           "description": "Analysis of the plans and the existing installation, the available power and the number of parking spaces to prepare."
@@ -1573,30 +1602,14 @@
         "description": "A single planned project avoids repeated interventions. Each new EV owner connects without further works or new assembly votes."
       }
     },
-    "Business": {
-      "eyebrow": "Business, retail and hospitality",
-      "title": "Charging for customers, fleets and staff, with a full electrical design",
-      "description": "Three-phase wallboxes of 11 and 22 kW, sized according to the available power and installed by our technical team. For supermarkets, hotels, parking facilities and corporate fleets.",
-      "items": {
-        "power": {
-          "title": "Chargers of 7, 11 and 22 kW with mobile app management",
-          "description": "Managed from a mobile app to monitor sessions and consumption."
-        },
-        "project": {
-          "title": "Electrical design and works on us",
-          "description": "Sized according to the available power and executed by our technical team."
-        },
-        "column": {
-          "title": "Pedestal installation for outdoor areas and parking lots",
-          "description": "For outdoor areas and parking lots, with no wall required."
-        }
-      }
+    "Certification": {
+      "description": "Rayforce chargers hold URSEA authorisation for sale in Uruguay and IP66 and IK10 protection ratings for outdoor use. We work with architects, an engineering team and UTE-authorised technicians."
     },
     "Contact": {
       "eyebrow": "Contact",
       "title": "Let's talk about your project",
-      "description": "Tell us what it involves and we'll arrange a site visit to assess the existing installation and the available power.",
-      "ctaWhatsapp": "Ask us on WhatsApp",
+      "description": "Tell us about your building or your business and we'll advise you, with no obligation. The final solution depends on each case.",
+      "button": "Ask us on WhatsApp",
       "whatsappMessage": "Hi, I wanted to ask about charging infrastructure for a project."
     }
   },
